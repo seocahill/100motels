@@ -1,4 +1,4 @@
-# PostgreSQL. Versions 8.2 and up are supported.
+ # PostgreSQL. Versions 8.2 and up are supported.
 #
 # Install the pg driver:
 #   gem install pg
@@ -17,8 +17,8 @@ development:
   encoding: unicode
   database: one_hundred_motels_development
   pool: 5
-  username: one_hundred_motels
-  password:
+  username: seo
+  password: seocahill
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -38,18 +38,21 @@ development:
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
-test:
+test: &test
   adapter: postgresql
   encoding: unicode
   database: one_hundred_motels_test
   pool: 5
-  username: one_hundred_motels
-  password:
+  username: seo
+  password: seocahill
 
 production:
   adapter: postgresql
   encoding: unicode
   database: one_hundred_motels_production
   pool: 5
-  username: one_hundred_motels
-  password:
+  username: seo
+  password: seocahill
+
+cucumber:
+  <<: *test

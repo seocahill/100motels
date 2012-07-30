@@ -9,6 +9,7 @@ end
 group :developement, :test do
 	gem 'rspec-rails'
 	gem 'guard-rspec'
+	gem 'guard-cucumber'
 end
 
 group :test do
@@ -17,6 +18,8 @@ group :test do
 	gem 'libnotify'
 	gem 'spork'
 	gem 'guard-spork'
+	gem 'cucumber-rails'
+	gem 'database_cleaner'
 end
 
 # Gems used only for assets and not required
