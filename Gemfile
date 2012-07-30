@@ -18,7 +18,7 @@ group :test do
 	gem 'libnotify'
 	gem 'spork'
 	gem 'guard-spork'
-	gem 'cucumber-rails'
+	gem "cucumber-rails", "~> 1.0", require: false
 	gem 'database_cleaner'
 end
 

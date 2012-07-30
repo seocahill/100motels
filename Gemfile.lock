@@ -175,7 +175,7 @@ PLATFORMS
 DEPENDENCIES
   capybara
   coffee-rails (~> 3.2.1)
-  cucumber-rails
+  cucumber-rails (~> 1.0)
   database_cleaner
   guard-cucumber
   guard-rspec
