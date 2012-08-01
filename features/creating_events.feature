@@ -3,6 +3,6 @@ Feature: Creating events
 	As a user
 	I want to create them easily
 
-	Scenario: View homepage
-		Given I am on the homepage
-		Then I should see "Create New Event."
+	Scenario: View Events Index
+		Given I am on the events index page
+		Then I should see "Hello World"
