@@ -1,8 +1,11 @@
 Feature: Creating events
 	In order to have events to sell tickets for 
-	As a user
+	As a logged in user
 	I want to create them easily
 
-	Scenario: View Events Index
+	Scenario: Creating an event
 		Given I am on the events index page
-		Then I should see "Hello World"
+		When I follow "New Event"
+		And I fill in "Artist" with "Crete Boom"
+		And I press "Create Event"
+		Then I should see "Rock and Roll"

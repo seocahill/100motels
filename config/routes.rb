@@ -1,7 +1,6 @@
 OneHundredMotels::Application.routes.draw do
-  get "events/index"
-
-  get "events/show"
+  
+  resources :events 
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

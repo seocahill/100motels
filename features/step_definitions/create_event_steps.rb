@@ -1,8 +1,16 @@
 Given /^I am on the events index page$/ do
-  visit events_index_path
+  visit events_path
 end
 
-
-Then /^I should see "(.*?)"$/ do |arg1|
-  page.should have_content arg1
+When /^I follow "(.*?)"$/ do |arg1|
+	visit new_event_path
 end
+
+When /^I fill in "([^\"]*)" with "([^\"]*)"$/ do |field, value|
+	fill_in(field.gsub(' ', '_'), :with => value)
+end
+
+When /^I press "(.*?)"$/ do |arg1|
+  pending # express the regexp above with the code you wish you had
+end
+
