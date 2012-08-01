@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  artist: MyString
+  venue: MyString
+  date: 2012-08-01
+  doors: 2012-08-01 16:40:59
+
+two:
+  artist: MyString
+  venue: MyString
+  date: 2012-08-01
+  doors: 2012-08-01 16:40:59
