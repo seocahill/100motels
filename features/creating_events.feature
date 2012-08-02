@@ -16,4 +16,4 @@ Feature: Creating events
 	Scenario: Creating an event without a name
 		And I press "Create Event"
 		Then I should see "Event has not been created"
-		And I should see "Artist can not be blank"
+		And I should see "Artist can't be blank"
