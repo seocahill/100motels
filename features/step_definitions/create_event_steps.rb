@@ -11,6 +11,9 @@ When /^I fill in "([^\"]*)" with "([^\"]*)"$/ do |field, value|
 end
 
 When /^I press "(.*?)"$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
+  click_button(arg1)
 end
 
+Then /^I should see "(.*?)"$/ do |arg1|
+  page.should have_content(arg1)
+end

@@ -3,14 +3,18 @@ class EventsController < ApplicationController
   end
 
   def show
+    @event = Event.find(params[:id])
   end
 
   def new
   	@event = Event.new
-  end
+	end
 
   def create
-  	
+  	@event = Event.new(params[:event])
+    @event.save
+    flash[:notice] = "Rock and Roll"
+    redirect_to @event
   end
 
   def edit
