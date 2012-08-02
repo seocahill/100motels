@@ -12,9 +12,14 @@ class EventsController < ApplicationController
 
   def create
   	@event = Event.new(params[:event])
-    @event.save
-    flash[:notice] = "Rock and Roll"
-    redirect_to @event
+    if @event.save
+      flash[:notice] = "Rock and Roll"
+      redirect_to @event  
+    else  
+      flash[:alert] = "Event has not been created"
+      render :action => "new"
+    end
+    
   end
 
   def edit
