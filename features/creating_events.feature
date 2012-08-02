@@ -9,3 +9,4 @@ Feature: Creating events
 		And I fill in "Artist" with "Crete Boom"
 		And I press "Create Event"
 		Then I should see "Rock and Roll"
+		And I should see "Crete Boom - Events - 100 Motels"
