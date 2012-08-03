@@ -62,6 +62,8 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    factory_girl (3.6.0)
+      activesupport (>= 3.0.0)
     ffi (1.1.2)
     gherkin (2.11.1)
       json (>= 1.4.6)
@@ -179,6 +181,7 @@ DEPENDENCIES
   cucumber-rails (~> 1.0)
   database_cleaner
   dynamic_form
+  factory_girl
   guard-cucumber
   guard-rspec
   guard-spork
