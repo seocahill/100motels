@@ -1,5 +1,5 @@
 Given /^that there is an event for the Artist "(.*?)"$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
+  Factory(:event, :artist => arg1)
 end
 
 Given /^I am on the Events index page$/ do
