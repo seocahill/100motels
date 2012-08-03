@@ -1,15 +1,15 @@
-Given /^that there is an event for the Artist "(.*?)"$/ do |arg1|
+Given /^that there is an event for "(.*?)"$/ do |arg1|
   Factory(:event, :artist => arg1)
 end
 
 Given /^I am on the Events index page$/ do
-  pending # express the regexp above with the code you wish you had
+	visit events_path
 end
 
 When /^I click "(.*?)"$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
+	click_link(arg1)
 end
 
 Then /^I should be on the event page for "(.*?)"$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
+	page.should have_content(arg1)
 end
