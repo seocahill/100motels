@@ -10,8 +10,9 @@ When /^I fill in "([^\"]*)" with "([^\"]*)"$/ do |field, value|
 	fill_in(field.gsub(' ', '_'), :with => value)
 end
 
-When /^I press "(.*?)"$/ do |arg1|
-  click_button(arg1)
+When /^I press "([^\"]*)"$/ do |button|
+  save_and_open_page
+  click_button(button)
 end
 
 Then /^I should see "(.*?)"$/ do |arg1|

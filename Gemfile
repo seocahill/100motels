@@ -21,6 +21,7 @@ group :test do
 	gem "cucumber-rails", "~> 1.0", require: false
 	gem 'database_cleaner'
 	gem 'factory_girl'
+  gem 'launchy'
 end
 
 # Gems used only for assets and not required

@@ -7,9 +7,9 @@ Feature: Editing Events
 		Given that there is an event for the Artist "Crete Boom"
 		And I am on the Events index page
 		When I click "Event Details"
-		And I follow "Edit Project"
+		And I click "Edit Event"
 		And I fill in "Artist" with "The Crete Boom"
-		And I press "Update Project"
-		Then I should see "Event has been updated."
+		And I press "Update Event"
+		Then I should see "Event has been updated"
 		Then I should be on the event page for "The Crete Boom"
 	
