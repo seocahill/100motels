@@ -1,3 +1,5 @@
-Factory.define(:event) do |event|
-	event.artist "Crete Boom"
+FactoryGirl.define do
+  factory :event do
+	 artist 'Crete Boom'
+  end
 end
