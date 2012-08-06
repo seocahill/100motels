@@ -1,4 +1,7 @@
 class EventsController < ApplicationController
+
+  before_filter :find_event, :only => [:update, :show, :edit, :destroy]
+
   def index
     @events = Event.all
   end
@@ -44,4 +47,16 @@ class EventsController < ApplicationController
     flash[:notice] = "Event has been deleted"
     redirect_to events_path
   end
+
+private
+
+  def find_event
+    @event = Event.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+    flash[:alert] = "The event you were looking for" +
+    " could not be found"
+    redirect_to events_path
+  end
+
+
 end
