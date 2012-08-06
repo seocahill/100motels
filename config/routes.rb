@@ -1,5 +1,7 @@
 OneHundredMotels::Application.routes.draw do
-  
+  devise_for :users
+
+  root :to => 'events#index'
   resources :events 
 
   # The priority is based upon order of creation:
