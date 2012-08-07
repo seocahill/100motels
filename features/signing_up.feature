@@ -8,6 +8,6 @@ Feature: Sign up
 		When I click "Sign up"
 		And I fill in "Email" with "seo@creteboom.com"
 		And I fill in "Password" with "foobar"
-		And I fill in "Password confirmation" with "foobar"
+		And I fill in "user_password_confirmation" with "foobar"
 		And I press "Sign up"
 		Then I should see "You have signed up successfully"
