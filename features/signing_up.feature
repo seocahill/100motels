@@ -10,4 +10,4 @@ Feature: Sign up
 		And I fill in "Password" with "foobar"
 		And I fill in "user_password_confirmation" with "foobar"
 		And I press "Sign up"
-		Then I should see "You have signed up successfully"
+		Then I should see "A message with a confirmation link has been sent to your email address."

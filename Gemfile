@@ -22,6 +22,7 @@ group :test do
 	gem 'database_cleaner'
 	gem 'factory_girl'
   gem 'launchy'
+  gem 'email_spec'
 end
 
 # Gems used only for assets and not required
