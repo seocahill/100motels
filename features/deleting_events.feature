@@ -3,6 +3,12 @@ Feature: Deleting events
 	As an admin user
 	I want to make them disappear
 
+	Background:
+		Given there are the following users:
+		| email								| password | admin |
+		| admin@creteboom.com | foobar   | true  |
+		And I am signed in as them
+
 	Scenario: Deleting an event
 		Given that there is an event for the Artist "Crete Boom"
 		And I am on the Events index page

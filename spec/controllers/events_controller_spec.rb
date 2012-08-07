@@ -1,11 +1,14 @@
 require 'spec_helper'
 
   describe EventsController do
+  
   let(:user) do 
     user = FactoryGirl.create(:user)
     user.confirm!
     user
   end
+
+  let(:event) {FactoryGirl.create(:event)}
 
   context 'standard users' do
     it "cannot access the new action" do
@@ -14,6 +17,21 @@ require 'spec_helper'
       response.should redirect_to(root_path)
       flash[:alert].should eql("You must be an admin to do that.")
     end 
+
+    { "new" => "get",
+      "create" => "post",
+      "edit" => "get",
+      "update" => "put",
+      "destroy" => "delete" }.each do |action, method|  
+    it "cannot access the #{action} action" do
+      sign_in(:user, user)
+      send(method, action.dup, :id => event.id)
+      response.should redirect_to(root_path)
+      flash[:alert].should eql("You must be an admin to do that.")
+      end
+    end
+
+
   end
 
     it "displays an error message for a missing event" do

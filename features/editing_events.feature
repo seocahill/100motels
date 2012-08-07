@@ -4,6 +4,10 @@ Feature: Editing Events
 	I want to be able to do that through a view
 
 	Background:
+		Given there are the following users:
+		| email							  | password | admin |
+		| admin@creteboom.com | foobar   | true  |
+		And I am signed in as them
 		Given that there is an event for the Artist "Crete Boom"
 		And I am on the Events index page
 		When I click "Event Details"

@@ -6,7 +6,7 @@ Feature: Creating events
 	Background:
 		Given there are the following users:
 		| email								| password   | admin |
-		| admin@creteboom.com |	foobar		 |	true |
+		| admin@creteboom.com |	foobar		 | true  |
 		And I am signed in as them
 		Given I am on the Events index page
 		When I follow "New Event"
