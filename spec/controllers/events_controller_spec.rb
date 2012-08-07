@@ -10,9 +10,10 @@ require 'spec_helper'
   context 'standard users' do
     it "cannot access the new action" do
       sign_in(:user, user)
+      get :new
       response.should redirect_to(root_path)
       flash[:alert].should eql("You must be an admin to do that.")
-    end
+    end 
   end
 
     it "displays an error message for a missing event" do
