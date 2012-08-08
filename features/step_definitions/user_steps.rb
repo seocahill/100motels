@@ -11,11 +11,12 @@
 
 Given /^there are the following users:$/ do |table|
   table.hashes.each do |attributes|
-    admin = attributes.delete("admin")
+    admin = attributes["admin"]
+    attributes.delete("admin")
     unconfirmed = attributes.delete("unconfirmed") == "true"
     @user = User.create!(attributes)
-    @user.update_column("admin", attributes["admin"] == "true")
-    @user.admin = true
+    #@user.update_column("admin", attributes["admin"] == "true")
+    @user.admin = admin
     @user.confirm! unless unconfirmed
   end
 end
@@ -30,7 +31,11 @@ Given /^I am signed in as them$/ do
     And I press "Sign in"
     Then I should see "Signed in successfully."
     })
+end
 
+Given /^I am signed in as "([^\"]*)"$/ do |email|
+  @user = User.find_by_email!(email)
+  steps("Given I am signed in as them")
 end
 
 

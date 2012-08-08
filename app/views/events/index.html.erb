@@ -4,4 +4,7 @@
 	<%= link_to "Event Details", event %>
 <% end %>
 
+<% admins_only do %>
 <%= link_to	"New Event", new_event_path %>
+<% end %>
+
