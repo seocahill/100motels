@@ -8,8 +8,8 @@ class Admin::UsersController < Admin::BaseController
   end
   
   def create
-    @user = User.new(params[:user])
-    set_admin
+    @user = User.new(params[:user].except(:admin))
+    #set_admin
     if @user.save
       flash[:notice] = "User has been created."
       redirect_to admin_users_path
