@@ -35,9 +35,9 @@ require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "pat
 #   select(value, :from => field)
 # end
 
-# When /^I check "([^\"]*)"$/ do |field|
-#   check(field)
-# end
+When /^I check "([^\"]*)"$/ do |field|
+  check(field)
+end
 
 # When /^I uncheck "([^\"]*)"$/ do |field|
 #   uncheck(field)
