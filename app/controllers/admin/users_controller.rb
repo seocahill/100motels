@@ -1,4 +1,7 @@
 class Admin::UsersController < Admin::BaseController
+
+  before_filter :find_user, :only => [:show, :edit, :update, :destroy]
+
   def index
     @users = User.all(:order => "email")
   end
@@ -9,8 +12,8 @@ class Admin::UsersController < Admin::BaseController
   
   def create
     @user = User.new(params[:user].except(:admin))
-    #set_admin
-    @user.admin = params[:user][:admin] == "1"
+    set_admin
+   # @user.admin = params[:user][:admin] == "1"
     if @user.save
       flash[:notice] = "User has been created."
       redirect_to admin_users_path
@@ -33,7 +36,7 @@ class Admin::UsersController < Admin::BaseController
       params[:user].delete(:password)
     end
     set_admin
-    if @user.update_attributes(params[:user])
+    if @user.update_attributes(params[:user].except(:admin))
       flash[:notice] = "User has been updated."
       redirect_to admin_users_path
     else
@@ -41,4 +44,24 @@ class Admin::UsersController < Admin::BaseController
       render :action => "edit"
     end
   end
+
+  def destroy
+    if @user == current_user
+      flash[:alert] = "You cannot delete yourself!"
+    else
+      @user.destroy
+      flash[:notice] = "User has been deleted."
+    end
+
+    redirect_to admin_users_path
+  end
+  
+  private
+    def set_admin
+      @user.admin = params[:user][:admin] == "1"
+    end
+
+    def find_user
+      @user = User.find(params[:id])
+    end
 end
