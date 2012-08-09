@@ -1,9 +1,9 @@
 require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "paths"))
 
-# Given /^I am on the homepage$/ do
-#   save_and_open_page
-#   visit root_url
-# end
+Given /^I am on the homepage$/ do
+  #save_and_open_page
+  visit root_url
+end
 
 # When /^I go to (.+)$/ do |page_name|
 #   visit path_to(page_name)

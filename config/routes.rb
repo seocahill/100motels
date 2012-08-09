@@ -1,5 +1,7 @@
 OneHundredMotels::Application.routes.draw do
 
+  get "pages/home"
+
   devise_for :users
 
   namespace :admin do 
