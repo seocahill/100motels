@@ -20,6 +20,7 @@ Feature: Hidden Links
 		
 	Scenario: New event link is shown to admins
 		Given I am signed in as "admin@creteboom.com"
+		And I am on the Events index page
 		Then I should see the "New Event" link
 
 	Scenario: Edit Event link is hidden for non-signed-in users
@@ -29,11 +30,13 @@ Feature: Hidden Links
 	
 	Scenario: Edit Event link is hidden for signed-in users
 		Given I am signed in as "user@creteboom.com"
+		And I am on the Events index page
 		When I click "Event Details"
 		Then I should not see the "Edit Event" link
 	
 	Scenario: Edit Event link is shown to admins
 		Given I am signed in as "admin@creteboom.com"
+		And I am on the Events index page
 		When I click "Event Details"
 		Then I should see the "Edit Event" link
 
@@ -44,10 +47,12 @@ Feature: Hidden Links
 	
 	Scenario: Delete Event link is hidden for signed-in users
 		Given I am signed in as "user@creteboom.com"
+		And I am on the Events index page
 		When I click "Event Details"
 		Then I should not see the "Delete Event" link
 	
 	Scenario: Delete Event link is shown to admins
 		Given I am signed in as "admin@creteboom.com"
+		And I am on the Events index page
 		When I click "Event Details"
 		Then I should see the "Delete Event" link

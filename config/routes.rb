@@ -1,15 +1,15 @@
 OneHundredMotels::Application.routes.draw do
 
-  get "pages/home"
+  #get "pages/home"
 
   devise_for :users
-
+  root :to => 'pages#home'
   namespace :admin do 
     root :to => 'base#index'
     resources :users
   end
 
-  root :to => 'events#index'
+  
   resources :events 
 
   # The priority is based upon order of creation:
