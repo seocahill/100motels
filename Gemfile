@@ -13,6 +13,7 @@ group :developement, :test do
 end
 
 group :test do
+  gem 'faker'
 	gem 'capybara'
 	gem 'rb-inotify'
 	gem 'libnotify'
