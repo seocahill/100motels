@@ -1,7 +1,7 @@
 <h1>Events#index</h1>
 
 <% @events.each do |event| %>
-	<%= event.artist %>
+	Artist - <%= event.artist %>
 	<%= link_to "Event Details", event %>
 <% end %>
 
