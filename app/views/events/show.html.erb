@@ -1,5 +1,7 @@
 <h1> <% title(@event.artist, "Events") %></h1>
 <p><%= @event.artist %></p>
+<p>Venue - <%= @event.venue %></p>
+<p>Date - <%= @event.date %></p>
 
 <% admins_only do %>
 <p><%= link_to "Edit Event", edit_event_path(@event) %></p>

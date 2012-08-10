@@ -3,6 +3,6 @@ FactoryGirl.define do
 	 artist 'Crete Boom'
    venue 'Ballina'
    date '21st January 2013'
-   ticket_price '10'
+   #ticket_price '10'
   end
 end

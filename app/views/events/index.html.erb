@@ -2,7 +2,7 @@
 
 <% @events.each do |event| %>
 	Artist - <%= event.artist %>
-	<%= link_to "Event Details", event %>
+<%= link_to "Event Details", event %>
 <% end %>
 
 <% admins_only do %>
