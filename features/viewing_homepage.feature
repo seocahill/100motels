@@ -25,3 +25,4 @@ Feature: View the homepage
 		And I click "Events Index"
 		Then I should see "Artist - Crete Boom"
 		
+		
