@@ -8,7 +8,7 @@ FactoryGirl.define do
    # event_date = Time.local(future_date.year, future_date.month, day_num)
 	 artist { Faker::Name.name }
    venue { Faker::Address.city }
-   #date event_date
+   date { Time.now }
    #ticket_price Random.rand(10..25)
   end
 end
