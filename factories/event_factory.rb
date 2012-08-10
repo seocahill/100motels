@@ -9,6 +9,6 @@ FactoryGirl.define do
 	 artist { Faker::Name.name }
    venue { Faker::Address.city }
    date { Time.now }
-   #ticket_price Random.rand(10..25)
+   ticket_price { Random.rand(10..25) }
   end
 end
