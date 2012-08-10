@@ -1,8 +1,14 @@
+require 'faker'
+
 FactoryGirl.define do
   factory :event do
-	 artist 'Crete Boom'
-   venue 'Ballina'
-   date '21st January 2013'
-   #ticket_price '10'
+   # week_num = (Random.rand(10) +1)
+   # day_num = (1+Random.rand(30))
+   # future_date = week_num.weeks.from_now
+   # event_date = Time.local(future_date.year, future_date.month, day_num)
+	 artist { Faker::Name.name }
+   venue { Faker::Address.city }
+   #date event_date
+   #ticket_price Random.rand(10..25)
   end
 end
