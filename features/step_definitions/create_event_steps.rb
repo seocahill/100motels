@@ -22,3 +22,11 @@ end
 Then /^I should not see "(.*?)"$/ do |arg1|
   page.should_not have_content(arg1)
 end
+
+When /^I create an event with valid input$/ do
+  fill_in "Artist", :with => "Crete Boom"
+  fill_in "Venue", :with => "Ballina"
+  fill_in "Date", :with => "21st January 2013"
+  fill_in "Ticket Price", :with => "10"
+  click_button("Create Event")
+end

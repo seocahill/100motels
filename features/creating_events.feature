@@ -11,9 +11,8 @@ Feature: Creating events
 		Given I am on the Events index page
 		When I follow "New Event"
 
-	Scenario: Creating an event
-		And I fill in "Artist" with "Crete Boom"
-		And I press "Create Event"
+	Scenario: Creating an event with valid information
+		And I create an event with valid input
 		Then I should see "Rock and Roll"
 		And I should see "Crete Boom - Events - 100 Motels"
 
