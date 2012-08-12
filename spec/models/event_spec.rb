@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe Event do
   
+  let(:event) { FactoryGirl.create(:event, ticket_price: 7) }
+
   it "has a valid factory" do
     FactoryGirl.create(:event).should be_valid
   end
@@ -28,4 +30,9 @@ describe Event do
     FactoryGirl.build(:event, ticket_price: nil).should_not be_valid
   end
   
+  it "Doorman returns ticket availibility, proplerly formatted" do
+    User.stub(:checkedin_count).with(event.venue).and_return(23)
+    event.sold_out.should == "There are 23 tickets left on the door"
+  end
+
 end

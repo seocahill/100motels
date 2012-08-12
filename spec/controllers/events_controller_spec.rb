@@ -7,9 +7,9 @@ require 'spec_helper'
     context 'standard users' do
 
       let(:user) { create_user! }
+      before {sign_in(:user, user)}
 
       it "cannot access the new action" do
-        sign_in(:user, user)
         get :new
         response.should redirect_to(root_path)
         flash[:alert].should eql("You must be an admin to do that.")
@@ -21,7 +21,6 @@ require 'spec_helper'
         "update" => "put",
         "destroy" => "delete" }.each do |action, method|  
       it "cannot access the #{action} action" do
-        sign_in(:user, user)
         send(method, action.dup, :id => event.id)
         response.should redirect_to(root_path)
         flash[:alert].should eql("You must be an admin to do that.")
