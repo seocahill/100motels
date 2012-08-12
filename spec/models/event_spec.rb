@@ -15,7 +15,7 @@ describe Event do
   its(:ticket_price) { should == 7 }
 
   it "is invalid without an artist" do
-    FactoryGirl.build(:event, artist: nil).should_not be_valid
+    FactoryGirl.build(:event, artist: nil).should validates_presence_of(:artist)
   end
   
   it "is invalid without a venue" do
