@@ -6,9 +6,21 @@ module ValidatesPresenceOf
     end
       
     def matches?(model)
-      model.valid?
-      model.errors.has_key?(@attribute)
+      @model = model
+      @model.valid?
+      @model.errors.has_key?(@attribute)
     end
+
+    def failure_message
+      "#{@model.class} failed to validate :#{@attribute} presence."
+    end
+
+    # not implemented
+    def negative_failure_message
+      "#{@model.class} validated :#{@attribute} presence."
+    end
+
+
   end
 
   def validates_presence_of(attribute)
