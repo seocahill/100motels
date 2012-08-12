@@ -11,4 +11,9 @@ FactoryGirl.define do
    date { Time.now }
    ticket_price { Random.rand(10..25) }
   end
+
+  factory :invalid_event, parent: :event do
+    artist { Faker::Name.name }
+    ticket_price { Random.rand(10..25) }
+  end
 end

@@ -1,11 +1,17 @@
 require 'spec_helper'
 
-describe "event" do
+describe Event do
   
   it "has a valid factory" do
     FactoryGirl.create(:event).should be_valid
   end
   
+  it { should respond_to(:artist) }
+
+  #its(:artist) {should == "Crete Boom"}
+
+  its(:ticket_price) { should == 7 }
+
   it "is invalid without an artist" do
     FactoryGirl.build(:event, artist: nil).should_not be_valid
   end
