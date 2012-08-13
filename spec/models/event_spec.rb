@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe Event do
   
+  it { should have_many(:line_items).dependent(:destroy) } 
+
   let(:event) { FactoryGirl.create(:event, ticket_price: 7) }
 
   it "has a valid factory" do

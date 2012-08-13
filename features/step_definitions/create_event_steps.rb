@@ -30,3 +30,17 @@ When /^I create an event with valid input$/ do
   fill_in "Ticket Price", :with => "10"
   click_button("Create Event")
 end
+
+Given /^there are current Events$/ do
+  @events = [create(:event), create(:event)]
+end
+
+Then /^tickets for those events should be available to buy$/ do
+  @page.product_titles.should =~ @events.collect(&:artist)
+end
+
+Given /^the events:$/ do |table|
+  table.raw.flatten.each do |p|
+    create(:event, :artist => p)
+  end
+end

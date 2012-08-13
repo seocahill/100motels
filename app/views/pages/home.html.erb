@@ -1,5 +1,14 @@
 <h1>Welcome to 100 Motels!</h1>
 
+<% @event.each do |event| %>
+<%= event.artist %>
+<%= event.venue %>
+<%= event.date %>
+<%= event.ticket_price %>
+<%= button_to "Add to Cart", line_items_path(event_id: event) %>
+<% end %>
+
+
 
 
 

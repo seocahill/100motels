@@ -1,9 +1,11 @@
 Feature: View the homepage
+
 	In order to make sure the app is loading
 	As a visitor to 100 Motels
 	I should see the homepage
 
 	 Background:
+
    Given there are the following users:
      | email               | password | admin | 
      | admin@creteboom.com | foobar   | true  |
@@ -11,18 +13,24 @@ Feature: View the homepage
    And that there is an event for the Artist "Crete Boom"
 	
 	Scenario: Homepage should have App name
+
 		Given I am on the homepage
 		Then I should see "100 Motels"
 
 	Scenario: Homepage link to view users
+
 		Given I am on the homepage
 		And I click "Users Index"
 		Then I should see "admin@creteboom.com (Admin)"
 		And I should see "user@creteboom.com (User)"
 	
 	Scenario: Homepage link to view events
+
 		Given I am on the homepage
 		And I click "Events Index"
 		Then I should see "Artist - Crete Boom"
 		
-		
+	Scenario: Current Events
+	
+    When I visit the homepage
+    Then tickets for those events should be available to buy
