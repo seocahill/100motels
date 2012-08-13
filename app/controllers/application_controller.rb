@@ -1,14 +1,21 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-private
+  private
 
-  def authorize_admin!
-    authenticate_user!
-    unless current_user.admin?
-      flash[:alert] = "You must be an admin to do that."
-      redirect_to root_path
+    def authorize_admin!
+      authenticate_user!
+      unless current_user.admin?
+        flash[:alert] = "You must be an admin to do that."
+        redirect_to root_path
+      end
     end
-  end
-  
+
+    def current_cart
+      cart.find(session[:cart_id])
+    rescue ActiveRecord::RecordNotFound
+      cart = Cart.create
+      session[:cart_id] = cart.id
+      cart
+    end
 end
