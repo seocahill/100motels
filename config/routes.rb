@@ -1,5 +1,13 @@
 OneHundredMotels::Application.routes.draw do
 
+  get "carts/show"
+
+  get "carts/edit"
+
+  get "carts/update"
+
+  get "carts/destroy"
+
   #get "pages/home"
 
   devise_for :users
