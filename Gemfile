@@ -24,6 +24,7 @@ group :test do
 	gem 'factory_girl'
   gem 'launchy'
   gem 'email_spec'
+  gem "shoulda-matchers"
 end
 
 # Gems used only for assets and not required
