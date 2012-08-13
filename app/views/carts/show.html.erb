@@ -1,2 +1,6 @@
-<h1>Carts#show</h1>
-<p>Find me in app/views/carts/show.html.erb</p>
+<h2>Your Tickets</h2>
+<ul>
+	<% @cart.line_items.each do |item| %>
+		<li><%= item.event.artist %></li>
+	<% end %>
+</ul>

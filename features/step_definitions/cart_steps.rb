@@ -6,8 +6,8 @@ When /^I add an event to my cart$/ do
   click_button("Add to Cart")
 end
 
-Then /^my cart should contain:$/ do |table|
-  @page.cart.contents.should == table.hashes
+Then /^my cart should contain one item$/ do 
+  @cart.line_items.count.should == 1
 end
 
 Given /^my cart contains events$/ do

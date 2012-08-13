@@ -12,9 +12,7 @@ Feature: Cart
     Given there are current events
     When I visit the homepage
     And I add an event to my cart
-    Then my cart should contain:
-      | quantity |
-      | 1        |
+    Then my cart should contain one item
 
   Scenario: Add item to cart again
 
