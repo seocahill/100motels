@@ -13,4 +13,6 @@ OneHundredMotels::Application.routes.draw do
 
   resources :carts, except: :index
 
+  resources :line_items
+
 end

@@ -2,9 +2,8 @@ Then /^my cart should be empty$/ do
   @page.cart.should be_empty
 end
 
-# TODO how to optionally match on 'again'?
-When /^I add "([^"]*)" to my cart/ do |event_artist|
-  @page.add_event event_artist
+When /^I add an event to my cart$/ do 
+  click_button("Add to Cart")
 end
 
 Then /^my cart should contain:$/ do |table|
@@ -21,6 +20,11 @@ end
 
 When /^I empty my cart$/ do
   @page.cart.empty!
+end
+
+Given /^there are current events$/ do
+  @events = []
+  2.times { @events << FactoryGirl.create(:event) }
 end
 
 def add_some_events_to_cart

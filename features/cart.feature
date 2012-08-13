@@ -9,14 +9,12 @@ Feature: Cart
 
   Scenario: Add item to cart
 
-    Given the events:
-      | Crete Boom           |
-      | The Crete Boom       |
+    Given there are current events
     When I visit the homepage
-    And I add "The Crete Boom" to my cart
+    And I add an event to my cart
     Then my cart should contain:
-      | event                | quantity |
-      | The Crete Boom       | 1        |
+      | quantity |
+      | 1        |
 
   Scenario: Add item to cart again
 
