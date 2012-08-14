@@ -1,3 +1,17 @@
+Given /^that there is an event for the Artist "(.*?)"$/ do |arg1|
+  FactoryGirl.create(:event, :artist => arg1)
+end
+
+Given /^that there is an event for "(.*?)"$/ do |arg1|
+  Factory(:event, :artist => arg1)
+end
+
+Given /^the events:$/ do |table|
+  table.raw.flatten.each do |p|
+    create(:event, :artist => p)
+  end
+end
+
 Given /^I am on the events index page$/ do
   visit events_path
 end
