@@ -24,8 +24,9 @@ class OrdersController < ApplicationController
       redirect_to(@order, notice: "thanks, enjoy the show!")
     else
       render action: :new, notice: "Something went wrong"
-    end
-    
+    end    
   end
 
+  def update  
+  end
 end

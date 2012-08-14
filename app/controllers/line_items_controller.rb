@@ -11,7 +11,7 @@ class LineItemsController < ApplicationController
     if @line_item.save
       redirect_to(:back)
     else
-      render :action => "new" 
+      redirect_to(:back, notice: "something went wrong")
     end
     
   end

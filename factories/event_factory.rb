@@ -13,7 +13,7 @@ FactoryGirl.define do
   end
 
   factory :invalid_event, parent: :event do
-    artist { Faker::Name.name }
-    ticket_price { Random.rand(10..25) }
+    artist nil
+    ticket_price nil 
   end
 end

@@ -25,6 +25,7 @@ group :test do
   gem 'launchy'
   gem 'email_spec'
   gem "shoulda-matchers"
+  gem 'capybara-page-object'
 end
 
 # Gems used only for assets and not required
