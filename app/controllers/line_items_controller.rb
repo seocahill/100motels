@@ -6,7 +6,7 @@ class LineItemsController < ApplicationController
   def create
     @cart = current_cart
     event = Event.find(params[:event_id])
-    @line_item = @cart.line_items.build(event: event)
+    @line_item = @cart.add_event(event.id)
     
     if @line_item.save
       redirect_to(@line_item.cart, :notice => 'Line item was successfully created.')
