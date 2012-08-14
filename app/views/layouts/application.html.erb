@@ -13,6 +13,7 @@
   <%= csrf_meta_tags %>
 </head>
 <nav>
+  <%= link_to "home", root_path %>
   <% if user_signed_in? %>
     Signed in as <%= current_user.email %>
     <%= link_to "Sign out", destroy_user_session_path, :method => 'delete' %>
@@ -26,7 +27,6 @@
   <%= link_to "Events Index", events_path %>
   <%= link_to "Users Index", admin_users_path %>
 </nav>
-<div><%= render @cart %></div>
 <body>
 <% flash.each do |key, value| %>
 	<div class='flash' id='<%= key %>'>

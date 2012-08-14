@@ -1,0 +1,7 @@
+<h1>Here are the details of your order</h1>
+
+<%= @order.name %>
+<%= @order.email %>
+<% @order.line_items.each do |l| %>
+	<%= l.event.artist %>
+<% end %>

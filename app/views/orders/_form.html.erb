@@ -1,0 +1,9 @@
+<%= error_messages_for :order %>
+
+<%= form_for @order do |f| %>
+  <%= f.label :name, "Name" %>
+  <%= f.text_field :name %>
+  <%= f.label :email, "Email" %>
+  <%= f.email_field :email %>
+  <%= f.submit "Submit Order", :disable_with => 'Submit Ordering...' %>
+<% end %>
