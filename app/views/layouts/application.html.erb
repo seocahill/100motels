@@ -26,6 +26,7 @@
   <%= link_to "Events Index", events_path %>
   <%= link_to "Users Index", admin_users_path %>
 </nav>
+<div><%= render @cart %></div>
 <body>
 <% flash.each do |key, value| %>
 	<div class='flash' id='<%= key %>'>

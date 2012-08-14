@@ -1,0 +1,8 @@
+<ul>
+	<% @cart.line_items.each do |item| %>
+		<li><%= item.event.artist %></li>
+		<li><%= item.quantity %></li>
+		<li><%= number_to_currency(@cart.total_price) %></li>
+	<% end %>
+</ul>
+<%= button_to "Empty Cart", @cart, method: :delete %>

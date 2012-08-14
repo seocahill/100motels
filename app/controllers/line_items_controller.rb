@@ -9,7 +9,7 @@ class LineItemsController < ApplicationController
     @line_item = @cart.add_event(event.id)
     
     if @line_item.save
-      redirect_to(@line_item.cart, :notice => 'Line item was successfully created.')
+      redirect_to(:back)
     else
       render :action => "new" 
     end
