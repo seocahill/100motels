@@ -1,6 +1,7 @@
 class LineItem < ActiveRecord::Base
   belongs_to :event
   belongs_to :cart
+  belongs_to :order
   
   attr_accessible :event_id
 
