@@ -30,7 +30,4 @@ Feature: View the homepage
 		And I click "Events Index"
 		Then I should see "Artist - Crete Boom"
 		
-	Scenario: Current Events
 	
-    When I visit the homepage
-    Then tickets for those events should be available to buy
