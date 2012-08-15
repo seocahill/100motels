@@ -4,11 +4,11 @@ module Pages
     path '/'
 
     def event_titles
-      all('#events .title').collect(&:text)
+      all('#events-preview .title').collect(&:text)
     end
 
     def promoter_names
-      all('#promoter .name').collect(&:text)
+      all('#promoters-preview .email').collect(&:text)
     end
   end
 end

@@ -1,15 +1,28 @@
-<h1>Welcome to 100 Motels!</h1>
+<h1>100 Motels, A Place for Anarchy</h1>
 
 <div><%= render @cart %></div>
 
-<div>
-	<%= for event in @events do %>
-		<%= event.artist %>
-		<%= event.venue %>
-		<%= event.date %>
-		<%= event.ticket_price %>
-		<%= button_to "Add to Cart", line_items_path(event_id: event) %>
-	<% end %>
+<div id="events-preview">
+	<ul>
+		<% @events.each do |event| %>
+		  <li class="title"><%= event.artist %></li>
+			<li><%= event.venue %></li>
+			<li><%= event.date %></li>
+			<li><%= event.ticket_price %></li>
+	</ul>
+			<%= link_to "Show Details", event_path(event) %>
+			<%= button_to "Add to Cart", line_items_path(event_id: event) %>
+		<% end %>
+</div>
+
+<div id="promoters-preview">
+	<ul>
+		<% @users.each do |user| %>
+			<li> <img src="http://placehold.it/100x100">
+		  <li class="email"><%= user.email %></li>
+	</ul>
+			<%= link_to "Promoter Profile", admin_user_path(user) %>
+		<% end %>
 </div>
 
 

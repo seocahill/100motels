@@ -17,11 +17,10 @@ Feature: View the homepage
 	Scenario: Homepage should list newest users only
 
 		Then those users should be listed
-		And I should not see "last@creteboom.com (User)"
 	
 	Scenario: Homepage should list latest events
 
 		Then those events should be listed
-		And I should not see "Hacker Allstars"
+		
 		
 	
