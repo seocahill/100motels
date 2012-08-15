@@ -22,5 +22,4 @@ end
 
 Then /^those events should be listed$/ do
   @page.event_titles.should == @events.map{ |p| p.artist }
-  #@events.count.should == 2
 end

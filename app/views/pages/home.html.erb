@@ -2,13 +2,14 @@
 
 <div><%= render @cart %></div>
 
-<div><%= for event in @events do %>
-<%= event.artist %>
-<%= event.venue %>
-<%= event.date %>
-<%= event.ticket_price %>
-<%= button_to "Add to Cart", line_items_path(event_id: event) %>
-<% end %>
+<div>
+	<%= for event in @events do %>
+		<%= event.artist %>
+		<%= event.venue %>
+		<%= event.date %>
+		<%= event.ticket_price %>
+		<%= button_to "Add to Cart", line_items_path(event_id: event) %>
+	<% end %>
 </div>
 
 
