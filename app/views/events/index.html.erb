@@ -1,10 +1,13 @@
 <h1>Events#index</h1>
 
+<div id="events">
+	<ul>
 <% @events.each do |event| %>
-	Artist - <%= event.artist %>
+	<li class="title"><%= event.artist %></li>
 <%= link_to "Event Details", event %>
 <% end %>
-
+</ul>
+</div>
 <% admins_only do %>
 <%= link_to	"New Event", new_event_path %>
 <% end %>

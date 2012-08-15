@@ -1,40 +1,7 @@
+#save_and_open_page
+
 Given /^that there is an event for the Artist "(.*?)"$/ do |arg1|
   FactoryGirl.create(:event, :artist => arg1)
-end
-
-Given /^that there is an event for "(.*?)"$/ do |arg1|
-  Factory(:event, :artist => arg1)
-end
-
-Given /^the events:$/ do |table|
-  table.raw.flatten.each do |p|
-    create(:event, :artist => p)
-  end
-end
-
-Given /^I am on the events index page$/ do
-  visit events_path
-end
-
-When /^I follow "(.*?)"$/ do |arg1|
-	visit new_event_path
-end
-
-When /^I fill in "([^\"]*)" with "([^\"]*)"$/ do |field, value|
-	fill_in(field.gsub(' ', '_'), :with => value)
-end
-
-When /^I press "([^\"]*)"$/ do |button|
-  #save_and_open_page
-  click_button(button)
-end
-
-Then /^I should see "(.*?)"$/ do |arg1|
-  page.should have_content(arg1)
-end
-
-Then /^I should not see "(.*?)"$/ do |arg1|
-  page.should_not have_content(arg1)
 end
 
 When /^I create an event with valid input$/ do
@@ -45,16 +12,15 @@ When /^I create an event with valid input$/ do
   click_button("Create Event")
 end
 
-Given /^there are current Events$/ do
-  @events = [create(:event), create(:event)]
-end
-
-Then /^tickets for those events should be available to buy$/ do
-  @page.product_titles.should =~ @events.collect(&:artist)
-end
-
 Given /^the events:$/ do |table|
-  table.raw.flatten.each do |p|
-    create(:event, :artist => p)
-  end
+  @events = table.raw.flatten.map { |p| FactoryGirl.create(:event, :artist=> p) }
+end
+
+When /^I visit the box office$/ do
+  @page = Pages::Events::Index.visit
+end
+
+Then /^those events should be listed$/ do
+  @page.event_titles.should == @events.map{ |p| p.artist }
+  #@events.count.should == 2
 end
