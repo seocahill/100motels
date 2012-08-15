@@ -5,7 +5,6 @@ class PagesController < ApplicationController
   def home
     @cart = current_cart
     @events = Event.all
-    @users = User.all
-    
+    @users = User.all 
   end
 end
