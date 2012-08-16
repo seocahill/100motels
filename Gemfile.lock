@@ -76,9 +76,6 @@ GEM
       multi_json (~> 1.0)
     factory_girl (3.5.0)
       activesupport (>= 3.0.0)
-    factory_girl_rails (3.5.0)
-      factory_girl (~> 3.5.0)
-      railties (>= 3.0.0)
     faker (1.0.1)
       i18n (~> 0.4)
     ffi (1.1.4)
@@ -208,7 +205,7 @@ DEPENDENCIES
   devise
   dynamic_form
   email_spec
-  factory_girl_rails
+  factory_girl
   faker
   guard-cucumber
   guard-rspec
