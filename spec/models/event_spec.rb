@@ -16,7 +16,10 @@ describe Event do
   it { should respond_to(:ticket_price) }
   it { should be_valid }
 
+
+  #relations
   it { should have_many(:line_items).dependent(:destroy) }
+  it { should have_many(:users) }
 
   its(:ticket_price) { should == 7 }
   

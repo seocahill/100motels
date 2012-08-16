@@ -1,11 +1,21 @@
 require 'spec_helper'
 
-# describe User do
-#   let(:user) { User.first }
-#   context '#to_s' do
-#     it 'should return nil if stubbed' do
-#       user.to_s.stub(:mock_test)
-#       user == nil
-#     end
-#   end
-# end
+describe User do
+  
+  subject(:user) { FactoryGirl.create(:user) }
+  let(:event) { FactoryGirl.create(:event) }
+
+  it "has a valid factory" do
+    FactoryGirl.create(:user).should be_valid
+  end
+  
+  it { should respond_to(:email) }
+  it { should be_valid }
+
+  #relations
+  it { should have_many(:events) }
+  
+  it "admin should be valid" do
+    FactoryGirl.build(:admin).should be_valid
+  end
+end
