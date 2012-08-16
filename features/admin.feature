@@ -10,7 +10,6 @@ Feature: Admin
    | email               | password | admin | 
    | admin@creteboom.com | foobar   | true  |
    | user@creteboom.com  | foobar   | false |
-   
    And I am signed in as the admin user
      
    Scenario: Accessing the Admin area
@@ -50,7 +49,6 @@ Feature: Admin
      And I press "Update User"
      Then I should see "User has been updated."
      And I should see "user@creteboom.com (Admin)"
-
 
    Scenario: Deleting a user
 

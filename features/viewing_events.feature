@@ -1,7 +1,7 @@
 Feature: Events
 
 	In order to buy tickets to events
-	As a fan
+	As a fan/user
 	I want to be able to see a list of all events
 
 	Background:

@@ -25,6 +25,5 @@ Then /^those events should be listed$/ do
 end
 
 Then /^I should see the event page for "(.*?)"$/ do |artist|
-  #save_and_open_page
   page.should have_selector('title', text: artist) 
 end
