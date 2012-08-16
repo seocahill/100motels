@@ -2,8 +2,9 @@ require 'spec_helper'
 
 describe Event do
   
+  #let(:user) { FactoryGirl.create(:user) }
   subject(:event) { FactoryGirl.create(:event, ticket_price: 7) }
-  let(:user) { FactoryGirl.create(:user) }
+  
 
   it "has a valid factory" do
     FactoryGirl.create(:event).should be_valid
@@ -19,12 +20,12 @@ describe Event do
 
   #relations
   it { should have_many(:line_items).dependent(:destroy) }
-  it { should have_and_belong_to_many(:events) }
+  it { should have_and_belong_to_many(:users) }
 
   its(:ticket_price) { should == 7 }
   
   it "is invalid without an artist" do
-    FactoryGirl.build(:invalid_event).should_not be_valid
+    FactoryGirl.build(:event, :invalid).should_not be_valid
   end
   
   it "Doorman returns ticket availibility, proplerly formatted" do
