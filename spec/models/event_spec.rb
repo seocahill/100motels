@@ -19,7 +19,7 @@ describe Event do
 
   #relations
   it { should have_many(:line_items).dependent(:destroy) }
-  it { should have_many(:users) }
+  it { should have_and_belong_to_many(:events) }
 
   its(:ticket_price) { should == 7 }
   

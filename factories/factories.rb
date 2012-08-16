@@ -7,7 +7,7 @@ FactoryGirl.define do
     venue { Faker::Address.city }
     date { Time.now }
     ticket_price { Random.rand(10..25) }
-  
+
     factory :invalid_event do
       artist nil
     end
