@@ -2,34 +2,26 @@ require 'spec_helper'
 
 describe Event do
   
-  it { should have_many(:line_items).dependent(:destroy) } 
-
-  let(:event) { FactoryGirl.create(:event, ticket_price: 7) }
+  subject(:event) { FactoryGirl.create(:event, ticket_price: 7) }
+  let(:user) { FactoryGirl.create(:user) }
 
   it "has a valid factory" do
     FactoryGirl.create(:event).should be_valid
   end
   
   it { should respond_to(:artist) }
+  it { should respond_to(:venue) }
+  it { should respond_to(:date) }
+  it { should respond_to(:doors) }
+  it { should respond_to(:ticket_price) }
+  it { should be_valid }
 
-  #its(:artist) {should == "Crete Boom"}
+  it { should have_many(:line_items).dependent(:destroy) }
 
   its(:ticket_price) { should == 7 }
-
+  
   it "is invalid without an artist" do
-    FactoryGirl.build(:event, artist: nil).should validates_presence_of(:artist)
-  end
-  
-  it "is invalid without a venue" do
-    FactoryGirl.build(:event, venue: nil).should_not be_valid
-  end
-  
-  it "is invalid without a date" do
-    FactoryGirl.build(:event, date: nil).should_not be_valid
-  end
-  
-  it "is invalid without a price" do
-    FactoryGirl.build(:event, ticket_price: nil).should_not be_valid
+    FactoryGirl.build(:invalid_event).should_not be_valid
   end
   
   it "Doorman returns ticket availibility, proplerly formatted" do
