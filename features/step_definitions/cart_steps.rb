@@ -26,7 +26,7 @@ When /^I empty my cart$/ do
   @page.cart.empty!
 end
 
-def add_some_products_to_cart
+def add_some_events_to_cart
   @events = []
   2.times { @events << FactoryGirl.create(:event) }
   @page = Pages::Events::Index.visit

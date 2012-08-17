@@ -1,12 +1,18 @@
 <h1>Events#index</h1>
 
+<div id="cart"><%= render @cart %></div>
+
 <div id="events">
-	<ul>
 <% @events.each do |event| %>
-	<li class="title"><%= event.artist %></li>
-<%= link_to "Event Details", event %>
+	<div id="entry">
+		<div class="title"><%= event.artist %><div>
+		<div class="buttons">
+			<%= link_to "Event Details", event %>
+		  <%= button_to "Add to Cart", line_items_path(event_id: event) %>
+		</div>
+	</div>
+
 <% end %>
-</ul>
 </div>
 <% admins_only do %>
 <%= link_to	"New Event", new_event_path %>

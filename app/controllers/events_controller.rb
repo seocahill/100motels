@@ -5,6 +5,7 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.all
+    @cart = current_cart
   end
 
   def show

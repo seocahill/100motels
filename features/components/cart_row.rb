@@ -6,11 +6,11 @@ module Components
     EVENT_COLUMN_INDEX = 1
 
     def quantity
-      #multiplication_sign = "\u00d7"
-      all('td')[QUANTITY_COLUMN_INDEX].text #.gsub(multiplication_sign, '') # the 1st column in the table
+      multiplication_sign = "\u00d7"
+      all('td')[QUANTITY_COLUMN_INDEX].text.gsub(multiplication_sign, '') # the 1st column in the table
     end
     
-    def product
+    def event
       all('td')[EVENT_COLUMN_INDEX].text # the 2nd column in the table
     end
   end

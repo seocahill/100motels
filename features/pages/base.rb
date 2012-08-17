@@ -18,7 +18,7 @@ module Pages
     end
     
     def add_event(title)
-      header = find('h3', :text => title)
+      header = find('#events', :text => title)
       entry = header.find(:xpath, '..') # TODO why doesn't parent work here?
       entry.click_button 'Add to Cart'
     end
