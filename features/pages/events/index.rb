@@ -1,6 +1,6 @@
 module Pages
   module Events
-    class Index < CapybaraPageObject::Page
+    class Index < Pages::Base
 
       path 'events'
 

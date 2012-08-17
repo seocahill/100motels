@@ -1,5 +1,5 @@
 module Pages
-  class Home < CapybaraPageObject::Page
+  class Home < Pages::Base
 
     path '/'
 
