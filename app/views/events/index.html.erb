@@ -5,14 +5,16 @@
 <div id="events">
 	<ul>
 		<% @events.each do |event| %>
-		  <li class="title"><%= event.artist %></li>
-			<li><%= event.venue %></li>
-			<li><%= event.date %></li>
-			<li><%= event.ticket_price %></li>
-	</ul>
-			<%= link_to "Event Details", event_path(event) %>
-			<%= button_to "Add to Cart", line_items_path(event_id: event) %>
+			<%= div_for event do  %>
+			  <li class="title"><%= event.artist %></li>
+				<li><%= event.venue %></li>
+				<li><%= event.date %></li>
+				<li><%= event.ticket_price %></li>
+				<li><%= link_to "Event Details", event_path(event) %>
+				<%= button_to "Add to Cart", line_items_path(event_id: event) %></li>	
+			<% end %>
 		<% end %>
+	</ul>
 </div>
 
 <% admins_only do %>
