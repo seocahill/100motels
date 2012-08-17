@@ -5,9 +5,12 @@ FactoryGirl.define do
   factory :event do
     artist { Faker::Name.name }
     venue { Faker::Address.city }
-    date { Time.now }
+    date { Date.new(2012, 3, 6) }
     ticket_price { Random.rand(10..25) }
-    #Eafter(:create) { |event| event.users << FactoryGirl.create(:user) }
+
+    trait :with_user do
+      after(:build) { |event| event.users << FactoryGirl.build(:user) }
+    end
 
     trait :invalid do
       artist nil
@@ -15,6 +18,7 @@ FactoryGirl.define do
   end
 
   factory :user do
+    # event
     sequence(:email) { |n| "user#{n}@creteboom.com" }
     password "foobar"
     password_confirmation "foobar"
@@ -29,11 +33,6 @@ FactoryGirl.define do
       trait :confirmed_admin do
         admin true
       end
-    end
-
-    factory :events_users do
-      event
-      user
     end
   end
 

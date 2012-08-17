@@ -2,9 +2,7 @@ require 'spec_helper'
 
 describe Event do
   
-  #let(:user) { FactoryGirl.create(:user) }
-  subject(:event) { FactoryGirl.create(:event, ticket_price: 7) }
-  
+  subject(:event) { FactoryGirl.create(:event, :with_user, ticket_price: 7) }
 
   it "has a valid factory" do
     FactoryGirl.create(:event).should be_valid
