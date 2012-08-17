@@ -4,7 +4,7 @@ module Pages
     path '/'
 
     def event_titles
-      all('#events-preview .title').collect(&:text)
+      all('#events .title').collect(&:text)
     end
 
     def promoter_names

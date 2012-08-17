@@ -22,6 +22,7 @@ end
 
 Then /^those events should be listed$/ do
   @page.event_titles.should == @events.map{ |p| p.artist }
+  save_and_open_page
 end
 
 Then /^I should see the event page for "(.*?)"$/ do |artist|

@@ -3,17 +3,18 @@
 <div id="cart"><%= render @cart %></div>
 
 <div id="events">
-<% @events.each do |event| %>
-	<div id="entry">
-		<div class="title"><%= event.artist %><div>
-		<div class="buttons">
-			<%= link_to "Event Details", event %>
-		  <%= button_to "Add to Cart", line_items_path(event_id: event) %>
-		</div>
-	</div>
-
-<% end %>
+	<ul>
+		<% @events.each do |event| %>
+		  <li class="title"><%= event.artist %></li>
+			<li><%= event.venue %></li>
+			<li><%= event.date %></li>
+			<li><%= event.ticket_price %></li>
+	</ul>
+			<%= link_to "Event Details", event_path(event) %>
+			<%= button_to "Add to Cart", line_items_path(event_id: event) %>
+		<% end %>
 </div>
+
 <% admins_only do %>
 <%= link_to	"New Event", new_event_path %>
 <% end %>
