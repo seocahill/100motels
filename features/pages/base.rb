@@ -17,6 +17,10 @@ module Pages
       find('#notice').text
     end
     
+    def event_titles
+      all('#events .title').collect(&:text)
+    end
+    
     def add_event(title)
       header = find('#events', :text => title)
       entry = header.find(:xpath, '..') # TODO why doesn't parent work here?
