@@ -20,11 +20,11 @@ module Pages
     def event_titles
       all('#events .title').collect(&:text)
     end
-    
+
     def add_event(title)
-      header = find('#events', :text => title)
-      entry = header.find(:xpath, '..') # TODO why doesn't parent work here?
-      entry.click_button 'Add to Cart'
+      header = find('li', :text => title)
+      event_div = header.find(:xpath, '..')
+      event_div.click_button 'Add to Cart'
     end
 
   end

@@ -3,11 +3,11 @@ Then /^my cart should be empty$/ do
 end
 
 When /^I add "(.*?)" to my cart$/ do |event_title|
-  @page.add_event event_title
+  @page.add_event(event_title)
 end
 
 When /^I add "(.*?)" to my cart again$/ do |event_title|
-  @page.add_event event_title
+  @page.add_event(event_title)
 end
 
 Then /^my cart should contain:$/ do |table|
