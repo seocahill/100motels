@@ -10,7 +10,7 @@ group :developement, :test do
 	gem 'rspec-rails'
 	gem 'guard-rspec'
 	gem 'guard-cucumber'
-  gem 'factory_girl_rails'
+  gem 'factory_girl'
 end
 
 group :test do

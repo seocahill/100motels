@@ -1,3 +1,4 @@
 Dir[Rails.root + "factories/*.rb"].each do |file|
-	require file
+  puts "Loading: " + file
+  require file
 end
