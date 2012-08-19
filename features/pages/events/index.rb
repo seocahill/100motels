@@ -1,10 +1,7 @@
 module Pages
   module Events
     class Index < Pages::Base
-
-      path 'events'
-
-      
+      path 'events'      
     end
 
   end
