@@ -28,7 +28,7 @@ end
 
 def add_some_events_to_cart
   @events = []
-  2.times { @events << FactoryGirl.create(:event) }
+  2.times { @events << FactoryGirl.create(:event, artist: "Crete Boom") }
   @page = Pages::Events::Index.visit
   @events.each do |event|
     @page.add_event event.artist

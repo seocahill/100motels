@@ -1,19 +1,4 @@
 <h1>Thanks <%= @order.name %>! Here is your Order...</h1>
 
 
-<table id="order-details">
-	<tr>
-		<% @order.line_items.each do |l| %>
-		<th>name</th>
-		<th>email</th>
-		<th>item</th>
-		<th>quantity</th>
-	</tr>
-	<tr>
-		<td><%= @order.name %></td>
-		<td><%= @order.email %></td>
-		<td><%= l.event.artist %></td>
-		<td><%= l.quantity %></td>
-	</tr>
-	<% end %>
-</table>
+<%= render 'order' %>

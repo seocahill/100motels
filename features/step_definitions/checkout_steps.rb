@@ -41,6 +41,22 @@ Then /^the order should not be placed$/ do
   page.should have_content(text)
 end
 
+Given /^(?:I|they|a customer) has? successfully checked out$/ do
+  steps(%Q{
+    Given my cart contains events
+    When I check out with valid details
+    Then the order should be placed
+    And the customers details should be captured
+    })
+end
+
+Then /^I should see my order details$/ do
+  order_table = all('#order-details').collect(&:text)
+  order_table.should have_content(@order[:name])
+  order_table.should have_content(@order[:email])
+  order_table.should have_content("Rock and Roll!")
+end
+
 module CheckoutHelpers
   def checkout_with_valid_details
     @page = Pages::Home.visit

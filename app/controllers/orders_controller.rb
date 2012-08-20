@@ -22,6 +22,7 @@ class OrdersController < ApplicationController
       current_cart.destroy
       session[:cart_id] = nil
       redirect_to(@order, notice: "thanks, enjoy the show!")
+      Notifier.order_processed(@order).deliver
     else
       render action: :new, notice: "Something went wrong"
     end    
