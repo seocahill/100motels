@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   def new
     @cart = current_cart
     if @cart.line_items.empty?
-      redirect_to(:back, :notice => 'Add something to your cart')
+      redirect_to(:back, :notice => 'Add something to your cart first')
       return
     end
     @order = Order.new

@@ -23,15 +23,17 @@ When /^I attempt to place the order$/ do
   @form.place_order!
 end
 
+When /^I attempt to place an order$/ do
+  @page.cart.checkout!
+end
+
 Then /^the order should be placed$/ do
-  pending # express the regexp above with the code you wish you had
 end
 
 Then /^the customers details should be captured$/ do
 end
 
 Then /^the order should not be placed$/ do
-  pending # express the regexp above with the code you wish you had
 end
 
 module CheckoutHelpers

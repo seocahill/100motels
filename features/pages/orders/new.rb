@@ -4,7 +4,7 @@ module Pages
       path 'orders/new'
 
       def checkout_form
-        Components::CheckoutForm.new(find('.order_form'))
+        Components::CheckoutForm.new(find('.new_order'))
       end
 
     end

@@ -4,8 +4,10 @@ Feature: Checkout
 
     An order must contain at least one item
 
+    When I visit the homepage
     Given my cart is empty
-    Then I should not be able to check out
+    And I attempt to place an order
+    Then I should see "Add something to your cart first"
 
   Scenario: Successful checkout
 
