@@ -12,7 +12,7 @@ Feature: Checkout
     Given my cart contains events
     When I check out with valid details
     Then the order should be placed
-    And the customer's details should be captured
+    And the customers details should be captured
 
   Scenario Outline: Attempt to complete checkout without completing mandatory fields
 
