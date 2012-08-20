@@ -28,12 +28,17 @@ When /^I attempt to place an order$/ do
 end
 
 Then /^the order should be placed$/ do
+  @page.notice.should match "thanks, enjoy the show!"
 end
 
 Then /^the customers details should be captured$/ do
+  order_table = all('#order-details').collect(&:text)
+  order_table.should have_content(@order[:name])
+  order_table.should have_content(@order[:email])
 end
 
 Then /^the order should not be placed$/ do
+  page.should have_content(text)
 end
 
 module CheckoutHelpers
@@ -42,12 +47,12 @@ module CheckoutHelpers
     @cart = @page.cart
     @page.cart.checkout!
     @form = Pages::Orders::New.visit.checkout_form
-    @customer = {
+    @order = {
       :name => 'Joe Bloggs',
       :email => 'joe@example.com'
     }
-    @form.name = @customer[:name]
-    @form.email = @customer[:email]
+    @form.name = @order[:name]
+    @form.email = @order[:email]
   end
 end
 
