@@ -1,39 +1,44 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>
-  	<% if content_for?(:title) %>
-  		<%= yield(:title) %>
-  	<% else %>
-  		100 Motels
-  	<% end %>
-  </title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<nav>
-  <%= link_to "home", root_path %>
-  <% if user_signed_in? %>
-    Signed in as <%= current_user.email %>
-    <%= link_to "Sign out", destroy_user_session_path, :method => 'delete' %>
-  <% else %>
-    <%= link_to "Sign up", new_user_registration_path %>
-    <%= link_to "Sign in", new_user_session_path %>
+  <head>
+    <title>
+    	<% if content_for?(:title) %>
+    		<%= yield(:title) %>
+    	<% else %>
+    		100 Motels
+    	<% end %>
+    </title>
+    <!--if [lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif-->
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <nav>
+    <%= link_to "home", root_path %>
+    <% if user_signed_in? %>
+      Signed in as <%= current_user.email %>
+      <%= link_to "Sign out", destroy_user_session_path, :method => 'delete' %>
+    <% else %>
+      <%= link_to "Sign up", new_user_registration_path %>
+      <%= link_to "Sign in", new_user_session_path %>
+    <% end %>
+    <% admins_only do %>
+      <%= link_to "Admin", admin_root_path %><br>
+    <% end %>
+    <%= link_to "Events Index", events_path %>
+    <%= link_to "Users Index", admin_users_path %>
+  </nav>
+  <body>
+  <% flash.each do |key, value| %>
+  	<div class='flash' id='<%= key %>'>
+  		<%= value %>
+  	</div>
   <% end %>
-  <% admins_only do %>
-    <%= link_to "Admin", admin_root_path %><br>
-  <% end %>
-  <%= link_to "Events Index", events_path %>
-  <%= link_to "Users Index", admin_users_path %>
-</nav>
-<body>
-<% flash.each do |key, value| %>
-	<div class='flash' id='<%= key %>'>
-		<%= value %>
-	</div>
-<% end %>
-<%= yield %>
-
-</body>
+  <%= yield %>
+  </body>
+  <footer>
+    <p>&copy; Seo Cahill 2012.</p>
+  </footer>
 </html>

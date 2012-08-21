@@ -1,29 +1,41 @@
-<h1>100 Motels, A Place for Anarchy</h1>
+<header>
+	<h1>100 Motels, A Place for Anarchy</h1>
+</header>
 
-<div id="cart"><%= render @cart %></div>
+<section class="container">
+	<div id="cart">
+		<%= render @cart %>
+	</div>
+</section>
 
-<div id="events">
-	<ul>
-		<% @events.each do |event| %>
-		  <li class="title"><%= event.artist %></li>
-			<li><%= event.venue %></li>
-			<li><%= event.date %></li>
-			<li><%= event.ticket_price %></li>
-	</ul>
-			<%= link_to "Show Details", event_path(event) %>
-			<%= button_to "Add to Cart", line_items_path(event_id: event) %>
-		<% end %>
-</div>
+<section class="container">
+	<head>Latest Events</head>
+	<div id="events">
+		<ul>
+			<% @events.each do |event| %>
+			  <li class="title"><%= event.artist %></li>
+				<li><%= event.venue %></li>
+				<li><%= event.date %></li>
+				<li><%= event.ticket_price %></li>
+		</ul>
+				<%= link_to "Show Details", event_path(event) %>
+				<%= button_to "Add to Cart", line_items_path(event_id: event) %>
+			<% end %>
+	</div>
+</section>
 
-<div id="promoters-preview">
-	<ul>
-		<% @users.each do |user| %>
-			<li> <img src="http://placehold.it/100x100">
-		  <li class="email"><%= user.email %></li>
-	</ul>
-			<%= link_to "Promoter Profile", admin_user_path(user) %>
-		<% end %>
-</div>
+<section class="container">
+	<head>Top Promoters</head>
+	<div id="promoters-preview">
+		<ul>
+			<% @users.each do |user| %>
+				<li class="placehold-image"> <img src="http://placehold.it/100x100">
+			  <li class="email"><%= user.email %></li>
+		</ul>
+				<%= link_to "Promoter Profile", admin_user_path(user), class: "linky-hover" %>
+			<% end %>
+	</div>
+</section>
 
 
 

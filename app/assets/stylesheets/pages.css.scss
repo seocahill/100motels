@@ -1,3 +1,24 @@
 // Place all the styles related to the pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.container {
+	padding: 20px;
+	margin: 20px;
+	background-color: hsla(2, 100%, 68%, 1);
+	background-image:-webkit-gradient(linear, 0% 100%, 100% 9%,
+	 from(#666666), to(#666666), color-stop(.6,#FF1F1F));
+	width: 940px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	box-shadow: 4px 4px 5px #282b1f;
+}
+
+.placehold-image {opacity: .5}
+
+/*not working why?*/
+.linky-hover a:hover {
+	-webkit-transform: scale (1.5);
+	transform: scale(1.5);
+}
