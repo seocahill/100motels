@@ -11,6 +11,7 @@ group :developement, :test do
 	gem 'guard-rspec'
 	gem 'guard-cucumber'
   gem 'factory_girl_rails'
+  gem 'guard-livereload'
 end
 
 group :test do

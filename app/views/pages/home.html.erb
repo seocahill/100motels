@@ -1,37 +1,54 @@
-<section class="container">
-	<div id="cart">
-		<%= render @cart %>
-	</div>
-</section>
+	
+	<aside id="cart">
+			<%= render @cart %>
+	</aside>
 
-<section class="container">
-	<header>Latest Events</header>
-	<div id="events">
-		<ul>
-			<% @events.each do |event| %>
-			  <li class="title"><%= event.artist %></li>
-				<li><%= event.venue %></li>
-				<li><%= event.date %></li>
-				<li><%= event.ticket_price %></li>
-		</ul>
-				<%= link_to "Show Details", event_path(event) %>
-				<%= button_to "Add to Cart", line_items_path(event_id: event) %>
-			<% end %>
-	</div>
-</section>
+	<section id = "latest-events">
+		<header>Latest Events</header>
+		<div id="events">
+			<table summary="This is a listing of the latest events">
+				<thead>
+					<tr>
+						<th scope="col">Artist</th>
+						<th scope="col">Venue</th>
+						<th scope="col">Date</th>
+						<th scope="col">Price</th>
+					</tr>
+				</thead>
+				<tfoot>
+					<tr>
+						<td>Table footer</td>
+						<td>Table footer</td>
+						<td>Table footer</td>
+						<td>Table footer</td>
+					</tr>
+				</tfoot>
+				<tbody>
+				<% @events.each do |event| %>
+					<tr>
+					  <td class="title"><%= event.artist %></td>
+						<td><%= event.venue %></td>
+						<td><%= event.date %></td>
+						<td><%= event.ticket_price %></td>
+						<td><%= link_to "Show Details", event_path(event) %></td>
+						<td><%= button_to "Add to Cart", line_items_path(event_id: event) %></td>
+					</tr>
+				<% end %>
+				</tbody>
+			</table>
+		</div>
+	</section>
 
-<section class="container">
-	<header>Top Promoters</header>
-	<div id="promoters-preview">
-		<ul>
-			<% @users.each do |user| %>
-				<li class="placehold-image"> <img src="http://placehold.it/100x100">
-			  <li class="email"><%= user.email %></li>
-		</ul>
-				<%= link_to "Promoter Profile", admin_user_path(user), class: "linky-hover" %>
-			<% end %>
-	</div>
-</section>
+	<section id="top-promoters">
+		<header>Top Promoters</header>
+			<ul>
+				<% @users.each do |user| %>
+					<li class="placehold-image"></li>
+				  <li class="email"><%= user.email %></li>
+			</ul>
+					<%= link_to "Promoter Profile", admin_user_path(user), class: "linky-hover" %>
+				<% end %>
+	</section>
 
 
 
