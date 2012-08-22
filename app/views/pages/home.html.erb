@@ -1,7 +1,3 @@
-<header>
-	<h1>100 Motels, A Place for Anarchy</h1>
-</header>
-
 <section class="container">
 	<div id="cart">
 		<%= render @cart %>
@@ -9,7 +5,7 @@
 </section>
 
 <section class="container">
-	<head>Latest Events</head>
+	<header>Latest Events</header>
 	<div id="events">
 		<ul>
 			<% @events.each do |event| %>
@@ -25,7 +21,7 @@
 </section>
 
 <section class="container">
-	<head>Top Promoters</head>
+	<header>Top Promoters</header>
 	<div id="promoters-preview">
 		<ul>
 			<% @users.each do |user| %>

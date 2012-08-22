@@ -15,20 +15,27 @@
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
   </head>
-  <nav>
-    <%= link_to "home", root_path %>
-    <% if user_signed_in? %>
-      Signed in as <%= current_user.email %>
-      <%= link_to "Sign out", destroy_user_session_path, :method => 'delete' %>
-    <% else %>
-      <%= link_to "Sign up", new_user_registration_path %>
-      <%= link_to "Sign in", new_user_session_path %>
-    <% end %>
-    <% admins_only do %>
-      <%= link_to "Admin", admin_root_path %><br>
-    <% end %>
-    <%= link_to "Events Index", events_path %>
-    <%= link_to "Users Index", admin_users_path %>
+  <header id="main">
+    <a href="#" id="stroke"></a>
+    <h1 id="tagline">100 Motels, A Place for Anarchy</h1>
+    <a href="#" id="logo"></a>
+  </header>
+  <nav id="primary">
+    <ul>
+      <li><%= link_to "home", root_path %></li>
+      <% if user_signed_in? %>
+        <li>Signed in as <%= current_user.email %>
+                <%= link_to "Sign out", destroy_user_session_path, :method => 'delete' %></li>
+      <% else %>
+        <li><%= link_to "Sign up", new_user_registration_path %></li>
+        <li><%= link_to "Sign in", new_user_session_path %></li>
+      <% end %>
+      <% admins_only do %>
+        <li><%= link_to "Admin", admin_root_path %></li><br>
+      <% end %>
+      <li><%= link_to "Events", events_path %></li>
+      <li><%= link_to "Users", admin_users_path %></li>
+    </ul>
   </nav>
   <body>
   <% flash.each do |key, value| %>
