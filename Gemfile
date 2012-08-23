@@ -12,6 +12,7 @@ group :developement, :test do
 	gem 'guard-cucumber'
   gem 'factory_girl_rails'
   gem 'guard-livereload'
+  gem 'rack-livereload'
 end
 
 group :test do

@@ -2,3 +2,5 @@
 
 require ::File.expand_path('../config/environment',  __FILE__)
 run OneHundredMotels::Application
+require 'rack-livereload'
+use Rack::LiveReload
