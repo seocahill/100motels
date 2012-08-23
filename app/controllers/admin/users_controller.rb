@@ -3,7 +3,7 @@ class Admin::UsersController < Admin::BaseController
   before_filter :find_user, :only => [:show, :edit, :update, :destroy]
 
   def index
-    @users = User.all(:order => "email")
+    @users = User.all(order: "email")
   end
   
   def new

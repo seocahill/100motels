@@ -23,8 +23,8 @@ FactoryGirl.define do
   end
 
   factory :user do
-    # event
-    sequence(:email) { |n| "user#{n}@creteboom.com" }
+    # name = Faker::Name.name
+    sequence(:email) { |n| "#{n}@creteboom.com" }
     password "foobar"
     password_confirmation "foobar"
   
@@ -35,12 +35,8 @@ FactoryGirl.define do
       password_confirmation "foobar"
     end
 
-    factory :confirmed_user do
+    trait :confirmed_user do
       after(:build) {|user| user.confirm!}
-
-      trait :confirmed_admin do
-        admin true
-      end
     end
   end
 end

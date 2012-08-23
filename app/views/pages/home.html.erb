@@ -22,10 +22,7 @@
 				</thead>
 				<tfoot>
 					<tr>
-						<td>Table footer</td>
-						<td>Table footer</td>
-						<td>Table footer</td>
-						<td>Table footer</td>
+						<td></td>
 					</tr>
 				</tfoot>
 				<tbody>
@@ -51,27 +48,25 @@
 			<table summary="Listing of top rated promoters">
 				<thead>
 					<tr>
-						<th>Pic</th>
-						<th>name</th>
-						<th>rating</th>
+						<th scope="col">Pic</th>
+						<th scope="col">name</th>
+						<th scope="col">rating</th>
 					</tr>
 				</thead>
-				<tfoot>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-				</tfoot>
 				<tbody>	
 				<% @users.each do |user| %>
 					<tr>
 						<td class="placehold-image"><img src="http://placehold.it/100x100"></td>
 				  <td class="email"><%= user.email %></td>
-					<%= link_to "Promoter Profile", admin_user_path(user), class: "linky-hover" %>
+				  <td>5/5</td>
 					</tr>
-				<% end %>
 				</tbody>
+				<tfoot>
+					<tr>
+						<td colspan="3"><%= link_to "Promoter Profile", admin_user_path(user), class: "linky-hover" %></td>
+					</tr>
+					<% end %>
+				</tfoot>
 			</table>
 		</section>
 
