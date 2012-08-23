@@ -1,10 +1,15 @@
 	
 	<aside id="cart">
+		<header>
+			<h3>Your Cart</h3>
+		</header>
 			<%= render @cart %>
 	</aside>
 
 	<section id = "latest-events">
-		<header>Latest Events</header>
+		<header>
+			<h3>Latest Events</h3>
+		</header>
 		<div id="events">
 			<table summary="This is a listing of the latest events">
 				<thead>
@@ -40,15 +45,35 @@
 	</section>
 
 	<section id="top-promoters">
-		<header>Top Promoters</header>
-			<ul>
+		<header>
+			<h3>Top Promoters</h3>
+		</header>
+			<table summary="Listing of top rated promoters">
+				<thead>
+					<tr>
+						<th>Pic</th>
+						<th>name</th>
+						<th>rating</th>
+					</tr>
+				</thead>
+				<tfoot>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</tfoot>
+				<tbody>	
 				<% @users.each do |user| %>
-					<li class="placehold-image"></li>
-				  <li class="email"><%= user.email %></li>
-			</ul>
+					<tr>
+						<td class="placehold-image"><img src="http://placehold.it/100x100"></td>
+				  <td class="email"><%= user.email %></td>
 					<%= link_to "Promoter Profile", admin_user_path(user), class: "linky-hover" %>
+					</tr>
 				<% end %>
-	</section>
+				</tbody>
+			</table>
+		</section>
 
 
 

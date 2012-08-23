@@ -12,6 +12,10 @@ FactoryGirl.define do
       after(:build) { |event| event.users << FactoryGirl.build(:user) }
     end
 
+    trait :with_admin do
+      after(:build) { |event| event.users << FactoryGirl.build(:user, :admin) }
+    end
+
     trait :invalid do
       artist nil
     end
@@ -25,6 +29,9 @@ FactoryGirl.define do
   
     trait :admin do 
       admin true
+      email "seo.cahill@gmail.com"
+      password "foobar"
+      password_confirmation "foobar"
     end
 
     factory :confirmed_user do
