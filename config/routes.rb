@@ -2,6 +2,8 @@ OneHundredMotels::Application.routes.draw do
 
   devise_for :users
   
+  resources :users, only: :index
+
   root :to => 'pages#home'
   
   namespace :admin do 
