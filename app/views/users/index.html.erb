@@ -1,0 +1,56 @@
+<h1>Our Heroic Promoters</h1>
+
+<aside id="cart">
+		<header>
+			<h3>Your Cart</h3>
+		</header>
+			<%= render @cart %>
+</aside>
+
+<aside id="users-searchform">
+	<header>
+		<h3>Search Controls</h3>
+	</header>
+	<form>
+		<div>
+			<label>By Rating</label>
+			<input  type='range' min='0' max='50' value='0' autofocus="autofocus"/> <br>
+			<label>By City</label> 
+		  <input results="10" type='search' autofocus="autofocus"/> <br>
+		  <label>By Shows</label>
+		  <input type='text' placeholder='Search Artist' autofocus="autofocus"/> <br>
+		  <label>By Age</label>
+		  <input type='text' placeholder='Search Promoter' autofocus="autofocus"/> 
+		</div>
+	</form>
+</aside>
+
+
+<section id="top-promoters">
+		<header>
+			<h3>Best Promoters</h3>
+		</header>
+			<table summary="Listing of top rated promoters">
+				<thead>
+					<tr>
+						<th scope="col">Pic</th>
+						<th scope="col">name</th>
+						<th scope="col">rating</th>
+					</tr>
+				</thead>
+				<tbody>	
+				<% @users.each do |user| %>
+					<tr>
+						<td class="placehold-image"><img src="http://placehold.it/45x45"></td>
+				  	<td class="email"><%= user.email %></td>
+				  <td>5/5</td>
+					</tr>
+					<tr>
+						<td colspan="3">
+							<%= link_to "Promoter Profile", admin_user_path(user), class: "linky-hover" %>
+						</td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</section>
