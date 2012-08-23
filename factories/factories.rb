@@ -7,7 +7,7 @@ FactoryGirl.define do
     venue { Faker::Address.city }
     date { rand(11).months.from_now }
     doors { rand(11).hours.from_now }
-    ticket_price { 10 + rand(9) }
+    ticket_price { 10.0 + rand(9) }
 
     trait :with_user do
       after(:build) { |event| event.users << FactoryGirl.build(:user) }
