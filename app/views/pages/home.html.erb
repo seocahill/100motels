@@ -56,17 +56,17 @@
 				<tbody>	
 				<% @users.each do |user| %>
 					<tr>
-						<td class="placehold-image"><img src="http://placehold.it/100x100"></td>
-				  <td class="email"><%= user.email %></td>
+						<td class="placehold-image"><img src="http://placehold.it/45x45"></td>
+				  	<td class="email"><%= user.email %></td>
 				  <td>5/5</td>
 					</tr>
-				</tbody>
-				<tfoot>
 					<tr>
-						<td colspan="3"><%= link_to "Promoter Profile", admin_user_path(user), class: "linky-hover" %></td>
+						<td colspan="3">
+							<%= link_to "Promoter Profile", admin_user_path(user), class: "linky-hover" %>
+						</td>
 					</tr>
 					<% end %>
-				</tfoot>
+				</tbody>
 			</table>
 		</section>
 

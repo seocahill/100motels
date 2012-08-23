@@ -5,6 +5,6 @@ class PagesController < ApplicationController
   def home
     @cart = current_cart
     @events = Event.all(limit: 4)
-    @users = User.all(limit: 4) 
+    @users = User.all(order: :email, limit: 4) 
   end
 end
