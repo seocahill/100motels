@@ -5,8 +5,9 @@ FactoryGirl.define do
   factory :event do
     artist { Faker::Name.name }
     venue { Faker::Address.city }
-    date { Date.new(2012, 3, 6) }
-    ticket_price { Random.rand(10..25) }
+    date { rand(11).months.from_now }
+    doors { rand(11).hours.from_now }
+    ticket_price { 10 + rand(9) }
 
     trait :with_user do
       after(:build) { |event| event.users << FactoryGirl.build(:user) }
@@ -42,6 +43,4 @@ FactoryGirl.define do
       end
     end
   end
-
-
 end
