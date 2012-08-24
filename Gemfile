@@ -13,6 +13,7 @@ group :developement, :test do
   gem 'factory_girl_rails'
   gem 'guard-livereload'
   gem 'rack-livereload'
+  gem 'mail_view', :git => 'https://github.com/37signals/mail_view.git'
 end
 
 group :test do
