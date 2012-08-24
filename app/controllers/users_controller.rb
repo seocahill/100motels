@@ -7,6 +7,10 @@ class UsersController < ApplicationController
     @users = User.all(order: "email")
   end
   
+  def show
+    
+  end
+
   private
 
     def find_user
