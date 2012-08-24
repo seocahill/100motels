@@ -39,4 +39,5 @@ OneHundredMotels::Application.configure do
 
   # for using livereload with guard put in rack.ru instead
   #config.middleware.insert_before(Rack::Lock, Rack::LiveReload)
+
 end

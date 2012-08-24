@@ -1,3 +1,23 @@
 <%= @greeting %>
 
-<%= render 'orders/order' %>
+<header>
+	<img src="http://placehold.it/150&text=QR+code">
+	<h2>Admits 4 people only </h2>
+</header>
+
+<section>
+	<header> <h3>Order Details</h3> </header>
+	<%= render 'orders/order' %>
+</section>
+
+<section>
+	<header> 
+		<h3>Payment Details</h3> 
+	</header>
+	<p>Name on Card: Seo Cahill</p> 
+	<p>Last 4 digits: #5456 </p> 
+	<p>Zip Code: 541154</p> 
+	<p>Payment for $34 received thanks!</p>
+</section>
+
+<p>Thanks You! Love 100 Motels</p>
