@@ -1,4 +1,30 @@
-<h1>Thanks <%= @order.name %>! Here is your Order...</h1>
+<header>
+	<h2>Thanks <%= @order.name %>!...</h2>
+	<p>We've sent an email to you with your tickets and order details, enjoy the show.</p>
+</header>
 
+<section id="order-summary">
+	<header> <h3>Order Details</h3> </header>
+	<%= render 'order' %>
+</section>
 
-<%= render 'order' %>
+<section>
+	<header> 
+		<h3>Payment Details</h3> 
+	</header>
+	<p>Name on Card: Seo Cahill</p> 
+	<p>Last 4 digits: #5456 </p> 
+	<p>Zip Code: 541154</p> 
+	<p>Payment for $34 received thanks!</p>
+</section>
+
+<section id="promoters-message">
+	<h3>Some guidelines for the night...</h3>
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	</p>
+</section>

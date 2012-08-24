@@ -1,18 +1,30 @@
-Rock and Roll!
+<table summary="This is a tabel of the details of the order">
+	<thead>
+		<tr>
+			<th>name</th>
+			<th>email</th>
+			<th>item</th>
+			<th>quantity</th>
+			<th>price</th>
+		</tr>
+	</thead>
+	<tfoot>
+		<tr>
+			<td colspan="4">Total Price</td>
+			<td>11</td>
+		</tr>
 
-<table id="order-details">
-	<tr>
+	</tfoot>
+	<tbody>
 		<% @order.line_items.each do |l| %>
-		<th>name</th>
-		<th>email</th>
-		<th>item</th>
-		<th>quantity</th>
-	</tr>
-	<tr>
-		<td><%= @order.name %></td>
-		<td><%= @order.email %></td>
-		<td><%= l.event.artist %></td>
-		<td><%= l.quantity %></td>
-	</tr>
-	<% end %>
+		<tr>
+			<td><%= @order.name %></td>
+			<td><%= @order.email %></td>
+			<td><%= l.event.artist %></td>
+			<td><%= l.quantity %></td>
+			<td><%= l.line_total_price %></td>
+		</tr>
+		<% end %>
+	</tbody>
 </table>
+
