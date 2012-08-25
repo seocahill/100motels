@@ -15,35 +15,79 @@
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
   </head>
-  <header id="main">
-    <a href="#" id="stroke"></a>
-    <h1 id="tagline">100 Motels, A Place for Anarchy</h1>
-    <a href="#" id="logo"></a>
-  </header>
-  <nav id="primary">
-    <ul>
-      <li><%= link_to "home", root_path %></li>
-      <% if user_signed_in? %>
-        <li>Signed in as <%= current_user.email %>
-                <%= link_to "Sign out", destroy_user_session_path, :method => 'delete' %></li>
-      <% else %>
-        <li><%= link_to "Sign up", new_user_registration_path %></li>
-        <li><%= link_to "Sign in", new_user_session_path %></li>
-      <% end %>
-      <% admins_only do %>
-        <li><%= link_to "Admin", admin_root_path %></li><br>
-      <% end %>
-      <li><%= link_to "Events", events_path %></li>
-      <li><%= link_to "Users", users_path %></li>
-    </ul>
-  </nav>
   <body>
-  <% flash.each do |key, value| %>
-  	<div class='flash' id='<%= key %>'>
-  		<%= value %>
-  	</div>
-  <% end %>
-  <%= yield %>
+    <header id="main">
+      <a href="#" id="stroke"></a>
+      <h1 id="tagline">100 Motels, A Place for Anarchy</h1>
+      <a href="#" id="logo"></a>
+    </header>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container" style="width: auto;">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">100 Motels</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li class="active"><%= link_to "Home", root_path %></li>
+              <li><%= link_to "Events", events_path %></li>
+              <li><%= link_to "Users", users_path %></li>
+              <li><a href="#">Link</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li class="divider"></li>
+                  <li class="nav-header">Nav header</li>
+                  <li><a href="#">Separated link</a></li>
+                  <li><a href="#">One more separated link</a></li>
+                </ul>
+              </li>
+            </ul>
+            <form class="navbar-search pull-left" action="">
+              <input type="text" class="search-query span2" placeholder="Search">
+            </form>
+            <ul class="nav pull-right">
+              <% if user_signed_in? %>
+                <li><%= link_to "Sign out", destroy_user_session_path, :method => 'delete' %></li>
+              <% else %>
+                <li><%= link_to "Sign up", new_user_registration_path %></li>
+                <li><%= link_to "Sign in", new_user_session_path %></li>
+              <% end %>
+              <% admins_only do %>
+                <li><%= link_to "Admin", admin_root_path %></li>
+              <% end %>
+              <li class="divider-vertical"></li>
+              <li class="dropdown">
+                <% if user_signed_in? %>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.email %><b class="caret"></b></a>
+                <% end %>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">Separated link</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div><!-- /.nav-collapse -->
+        </div>
+      </div><!-- /navbar-inner -->
+    </div>
+
+    <% flash.each do |key, value| %>
+    	<div class="alert alert-<%= key == :notice ? "success" : "error" %>">
+    		<%= value %>
+    	</div>
+    <% end %>
+    <%= yield %>
   </body>
   <footer>
     <p>&copy; Seo Cahill 2012.</p>
