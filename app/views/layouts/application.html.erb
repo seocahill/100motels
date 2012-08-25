@@ -18,7 +18,11 @@
   <body>
     <header id="main">
       <a href="#" id="stroke"></a>
-      <h1 id="tagline">100 Motels, A Place for Anarchy</h1>
+      <h1 class="page-header">
+        100 Fuckin Motels
+        <small>Save thyself, fag.</small>
+      </h1>
+
       <a href="#" id="logo"></a>
     </header>
 
@@ -38,11 +42,11 @@
               <li><%= link_to "Users", users_path %></li>
               <li><a href="#">Link</a></li>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cart (<%= @cart.line_items.map(&:quantity).count %>) <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
+                  <li><a href="#">View Contents</a></li>
+                  <li><a href="#">Checkout</a></li>
+                  <li><a href="#">Empty</a></li>
                   <li class="divider"></li>
                   <li class="nav-header">Nav header</li>
                   <li><a href="#">Separated link</a></li>

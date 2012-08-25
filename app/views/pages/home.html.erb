@@ -1,26 +1,57 @@
 	<div class="container">
-		<section id="scrollspy">
-			<nav id="secondary">
-				<ul>
-					<li>Play</li>
-					<li>Promote</li>
-					<li>Attend</li>
-					<li>Cart (0)</li>
-				</ul>
-			</nav>
-		</section>
 
-		<aside id="cart">
-			<header>
-				<h3>Your Cart</h3>
-			</header>
-				<%= render @cart %>
-		</aside>
+
+			<div id="calls-nav" class="navbar">
+				<h3> What do you want to do man?</h3>
+  			<div class="navbar-inner">
+					<ul class="nav">
+						<li class="divider-vertical"></li>
+						<li class="divider-vertical"></li>
+						<li class="active">
+	    				<a href="#active-promoters">I want to take my commerical-free Music on Tour</a>
+	  				</li>
+	  				<li class="divider-vertical"></li>
+	  				<li><a href="#promoter-apply">I want to help Artists fulfill their vision</a></li>
+	  				<li class="divider-vertical"></li>
+	  				<li><a href="#latest-shows">I want to go to a real underground show, no bullshit</a></li>
+	  				<li class="divider-vertical"></li>
+					</ul>
+				</div>
+			</div>
 
 		<section id = "latest-events">
 			<header>
 				<h3>Latest Shows</h3>
 			</header>
+
+			<div id="myCarousel" class="carousel slide">
+				<div class="carousel-inner">
+					<div class="item">
+						<img src="http://twitter.github.com/bootstrap/assets/img/bootstrap-mdo-sfmoma-01.jpg" alt="">
+						<div class="carousel-caption">
+							<h4>First Thumbnail label</h4>
+							<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+						</div>
+					</div>
+					<div class="item">
+						<img src="http://twitter.github.com/bootstrap/assets/img/bootstrap-mdo-sfmoma-02.jpg" alt="">
+						<div class="carousel-caption">
+							<h4>Second Thumbnail label</h4>
+							<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+						</div>
+					</div>
+					<div class="item active">
+						<img src="http://twitter.github.com/bootstrap/assets/img/bootstrap-mdo-sfmoma-03.jpg" alt="">
+						<div class="carousel-caption">
+							<h4>Third Thumbnail label</h4>
+							<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+						</div>
+					</div>
+				</div>
+				<a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+				<a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+			</div>
+
 			<div id="events">
 				<table summary="This is a listing of the latest events">
 					<thead>
@@ -52,9 +83,9 @@
 			</div>
 		</section>
 
-		<section id="top-promoters">
+		<section id="active-promoters">
 			<header>
-				<h3>Best Promoters</h3>
+				<h3>Most Active Promoters</h3>
 			</header>
 				<table summary="Listing of top rated promoters">
 					<thead>
@@ -79,6 +110,13 @@
 						<% end %>
 					</tbody>
 				</table>
+			</section>
+
+			<section id="promoter-apply">
+				<div class="well well-large">
+					<h3>Looking to help?...Apply to become a Promoter</h3>
+					<button class="btn.large">Sign up!</button>
+				</div>
 			</section>
 	</div>
 
