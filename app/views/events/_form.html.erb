@@ -1,12 +1,18 @@
-<%= form_for(@event) do |f| %>
-	<%= f.error_messages %>
-	<%= f.label :artist, "Artist" %>
-	<%= f.text_field :artist %>  
-	<%= f.label :venue, "Venue" %>
-	<%= f.text_field :venue %>  
-	<%= f.label :date, "Date" %>
-	<%= f.text_field :date %>  
-	<%= f.label :ticket_price, "Ticket Price" %>
-	<%= f.text_field :ticket_price %>  
-	<%= f.submit %>
+<%= simple_form_for @event, :html => { class: 'form-horizontal' } do |f| %>
+	<%#= f.error_messages %>
+
+	<fieldset>
+		<legend><%= controller.action_name.capitalize %> Event</legend>
+
+		<%= f.input :artist %>
+		<%= f.input :venue %>
+		<%= f.input :date %>
+		<%= f.input :ticket_price %>
+
+		<div class="form-actions">
+				<%= f.submit nil, class: "btn btn-primary" %>
+				<%= link_to 'Cancel', events_path, class: 'btn' %>
+		</div>
+	</fieldset>
+
 <% end %>
