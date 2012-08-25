@@ -40,6 +40,4 @@ OneHundredMotels::Application.configure do
   # for using livereload with guard put in rack.ru instead
   #config.middleware.insert_before(Rack::Lock, Rack::LiveReload)
 
-  # having problems with mailview mapped route in routes.rb
-  # config.middleware.use MailView::Mapper, [Notifier::Preview]
 end

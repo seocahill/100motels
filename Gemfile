@@ -38,6 +38,7 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'dynamic_form'
   gem 'uglifier', '>= 1.0.3'
+  gem "bootstrap-sass", :git => 'git://github.com/dszczyt/bootstrap-sass.git'
 end
 
 gem 'jquery-rails'

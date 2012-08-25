@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/dszczyt/bootstrap-sass.git
+  revision: 0f79eb8541f6ce2eaeb576035de031739c3a797f
+  specs:
+    bootstrap-sass (2.1.0.0)
+
+GIT
   remote: https://github.com/37signals/mail_view.git
   revision: 86a56c55143b3688add21ac95946c008df32c491
   specs:
@@ -217,6 +223,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootstrap-sass!
   capybara
   capybara-page-object
   coffee-rails (~> 3.2.1)

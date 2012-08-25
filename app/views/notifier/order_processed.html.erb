@@ -1,23 +1,43 @@
-<%= @greeting %>
+<%= stylesheet_link_tag "notifiers", :media => "all" %>
+<div class="container">
+	<h2><%= @greeting %> Here's your ticket...</h2>
+	<div class="container">
 
-<header>
-	<img src="http://placehold.it/150&text=QR+code">
-	<h2>Admits 4 people only </h2>
-</header>
+		<div class="box">
+			<section><img src="//placehold.it/170&text=QR+code"></section>
+		</div>
 
-<section>
-	<header> <h3>Order Details</h3> </header>
-	<%= render 'orders/order' %>
-</section>
+		<div class="box" id="event-info">
+			<header>
+				<h2>Admits 4 people only </h2>
+			</header>
+		</div>
 
-<section>
-	<header> 
-		<h3>Payment Details</h3> 
-	</header>
-	<p>Name on Card: Seo Cahill</p> 
-	<p>Last 4 digits: #5456 </p> 
-	<p>Zip Code: 541154</p> 
-	<p>Payment for $34 received thanks!</p>
-</section>
+		<div class="box">
+			<section id="order-email-headline">
+					<h1>100 Motels Presents!</h1>
+			</section>
+		</div>
+	</div>
 
-<p>Thanks You! Love 100 Motels</p>
+	<div class="container">
+		<section>
+			<header> <h3>Order Details</h3> </header>
+			<%= render 'orders/order' %>
+		</section>
+
+		<section>
+			<header>
+				<h3>Payment Details</h3>
+			</header>
+			<p>Name on Card: Seo Cahill</p>
+			<p>Last 4 digits: #5456 </p>
+			<p>Zip Code: 541154</p>
+			<p>Payment for $34 received thanks!</p>
+		</section>
+	</div>
+
+	<div class="container">
+		<p>Thanks Man! Love 100 Motels</p>
+	</div>
+</div>

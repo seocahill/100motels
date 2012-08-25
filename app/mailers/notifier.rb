@@ -9,10 +9,18 @@ class Notifier < ActionMailer::Base
     mail to: order.email, subject: "Your Order from 100 Motels"
   end
 
+  def template
+  end
+
   class Preview < MailView
     def order_processed
       order = Order.first
       Notifier.order_processed(order)
+    end
+
+    def template
+      order = Order.first
+      Notifier.template(order)
     end
   end
 
