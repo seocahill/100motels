@@ -1,85 +1,86 @@
-	<section id="scrollspy">
-		<nav id="secondary">
-			<ul>
-				<li>Play</li>
-				<li>Promote</li>
-				<li>Attend</li>
-				<li>Cart (0)</li>
-			</ul>	
-		</nav>
-	</section>
-
-	<aside id="cart">
-		<header>
-			<h3>Your Cart</h3>
-		</header>
-			<%= render @cart %>
-	</aside>
-
-	<section id = "latest-events">
-		<header>
-			<h3>Latest Shows</h3>
-		</header>
-		<div id="events">
-			<table summary="This is a listing of the latest events">
-				<thead>
-					<tr>
-						<th scope="col">Artist</th>
-						<th scope="col">Venue</th>
-						<th scope="col">Date</th>
-						<th scope="col">Price</th>
-					</tr>
-				</thead>
-				<tfoot>
-					<tr>
-						<td></td>
-					</tr>
-				</tfoot>
-				<tbody>
-				<% @events.each do |event| %>
-					<tr>
-					  <td class="title"><%= event.artist %></td>
-						<td><%= event.venue %></td>
-						<td><%= event.date %></td>
-						<td><%= event.ticket_price %></td>
-						<td><%= link_to "Show Details", event_path(event) %></td>
-						<td><%= button_to "Add to Cart", line_items_path(event_id: event) %></td>
-					</tr>
-				<% end %>
-				</tbody>
-			</table>
-		</div>
-	</section>
-
-	<section id="top-promoters">
-		<header>
-			<h3>Best Promoters</h3>
-		</header>
-			<table summary="Listing of top rated promoters">
-				<thead>
-					<tr>
-						<th scope="col">Pic</th>
-						<th scope="col">name</th>
-						<th scope="col">rating</th>
-					</tr>
-				</thead>
-				<tbody>	
-				<% @users.each do |user| %>
-					<tr>
-						<td class="placehold-image"><img src="http://placehold.it/45x45"></td>
-				  	<td class="email"><%= user.email %></td>
-				  <td>5/5</td>
-					</tr>
-					<tr>
-						<td colspan="3">
-							<%= link_to "Promoter Profile", admin_user_path(user), class: "linky-hover" %>
-						</td>
-					</tr>
-					<% end %>
-				</tbody>
-			</table>
+	<div class="container">
+		<section id="scrollspy">
+			<nav id="secondary">
+				<ul>
+					<li>Play</li>
+					<li>Promote</li>
+					<li>Attend</li>
+					<li>Cart (0)</li>
+				</ul>
+			</nav>
 		</section>
 
+		<aside id="cart">
+			<header>
+				<h3>Your Cart</h3>
+			</header>
+				<%= render @cart %>
+		</aside>
+
+		<section id = "latest-events">
+			<header>
+				<h3>Latest Shows</h3>
+			</header>
+			<div id="events">
+				<table summary="This is a listing of the latest events">
+					<thead>
+						<tr>
+							<th scope="col">Artist</th>
+							<th scope="col">Venue</th>
+							<th scope="col">Date</th>
+							<th scope="col">Price</th>
+						</tr>
+					</thead>
+					<tfoot>
+						<tr>
+							<td></td>
+						</tr>
+					</tfoot>
+					<tbody>
+					<% @events.each do |event| %>
+						<tr>
+						  <td class="title"><%= event.artist %></td>
+							<td><%= event.venue %></td>
+							<td><%= event.date %></td>
+							<td><%= event.ticket_price %></td>
+							<td><%= link_to "Show Details", event_path(event) %></td>
+							<td><%= button_to "Add to Cart", line_items_path(event_id: event) %></td>
+						</tr>
+					<% end %>
+					</tbody>
+				</table>
+			</div>
+		</section>
+
+		<section id="top-promoters">
+			<header>
+				<h3>Best Promoters</h3>
+			</header>
+				<table summary="Listing of top rated promoters">
+					<thead>
+						<tr>
+							<th scope="col">Pic</th>
+							<th scope="col">name</th>
+							<th scope="col">rating</th>
+						</tr>
+					</thead>
+					<tbody>
+					<% @users.each do |user| %>
+						<tr>
+							<td class="placehold-image"><img src="//placehold.it/45x45"></td>
+					  	<td class="email"><%= user.email %></td>
+					  <td>5/5</td>
+						</tr>
+						<tr>
+							<td colspan="3">
+								<%= link_to "Promoter Profile", admin_user_path(user), class: "linky-hover" %>
+							</td>
+						</tr>
+						<% end %>
+					</tbody>
+				</table>
+			</section>
+	</div>
 
 
 
