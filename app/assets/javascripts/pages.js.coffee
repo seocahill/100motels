@@ -3,4 +3,9 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 # scrollspy nav
-$('#calls-nav').scrollspy()
+$("#calls-nav").scrollspy()
+
+# knock off auto slide on smaller carousel
+$("#events-carousel").carousel({
+  interval: false;
+});

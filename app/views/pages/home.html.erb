@@ -1,19 +1,18 @@
 	<div class="container">
 
-
 			<div id="calls-nav" class="navbar">
-				<h3> What do you want to do man?</h3>
+				<h3> You're here so what now?</h3>
   			<div class="navbar-inner">
 					<ul class="nav">
 						<li class="divider-vertical"></li>
 						<li class="divider-vertical"></li>
 						<li class="active">
-	    				<a href="#active-promoters">I want to take my commerical-free Music on Tour</a>
+	    				<a href="#active-promoters">I want to tour my original, not-commerical Music</a>
 	  				</li>
 	  				<li class="divider-vertical"></li>
-	  				<li><a href="#promoter-apply">I want to help Artists fulfill their vision</a></li>
+	  				<li><a href="#promoter-apply">I'd like to organize a show for an Artist</a></li>
 	  				<li class="divider-vertical"></li>
-	  				<li><a href="#latest-shows">I want to go to a real underground show, no bullshit</a></li>
+	  				<li><a href="#latest-shows">I just want to buy a ticket</a></li>
 	  				<li class="divider-vertical"></li>
 					</ul>
 				</div>
@@ -23,63 +22,53 @@
 			<header>
 				<h3>Latest Shows</h3>
 			</header>
-
-			<div id="myCarousel" class="carousel slide">
-				<div class="carousel-inner">
-					<div class="item">
-						<img src="http://twitter.github.com/bootstrap/assets/img/bootstrap-mdo-sfmoma-01.jpg" alt="">
-						<div class="carousel-caption">
-							<h4>First Thumbnail label</h4>
-							<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-						</div>
-					</div>
-					<div class="item">
-						<img src="http://twitter.github.com/bootstrap/assets/img/bootstrap-mdo-sfmoma-02.jpg" alt="">
-						<div class="carousel-caption">
-							<h4>Second Thumbnail label</h4>
-							<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-						</div>
-					</div>
+			<div id="events-carousel" class="carousel slide">
+				<div id="events" class="carousel-inner">
 					<div class="item active">
-						<img src="http://twitter.github.com/bootstrap/assets/img/bootstrap-mdo-sfmoma-03.jpg" alt="">
+							<ul class="thumbnails">
+								<% @events.each do |event| %>
+								<li class="span4">
+									<a class="thumbnail" href="#">
+										<img src="http://placehold.it/360x240" alt="">
+									</a>
+									<h3 class="title"> <%= event.artist %></h3>
+									<p>
+										<%= event.venue %>
+										<%= event.date %>
+										<%= event.ticket_price %>
+										<%= link_to "Show Details", event_path(event) %>
+										<%= button_to "Add to Cart", line_items_path(event_id: event) %>
+									</p>
+								</li>
+								<% end %>
+							</ul>
 						<div class="carousel-caption">
-							<h4>Third Thumbnail label</h4>
-							<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+							<h4>Just Curious about 100 Motels?</h4>
+							<p>Here's some artists that are playing in your city soon. Have a listen and when you find something you like do them a favour and catch their show</p>
 						</div>
+					</div>
+					<div class="item">
+							<ul class="thumbnails">
+								<% @events.each do |event| %>
+								<li class="span4">
+									<a class="thumbnail" href="#">
+										<img src="http://placehold.it/360x240" alt="">
+									</a>
+									<h3 class="title"> <%= event.artist %></h3>
+									<p>
+										<%= event.venue %>
+										<%= event.date %>
+										<%= event.ticket_price %>
+										<%= link_to "Show Details", event_path(event) %>
+										<%= button_to "Add to Cart", line_items_path(event_id: event) %>
+									</p>
+								</li>
+								<% end %>
+							</ul>
 					</div>
 				</div>
-				<a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
-				<a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
-			</div>
-
-			<div id="events">
-				<table summary="This is a listing of the latest events">
-					<thead>
-						<tr>
-							<th scope="col">Artist</th>
-							<th scope="col">Venue</th>
-							<th scope="col">Date</th>
-							<th scope="col">Price</th>
-						</tr>
-					</thead>
-					<tfoot>
-						<tr>
-							<td></td>
-						</tr>
-					</tfoot>
-					<tbody>
-					<% @events.each do |event| %>
-						<tr>
-						  <td class="title"><%= event.artist %></td>
-							<td><%= event.venue %></td>
-							<td><%= event.date %></td>
-							<td><%= event.ticket_price %></td>
-							<td><%= link_to "Show Details", event_path(event) %></td>
-							<td><%= button_to "Add to Cart", line_items_path(event_id: event) %></td>
-						</tr>
-					<% end %>
-					</tbody>
-				</table>
+				<a class="left carousel-control" href="#events-carousel" data-slide="prev">‹</a>
+				<a class="right carousel-control" href="#events-carousel" data-slide="next">›</a>
 			</div>
 		</section>
 
@@ -87,30 +76,47 @@
 			<header>
 				<h3>Most Active Promoters</h3>
 			</header>
-				<table summary="Listing of top rated promoters">
-					<thead>
-						<tr>
-							<th scope="col">Pic</th>
-							<th scope="col">name</th>
-							<th scope="col">rating</th>
-						</tr>
-					</thead>
-					<tbody>
-					<% @users.each do |user| %>
-						<tr>
-							<td class="placehold-image"><img src="//placehold.it/45x45"></td>
-					  	<td class="email"><%= user.email %></td>
-					  <td>5/5</td>
-						</tr>
-						<tr>
-							<td colspan="3">
-								<%= link_to "Promoter Profile", admin_user_path(user), class: "linky-hover" %>
-							</td>
-						</tr>
-						<% end %>
-					</tbody>
-				</table>
-			</section>
+			<div id="promoters-carousel" class="carousel slide">
+				<div id="promoters" class="carousel-inner">
+					<div class="item active">
+							<ul class="thumbnails">
+								<% @users.each do |user| %>
+								<li class="span3">
+									<a class="thumbnail" href="#">
+										<img src="http://placehold.it/360x240" alt="">
+									</a>
+									<h3 class="title"> Promoter Name</h3>
+									<p>
+										<%= button_to "Full Profile", user_path(user), method: :get %>
+									</p>
+								</li>
+								<% end %>
+							</ul>
+						<div class="carousel-caption">
+							<h4>Our Volunteers...making it happen</h4>
+							<p>All of our promoter have a proven track record in supporting independent music</p>
+						</div>
+					</div>
+					<div class="item">
+							<ul class="thumbnails">
+								<% @users.each do |user| %>
+								<li class="span3">
+									<a class="thumbnail" href="#">
+										<img src="http://placehold.it/360x240" alt="">
+									</a>
+									<h3 class="title"> Promoter Name</h3>
+									<p>
+										<%= button_to "Full Profile", user_path(user), method: :get %>
+									</p>
+								</li>
+								<% end %>
+							</ul>
+					</div>
+				</div>
+				<a class="left carousel-control" href="#promoters-carousel" data-slide="prev">‹</a>
+				<a class="right carousel-control" href="#promoters-carousel" data-slide="next">›</a>
+			</div>
+
 
 			<section id="promoter-apply">
 				<div class="well well-large">

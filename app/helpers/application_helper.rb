@@ -13,5 +13,11 @@ module ApplicationHelper
     nil
   end
 
-
+  def cart_items(cart)
+    if cart == nil
+      "0"
+    else
+      cart.line_items.map(&:quantity).count
+    end
+  end
 end
