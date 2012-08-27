@@ -1,11 +1,7 @@
 <h1>Our Heroic Promoters</h1>
 
-<aside id="cart">
-		<header>
-			<h3>Your Cart</h3>
-		</header>
-			<%= render @cart %>
-</aside>
+
+
 
 <aside id="users-searchform">
 	<header>
@@ -15,12 +11,12 @@
 		<div>
 			<label>By Rating</label>
 			<input  type='range' min='0' max='50' value='0' autofocus="autofocus"/> <br>
-			<label>By City</label> 
+			<label>By City</label>
 		  <input results="10" type='search' autofocus="autofocus"/> <br>
 		  <label>By Shows</label>
 		  <input type='text' placeholder='Search Artist' autofocus="autofocus"/> <br>
 		  <label>By Age</label>
-		  <input type='text' placeholder='Search Promoter' autofocus="autofocus"/> 
+		  <input type='text' placeholder='Search Promoter' autofocus="autofocus"/>
 		</div>
 	</form>
 </aside>
@@ -38,7 +34,7 @@
 						<th scope="col">rating</th>
 					</tr>
 				</thead>
-				<tbody>	
+				<tbody>
 				<% @users.each do |user| %>
 					<tr>
 						<td class="placehold-image"><img src="http://placehold.it/45x45"></td>
@@ -53,4 +49,4 @@
 					<% end %>
 				</tbody>
 			</table>
-		</section>
+		</section></div>

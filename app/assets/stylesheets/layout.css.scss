@@ -2,7 +2,8 @@
 @import url(//fonts.googleapis.com/css?family=Racing+Sans+One);
 
 // Footer
-#footer-links {
+.footer-links {
+  margin-top: 20px;
   li {
     padding: 5px 0;
   }
@@ -11,15 +12,16 @@
 footer {
   color: #666;
   background-color: #333;
-  min-height: 330px;
+  min-height: 300px;
   border-top: 4px solid black;
 }
 
 footer .footer_top {
+
   border-bottom: 1px solid #222;
   padding-bottom: 20px;
   padding-top: 20px;
-  height: 200px;
+  height: 100px;
 }
 
 footer .footer_bottom {

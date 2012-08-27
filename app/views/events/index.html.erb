@@ -1,65 +1,44 @@
 <h1>Current Shows</h1>
 
-<aside id="cart">
-		<header>
-			<h3>Your Cart</h3>
-		</header>
-			<%= render @cart %>
-</aside>
-
-<aside id="events-searchform">
-	<header>
-		<h3>Search Controls</h3>
-	</header>
-	<form>
-		<div>
-			<label>Date Range</label>
-			<input  type='range' min='0' max='50' value='0' autofocus="autofocus"/> <br>
-			<label>By City</label> 
-		  <input results="10" type='search' autofocus="autofocus"/> <br>
-		  <label>By Artist</label>
-		  <input type='text' placeholder='Search Artist' autofocus="autofocus"/> <br>
-		  <label>By Promoter</label>
-		  <input type='text' placeholder='Search Promoter' autofocus="autofocus"/> 
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span4">
+		<aside id="events-searchform" >
+			<header>
+				<h3>Search Controls</h3>
+			</header>
+			<form>
+				<div>
+					<label>Date Range</label>
+					<input  type='range' min='0' max='50' value='0' autofocus="autofocus"/> <br>
+					<label>By City</label>
+				  <input results="10" type='search' autofocus="autofocus"/> <br>
+				  <label>By Artist</label>
+				  <input type='text' placeholder='Search Artist' autofocus="autofocus"/> <br>
+				  <label>By Promoter</label>
+				  <input type='text' placeholder='Search Promoter' autofocus="autofocus"/>
+				</div>
+			</form>
+		</aside>
 		</div>
-	</form>
-</aside>
-
-
-<section id = "latest-events">
-	<div id="events">
-		<h3>Your Events....</h3>
-		<table summary="This is a listing of the latest events">
-			<thead>
-				<tr>
-				</tr>
-			</thead>
-			<tfoot>
-				<tr>
-					<td></td>
-				</tr>
-			</tfoot>
-			<tbody>
-			<% @events.each do |event| %>
-				<tr>
-				  <td class="title">
-				  	<ul style="list-style: none;"><li>
-				  		<li><%= event.artist %></li>
-				  		<li><img src="http://placehold.it/200x200"></li>
-				  		<li><%= button_to "Show Details", event_path(event), method: 'get' %></li>
-				  		<li><%= button_to "Add to Cart", line_items_path(event_id: event) %></li>
-				  	</ul>
-				  </td>
-					<td></td>
-					<td></td>
-				</tr>
-			<% end %>
-			</tbody>
-		</table>
+		<section id = "latest-events" class="span8">
+			<div class="events">
+				<ul class="thumbnails">
+					<% @events.each do |event| %>
+					<li class="span4">
+						<a class="thumbnail" href="#">
+							<img src="http://placehold.it/240" alt="">
+						</a>
+						<h3><%= event.artist %></h3>
+						<p>Featuring a hero unit for a primary message and three supporting elements.</p>
+						<p>
+							<%= button_to "Show Details", event_path(event), method: :get, class: "btn btn-primary" %></a>
+							<%= button_to "Add to Cart", line_items_path(event_id: event), class: "button" %>
+						</p>
+					</li>
+					<% end %>
+				</ul>
+			</div>
+		</section>
 	</div>
-</section>
-
-<% admins_only do %>
-<%= link_to	"New Event", new_event_path %>
-<% end %>
-
+</div>
