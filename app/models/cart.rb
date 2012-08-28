@@ -1,6 +1,6 @@
 class Cart < ActiveRecord::Base
   has_many :line_items, dependent: :destroy
-  
+
   attr_accessible :event_id
 
   def add_event(event_id)

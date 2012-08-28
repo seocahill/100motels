@@ -17,7 +17,7 @@ module ApplicationHelper
     if cart == nil
       "0"
     else
-      cart.line_items.map(&:quantity).count
+      cart.line_items.to_a.sum { |item| item.quantity }
     end
   end
 end
