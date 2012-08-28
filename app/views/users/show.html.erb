@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="label-box">Promoter Info</div>
 			<div class="span2">
-				<img src="http://placehold.it/200">
+				<img src="//placehold.it/200" class="img-polaroid">
 				<%= link_to "Contact Jimmy", user_path(@user), class: "btn btn-primary btn-block" %>
 			</div>
 			<div class="span4 offset2">
@@ -20,39 +20,91 @@
 		</div>
 	</section>
 
-	<div class="row">
-		<section id="promoter-stats" class="section-box">
-			<div class="label-box">Promoter Stats</div>
-			<h2>Stats</h2>
-			<ul>
-				<li>Followers: 22</li>
-				<li>Average Attendance: 109</li>
-				<li>Average Price: $11 </li>
-				<li>Successful shows: 12 </li>
-				<li>Satisfaction: 87% </li>
-			</ul>
-		</section>
-	</div>
+	<section id="promoter-stats" class="section-box">
+		<div class="label-box">Promoter Stats</div>
+			<div class="row">
+				<div class="span4">
+					<dl class="dl-horizontal">
+						<dt>Member since: </dt>
+						<dd>Jan 2012</dd>
+						<dt>Status: </dt>
+						<dd>Verified</dd>
+						<dt>Availability: </dt>
+						<dd>Taking bookings</dd>
+					</dl>
+				</div>
+				<div class="span4">
+					<dl class="dl-horizontal">
+						<dt>Followers: </dt>
+						<dd>529</dd>
+						<dt>Average Crowd: </dt>
+						<dd>89</dd>
+						<dt>Avg Ticket Price: </dt>
+						<dd>$11</dd>
+					</dl>
+				</div>
+				<div class="span3">
+					<dl class="dl-horizontal">
+						<dt>Total Shows: </dt>
+						<dd>12</dd>
+						<dt>Artist Satisfaction: </dt>
+						<dd>66%</dd>
+						<dt>Fan Satisfaction: </dt>
+						<dd>75%</dd>
+					</dl>
+				</div>
+			</div>
+			<div class="row">
+				<div class="span2">
+					<span>
+						<button class="btn btn-primary btn-block">Full History</button>
+					</span>
+				</div>
+			</div>
+	</section>
 
-	<div class="row">
-		<section id="promoter-info" class="section-box">
-
-			<div class="tabbable tabs-below">
+	<section id="promoter-info" class="section-box">
+		<div class="row">
+			<div class="span12">
+				<div class="tabbable tabs-below">
 				<ul class="nav nav-tabs">
 					<li class="active"><a href="#1" data-toggle="tab">About Me</a></li>
 					<li><a href="#2" data-toggle="tab">My Crowd</a></li>
 					<li><a href="#3" data-toggle="tab">Venue info</a></li>
+					<li><a href="#3" data-toggle="tab">Calendar</a></li>
 					<li><a href="#4" data-toggle="tab">Transport</a></li>
 					<li><a href="#5" data-toggle="tab">Accomodation</a></li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane active" id="1">
+						<img src="//placehold.it/450x320" alt="My Video" class="align_right">
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+						consequat.
+						Duis aute irure dolor in reprehenderit in voluptate velit esse
+						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
 						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+						</p>
 					</div>
 					<div class="tab-pane" id="2">
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -88,6 +140,6 @@
 					</div>
 				</div>
 			</div>
-		</section>
-	</div>
+		</div>
+	</section>
 </div>
