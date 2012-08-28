@@ -1,59 +1,52 @@
-<header>
-	<% title(@event.artist, "Events") %>
-	<h2>Show Info</h2>
-</header>
-
-<section id="event-info">
-	<ul>
-		<li><%= @event.artist %></li>
-		<li><%= @event.venue %></li>
-		<li>Days left<%= @event.date %></li>
-		<li><%= @event.doors %></li>
-		<li><%= @event.ticket_price %></li>
-		<li>Tickets sold: 35/100</li>
-	</ul>
-	<aside>
-		<form>
-			Tickets<input type="number" value="abc">
-			<button>Add to Cart</button>
-		</form>
-	</aside>	
-</section>
-<br>
-<section id="promoters-textarea">
+<div class="container">
 	<header>
-		<h3>A Word from your Promoter</h3>
+		<% title(@event.artist, "Events") %>
 	</header>
-	<aside>
-		<img src="http://placehold.it/50x50"><h5>Massimo Dutti, Milano.</h5> 
-		<p>I run a radio station called Reset Radio</p>
-		<button>Full Profile</button>
-	</aside>
 
-	<article>
-		<p>I talk about the band here with embedded stuff to help inform 
-			like soundcloud clips and videos</p>
-			<img src="http://placehold.it/450x300">
-			<p>I also have to mention other details like support etc</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> <br>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-		</article>
-</section>
+	<section id="event-info" class="section-box">
+		<div class="row">
+			<div class="label-box">Ticket Info</div>
+				<div class="span3">
+					<dl>
+						<dt>Artist: </dt>
+						<dd><%= @event.artist %></dd>
+						<dt>Venue: </dt>
+						<dd><%= @event.venue %></dd>
+						<dt>Date: </dt>
+						<dd><%= @event.date %></dd>
+						<dt>Doors: </dt>
+						<dd><%= @event.doors %></dd>
+					</dl>
+				</div>
+				<div class="span3">
+					<dl>
+						<dt>Venue Capacity: </dt>
+						<dd>250</dd>
+						<dt>Sales Target:</dt>
+						<dd>35/100</dd>
+						<dt>Time left to go:</dt>
+						<dd>3 Weeks</dd>
+					</dl>
+				</div>
+				<div class="span3 offset1">
+					<div class=well well-small>
+						<h1>
+							<%= number_to_currency(@event.ticket_price) %>
+							<small>per ticket</small>
+						</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 
-<section>
-	<% admins_only do %>
-	<p><%= link_to "Edit Event", edit_event_path(@event) %></p>
-	<p><%= link_to "Delete Event", @event, :method => :delete,
-	:confirm => "Are you sure you want to delete this event?" %></p>
-	<% end %>
-</section>
+	<section class="section-box">
+		<div class="row">
+			<div class="span12">Hell world</div>
+			<div class="label-box">Your Promoter...</div>
+		</div>
+	</section>
+
+	<section>
+	</section>
+</div>
