@@ -1,18 +1,24 @@
 <div class="container">
-	<div class="row">
-		<section id="promoter-headline" class="section-box">
+	<section class="section-box">
+		<div class="row">
 			<div class="label-box">Promoter Info</div>
-			<header>
-				<h3>Vanvcouver, Canada</h3>
-				<h1> rating chart goes here </h1>
-			</header>
-			<div>
-				<img src="http://placehold.it/100x100">
-				<p>Jimmy K</p>
+			<div class="span2">
+				<img src="http://placehold.it/200">
+				<%= link_to "Contact Jimmy", user_path(@user), class: "btn btn-primary btn-block" %>
 			</div>
-			<button> <%= button_to "Contact" %> </button>
-		</section>
-	</div>
+			<div class="span4 offset2">
+				<h3>Jimmy Kay, Vancouver, Canada.</h3>
+					<fieldset class="rating well">
+			    <!-- <legend>Overall Rating</legend> -->
+				    <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Rocks!">5 stars</label>
+				    <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Pretty good">4 stars</label>
+				    <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Meh">3 stars</label>
+				    <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Kinda bad">2 stars</label>
+				    <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Sucks big time">1 star</label>
+				</fieldset>
+			</div>
+		</div>
+	</section>
 
 	<div class="row">
 		<section id="promoter-stats" class="section-box">
