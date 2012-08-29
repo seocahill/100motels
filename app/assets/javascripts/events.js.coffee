@@ -9,5 +9,5 @@ jQuery(document).ready ($) ->
     country = geoplugin_countryName()
     zone = geoplugin_region()
     district = geoplugin_city()
-    $("#geolocation").text country + ", " + zone + ", " + district
+    $("#geolocation").text district + ", " + zone + ", " + country
 

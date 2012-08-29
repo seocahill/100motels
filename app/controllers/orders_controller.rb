@@ -25,9 +25,9 @@ class OrdersController < ApplicationController
       Notifier.order_processed(@order).deliver
     else
       render action: :new, notice: "Something went wrong"
-    end    
+    end
   end
 
-  def update  
+  def update
   end
 end

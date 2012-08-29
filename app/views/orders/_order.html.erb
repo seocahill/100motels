@@ -11,18 +11,17 @@
 	<tfoot>
 		<tr>
 			<td colspan="4">Total Price</td>
-			<td>11</td>
+			<td>$11.00</td>
 		</tr>
-
 	</tfoot>
 	<tbody>
 		<% @order.line_items.each do |l| %>
 		<tr>
 			<td><%= @order.name %></td>
 			<td><%= @order.email %></td>
-			<td><%= l.event.artist %></td>
+			<td><%= l.event.artist %>, <%= l.event.venue %>, <%= time_tag l.event.date %></td>
 			<td><%= l.quantity %></td>
-			<td><%= l.line_total_price %></td>
+			<td><%= number_to_currency(l.line_total_price) %></td>
 		</tr>
 		<% end %>
 	</tbody>
