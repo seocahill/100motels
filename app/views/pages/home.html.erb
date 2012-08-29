@@ -1,25 +1,26 @@
 	<div class="container">
 
-
-			<div id="calls-nav" class="navbar">
-				<h3> You're here so what now?</h3>
-  			<div class="navbar-inner">
-					<ul class="nav">
-						<li class="divider-vertical"></li>
-						<li class="divider-vertical"></li>
-						<li class="active">
-	    				<a href="#active-promoters">I want to tour my original, not-commerical Music</a>
-	  				</li>
-	  				<li class="divider-vertical"></li>
-	  				<li><a href="#promoter-apply">I'd like to organize a show for an Artist</a></li>
-	  				<li class="divider-vertical"></li>
-	  				<li><a href="#latest-shows">I just want to buy a ticket</a></li>
-	  				<li class="divider-vertical"></li>
-					</ul>
+			<div class="section-box">
+				<div id="welcome-nav" class="navbar">
+					<h3>
+					 Hi and Welcome!<br>
+					 <small>100 Motels exists to help independent musicians get out on tour</small>
+					</h3>
+	  			<div class="navbar-inner">
+						<ul class="nav">
+							<li class="span3">
+		    				<a href="#active-promoters">I want to tour my music</a>
+		  				</li>
+		  				<li class="divider-vertical"></li>
+		  				<li class="span3"><a href="#promoter-apply">I want to host a show</a></li>
+		  				<li class="divider-vertical"></li>
+		  				<li class="span3"><a href="#latest-shows">I just want to buy a ticket</a></li>
+						</ul>
+					</div>
 				</div>
 			</div>
 
-		<section id = "latest-events">
+		<section id="latest-events">
 			<header>
 				<h3>Latest Shows</h3>
 			</header>
@@ -37,7 +38,7 @@
 										<%= event.venue %>
 										<%= event.date %>
 										<%= event.ticket_price %>
-										<%= link_to "Info & Tickets", event_path(event) %>
+										<%= button_to "Info & Tickets", event_path(event), method: :get, class: "btn" %>
 									</p>
 								</li>
 								<% end %>
@@ -59,8 +60,7 @@
 										<%= event.venue %>
 										<%= event.date %>
 										<%= event.ticket_price %>
-										<%= link_to "Show Details", event_path(event) %>
-										<%= button_to "Add to Cart", line_items_path(event_id: event) %>
+										<%= button_to "Info & Tickets", event_path(event), method: :get, class: "btn" %>
 									</p>
 								</li>
 								<% end %>
@@ -121,7 +121,15 @@
 			<section id="promoter-apply">
 				<div class="well well-large">
 					<h3>Looking to help?...Apply to become a Promoter</h3>
-					<button class="btn.large">Sign up!</button>
+					<blockquote>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+					</blockquote>
+					<button class="btn btn-large btn-primary">Sign up!</button>
 				</div>
 			</section>
 	</div>
