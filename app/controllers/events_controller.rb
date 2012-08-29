@@ -9,6 +9,8 @@ class EventsController < ApplicationController
   end
 
   def show
+    @cart = current_cart
+    @line_item = LineItem.new
   end
 
   def new
@@ -19,12 +21,12 @@ class EventsController < ApplicationController
   	@event = Event.new(params[:event])
     if @event.save
       flash[:notice] = "Rock and Roll"
-      redirect_to @event  
-    else  
+      redirect_to @event
+    else
       flash[:alert] = "Event has not been created"
       render :action => "new"
     end
-    
+
   end
 
   def edit
@@ -34,7 +36,7 @@ class EventsController < ApplicationController
     if @event.update_attributes(params[:event])
       flash[:notice] = "Event has been updated"
       redirect_to @event
-    else 
+    else
       flash[:alert] = "Event has not been updated"
       render :action => "edit"
     end
