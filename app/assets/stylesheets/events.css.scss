@@ -2,4 +2,28 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-// Ticket purchase box
+// cart box
+
+#cart-box  {
+  // margin-right: -45px;
+}
+
+.centered-box {
+  margin: 0 auto;
+  text-align: center;
+}
+
+
+
+#event-info {
+    img {
+    margin: 15px 25px;
+  }
+}
+
+#about-artist {
+    img {
+    margin-left: 20px;
+    margin-top: 20px;
+  }
+}

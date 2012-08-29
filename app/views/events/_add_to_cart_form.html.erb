@@ -1,7 +1,5 @@
-<%= simple_form_for(@line_item) do |f| %>
+<%= simple_form_for @line_item do |f| %>
     <%= f.input :event_id, as: :hidden, input_html: { value: @event.id } %>
-    <%= f.input :quantity %>
-    <div class="form-actions">
-      <%= f.submit "Add to Cart", class: "btn btn-success btn-large" %>
-    </div>
+    <%= f.input :quantity, input_html: { class: "input-mini"} %>
+    <%= f.submit "Add to Cart", class: "btn btn-success btn-large" %>
 <% end %>

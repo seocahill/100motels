@@ -7,31 +7,44 @@
 		<div class="row">
 			<div class="label-box">Ticket Info</div>
 				<div class="span3">
-					<dl>
-						<dt>Artist: </dt>
-						<dd><%= @event.artist %></dd>
-						<dt>Venue: </dt>
-						<dd><%= @event.venue %></dd>
-						<dt>Date: </dt>
-						<dd><%= @event.date %></dd>
-						<dt>Doors: </dt>
-						<dd><%= @event.doors %></dd>
-					</dl>
+					<img src="//placehold.it/300&text=Artist">
+				</div>
+				<div class="span5">
+					<div class="row">
+						<div class="span4 pull-right centered-box">
+							<h2>
+								<small>The promoter presents...</small> <br>
+								<%= @event.artist %>
+							</h2>
+						</div>
+					</div>
+					<div class="row">
+						<div class="span2 pull-right">
+							<dl>
+								<dt>Venue: </dt>
+								<dd><%= @event.venue %></dd>
+								<dt>Date: </dt>
+								<dd><%= time_tag @event.date %></dd>
+								<dt>Doors: </dt>
+								<dd><%= @event.doors.strftime("%l:%M %p") %></dd>
+							</dl>
+						</div>
+						<div class="span2 pull-right">
+							<dl>
+								<dt>Venue Capacity: </dt>
+								<dd>250</dd>
+								<dt>Funding / Target:</dt>
+								<dd>$350 / $1000</dd>
+								<dt>Time left to go:</dt>
+								<dd><%= distance_of_time_in_words(Time.now, @event.date, true) %></dd>
+							</dl>
+						</div>
+					</div>
 				</div>
 				<div class="span3">
-					<dl>
-						<dt>Venue Capacity: </dt>
-						<dd>250</dd>
-						<dt>Sales Target:</dt>
-						<dd>35/100</dd>
-						<dt>Time left to go:</dt>
-						<dd>3 Weeks</dd>
-					</dl>
-				</div>
-				<div class="span3 offset1">
-					<div class="well well-small">
+					<div id="cart-box" class="section-box centered-box">
 						<h1>
-							<%= number_to_currency(@event.ticket_price) %>
+							<%= number_to_currency(@event.ticket_price) %> <br>
 							<small>per ticket</small>
 						</h1>
 						<%= render 'add_to_cart_form' %>
@@ -40,13 +53,97 @@
 		</div>
 	</section>
 
-	<section class="section-box">
+	<section id ="your-promoter" class="section-box">
 		<div class="row">
-			<div class="span12">Hell world</div>
-			<div class="label-box">Your Promoter...</div>
+			<div class="span12">
+				<div class="label-box">Your Promoter</div>
+					<div class="row">
+						<div class="span12">
+							<img src="//placehold.it/100" class="align_left">
+							<p class="lead">
+								Lorem ipsum Marco Di Marco...
+							</p>
+							<p>
+								Consectetur adipisicing elit, sed do eiusmod
+								tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+								quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+							consequat.
+							</p>
+							<button>Full Profile</button>
+						</div>
+					</div>
+					<div class="row">
+						<div class="span12">
+						</div>
+					</div>
+			</div>
 		</div>
 	</section>
 
-	<section>
+	<section id="about-artist" class="section-box">
+		<div class="label-box">About the Artist</div>
+		<div class="row">
+			<div class="span4">
+				<p class="lead">
+					I first heard Hannah Ward ....
+				</p>
+				<p>
+
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+					consequat.
+
+					 Duis aute irure dolor in reprehenderit in voluptate velit esse
+					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+				</p>
+				<blockquote>
+  				<p>" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante."</p>
+				</blockquote>
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+				</p>
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+				</p>
+				<p class="lead">Grazia, Marco!</p>
+			</div>
+			<div class="span6">
+				<h3>
+					Watch....
+					<img src="//placehold.it/630x430&text=Vimeo" class="align_center">
+				</h3>
+				<h3>
+					Listen....
+					<img src="//placehold.it/565x170&text=Soundcloud+playlist" class="align_left">
+				</h3>
+				<div class="well">
+					<div class="btn-toolbar">
+					  <div class="btn-group centered-box">
+					    <a class="btn" href="#"><i class="icon-share"></i></a>
+					    <a class="btn" href="#"><i class=" icon-thumbs-up"></i></a>
+					    <a class="btn" href="#"><i class=" icon-thumbs-down"></i></a>
+					    <a class="btn" href="#"><i class=" icon-share-alt"></i></a>
+					  </div>
+					</div>
+				</div>
+			</div>
 	</section>
 </div>
