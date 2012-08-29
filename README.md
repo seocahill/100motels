@@ -4,7 +4,7 @@ Destroy the whole music industry with rails and twitter bootstrap
 
 ## Install
 
-### PDFKit
+### Motels
 
     gem install wan hundred motels
 

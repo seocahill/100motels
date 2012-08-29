@@ -90,24 +90,60 @@
     <% flash.each do |key, value| %>
     	<div class="alert alert-<%= key == :notice ? "success" : "error" %>">
         <a class="close" href="#">&times;</a>
-    		<%= value %>
+    		<%= value %>#FFFFFF
     	</div>
     <% end %>
     <%= yield %>
   </body>
   <footer>
     <div class="container">
-      <div class="row">
-          <div class="footer-top span4">
-            <ul class="unstyled footer-links">
-              <li> <a href="#">Legal</a>  </li>
-              <li> <a href="#">Help</a>  </li>
-              <li> <a href="#">About</a>  </li>
-              <li> <a href="#">Contact</a>  </li>
-            </ul>
-          </div>
+      <div class="row footer-top">
+        <div class="span3 border-divider">
+          <dl>
+            <dt>Help Pages</dt>
+            <dd>ToS</dd>
+            <dd>Legal</dd>
+            <dd>Privacy</dd>
+            <dd>Tech Support</dd>
+          </dl>
         </div>
-        <div class="footer_bottom row">Seo Cahill 2012</div>
+        <div class="span3 border-divider">
+          <dl>
+            <dt>How it works</dt>
+            <dd>Pricing</dd>
+            <dd>Membership</dd>
+            <dd>FAQ</dd>
+            <dd>Customer Support</dd>
+          </dl>
+        </div>
+        <div class="span3 border-divider">
+          <dl>
+            <dt>About Us</dt>
+            <dd>Founders</dd>
+            <dt>Opportunities</dt>
+            <dd>Jobs</dd>
+            <dd>API / Developer support</dd>
+          </dl>
+        </div>
+        <div class="span2">
+          <dl>
+            <dt><a href="">Visit Our Blog</a></dt>
+            <dd>
+              <%= image_tag "twitter.png" %>
+              <%= image_tag "facebook.png" %>
+              <%= image_tag "rss.png" %>
+              <%= image_tag "vimeo.png" %>
+            </dd>
+            <div class="row">
+            </div>
+          </dl>
+        </div>
+      </div>
+      <div class="row footer-bottom">
+        <div class="span12">
+          Seo Cahill 2012
+        </div>
+      </div>
     </div>
   </footer>
 </html>
