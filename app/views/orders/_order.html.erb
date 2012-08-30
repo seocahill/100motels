@@ -1,8 +1,6 @@
 <table class="table">
 	<thead>
 		<tr>
-			<th>name</th>
-			<th>email</th>
 			<th>item</th>
 			<th>quantity</th>
 			<th>price</th>
@@ -10,15 +8,13 @@
 	</thead>
 	<tfoot>
 		<tr>
-			<td colspan="4">Total Price</td>
+			<td colspan="2"><strong>Total Price</strong></td>
 			<td>$11.00</td>
 		</tr>
 	</tfoot>
 	<tbody>
 		<% @order.line_items.each do |l| %>
 		<tr>
-			<td><%= @order.name %></td>
-			<td><%= @order.email %></td>
 			<td><%= l.event.artist %>, <%= l.event.venue %>, <%= time_tag l.event.date %></td>
 			<td><%= l.quantity %></td>
 			<td><%= number_to_currency(l.line_total_price) %></td>
