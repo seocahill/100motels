@@ -44,3 +44,4 @@ end
 gem 'jquery-rails'
 gem 'devise'
 gem 'simple_form'
+gem 'stripe'
