@@ -11,7 +11,7 @@ class Notifier < ActionMailer::Base
 
   class Preview < MailView
     def order_processed
-      order = Order.first
+      order = Order.last
       Notifier.order_processed(order)
     end
   end

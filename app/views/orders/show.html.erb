@@ -17,16 +17,7 @@
 		<div class="span4">
 			<section class="section-box">
 				<div class="label-box">Payment Details</div>
-					<dl class="dl-horizontal well">
-						<dt>Name on Card: </dt>
-						<dd><%= @order.name %></dd>
-						<dt>Last 4 Digits: </dt>
-						<dd>5656</dd>
-						<dt>Zip Code: </dt>
-						<dd>CA 94115</dd>
-						<dt>Total Paid</dt>
-						<dd>$11.00</dd>
-					</dl>
+					<%= render 'payment' %>
 			</section>
 		</div>
 		<div class="span8">
