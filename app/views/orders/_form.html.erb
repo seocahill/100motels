@@ -1,7 +1,7 @@
 
-  <%= form_for @order do |f| %>
-    <%#= f.input :name %>
-    <%#= f.input :email %>
+  <%= simple_form_for @order do |f| %>
+    <%= f.input :name %>
+    <%= f.input :email %>
 
     <%= label_tag :card_number, "Credit Card Number" %>
     <%= text_field_tag :card_number, nil, name: nil %>
@@ -14,7 +14,8 @@
     <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"} %>
 
     <div class="actions">
-      <%= f.submit "Place Order", class: 'btn btn-primary' %>
+      <button type="submit" class="submit-button">Submit Payment</button>
+      <%#= f.submit "Place Order", class: 'btn btn-primary' %>
       <%#= submit_tag 'Cancel', :type => :reset, :class => "btn btn-danger" %>
     </div>
   <% end %>

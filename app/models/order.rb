@@ -1,6 +1,7 @@
 class Order < ActiveRecord::Base
 
   attr_accessible :email, :name
+  validates :name, :email, presence: :true
 
   has_many :line_items, dependent: :destroy
 
@@ -9,6 +10,6 @@ class Order < ActiveRecord::Base
       item.cart_id = nil
       line_items << item
     end
-  end 
-  
+  end
+
 end
