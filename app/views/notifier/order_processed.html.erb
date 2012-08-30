@@ -1,43 +1,34 @@
-<%= stylesheet_link_tag "notifiers", :media => "all" %>
+<%= stylesheet_link_tag "notifier", "bootstrap_custom", :media => "all" %>
 <div class="container">
-	<h2><%= @greeting %> Here's your ticket...</h2>
-	<div class="container">
-
-		<div class="box">
-			<section><img src="//placehold.it/170&text=QR+code"></section>
-		</div>
-
-		<div class="box" id="event-info">
-			<header>
-				<h2>Admits 4 people only </h2>
-			</header>
-		</div>
-
-		<div class="box">
-			<section id="order-email-headline">
+	<h2>
+		<%= @greeting %> Here's your ticket...
+	</h2>
+	<section class="section-box">
+		<div class="row">
+			<div class="span2">
+				<img src="//placehold.it/170&text=QR+code">
+			</div>
+			<div class="span6">
+				<header>
+					<h2>Admits 4 people only </h2>
+				</header>
+			</div>
+			<div class="span2">
 					<h1>100 Motels Presents!</h1>
-			</section>
+			</div>
 		</div>
-	</div>
-
-	<div class="container">
-		<section>
-			<header> <h3>Order Details</h3> </header>
-			<%= render 'orders/order' %>
-		</section>
-
-		<section>
-			<header>
-				<h3>Payment Details</h3>
-			</header>
-			<p>Name on Card: Seo Cahill</p>
-			<p>Last 4 digits: #5456 </p>
-			<p>Zip Code: 541154</p>
-			<p>Payment for $34 received thanks!</p>
-		</section>
-	</div>
-
-	<div class="container">
-		<p>Thanks Man! Love 100 Motels</p>
-	</div>
+	</section>
+	<section class="section-box">
+		<div class="row">
+			<div class="span8">
+				<%= render 'orders/order' %>
+			</div>
+			<div class="span3">
+				<p>Name on Card: Seo Cahill</p>
+				<p>Last 4 digits: #5456 </p>
+				<p>Zip Code: 541154</p>
+				<p>Payment for $34 received thanks!</p>
+			</div>
+		</div>
+	</section>
 </div>
