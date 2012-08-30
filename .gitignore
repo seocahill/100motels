@@ -16,3 +16,6 @@
 
 # Ignore binstubs.
 bundler_stubs/
+
+# Ignore Stripe initializer
+/config/initializers/stripe.rb

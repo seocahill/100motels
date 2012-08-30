@@ -2,5 +2,19 @@
   <%= simple_form_for @order do |f| %>
     <%= f.input :name %>
     <%= f.input :email %>
-    <%= f.submit "Place Order"%>
+
+    <%= label_tag :card_number, "Credit Card Number" %>
+    <%= text_field_tag :card_number, nil, name: nil %>
+
+    <%= label_tag :card_code, "Security Code on Card (CVV)" %>
+    <%= text_field_tag :card_code, nil, name: nil %>
+
+    <%= label_tag :card_month, "Card Expiration" %>
+    <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
+    <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"} %>
+
+    <div class="form-actions">
+      <%= f.submit "Place Order", class: 'btn btn-primary' %>
+      <%= submit_tag 'Cancel', :type => :reset, :class => "btn btn-danger" %>
+    </div>
   <% end %>
