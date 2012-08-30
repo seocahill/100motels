@@ -4,7 +4,7 @@
 .section-box {
   position: relative;
   margin: 25px 0;
-  padding: 14px;
+  padding: 15px;
   background-color: #fff;
   border: 1px solid #ddd;
   -webkit-border-radius: 4px;
@@ -26,4 +26,18 @@
   -webkit-border-radius: 4px 0 4px 0;
      -moz-border-radius: 4px 0 4px 0;
           border-radius: 4px 0 4px 0;
+}
+
+// Admits box number
+
+#admits-box {
+  text-align: center;
+  padding: 15px;
+  margin-top: 25px;
+}
+
+.ticket {
+  img {
+    margin: 15px;
+  }
 }

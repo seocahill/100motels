@@ -1,33 +1,49 @@
 <%= stylesheet_link_tag "notifier", "bootstrap_custom", :media => "all" %>
 <div class="container">
 	<h2>
-		<%= @greeting %> Here's your ticket...
+		<%= @greeting %> Here's your receipt and your tickets...
 	</h2>
-	<section class="section-box">
-		<div class="row">
-			<div class="span2">
-				<img src="//placehold.it/170&text=QR+code">
+
+	<% @order.line_items.each do |l| %>
+		<section class="ticket section-box">
+			<div class="row">
+				<div class="span2">
+					<img src="//placehold.it/170&text=QR+code">
+				</div>
+				<div class="span4 offset2">
+					<header>
+						<h1>
+							<small>100 Motels Presents!</small> <br>
+							<%= l.event.artist %>
+						</h1>
+						<h5>
+							live in <%=l.event.venue %> on <%= time_tag l.event.date %>
+						</h5>
+						<h3>
+							Doors at <%= l.event.doors.strftime("%l:%M %p") %>
+						</h3>
+					</header>
+				</div>
+				<div class="span2 offset1">
+					<div id="admits-box" class="well">
+						<p>Admit</p>
+						<h1><%= pluralize(l.quantity, "Person") %></h1>
+						<p></p>
+					</div>
+				</div>
 			</div>
-			<div class="span6">
-				<header>
-					<h2>Admits 4 people only </h2>
-				</header>
-			</div>
-			<div class="span2">
-					<h1>100 Motels Presents!</h1>
-			</div>
-		</div>
-	</section>
+		</section>
+	<% end %>
+
 	<section class="section-box">
 		<div class="row">
 			<div class="span8">
+				<h3>Your order</h3>
 				<%= render 'orders/order' %>
 			</div>
 			<div class="span3">
-				<p>Name on Card: Seo Cahill</p>
-				<p>Last 4 digits: #5456 </p>
-				<p>Zip Code: 541154</p>
-				<p>Payment for $34 received thanks!</p>
+				<h3>Your receipt</h3>
+				<%= render 'orders/payment' %>
 			</div>
 		</div>
 	</section>
