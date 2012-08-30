@@ -1,7 +1,7 @@
 
-  <%= simple_form_for @order do |f| %>
-    <%= f.input :name %>
-    <%= f.input :email %>
+  <%= form_for @order do |f| %>
+    <%#= f.input :name %>
+    <%#= f.input :email %>
 
     <%= label_tag :card_number, "Credit Card Number" %>
     <%= text_field_tag :card_number, nil, name: nil %>
@@ -13,8 +13,11 @@
     <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
     <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"} %>
 
-    <div class="form-actions">
+    <div class="actions">
       <%= f.submit "Place Order", class: 'btn btn-primary' %>
-      <%= submit_tag 'Cancel', :type => :reset, :class => "btn btn-danger" %>
+      <%#= submit_tag 'Cancel', :type => :reset, :class => "btn btn-danger" %>
     </div>
   <% end %>
+  <div id="stripe_error">
+    <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+  </div>
