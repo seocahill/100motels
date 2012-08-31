@@ -9,7 +9,7 @@ jQuery ->
 order =
   setupForm: ->
     $('#new_order').submit ->
-      $('input[type=submit').attr('disabled', true)
+      $('input[type=submit]').attr('disabled', true)
       order.processCard()
       false
 
@@ -25,7 +25,7 @@ order =
     if status == 200
       alert(response.id)
     else
-      alert(response.error.message)
+         alert(response.error.message)
 
 
 
