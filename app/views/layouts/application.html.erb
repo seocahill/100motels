@@ -24,10 +24,8 @@
         100 Motels
         <small>We organize live music.</small>
       </h1>
-
       <a href="#" id="logo"></a>
     </header>
-
     <div class="navbar">
       <div class="navbar-inner">
         <div class="container" style="width: auto;">
@@ -87,13 +85,14 @@
         </div>
       </div><!-- /navbar-inner -->
     </div>
-
-    <% flash.each do |key, value| %>
-    	<div class="alert alert-<%= key == :notice ? "success" : "error" %>">
-        <a class="close" href="#">&times;</a>
-    		<%= value %>#FFFFFF
-    	</div>
-    <% end %>
+    <div class="container">
+      <% flash.each do |key, value| %>
+      	<div class="alert alert-<%= key == :notice ? "success" : "error" %>">
+          <a class="close" data-dismiss="alert">&#215;</a>
+      		<%= content_tag :div, value, :id => "flash_#{key}" if value.is_a?(String) %>
+      	</div>
+      <% end %>
+    </div>
     <%= yield %>
   </body>
   <footer>
