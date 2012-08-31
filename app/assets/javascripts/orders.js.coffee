@@ -10,8 +10,11 @@ order =
   setupForm: ->
     $('#new_order').submit ->
       $('input[type=submit]').attr('disabled', true)
-      order.processCard()
-      false
+      if $('#card_number').length
+        order.processCard()
+        false
+      else
+        true
 
   processCard: ->
     card =
