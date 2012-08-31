@@ -5,7 +5,7 @@ namespace :db do
   task populate: :environment do
     #require File.expand_path("factories/factories.rb")
     make_users
-    make_events_with_users
+    make_events
     #make_something_else
   end
 end
@@ -17,8 +17,8 @@ def make_users
   end
 end
 
-def make_events_with_users
+def make_events
   5.times do
-    FactoryGirl.create(:event_with_users)
+    FactoryGirl.create(:event, :with_user)
   end
 end
