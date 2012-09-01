@@ -1,7 +1,7 @@
 module Api
   module V1
     class EventsController < ApplicationController
-      http_basic_authenticate_with name: "doorkeeper", password: "ghostbusters"
+      # http_basic_authenticate_with name: "doorkeeper", password: "ghostbusters"
       respond_to :json
 
       def index

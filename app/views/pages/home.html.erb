@@ -1,12 +1,12 @@
 	<div class="container">
 
 			<div class="section-box">
-				<div id="welcome-nav" class="navbar">
+				<div class="navbar">
 					<h2 class="welcome-banner">
 					 Hi and Welcome to the 100 Motels demo site!<br>
 					 <small>100 Motels wants to exist so independent musicians can get out on tour without industry backing or paying to play.</small>
 					</h2>
-	  			<div class="navbar-inner">
+	  			<div id="welcome-nav" class="navbar-inner">
 	  				<div class="label-box">What do you want to do?</div>
 						<ul class="nav">
 							<li class="span3">
@@ -15,130 +15,131 @@
 		  				<li class="divider-vertical"></li>
 		  				<li class="span3"><a href="#promoter-apply">I want to host a show</a></li>
 		  				<li class="divider-vertical"></li>
-		  				<li class="span3"><a href="#latest-shows">I just want to buy a ticket</a></li>
+		  				<li class="span3"><a href="#latest-events">I just want to buy a ticket</a></li>
 						</ul>
 					</div>
 				</div>
 			</div>
-
-		<section id="latest-events">
-			<header>
-				<h3>
-					Latest Shows in your Locality
-					<small id="geolocation"></small>
-				</h3>
-			</header>
-			<div id="events-carousel" class="carousel slide">
-				<div id="events" class="carousel-inner">
-					<div class="item active">
-							<ul class="thumbnails">
-								<% @events.each do |event| %>
-								<li class="span4">
-									<div class="thumbnail">
-										<img src="http://placehold.it/360x240&text=ArtistPic" alt="">
-										<div class="caption">
-											<h4 class="title">
-												<%= event.artist %>
-											</h4>
-											<p><%= event.venue %> on <%= time_tag event.date %></p>
-											<%= button_to "Info & Tickets", event_path(event), method: :get, class: "btn" %>
+		<div id="content">
+			<section id="latest-events">
+				<header>
+					<h3>
+						Latest Shows in your Locality
+						<small id="geolocation"></small>
+					</h3>
+				</header>
+				<div id="events-carousel" class="carousel slide">
+					<div id="events" class="carousel-inner">
+						<div class="item active">
+								<ul class="thumbnails">
+									<% @events.each do |event| %>
+									<li class="span4">
+										<div class="thumbnail">
+											<img src="http://placehold.it/360x240&text=ArtistPic" alt="">
+											<div class="caption">
+												<h4 class="title">
+													<%= event.artist %>
+												</h4>
+												<p><%= event.venue %> on <%= time_tag event.date %></p>
+												<%= button_to "Info & Tickets", event_path(event), method: :get, class: "btn" %>
+											</div>
 										</div>
-									</div>
-								</li>
-								<% end %>
-							</ul>
-						<div class="carousel-caption">
-							<h4>Just Curious about 100 Motels?</h4>
-							<p>Here's some artists that are playing in your city soon. Have a listen and when you find something you like do them a favour and catch their show</p>
+									</li>
+									<% end %>
+								</ul>
+							<div id ="#latest-shows" class="carousel-caption">
+								<h4>Just Curious about 100 Motels?</h4>
+								<p>Here's some artists that are playing in your city soon. Have a listen and when you find something you like do them a favour and catch their show</p>
+							</div>
+						</div>
+						<div class="item">
+								<ul class="thumbnails">
+									<% @events.each do |event| %>
+									<li class="span4">
+										<div class="thumbnail">
+											<img src="http://placehold.it/360x240&text=ArtistPic" alt="">
+											<div class="caption">
+												<h4 class="title">
+													<%= event.artist %>
+												</h4>
+												<p><%= event.venue %> on <%= time_tag event.date %></p>
+												<%= button_to "Info & Tickets", event_path(event), method: :get, class: "btn" %>
+											</div>
+										</div>
+									</li>
+									<% end %>
+								</ul>
 						</div>
 					</div>
-					<div class="item">
-							<ul class="thumbnails">
-								<% @events.each do |event| %>
-								<li class="span4">
-									<div class="thumbnail">
-										<img src="http://placehold.it/360x240&text=ArtistPic" alt="">
-										<div class="caption">
-											<h4 class="title">
-												<%= event.artist %>
-											</h4>
-											<p><%= event.venue %> on <%= time_tag event.date %></p>
-											<%= button_to "Info & Tickets", event_path(event), method: :get, class: "btn" %>
-										</div>
-									</div>
-								</li>
-								<% end %>
-							</ul>
-					</div>
+					<a class="left carousel-control" href="#events-carousel" data-slide="prev">‹</a>
+					<a class="right carousel-control" href="#events-carousel" data-slide="next">›</a>
 				</div>
-				<a class="left carousel-control" href="#events-carousel" data-slide="prev">‹</a>
-				<a class="right carousel-control" href="#events-carousel" data-slide="next">›</a>
-			</div>
-		</section>
+			</section>
 
-		<section id="active-promoters">
-			<header>
-				<h3>Best and Fairest Show-makers</h3>
-			</header>
-			<div id="promoters-carousel" class="carousel slide">
-				<div id="promoters" class="carousel-inner">
-					<div class="item active">
-							<ul class="thumbnails">
-								<% @users.each do |user| %>
-								<li class="span3">
-									<div class="thumbnail">
-										<img src="http://placehold.it/360x240">
-										<div class="caption">
-											<h3 class="title"> Promoter Name</h3>
-											<h4>Location</h4>
+			<section id="active-promoters">
+				<header>
+					<h3>Best and Fairest Show-makers</h3>
+				</header>
+				<div id="promoters-carousel" class="carousel slide">
+					<div id="promoters" class="carousel-inner">
+						<div class="item active">
+								<ul class="thumbnails">
+									<% @users.each do |user| %>
+									<li class="span3">
+										<div class="thumbnail">
+											<img src="http://placehold.it/360x240">
+											<div class="caption">
+												<h3 class="title"> Promoter Name</h3>
+												<h4>Location</h4>
+												<%= button_to "Full Profile", user_path(user), method: :get %>
+											</div>
+										</div>
+									</li>
+									<% end %>
+								</ul>
+							<div class="carousel-caption">
+								<h4>Our Volunteers...making it happen</h4>
+								<p>All of our promoters have a proven track record in supporting independent music</p>
+							</div>
+						</div>
+						<div class="item">
+								<ul class="thumbnails">
+									<% @users.each do |user| %>
+									<li class="span3">
+										<a class="thumbnail" href="#">
+											<img src="http://placehold.it/360x240" alt="">
+										</a>
+										<h3 class="title"> Promoter Name</h3>
+										<p>
 											<%= button_to "Full Profile", user_path(user), method: :get %>
-										</div>
-									</div>
-								</li>
-								<% end %>
-							</ul>
-						<div class="carousel-caption">
-							<h4>Our Volunteers...making it happen</h4>
-							<p>All of our promoters have a proven track record in supporting independent music</p>
+										</p>
+									</li>
+									<% end %>
+								</ul>
 						</div>
 					</div>
-					<div class="item">
-							<ul class="thumbnails">
-								<% @users.each do |user| %>
-								<li class="span3">
-									<a class="thumbnail" href="#">
-										<img src="http://placehold.it/360x240" alt="">
-									</a>
-									<h3 class="title"> Promoter Name</h3>
-									<p>
-										<%= button_to "Full Profile", user_path(user), method: :get %>
-									</p>
-								</li>
-								<% end %>
-							</ul>
+					<a class="left carousel-control" href="#promoters-carousel" data-slide="prev">‹</a>
+					<a class="right carousel-control" href="#promoters-carousel" data-slide="next">›</a>
+				</div>
+
+			<section id="promoter-apply">
+				<div class="well well-large">
+					<h3>Looking to put on Shows?...Apply to become a Full Member</h3>
+					<blockquote>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+					</blockquote>
+					<div class="btn-group">
+					  <button class="btn btn-large btn-primary">Sign up!</button>
+					  <button class="btn btn-large">More Info</button>
 					</div>
 				</div>
-				<a class="left carousel-control" href="#promoters-carousel" data-slide="prev">‹</a>
-				<a class="right carousel-control" href="#promoters-carousel" data-slide="next">›</a>
-			</div>
-
-		<section id="promoter-apply">
-			<div class="well well-large">
-				<h3>Looking to put on Shows?...Apply to become a Full Member</h3>
-				<blockquote>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-				</blockquote>
-				<div class="btn-group">
-				  <button class="btn btn-large btn-primary">Sign up!</button>
-				  <button class="btn btn-large">More Info</button>
-				</div>
-			</div>
-		</section>
+			</section>
+		</div>
 	</div>
 
 
