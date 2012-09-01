@@ -11,7 +11,7 @@ OneHundredMotels::Application.routes.draw do
     resources :users
   end
 
-  namespace :api do
+  namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
       resources :events
     end
