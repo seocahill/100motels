@@ -1,17 +1,23 @@
 OneHundredMotels::Application.routes.draw do
 
   devise_for :users
-  
+
   resources :users, only: [:index, :show]
 
   root :to => 'pages#home'
-  
-  namespace :admin do 
+
+  namespace :admin do
     root :to => 'base#index'
     resources :users
   end
 
-  resources :events 
+  namespace :api do
+    namespace :v1 do
+      resources :events
+    end
+  end
+
+  resources :events
 
   resources :carts, except: :index
 
