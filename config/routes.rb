@@ -1,5 +1,7 @@
 OneHundredMotels::Application.routes.draw do
 
+  mount Doorkeeper::Engine => '/oauth'
+
   devise_for :users
 
   resources :users, only: [:index, :show]
