@@ -4,9 +4,17 @@ gem 'rails', '3.2.8'
 
 group :production do
 	gem 'pg'
+  gem 'devise'
+  gem 'simple_form'
+  gem 'stripe'
+  gem 'thin'
+  gem 'doorkeeper'
+  gem 'faker'
+  gem 'factory_girl_rails'
 end
 
 group :developement, :test do
+  gem 'thin'
 	gem 'rspec-rails'
 	gem 'guard-rspec'
 	gem 'guard-cucumber'
@@ -39,11 +47,7 @@ group :assets do
   gem 'dynamic_form'
   gem 'uglifier', '>= 1.0.3'
   gem "bootstrap-sass", :git => 'git://github.com/dszczyt/bootstrap-sass.git'
+  gem 'jquery-rails'
 end
 
-gem 'jquery-rails'
-gem 'devise'
-gem 'simple_form'
-gem 'stripe'
-gem 'thin'
-gem 'doorkeeper'
+
