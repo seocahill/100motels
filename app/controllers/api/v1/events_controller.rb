@@ -1,11 +1,11 @@
 module Api
   module V1
-    class EventsController < ApplicationController
-      # http_basic_authenticate_with name: "doorkeeper", password: "ghostbusters"
+    class EventsController < ApiController
+      doorkeeper_for :all
       respond_to :json
 
       def index
-        respond_with Event.all
+        respond_with current_user.events
       end
 
       def show
@@ -17,7 +17,7 @@ module Api
       end
 
       def update
-        respond_with Event.update(params[:id], params[:event])
+        respond_with current_user.events.update(params[:id], params[:event])
       end
 
       def destroy
