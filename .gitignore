@@ -18,4 +18,4 @@
 bundler_stubs/
 
 # Ignore Stripe initializer
-/config/initializers/stripe.rb
+/config/stripe.yml
