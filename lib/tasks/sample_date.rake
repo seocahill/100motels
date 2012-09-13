@@ -19,6 +19,6 @@ end
 
 def make_events
   5.times do
-    FactoryGirl.create(:event, :with_user)
+    FactoryGirl.create(:event)
   end
 end
