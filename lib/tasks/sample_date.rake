@@ -11,9 +11,9 @@ namespace :db do
 end
 
 def make_users
-  FactoryGirl.create(:user, :admin, :confirmed_user)
+  FactoryGirl.create(:user, :admin)
   15.times do
-   FactoryGirl.create(:user, :confirmed_user)
+   FactoryGirl.create(:user)
   end
 end
 
