@@ -80,6 +80,4 @@ OneHundredMotels::Application.configure do
   }
   ActionMailer::Base.delivery_method = :smtp
 
-  # Fix for Roadie asset pipeline issue
-  config.roadie.provider = Roadie::FilesystemProvider.new(Rails.root, "public")
 end
