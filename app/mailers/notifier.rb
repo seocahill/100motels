@@ -1,7 +1,7 @@
 require 'mail_view'
 
 class Notifier < ActionMailer::Base
-  default css: [:notifier, :bootstrap_custom], from: "admin@100motels.com"
+  default css: [:notifier, :mail_bootstrap], from: "admin@100motels.com"
 
   def order_processed(order)
     @order = order
