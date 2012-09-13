@@ -13,7 +13,7 @@ OneHundredMotels::Application.configure do
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
@@ -35,9 +35,19 @@ OneHundredMotels::Application.configure do
   config.assets.debug = true
 
   # Set the mailer to localhost
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.default_url_options = { :host => 'creteboom.com' }
 
-  # for using livereload with guard put in rack.ru instead
-  #config.middleware.insert_before(Rack::Lock, Rack::LiveReload)
+  # Gapps for dev
 
+    config.action_mailer.delivery_method = :smtp
+
+    config.action_mailer.smtp_settings = {
+      :address => "smtp.gmail.com",
+      :port => 587,
+      :domain => "creteboom.com",
+      :authentication => "plain",
+      :user_name => "creteboo@creteboom.com",
+      :password => ENV["GMAIL_PASSWORD"],
+      :enable_starttls_auto => true
+    }
 end

@@ -19,3 +19,4 @@ bundler_stubs/
 
 # Ignore Stripe initializer
 /config/stripe.yml
+/config/gmail.yml
