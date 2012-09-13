@@ -13,7 +13,7 @@ end
 def make_users
   FactoryGirl.create(:user, :admin, :confirmed_user)
   15.times do
-   FactoryGirl.create(:user)
+   FactoryGirl.create(:user, :confirmed_user)
   end
 end
 
