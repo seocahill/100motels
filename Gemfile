@@ -6,6 +6,7 @@ group :production do
 	gem 'pg'
   gem 'faker'
   gem 'factory_girl_rails'
+  gem 'thin'
 end
 
 group :developement, :test do
@@ -47,5 +48,5 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'simple_form'
 gem 'stripe'
-gem 'thin'
+gem 'heroku'
 gem 'doorkeeper'
