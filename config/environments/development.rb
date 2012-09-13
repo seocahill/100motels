@@ -48,6 +48,7 @@ OneHundredMotels::Application.configure do
       :authentication => "plain",
       :user_name => "creteboo@creteboom.com",
       :password => ENV["GMAIL_PASSWORD"],
+      :password => "g37I4gxtZKEzEJWw",
       :enable_starttls_auto => true
     }
 end
