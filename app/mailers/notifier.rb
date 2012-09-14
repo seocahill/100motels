@@ -1,11 +1,11 @@
 require 'mail_view'
 
 class Notifier < ActionMailer::Base
-  default css: [:notifier, :mail_bootstrap], from: "admin@100motels.com"
+  default css: [:email, :mail_bootstrap], from: "admin@100motels.com"
 
   def order_processed(order)
     @order = order
-    @greeting = "Hi #{order.name}!"
+    @greeting = "Thanks #{order.name}!"
     mail to: order.email, subject: "Your Order from 100 Motels"
   end
 
