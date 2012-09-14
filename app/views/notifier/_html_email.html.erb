@@ -1,9 +1,9 @@
 <table width="600px" cellpadding="0" cellspacing="0" border="0" align="center">
 	<tr>
 		<td class="head-text" width="100%" valign="top">
-			<h2>
+			<h3>
 				<%= @greeting %> We appreciate you :)
-			</h2>
+			</h3>
 		</td>
 	</tr>
 </table>
@@ -11,28 +11,36 @@
 	<table width="600px" cellpadding="0" cellspacing="0" border="0" align="center">
 		<tr>
 			<td class="head-text" width="100%" valign="top">
-				<h1>
-					<small>100 Motels Presents!</small> <br>
-					<%= l.event.artist %>
-				</h1>
+				<div class="page-header">
+					<h1>
+						<small>100 Motels Presents!</small> <br>
+						<%= l.event.artist %>
+					</h1>
+				</div>
 			</td>
 		</tr>
 	</table>
 	<table width="600px" cellpadding="0" cellspacing="0" border="0" align="center">
 		<tr>
 			<td width="200px" valign="top">
-				<img src="//placehold.it/170&text=QR+code">
+				<img class="image_fix" src="//placehold.it/170&text=QR+code" alt="Your alt text" title="Your title text" width="x" height="x" />
+				<img >
 			</td>
 			<td width="200px" valign="top">
 				<header class="head-text">
-					<h5>
-						live in <%=l.event.venue %> <br>
-						 on <br>
-						 <%= time_tag l.event.date %>
-					</h5>
-					<h3>
-						Doors at <%= l.event.doors.strftime("%l:%M %p") %>
-					</h3>
+					<h4>
+						<br>
+						Live in <%=l.event.venue %> <br>
+						on <br>
+						<%= time_tag l.event.date %> <br>
+					</h4>
+					<h4>
+						~
+						<br>
+						Doors  <br>
+						at <br>
+						<%= l.event.doors.strftime("%l:%M %p") %>
+					</h4>
 				</header>
 			</td>
 			<td width="200px" valign="top">

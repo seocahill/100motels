@@ -6,7 +6,7 @@
     .ExternalClass {width:100%;} /* Force Hotmail to display emails at full width */
     .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {line-height: 100%;}
     /* Forces Hotmail to display normal line spacing.  More on that: http://www.emailonacid.com/forum/viewthread/43/ */
-    #backgroundTable {margin:0; padding:0; width:100% !important; line-height: 100% !important;}
+    #backgroundTable {margin:0; padding:0; width:100% !important; line-height: 100% !important; ;}
     /* End reset */
 
     /* Some sensible defaults for images
@@ -35,7 +35,7 @@
 
     /* Outlook 07, 10 Padding issue fix
     Bring inline: No.*/
-    table td {border-collapse: collapse;}
+    /*table td {border-collapse: collapse;}*/
 
     /* Remove spacing around Outlook 07, 10 tables
     Bring inline: Yes */
@@ -109,4 +109,13 @@
 
     .head-text  {
         text-align: center;
+    }
+
+    #email-table {
+        border: 1px solid #ddd;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
