@@ -26,17 +26,15 @@
 				<img class="image_fix" src="//placehold.it/170&text=QR+code" alt="Your alt text" title="Your title text" width="x" height="x" />
 				<img >
 			</td>
-			<td width="200px" valign="top">
-				<header class="head-text">
+			<td width="200px" valign="top" align="center">
+				<header class="">
 					<h4>
-						<br>
 						Live in <%=l.event.venue %> <br>
 						on <br>
 						<%= time_tag l.event.date %> <br>
 					</h4>
+					<h1>~</h1>
 					<h4>
-						~
-						<br>
 						Doors  <br>
 						at <br>
 						<%= l.event.doors.strftime("%l:%M %p") %>
@@ -49,6 +47,17 @@
 					<p>Admit</p>
 						<h1><%= l.quantity %></h1>
 					<p><%= "Person".pluralize(l.quantity) %> only</p>
+				</div>
+			</td>
+		</tr>
+	</table>
+	<table width="600px" cellpadding="0" cellspacing="0" border="0" align="center">
+		<tr>
+			<td class="head-text" width="100%" valign="top">
+				<div class="page-header">
+					<h5>
+						<small>Present the QR code for addmission and/or readmission subject to the promoter's <a href="">T&C</a></small> <br>
+					</h5>
 				</div>
 			</td>
 		</tr>
