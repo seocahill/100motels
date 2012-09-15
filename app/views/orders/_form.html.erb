@@ -27,7 +27,7 @@
     <div class="actions">
       <button type="submit" class="btn btn-primary">Submit Payment</button>
       <%#= f.submit "Place Order", class: 'btn btn-primary' %>
-      <%= submit_tag 'Cancel', :type => :reset, :class => "btn btn-danger" %>
+      <%= submit_tag 'Cancel', :type => :reset, :class => "btn btn-danger", input_html: {"data-loading-text" => "loading..."} %>
     </div>
   <% end %>
   <div id="stripe_error">

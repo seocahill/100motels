@@ -1,43 +1,63 @@
-<h1>Current Shows</h1>
-
-<div class="container-fluid">
-	<div class="row-fluid">
-		<div class="span4">
-		<aside id="events-searchform" >
-			<header>
-				<h3>Search Controls</h3>
+<div class="container">
+	<div class="row">
+		<div class="span12">
+			<header class="well">
+				<h3> <i class="icon-globe"></i> <div id="geolocation" class="pull-left"></div></h3>
 			</header>
-			<form>
-				<div>
-					<label>Date Range</label>
-					<input  type='range' min='0' max='50' value='0' autofocus="autofocus"/> <br>
-					<label>By City</label>
-				  <input results="10" type='search' autofocus="autofocus"/> <br>
-				  <label>By Artist</label>
-				  <input type='text' placeholder='Search Artist' autofocus="autofocus"/> <br>
-				  <label>By Promoter</label>
-				  <input type='text' placeholder='Search Promoter' autofocus="autofocus"/>
-				</div>
-			</form>
-		</aside>
 		</div>
-		<section id = "latest-events" class="span8">
-			<div class="events">
+	</div>
+	<div class="row">
+		<div class="span3">
+			<aside id="events-searchbar">
+				<header>
+					<h3></h3>
+				</header>
+				<header>
+					<h3>Sort by...</h3>
+				</header>
+				<div class="">
+					<ul class="nav nav-list">
+						<li class="nav-header">Date</li>
+						<li class=""><a href="">Tonight</a></li>
+						<li class=""><a href="">This Week</a></li>
+						<li class="active"><a href="">This Month</a></li>
+						<li class="divider"></li>
+						<li class="nav-header">City</li>
+						<li class="active" id="geolocation">
+							<a href="">Vancouver</a>
+						</li>
+						<% @events.each do |event| %>
+						<li><a href=""><%= event.venue %></a></li>
+						<% end %>
+						<li class="divider"></li>
+						<li class="nav-header">Artist</li>
+						<% @events.each do |event| %>
+						<li><a href=""><%= event.artist %></a></li>
+						<% end %>
+					</ul>
+				</div>
+			</aside>
+		</div>
+		<div class="span9">
+			<section id="events-index-grid" class="events">
 				<ul class="thumbnails">
 					<% @events.each do |event| %>
-					<li class="span4">
-						<a class="thumbnail" href="#">
-							<img src="http://placehold.it/240" alt="">
-						</a>
-						<h3><%= event.artist %></h3>
-						<p>Featuring a hero unit for a primary message and three supporting elements.</p>
-						<p>
-							<%= button_to "Info and Tickets", event_path(event), method: :get, class: "btn btn-primary" %></a>
-						</p>
-					</li>
+						<li class="span3">
+							<a class="thumbnail" href="#">
+								<img src="http://placehold.it/240" alt="">
+							</a>
+							<h3><%= event.artist %></h3>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+							.</p>
+							<p>
+								<%= button_to "Info and Tickets", event_path(event), method: :get, class: "btn btn-primary" %></a>
+							</p>
+						</li>
 					<% end %>
 				</ul>
-			</div>
-		</section>
+			</section>
+		</div>
 	</div>
 </div>

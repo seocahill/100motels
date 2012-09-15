@@ -92,8 +92,8 @@
       		<%= content_tag :div, value, :id => "flash_#{key}" if value.is_a?(String) %>
       	</div>
       <% end %>
+      <%= yield %>
     </div>
-    <%= yield %>
   </body>
   <footer>
     <div class="container">
