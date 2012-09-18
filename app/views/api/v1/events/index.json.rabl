@@ -1,3 +1,3 @@
 collection @events
 
-attributes :artist, :venue, :date
+extends "api/v1/events/show"

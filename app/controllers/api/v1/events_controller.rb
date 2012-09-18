@@ -9,7 +9,7 @@ module Api
       end
 
       def show
-        Event.find(params[:id])
+        @event = Event.find(params[:id])
       end
 
       def create
