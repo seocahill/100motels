@@ -10,6 +10,7 @@ module Api
 
       def show
         @event = Event.find(params[:id])
+        # @line_item = LineItem.find(params[:id])
       end
 
       def create
