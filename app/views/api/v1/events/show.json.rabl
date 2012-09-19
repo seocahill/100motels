@@ -6,3 +6,6 @@ child :line_items do
     attributes :name, :email
   end
 end
+node :promoter do
+  current_user.email
+end
