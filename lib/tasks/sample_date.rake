@@ -6,7 +6,8 @@ namespace :db do
     #require File.expand_path("factories/factories.rb")
     make_users
     make_events
-    #make_something_else
+    make_orders
+
   end
 end
 
@@ -20,5 +21,11 @@ end
 def make_events
   5.times do
     FactoryGirl.create(:event)
+  end
+end
+
+def make_orders
+  150.times do
+    FactoryGirl.create(:order)
   end
 end
