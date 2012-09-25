@@ -21,9 +21,8 @@ Feature: Checkout
     Given a customer has successfully checked out
     And "joe@example.com" opens the email with subject "Your Order from 100 Motels"
     Then they should see "Crete Boom" in the email body
-  
 
 
 
 
-  
+

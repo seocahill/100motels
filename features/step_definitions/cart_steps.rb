@@ -3,7 +3,7 @@ Then /^my cart should be empty$/ do
 end
 
 When /^I add "(.*?)" to my cart$/ do |event_title|
-  @page.add_event(event_title)
+  click_button('Add to Cart')
 end
 
 When /^I add "(.*?)" to my cart again$/ do |event_title|
@@ -11,7 +11,9 @@ When /^I add "(.*?)" to my cart again$/ do |event_title|
 end
 
 Then /^my cart should contain:$/ do |table|
-  @page.cart.contents.should == table.hashes
+  click_link('Cart (1)')
+  click_link('View Cart')
+  @page.contents.should == table.hashes
 end
 
 Given /^my cart contains events$/ do

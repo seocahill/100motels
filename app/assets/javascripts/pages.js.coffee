@@ -3,18 +3,12 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 # scrollspy nav with animation
-# $("#content").scrollspy()
 
-# () ->
-#   $("#content").scrollspy()
-  $("#welcome-nav ul li a").bind "click", (e) ->
-    e.preventDefault()
-    target = @hash
-    console.log target
-    $.scrollTo target, 1000
+$ ->
+  $("#welcome-nav a").click ->
+    goToByScroll $(this).attr("href")
+    false
 
 
-# knock off auto slide on smaller carousel
-$("#events-carousel").carousel({
-  interval: false;
-});
+goToByScroll = (id) ->
+  $('html,body').animate({scrollTop: $(id).offset().top}, 2600)

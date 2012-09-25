@@ -2,6 +2,7 @@ require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "pat
 
 Given /^I am on (.+)$/ do |page_name|
   visit path_to(page_name)
+  # save_and_open_page
 end
 
 When /^I go to (.+)$/ do |page_name|
@@ -14,6 +15,7 @@ end
 
 When /^I click "([^\"]*)"$/ do |link|
   click_link(link)
+  # save_and_open_page
 end
 
 When /^I fill in "([^\"]*)" with "([^\"]*)"$/ do |field, value|
@@ -86,4 +88,8 @@ end
 
 Then /^page should have (.+) message "([^\"]*)"$/ do |type, text|
   page.has_css?("p.#{type}", :text => text, :visible => true)
+end
+
+When /^I click on "(.*?)" for "(.*?)"$/ do |arg1, arg2|
+  click_button(arg2)
 end

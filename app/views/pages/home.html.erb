@@ -20,7 +20,7 @@
 					</div>
 				</div>
 			</div>
-		<div id="content">
+		<div id="content" data-spy="scroll" data-target="#welcome-nav" data-offset="50">
 			<section id="latest-events">
 				<header>
 					<h3>
@@ -28,7 +28,7 @@
 						<small id="geolocation"></small>
 					</h3>
 				</header>
-				<div id="events-carousel" class="carousel slide">
+				<div id="events-carousel" class="carousel slide" data-interval="false">
 					<div id="events" class="carousel-inner">
 						<div class="item active">
 								<ul class="thumbnails">
@@ -41,7 +41,7 @@
 													<%= event.artist %>
 												</h4>
 												<p><%= event.venue %> on <%= time_tag event.date %></p>
-												<%= button_to "Info & Tickets", event_path(event), method: :get, class: "btn" %>
+												<%= button_to "Info & Tickets", event_path(event), method: :get, class: "btn", id: event.artist %>
 											</div>
 										</div>
 									</li>
@@ -80,7 +80,7 @@
 				<header>
 					<h3>Best and Fairest Show-makers</h3>
 				</header>
-				<div id="promoters-carousel" class="carousel slide">
+				<div id="promoters-carousel" class="carousel slide" data-interval="false">
 					<div id="promoters" class="carousel-inner">
 						<div class="item active">
 								<ul class="thumbnails">

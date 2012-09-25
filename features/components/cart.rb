@@ -1,7 +1,7 @@
 module Components
   class Cart < CapybaraPageObject::Node
     def empty?
-      rows.empty?
+      @cart.length == 0
     end
 
     def empty!
@@ -11,7 +11,7 @@ module Components
     def checkout!
       source.click_button('Checkout')
     end
-    
+
     def checkout_available?
       # TODO can this be improved?
       source[:style] != "display: none"

@@ -5,18 +5,19 @@ Feature: Cart
     The visitor does not have a cart until an item is added
 
     When I visit the homepage
-    Then my cart should be empty
+    Then I should see "Cart (0)"
 
   Scenario: Add item to cart
 
     Given the events:
       | Crete Boom         |
       | The New Crete Boom |
-    When I visit the box office
+    When I visit the homepage
+    And I click on "Info & Tickets" for "The New Crete Boom"
     And I add "The New Crete Boom" to my cart
     Then my cart should contain:
-      | event              | quantity |
-      | The New Crete Boom | 1        |
+     | Quantity  | Item               |
+     | 1         | The New Crete Boom |
 
   Scenario: Add item to cart again
 
