@@ -2,11 +2,13 @@ OneHundredMotels::Application.routes.draw do
 
   mount Doorkeeper::Engine => '/oauth'
 
-  devise_for :users
+  devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
 
   resources :users, only: [:index, :show]
 
   root :to => 'pages#home'
+
+  match '/info' => 'pages#info'
 
   namespace :admin do
     root :to => 'base#index'
