@@ -37,7 +37,7 @@ OneHundredMotels::Application.configure do
   # Set the mailer to localhost
   config.action_mailer.default_url_options = { :host => 'creteboom.com' }
 
-  # Gapps for dev
+  # Gapps for development
 
     config.action_mailer.delivery_method = :smtp
 
