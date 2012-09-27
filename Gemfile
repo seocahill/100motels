@@ -17,6 +17,7 @@ group :developement, :test do
   gem 'guard-livereload'
   gem 'rack-livereload'
   gem 'mail_view', :git => 'https://github.com/37signals/mail_view.git'
+  gem 'foreman'
 end
 
 group :test do
@@ -53,4 +54,3 @@ gem 'doorkeeper'
 gem 'roadie'
 gem 'rabl'
 gem 'omniauth-stripe-platform'
-gem 'foreman'
