@@ -4,23 +4,22 @@
 				<div class="navbar">
 					<h2 class="welcome-banner">
 					 Hi and Welcome to the 100 Motels demo site!<br>
-					 <small>100 Motels wants to exist so independent musicians can get out on tour without industry backing or paying to play.</small>
+					 <small>100 Motels is an idea I have to help independent musicians like myself get out on tour without industry backing or paying to play.</small>
 					</h2>
-	  			<div id="welcome-nav" class="navbar-inner">
+	  			<div id="welcome-nav" class="navbar-inner" align="center">
 	  				<div class="label-box">What do you want to do?</div>
 						<ul class="nav">
-							<li class="span3">
-		    				<a href="#active-promoters">I want to tour my music</a>
+							<li class="span2">
+		    				<a href="#new-promoters">Tour my music</a>
 		  				</li>
-		  				<li class="divider-vertical"></li>
-		  				<li class="span3"><a href="#promoter-apply">I want to host a show</a></li>
-		  				<li class="divider-vertical"></li>
-		  				<li class="span3"><a href="#latest-events">I just want to buy a ticket</a></li>
+		  				<li class="span3"><a href="#promoter-apply">Organize a show</a></li>
+		  				<li class="span2"><a href="#latest-events">Buy a ticket</a></li>
+		  				<li class="span3"><%= link_to "More about 100 Motels", info_path %></li>
 						</ul>
 					</div>
 				</div>
 			</div>
-		<div id="content" data-spy="scroll" data-target="#welcome-nav" data-offset="50">
+		<div id="content">
 			<section id="latest-events">
 				<header>
 					<h3>
@@ -48,8 +47,8 @@
 									<% end %>
 								</ul>
 							<div id ="#latest-shows" class="carousel-caption">
-								<h4>Just Curious about 100 Motels?</h4>
-								<p>Here's some artists that are playing in your city soon. Have a listen and when you find something you like do them a favour and catch their show</p>
+								<!-- <h4>Events by location</h4> -->
+								<p>This is a listing of geolocated events, on a basic level 100 Motels is a boxoffice app and operates exactly as you would expect, click through to a specific event and check it out.</p>
 							</div>
 						</div>
 						<div class="item">
@@ -76,9 +75,9 @@
 				</div>
 			</section>
 
-			<section id="active-promoters">
+			<section id="new-promoters">
 				<header>
-					<h3>Best and Fairest Show-makers</h3>
+					<h3>Top Promoters</h3>
 				</header>
 				<div id="promoters-carousel" class="carousel slide" data-interval="false">
 					<div id="promoters" class="carousel-inner">
@@ -87,7 +86,7 @@
 									<% @users.each do |user| %>
 									<li class="span3">
 										<div class="thumbnail">
-											<img src="http://placehold.it/360x240">
+											<img src="http://placehold.it/360x240&text=PromoterPic">
 											<div class="caption">
 												<h3 class="title"> Promoter Name</h3>
 												<h4>Location</h4>
@@ -98,8 +97,8 @@
 									<% end %>
 								</ul>
 							<div class="carousel-caption">
-								<h4>Our Volunteers...making it happen</h4>
-								<p>All of our promoters have a proven track record in supporting independent music</p>
+								<!-- <h4>A vetted list of showmakers</h4> -->
+								<p> The promoters listing will be of interest to artists looking to play in a specific locality. Click on an individual profile for a detailed breakdown on what each promoter has to offer.</p>
 							</div>
 						</div>
 						<div class="item">
@@ -107,7 +106,7 @@
 									<% @users.each do |user| %>
 									<li class="span3">
 										<a class="thumbnail" href="#">
-											<img src="http://placehold.it/360x240" alt="">
+											<img src="http://placehold.it/360x240&text=PromoterPic" alt="">
 										</a>
 										<h3 class="title"> Promoter Name</h3>
 										<p>
@@ -126,17 +125,16 @@
 				<div class="well well-large">
 					<h3>Looking to put on Shows?...Apply to become a Full Member</h3>
 					<blockquote>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+						<p> Initially at least my idea is to vet prospective promoters as opposed to having a completely open community, although there is technically no reason to prevent the latter. There could be a fee for membership dependent on the level of promoter activity.</p><br>
+						<p>Ordinary users can choose to create an account with 100 Motels when purchasing tickets but for promoters there's a different process. </p>
+					<p>If you click the signup button below you will be taken to Stripe.com to either authorize an existing account for use with 100 Motels or to create one.
+						This enables promoters to be paid directly and is only available to US or Canadian citizens at the time of writing.</p>
+						<p>100 Motels recieves a per transaction fee for each ticket purchased while Stripe's processing fees are applied directly to the promoter's account.</p> <br>
+						<p>For more details on this and all other technical queries regarding the service click on the 'More Info' button below.</p>
 					</blockquote>
 					<div class="btn-group">
-					  <button class="btn btn-large btn-primary">Sign up!</button>
+						<%= link_to "Sign up!", user_omniauth_authorize_path(:stripe_platform), class: "btn btn-large btn-primary" %>
 					  <%= link_to "More Info", info_path, class: "btn btn-large" %>
-					  <!-- <button class="btn btn-large"></button> -->
 					</div>
 				</div>
 			</section>

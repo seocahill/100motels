@@ -39,8 +39,8 @@
             <ul class="nav">
               <li class=""><%= link_to "Home", root_path %></li>
               <li><%= link_to "Events", events_path %></li>
-              <li><%= link_to "Users", users_path %></li>
-              <li><a href="#">Help</a></li>
+              <li><%= link_to "Promoters", users_path %></li>
+              <li><a href="#">Help &Info</a></li>
               <li class="dropdown">
                 <a href="" class="dropdown-toggle" data-toggle="dropdown">Cart (<%= cart_items(@cart) %>) <b class="caret"></b></a>
                 <ul class="dropdown-menu">
@@ -55,12 +55,10 @@
               </li>
             </ul>
             <form class="navbar-search pull-left" action="">
-              <input type="text" class="search-query span2" placeholder="Search">
+              <input type="text" class="search-query span3" placeholder="Search for an Event, City, Artist or Promoter">
             </form>
             <ul class="nav pull-right">
-              <% if user_signed_in? %>
-                <li><%= link_to "Sign out", destroy_user_session_path, :method => 'delete' %></li>
-              <% else %>
+              <% unless user_signed_in? %>
                 <li><%= link_to "Sign up", new_user_registration_path %></li>
                 <li><%= link_to "Sign in", new_user_session_path %></li>
               <% end %>
@@ -73,11 +71,11 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.email %><b class="caret"></b></a>
                 <% end %>
                 <ul class="dropdown-menu">
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
+                  <li><a href="#">Account Settings</a></li>
+                  <li><a href="#">Profile</a></li>
+                  <li><a href="#">Promoter Menu</a></li>
                   <li class="divider"></li>
-                  <li><a href="#">Separated link</a></li>
+                  <li><%= link_to "Sign out", destroy_user_session_path, :method => 'delete' %></li>
                 </ul>
               </li>
             </ul>
