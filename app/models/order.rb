@@ -13,8 +13,9 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def save_with_payment
+  def save_with_payment(key)
     if valid?
+      Stripe.api_key = key
       customer = Stripe::Customer.create(description: email, plan: plan, card: stripe_card_token)
       self.stripe_customer_token = customer.id
       save!

@@ -8,14 +8,17 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
-   :provider, :uid
+   :provider, :uid, :public_key
+  attr_encrypted :api_key, key: ENV['ATTR_ENCRYPTED_KEY']
 
   has_and_belongs_to_many :events
 
   def self.from_omniauth(auth)
-    where(auth.slice(:provider, :uid)).first_or_create do |user|
+    where(auth.slice(:provider, :uid, :public_key, :api_key)).first_or_create do |user|
       user.provider = auth.provider
       user.uid = auth.uid
+      user.public_key = auth.info["stripe_publishable_key"]
+      user.api_key = auth.credentials["token"]
     end
   end
 

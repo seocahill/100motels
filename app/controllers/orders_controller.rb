@@ -21,7 +21,7 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(params[:order])
     @order.add_line_items_from_cart(current_cart)
-    if @order.save_with_payment
+    if @order.save_with_payment(current_user.api_key)
       current_cart.destroy
       session[:cart_id] = nil
       redirect_to(@order, notice: "what the hell?")

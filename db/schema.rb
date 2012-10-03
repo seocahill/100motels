@@ -114,6 +114,8 @@ ActiveRecord::Schema.define(:version => 20121002225612) do
     t.boolean  "admin",                  :default => false
     t.string   "provider"
     t.string   "uid"
+    t.string   "public_key"
+    t.string   "encrypted_api_key"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
