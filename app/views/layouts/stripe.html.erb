@@ -2,14 +2,16 @@
 <html>
   <head>
     <title>
-    	<% if content_for?(:title) %>
-    		<%= yield(:title) %>
-    	<% else %>
-    		100 Motels
-    	<% end %>
+      <% if content_for?(:title) %>
+        <%= yield(:title) %>
+      <% else %>
+        100 Motels
+      <% end %>
     </title>
     <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "https://js.stripe.com/v1/", "application" %>
     <%= csrf_meta_tags %>
+    <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
     <!--if [lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif-->
@@ -83,10 +85,10 @@
     </div>
     <div class="container">
       <% flash.each do |key, value| %>
-      	<div class="alert alert-<%= key == :notice ? "success" : "error" %>">
+        <div class="alert alert-<%= key == :notice ? "success" : "error" %>">
           <a class="close" data-dismiss="alert">&#215;</a>
-      		<%= content_tag :div, value, :id => "flash_#{key}" if value.is_a?(String) %>
-      	</div>
+          <%= content_tag :div, value, :id => "flash_#{key}" if value.is_a?(String) %>
+        </div>
       <% end %>
       <%= yield %>
     </div>

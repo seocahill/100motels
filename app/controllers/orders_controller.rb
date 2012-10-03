@@ -1,4 +1,7 @@
 class OrdersController < ApplicationController
+
+  layout 'stripe'
+
   def new
     @cart = current_cart
     if @cart.line_items.empty?
