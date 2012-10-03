@@ -1,4 +1,5 @@
 class Event < ActiveRecord::Base
+  resourcify
   attr_accessible :artist, :date, :doors, :venue, :ticket_price, :event_id
   validates :artist, :venue, :date, :ticket_price, presence: true
 
