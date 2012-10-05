@@ -13,12 +13,12 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def save_customer(user)
+  def save_customer(promoter)
     if valid?
-      Stripe.api_key = user.api_key
+      Stripe.api_key = promoter.api_key
       customer = Stripe::Customer.create(
         description: name,
-        email: email
+        email: email,
         card: stripe_card_token
       )
       self.stripe_customer_token = customer.id

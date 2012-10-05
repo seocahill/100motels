@@ -9,6 +9,7 @@ class OrdersController < ApplicationController
       return
     end
     @order = Order.new
+    @promoter = @order.get_promoter
   end
 
   def show
@@ -21,7 +22,7 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(params[:order])
     @order.add_line_items_from_cart(current_cart)
-    if @order.save_customer(current_user)
+    if @order.save_customer(@promoter)
       current_cart.destroy
       session[:cart_id] = nil
       redirect_to(@order, notice: "Processed successfully")
