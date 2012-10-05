@@ -6,6 +6,12 @@ class Order < ActiveRecord::Base
 
   attr_accessor :stripe_card_token
 
+  def get_promoter(cart)
+    id = cart.line_items.first.event_id
+    event = Event.find_by_id(id)
+    @promoter = User.find_by_id(event.promoter_id)
+  end
+
   def add_line_items_from_cart(cart)
       cart.line_items.each do |item|
       item.cart_id = nil

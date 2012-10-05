@@ -9,7 +9,7 @@ class OrdersController < ApplicationController
       return
     end
     @order = Order.new
-    @promoter = @order.get_promoter
+    @promoter = @order.get_promoter(current_cart)
   end
 
   def show
