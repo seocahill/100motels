@@ -13,11 +13,15 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def save_with_payment(key)
+  def save_customer(user)
     if valid?
-      Stripe.api_key = key
-      customer = Stripe::Customer.create(description: email, plan: plan, card: stripe_card_token)
-      self.stripe_customer_token = customer.id
+      Stripe.api_key = user.api_key
+      customer = Stripe::Customer.create(
+        description: name,
+        email: email
+        card: stripe_card_token
+      )
+      self.stripe_customer_token = user.customer_id
       save!
     end
   rescue Stripe::InvalidRequestError => e
