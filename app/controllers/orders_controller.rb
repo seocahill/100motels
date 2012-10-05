@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
 
-  layout 'stripe'
+  layout 'stripe', only: [:new, :create]
 
   def new
     @cart = current_cart
@@ -21,6 +21,7 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(params[:order])
+    @promoter = @order.get_promoter(current_cart)
     @order.add_line_items_from_cart(current_cart)
     if @order.save_customer(@promoter)
       current_cart.destroy
