@@ -18,10 +18,10 @@ class Order < ActiveRecord::Base
       Stripe.api_key = user.api_key
       customer = Stripe::Customer.create(
         description: name,
-        email: email
+        email: email,
         card: stripe_card_token
       )
-      self.stripe_customer_token = user.customer_id
+      user.customer_id = customer.id
       save!
     end
   rescue Stripe::InvalidRequestError => e
