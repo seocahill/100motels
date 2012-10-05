@@ -21,7 +21,11 @@ class User < ActiveRecord::Base
       user.uid = auth.uid
       user.public_key = auth.info["stripe_publishable_key"]
       user.api_key = auth.credentials["token"]
+      Stripe.api_key = auth.credentials["token"]
+      account = Stripe::Account.retrieve()
+      user.email = account.email
     end
+
   end
 
   def self.new_with_session(params, session)
