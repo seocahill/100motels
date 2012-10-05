@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   attr_encrypted :api_key, key: ENV['ATTR_ENCRYPTED_KEY']
 
   has_and_belongs_to_many :events
-  has_many :orders
+  # has_many :orders
 
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid, :public_key, :api_key)).first_or_create do |user|

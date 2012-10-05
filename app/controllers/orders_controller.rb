@@ -24,7 +24,7 @@ class OrdersController < ApplicationController
     if @order.save_customer(current_user)
       current_cart.destroy
       session[:cart_id] = nil
-      redirect_to(@order, notice: "what the hell?")
+      redirect_to(@order, notice: "Processed successfully")
       Notifier.order_processed(@order).deliver
     else
       render action: :new, notice: "Something went wrong"

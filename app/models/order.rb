@@ -2,7 +2,6 @@ class Order < ActiveRecord::Base
   attr_accessible :email, :name, :stripe_card_token, :plan
   has_many :line_items, dependent: :destroy
   has_many :events, through: :line_items
-  belongs_to :user
   validates :name, :email, presence: :true
 
   attr_accessor :stripe_card_token
@@ -19,10 +18,10 @@ class Order < ActiveRecord::Base
       Stripe.api_key = user.api_key
       customer = Stripe::Customer.create(
         description: name,
-        email: email,
+        email: email
         card: stripe_card_token
       )
-      user.customer_id = customer.id
+      self.stripe_customer_token = customer.id
       save!
     end
   rescue Stripe::InvalidRequestError => e

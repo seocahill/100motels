@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121005042913) do
+ActiveRecord::Schema.define(:version => 20121005051040) do
 
   create_table "carts", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -92,7 +92,10 @@ ActiveRecord::Schema.define(:version => 20121005042913) do
     t.decimal  "total"
     t.string   "stripe_customer_token"
     t.string   "plan"
+    t.integer  "user_id"
   end
+
+  add_index "orders", ["user_id"], :name => "index_orders_on_user_id"
 
   create_table "roles", :force => true do |t|
     t.string   "name"
