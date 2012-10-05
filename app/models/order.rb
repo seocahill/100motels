@@ -2,6 +2,7 @@ class Order < ActiveRecord::Base
   attr_accessible :email, :name, :stripe_card_token, :plan
   has_many :line_items, dependent: :destroy
   has_many :events, through: :line_items
+  belongs_to :user
   validates :name, :email, presence: :true
 
   attr_accessor :stripe_card_token
