@@ -12,7 +12,7 @@ OneHundredMotels::Application.routes.draw do
 
   namespace :promoter do
     root :to => 'base#index'
-    resources :users
+    resources :events
   end
 
   namespace :api, defaults: {format: 'json'} do

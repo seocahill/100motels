@@ -1,0 +1,8 @@
+<h1>100 Motels event admin area</h1>
+
+<%= link_to "New Event", new_promoter_event_path %>
+<ul>
+	<% @events.each do |event| %>
+		<li><%= link_to event, [:promoter, event] %></li>
+	<% end %>
+</ul>
