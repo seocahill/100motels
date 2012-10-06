@@ -61,7 +61,7 @@
 						<div class="span12">
 							<img src="//placehold.it/100" class="align_left">
 							<p class="lead">
-								Lorem ipsum Marco Di Marco...
+								Lorem ipsum <%= User.find_by_id(@event.promoter_id).email %>...
 							</p>
 							<p>
 								Consectetur adipisicing elit, sed do eiusmod
