@@ -10,7 +10,7 @@ OneHundredMotels::Application.routes.draw do
 
   match '/info' => 'pages#info'
 
-  namespace :admin do
+  namespace :promoter do
     root :to => 'base#index'
     resources :users
   end
