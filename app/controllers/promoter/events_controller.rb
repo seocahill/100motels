@@ -13,7 +13,8 @@ class Promoter::EventsController < Promoter::BaseController
   end
 
   def show
-
+    @event = Event.find_by_id(params[:id])
+    @orders = @event.orders
   end
 
   def edit

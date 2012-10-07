@@ -3,6 +3,6 @@
 <%= link_to "New Event", new_promoter_event_path %>
 <ul>
 	<% @events.each do |event| %>
-		<li><%= link_to event, [:promoter, event] %></li>
+		<li><%= link_to event.artist, [:promoter, event] %></li>
 	<% end %>
 </ul>

@@ -11,8 +11,9 @@ OneHundredMotels::Application.routes.draw do
   match '/info' => 'pages#info'
 
   namespace :promoter do
-    root :to => 'base#index'
+    root :to => 'orders#index'
     resources :events
+    resources :orders
   end
 
   namespace :api, defaults: {format: 'json'} do
