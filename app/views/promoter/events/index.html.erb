@@ -1,8 +1,16 @@
-<h1>100 Motels event admin area</h1>
+<div class="page-header"><h3>Your Events</h3></div>
+<p><%= link_to "New Event", new_promoter_event_path, class: "btn btn-large btn-primary" %></p>
+<table class="table table-bordered">
+  <thead>
+  </thead>
+  <tbody>
+    <% @events.each do |event| %>
+    <tr>
+      <td><%= link_to event.artist, [:promoter, event] %></td>
+      <td><%= button_to "Edit Event", edit_promoter_event_path(event) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
 
-<%= link_to "New Event", new_promoter_event_path %>
-<ul>
-	<% @events.each do |event| %>
-		<li><%= link_to event.artist, [:promoter, event] %></li>
-	<% end %>
-</ul>
+
