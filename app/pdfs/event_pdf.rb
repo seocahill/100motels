@@ -27,7 +27,7 @@ class EventPdf < Prawn::Document
 
   def line_item_rows
     [["Name", "Email", "Admit", "Price"]] +
-    @line_items.map do |item|
+    @line_items.all.map do |item|
       [item.order.name, item.order.email, item.quantity, price(item.order.total)]
     end
   end
@@ -44,5 +44,6 @@ class EventPdf < Prawn::Document
   def promoter
   move_down 20
     text "Promoter: #{User.find_by_id(@event.promoter_id).email}", size: 16
+    text "printed at: #{Time.now}"
   end
 end
