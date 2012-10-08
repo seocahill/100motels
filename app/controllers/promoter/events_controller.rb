@@ -14,7 +14,17 @@ class Promoter::EventsController < Promoter::BaseController
 
   def show
     @event = Event.find_by_id(params[:id])
-    @line_items = @event.line_items.joins(:order).page(params[:page])
+    @line_items = @event.line_items.includes(:order).page(params[:page])
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = EventPdf.new(@event, @line_items, view_context)
+        send_data pdf.render, filename: "#{@event.artist}_#{@event.date}.pdf",
+                              type: "application/pdf",
+                              disposition: "inline"
+
+      end
+    end
   end
 
   def edit

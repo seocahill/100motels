@@ -1,7 +1,7 @@
 <div class="page-header"><h3><%= @event.artist %> in <%= @event.venue %> on <%= @event.date %></h3></div>
 
 <h4>Customers</h4>
-
+<p><%= link_to "Attendace List PDF", promoter_event_path(@event, format: "pdf"), class: "btn btn-medium" %></p>
 <%= will_paginate @line_items %>
 <table class="table table-striped table-bordered">
   <thead>
@@ -16,11 +16,13 @@
   <tbody>
     <% @line_items.each do |item| %>
     <tr>
+      <% unless item.order.nil? %>
       <td><%= item.order.name %> </td>
       <td><%= item.order.email %> </td>
       <td> <%= item.quantity %> </td>
       <td><%= item.order.total %> </td>
       <td> <span class="label label-warning">pending</span> </td>
+      <% end %>
     </tr>
     <% end %>
   </tbody>
