@@ -24,6 +24,7 @@ class OrdersController < ApplicationController
     @promoter = @order.get_promoter(current_cart)
     @order.add_line_items_from_cart(current_cart)
     if @order.save_customer(@promoter)
+      @order.mark_purchased
       current_cart.destroy
       session[:cart_id] = nil
       redirect_to(@order, notice: "Processed successfully")

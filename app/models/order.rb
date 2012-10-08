@@ -15,8 +15,14 @@ class Order < ActiveRecord::Base
   def add_line_items_from_cart(cart)
       cart.line_items.each do |item|
       item.cart_id = nil
-      item.puchased = true
       line_items << item
+    end
+  end
+
+  def mark_purchased
+    self.line_items.each do |item|
+      item.purchased = true
+      item.save!
     end
   end
 

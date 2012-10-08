@@ -14,12 +14,12 @@
     </tr>
   </thead>
   <tbody>
-    <% @orders.each do |order| %>
+    <% @line_items.each do |item| %>
     <tr>
-      <td><%= order.name %> </td>
-      <td><%= order.email %> </td>
-      <td>TODO </td>
-      <td><%= order.total %> </td>
+      <td><%= item.order.name %> </td>
+      <td><%= item.order.email %> </td>
+      <td> <%= item.quantity %> </td>
+      <td><%= item.order.total %> </td>
       <td> pending </td>
     </tr>
     <% end %>

@@ -14,7 +14,7 @@ class Promoter::EventsController < Promoter::BaseController
 
   def show
     @event = Event.find_by_id(params[:id])
-    @orders = @event.orders
+    @line_items = @event.line_items.joins(:order)
   end
 
   def edit
