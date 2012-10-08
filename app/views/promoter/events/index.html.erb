@@ -1,16 +1,31 @@
 <div class="page-header"><h3>Your Events</h3></div>
-<p><%= link_to "New Event", new_promoter_event_path, class: "btn btn-large btn-primary" %></p>
-<table class="table table-bordered">
-  <thead>
-  </thead>
-  <tbody>
-    <% @events.each do |event| %>
-    <tr>
-      <td><%= link_to event.artist, [:promoter, event] %></td>
-      <td><%= button_to "Edit Event", edit_promoter_event_path(event) %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-
-
+<div class="row">
+  <div class="span-12">
+    <p><%= link_to "New Event", new_promoter_event_path, class: "btn btn-large btn-primary" %></p>
+    <br>
+  </div>
+</div>
+<div class="row">
+  <div class="span10">
+    <table class="table table-striped">
+      <thead>
+      </thead>
+      <tbody>
+        <% @events.each do |event| %>
+        <tr>
+          <td><%= link_to event.artist, [:promoter, event], class: "p lead" %></td>
+          <td> <%= event.venue %> </td>
+          <td> <%= event.date %> </td>
+          <td >
+            <div class="btn-group pull-right">
+              <%= link_to "Edit", edit_promoter_event_path(event), class: "btn" %>
+              <%= link_to "Delete", edit_promoter_event_path(event), class: "btn" %>
+              <%= link_to "Archive", edit_promoter_event_path(event), class: "btn" %>
+            </div>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
