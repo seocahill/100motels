@@ -1,7 +1,7 @@
 class Event < ActiveRecord::Base
   resourcify
-  attr_accessible :artist, :date, :doors, :venue, :ticket_price, :event_id,
-                  :music, :video, :about, :image
+  attr_accessible :artist, :date, :doors, :venue, :venue_capacity, :ticket_price, :event_id,
+                  :music, :video, :about, :image, :target
   validates :artist, :venue, :date, :ticket_price, presence: true
 
   has_many :line_items, dependent: :destroy

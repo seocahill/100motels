@@ -2,7 +2,13 @@
 	<header>
 		<% title(@event.artist, "Events") %>
 	</header>
-
+	<div>
+		<% if user_signed_in? %>
+			<%= link_to "Edit Event", edit_promoter_event_path(@event) %>
+			<%= current_user.id %>,
+			<%= @event.promoter_id %>
+		<% end %>
+	</div>
 	<section id="event-info" class="section-box">
 		<div class="row">
 			<div class="label-box">Ticket Info</div>
@@ -32,9 +38,9 @@
 						<div class="span2 pull-right">
 							<dl>
 								<dt>Venue Capacity: </dt>
-								<dd>250</dd>
-								<dt>Funding / Target:</dt>
-								<dd>$350 / $1000</dd>
+								<dd><%= @event.venue_capacity %></dd>
+								<dt>Sales / Target:</dt>
+								<dd><%= @event.line_items.to_a.sum { |item| item.quantity} %> / <%= @event.target %></dd>
 								<dt>Time left to go:</dt>
 								<dd><%= distance_of_time_in_words(Time.now, @event.date, true) %></dd>
 							</dl>
