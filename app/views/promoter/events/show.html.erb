@@ -1,4 +1,4 @@
-<div class="page-header"><h3><%= @event.artist %> in <%= @event.venue %> on <%= @event.date %></h3></div>
+<div class="page-header"><h3><%= @event.artist %> in <%= @event.venue %> on <%= time_tag @event.date %></h3></div>
 
 <h4>Customers</h4>
 <div class="btn-group">
@@ -13,7 +13,7 @@
     <h3>Are you sure?</h3>
   </div>
   <div class="modal-body">
-    <p>If you continue you will charge all your customers, the proceeds will be depositied into your bank account 7 days in seven days minus 100 Motel's and Stripe's fees which are <strong>non-refundable</strong></p>
+    <p>If you continue you will charge all your customers, the proceeds will be deposited into your bank account in seven days minus 100 Motel's and Stripe's fees which are <strong>non-refundable.</strong></p>
     <p>If this is your first event please make sure you have read the <a href="">Terms and Conditions</a> and the <a href="">Getting started guide</a></p>
     <p>We also strongly advise you to <a href="">sign a contract</a> with your Artists, a contract template is provided in the Getting started section.</p>
   </div>
@@ -29,7 +29,7 @@
     <tr>
       <th>Customer Name</th>
       <th>Email</th>
-      <th>Ticket Admits:</th>
+      <th>Admits:</th>
       <th>Total Price</th>
       <th>Status</th>
     </tr>
@@ -40,9 +40,9 @@
       <% unless item.order.nil? %>
       <td><%= item.order.name %> </td>
       <td><%= item.order.email %> </td>
-      <td> <%= item.quantity %> </td>
-      <td><%= item.order.total %> </td>
-      <td> <span class="label label-warning">pending</span> </td>
+      <td> <%= item.quantity %></td>
+      <td> <%= number_to_currency(item.line_total_price) %> </td>
+      <td> <span class="label label-warning">un-charged</span> </td>
       <% end %>
     </tr>
     <% end %>

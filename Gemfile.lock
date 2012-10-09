@@ -40,6 +40,9 @@ GEM
     arel (3.0.2)
     attr_encrypted (1.2.1)
       encryptor (>= 1.1.1)
+    auto_html (1.6.0)
+      redcarpet (~> 2.0)
+      rinku (~> 1.5.0)
     bcrypt-ruby (3.0.1)
     bootstrap-sass (2.1.0.0)
     bootstrap-will_paginate (0.0.9)
@@ -221,8 +224,10 @@ GEM
       ffi (>= 0.5.0)
     rdoc (3.12)
       json (~> 1.4)
+    redcarpet (2.1.1)
     rest-client (1.6.7)
       mime-types (>= 1.16)
+    rinku (1.5.1)
     roadie (2.3.2)
       actionmailer (> 3.0.0, < 3.3.0)
       css_parser
@@ -293,6 +298,7 @@ PLATFORMS
 
 DEPENDENCIES
   attr_encrypted
+  auto_html
   bootstrap-sass (~> 2.1.0.0)
   bootstrap-will_paginate
   cancan

@@ -12,7 +12,7 @@ class EventPdf < Prawn::Document
   end
 
   def event_number
-    text "#{@event.artist}, #{@event.venue}, #{@event.date}. ", size: 30, style: :bold
+    text "#{@event.artist}, #{@event.venue}, #{@event.date.strftime("%b %d %Y")}. ", size: 30, style: :bold
   end
 
   def items
@@ -26,15 +26,17 @@ class EventPdf < Prawn::Document
   end
 
   def line_item_rows
-    [["Name", "Email", "Admit", "Price"]] +
+    [["Name", "Email", "Admit"]] +
     @line_items.all.map do |item|
-      [item.order.name, item.order.email, item.quantity, price(item.order.total)]
+      [item.order.name, item.order.email, item.quantity]
     end
   end
 
   def price(num)
     @view.number_to_currency(num)
   end
+
+
 
   # def total_price
   #   move_down 15
@@ -43,7 +45,9 @@ class EventPdf < Prawn::Document
 
   def promoter
   move_down 20
+    t = Time.now
     text "Promoter: #{User.find_by_id(@event.promoter_id).email}", size: 16
-    text "printed at: #{Time.now}"
+    text "printed on: #{t.strftime("%m/%d/%Y")}"
+    text "at: #{t.strftime("%I:%M%p")}"
   end
 end
