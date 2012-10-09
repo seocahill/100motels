@@ -75,6 +75,6 @@ module OneHundredMotels
     end
 
     # Filepicker.io
-    config.filepicker_rails.api_key = env["FILEPICKER_API_KEY"]
+    config.filepicker_rails.api_key = ENV["FILEPICKER_API_KEY"]
   end
 end

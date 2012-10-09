@@ -14,7 +14,8 @@
     <%= f.input :about %>
     <%= f.input :video %>
     <%= f.input :music %>
-    <%= f.input :image %>
+    <%= f.label :image, "Upload Artist Images" %>
+    <%= f.filepicker_field :image, button_class: "btn btn-primary btn-medium"  %>
 
     <div class="form-actions">
         <%= f.submit nil, class: "btn btn-primary" %>
