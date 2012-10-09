@@ -14,9 +14,9 @@
 			<div class="label-box">Ticket Info</div>
 				<div class="span3">
 					<% if @event.image %>
-						<%= filepicker_image_tag @event.image, w: 300, h: 300, fit: 'clip' %>
+						<%= filepicker_image_tag @event.image, w: 300, h: 300, fit: 'crop' %>
 					<% else %>
-						<img src="//placehold.it/300&text=Artist">
+						<img src="//quickimage.it/300&text=Artist">
 					<% end %>
 				</div>
 				<div class="span5">
@@ -69,7 +69,7 @@
 				<div class="label-box">Your Promoter</div>
 					<div class="row">
 						<div class="span12">
-							<img src="//placehold.it/100" class="align_left">
+							<img src="//quickimage.it/100" class="align_left">
 							<p class="lead">
 								Lorem ipsum <%= User.find_by_id(@event.promoter_id).email %>...
 							</p>
@@ -112,7 +112,7 @@
 					<% if @event.video_html %>
 						<%= @event.video_html  %>
 					<% else %>
-						<img src="//placehold.it/630x430&text=Vimeo" class="align_center">
+						<img src="//quickimage.it/630x430&text=Vimeo" class="align_center">
 					<% end %>
 				</h3>
 				<h3>
@@ -120,21 +120,28 @@
 					<% if @event.music_html %>
 						<%= @event.music_html  %>
 					<% else %>
-						<img src="//placehold.it/565x170&text=Soundcloud+playlist" class="align_left">
+						<img src="//quickimage.it/565x170&text=Soundcloud+playlist" class="align_left">
 					<% end %>
 
 				</h3>
-					<h3>Help out...</h3>
+					<h3>Help the show get funded...</h3>
 				<div class="well">
-					<div class="btn-toolbar">
-					  <div class="btn-group centered-box">
-					    <a class="btn" href="#"><i class="icon-share"></i></a>
-					    <a class="btn" href="#"><i class=" icon-thumbs-up"></i></a>
-					    <a class="btn" href="#"><i class=" icon-thumbs-down"></i></a>
-					    <a class="btn" href="#"><i class=" icon-share-alt"></i></a>
-					  </div>
-					</div>
+						<span class='st_sharethis_large' displayText='ShareThis'></span>
+						<span class='st_facebook_large' displayText='Facebook'></span>
+						<span class='st_pinterest_large' displayText='Pinterest'></span>
+						<span class='st_wordpress_large' displayText='WordPress'></span>
+						<span class='st_stumbleupon_large' displayText='StumbleUpon'></span>
+						<span class='st_tumblr_large' displayText='Tumblr'></span>
+						<span class='st_reddit_large' displayText='Reddit'></span>
+						<span class='st_myspace_large' displayText='MySpace'></span>
+						<span class='st_identi_large' displayText='identi.ca'></span>
+						<span class='st_googleplus_large' displayText='Google +'></span>
+						<span class='st_twitter_large' displayText='Tweet'></span>
+						<span class='st_email_large' displayText='Email'></span>
 				</div>
 			</div>
 	</section>
 </div>
+<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "8922bdf2-4f99-4c8e-af44-1b1791ab0dcf"});</script>
