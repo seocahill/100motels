@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121008044748) do
+ActiveRecord::Schema.define(:version => 20121009043159) do
 
   create_table "carts", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -23,10 +23,20 @@ ActiveRecord::Schema.define(:version => 20121008044748) do
     t.string   "venue"
     t.date     "date"
     t.time     "doors"
-    t.datetime "created_at",                                 :null => false
-    t.datetime "updated_at",                                 :null => false
-    t.decimal  "ticket_price", :precision => 8, :scale => 2
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
+    t.decimal  "ticket_price",   :precision => 8, :scale => 2
     t.integer  "promoter_id"
+    t.integer  "venue_capacity"
+    t.integer  "target"
+    t.text     "about"
+    t.text     "about_html"
+    t.string   "video"
+    t.string   "video_html"
+    t.string   "music"
+    t.string   "music_html"
+    t.string   "image"
+    t.string   "image_html"
   end
 
   create_table "events_users", :id => false, :force => true do |t|

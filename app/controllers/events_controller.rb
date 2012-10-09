@@ -14,38 +14,18 @@ class EventsController < ApplicationController
   end
 
   def new
-  	@event = Event.new
 	end
 
   def create
-  	@event = Event.new(params[:event])
-    if @event.save
-      flash[:notice] = "Rock and Roll"
-      redirect_to @event
-    else
-      flash[:alert] = "Event has not been created"
-      render :action => "new"
-    end
-
   end
 
   def edit
   end
 
   def update
-    if @event.update_attributes(params[:event])
-      flash[:notice] = "Event has been updated"
-      redirect_to @event
-    else
-      flash[:alert] = "Event has not been updated"
-      render :action => "edit"
-    end
   end
 
   def destroy
-    @event.destroy
-    flash[:notice] = "Event has been deleted"
-    redirect_to events_path
   end
 
 private

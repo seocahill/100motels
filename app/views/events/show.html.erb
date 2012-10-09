@@ -7,7 +7,7 @@
 		<div class="row">
 			<div class="label-box">Ticket Info</div>
 				<div class="span3">
-					<img src="//placehold.it/300&text=Artist">
+					<!-- <img src="//placehold.it/300&text=Artist"> -->
 				</div>
 				<div class="span5">
 					<div class="row">
@@ -59,7 +59,7 @@
 				<div class="label-box">Your Promoter</div>
 					<div class="row">
 						<div class="span12">
-							<img src="//placehold.it/100" class="align_left">
+							<!-- <img src="//placehold.it/100" class="align_left"> -->
 							<p class="lead">
 								Lorem ipsum <%= User.find_by_id(@event.promoter_id).email %>...
 							</p>
@@ -87,52 +87,19 @@
 				<p class="lead">
 					I first heard Hannah Ward ....
 				</p>
+					<%= @event.about %>
 				<p>
-
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat.
-
-					 Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-				</p>
-				<blockquote>
-  				<p>" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante."</p>
-				</blockquote>
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-				</p>
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 				</p>
 				<p class="lead">Grazia, Marco!</p>
 			</div>
 			<div class="span6">
 				<h3>
 					Watch....
-					<img src="//placehold.it/630x430&text=Vimeo" class="align_center">
+					<%= @event.video_html %>
 				</h3>
 				<h3>
 					Listen....
-					<img src="//placehold.it/565x170&text=Soundcloud+playlist" class="align_left">
+					<%=@event.music_html %>
 				</h3>
 				<div class="well">
 					<div class="btn-toolbar">
