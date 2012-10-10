@@ -2,12 +2,20 @@
 	<header>
 		<% title(@event.artist, "Events") %>
 	</header>
-
+	<div>
+		<% if user_signed_in? && current_user == @promoter %>
+			<%= link_to "Edit Your Event", "/editor" + request.path, id: "edit_link", data: {save_url: mercury_update_event_path(@event) }, class: "btn btn-inverse" %>
+		<% end %>
+	</div>
 	<section id="event-info" class="section-box">
 		<div class="row">
 			<div class="label-box">Ticket Info</div>
 				<div class="span3">
-					<img src="//placehold.it/300&text=Artist">
+					<% if @event.image %>
+						<%= filepicker_image_tag @event.image, w: 300, h: 300, fit: 'crop' %>
+					<% else %>
+						<img src="//quickimage.it/300&text=Artist">
+					<% end %>
 				</div>
 				<div class="span5">
 					<div class="row">
@@ -32,9 +40,9 @@
 						<div class="span2 pull-right">
 							<dl>
 								<dt>Venue Capacity: </dt>
-								<dd>250</dd>
-								<dt>Funding / Target:</dt>
-								<dd>$350 / $1000</dd>
+								<dd><%= @event.venue_capacity %></dd>
+								<dt>Sales / Target:</dt>
+								<dd><%= @event.line_items.to_a.sum { |item| item.quantity} %> / <%= @event.target %></dd>
 								<dt>Time left to go:</dt>
 								<dd><%= distance_of_time_in_words(Time.now, @event.date, true) %></dd>
 							</dl>
@@ -58,10 +66,16 @@
 			<div class="span12">
 				<div class="label-box">Your Promoter</div>
 					<div class="row">
-						<div class="span12">
-							<img src="//placehold.it/100" class="align_left">
+						<div class="span2">
+								<% if @promoter.avatar %>
+									<%= filepicker_image_tag @promoter.avatar, w: 100, h: 100, fit: 'crop' %>
+								<% else %>
+									<img src="//quickimage.it/100">
+								<% end %>
+						</div>
+						<div class="span9">
 							<p class="lead">
-								Lorem ipsum Marco Di Marco...
+								Lorem ipsum <%= @promoter.name %>...
 							</p>
 							<p>
 								Consectetur adipisicing elit, sed do eiusmod
@@ -69,7 +83,7 @@
 								quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 							consequat.
 							</p>
-							<button>Full Profile</button>
+								<%= link_to "Full Profile", user_path(@promoter), class: "btn btn-medium" %>
 						</div>
 					</div>
 					<div class="row">
@@ -81,69 +95,53 @@
 	</section>
 
 	<section id="about-artist" class="section-box">
-		<div class="label-box">About the Artist</div>
+		<div class="label-box">About the Artists</div>
 		<div class="row">
 			<div class="span4">
-				<p class="lead">
-					I first heard Hannah Ward ....
-				</p>
-				<p>
-
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat.
-
-					 Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-				</p>
-				<blockquote>
-  				<p>" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante."</p>
-				</blockquote>
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-				</p>
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-				</p>
-				<p class="lead">Grazia, Marco!</p>
+				<div id="event-about" contenteditable="true" data-mercury="full">
+					<% if @event.about %>
+						<%= raw @event.about  %>
+					<% else %>
+						<%= render 'body_holder' %>
+					<% end %>
+				</div>
 			</div>
 			<div class="span6">
 				<h3>
 					Watch....
-					<img src="//placehold.it/630x430&text=Vimeo" class="align_center">
+					<% if @event.video_html %>
+						<%= @event.video_html  %>
+					<% else %>
+						<img src="//quickimage.it/630x430&text=Vimeo" class="align_center">
+					<% end %>
 				</h3>
 				<h3>
 					Listen....
-					<img src="//placehold.it/565x170&text=Soundcloud+playlist" class="align_left">
+					<% if @event.music_html %>
+						<%= @event.music_html  %>
+					<% else %>
+						<img src="//quickimage.it/565x170&text=Soundcloud+playlist" class="align_left">
+					<% end %>
+
 				</h3>
+					<h3>Help the show get funded...</h3>
 				<div class="well">
-					<div class="btn-toolbar">
-					  <div class="btn-group centered-box">
-					    <a class="btn" href="#"><i class="icon-share"></i></a>
-					    <a class="btn" href="#"><i class=" icon-thumbs-up"></i></a>
-					    <a class="btn" href="#"><i class=" icon-thumbs-down"></i></a>
-					    <a class="btn" href="#"><i class=" icon-share-alt"></i></a>
-					  </div>
-					</div>
+						<span class='st_sharethis_large' displayText='ShareThis'></span>
+						<span class='st_facebook_large' displayText='Facebook'></span>
+						<span class='st_pinterest_large' displayText='Pinterest'></span>
+						<span class='st_wordpress_large' displayText='WordPress'></span>
+						<span class='st_stumbleupon_large' displayText='StumbleUpon'></span>
+						<span class='st_tumblr_large' displayText='Tumblr'></span>
+						<span class='st_reddit_large' displayText='Reddit'></span>
+						<span class='st_myspace_large' displayText='MySpace'></span>
+						<span class='st_identi_large' displayText='identi.ca'></span>
+						<span class='st_googleplus_large' displayText='Google +'></span>
+						<span class='st_twitter_large' displayText='Tweet'></span>
+						<span class='st_email_large' displayText='Email'></span>
 				</div>
 			</div>
 	</section>
 </div>
+<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "8922bdf2-4f99-4c8e-af44-1b1791ab0dcf"});</script>

@@ -1,0 +1,26 @@
+<%= simple_form_for [:promoter, @event], :html => { class: 'form-horizontal' } do |f| %>
+  <%#= f.error_messages %>
+
+  <fieldset>
+    <legend><%= controller.action_name.capitalize %> Event</legend>
+
+    <%= f.input :artist %>
+    <%= f.input :venue %>
+    <%= f.input :venue_capacity %>
+    <%= f.input :date %>
+    <%= f.input :doors %>
+    <%= f.input :ticket_price %>
+    <%= f.input :target %>
+    <%= f.input :about %>
+    <%= f.input :video %>
+    <%= f.input :music %>
+    <%= f.label :image, "Upload Artist Images" %>
+    <%= f.filepicker_field :image, button_class: "btn btn-primary btn-medium"  %>
+
+    <div class="form-actions">
+        <%= f.submit nil, class: "btn btn-primary" %>
+        <%= link_to 'Cancel', events_path, class: 'btn' %>
+    </div>
+  </fieldset>
+
+<% end %>

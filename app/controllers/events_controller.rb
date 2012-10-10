@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
 
-  before_filter :authorize_admin!, :except => [:index, :show]
-  before_filter :find_event, :only => [:update, :show, :edit, :destroy]
+  # before_filter :authorize_admin!, :except => [:index, :show]
+  before_filter :find_event, :only => [:show]
 
   def index
     @events = Event.all
@@ -11,41 +11,14 @@ class EventsController < ApplicationController
   def show
     @cart = current_cart
     @line_item = LineItem.new
+    @promoter = User.find_by_id(@event.promoter_id)
   end
 
-  def new
-  	@event = Event.new
-	end
-
-  def create
-  	@event = Event.new(params[:event])
-    if @event.save
-      flash[:notice] = "Rock and Roll"
-      redirect_to @event
-    else
-      flash[:alert] = "Event has not been created"
-      render :action => "new"
-    end
-
-  end
-
-  def edit
-  end
-
-  def update
-    if @event.update_attributes(params[:event])
-      flash[:notice] = "Event has been updated"
-      redirect_to @event
-    else
-      flash[:alert] = "Event has not been updated"
-      render :action => "edit"
-    end
-  end
-
-  def destroy
-    @event.destroy
-    flash[:notice] = "Event has been deleted"
-    redirect_to events_path
+  def mercury_update
+    event = Event.find(params[:id])
+    event.about = params[:content][:event_about][:value]
+    event.save!
+    render text: ""
   end
 
 private
@@ -57,6 +30,5 @@ private
     " could not be found"
     redirect_to events_path
   end
-
 
 end

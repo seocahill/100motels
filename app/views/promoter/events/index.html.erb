@@ -1,0 +1,39 @@
+<div class="page-header"><h3>Your Events</h3></div>
+<div class="row">
+  <div class="span-12">
+    <p><%= link_to "New Event", new_promoter_event_path, class: "btn btn-large btn-primary" %></p>
+    <br>
+  </div>
+</div>
+<div class="row">
+  <div class="span12">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Artist</th>
+          <th>Venue</th>
+          <th>Date</th>
+          <th>Attending</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @events.each do |event| %>
+        <tr>
+          <td><%= link_to event.artist, [:promoter, event], class: "" %></td>
+          <td> <%= event.venue %> </td>
+          <td> <%= time_tag event.date %> </td>
+          <td> <%= event.line_items.to_a.sum { |item| item.quantity} %> </td>
+          <td >
+            <div class="btn-group pull-right">
+              <%= link_to "Show", event_path(event), class: "btn" %>
+              <%= link_to "Edit", edit_promoter_event_path(event), class: "btn" %>
+              <%= link_to "Delete", edit_promoter_event_path(event), class: "btn" %>
+              <%= link_to "Archive", edit_promoter_event_path(event), class: "btn" %>
+            </div>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -9,9 +9,10 @@
     	<% end %>
     </title>
     <%= stylesheet_link_tag    "application", :media => "all" %>
-    <%= javascript_include_tag "https://js.stripe.com/v1/", "application" %>
+    <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag(controller_path) %>
+    <%= filepicker_js_include_tag %>
     <%= csrf_meta_tags %>
-    <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
     <!--if [lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif-->
@@ -22,7 +23,7 @@
       <a href="#" id="stroke"></a>
       <h1 class="page-header">
         100 Motels
-        <small>We organize live music.</small>
+        <small>organize live music together</small>
       </h1>
       <a href="#" id="logo"></a>
     </header>
@@ -62,18 +63,15 @@
                 <li><%= link_to "Sign up", new_user_registration_path %></li>
                 <li><%= link_to "Sign in", new_user_session_path %></li>
               <% end %>
-              <% admins_only do %>
-                <li><%= link_to "Admin", admin_root_path %></li>
-              <% end %>
               <li class="divider-vertical"></li>
               <li class="dropdown">
                 <% if user_signed_in? %>
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.email %><b class="caret"></b></a>
                 <% end %>
                 <ul class="dropdown-menu">
-                  <li><a href="#">Account Settings</a></li>
-                  <li><a href="#">Public Profile</a></li>
-                  <li><a href="#">Promoter Admin</a></li>
+                  <li><%= link_to "Account Settings", edit_user_registration_path %></li>
+                  <li><%= link_to "Public Profile", current_user %></li>
+                  <li> <%= link_to "Promoter Admin", promoter_root_path %>  </li>
                   <li class="divider"></li>
                   <li><%= link_to "Sign out", destroy_user_session_path, :method => 'delete' %></li>
                 </ul>

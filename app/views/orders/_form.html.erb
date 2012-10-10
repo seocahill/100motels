@@ -2,7 +2,7 @@
   <%= simple_form_for @order do |f| %>
     <%= f.input :name, input_html: {value: "Foo Man"} %>
     <%= f.input :email, input_html: {value: "fooman@creteboom.com"} %>
-    <%= f.input :plan, as: :hidden, input_html: {value: "APSUB"} %>
+    <%#= f.input :user_id, as: :hidden, input_html: {value: current_user.id} %>
     <%= f.input :stripe_card_token, as: :hidden %>
 
     <% if @order.stripe_card_token %>

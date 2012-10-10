@@ -1,4 +1,7 @@
 class OrdersController < ApplicationController
+
+  layout 'stripe', only: [:new, :create]
+
   def new
     @cart = current_cart
     if @cart.line_items.empty?
@@ -6,6 +9,7 @@ class OrdersController < ApplicationController
       return
     end
     @order = Order.new
+    @promoter = @order.get_promoter(current_cart)
   end
 
   def show
@@ -17,11 +21,13 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(params[:order])
+    @promoter = @order.get_promoter(current_cart)
     @order.add_line_items_from_cart(current_cart)
-    if @order.save_with_payment
+    if @order.save_customer(@promoter)
+      @order.mark_purchased
       current_cart.destroy
       session[:cart_id] = nil
-      redirect_to(@order, notice: "what the hell?")
+      redirect_to(@order, notice: "Processed successfully")
       Notifier.order_processed(@order).deliver
     else
       render action: :new, notice: "Something went wrong"

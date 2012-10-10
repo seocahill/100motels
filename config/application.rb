@@ -73,5 +73,8 @@ module OneHundredMotels
         :request_specs => true
       # g.fixture_replacement :factory_girl, :dir => "spec/factories"
     end
+
+    # Filepicker.io
+    config.filepicker_rails.api_key = ENV["FILEPICKER_API_KEY"]
   end
 end

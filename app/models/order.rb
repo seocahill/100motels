@@ -6,6 +6,12 @@ class Order < ActiveRecord::Base
 
   attr_accessor :stripe_card_token
 
+  def get_promoter(cart)
+    id = cart.line_items.first.event_id
+    event = Event.find_by_id(id)
+    promoter = User.find_by_id(event.promoter_id)
+  end
+
   def add_line_items_from_cart(cart)
       cart.line_items.each do |item|
       item.cart_id = nil
@@ -13,9 +19,21 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def save_with_payment
+  def mark_purchased
+    self.line_items.each do |item|
+      item.purchased = true
+      item.save!
+    end
+  end
+
+  def save_customer(promoter)
     if valid?
-      customer = Stripe::Customer.create(description: email, plan: plan, card: stripe_card_token)
+      Stripe.api_key = promoter.api_key
+      customer = Stripe::Customer.create(
+        description: name,
+        email: email,
+        card: stripe_card_token
+      )
       self.stripe_customer_token = customer.id
       save!
     end

@@ -1,5 +1,7 @@
 OneHundredMotels::Application.routes.draw do
 
+  mount Mercury::Engine => '/'
+
   mount Doorkeeper::Engine => '/oauth'
 
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
@@ -10,9 +12,10 @@ OneHundredMotels::Application.routes.draw do
 
   match '/info' => 'pages#info'
 
-  namespace :admin do
-    root :to => 'base#index'
-    resources :users
+  namespace :promoter do
+    root :to => 'events#index'
+    resources :events
+    resources :orders
   end
 
   namespace :api, defaults: {format: 'json'} do
@@ -21,7 +24,9 @@ OneHundredMotels::Application.routes.draw do
     end
   end
 
-  resources :events
+  resources :events, only: [:index, :show] do
+    member { post :mercury_update }
+  end
 
   resources :carts, except: :index
 

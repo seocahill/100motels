@@ -9,8 +9,8 @@ class ApplicationController < ActionController::Base
 
     def authorize_admin!
       authenticate_user!
-      unless current_user.admin?
-        flash[:alert] = "You must be an admin to do that."
+      unless current_user.has_role? :god
+        flash[:alert] = "You can't do that"
         redirect_to root_path
       end
     end
