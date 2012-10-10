@@ -24,7 +24,9 @@ OneHundredMotels::Application.routes.draw do
     end
   end
 
-  resources :events
+  resources :events, only: [:index, :show] do
+    member { post :mercury_update }
+  end
 
   resources :carts, except: :index
 

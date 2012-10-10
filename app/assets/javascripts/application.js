@@ -14,9 +14,6 @@
 //= require bootstrap
 //= require jquery
 //= require jquery_ujs
-//= require events
-//= require orders
-//= require pages
 //= require jquery.scrollTo
 
 

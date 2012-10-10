@@ -4,7 +4,7 @@
 	</header>
 	<div>
 		<% if user_signed_in? && current_user == @promoter %>
-			<%= link_to "Edit Your Event", edit_promoter_event_path(@event), class: "btn btn-inverse" %>
+			<%= link_to "Edit Your Event", "/editor" + request.path, id: "edit_link", data: {save_url: mercury_update_event_path(@event) }, class: "btn btn-inverse" %>
 		<% end %>
 	</div>
 	<section id="event-info" class="section-box">
@@ -98,17 +98,13 @@
 		<div class="label-box">About the Artists</div>
 		<div class="row">
 			<div class="span4">
-				<p class="lead">
-					A word from you promoter ....
-				</p>
-				<p>
+				<div id="event-about" contenteditable="true" data-mercury="full">
 					<% if @event.about %>
-						<%= @event.about  %>
+						<%= raw @event.about  %>
 					<% else %>
 						<%= render 'body_holder' %>
 					<% end %>
-				</p>
-				<p class="lead">Grazia, Marco!</p>
+				</div>
 			</div>
 			<div class="span6">
 				<h3>
