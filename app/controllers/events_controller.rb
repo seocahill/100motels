@@ -11,6 +11,7 @@ class EventsController < ApplicationController
   def show
     @cart = current_cart
     @line_item = LineItem.new
+    @promoter = User.find_by_id(@event.promoter_id)
   end
 
   def new
