@@ -55,7 +55,9 @@
 							<%= number_to_currency(@event.ticket_price) %> <br>
 							<small>per ticket</small>
 						</h1>
-						<%= render 'add_to_cart_form' %>
+						<%#= render 'add_to_cart_form' %>
+						<script src="https://button.stripe.com/v1/button.js" class="stripe-button"
+        data-key="<%= j @promoter.public_key %>"></script>
 					</div>
 				</div>
 		</div>
