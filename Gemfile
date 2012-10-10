@@ -61,3 +61,4 @@ gem 'bootstrap-will_paginate'
 gem 'prawn'
 gem "auto_html"
 gem 'filepicker-rails'
+gem 'mercury-rails'

@@ -66,12 +66,14 @@
 			<div class="span12">
 				<div class="label-box">Your Promoter</div>
 					<div class="row">
-						<div class="span12">
-							<% if @promoter.avatar %>
-								<%= filepicker_image_tag @promoter.avatar, w: 100, h: 100, fit: 'crop', class: "align-left" %>
-							<% else %>
-								<img src="//quickimage.it/100" class="align_left">
-							<% end %>
+						<div class="span2">
+								<% if @promoter.avatar %>
+									<%= filepicker_image_tag @promoter.avatar, w: 100, h: 100, fit: 'crop' %>
+								<% else %>
+									<img src="//quickimage.it/100">
+								<% end %>
+						</div>
+						<div class="span9">
 							<p class="lead">
 								Lorem ipsum <%= @promoter.name %>...
 							</p>
@@ -93,7 +95,7 @@
 	</section>
 
 	<section id="about-artist" class="section-box">
-		<div class="label-box">About the Artist</div>
+		<div class="label-box">About the Artists</div>
 		<div class="row">
 			<div class="span4">
 				<p class="lead">
