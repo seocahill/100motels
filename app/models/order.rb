@@ -1,8 +1,8 @@
 class Order < ActiveRecord::Base
-  attr_accessible :email, :name, :stripe_card_token, :plan
-  has_many :line_items, dependent: :destroy
-  has_many :events, through: :line_items
-  validates :name, :email, presence: :true
+  attr_accessible :email, :name, :stripe_card_token, :plan, :quantity, :event_id
+  # has_many :line_items, dependent: :destroy
+  belongs_to :events
+  # validates :name, :email, presence: :true
 
   attr_accessor :stripe_card_token
 
@@ -26,20 +26,20 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def save_customer(promoter)
+  def save_customer(promoter, token)
     if valid?
       Stripe.api_key = promoter.api_key
       customer = Stripe::Customer.create(
         description: name,
         # email: email,
-        card: params[:stripeToken]
+        card: token
       )
       self.stripe_customer_token = customer.id
       save!
     end
   rescue Stripe::InvalidRequestError => e
     flash[:error] = e.message
-    redirect_to charges_path
+    redirect_to(:back)
   end
   # rescue Stripe::InvalidRequestError => e
   #     logger.error "Stripe error while creating customer: #{e.message}"

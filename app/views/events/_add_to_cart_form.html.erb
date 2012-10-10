@@ -1,6 +1,6 @@
-<%= simple_form_for @line_item do |f| %>
+<%= simple_form_for @order do |f| %>
     <%= f.input :event_id, as: :hidden, input_html: { value: @event.id } %>
-    <%= f.input :quantity, input_html: { class: "input-mini"} %>
+    <%= f.input :quantity, collection: 1..4, input_html: { class: "input-mini"} %>
     <div class="" align="center">
       <script src="https://button.stripe.com/v1/button.js" class="stripe-button"
           data-key="<%= @promoter.public_key %>">

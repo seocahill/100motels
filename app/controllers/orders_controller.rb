@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
 
-  layout 'stripe', only: [:new, :create]
+  # layout 'stripe', only: [:new, :create]
 
   def new
     @cart = current_cart
@@ -20,15 +20,13 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = event.orders.build(params[:order])
-    # @promoter = @order.get_promoter(current_cart)
-    # @order.add_line_items_from_cart(current_cart)
-    if @order.save_customer(@promoter)
-      @order.mark_purchased
-      current_cart.destroy
-      session[:cart_id] = nil
+    @order = Order.new(params[:order])
+    stripe_token = params[:stripeToken]
+    event = Event.find_by_id(params[:order][:event_id])
+    promoter = User.find_by_id(event.promoter_id)
+    if @order.save_customer(promoter, stripe_token)
       redirect_to(@order, notice: "Processed successfully")
-      Notifier.order_processed(@order).deliver
+      # Notifier.order_processed(@order).deliver
     else
       render action: :new, notice: "Something went wrong"
     end
