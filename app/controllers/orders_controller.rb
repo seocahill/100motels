@@ -14,6 +14,7 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find_by_id(params[:id])
+    @event = Event.find_by_id(@order.event_id)
   end
 
   def edit

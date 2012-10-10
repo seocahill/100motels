@@ -13,12 +13,10 @@
 		</tr>
 	</tfoot>
 	<tbody>
-		<% @order.line_items.each do |l| %>
 		<tr>
-			<td><%= l.event.artist %>, <%= l.event.venue %>, <%= time_tag l.event.date %></td>
-			<td><%= l.quantity %></td>
-			<td><%= number_to_currency(l.line_total_price) %></td>
+			<td><%= @event.artist %>, <%= @event.venue %>, <%= time_tag @event.date %></td>
+			<td><%= @order.quantity %></td>
+			<td><%= number_to_currency(@event.ticket_price) %></td>
 		</tr>
-		<% end %>
 	</tbody>
 </table>
