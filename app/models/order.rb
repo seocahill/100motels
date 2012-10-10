@@ -35,6 +35,9 @@ class Order < ActiveRecord::Base
         card: token
       )
       self.stripe_customer_token = customer.id
+      saved_customer = Stripe::Customer.retrieve(customer.id)
+      # raise saved_customer.to_yaml
+      self.name = saved_customer.active_card["name"]
       save!
     end
   rescue Stripe::InvalidRequestError => e
