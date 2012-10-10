@@ -20,9 +20,9 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(params[:order])
-    @promoter = @order.get_promoter(current_cart)
-    @order.add_line_items_from_cart(current_cart)
+    @order = event.orders.build(params[:order])
+    # @promoter = @order.get_promoter(current_cart)
+    # @order.add_line_items_from_cart(current_cart)
     if @order.save_customer(@promoter)
       @order.mark_purchased
       current_cart.destroy

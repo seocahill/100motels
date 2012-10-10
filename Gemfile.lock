@@ -119,9 +119,6 @@ GEM
       thor (>= 0.13.6)
     gherkin (2.11.2)
       json (>= 1.4.6)
-    gon (4.0.0)
-      actionpack (>= 2.3.0)
-      json
     guard (1.4.0)
       listen (>= 0.4.2)
       thor (>= 0.14.6)
@@ -323,7 +320,6 @@ DEPENDENCIES
   faker
   filepicker-rails
   foreman
-  gon
   guard-cucumber
   guard-livereload
   guard-rspec

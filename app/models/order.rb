@@ -6,11 +6,11 @@ class Order < ActiveRecord::Base
 
   attr_accessor :stripe_card_token
 
-  def get_promoter(cart)
-    id = cart.line_items.first.event_id
-    event = Event.find_by_id(id)
-    promoter = User.find_by_id(event.promoter_id)
-  end
+  # def get_promoter(cart)
+  #   id = cart.line_items.first.event_id
+  #   event = Event.find_by_id(id)
+  #   promoter = User.find_by_id(event.promoter_id)
+  # end
 
   def add_line_items_from_cart(cart)
       cart.line_items.each do |item|
@@ -31,15 +31,19 @@ class Order < ActiveRecord::Base
       Stripe.api_key = promoter.api_key
       customer = Stripe::Customer.create(
         description: name,
-        email: email,
-        card: stripe_card_token
+        # email: email,
+        card: params[:stripeToken]
       )
       self.stripe_customer_token = customer.id
       save!
     end
   rescue Stripe::InvalidRequestError => e
-      logger.error "Stripe error while creating customer: #{e.message}"
-      errors.add :base, "There was a problem with your credit card."
-      false
+    flash[:error] = e.message
+    redirect_to charges_path
   end
+  # rescue Stripe::InvalidRequestError => e
+  #     logger.error "Stripe error while creating customer: #{e.message}"
+  #     errors.add :base, "There was a problem with your credit card."
+  #     false
+  # end
 end
