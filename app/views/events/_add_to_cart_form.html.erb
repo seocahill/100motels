@@ -1,5 +1,10 @@
 <%= simple_form_for @line_item do |f| %>
     <%= f.input :event_id, as: :hidden, input_html: { value: @event.id } %>
     <%= f.input :quantity, input_html: { class: "input-mini"} %>
-    <%= f.submit "Add to Cart", class: "btn btn-success btn-large" %>
+    <%#= f.submit "Add to Cart", class: "btn btn-success btn-large" %>
+    <div class="" align="center">
+      <script src="https://button.stripe.com/v1/button.js" class="stripe-button"
+          data-key="<%= @promoter.public_key %>">
+      </script>
+    </div>
 <% end %>

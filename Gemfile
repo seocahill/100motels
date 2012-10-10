@@ -62,4 +62,3 @@ gem 'prawn'
 gem "auto_html"
 gem 'filepicker-rails'
 gem 'mercury-rails'
-gem 'gon'
