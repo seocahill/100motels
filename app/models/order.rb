@@ -4,7 +4,7 @@ class Order < ActiveRecord::Base
   validates :email, presence: :true
   validates :quantity, numericality: :true
 
-  attr_accessor :stripe_card_token
+  attr_accessor :last_four
 
 
   def save_customer(promoter, token)
