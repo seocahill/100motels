@@ -1,35 +1,17 @@
+<%= simple_form_for @order do |f| %>
+  <%= f.input :quantity, collection: 1..4, input_html: { class: "input-mini"} %>
+  <%= f.input :email, input_html: {value: "fooman@creteboom.com"} %>
+  <%= f.input :event_id, as: :hidden, input_html: {value: params[:event_id] } %>
 
-  <%= simple_form_for @order do |f| %>
-    <%= f.input :name, input_html: {value: "Foo Man"} %>
-    <%= f.input :email, input_html: {value: "fooman@creteboom.com"} %>
-    <%#= f.input :user_id, as: :hidden, input_html: {value: current_user.id} %>
-    <%= f.input :stripe_card_token, as: :hidden %>
-
-    <% if @order.stripe_card_token %>
-      Credit Card has been provided
-    <% else %>
-      <%= label_tag :card_number, "Credit Card Number" %>
-      <%= text_field_tag :card_number, 4242424242424242, name: nil %>
-
-      <%= label_tag :card_code, "Security Code on Card (CVV)" %>
-      <%= text_field_tag :card_code, 123, name: nil %>
-
-      <%= label_tag :card_month, "Card Expiration" %>
-      <%= select_month 1, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
-      <%= select_year 2015, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"} %>
-    <% end %>
-    <div class="control-group error">
-      <div id="stripe-error" >
-          <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
-      </div>
-    </div>
-
-    <div class="actions">
-      <button type="submit" class="btn btn-primary">Submit Payment</button>
-      <%#= f.submit "Place Order", class: 'btn btn-primary' %>
-      <%= submit_tag 'Cancel', :type => :reset, :class => "btn btn-danger", input_html: {"data-loading-text" => "loading..."} %>
-    </div>
-  <% end %>
-  <div id="stripe_error">
-    <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+  Credit Card has been provided
+  <div class="actions">
+    <button type="submit" class="btn btn-primary">Submit Payment</button>
+    <%#= f.submit "Place Order", class: 'btn btn-primary' %>
+    <%= submit_tag 'Cancel', :type => :reset, :class => "btn btn-danger", input_html: {"data-loading-text" => "loading..."} %>
   </div>
+  <div class="control-group error">
+    <div id="stripe-error" >
+        <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+    </div>
+  </div>
+<% end %>

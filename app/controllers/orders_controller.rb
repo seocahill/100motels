@@ -29,7 +29,7 @@ class OrdersController < ApplicationController
       redirect_to(@order, notice: "Processed successfully")
       # Notifier.order_processed(@order).deliver
     else
-      render action: :new, notice: "Something went wrong"
+      render action: :show, controller: :event, notice: ""
     end
   end
 
