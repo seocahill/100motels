@@ -2,11 +2,9 @@
 	<dt>Name on Card: </dt>
   <dd><%= @order.name %></dd>
   <dt>Email address: </dt>
-	<dd><%#= @order.email %></dd>
+	<dd><%= @order.email %></dd>
 	<dt>Last 4 Digits: </dt>
-	<dd>5656</dd>
-	<dt>Zip Code: </dt>
-	<dd>CA 94115</dd>
+	<dd><%= @order.last_four %></dd>
 	<dt>Total Paid</dt>
 	<dd>$11.00</dd>
 </dl>

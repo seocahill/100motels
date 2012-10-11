@@ -1,9 +1,14 @@
 <%= simple_form_for @order do |f| %>
     <%= f.input :event_id, as: :hidden, input_html: { value: @event.id } %>
     <%= f.input :quantity, collection: 1..4, input_html: { class: "input-mini"} %>
+    <% if !user_signed_in? %>
+      <%= f.input :email, label: false, placeholder: "  your email address", input_html: { class: "input-medium" } %>
+    <% else %>
+      <%= f.input :email, as: :hidden, input_html: { value: current_user.email } %>
+    <% end %>
     <div class="" align="center">
       <script src="https://button.stripe.com/v1/button.js" class="stripe-button"
-          data-key="<%= @promoter.public_key %>">
+          data-key="<%= @promoter.public_key %>" data-amount="<%= @order.quantity * @event.ticket_price %>">
       </script>
     </div>
 <% end %>

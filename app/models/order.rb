@@ -1,10 +1,10 @@
 class Order < ActiveRecord::Base
-  attr_accessible :email, :name, :stripe_card_token, :plan, :quantity, :event_id
-  # has_many :line_items, dependent: :destroy
+  attr_accessible :email, :name, :last_four, :plan, :quantity, :event_id
   belongs_to :events
-  # validates :name, :email, presence: :true
+  validates :email, presence: :true
+  validates :quantity, numericality: :true
 
-  attr_accessor :stripe_card_token
+  attr_accessor :last_four
 
   # def get_promoter(cart)
   #   id = cart.line_items.first.event_id
@@ -36,8 +36,8 @@ class Order < ActiveRecord::Base
       )
       self.stripe_customer_token = customer.id
       saved_customer = Stripe::Customer.retrieve(customer.id)
-      # raise saved_customer.to_yaml
       self.name = saved_customer.active_card["name"]
+      self.last_four = saved_customer.active_card["last4"]
       save!
     end
   rescue Stripe::InvalidRequestError => e

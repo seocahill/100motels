@@ -1,15 +1,15 @@
 <table class="table">
 	<thead>
 		<tr>
-			<th>item</th>
-			<th>quantity</th>
-			<th>price</th>
+			<th>Item</th>
+			<th>Quantity</th>
+			<th>Ticket Price</th>
 		</tr>
 	</thead>
 	<tfoot>
 		<tr>
 			<td colspan="2"><strong>Total Price</strong></td>
-			<td>$11.00</td>
+			<td><%= number_to_currency(@order.quantity * @event.ticket_price) %></td>
 		</tr>
 	</tfoot>
 	<tbody>

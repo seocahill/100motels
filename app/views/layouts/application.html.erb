@@ -42,18 +42,21 @@
               <li><%= link_to "Events", events_path %></li>
               <li><%= link_to "Promoters", users_path %></li>
               <li><%= link_to "Help &Info", info_path %></li>
-              <!-- <li class="dropdown">
-                <a href="" class="dropdown-toggle" data-toggle="dropdown">Cart (<%= cart_items(@cart) %>) <b class="caret"></b></a>
+              <li class="dropdown">
+                <a href="" class="dropdown-toggle" data-toggle="dropdown">Cart<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><%= link_to "View Cart", @cart %></li>
-                  <li><%= link_to "Checkout", new_order_path %></li>
-                  <li><%= link_to "Empty Cart", @cart, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+                  <li class="nav-header">Shopping Cart is disabled!</li>
+                  <li class="divider"></li>
+                  <li><a href="#">Find out why</a></li>
+                  <li><%= link_to "View Cart" %></li>
+                  <li><%= link_to "Checkout" %></li>
+                  <li><%= link_to "Empty Cart" %></li>
                   <li class="divider"></li>
                   <li class="nav-header">About payments</li>
                   <li><a href="#">Security</a></li>
                   <li><a href="#">Terms and Conditions</a></li>
                 </ul>
-              </li> -->
+              </li>
             </ul>
             <form class="navbar-search pull-left" action="">
               <input type="text" class="search-query span3" placeholder="Search for an Event, City, Artist or Promoter">
