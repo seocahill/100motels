@@ -1,43 +1,40 @@
 <div class="container">
 	<div class="row">
 		<div class="span12">
-			<header>
-				<h2>Thanks <%= @order.name %>!... <br>
-					<small>Your payment was successful. We need am email address so we can send out you your tickets.</small>
-				</h2>
-			</header>
-			<section id="order-summary" class="section-box">
-				<div class="label-box">Your Order Details</div>
-					<%= render 'order' %>
-			</section>
+			<div class="well">
+				<header>
+					<h2>Thanks <%= @order.name %>!... <br>
+						<small>Your payment was successful.</small>
+					</h2>
+					<p class="lead">
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+					</p>
+				</header>
+				<% unless user_signed_in? %>
+					<div class="input-append">
+					  <input class="span2" id="appendedInputButton" size="16" type="text" placeholder="Password"><button class="btn" type="button">Save my Account</button>
+					</div>
+				<% end %>
+			</div>
 		</div>
 	</div>
 
 	<div class="row">
-		<div class="span4">
+		<div class="span5">
 			<section class="section-box">
 				<div class="label-box">Payment Details</div>
 					<%= render 'payment' %>
 			</section>
 		</div>
-		<div class="span8">
-			<section id="promoters-message">
-				<h3>Before you arrive at the Show...</h3>
-				<p class="l">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-				</p>
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-				</p>
+		<div class="span7">
+			<section id="order-summary" class="section-box">
+				<div class="label-box">Order Details</div>
+					<%= render 'order' %>
 			</section>
 		</div>
 	</div>

@@ -25,9 +25,8 @@ class Order < ActiveRecord::Base
     flash[:error] = e.message
     redirect_to(:back)
   end
-  # rescue Stripe::InvalidRequestError => e
-  #     logger.error "Stripe error while creating customer: #{e.message}"
-  #     errors.add :base, "There was a problem with your credit card."
-  #     false
-  # end
+
+  def total(event)
+    quantity * event.ticket_price
+  end
 end

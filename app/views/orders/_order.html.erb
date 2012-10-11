@@ -1,22 +1,24 @@
-<table class="table">
-	<thead>
-		<tr>
-			<th>Item</th>
-			<th>Quantity</th>
-			<th>Ticket Price</th>
-		</tr>
-	</thead>
-	<tfoot>
-		<tr>
-			<td colspan="2"><strong>Total Price</strong></td>
-			<td><%= number_to_currency(@order.quantity * @event.ticket_price) %></td>
-		</tr>
-	</tfoot>
-	<tbody>
-		<tr>
-			<td><%= @event.artist %>, <%= @event.venue %>, <%= time_tag @event.date %></td>
-			<td><%= @order.quantity %></td>
-			<td><%= number_to_currency(@event.ticket_price) %></td>
-		</tr>
-	</tbody>
-</table>
+<div class="well">
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Item</th>
+				<th>Quantity</th>
+				<th>Ticket Price</th>
+			</tr>
+		</thead>
+		<tfoot>
+			<tr>
+				<td colspan="2"><strong>Total Price</strong></td>
+				<td><%= number_to_currency(@order.quantity * @event.ticket_price) %></td>
+			</tr>
+		</tfoot>
+		<tbody>
+			<tr>
+				<td><%= @event.artist %>, <%= @event.venue %>, <%= time_tag @event.date %></td>
+				<td><%= @order.quantity %></td>
+				<td><%= number_to_currency(@event.ticket_price) %></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
