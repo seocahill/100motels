@@ -29,7 +29,7 @@ class OrdersController < ApplicationController
       redirect_to(@order, notice: "Processed successfully")
       # Notifier.order_processed(@order).deliver
     else
-      render action: :show, controller: :event, notice: ""
+      redirect_to(event, notice: "failed validations")
     end
   end
 

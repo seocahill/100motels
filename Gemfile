@@ -62,3 +62,5 @@ gem 'prawn'
 gem "auto_html"
 gem 'filepicker-rails'
 gem 'mercury-rails'
+gem 'client_side_validations'
+gem 'client_side_validations-simple_form'

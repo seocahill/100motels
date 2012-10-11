@@ -1,4 +1,4 @@
-<%= simple_form_for @order do |f| %>
+<%= simple_form_for @order, :validate => true do |f| %>
     <%= f.input :event_id, as: :hidden, input_html: { value: @event.id } %>
     <%= f.input :quantity, collection: 1..4, input_html: { class: "input-mini"} %>
     <% if !user_signed_in? %>
