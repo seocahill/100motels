@@ -34,7 +34,11 @@
 									<% @events.each do |event| %>
 									<li class="span4">
 										<div class="thumbnail">
-											<img src="http://quickimage.it/360x240&text=ArtistPic" alt="">
+											<% if event.image? %>
+												<%= filepicker_image_tag event.image, w: 360, h: 240, fit: 'clip' %>
+											<% else %>
+												<img src="http://quickimage.it/360x240&text=ArtistPic" alt="">
+											<% end %>
 											<div class="caption">
 												<h4 class="title">
 													<%= event.artist %>
@@ -56,8 +60,8 @@
 									<% @events.each do |event| %>
 									<li class="span4">
 										<div class="thumbnail">
-											<% if event.image %>
-												<%= filepicker_image_tag @event.image, w: 360, h: 240, fit: 'clip' %>
+											<% if event.image? %>
+												<%= filepicker_image_tag event.image, w: 360, h: 240, fit: 'clip' %>
 											<% else %>
 												<img src="http://quickimage.it/360x240&text=ArtistPic" alt="">
 											<% end %>
