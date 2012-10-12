@@ -2,6 +2,7 @@ class Order < ActiveRecord::Base
   attr_accessible :email, :name, :last_four, :plan, :quantity, :event_id
   belongs_to :events
   validates :email, presence: :true
+  validates_format_of :email, :with => /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
   validates :quantity, numericality: :true
 
   attr_accessor :last_four
