@@ -6,9 +6,9 @@ class UsersController < ApplicationController
     @cart = current_cart
     @users = User.all(order: "email")
   end
-  
+
   def show
-    
+    @events = Event.where(@user.id == :promoter_id)
   end
 
   private
