@@ -14,11 +14,22 @@
 					<img src="//placehold.it/200" class="img-polaroid">
 				<% end %>
 			</div>
-			<div class="span4 offset2">
-				<div class="page-header" align="center"><h2><%= @user.name %>, Vancouver, Canada.</h3></div>
+			<div class="span3 offset2" align="center">
+				<div class="page-header">
+					<h2>Promoter Name</h2>
+				</div>
+				<h4><p class="muted">Vancouver, Canada.</p></h4>
 			</div>
-			<div class="span2 pull-right">
-
+			<div class="span2 offset2">
+				<fieldset>
+					<dl align="center">
+					  <dt>Status</dt>
+					  <dd><span class="badge badge" style="font-size:14px;">unverified</span></dd>
+					  <dt>Visability</dt>
+					  <dd class="muted">Hidden</dd>
+					  <dd><%#= link_to "Contact Me", "#{}", class: "btn btn-block" %></dd>
+					</dl>
+				</fieldset>
 			</div>
 		</div>
 	</section>
@@ -169,7 +180,7 @@
 							        <textarea class="span4" id="new_message" name="new_message"
 							        placeholder="Type in your message" rows="10"></textarea>
 							        <!-- <h6 class="pull-right">320 characters remaining</h6> -->
-							        <button class="btn btn-info" type="submit">Post New Message</button>
+							        <button class="btn btn-info" type="submit">Send Message</button>
 							    </form>
 								</div>
 							<% else %>
