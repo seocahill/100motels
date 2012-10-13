@@ -34,6 +34,8 @@ OneHundredMotels::Application.routes.draw do
 
   resources :orders
 
+  resources :locations
+
   if Rails.env.development?
     mount Notifier::Preview => 'mail_view'
   end
