@@ -121,6 +121,7 @@ GEM
       railties (>= 3.1.0, < 5.0)
     foreman (0.60.2)
       thor (>= 0.13.6)
+    geocoder (1.1.4)
     gherkin (2.11.4)
       json (>= 1.4.6)
     guard (1.4.0)
@@ -330,6 +331,7 @@ DEPENDENCIES
   faker
   filepicker-rails
   foreman
+  geocoder
   guard-cucumber
   guard-livereload
   guard-rspec
