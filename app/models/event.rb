@@ -4,6 +4,7 @@ class Event < ActiveRecord::Base
                   :music, :video, :about, :image, :target
   validates :artist, :venue, :date, :ticket_price, presence: true
 
+  has_one  :location
   has_many :line_items, dependent: :destroy
   has_many :orders, through: :line_items
   has_and_belongs_to_many :users
