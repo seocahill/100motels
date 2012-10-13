@@ -1,0 +1,17 @@
+<%= form_tag locations_path, :method => :get, class: "form" do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search Near", :name => nil %>
+  </p>
+<% end %>
+
+<table class="table">
+  <% @locations.each do |location| %>
+  <tr>
+    <td><%= location.address %></td>
+    <td><%= location.latitude %></td>
+    <td><%= location.longitude %></td>
+    <td><%= link_to "show", location_path(location) %></td>
+  </tr>
+<% end %>
+</table>
