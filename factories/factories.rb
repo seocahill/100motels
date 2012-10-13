@@ -40,15 +40,9 @@ FactoryGirl.define do
   factory :order do
     name  { Faker::Name.name }
     email { Faker::Internet.email }
-    after(:create) do |order|
-      FactoryGirl.create(:line_item, order: order)
-    end
+
   end
 
-  factory :line_item do
-    quantity { 1 + rand(2) }
-    event_id  { 1 + rand(3) }
-    order
-  end
+
 end
 
