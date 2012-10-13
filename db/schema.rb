@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121013010859) do
+ActiveRecord::Schema.define(:version => 20121013021307) do
 
   create_table "carts", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -64,7 +64,10 @@ ActiveRecord::Schema.define(:version => 20121013010859) do
     t.float    "longitude"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "event_id"
   end
+
+  add_index "locations", ["event_id"], :name => "index_locations_on_event_id"
 
   create_table "oauth_access_grants", :force => true do |t|
     t.integer  "resource_owner_id", :null => false

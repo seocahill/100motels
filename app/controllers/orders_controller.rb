@@ -3,13 +3,7 @@ class OrdersController < ApplicationController
   # layout 'stripe', only: [:new, :create]
 
   def new
-    @cart = current_cart
-    if @cart.line_items.empty?
-      redirect_to(:back, :notice => 'Add something to your cart first')
-      return
-    end
     @order = Order.new
-    @promoter = @order.get_promoter(current_cart)
   end
 
   def show

@@ -1,12 +1,12 @@
 class Event < ActiveRecord::Base
   resourcify
   attr_accessible :artist, :date, :doors, :venue, :venue_capacity, :ticket_price, :event_id,
-                  :music, :video, :about, :image, :target
+                  :music, :video, :about, :image, :target, :location_attributes
   validates :artist, :venue, :date, :ticket_price, presence: true
 
-  has_one  :location
-  has_many :line_items, dependent: :destroy
-  has_many :orders, through: :line_items
+  has_one  :location, dependent: :destroy
+  accepts_nested_attributes_for :location
+  has_many :orders
   has_and_belongs_to_many :users
 
   auto_html_for :video do
