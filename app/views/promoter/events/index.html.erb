@@ -23,6 +23,7 @@
           <td> <%= event.venue %> </td>
           <td> <%= time_tag event.date %> </td>
           <td> <%= event.orders.to_a.sum { |item| item.quantity} %> </td>
+          <td> <%= event.location.nil? %> </td>
           <td >
             <div class="btn-group pull-right">
               <%= link_to "Show", event_path(event), class: "btn" %>
