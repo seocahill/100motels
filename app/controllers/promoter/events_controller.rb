@@ -6,6 +6,7 @@ class Promoter::EventsController < Promoter::BaseController
 
   def new
     @event = Event.new
+    @location = @event.build_location
   end
 
   def create
@@ -38,6 +39,9 @@ class Promoter::EventsController < Promoter::BaseController
 
   def edit
     @event = Event.find(params[:id])
+    unless @event.location
+      @location = @event.build_location
+    end
   end
 
   def mercury_update

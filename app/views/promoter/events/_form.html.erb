@@ -16,7 +16,7 @@
     <%= f.input :music %>
     <%= f.label :image, "Upload Artist Images" %>
     <%= f.filepicker_field :image, button_class: "btn btn-primary btn-medium"  %>
-    <%= f.simple_fields_for :locations do |location| %>
+    <%= f.simple_fields_for :location do |location| %>
         <%= location.input :address %>
     <% end %>
 
