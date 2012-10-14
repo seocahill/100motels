@@ -55,28 +55,6 @@
 								<p>This is a listing of geolocated events, on a basic level 100 Motels is a boxoffice app and operates exactly as you would expect, click through to a specific event and check it out.</p>
 							</div>
 						</div>
-						<div class="item">
-								<ul class="thumbnails">
-									<% @events.each do |event| %>
-									<li class="span4">
-										<div class="thumbnail">
-											<% if event.image? %>
-												<%= filepicker_image_tag event.image, w: 360, h: 240, fit: 'clip' %>
-											<% else %>
-												<img src="http://quickimage.it/360x240&text=ArtistPic" alt="">
-											<% end %>
-											<div class="caption">
-												<h4 class="title">
-													<%= event.artist %>
-												</h4>
-												<p><%= event.venue %> on <%= time_tag event.date %></p>
-												<%= button_to "Info & Tickets", event_path(event), method: :get, class: "btn" %>
-											</div>
-										</div>
-									</li>
-									<% end %>
-								</ul>
-						</div>
 					</div>
 					<a class="left carousel-control" href="#events-carousel" data-slide="prev">‹</a>
 					<a class="right carousel-control" href="#events-carousel" data-slide="next">›</a>
@@ -108,21 +86,6 @@
 								<!-- <h4>A vetted list of showmakers</h4> -->
 								<p> The promoters listing will be of interest to artists looking to play in a specific locality. Click on an individual profile for a detailed breakdown on what each promoter has to offer.</p>
 							</div>
-						</div>
-						<div class="item">
-								<ul class="thumbnails">
-									<% @users.each do |user| %>
-									<li class="span3">
-										<a class="thumbnail" href="#">
-											<img src="http://quickimage.it/360x240&text=PromoterPic" alt="">
-										</a>
-										<h3 class="title"> Promoter Name</h3>
-										<p>
-											<%= button_to "Full Profile", user_path(user), method: :get %>
-										</p>
-									</li>
-									<% end %>
-								</ul>
 						</div>
 					</div>
 					<a class="left carousel-control" href="#promoters-carousel" data-slide="prev">‹</a>

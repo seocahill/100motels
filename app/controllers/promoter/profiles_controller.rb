@@ -6,7 +6,7 @@ class Promoter::ProfilesController < Promoter::BaseController
   end
 
   def index
-    @users = User.with_role(:god)
+    @users = User.with_role(:promoter)
   end
 
 end
