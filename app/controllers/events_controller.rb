@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   before_filter :find_event, :only => [:show]
 
   def index
-    @events = Event.all
+    @events = Event.text_search(params[:query]).page(params[:page]).per_page(3)
     @cart = current_cart
   end
 

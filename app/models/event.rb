@@ -29,4 +29,12 @@ class Event < ActiveRecord::Base
     "There are #{space_left} tickets left on the door"
   end
 
+  def self.text_search(query)
+    if query.present?
+      where("artist @@ :q or venue @@ :q", q: "#{query}")
+    else
+      scoped
+    end
+  end
+
 end

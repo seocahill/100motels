@@ -13,7 +13,7 @@
 					<h3></h3>
 				</header>
 				<header>
-					<h3>Sort by...</h3>
+					<h3>Filter</h3>
 				</header>
 				<div class="">
 					<ul class="nav nav-list">
@@ -57,6 +57,7 @@
 						</li>
 					<% end %>
 				</ul>
+				<%= will_paginate @events %>
 			</section>
 		</div>
 	</div>
