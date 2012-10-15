@@ -4,7 +4,7 @@
 	</header>
 	<div>
 		<% if user_signed_in? && current_user == @promoter %>
-			<%= link_to "Edit Your Event", "/editor" + request.path, id: "edit_link", data: {save_url: mercury_update_event_path(@event) }, class: "btn btn-inverse" %>
+			<%= link_to "Edit Your Event", "/editor" + request.path, id: "edit_link", data: {save_url: mercury_update_event_path(@event) }, class: "btn" %>
 		<% end %>
 	</div>
 	<section id="event-info" class="section-box">
