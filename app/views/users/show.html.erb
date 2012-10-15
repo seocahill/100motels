@@ -1,12 +1,8 @@
 <div class="container">
-	<div>
-		<% if user_signed_in? %>
-			<%= link_to "Show Editor", "/editor" + request.path, id: "edit_link", class: "btn btn-large" %>
-		<% end %>
-	</div>
+
 	<section class="section-box">
 		<div class="row">
-			<div class="label-box">Promoter Info</div>
+			<div class="label-box">User Info</div>
 			<div id="promoter-pic" class="span2">
 				<% if @user.avatar? %>
 					<%= filepicker_image_tag @user.avatar, w: 200, h: 200, fit: 'crop' %>
@@ -14,191 +10,19 @@
 					<img src="//placehold.it/200" class="img-polaroid">
 				<% end %>
 			</div>
-			<div class="span3 offset2" align="center">
-				<div class="page-header">
-					<h2>Promoter Name</h2>
-				</div>
-				<h4><p class="muted">Vancouver, Canada.</p></h4>
-			</div>
+			<div class="span3 offset2">
+				<p>@user.name</p>
+				<p>@user.email</p>
+				<p>Orders</p>
+				<p>Credit Card</p>
+
+<%= link_to "Edit", edit_user_registration_path(@user) %>
+
 			<div class="span2 offset2">
-				<fieldset>
-					<dl align="center">
-					  <dt>Status</dt>
-					  <dd><span class="badge badge" style="font-size:14px;">unverified</span></dd>
-					  <dt>Visability</dt>
-					  <dd class="muted">Hidden</dd>
-					  <dd><%#= link_to "Contact Me", "#{}", class: "btn btn-block" %></dd>
-					</dl>
-				</fieldset>
+
 			</div>
 		</div>
 	</section>
 
-	<section id="promoter-stats" class="section-box">
-		<div class="label-box">Promoter Stats</div>
-			<div class="row">
-				<div class="span4">
-					<fieldset>
-						<legend align="center">Bookings</legend>
-						<dl class="dl-horizontal">
-							<dt>Joined: </dt>
-							<dd><%= time_ago_in_words(@user.confirmed_at) %> ago</dd>
-							<dt>Availability: </dt>
-							<dd>Taking bookings</dd>
-							<dt>Fee: </dt>
-							<dd>Negotiable</dd>
-						</dl>
-					</fieldset>
-				</div>
-				<div class="span4">
-					<fieldset>
-						<legend align="center">Shows</legend>
-					<dl class="dl-horizontal">
-						<dt>Total: </dt>
-						<dd><%= @events.count %></dd>
-						<dt>Successful: </dt>
-						<dd>n/a</dd>
-						<dt>Upcoming: </dt>
-						<dd><%= @events.count %></dd>
-					</dl>
-					</fieldset>
-				</div>
-				<div class="span3">
-					<fieldset>
-						<legend align="center">Averages</legend>
-					<dl class="dl-horizontal">
-						<dt>Funding: </dt>
-						<dd><%= number_to_currency(1000) %></dd>
-						<dt>Attendance: </dt>
-						<dd><%= @events.first.orders.count %></dd>
-						<dt>Ticket Price: </dt>
-						<dd><%= number_to_currency(@events.last.ticket_price) %></dd>
-					</dl>
-					</fieldset>
-				</div>
 
-			</div>
-			<div class="row">
-				<div class="span2">
-					<!-- span>
-						<button class="btn btn-primary btn-block">Full History</button>
-					</span> -->
-				</div>
-			</div>
-	</section>
-
-	<section id="tour-info" class="section-box">
-		<div class="row">
-			<div class="label-box">Tour Info</div>
-			<div class="span6">
-				<div class="tabbable tabs-below">
-					<ul class="nav nav-tabs">
-						<li class="active"><a href="#about-me" data-toggle="tab">About Me</a></li>
-						<li><a href="#equipment" data-toggle="tab">Equipment</a></li>
-						<li><a href="#venues" data-toggle="tab">Venues</a></li>
-						<li><a href="#getting-here" data-toggle="tab">Getting here</a></li>
-						<li><a href="#accom" data-toggle="tab">Accomodation</a></li>
-						<li><a href="#history" data-toggle="tab">Current & Past Shows</a></li>
-						<li><a href="#support" data-toggle="tab">Support Artists</a></li>
-						<li><a href="#contact" data-toggle="tab">Contact Me</a></li>
-					</ul>
-				</div>
-				<div class="tab-content">
-					<div class="tab-pane active tour-content" id="about-me">
-						<p>This is where you can talk about your attitude and commitment to music and musicians. Why do you want to put on shows? What do you hope to get it out of it, what motivates you?</p>
-
-						<p>Have you any visible presence on the web that shows your commitment to music as an artform? If so what is it, does it bring people together to appreciate music? Perhaps you have a radio show or a music blog? Perhaps you are an artist yourself?</p>
-
-						<p>Bearing in mind what you say above you should tell artists if it isn't obvious already where they can go to watch, listen or read about you. You can read my blog for instance at <a href="//seocahill.com">seocahill.com</a>, listen to seocahill's playlists at Grooveshark or google my band, Crete Boom. </p>
-
-						<p> How you pick your bands is important too. Do you prefer to pick artists yourself in your own time, or are you open to persuasion? Should artists contact you for a show? Do you have certain prerequisites?
-						Ultimately this section if for everything and anything you think might interest an artist that doesn't fit into the other sections.
-						</p>
-						<p lead><%= @user.name %></p>
-					</div>
-					<div class="tab-pane" id="equipment">
-						<p>What sort of bands do you cater for? Can you hand large ensembles with specific needs equipment wise? If so will this cost, do you borrow, how do you source music gear?</p>
-						<p>A lot of bands for smaller shows will be traveling with light, instruments only. They may also tailor the size of the touring band based on what the promoter can offer.</p>
-					</div>
-					<div class="tab-pane" id="venues">
-							<p>Tell us about the venue/ venues you use. Have you played them yourself? Do they book late shows? What are they, your house, a barn, a club? If links exist then link them and don't forget to puts pics and/or video in the media section opposite</p>
-							<p>There's also the technical side of it, backlines, sound, engineers, whatever you think is relevant.</p>
-							<p>If you're using a music club we expect them to pay up you based on ticket sales and likely bar takings. We also expect them to allow some kind of rider for the artist, whatever way they want to work it.</p>
-					</div>
-					<div class="tab-pane" id="getting-here">
-							<p>General advice about airports and ground transport is essential, especially when trying to work out a budget for the show.</p>
-							<p>Which airlines to use, is there a cheap time to come to your city, general tips and hints about hauling gear or not? You should know all this from experience but the artist probably won't.</p>
-							<p>Another important consideration for international artists is the visa / immigration situation.</p>
-					</div>
-					<div class="tab-pane" id="accom">
-							<p>We should aim slightly higher than couchsurf but as long as you offer some kind of definite accomodation or offer to organize it than good enough. Couches, hostels or hotels, free or priced into the show, the follow throught is what's important.</p>
-							<p> Leaving bands roofless after a show or any other music industry type behaviour will not be tolerated!</p>
-					</div>
-					<div class="tab-pane" id="history">
-						<p>Artists will like to check out your activity stream if for no other reason to see if the dates they are looking at are available</p>
-						<table class="table table-striped">
-						  <thead>
-						    <tr>
-						      <th>Artist</th>
-						      <th>Venue</th>
-						      <th>Date</th>
-						      <th></th>
-						    </tr>
-						  </thead>
-						  <tbody>
-						  	<% @events.each do |event| %>
-						    <tr>
-						      <td><%= event.artist %></td>
-						      <td><%= event.venue %></td>
-						      <td><%= time_tag event.date %></td>
-						      <td><%= link_to "Details", event_path(event) %></td>
-						    </tr>
-						    <% end %>
-						  </tbody>
-						</table>
-					 </div>
-					<div class="tab-pane" id="support">
-							<p>Usually support will be local which is good for providing gear and bumping up the attendance.</p>
-							<p> So this would be a good place to talk about local bands and to link to our list the ones you use for support. Maybe the touring artist will have a preference?</p>
-							<p>Also local artists browsing the promoters in their city might be looking for a support slot, this would be a good place to list any openings for particular shows you're running.</p>
-							<ul>
-								<li><a href="">Local Support</a> </li>
-								<li><a href="">Local Support</a> </li>
-								<li><a href="">Local Support</a> </li>
-								<li><a href="">Local Support</a> </li>
-								<li><a href="">Local Support</a> </li>
-							</ul>
-					</div>
-					<div class="tab-pane" id="contact">
-							<p>
-								This page has a form that will be forwarded to your email. <br>
-								Only a signed in user with a confirmed email address can access it.
-							</p>
-							<% if user_signed_in? %>
-								<div class="span5 well">
-							    <form accept-charset="UTF-8" action="" method="POST">
-							        <textarea class="span4" id="new_message" name="new_message"
-							        placeholder="Type in your message" rows="10"></textarea>
-							        <!-- <h6 class="pull-right">320 characters remaining</h6> -->
-							        <button class="btn btn-info" type="submit">Send Message</button>
-							    </form>
-								</div>
-							<% else %>
-								<%= link_to "Sign In", new_user_session_path, class: "btn btn-primary" %>
-							<% end %>
-					</div>
-				</div>
-			</div>
-			<div class="span5" id="promoter-media">
-				<div id="placeholder"></div>
-				<div><img src="//quickimage.it/460x340&text=Media"></div>
-
-				<%# if @user.avatar? %>
-					<%#= filepicker_image_tag @user.avatar, w: 200, h: 200, fit: 'crop' %>
-				<%# else %>
-					<!-- <img src="//quickimage.it/200&text=Vimeo" class=""> -->
-				<%# end %>
-			</div>
-		</div>
-	</section>
 </div>

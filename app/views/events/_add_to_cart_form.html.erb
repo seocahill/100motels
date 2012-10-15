@@ -8,7 +8,7 @@
     <% end %>
     <div class="" align="center">
       <script src="https://button.stripe.com/v1/button.js" class="stripe-button"
-          data-key="<%= @promoter.public_key %>" data-amount="<%= @order.quantity * @event.ticket_price %>">
+          data-key="<%= ENV['STRIPE_PUBLIC_KEY'] %>" data-amount="<%= @order.quantity * @event.ticket_price %>">
       </script>
     </div>
 <% end %>

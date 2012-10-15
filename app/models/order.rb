@@ -10,7 +10,7 @@ class Order < ActiveRecord::Base
 
   def save_customer(promoter, token)
     if valid?
-      Stripe.api_key = promoter.api_key
+      Stripe.api_key = ENV['STRIPE_API_KEY']
       customer = Stripe::Customer.create(
         description: name,
         email: email,

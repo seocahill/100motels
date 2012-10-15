@@ -3,3 +3,5 @@
 <h4> Events </h4>
 
 <%= link_to "Your Events", promoter_events_path %>
+
+<%= link_to "Connect your account to Stripe", user_omniauth_authorize_path(:stripe_platform), class: "btn btn-large btn-primary" %>
