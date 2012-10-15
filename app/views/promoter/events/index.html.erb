@@ -7,9 +7,10 @@
 <div class="row">
   <div class="span12">
       <div class="btn-toolbar">
-      <button class="btn btn-primary">New Event</button>
-      <button class="btn">Profile</button>
-      <%= link_to "Sign up!", user_omniauth_authorize_path(:stripe_platform), class: "btn btn-large btn-primary" %>
+      <%= link_to "New Event", new_promoter_event_path, class: "btn btn-primary" %>
+      <%= link_to "Profile", promoter_profile_path(current_user), class: "btn btn-primary" %>
+
+      <%= link_to "Connect to Stripe", user_omniauth_authorize_path(:stripe_platform), class: "btn btn-primary" %>
   </div>
     <table class="table table-striped">
       <thead>
