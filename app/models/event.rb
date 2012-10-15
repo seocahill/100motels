@@ -36,5 +36,4 @@ class Event < ActiveRecord::Base
       scoped
     end
   end
-
 end

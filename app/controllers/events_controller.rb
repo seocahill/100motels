@@ -5,7 +5,6 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.text_search(params[:query]).page(params[:page]).per_page(3)
-    @cart = current_cart
   end
 
   def show
