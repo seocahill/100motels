@@ -16,6 +16,7 @@
 //= require rails.validations
 //= require rails.validations.simple_form
 //= require pages
+//= require events
 //= require jquery.scrollTo
 
 
