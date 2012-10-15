@@ -29,4 +29,19 @@ class OrdersController < ApplicationController
 
   def update
   end
+
+  def charge_multiple
+    orders = Order.find(params[:order_ids])
+    promoter = User.find(params[:promoter])
+    if orders && promoter
+      @orders.each do { |order| order.charge_customer(order, promoter)}
+      redirect_to(:back, notice: "You got your money!")
+    else
+      redirect_to(:back, notice: "Charge failed")
+    end
+  end
+
+  def refund_multiple
+
+  end
 end

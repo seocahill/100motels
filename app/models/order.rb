@@ -27,6 +27,23 @@ class Order < ActiveRecord::Base
     redirect_to(:back)
   end
 
+  def charge_customer(order, promoter)
+      # create a Token from the existing customer on the application's account
+      token = Stripe::Token.create(
+        {:customer => order.stripe_customer_token},
+        promoter.api_key # # user's access token from the Stripe Connect flow
+      )
+      Stripe::Charge.create(
+        {
+          :amount => 1000, #fix
+          :currency => "usd",
+          :card => token, # obtained above
+          :description => order.email,
+          :application_fee => 100
+        },  promoter.api_key
+      )
+  end
+
   def total(event)
     quantity * event.ticket_price
   end

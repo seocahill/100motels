@@ -28,11 +28,12 @@ OneHundredMotels::Application.routes.draw do
     member { post :mercury_update }
   end
 
-  resources :carts, except: :index
-
-  resources :line_items
-
-  resources :orders
+  resources :orders do
+    collection do
+      post :charge_multiple
+      post :refund_multiple
+    end
+  end
 
   resources :locations
 
