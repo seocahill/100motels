@@ -12,3 +12,8 @@ $ ->
 
 goToByScroll = (id) ->
   $('html,body').animate({scrollTop: $(id).offset().top}, 2600)
+
+# clear form
+$ ->
+  $("#q_reset").click ->
+    $(".search-query").val('')

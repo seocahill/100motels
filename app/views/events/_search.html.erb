@@ -1,0 +1,5 @@
+<%= form_tag events_path, method: :get do %>
+  <%= text_field_tag :query, params[:query], class: "search-query span3" %>
+  <%= submit_tag "Search", name: nil %>
+  <%= submit_tag "Clear", :name => nil, :id => :q_reset %>
+<% end %>

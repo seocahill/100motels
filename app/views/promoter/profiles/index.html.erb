@@ -8,28 +8,30 @@
   </div>
   <div class="row">
     <aside id="users-searchform" class="span3">
+      <div class="well">
       <header>
         <h3>Search Controls</h3>
       </header>
       <form class="form">
-        <div>
+        <div class="">
           <label>Choose a City</label>
           <input results="10" type='search' autofocus="autofocus"/> <br>
           <br>
           <h4>Filter your results</h4> <br>
-          <label>Filter By Rating</label>
-          <input  type='range' min='0' max='50' value='0' autofocus="autofocus"/> <br>
-          <label>Filter By Activity</label>
-          <input  type='range' min='0' max='50' value='0' autofocus="autofocus"/> <br>
-          <label>Filter By Fee</label>
-          <input  type='range' min='0' max='50' value='0' autofocus="autofocus"/> <br>
-          <label>Filter By Average Attendance</label>
-          <input  type='range' min='0' max='50' value='0' autofocus="autofocus"/> <br>
-
+          <ul class="nav nav-list">
+            <li class="nav-header">Event Average</li>
+            <li class=""><a href="">Sales</a></li>
+            <li class=""><a href="">Attendence</a></li>
+            <li class="divider"></li>
+            <li class="nav-header">Experience</li>
+            <li class=""><a href="">Total Events</a></li>
+            <li class=""><a href="">Successful</a></li>
+            <li class="divider"></li>
+          </ul>
         </div>
       </form>
+      </div>
     </aside>
-
 
     <section id="user-index-grid" class="span9">
           <ul class="thumbnails">
@@ -48,6 +50,7 @@
             </li>
             <% end %>
           </ul>
+          <%= will_paginate @users %>
     </section>
   </div>
 </div>
