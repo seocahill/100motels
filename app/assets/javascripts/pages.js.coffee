@@ -15,5 +15,6 @@ goToByScroll = (id) ->
 
 # clear form
 $ ->
+
   $("#q_reset").click ->
     $(".search-query").val('')

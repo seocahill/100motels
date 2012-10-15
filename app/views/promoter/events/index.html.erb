@@ -1,12 +1,16 @@
 <div class="page-header"><h3>Your Events</h3></div>
 <div class="row">
   <div class="span-12">
-    <p><%= link_to "New Event", new_promoter_event_path, class: "btn btn-large btn-primary" %></p>
     <br>
   </div>
 </div>
 <div class="row">
   <div class="span12">
+      <div class="btn-toolbar">
+      <button class="btn btn-primary">New Event</button>
+      <button class="btn">Profile</button>
+      <button class="btn">Stripe</button>
+  </div>
     <table class="table table-striped">
       <thead>
         <tr>
@@ -26,10 +30,8 @@
           <td> <%= event.location.nil? %> </td>
           <td >
             <div class="btn-group pull-right">
-              <%= link_to "Show", event_path(event), class: "btn" %>
-              <%= link_to "Edit", edit_promoter_event_path(event), class: "btn" %>
-              <%= link_to "Delete", edit_promoter_event_path(event), class: "btn" %>
-              <%= link_to "Archive", edit_promoter_event_path(event), class: "btn" %>
+              <%= link_to raw('<i class="icon-eye-open"></i>'), event_path(event), class: "btn" %>
+              <%= link_to raw('<i class="icon-pencil"></i>'), edit_promoter_event_path(event), class: "btn" %>
             </div>
           </td>
         </tr>
