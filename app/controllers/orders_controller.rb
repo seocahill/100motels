@@ -1,7 +1,5 @@
 class OrdersController < ApplicationController
 
-  # layout 'stripe', only: [:new, :create]
-
   def new
     @order = Order.new
   end
@@ -17,13 +15,10 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(params[:order])
     stripe_token = params[:stripeToken]
-    event = Event.find_by_id(params[:order][:event_id])
-    promoter = User.find_by_id(event.promoter_id)
     if @order.save_customer(promoter, stripe_token)
       redirect_to(@order, notice: "Processed successfully")
-      # Notifier.order_processed(@order).deliver
     else
-      redirect_to(event, notice: "failed validations")
+      redirect_to(:back, notice: "failed validations")
     end
   end
 
@@ -35,6 +30,7 @@ class OrdersController < ApplicationController
     promoter = User.find(params[:promoter])
     if orders && promoter
       orders.each { |order| order.charge_customer(order, promoter)}
+      # Notifier.order_processed(order).deliver
       redirect_to(:back, notice: "Charge was successful")
     else
       redirect_to(:back, notice: "Charge failed")
@@ -42,6 +38,5 @@ class OrdersController < ApplicationController
   end
 
   def refund_multiple
-
   end
 end

@@ -2,12 +2,19 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
-# Geolocation function
+# Sum Order
 
-jQuery(document).ready ($) ->
-  jQuery.getScript "http://www.geoplugin.net/javascript.gp", ->
-    country = geoplugin_countryName()
-    zone = geoplugin_region()
-    district = geoplugin_city()
-    $("#geolocation").text district + ", " + zone + ", " + country
+$ ->
+  defaultTotal = ->
+    price = $('#ticket-price').data('url')
+    $('.stripe-button').data("amount", price)
+    $('#total-price').html(price)
 
+  orderTotal = ->
+    quantity = $('#order_quantity').val()
+    price = $('#ticket-price').data('url')
+    total = quantity * price
+    $('#total-price').html(total)
+
+  defaultTotal()
+  $('#order_quantity').click(orderTotal)

@@ -1,4 +1,5 @@
 <%= simple_form_for @order, :validate => true do |f| %>
+    <div id="ticket-price" data-url="<%= @event.ticket_price * 100 %>"></div>
     <%= f.input :event_id, as: :hidden, input_html: { value: @event.id } %>
     <%= f.input :quantity, collection: 1..4, input_html: { class: "input-mini"} %>
     <% if !user_signed_in? %>
@@ -6,9 +7,10 @@
     <% else %>
       <%= f.input :email, as: :hidden, input_html: { value: current_user.email } %>
     <% end %>
-    <div class="" align="center">
+    <div class="stripe-controls" align="center">
       <script src="https://button.stripe.com/v1/button.js" class="stripe-button"
-          data-key="<%= ENV['STRIPE_PUBLIC_KEY'] %>" data-amount="<%= @order.quantity * @event.ticket_price %>">
+          data-key="<%= ENV['STRIPE_PUBLIC_KEY'] %>" data-amount="">
       </script>
     </div>
+    <div id="total-price"></div>
 <% end %>
