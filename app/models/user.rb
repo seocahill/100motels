@@ -15,41 +15,42 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :events
   # has_many :orders
 
-  def self.from_omniauth(auth)
-    where(auth.slice(:provider, :uid, :public_key, :api_key)).first_or_create do |user|
+  def self.from_omniauth(auth, user)
+    # where(auth.slice(:provider, :uid, :public_key, :api_key)).first_or_create do |user|
       user.provider = auth.provider
       user.uid = auth.uid
-      user.public_key = auth.info["stripe_publishable_key"]
+      # user.public_key = auth.info["stripe_publishable_key"]
       user.api_key = auth.credentials["token"]
-      Stripe.api_key = auth.credentials["token"]
-      account = Stripe::Account.retrieve()
-      user.email = account.email
-    end
-
+      # Stripe.api_key = auth.credentials["token"]
+      # account = Stripe::Account.retrieve()
+      # user.email = account.email
+    # end
+      user.save!
+      user
   end
 
-  def self.new_with_session(params, session)
-    if session["devise.user_attributes"]
-      new(session["devise.user_attributes"], without_protection: true) do |user|
-        user.attributes = params
-        user.valid?
-      end
-    else
-      super
-    end
-  end
+  # def self.new_with_session(params, session)
+  #   if session["devise.user_attributes"]
+  #     new(session["devise.user_attributes"], without_protection: true) do |user|
+  #       user.attributes = params
+  #       user.valid?
+  #     end
+  #   else
+  #     super
+  #   end
+  # end
 
-  def password_required?
-    super && provider.blank?
-  end
+  # def password_required?
+  #   super && provider.blank?
+  # end
 
-  def update_with_password(params, *options)
-    if encrypted_password.blank?
-      update_attributes(params, *options)
-    else
-      super
-    end
-  end
+  # def update_with_password(params, *options)
+  #   if encrypted_password.blank?
+  #     update_attributes(params, *options)
+  #   else
+  #     super
+  #   end
+  # end
 
   def to_s
     "#{email} (#{admin? ? "Admin" : "User"})"
