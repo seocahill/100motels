@@ -10,11 +10,12 @@ class Order < ActiveRecord::Base
 
   def save_customer(promoter, token)
     if valid?
-      Stripe.api_key = ENV['STRIPE_API_KEY']
       customer = Stripe::Customer.create(
-        description: name,
-        email: email,
-        card: token
+        {
+          description: name,
+          email: email,
+          card: token
+        }, ENV['STRIPE_API_KEY']
       )
       self.stripe_customer_token = customer.id
       saved_customer = Stripe::Customer.retrieve(customer.id)
@@ -29,19 +30,25 @@ class Order < ActiveRecord::Base
 
   def charge_customer(order, promoter)
       # create a Token from the existing customer on the application's account
-      token = Stripe::Token.create(
-        {:customer => order.stripe_customer_token},
-        promoter.api_key # # user's access token from the Stripe Connect flow
-      )
-      Stripe::Charge.create(
-        {
-          :amount => 1000, #fix
-          :currency => "usd",
-          :card => token, # obtained above
-          :description => order.email,
-          :application_fee => 100
-        },  promoter.api_key
-      )
+    key = promoter.api_key
+    token = Stripe::Token.create(
+      {:customer => order.stripe_customer_token},
+      key
+    )
+
+    # create the charge
+    Stripe::Charge.create(
+      {
+        :amount => 1000,
+        :currency => "usd",
+        :card => token,
+        :description => "testing 3rd party charges",
+        :application_fee => 100
+      }, key
+    )
+    # rescue Stripe::InvalidRequestError => e
+    #   flash[:error] = e.message
+    #   redirect_to(:back)
   end
 
   def total(event)

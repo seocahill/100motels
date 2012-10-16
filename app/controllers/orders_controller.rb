@@ -34,8 +34,8 @@ class OrdersController < ApplicationController
     orders = Order.find(params[:order_ids])
     promoter = User.find(params[:promoter])
     if orders && promoter
-      @orders.each do { |order| order.charge_customer(order, promoter)}
-      redirect_to(:back, notice: "You got your money!")
+      orders.each { |order| order.charge_customer(order, promoter)}
+      redirect_to(:back, notice: "Charge was successful")
     else
       redirect_to(:back, notice: "Charge failed")
     end
