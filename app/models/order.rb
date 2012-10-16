@@ -40,7 +40,7 @@ class Order < ActiveRecord::Base
       {
         :amount => 1000,
         :currency => "usd",
-        :card => token,
+        :card => token["id"],
         :description => "testing 3rd party charges",
         :application_fee => 100
       }, key
