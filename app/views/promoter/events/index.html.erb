@@ -10,7 +10,7 @@
       <%= link_to "New Event", new_promoter_event_path, class: "btn btn-primary" %>
       <%= link_to "Profile", promoter_profile_path(current_user), class: "btn btn-primary" %>
 
-      <%= link_to "Connect to Stripe", user_omniauth_authorize_path(:stripe_platform), class: "btn btn-primary" %>
+      <%= link_to "Connect to Stripe", user_omniauth_authorize_path(:stripe_connect), class: "btn btn-primary" %>
   </div>
     <table class="table table-striped">
       <thead>
