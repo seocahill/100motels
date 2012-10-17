@@ -9,12 +9,11 @@ $ ->
     goToByScroll $(this).attr("href")
     false
 
-
 goToByScroll = (id) ->
   $('html,body').animate({scrollTop: $(id).offset().top}, 2600)
 
-# clear form
+# clear search form
 $ ->
-
   $("#q_reset").click ->
     $(".search-query").val('')
+

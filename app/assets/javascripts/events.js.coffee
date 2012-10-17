@@ -5,16 +5,13 @@
 # Sum Order
 
 $ ->
-  defaultTotal = ->
-    price = $('#ticket-price').data('url')
-    $('.stripe-button').data("amount", price)
-    $('#total-price').html(price)
-
-  orderTotal = ->
-    quantity = $('#order_quantity').val()
-    price = $('#ticket-price').data('url')
-    total = quantity * price
-    $('#total-price').html(total)
-
-  defaultTotal()
   $('#order_quantity').click(orderTotal)
+  orderTotal()
+
+orderTotal = ->
+  quantity = $('#order_quantity').val()
+  price = $('#ticket-price').data('url')
+  total = quantity * price
+  $('.stripe-button').attr('amount', total)
+  alert total
+

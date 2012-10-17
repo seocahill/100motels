@@ -42,7 +42,7 @@ class Order < ActiveRecord::Base
         :currency => "usd",
         :card => token["id"],
         :description => "testing 3rd party charges",
-        :application_fee => 100
+        :application_fee => 1000
       }, key
     )
     # rescue Stripe::InvalidRequestError => e
