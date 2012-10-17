@@ -42,9 +42,7 @@
               <li><%= link_to "Promoters", promoter_profiles_path %></li>
               <li><%= link_to "Help &Info", info_path %></li>
             </ul>
-            <div class="navbar-search pull-left">
-              <%= render 'events/search' %>
-            </div>
+            <%= render 'events/search' %>
             <ul class="nav pull-right">
               <% unless user_signed_in? %>
                 <li><%= link_to "Sign up", new_user_registration_path %></li>
