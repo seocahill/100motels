@@ -12,6 +12,6 @@ orderTotal = ->
   quantity = $('#order_quantity').val()
   price = $('#ticket-price').data('url')
   total = quantity * price
-  $('.stripe-button').attr('amount', total)
-  alert total
+  $('.stripe-button').attr('data-amount', total)
+
 

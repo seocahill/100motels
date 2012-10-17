@@ -30,7 +30,7 @@ class OrdersController < ApplicationController
     promoter = User.find(params[:promoter])
     if orders && promoter
       orders.each { |order| order.charge_customer(order, promoter)}
-      # Notifier.order_processed(order).deliver
+      orders.each { |order| Notifier.order_processed(order).deliver }
       redirect_to(:back, notice: "Charge was successful")
     else
       redirect_to(:back, notice: "Charge failed")
