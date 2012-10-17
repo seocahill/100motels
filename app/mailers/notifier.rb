@@ -5,6 +5,7 @@ class Notifier < ActionMailer::Base
 
   def order_processed(order)
     @order = order
+    @event = Event.find(order.event_id)
     @greeting = "Thanks #{order.name}!"
     mail to: order.email, subject: "Your Order from 100 Motels"
   end

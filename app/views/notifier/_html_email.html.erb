@@ -7,7 +7,6 @@
 		</td>
 	</tr>
 </table>
-<% @order.line_items.each do |l| %>
 	<table width="600px" cellpadding="0" cellspacing="0" border="0" align="center">
 		<tr>
 			<td class="head-text" width="100%" valign="top">
@@ -15,7 +14,7 @@
 					<h1>
 						<small>100 Motels Presents!</small> <br>
 						- <br>
-						<%= l.event.artist %>
+						<%= @event.artist %>
 					</h1>
 				</div>
 			</td>
@@ -30,15 +29,15 @@
 			<td width="200px" valign="top" align="center">
 				<header class="">
 					<h4>
-						Live in <%=l.event.venue %> <br>
+						Live in <%=@event.venue %> <br>
 						on <br>
-						<%= time_tag l.event.date %> <br>
+						<%= time_tag @event.date %> <br>
 					</h4>
 					<h1>~</h1>
 					<h4>
 						Doors  <br>
 						at <br>
-						<%= l.event.doors.strftime("%l:%M %p") %>
+						<%= @event.doors.strftime("%l:%M %p") %>
 					</h4>
 				</header>
 			</td>
@@ -46,8 +45,8 @@
 				<div class="head-text well">
 					<br>
 					<p>Admit</p>
-						<h1><%= l.quantity %></h1>
-					<p><%= "Person".pluralize(l.quantity) %> only</p>
+						<h1><%= @order.quantity %></h1>
+					<p><%= "Person".pluralize(@order.quantity) %> only</p>
 				</div>
 			</td>
 		</tr>
@@ -63,7 +62,6 @@
 			</td>
 		</tr>
 	</table>
-<% end %>
 	<table width="600px" cellpadding="0" cellspacing="0" border="0" align="center">
 		<tr>
 			<td width="600px" valign="top">

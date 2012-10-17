@@ -16,6 +16,7 @@ class OrdersController < ApplicationController
     @order = Order.new(params[:order])
     stripe_token = params[:stripeToken]
     if @order.save_customer(promoter, stripe_token)
+      orders.each { |order| Notifier.order_processed(order).deliver }
       redirect_to(@order, notice: "Processed successfully")
     else
       redirect_to(:back, notice: "failed validations")
@@ -31,7 +32,7 @@ class OrdersController < ApplicationController
     refund = params[:refund]
     if orders && promoter && !refund
       orders.each { |order| order.charge_customer(order, promoter)}
-      # orders.each { |order| Notifier.order_processed(order).deliver }
+      # orders.each { |order| Notifier.order_charged(order).deliver }
       redirect_to(:back, notice: "Charge successful")
     elsif orders && promoter && refund
       orders.each { |order| order.refund_customer(order, promoter)}
