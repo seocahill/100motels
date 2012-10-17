@@ -52,6 +52,7 @@ class Order < ActiveRecord::Base
   end
 
   def refund_customer(order, promoter)
+    Stripe.api_key = promoter.api_key
     ch = Stripe::Charge.retrieve(order.stripe_customer_token)
     ch.refund
   end
