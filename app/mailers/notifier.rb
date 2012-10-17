@@ -1,10 +1,12 @@
 require 'mail_view'
+require 'google-qr'
 
 class Notifier < ActionMailer::Base
   default css: [:email, :mail_bootstrap], from: "admin@100motels.com"
 
   def order_processed(order)
     @order = order
+    @qr = "ExampleQRData".to_qr_image(:size => "170x170")
     @event = Event.find(order.event_id)
     @greeting = "Thanks #{order.name}!"
     mail to: order.email, subject: "Your Order from 100 Motels"
