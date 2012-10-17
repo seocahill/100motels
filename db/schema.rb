@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121013021307) do
+ActiveRecord::Schema.define(:version => 20121017033912) do
 
   create_table "carts", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -111,14 +111,15 @@ ActiveRecord::Schema.define(:version => 20121013021307) do
   create_table "orders", :force => true do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at",                           :null => false
-    t.datetime "updated_at",                           :null => false
+    t.datetime "created_at",                                        :null => false
+    t.datetime "updated_at",                                        :null => false
     t.decimal  "total"
     t.string   "stripe_customer_token"
     t.string   "plan"
     t.integer  "user_id"
     t.integer  "event_id"
-    t.integer  "quantity",              :default => 1
+    t.integer  "quantity",                           :default => 1
+    t.integer  "stripe_event",          :limit => 8, :default => 0
   end
 
   add_index "orders", ["event_id"], :name => "index_orders_on_event_id"

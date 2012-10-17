@@ -1,5 +1,6 @@
 class Order < ActiveRecord::Base
-  attr_accessible :email, :name, :last_four, :plan, :quantity, :event_id
+  attr_accessible :email, :name, :plan, :quantity, :event_id
+  enum_accessor :stripe_event, [ :pending, :paid, :failed, :refunded, :cancelled ]
   belongs_to :events
   validates :email, presence: :true
   validates_format_of :email, :with => /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
