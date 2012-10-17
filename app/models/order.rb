@@ -30,6 +30,7 @@ class Order < ActiveRecord::Base
 
   def charge_customer(order, promoter)
       # create a Token from the existing customer on the application's account
+    order_amount = (order.quantity * Event.find(order.event_id).ticket_price * 100).to_i
     key = promoter.api_key
     token = Stripe::Token.create(
       {:customer => order.stripe_customer_token},
@@ -39,7 +40,7 @@ class Order < ActiveRecord::Base
     # create the charge
     Stripe::Charge.create(
       {
-        :amount => 1000,
+        :amount => order_amount,
         :currency => "usd",
         :card => token["id"],
         :description => "testing 3rd party charges",
@@ -53,7 +54,7 @@ class Order < ActiveRecord::Base
 
   def refund_customer(order, promoter)
     Stripe.api_key = promoter.api_key
-    ch = Stripe::Charge.retrieve(order.stripe_customer_token)
+    ch = Stripe::Charge.retrieve(order) #need to pass in charge object here
     ch.refund
   end
 
