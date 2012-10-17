@@ -23,7 +23,7 @@ before_filter :authorize_admin!
 
   def show
     @event = Event.find_by_id(params[:id])
-    @orders = @event.orders.page(params[:page])
+    @orders = @event.orders.page(params[:page]).per_page(10)
     @orders_no_pages = @event.orders
     respond_to do |format|
       format.html

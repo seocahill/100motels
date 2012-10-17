@@ -30,13 +30,22 @@ class OrdersController < ApplicationController
     promoter = User.find(params[:promoter])
     if orders && promoter
       orders.each { |order| order.charge_customer(order, promoter)}
-      orders.each { |order| Notifier.order_processed(order).deliver }
-      redirect_to(:back, notice: "Charge was successful")
+      # orders.each { |order| Notifier.order_processed(order).deliver }
+      redirect_to(:back, notice: "Charges successful")
     else
-      redirect_to(:back, notice: "Charge failed")
+      redirect_to(:back, notice: "Charges failed")
     end
   end
 
   def refund_multiple
+    orders = Order.find(params[:order_ids])
+    promoter = User.find(params[:promoter])
+    if orders && promoter
+      orders.each { |order| order.refund_customer(order, promoter)}
+      # orders.each { |order| Notifier.order_refunded(order).deliver }
+      redirect_to(:back, notice: "Charges refunded")
+    else
+      redirect_to(:back, notice: "Refund failed")
+    end
   end
 end

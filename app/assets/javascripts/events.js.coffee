@@ -14,4 +14,7 @@ orderTotal = ->
   total = quantity * price
   $('.stripe-button').attr('data-amount', total)
 
-
+# toggle checkboxes
+$ ->
+  $('#check_all').click () ->
+    $('input[type="checkbox"]').click()

@@ -51,6 +51,11 @@ class Order < ActiveRecord::Base
     #   redirect_to(:back)
   end
 
+  def refund_customer(order, promoter)
+    ch = Stripe::Charge.retrieve(order.stripe_customer_token)
+    ch.refund
+  end
+
   def total(event)
     quantity * event.ticket_price
   end
