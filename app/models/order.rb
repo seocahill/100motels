@@ -9,7 +9,7 @@ class Order < ActiveRecord::Base
   attr_accessor :last_four
 
 
-  def save_customer(promoter, token)
+  def save_customer(token)
     if valid?
       Stripe.api_key = ENV['STRIPE_API_KEY']
       customer = Stripe::Customer.create(
