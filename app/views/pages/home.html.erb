@@ -35,7 +35,7 @@
 									<li class="span4">
 										<div class="thumbnail">
 											<% if event.image? %>
-												<%= filepicker_image_tag event.image, w: 360, h: 240, fit: 'clip' %>
+												<%= filepicker_image_tag event.image, w: 360, h: 240, fit: 'crop' %>
 											<% else %>
 												<img src="http://quickimage.it/360x240&text=ArtistPic" alt="">
 											<% end %>
