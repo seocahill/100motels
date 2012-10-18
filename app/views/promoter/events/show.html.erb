@@ -37,7 +37,7 @@
     <%= submit_tag "Charge Selected", class: "btn btn-success" %>
     <%= submit_tag "Refund Selected", name: 'refund', class: "btn btn-warning" %>
       <%= hidden_field_tag "promoter", current_user.id %>
-      <table class="table table-striped table-bordered">
+      <table class="table table-striped table-bordered" id="promoter-customers">
         <thead>
           <tr>
             <th>
@@ -60,7 +60,7 @@
             <td><%= order.email %> </td>
             <td> <%= order.quantity %></td>
             <td> <%= number_to_currency(order.total(@event)) %></td>
-            <td> <span class="label label-warning"><%= order.stripe_event  %></span> </td>
+            <td> <span class="label"><%= order.stripe_event  %></span> </td>
             <% end %>
           </tr>
         </tbody>

@@ -17,6 +17,7 @@
 //= require rails.validations.simple_form
 //= require pages
 //= require events
+//= require promoter/events
 //= require jquery.scrollTo
 
 

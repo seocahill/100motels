@@ -1,3 +1,10 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+# Changing css on status labels
+
+$ ->
+  $("#promoter-customers td span").each ->
+    label = $(@)
+    switch
+      when  label.html() is "refunded" then label.addClass('label-important')
+      when  label.html() is "pending" then label.addClass('label-warning')
+      when  label.html() is "paid" then label.addClass('label-success')
+
