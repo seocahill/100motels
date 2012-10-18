@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121017033912) do
+ActiveRecord::Schema.define(:version => 20121018024522) do
 
   create_table "carts", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -120,6 +120,8 @@ ActiveRecord::Schema.define(:version => 20121017033912) do
     t.integer  "event_id"
     t.integer  "quantity",                           :default => 1
     t.integer  "stripe_event",          :limit => 8, :default => 0
+    t.string   "stripe_charge_id"
+    t.string   "last4"
   end
 
   add_index "orders", ["event_id"], :name => "index_orders_on_event_id"

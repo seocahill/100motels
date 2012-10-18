@@ -36,7 +36,6 @@ class Order < ActiveRecord::Base
       {:customer => order.stripe_customer_token},
       key
     )
-
     # create the charge
     charge = Stripe::Charge.create(
       {
@@ -47,13 +46,21 @@ class Order < ActiveRecord::Base
         :application_fee => 1000
       }, key
     )
-    raise charge.to_yaml
+    #update the order to reflect the response
+    order.stripe_charge_id = charge[:id]
+    order.last4 = charge[:card][:last4]
+    order.stripe_event = :paid
+    save!
   end
 
   def refund_customer(order, promoter)
     Stripe.api_key = promoter.api_key
-    ch = Stripe::Charge.retrieve(order) #need to pass in charge object here
-    ch.refund
+    ch = Stripe::Charge.retrieve(order.stripe_charge_id) #need to pass in charge object here
+    refund = ch.refund
+    if refund[:refunded] == true
+      order.stripe_event = :refunded
+      save!
+    end
   end
 
   def total(event)
