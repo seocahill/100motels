@@ -38,7 +38,7 @@ class Order < ActiveRecord::Base
     )
 
     # create the charge
-    Stripe::Charge.create(
+    charge = Stripe::Charge.create(
       {
         :amount => order_amount,
         :currency => "usd",
@@ -47,9 +47,7 @@ class Order < ActiveRecord::Base
         :application_fee => 1000
       }, key
     )
-    # rescue Stripe::InvalidRequestError => e
-    #   flash[:error] = e.message
-    #   redirect_to(:back)
+    raise charge.to_yaml
   end
 
   def refund_customer(order, promoter)
