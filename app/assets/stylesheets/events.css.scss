@@ -4,16 +4,10 @@
 
 // cart box
 
-#cart-box  {
-  // margin-right: -45px;
-}
-
 .centered-box {
   margin: 0 auto;
   text-align: center;
 }
-
-
 
 #event-info {
     img {
@@ -37,4 +31,14 @@
 #events-index-grid {
   text-align: center;
   // padding: 15px;
+}
+
+// promoter event view
+.option-buttons {
+  margin: 20px 0;
+}
+
+// promoter event index
+#promoter-event-new {
+  margin-bottom: 20px;
 }

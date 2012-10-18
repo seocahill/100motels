@@ -42,16 +42,4 @@ class OrdersController < ApplicationController
       redirect_to(:back, notice: "Something went wrong")
     end
   end
-
-  # def refund_multiple
-  #   orders = Order.find(params[:order_ids])
-  #   promoter = User.find(params[:promoter])
-  #   if orders && promoter
-  #     orders.each { |order| order.refund_customer(order, promoter)}
-  #     # orders.each { |order| Notifier.order_refunded(order).deliver }
-  #     redirect_to(:back, notice: "Charges refunded")
-  #   else
-  #     redirect_to(:back, notice: "Refund failed")
-  #   end
-  # end
 end
