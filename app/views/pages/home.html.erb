@@ -108,12 +108,24 @@
 						<p>For more details on this and all other technical queries regarding the service click on the 'More Info' button below.</p>
 					</blockquote>
 					<div class="btn-group">
-						<a href="" class="btn btn-large btn-primary">Request Invite</a>
+						<a href="#invite" class="btn btn-large btn-primary" data-toggle="modal">Request Invite</a>
 					  <%= link_to "More Info", info_path, class: "btn btn-large" %>
 					</div>
 				</div>
 			</section>
 		</div>
+		<div class="modal hide fade" id="invite" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+        <h3>100 Motels Promoter Invites</h3>
+      </div>
+      <div class="modal-body">
+        <p>Thanks for your interest. Right now I'm testing amongst people I know, so if you've stumbled onto this site somehow this is really only a demo, 100 Motels is not open for business yet. If you want to contact me about getting involved message me on twitter, facebook, github or whatever you use, <a href="//seocahill.com">Seo.</a></p>
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal">Close</a>
+      </div>
+    </div>
 	</div>
 
 

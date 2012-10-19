@@ -3,26 +3,62 @@
 	<section class="section-box">
 		<div class="row">
 			<div class="label-box">User Info</div>
-			<div id="promoter-pic" class="span2">
+			<div id="promoter-pic" class="span2" align="center">
 				<% if @user.avatar? %>
 					<%= filepicker_image_tag @user.avatar, w: 200, h: 200, fit: 'crop' %>
 				<% else %>
 					<img src="//placehold.it/200" class="img-polaroid">
 				<% end %>
+				<h4><%= @user.name %></h4>
+				<p><%= link_to "Edit", edit_user_registration_path(@user), class: "btn btn-primary" %></p>
 			</div>
-			<div class="span3 offset2">
-				<p><%= @user.name %></p>
-				<p><%= @user.email %></p>
-				<p>Orders</p>
-				<p>Credit Card</p>
 
-<%= link_to "Edit", edit_user_registration_path(@user) %>
-
-			<div class="span2 offset2">
-
+			<div class="span9">
+        <div class="tabbable tabs">
+          <ul class="nav nav-tabs">
+            <li class="active"><a href="#info" data-toggle="tab">Information</a></li>
+            <li class=""><a href="#purchases" data-toggle="tab">Purchases</a></li>
+          </ul>
+        </div>
+        <div class="tab-content">
+          <div class="tab-pane active tour-content" id="info">
+          	<dl>
+          		<dt>Email</dt>
+          		<dd><%= @user.email %></dd>
+          		<dt>Credit Card</dt>
+          		<dd>
+          			<% if @user.customer_id %>
+          					#1234
+          			<% else %>
+          				none provided
+          			<% end %>
+          		</dd>
+          	</dl>
+          </div>
+					<div class="tab-pane tour-content" id="purchases">
+						<table class="table table-striped">
+	              <thead>
+	                <tr>
+	                  <th>Artist</th>
+	                  <th>Venue</th>
+	                  <th>Date</th>
+	                  <th></th>
+	                </tr>
+	              </thead>
+	              <tbody>
+	                <%# @user.orders.each do |order| %>
+	                <tr>
+	                  <td>Name and Date of event</td>
+	                  <td>Total Price Paid</td>
+	                  <td>Current Status of Order</td>
+	                  <td><a href="">Cancel Order</a></td>
+	                </tr>
+	                <%# end %>
+	              </tbody>
+	          </table>
+	        </div>
+				</div>
 			</div>
 		</div>
 	</section>
-
-
 </div>

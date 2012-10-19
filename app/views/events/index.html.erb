@@ -23,15 +23,10 @@
 						<li class=""><a href="">This Week</a></li>
 						<li class="active"><a href="">This Month</a></li>
 						<li class="divider"></li>
-						<li class="nav-header">City</li>
-						<% @events.each do |event| %>
-						<li><a href=""><%= event.location.address %></a></li>
-						<% end %>
-						<li class="divider"></li>
-						<li class="nav-header">Artist</li>
-						<% @events.each do |event| %>
-						<li><a href=""><%= event.artist %></a></li>
-						<% end %>
+						<li class="nav-header">Location</li>
+						<li class="active"><a href="">Near me</a></li>
+						<li class=""><a href="">Same Country</a></li>
+						<li class=""><a href="">Anywhere</a></li>
 						<li class="divider"></li>
 					</ul>
 				</div>
