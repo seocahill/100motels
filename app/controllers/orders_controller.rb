@@ -42,4 +42,11 @@ class OrdersController < ApplicationController
       redirect_to(:back, notice: "Something went wrong")
     end
   end
+
+  def destroy
+    @order = Order.find(params[:id])
+    @order.destroy
+    flash[:notice] = "Your order was cancelled"
+    redirect_to :back
+  end
 end
