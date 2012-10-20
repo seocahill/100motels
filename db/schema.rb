@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121018024522) do
+ActiveRecord::Schema.define(:version => 20121019233411) do
 
   create_table "carts", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -65,9 +65,11 @@ ActiveRecord::Schema.define(:version => 20121018024522) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "event_id"
+    t.integer  "user_id"
   end
 
   add_index "locations", ["event_id"], :name => "index_locations_on_event_id"
+  add_index "locations", ["user_id"], :name => "index_locations_on_user_id"
 
   create_table "oauth_access_grants", :force => true do |t|
     t.integer  "resource_owner_id", :null => false

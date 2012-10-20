@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @events = Event.where(@user.id == :promoter_id)
+    @orders = Order.where(@user.id == :email).page(params[:page]).per_page(5)
   end
 
   private

@@ -9,7 +9,10 @@
 				<% else %>
 					<img src="//placehold.it/200" class="img-polaroid">
 				<% end %>
-				<h4><%= @user.name %></h4>
+				<h4>
+					<%= @user.location.try(:address) %>
+					<%= @user.name %>
+				</h4>
 				<p><%= link_to "Edit", edit_user_registration_path(@user), class: "btn btn-primary" %></p>
 			</div>
 
@@ -21,7 +24,7 @@
           </ul>
         </div>
         <div class="tab-content">
-          <div class="tab-pane active tour-content" id="info">
+          <div class="tab-pane tour-content" id="info">
           	<dl>
           		<dt>Email</dt>
           		<dd><%= @user.email %></dd>
@@ -35,26 +38,28 @@
           		</dd>
           	</dl>
           </div>
-					<div class="tab-pane tour-content" id="purchases">
+					<div class="tab-pane active tour-content" id="purchases">
 						<table class="table table-striped">
 	              <thead>
 	                <tr>
-	                  <th>Artist</th>
-	                  <th>Venue</th>
-	                  <th>Date</th>
-	                  <th></th>
+	                  <th>Promoter</th>
+	                  <th>Event</th>
+	                  <th>Status</th>
+	                  <th>Purchased on</th>
 	                </tr>
 	              </thead>
 	              <tbody>
-	                <%# @user.orders.each do |order| %>
+	                <% @orders.each do |order| %>
 	                <tr>
-	                  <td>Name and Date of event</td>
-	                  <td>Total Price Paid</td>
-	                  <td>Current Status of Order</td>
+	                  <td><%= link_to "#{promoter(order).name}", promoter_profile_path(promoter(order)) %></td>
+	                  <td><%= link_to "#{Event.find(order.event_id).artist}", event_path(Event.find(order.event_id)) %></td>
+	                  <td><%= order.stripe_event %></td>
+	                  <td><%= time_tag order.created_at %></td>
 	                  <td><a href="">Cancel Order</a></td>
 	                </tr>
-	                <%# end %>
+	                <% end %>
 	              </tbody>
+	              <%= will_paginate @orders %>
 	          </table>
 	        </div>
 				</div>

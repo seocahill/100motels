@@ -11,6 +11,5 @@ class PagesController < ApplicationController
   end
 
   def info
-    # render :layout => 'info'
   end
 end

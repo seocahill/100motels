@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  # todo after signin path for devise
+
   private
 
     def authorize_admin!
