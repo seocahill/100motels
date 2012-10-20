@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @orders = Order.where(@user.id == :email).page(params[:page]).per_page(5)
+    @orders = Order.where(@user.email == :email).page(params[:page]).per_page(5)
   end
 
   private
