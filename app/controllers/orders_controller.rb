@@ -15,7 +15,7 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(params[:order])
     stripe_token = params[:stripeToken]
-    if @order.save_customer(stripe_token)
+    if @order.save_customer(stripe_token, current_user)
       Notifier.order_processed(@order).deliver
       redirect_to(@order, notice: "Processed successfully")
     else

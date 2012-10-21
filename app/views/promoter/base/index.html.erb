@@ -3,58 +3,69 @@
     <div class="span3">
       <div class="well sidebar-nav-fixed">
         <ul class="nav nav-list">
-          <li class="nav-header">Today's Sales</li>
-          <li><a href="">Crete Boom, 2 tickets</a> </li>
-          <li><a href="">Crete Boom, 2 tickets</a> </li>
-          <li><a href="">Crete Boom, 2 tickets</a> </li>
+          <li class="nav-header">Today's Sales <span class="badge badge-info pull-right">8</span></li>
           <li><a href="">Crete Boom, 2 tickets</a> </li>
           <li><a href="">Crete Boom, 2 tickets</a> </li>
           <li><a href="">Crete Boom, 2 tickets</a> </li>
           <li><a href="">Crete Boom, 2 tickets</a> </li>
           <li><a href="">Crete Boom, 2 tickets</a> </li>
           <li class="divider"></li>
-          <li class="nav-header">Messages</li>
+          <li class="nav-header">Tour requests <span class="badge badge-info pull-right">8</span></li>
           <li><a href="">From Artist re:show</a> </li>
           <li><a href="">From Artist re:show</a> </li>
           <li><a href="">From Artist re:show</a> </li>
           <li class="divider"></li>
-          <li class="nav-header">Stripe Status</li>
+          <li class="nav-header">Support Requests <span class="badge badge-info pull-right">8</span></li>
+          <li><a href="">From Artist re:show</a> </li>
+          <li><a href="">From Artist re:show</a> </li>
+          <li><a href="">From Artist re:show</a> </li>
+          <li class="divider"></li>
           <li>
-            <% if current_user.api_key %>
-              <button class="btn btn-success">Connected <i class="icon-ok-circle icon-white"></i></button>
-            <% else %>
-              <%= link_to image_tag('blue.png'), user_omniauth_authorize_path(:stripe_connect), class: "" %>
-            <% end %>
+            <a href="" class="btn btn-large">All Messages >></a>
           </li>
         </ul>
       </div><!--/.well -->
     </div><!--/span-->
 
     <div class="span9 span-fixed-sidebar">
-      <div class="hero-unit">
-        <h2>Hi <%= current_user.name %></h2>
-        <p> This is your promoter admistrative area.</p>
-        <p><%= link_to "View your Events", promoter_events_path, class: "btn btn-large btn-primary" %></p>
+      <div class="page-header">
+        <h2>Hi <%= current_user.name %>
+        <small>This is your promoter admistrative area</small></h2>
+
       </div>
       <div class="row-fluid">
 
-        <div class="span4">
-          <h2>Public Profile</h2>
+        <div class="span6">
+          <h4>Public Profile</h4>
 
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><%= link_to "View Profile", promoter_profile_path(current_user), class: "btn btn-large" %></p>
+          <p>Your public profile is where people can view information and statistics about all the shows you have organized. You can edit it in place by clicking on the edit link at the top of your profile. You can also hide or delete your profile at any time, by default your profile is hidden. </p>
+          <p><%= link_to "View >>", promoter_profile_path(current_user), class: "btn btn-primary" %></p>
         </div><!--/span-->
-        <div class="span4">
-          <h2>Your Customers</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><%= link_to "View Customers", promoter_events_path, class: "btn btn-large" %></p>
+        <div class="span6">
+          <h4>Your Events</h4>
+          <p>All your current and past events are listed here. You can edit the event details, including applying on-the-fly ticket discounts (info docs for more) as well as viewing all current tickets sales and customer details. Charges and refunds can also be applied in this section, either in bulk or isolation. </p>
+          <p><%= link_to "View >>", promoter_events_path, class: "btn btn-primary" %></p>
         </div>
 
-          <div class="span4">
-          <h2>Your Account</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><%= link_to "View Account", user_path(current_user), class: "btn btn-large" %></p>
+
+
+      <div class="row-fluid">
+        <div class="page-header"></div>
+        <div class="span6">
+          <h4>Payments</h4>
+          <p>All our payments processing is handled by Stripe. In order to receive sales monies into your bank account, you need to connect a Stripe account to your 100 Motels account. Click on the button below, fill out the Stripe application form or login to your existing account and you're good to go.</p>
+          <p><% if current_user.api_key %>
+              <button class="btn btn-success">Connected <i class="icon-ok-circle icon-white"></i></button>
+            <% else %>
+              <%= link_to image_tag('blue.png'), user_omniauth_authorize_path(:stripe_connect), class: "" %>
+            <% end %></p>
         </div><!--/span-->
+        <div class="span5">
+          <h4>Your Account</h4>
+          <p>This is you normal user account where you can update or change basic details like your password, primary email etc. If you are also a customer of other 100 Motels promoters you can add or update a credit card here. </p>
+          <p><%= link_to "View >>", user_path(current_user), class: "btn btn-primary" %></p>
+        </div><!--/span-->
+      </div>
 
         </div><!--/span-->
       </div><!--/row-->

@@ -19,8 +19,9 @@
 			<div class="span9">
         <div class="tabbable tabs">
           <ul class="nav nav-tabs">
-            <li class="active"><a href="#info" data-toggle="tab">Information</a></li>
-            <li class=""><a href="#purchases" data-toggle="tab">Purchases</a></li>
+          	<li class="active"><a href="#purchases" data-toggle="tab">Purchases</a></li>
+            <li class=""><a href="#info" data-toggle="tab">Information</a></li>
+
           </ul>
         </div>
         <div class="tab-content">
@@ -31,7 +32,8 @@
           		<dt>Credit Card</dt>
           		<dd>
           			<% if @user.customer_id %>
-          					#1234
+						      <script src="https://button.stripe.com/v1/button.js" class="stripe-button" data-panel-label="Save" data-label="Add Card" data-key="<%= ENV['STRIPE_PUBLIC_KEY'] %>" >
+						      </script>
           			<% else %>
           				none provided
           			<% end %>
