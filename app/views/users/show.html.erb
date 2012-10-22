@@ -100,7 +100,9 @@
 		                  <td><%= time_tag order.created_at %></td>
 		                  <% if order.stripe_event == :pending %>
 			                  <td><%= link_to raw('Cancel <i class="icon-remove"></i>'), order_path(order), class: "btn", method: :delete, confirm: "Are you sure you want to cancel your order?" %></td>
-		                 <% end %>
+                      <% else %>
+                        <td align="center"></td>
+		                  <% end %>
 		                </tr>
 		                <% end %>
 	              </tbody>
