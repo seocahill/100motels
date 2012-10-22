@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
-   :provider, :uid, :public_key, :name, :avatar, :location_attributes
+   :provider, :uid, :public_key, :name, :avatar, :last4, :media
   attr_encrypted :api_key, key: ENV['ATTR_ENCRYPTED_KEY']
 
   has_and_belongs_to_many :events
@@ -32,7 +32,12 @@ class User < ActiveRecord::Base
       user
   end
 
-  def to_s
-    "#{email} (#{admin? ? "Admin" : "User"})"
+  auto_html_for :media do
+    html_escape
+    youtube(:width => 630, :height => 430)
+    vimeo(:width => 630, :height => 430)
+    soundcloud(:width => 630, :height => 200)
+    link :target => "_blank", :rel => "nofollow"
+    simple_format
   end
 end
