@@ -21,6 +21,13 @@ class EventsController < ApplicationController
     render text: ""
   end
 
+  def request_support
+    event = Event.find(params[:id])
+    event.users << current_user
+    event.save!
+    redirect_to :back, notice: "The Promoter has been notified"
+  end
+
 private
 
   def find_event

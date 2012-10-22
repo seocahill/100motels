@@ -5,6 +5,10 @@
 	<div>
 		<% if user_signed_in? && current_user == @promoter %>
 			<%= link_to "Edit Your Event", "/editor" + request.path, id: "edit_link", data: {save_url: mercury_update_event_path(@event) }, class: "btn" %>
+		<% elsif @event.users.include?(current_user) %>
+			<button class="btn btn-success">Support Requested <i class="icon-check icon-white"></i></button>
+		<% elsif user_signed_in? %>
+			<%= link_to "Ask to Support", request_support_event_path(event: @event), class: "btn btn-large", method: :post %>
 		<% end %>
 	</div>
 	<section id="event-info" class="section-box">

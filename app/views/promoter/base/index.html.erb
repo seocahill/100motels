@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row-fluid row">
     <div class="span3">
-      <div class="well sidebar-nav-fixed">
+      <div class="well sidebar-nav-fixed" id="base-sidebar">
         <ul class="nav nav-list">
           <li class="nav-header">Today's Sales <span class="badge badge-info pull-right">8</span></li>
           <li><a href="">Crete Boom, 2 tickets</a> </li>
@@ -21,7 +21,7 @@
           <li><a href="">From Artist re:show</a> </li>
           <li class="divider"></li>
           <li>
-            <a href="" class="btn btn-large">All Messages >></a>
+            <a href="" class="btn btn-large">All Requests >></a>
           </li>
         </ul>
       </div><!--/.well -->
@@ -30,7 +30,7 @@
     <div class="span9 span-fixed-sidebar">
       <div class="page-header">
         <h2>Hi <%= current_user.name %>
-        <small>This is your promoter admistrative area</small></h2>
+        <small>This is your promoter administrative area</small></h2>
 
       </div>
       <div class="row-fluid">
@@ -62,7 +62,7 @@
         </div><!--/span-->
         <div class="span5">
           <h4>Your Account</h4>
-          <p>This is you normal user account where you can update or change basic details like your password, primary email etc. If you are also a customer of other 100 Motels promoters you can add or update a credit card here. </p>
+          <p>This is your normal user account where you can update or change basic details like your password, primary email etc. If you are also a customer of other 100 Motels promoters you can add or update a credit card here. </p>
           <p><%= link_to "View >>", user_path(current_user), class: "btn btn-primary" %></p>
         </div><!--/span-->
       </div>
