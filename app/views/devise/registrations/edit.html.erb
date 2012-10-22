@@ -9,9 +9,6 @@
     <%= f.label :avatar, "Upload or Select your Avatar" %>
     <%= f.filepicker_field :avatar, button_class: "btn btn-primary btn-medium"  %>
     <%= f.input :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false %>
-    <%= f.simple_fields_for :location do |location| %>
-        <%= location.input :address, required: false %>
-    <% end %>
     <% if f.object.encrypted_password.present? %>
       <%= f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true %>
     <% end %>

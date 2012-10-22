@@ -10,10 +10,8 @@
 					<img src="//placehold.it/200" class="img-polaroid">
 				<% end %>
 				<h4>
-					<%= @user.location.try(:address) %>
-					<%= @user.name %>
 				</h4>
-				<p><%= link_to "Edit", edit_user_registration_path(@user), class: "btn btn-primary" %></p>
+				<p><%= link_to "Edit Account Settings", edit_user_registration_path(@user), class: "btn btn-block" %></p>
 			</div>
 
 			<div class="span9">
@@ -21,26 +19,69 @@
           <ul class="nav nav-tabs">
           	<li class="active"><a href="#purchases" data-toggle="tab">Purchases</a></li>
             <li class=""><a href="#info" data-toggle="tab">Information</a></li>
+            <li class=""><a href="#support-requests" data-toggle="tab">Support Requests</a></li>
 
           </ul>
         </div>
         <div class="tab-content">
           <div class="tab-pane tour-content" id="info">
-          	<dl>
-          		<dt>Email</dt>
-          		<dd><%= @user.email %></dd>
-          		<dt>Credit Card</dt>
-          		<dd>
-          			<% if @user.customer_id %>
-						      <script src="https://button.stripe.com/v1/button.js" class="stripe-button" data-panel-label="Save" data-label="Add Card" data-key="<%= ENV['STRIPE_PUBLIC_KEY'] %>" >
-						      </script>
-          			<% else %>
-          				none provided
-          			<% end %>
-          		</dd>
-          	</dl>
+            <div class="row">
+              <div class="span3">
+              	<dl>
+              		<dt>Email</dt>
+              		<dd><%= @user.email %></dd>
+              		<dt>Username</dt>
+              		<dd><%= @user.name %></dd>
+              	</dl>
+              </div>
+              <div class="span3">
+                <dl>
+                  <dt>Current Card</dt>
+                  <dd>
+                    <% if @user.customer_id %>
+                      last4 attrib
+                    <% else %>
+                      none provided
+                    <% end %>
+                  </dd>
+                  <dt>Change or Add card</dt>
+                  <dd>
+                    <script src="https://button.stripe.com/v1/button.js" class="stripe-button" data-panel-label="Save" data-label="Add Card" data-key="<%= ENV['STRIPE_PUBLIC_KEY'] %>" >
+                    </script>
+                  </dd>
+                </dl>
+              </div>
+              <div class="span3">
+                <dl>
+                  <dt>Artist Media</dt>
+                  <dd>Preview</dd>
+                </dl>
+              </div>
+            </div>
           </div>
-					<div class="tab-pane active tour-content" id="purchases">
+					<div class="tab-pane tour-content" id="support-requests">
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Event</th>
+                    <th>Date</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <% for event in current_user.events.uniq do  %>
+                    <tr>
+                      <td><%= link_to "#{event.artist}", event_path(event) %></td>
+                      <td><%= time_tag event.date %></td>
+                      <td>
+                        <%= link_to raw('Cancel <i class="icon-remove"></i>'), class: "btn", method: :delete, confirm: "Are you sure you want to cancel your order?" %>
+                      </td>
+                    </tr>
+                    <% end %>
+                </tbody>
+            </table>
+          </div>
+        <div class="tab-pane active tour-content" id="purchases">
 						<table class="table table-striped">
 	              <thead>
 	                <tr>
