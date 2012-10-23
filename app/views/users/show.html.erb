@@ -39,7 +39,7 @@
                   <dt>Current Card</dt>
                   <dd>
                     <% if @user.customer_id %>
-                      last4 attrib
+                      ####-####-####-<%= @user.last4 %>
                     <% else %>
                       none provided
                     <% end %>
@@ -54,7 +54,15 @@
               <div class="span3">
                 <dl>
                   <dt>Artist Media</dt>
-                  <dd>Preview</dd>
+                  <% if @user.media %>
+                  <dd> <%= @user.media %> </dd>
+                  <dt class="user-account-spacer"></dt>
+                  <dd>
+                    <%= link_to "Preview Media", media_preview_user_path, class: "btn", target: "_blank" %>
+                  <% else %>
+                    <%= link_to "Add Media", edit_user_registration_path(@user), class: "btn" %>
+                  <% end %>
+                  </dd>
                 </dl>
               </div>
             </div>
