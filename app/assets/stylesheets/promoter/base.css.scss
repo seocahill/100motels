@@ -2,3 +2,8 @@
 #base-sidebar  {
   margin-top: 80px;
 }
+
+.modal.large{
+    width: 700px;
+    margin-left: -400px; /* - width/2 */
+}

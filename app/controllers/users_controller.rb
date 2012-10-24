@@ -10,10 +10,6 @@ class UsersController < ApplicationController
     @orders = Order.where(:email => current_user.email).page(params[:page]).per_page(5)
   end
 
-  def media_preview
-    render text: current_user.media_html
-  end
-
   private
 
     def find_user

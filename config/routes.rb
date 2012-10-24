@@ -10,10 +10,7 @@ OneHundredMotels::Application.routes.draw do
 
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
 
-  resources :users, only: [:index, :show] do
-    member { get :media_preview }
-  end
-
+  resources :users, only: [:index, :show]
   root :to => 'pages#home'
 
   match '/info' => 'pages#info'

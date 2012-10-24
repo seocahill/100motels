@@ -56,9 +56,9 @@
                   <dt>Artist Media</dt>
                   <% if @user.media %>
                   <dd> <%= @user.media %> </dd>
-                  <dt>Preview (opens in new tab)</dt>
+                  <dt>Preview (opens in new window)</dt>
                   <dd>
-                    <%= link_to "Preview Media", media_preview_user_path, class: "btn", target: "_blank" %>
+                    <a href="#preview-modal" data-toggle="modal" class="btn">Preview Media</a>
                   </dd>
                   <% else %>
                   <dd><p>You can add a Vimeo, Youtube or Soundcloud playlist here.</p></dd>
@@ -126,4 +126,19 @@
 			</div>
 		</div>
 	</section>
+
+  <div class="modal large hide fade" id="preview-modal">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h3></h3>
+    </div>
+    <div class="modal-body">
+      <div id="media-frame"></div>
+        <%= current_user.media_html %>
+    </div>
+    <div class="modal-footer">
+      <a href="#" class="btn" data-dismiss="modal">Close</a>
+    </div>
+  </div>
+
 </div>
