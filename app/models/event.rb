@@ -7,7 +7,8 @@ class Event < ActiveRecord::Base
   has_one  :location, dependent: :destroy
   accepts_nested_attributes_for :location
   has_many :orders
-  has_and_belongs_to_many :users
+  has_many :requests
+  has_many :users, through: :requests
 
   auto_html_for :video do
     html_escape

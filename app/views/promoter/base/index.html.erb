@@ -15,7 +15,7 @@
           <li><a href="">From Artist re:show</a> </li>
           <li><a href="">From Artist re:show</a> </li>
           <li class="divider"></li>
-          <li class="nav-header">Support Requests <span class="badge badge-info pull-right"><%= @support_requests.count %></span></li>
+          <li class="nav-header">Support Requests <span class="badge badge-info pull-right"><%= @events.count %></span></li>
           <% @events.each do |e| %>
           <li><%= e.users.uniq.count %> requests for <%= e.artist %></li>
           <% end %>

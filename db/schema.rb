@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121022232158) do
+ActiveRecord::Schema.define(:version => 20121024013539) do
 
   create_table "carts", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -37,11 +37,6 @@ ActiveRecord::Schema.define(:version => 20121022232158) do
     t.string   "music_html"
     t.string   "image"
     t.string   "image_html"
-  end
-
-  create_table "events_users", :id => false, :force => true do |t|
-    t.integer "event_id"
-    t.integer "user_id"
   end
 
   create_table "line_items", :force => true do |t|
@@ -128,6 +123,17 @@ ActiveRecord::Schema.define(:version => 20121022232158) do
 
   add_index "orders", ["event_id"], :name => "index_orders_on_event_id"
   add_index "orders", ["user_id"], :name => "index_orders_on_user_id"
+
+  create_table "requests", :force => true do |t|
+    t.integer  "event_id"
+    t.integer  "user_id"
+    t.integer  "state",      :limit => 8, :default => 0
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+  end
+
+  add_index "requests", ["event_id"], :name => "index_requests_on_event_id"
+  add_index "requests", ["user_id"], :name => "index_requests_on_user_id"
 
   create_table "roles", :force => true do |t|
     t.string   "name"
