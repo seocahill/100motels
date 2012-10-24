@@ -1,10 +1,8 @@
 OneHundredMotels::Application.routes.draw do
 
-  Mercury::Engine.routes
+  mount Mercury::Engine => '/'
 
-  mount Doorkeeper::Engine => '/oauth'
-
-  match '/hook' => 'hooks#receiver'
+  use_doorkeeper
 
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
 
