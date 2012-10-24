@@ -102,7 +102,7 @@
 		<div class="label-box">About the Artists</div>
 		<div class="row">
 			<div class="span4">
-				<div id="event-about" contenteditable="true" data-mercury="full">
+				<div id="event-about" class="mercury-region" data-type="editable">
 					<% if @event.about? %>
 						<%= raw @event.about  %>
 					<% else %>
