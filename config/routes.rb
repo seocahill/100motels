@@ -22,6 +22,7 @@ OneHundredMotels::Application.routes.draw do
     root :to => 'base#index'
     resources :events
     resources :profiles
+    match '/requests' => 'base#requests'
   end
 
   namespace :api, defaults: {format: 'json'} do

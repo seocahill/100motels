@@ -8,4 +8,3 @@ $ ->
       when  label.html() is "pending" then label.addClass('label-warning')
       when  label.html() is "paid" then label.addClass('label-success')
 
-$ ->

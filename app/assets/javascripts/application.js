@@ -18,6 +18,7 @@
 //= require pages
 //= require events
 //= require promoter/events
+//= require promoter/base
 //= require jquery.scrollTo
 
 
