@@ -8,6 +8,10 @@ class Order < ActiveRecord::Base
 
   attr_accessor :last_four
 
+  def self.recent_sales(current_user)
+    events = Event.where(promoter_id: current_user.id)
+    where(events.include?(:event_id)).order('created_at DESC').limit(5)
+  end
 
   def save_customer(token, user)
     if valid?

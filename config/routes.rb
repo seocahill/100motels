@@ -1,5 +1,7 @@
 OneHundredMotels::Application.routes.draw do
 
+  Mercury::Engine.routes
+
   get "hooks/receiver"
 
   mount Mercury::Engine => '/'
