@@ -1,4 +1,3 @@
-require 'mail_view'
 require 'google-qr'
 
 class Notifier < ActionMailer::Base
