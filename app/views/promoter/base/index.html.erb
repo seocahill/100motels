@@ -41,7 +41,7 @@
           <% if current_user.profile %>
             <p><%= link_to "View >>", promoter_profile_path(current_user.profile), class: "btn btn-primary" %></p>
           <% else %>
-            <p><%= link_to "Create your Profile", new_promoter_profile_path(current_user), class: "btn btn-success" %></p>
+            <p><%= link_to "Create your Profile", promoter_profiles_path, method: :post, class: "btn btn-success" %></p>
           <% end %>
         </div><!--/span-->
         <div class="span6">
@@ -56,10 +56,10 @@
         <div class="page-header"></div>
         <div class="span6">
           <h4>Payments</h4>
-          <p>All our payments processing is handled by Stripe. In order to receive sales monies into your bank account, you need to connect a Stripe account to your 100 Motels account. Click on the button below, fill out the Stripe application form or login to your existing account and you're good to go.</p>
-          <p><% if current_user.api_key %>
+          <p>In order to receive sales monies into your bank account, you need to connect a Stripe account to your 100 Motels account. After you create a Public Profile you'll see a 'connect with Stripe' button which will take you to Stripe.com. Fill out the application form or log into your Stripe account and you're done.</p>
+          <p><% if current_user.profile.api_key %>
               <button class="btn btn-success">Connected <i class="icon-ok-circle icon-white"></i></button>
-            <% else %>
+            <% elsif current_user.profile %>
               <%= link_to image_tag('blue.png'), user_omniauth_authorize_path(:stripe_connect), class: "" %>
             <% end %></p>
         </div><!--/span-->

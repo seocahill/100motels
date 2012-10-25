@@ -2,8 +2,7 @@ class Promoter::ProfilesController < Promoter::BaseController
 
 
   def index
-    # @users = User.with_role(:promoter).page(params[:page]).per_page(3)
-    @profiles = Profile.page(params[:page]).per_page(3)
+    @profiles = Profile.where('state > 0').page(params[:page]).per_page(3)
   end
 
   def new
@@ -11,9 +10,9 @@ class Promoter::ProfilesController < Promoter::BaseController
   end
 
   def create
-    @profile = current_user.build_profile(params[:profile])
+    @profile = current_user.create_profile
     if @profile.save
-      flash[:notice] = "Rock and Roll"
+      flash[:notice] = "Profile Created"
       redirect_to [:promoter, @profile]
     else
       flash[:alert] = "profile has not been created"
@@ -32,10 +31,10 @@ class Promoter::ProfilesController < Promoter::BaseController
   end
 
   def update
-    @profile = profile.find(params[:id])
+    @profile = Profile.find(params[:id])
     if @profile.update_attributes(params[:profile])
       flash[:notice] = "profile has been updated"
-      redirect_to @profile
+      redirect_to [:promoter, @profile]
     else
       flash[:alert] = "profile has not been updated"
       render :action => "edit"

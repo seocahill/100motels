@@ -21,15 +21,10 @@ class User < ActiveRecord::Base
 
 
   def self.from_omniauth(auth, user)
-    # where(auth.slice(:provider, :uid, :public_key, :api_key)).first_or_create do |user|
       user.provider = auth.provider
       user.uid = auth.uid
-      # user.public_key = auth.info["stripe_publishable_key"]
-      user.api_key = auth.credentials["token"]
-      # Stripe.api_key = auth.credentials["token"]
-      # account = Stripe::Account.retrieve()
-      # user.email = account.email
-    # end
+      user.profile.api_key = auth.credentials["token"]
+      user.profile.save
       user.save!
       user
   end

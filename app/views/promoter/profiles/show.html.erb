@@ -1,7 +1,10 @@
 <div class="container">
   <div>
     <% if user_signed_in? && current_user.profile == @profile %>
-      <%= link_to "Show Editor", "/editor" + request.path, id: "edit_link", class: "btn btn-large" %>
+      <%#= link_to "Show Editor", "/editor" + request.path, id: "edit_link", class: "btn btn-large" %>
+      <%= link_to "Edit Profile", edit_promoter_profile_path(@profile), class: 'btn' %>
+    <% else %>
+      <%= link_to "Tour Request", class: 'btn' %>
     <% end %>
   </div>
   <section class="section-box">
@@ -97,7 +100,7 @@
   <section id="tour-info" class="section-box">
     <div class="row">
       <div class="label-box">Tour Info</div>
-      <div class="span6">
+      <div class="span5">
         <div class="tabbable tabs-below">
           <ul class="nav nav-tabs">
             <li class="active"><a href="#about-me" data-toggle="tab">About Me</a></li>
@@ -201,15 +204,13 @@
           </div>
         </div>
       </div>
-      <div class="span5" id="promoter-media">
-        <div id="placeholder"></div>
-        <div><img src="//quickimage.it/460x340&text=Media"></div>
-
-        <%# if @user.avatar? %>
-          <%#= filepicker_image_tag @user.avatar, w: 200, h: 200, fit: 'crop' %>
-        <%# else %>
-          <!-- <img src="//quickimage.it/200&text=Vimeo" class=""> -->
-        <%# end %>
+      <div class="span6" id="promoter-media">
+        <% if @profile.promoter_media? %>
+          <%= @profile.promoter_media_html %>
+        <% else %>
+          <div id="placeholder"></div>
+          <div><img src="//quickimage.it/460x340&text=Media"></div>
+        <% end %>
       </div>
     </div>
   </section>
