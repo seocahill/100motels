@@ -11,10 +11,11 @@ class Notifier < ActionMailer::Base
     mail to: order.email, subject: "Your Order from 100 Motels"
   end
 
+require 'mail_view'
   class Preview < MailView
     def order_processed
       order = Order.last
-      Notifier.order_processed(order)
+      Notifier::Preview::Notifier.order_processed(order)
     end
   end
 

@@ -2,7 +2,7 @@ class Promoter::ProfilesController < Promoter::BaseController
 
 
   def index
-    @profiles = Profile.where('state > 0').page(params[:page]).per_page(3)
+    @profiles = Profile.where("state > ? and visible = ?", 0, true).page(params[:page]).per_page(3)
   end
 
   def new
