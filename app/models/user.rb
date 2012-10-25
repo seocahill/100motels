@@ -37,4 +37,21 @@ class User < ActiveRecord::Base
     link :target => "_blank", :rel => "nofollow"
     simple_format
   end
+
+  def save_card(user, card)
+    if valid?
+      Stripe.api_key = ENV['STRIPE_API_KEY']
+      customer = Stripe::Customer.create(
+          description: user.name,
+          email: user.email,
+          card: card
+      )
+      user.customer_id = customer.id
+      user.last4 = customer.active_card["last4"]
+      user.save!
+    end
+  rescue Stripe::InvalidRequestError => e
+    flash[:error] = e.message
+    redirect_to user_path(user)
+  end
 end

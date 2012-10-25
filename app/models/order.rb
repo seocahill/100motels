@@ -6,7 +6,6 @@ class Order < ActiveRecord::Base
   validates_format_of :email, :with => /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
   validates :quantity, numericality: :true
 
-  attr_accessor :last_four
 
   def self.recent_sales(current_user)
     events = Event.where(promoter_id: current_user.id)

@@ -37,10 +37,10 @@
 
     <%= form_tag  charge_multiple_orders_path, method: :post  do %>
       <div class="option-buttons">
-        <% if current_user.api_key %>
+        <% if current_user.profile && current_user.profile.api_key %>
           <%= submit_tag "Charge Selected", class: "btn btn-success", id: "charge" %>
           <%= submit_tag "Refund Selected", name: 'refund', class: "btn btn-danger", id: "refund" %>
-        <% else %>
+        <% elsif current_user.profile %>
           <%= link_to image_tag('blue.png'), user_omniauth_authorize_path(:stripe_connect), class: "" %>
         <% end %>
         <%= link_to "Generate pdf", promoter_event_path(@event, format: "pdf"), class: "btn" %>

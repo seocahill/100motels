@@ -46,8 +46,10 @@
                   </dd>
                   <dt>Change or Add card</dt>
                   <dd>
-                    <script src="https://button.stripe.com/v1/button.js" class="stripe-button" data-panel-label="Save" data-label="Add Card" data-key="<%= ENV['STRIPE_PUBLIC_KEY'] %>" >
-                    </script>
+                    <form action="<%= request.path + "/change_card" %>" method="post">
+                      <script src="https://button.stripe.com/v1/button.js" class="stripe-button" data-panel-label="Save" data-label="Add Card" data-key="<%= ENV['STRIPE_PUBLIC_KEY'] %>" >
+                      </script>
+                    </form>
                   </dd>
                 </dl>
               </div>
@@ -119,7 +121,9 @@
 		                </tr>
 		                <% end %>
 	              </tbody>
-	              <%= will_paginate @orders %>
+                <tfoot>
+                  <%= will_paginate @orders %>
+                </tfoot>
 	          </table>
 	        </div>
 				</div>
