@@ -35,22 +35,22 @@
 
     <section id="user-index-grid" class="span9">
           <ul class="thumbnails">
-            <% @users.each do |user| %>
+            <% @profiles.each do |profile| %>
             <li class="span3">
               <a class="thumbnail" href="#">
-                <% if user.avatar? %>
-                  <%= filepicker_image_tag user.avatar, w: 300, h: 240, fit: 'crop' %>
+                <% if profile.image? %>
+                  <%= filepicker_image_tag profile.avatar, w: 300, h: 240, fit: 'crop' %>
                 <% else %>
                   <img src="http://placehold.it/300x240" alt="">
                 <% end %>
               </a>
-              <h3><%= user.name %></h3>
-              <p>Featuring a hero unit for a primary message and three supporting elements.</p>
-              <p><%= button_to "View Profile", promoter_profile_path(user), method: :get, class: "btn button-primary" %></p>
+              <h3><%= profile.try(:promoter_name) %></h3>
+              <p><%= profile.try(:quick_profile) %>.</p>
+              <p><%= button_to "View Profile", promoter_profile_path(profile), method: :get, class: "btn button-primary" %></p>
             </li>
             <% end %>
           </ul>
-          <%= will_paginate @users %>
+          <%= will_paginate @profiles %>
     </section>
   </div>
 </div>

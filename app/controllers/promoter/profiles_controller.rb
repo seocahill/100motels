@@ -2,7 +2,8 @@ class Promoter::ProfilesController < Promoter::BaseController
 
 
   def index
-    @users = User.with_role(:promoter).page(params[:page]).per_page(3)
+    # @users = User.with_role(:promoter).page(params[:page]).per_page(3)
+    @profiles = Profile.page(params[:page]).per_page(3)
   end
 
   def new

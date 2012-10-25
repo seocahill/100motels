@@ -39,7 +39,7 @@
 
           <p>Your public profile is where people can view information and statistics about all the shows you have organized. You can edit it in place by clicking on the edit link at the top of your profile. You can also hide or delete your profile at any time, by default your profile is hidden. </p>
           <% if current_user.profile %>
-            <p><%= link_to "View >>", promoter_profile_path(current_user), class: "btn btn-primary" %></p>
+            <p><%= link_to "View >>", promoter_profile_path(current_user.profile), class: "btn btn-primary" %></p>
           <% else %>
             <p><%= link_to "Create your Profile", new_promoter_profile_path(current_user), class: "btn btn-success" %></p>
           <% end %>

@@ -1,6 +1,6 @@
 <div class="container">
   <div>
-    <% if user_signed_in? %>
+    <% if user_signed_in? && current_user.profile == @profile %>
       <%= link_to "Show Editor", "/editor" + request.path, id: "edit_link", class: "btn btn-large" %>
     <% end %>
   </div>
