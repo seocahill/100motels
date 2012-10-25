@@ -3,10 +3,13 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 # Sum Order
-
 $ ->
-  $('#order_quantity').click(orderTotal)
-  orderTotal()
+  # price = $('#ticket-price').data('url')
+  # $('.stripe-button').attr('data-amount', price)
+  $('#order_quantity').click ->
+    orderTotal()
+  $('.stripe-button').click(orderTotal())
+
 
 orderTotal = ->
   quantity = $('#order_quantity').val()
@@ -18,11 +21,3 @@ orderTotal = ->
 $ ->
   $('#check_all').click () ->
     $('input[type="checkbox"]').click()
-
-# $ ->
-#   $("#promoter-customers td span").each ->
-#     label = $(@)
-#     switch
-#       when  label.html() is "refunded" then label.addClass('label-important')
-#       when  label.html() is "pending" then label.addClass('label-warning')
-#       when  label.html() is "paid" then label.addClass('label-success')

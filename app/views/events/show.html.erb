@@ -25,7 +25,7 @@
 					<div class="row">
 						<div class="span3 offset1" align="center">
 							<h2>
-								<small><%= @promoter.name %> presents...</small> <br>
+								<small><%= @promoter.promoter_name %> presents...</small> <br>
 								<%= @event.artist %>
 							</h2>
 						</div>
@@ -71,21 +71,18 @@
 				<div class="label-box">Your Promoter</div>
 					<div class="row">
 						<div class="span2">
-								<% if @promoter.avatar? %>
-									<%= filepicker_image_tag @promoter.avatar, w: 100, h: 100, fit: 'crop' %>
+								<% if @promoter.image? %>
+									<%= filepicker_image_tag @promoter.image, w: 100, h: 100, fit: 'crop' %>
 								<% else %>
 									<img src="//quickimage.it/100">
 								<% end %>
 						</div>
 						<div class="span9">
 							<p class="lead">
-								Lorem ipsum <%= @promoter.name %>...
+								About <%= @promoter.promoter_name %>...
 							</p>
 							<p>
-								Consectetur adipisicing elit, sed do eiusmod
-								tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-								quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-							consequat.
+								<%= @promoter.quick_profile %>
 							</p>
 								<%= link_to "Full Profile", promoter_profile_path(@promoter), class: "btn btn-medium" %>
 						</div>

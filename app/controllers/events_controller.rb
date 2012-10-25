@@ -8,10 +8,8 @@ class EventsController < ApplicationController
   end
 
   def show
-    @cart = current_cart
     @order = Order.new
-    @line_item = LineItem.new
-    @promoter = User.find_by_id(@event.promoter_id)
+    @promoter = User.find_by_id(@event.promoter_id).profile
   end
 
   def mercury_update
