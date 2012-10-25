@@ -1,3 +1,4 @@
 class Promoter < ActiveRecord::Base
-  attr_accessible :promoter_name, :references, :state
+  belongs_to :user
+  attr_accessible :promoter_name, :state
 end
