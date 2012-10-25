@@ -39,9 +39,6 @@ before_filter :authorize_admin!
 
   def edit
     @event = Event.find(params[:id])
-    unless @event.location
-      @location = @event.build_location
-    end
   end
 
   def mercury_update

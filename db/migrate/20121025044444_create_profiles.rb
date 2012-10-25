@@ -9,13 +9,13 @@ class CreateProfiles < ActiveRecord::Migration
       t.string :image
       t.string :available
       t.string :fee
-      t.string :quick_profile
-      t.string :about
-      t.string :equipment
-      t.string :venues
-      t.string :travel
-      t.string :accomodation
-      t.string :support
+      t.text :quick_profile
+      t.text :about
+      t.text :equipment
+      t.text :venues
+      t.text :travel
+      t.text :accomodation
+      t.text :support
 
       t.timestamps
     end

@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   has_many :requests
   has_many :events, through: :requests
   has_one :location, dependent: :destroy
+  has_one :profile, dependent: :destroy
 
 
   def self.from_omniauth(auth, user)

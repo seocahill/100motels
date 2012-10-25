@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121024013539) do
+ActiveRecord::Schema.define(:version => 20121025044444) do
 
   create_table "carts", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -123,6 +123,28 @@ ActiveRecord::Schema.define(:version => 20121024013539) do
 
   add_index "orders", ["event_id"], :name => "index_orders_on_event_id"
   add_index "orders", ["user_id"], :name => "index_orders_on_user_id"
+
+  create_table "profiles", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "state",             :default => 0
+    t.boolean  "visible",           :default => false
+    t.string   "encrypted_api_key"
+    t.string   "promoter_name"
+    t.string   "image"
+    t.string   "available"
+    t.string   "fee"
+    t.text     "quick_profile"
+    t.text     "about"
+    t.text     "equipment"
+    t.text     "venues"
+    t.text     "travel"
+    t.text     "accomodation"
+    t.text     "support"
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
+  end
+
+  add_index "profiles", ["user_id"], :name => "index_profiles_on_user_id"
 
   create_table "requests", :force => true do |t|
     t.integer  "event_id"
