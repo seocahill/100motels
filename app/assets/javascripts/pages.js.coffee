@@ -17,3 +17,8 @@ $ ->
   $("#q_reset").click ->
     $(".search-query").val('')
 
+# Event Carousel
+$ ->
+  $('#events-carousel .item:first').addClass('active')
+  $('#events-carousel').carousel
+    interval: false

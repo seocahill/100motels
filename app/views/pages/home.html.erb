@@ -28,33 +28,61 @@
 					</h3>
 				</header>
 				<div id="events-carousel" class="carousel slide" data-interval="false">
-					<div id="events" class="carousel-inner">
-						<div class="item active">
+					<div class="carousel-inner">
+						<% @events.each_slice(3) do |event| %>
+						<div class="item">
 								<ul class="thumbnails">
-									<% @events.each do |event| %>
 									<li class="span4">
 										<div class="thumbnail">
-											<% if event.image? %>
-												<%= filepicker_image_tag event.image, w: 360, h: 240, fit: 'crop' %>
+											<% if event[0].image? %>
+												<%= filepicker_image_tag event[0].image, w: 360, h: 240, fit: 'crop' %>
 											<% else %>
 												<img src="http://quickimage.it/360x240&text=ArtistPic" alt="">
 											<% end %>
 											<div class="caption">
 												<h4 class="title">
-													<%= event.artist %>
+													<%= event[0].artist %>
 												</h4>
-												<p><%= event.venue %> on <%= time_tag event.date %></p>
-												<%= button_to "Info & Tickets", event_path(event), method: :get, class: "btn btn-success", id: event.artist %>
+												<p><%= event[0].venue %> on <%= time_tag event[0].date %></p>
+												<%= button_to "Info & Tickets", event_path(event[0]), method: :get, class: "btn btn-success", id: event[0].artist %>
 											</div>
 										</div>
 									</li>
-									<% end %>
+									<li class="span4">
+										<div class="thumbnail">
+											<% if event[1].image? %>
+												<%= filepicker_image_tag event[1].image, w: 360, h: 240, fit: 'crop' %>
+											<% else %>
+												<img src="http://quickimage.it/360x240&text=ArtistPic" alt="">
+											<% end %>
+											<div class="caption">
+												<h4 class="title">
+													<%= event[1].artist %>
+												</h4>
+												<p><%= event[1].venue %> on <%= time_tag event[1].date %></p>
+												<%= button_to "Info & Tickets", event_path(event[1]), method: :get, class: "btn btn-success", id: event[1].artist %>
+											</div>
+										</div>
+									</li>
+									<li class="span4">
+										<div class="thumbnail">
+											<% if event[2].image? %>
+												<%= filepicker_image_tag event[2].image, w: 360, h: 240, fit: 'crop' %>
+											<% else %>
+												<img src="http://quickimage.it/360x240&text=ArtistPic" alt="">
+											<% end %>
+											<div class="caption">
+												<h4 class="title">
+													<%= event[2].artist %>
+												</h4>
+												<p><%= event[2].venue %> on <%= time_tag event[2].date %></p>
+												<%= button_to "Info & Tickets", event_path(event[2]), method: :get, class: "btn btn-success", id: event[2].artist %>
+											</div>
+										</div>
+									</li>
 								</ul>
-							<div id ="#latest-shows" class="carousel-caption">
-								<!-- <h4>Events by location</h4> -->
-								<p>This is a listing of geolocated events, on a basic level 100 Motels is a boxoffice app and operates exactly as you would expect, click through to a specific event and check it out.</p>
-							</div>
 						</div>
+						<% end %>
 					</div>
 					<a class="left carousel-control" href="#events-carousel" data-slide="prev">‹</a>
 					<a class="right carousel-control" href="#events-carousel" data-slide="next">›</a>
