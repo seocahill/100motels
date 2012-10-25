@@ -9,6 +9,8 @@ class CreateProfiles < ActiveRecord::Migration
       t.string :image
       t.string :available
       t.string :fee
+      t.string :promoter_media
+      t.string :promoter_media_html
       t.text :quick_profile
       t.text :about
       t.text :equipment

@@ -8,7 +8,9 @@
     <div class="row">
       <div class="label-box">Promoter Info</div>
       <div id="promoter-pic" class="span2">
-        <% if @user.avatar? %>
+        <% if @profile.image? %>
+          <%= filepicker_image_tag @profile.image, w: 200, h: 200, fit: 'crop' %>
+        <% elsif @user.avatar? %>
           <%= filepicker_image_tag @user.avatar, w: 200, h: 200, fit: 'crop' %>
         <% else %>
           <img src="//placehold.it/200" class="img-polaroid">
@@ -16,7 +18,13 @@
       </div>
       <div class="span3 offset2" align="center">
         <div class="page-header">
-          <h2>Promoter Name</h2>
+          <h2>
+            <% if @profile.promoter_name? %>
+              <%= @profile.promoter_name %>
+            <% else %>
+              <%= @user.name  %>
+            <% end %>
+          </h2>
         </div>
         <h4><p class="muted">Vancouver, Canada.</p></h4>
       </div>
@@ -24,10 +32,9 @@
         <fieldset>
           <dl align="center">
             <dt>Status</dt>
-            <dd><span class="badge badge" style="font-size:14px;">unverified</span></dd>
+            <dd><span class="badge badge" style="font-size:14px;"><%= @profile.state %></span></dd>
             <dt>Visability</dt>
-            <dd class="muted">Hidden</dd>
-            <dd><%#= link_to "Contact Me", "#{}", class: "btn btn-block" %></dd>
+            <dd class="muted"><%= @profile.visible %></dd>
           </dl>
         </fieldset>
       </div>
@@ -39,33 +46,33 @@
       <div class="row">
         <div class="span4">
           <fieldset>
-            <legend align="center">Bookings</legend>
+            <legend align="center">General Info</legend>
             <dl class="dl-horizontal">
               <dt>Joined: </dt>
               <dd><%= time_ago_in_words(@user.confirmed_at) %> ago</dd>
               <dt>Availability: </dt>
-              <dd>Taking bookings</dd>
+              <dd><%= @profile.available %></dd>
               <dt>Fee: </dt>
-              <dd>Negotiable</dd>
+              <dd><%= @profile.fee %></dd>
             </dl>
           </fieldset>
         </div>
         <div class="span4">
           <fieldset>
-            <legend align="center">Shows</legend>
+            <legend align="center">Event History</legend>
           <dl class="dl-horizontal">
             <dt>Total: </dt>
-            <dd><%= @events.count %></dd>
+            <dd><%= Event.where(promoter_id: @user.id).count %></dd>
             <dt>Successful: </dt>
             <dd>n/a</dd>
             <dt>Upcoming: </dt>
-            <dd><%= @events.count %></dd>
+            <dd><%= Event.where(promoter_id: @user.id).count %></dd>
           </dl>
           </fieldset>
         </div>
         <div class="span3">
           <fieldset>
-            <legend align="center">Averages</legend>
+            <legend align="center">Event Average</legend>
           <dl class="dl-horizontal">
             <dt>Funding: </dt>
             <dd><%= number_to_currency(1000) %></dd>
@@ -99,40 +106,59 @@
             <li><a href="#getting-here" data-toggle="tab">Getting here</a></li>
             <li><a href="#accom" data-toggle="tab">Accomodation</a></li>
             <li><a href="#history" data-toggle="tab">Current & Past Shows</a></li>
-            <li><a href="#support" data-toggle="tab">Support Artists</a></li>
-            <li><a href="#contact" data-toggle="tab">Contact Me</a></li>
+            <li><a href="#support" data-toggle="tab">Local Support</a></li>
           </ul>
         </div>
         <div class="tab-content">
           <div class="tab-pane active tour-content" id="about-me">
-            <p>This is where you can talk about your attitude and commitment to music and musicians. Why do you want to put on shows? What do you hope to get it out of it, what motivates you?</p>
+            <% if @profile.about? %>
+              <%= @profile.about %>
+            <% else %>
+              <p>This is where you can talk about your attitude and commitment to music and musicians. Why do you want to put on shows? What do you hope to get it out of it, what motivates you?</p>
 
-            <p>Have you any visible presence on the web that shows your commitment to music as an artform? If so what is it, does it bring people together to appreciate music? Perhaps you have a radio show or a music blog? Perhaps you are an artist yourself?</p>
+              <p>Have you any visible presence on the web that shows your commitment to music as an artform? If so what is it, does it bring people together to appreciate music? Perhaps you have a radio show or a music blog? Perhaps you are an artist yourself?</p>
 
-            <p>Bearing in mind what you say above you should tell artists if it isn't obvious already where they can go to watch, listen or read about you. You can read my blog for instance at <a href="//seocahill.com">seocahill.com</a>, listen to seocahill's playlists at Grooveshark or google my band, Crete Boom. </p>
+              <p>Bearing in mind what you say above you should tell artists if it isn't obvious already where they can go to watch, listen or read about you. You can read my blog for instance at <a href="//seocahill.com">seocahill.com</a>, listen to seocahill's playlists at Grooveshark or google my band, Crete Boom. </p>
 
-            <p> How you pick your bands is important too. Do you prefer to pick artists yourself in your own time, or are you open to persuasion? Should artists contact you for a show? Do you have certain prerequisites?
-            Ultimately this section if for everything and anything you think might interest an artist that doesn't fit into the other sections.
-            </p>
-            <p lead><%= @user.name %></p>
+              <p> How you pick your bands is important too. Do you prefer to pick artists yourself in your own time, or are you open to persuasion? Should artists contact you for a show? Do you have certain prerequisites?
+              Ultimately this section if for everything and anything you think might interest an artist that doesn't fit into the other sections.
+              </p>
+              <p lead><%= @user.name %></p>
+            <% end %>
           </div>
           <div class="tab-pane" id="equipment">
-            <p>What sort of bands do you cater for? Can you hand large ensembles with specific needs equipment wise? If so will this cost, do you borrow, how do you source music gear?</p>
-            <p>A lot of bands for smaller shows will be traveling with light, instruments only. They may also tailor the size of the touring band based on what the promoter can offer.</p>
+            <% if @profile.equipment? %>
+              <%= @profile.equipment %>
+            <% else %>
+              <p>What sort of bands do you cater for? Can you hand large ensembles with specific needs equipment wise? If so will this cost, do you borrow, how do you source music gear?</p>
+              <p>A lot of bands for smaller shows will be traveling with light, instruments only. They may also tailor the size of the touring band based on what the promoter can offer.</p>
+            <% end %>
           </div>
           <div class="tab-pane" id="venues">
+            <% if @profile.venues? %>
+              <%= @profile.venues %>
+            <% else %>
               <p>Tell us about the venue/ venues you use. Have you played them yourself? Do they book late shows? What are they, your house, a barn, a club? If links exist then link them and don't forget to puts pics and/or video in the media section opposite</p>
               <p>There's also the technical side of it, backlines, sound, engineers, whatever you think is relevant.</p>
               <p>If you're using a music club we expect them to pay up you based on ticket sales and likely bar takings. We also expect them to allow some kind of rider for the artist, whatever way they want to work it.</p>
+            <% end %>
           </div>
           <div class="tab-pane" id="getting-here">
+            <% if @profile.travel? %>
+              <%= @profile.travel %>
+            <% else %>
               <p>General advice about airports and ground transport is essential, especially when trying to work out a budget for the show.</p>
               <p>Which airlines to use, is there a cheap time to come to your city, general tips and hints about hauling gear or not? You should know all this from experience but the artist probably won't.</p>
               <p>Another important consideration for international artists is the visa / immigration situation.</p>
+            <% end %>
           </div>
           <div class="tab-pane" id="accom">
+            <% if @profile.accomodation? %>
+              <%= @profile.accomodation %>
+            <% else %>
               <p>We should aim slightly higher than couchsurf but as long as you offer some kind of definite accomodation or offer to organize it than good enough. Couches, hostels or hotels, free or priced into the show, the follow throught is what's important.</p>
               <p> Leaving bands roofless after a show or any other music industry type behaviour will not be tolerated!</p>
+            <% end %>
           </div>
           <div class="tab-pane" id="history">
             <p>Artists will like to check out your activity stream if for no other reason to see if the dates they are looking at are available</p>
@@ -158,6 +184,9 @@
             </table>
            </div>
           <div class="tab-pane" id="support">
+            <% if @profile.support? %>
+              <%= @profile.support %>
+            <% else %>
               <p>Usually support will be local which is good for providing gear and bumping up the attendance.</p>
               <p> So this would be a good place to talk about local bands and to link to our list the ones you use for support. Maybe the touring artist will have a preference?</p>
               <p>Also local artists browsing the promoters in their city might be looking for a support slot, this would be a good place to list any openings for particular shows you're running.</p>
@@ -168,24 +197,7 @@
                 <li><a href="">Local Support</a> </li>
                 <li><a href="">Local Support</a> </li>
               </ul>
-          </div>
-          <div class="tab-pane" id="contact">
-              <p>
-                This page has a form that will be forwarded to your email. <br>
-                Only a signed in user with a confirmed email address can access it.
-              </p>
-              <% if user_signed_in? %>
-                <div class="span5 well">
-                  <form accept-charset="UTF-8" action="" method="POST">
-                      <textarea class="span4" id="new_message" name="new_message"
-                      placeholder="Type in your message" rows="10"></textarea>
-                      <!-- <h6 class="pull-right">320 characters remaining</h6> -->
-                      <button class="btn btn-info" type="submit">Send Message</button>
-                  </form>
-                </div>
-              <% else %>
-                <%= link_to "Sign In", new_user_session_path, class: "btn btn-primary" %>
-              <% end %>
+            <% end %>
           </div>
         </div>
       </div>
