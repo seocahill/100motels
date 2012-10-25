@@ -56,8 +56,8 @@
         <div class="page-header"></div>
         <div class="span6">
           <h4>Payments</h4>
-          <p>In order to receive sales monies into your bank account, you need to connect a Stripe account to your 100 Motels account. After you create a Public Profile you'll see a 'connect with Stripe' button which will take you to Stripe.com. Fill out the application form or log into your Stripe account and you're done.</p>
-          <p><% if current_user.profile.api_key %>
+          <p>In order to receive sales monies into your bank account, you need to connect a Stripe account to your 100 Motels account. After you create a Public Profile you'll see a 'connect with Stripe' button that'll take you to Stripe.com. Fill out the application form or log into your Stripe account and you're done.</p>
+          <p><% if current_user.profile && current_user.profile.api_key %>
               <button class="btn btn-success">Connected <i class="icon-ok-circle icon-white"></i></button>
             <% elsif current_user.profile %>
               <%= link_to image_tag('blue.png'), user_omniauth_authorize_path(:stripe_connect), class: "" %>
