@@ -66,7 +66,7 @@ OneHundredMotels::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
   # Set the mailer to localhost
-  config.action_mailer.default_url_options = { :host => 'onehundredmotels.heroku.com' }
+  config.action_mailer.default_url_options = { :host => 'onehundredmotels.herokuapp.com' }
 
   # Sendgrid email
 

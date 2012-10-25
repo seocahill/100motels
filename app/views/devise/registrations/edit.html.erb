@@ -1,4 +1,5 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+
+<h2>Edit your Account</h2>
 
 <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
   <%= f.error_notification %>
@@ -6,13 +7,13 @@
   <div class="form-inputs">
     <%= f.input :name, :required => true, :autofocus => true %>
     <%= f.input :email, :required => true, :autofocus => true %>
-    <%= f.label :avatar, "Upload or Select your Avatar" %>
-    <%= f.filepicker_field :avatar, button_class: "btn btn-primary btn-medium"  %>
-    <%= f.input :media, :required => false, :autofocus => true %>
+    <%= f.input :media, :required => false, :autofocus => true, label: "Artist Media", hint: "a youtube, vimeo or soundcloud link to your work" %>
     <%= f.input :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false %>
-    <% if f.object.encrypted_password.present? %>
-      <%= f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true %>
+    <%= f.input :avatar, hint: "upload or select images from twitter, facebook and other services" do %>
+      <%= f.filepicker_field :avatar, button_class: "btn btn-primary btn-medium"  %>
     <% end %>
+    <hr>
+    <%= f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true %>
   </div>
 
   <div class="form-actions">
@@ -20,8 +21,6 @@
     <%= link_to "Back", :back, class: "btn" %>
   </div>
 <% end %>
-
-<h3>Cancel my account</h3>
 
 <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>.</p>
 
