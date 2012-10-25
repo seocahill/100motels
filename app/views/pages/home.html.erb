@@ -27,7 +27,7 @@
 						Shows near <%= @current_address %>
 					</h3>
 				</header>
-				<div id="events-carousel" class="" data-interval="false">
+				<div id="events-carousel" class="carousel slide" data-interval="false">
 					<div id="events" class="carousel-inner">
 						<div class="item active">
 								<ul class="thumbnails">
@@ -50,8 +50,14 @@
 									</li>
 									<% end %>
 								</ul>
+							<div id ="#latest-shows" class="carousel-caption">
+								<!-- <h4>Events by location</h4> -->
+								<p>This is a listing of geolocated events, on a basic level 100 Motels is a boxoffice app and operates exactly as you would expect, click through to a specific event and check it out.</p>
+							</div>
 						</div>
 					</div>
+					<a class="left carousel-control" href="#events-carousel" data-slide="prev">‹</a>
+					<a class="right carousel-control" href="#events-carousel" data-slide="next">›</a>
 				</div>
 			</section>
 
@@ -59,56 +65,36 @@
 				<header>
 					<h3 class="page-header"><i class="icon-globe"></i>Promoters near <%= @current_address %></h3>
 				</header>
-				<div id="promoters" class="">
-					<% if @profiles.length == 0 %>
-						<div class="row">
-								<div class="span7 non-hero-unit">
-									<h3>
-										Nothing here right now! <br>
-										<small>Browse our complete Promoter listing instead?</small>
-									</h3>
-								  <p></p>
-								  <p>
-										<%= link_to "All Promoters >>", promoter_profiles_path, class: "btn btn-primary btn-large" %>
-								  </p>
-								</div>
-								<div class="span5">
-								  <div id="myCarousel" class="carousel slide">
-									  <!-- Carousel items -->
-									  <div class="carousel-inner" align="center">
-									    <div class="active item"><img src="http://placehold.it/360x360" alt=""></div>
-									    <div class="item"><img src="http://placehold.it/360x360" alt=""></div>
-									    <div class="item"><img src="http://placehold.it/360x360" alt=""></div>
-									  </div>
-									  <!-- Carousel nav -->
-									  <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-									  <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-									</div>
-								</div>
-						</div>
-					<% else %>
+				<div id="promoters-carousel" class="carousel slide" data-interval="false">
+					<div id="promoters" class="carousel-inner">
 						<div class="item active">
-							<ul class="thumbnails">
-								<% @profiles.each do |profile| %>
-								<li class="span3">
-									<div class="thumbnail">
-										<% if profile.image? %>
-		                  <%= filepicker_image_tag profile.image, w: 360, h: 360, fit: 'crop' %>
-		                <% else %>
-		                  <img src="http://placehold.it/360x360" alt="">
-		                <% end %>
-										<div class="caption">
-											<h3 class="title"><%= profile.promoter_name %></h3>
-											<h4>Location</h4>
-											<%= button_to "Full Profile", promoter_profile_path(profile), method: :get, class: "btn btn-primary" %>
+								<ul class="thumbnails">
+									<% @profiles.each do |profile| %>
+									<li class="span3">
+										<div class="thumbnail">
+											<% if profile.image? %>
+			                  <%= filepicker_image_tag profile.image, w: 360, h: 360, fit: 'crop' %>
+			                <% else %>
+			                  <img src="http://placehold.it/360x360" alt="">
+			                <% end %>
+											<div class="caption">
+												<h3 class="title"><%= profile.promoter_name %></h3>
+												<h4>Location</h4>
+												<%= button_to "Full Profile", promoter_profile_path(profile), method: :get, class: "btn btn-primary" %>
+											</div>
 										</div>
-									</div>
-								</li>
-								<% end %>
-							</ul>
-					<% end %>
+									</li>
+									<% end %>
+								</ul>
+							<div class="carousel-caption">
+								<!-- <h4>A vetted list of showmakers</h4> -->
+								<p> The promoters listing will be of interest to artists looking to play in a specific locality. Click on an individual profile for a detailed breakdown on what each promoter has to offer.</p>
+							</div>
+						</div>
+					</div>
+					<a class="left carousel-control" href="#promoters-carousel" data-slide="prev">‹</a>
+					<a class="right carousel-control" href="#promoters-carousel" data-slide="next">›</a>
 				</div>
-			</section>
 
 			<section id="promoter-apply">
 				<div class="well well-large">

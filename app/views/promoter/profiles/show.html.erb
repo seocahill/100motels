@@ -3,8 +3,8 @@
     <% if user_signed_in? && current_user.profile == @profile %>
       <%#= link_to "Show Editor", "/editor" + request.path, id: "edit_link", class: "btn btn-large" %>
       <%= link_to "Edit Profile", edit_promoter_profile_path(@profile), class: 'btn' %>
-    <% else %>
-      <%= link_to "Tour Request", class: 'btn' %>
+    <% elsif user_signed_in? %>
+      <%= link_to "Tour Request", class: 'btn btn-large' %>
     <% end %>
   </div>
   <section class="section-box">
@@ -36,7 +36,7 @@
           <dl align="center">
             <dt>Status</dt>
             <dd><span class="badge badge" style="font-size:14px;"><%= @profile.state %></span></dd>
-            <dt>Visability</dt>
+            <dt>Visible?</dt>
             <dd class="muted"><%= @profile.visible %></dd>
           </dl>
         </fieldset>
