@@ -1,5 +1,9 @@
 OneHundredMotels::Application.routes.draw do
 
+  get "notifications/create"
+
+  get "notifications/destroy"
+
   mount Mercury::Engine => '/'
 
   use_doorkeeper
