@@ -148,6 +148,17 @@ ActiveRecord::Schema.define(:version => 20121025044444) do
 
   add_index "profiles", ["user_id"], :name => "index_profiles_on_user_id"
 
+  create_table "requests", :force => true do |t|
+    t.integer  "promoter_id"
+    t.integer  "user_id"
+    t.integer  "state",       :limit => 8, :default => 0
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
+  end
+
+  add_index "requests", ["promoter_id"], :name => "index_requests_on_promoter_id"
+  add_index "requests", ["user_id"], :name => "index_requests_on_user_id"
+
   create_table "roles", :force => true do |t|
     t.string   "name"
     t.integer  "resource_id"

@@ -1,13 +1,13 @@
-class CreateNotifications < ActiveRecord::Migration
+class CreateRequests < ActiveRecord::Migration
   def change
-    create_table :notifications do |t|
+    create_table :requests do |t|
+      t.integer :promoter_id
       t.references :user
-      t.integer :request_id
       t.integer :state, default: 0, limit: 6
 
       t.timestamps
     end
-    add_index :notifications, :request_id
-    add_index :notifications, :user_id
+    add_index :requests, :promoter_id
+    add_index :requests, :user_id
   end
 end

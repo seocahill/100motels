@@ -1,5 +1,9 @@
 OneHundredMotels::Application.routes.draw do
 
+  get "requests/create"
+
+  get "requests/destroy"
+
   get "notifications/create"
 
   get "notifications/destroy"
