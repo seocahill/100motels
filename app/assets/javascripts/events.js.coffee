@@ -9,6 +9,7 @@ $ ->
   $('#order_quantity').click ->
     orderTotal()
   $('.stripe-button').click(orderTotal())
+  $('#buy-now').click(orderTotal())
 
 
 orderTotal = ->
@@ -16,8 +17,13 @@ orderTotal = ->
   price = $('#ticket-price').data('url')
   total = quantity * price
   $('.stripe-button').attr('data-amount', total)
+  $('.order-total').html(total / 100)
 
 # toggle checkboxes
 $ ->
   $('#check_all').click () ->
     $('input[type="checkbox"]').click()
+
+#popover
+$ ->
+  $('#buy-now').popover()

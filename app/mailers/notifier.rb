@@ -5,7 +5,7 @@ class Notifier < ActionMailer::Base
 
   def order_processed(order)
     @order = order
-    @qr = "ExampleQRData".to_qr_image(:size => "170x170")
+    @qr = @order.stripe_customer_token.to_qr_image(:size => "170x170")
     @event = Event.find(order.event_id)
     @greeting = "Thanks #{order.name}!"
     mail to: order.email, subject: "Your Order from 100 Motels"

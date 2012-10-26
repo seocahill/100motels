@@ -23,12 +23,18 @@ class Order < ActiveRecord::Base
       self.stripe_customer_token = customer.id
       saved_customer = Stripe::Customer.retrieve(customer.id)
       self.name = saved_customer.active_card["name"]
-      self.last_four = saved_customer.active_card["last4"]
+      # self.last4 = saved_customer.active_card["last4"]
       save!
     end
   rescue Stripe::InvalidRequestError => e
     flash[:error] = e.message
     redirect_to(:back)
+  end
+
+  def customer_order(user)
+    self.name = user.name
+    self.stripe_customer_token = user.customer_id
+    save!
   end
 
   def charge_customer(order, promoter)

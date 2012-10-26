@@ -25,7 +25,7 @@
 					<div class="row">
 						<div class="span3 offset1" align="center">
 							<h2>
-								<small><%= @promoter.promoter_name %> presents...</small> <br>
+								<small><%= @promoter.try(:promoter_name) %> presents...</small> <br>
 								<%= @event.artist %>
 							</h2>
 						</div>
@@ -71,7 +71,7 @@
 				<div class="label-box">Your Promoter</div>
 					<div class="row">
 						<div class="span2">
-								<% if @promoter.image? %>
+								<% if @promoter.try(:image?) %>
 									<%= filepicker_image_tag @promoter.image, w: 100, h: 100, fit: 'crop' %>
 								<% else %>
 									<img src="//quickimage.it/100">
@@ -79,10 +79,10 @@
 						</div>
 						<div class="span9">
 							<p class="lead">
-								About <%= @promoter.promoter_name %>...
+								About <%= @promoter.try(:promoter_name) %>...
 							</p>
 							<p>
-								<%= @promoter.quick_profile %>
+								<%= @promoter.try(:quick_profile) %>
 							</p>
 								<%= link_to "Full Profile", promoter_profile_path(@promoter), class: "btn btn-medium" %>
 						</div>
