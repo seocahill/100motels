@@ -13,22 +13,6 @@
       <li><a href="" class="active">Event Orders</a></li>
       <li></li>
     </ul>
-
-    <div class="modal hide fade" id="charge" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-        <h3>Are you sure?</h3>
-      </div>
-      <div class="modal-body">
-        <p>If you continue you will charge all your customers, the proceeds will be deposited into your bank account in seven days minus 100 Motel's and Stripe's fees which are <strong>non-refundable.</strong></p>
-        <p>If this is your first event please make sure you have read the <a href="">Terms and Conditions</a> and the <a href="">Getting started guide</a></p>
-        <p>We also strongly advise you to <a href="">sign a contract</a> with your Artists, a contract template is provided in the Getting started section.</p>
-      </div>
-      <div class="modal-footer">
-        <a href="#" class="btn" data-dismiss="modal">Cancel</a>
-        <a href="#" class="btn btn-primary">Charge All</a>
-      </div>
-    </div>
   </div>
 </div>
 <div class="row">
@@ -38,7 +22,8 @@
     <%= form_tag  charge_multiple_orders_path, method: :post  do %>
       <div class="option-buttons">
         <% if current_user.profile && current_user.profile.api_key %>
-          <%= submit_tag "Charge Selected", class: "btn btn-success", id: "charge" %>
+          <%= link_to "Discount Tickets", "#modal-discount", class: "btn btn-warning", data: {toggle: "modal"}, id: "discount" %>
+          <%= link_to "Charge Selected", "#modal-charge", class: "btn btn-success", data: {toggle: "modal"}, id: "charge" %>
           <%= submit_tag "Refund Selected", name: 'refund', class: "btn btn-danger", id: "refund" %>
         <% elsif current_user.profile %>
           <%= link_to image_tag('blue.png'), user_omniauth_authorize_path(:stripe_connect), class: "" %>
@@ -46,6 +31,7 @@
         <%= link_to "Generate pdf", promoter_event_path(@event, format: "pdf"), class: "btn" %>
       </div>
       <%= hidden_field_tag "promoter", current_user.id %>
+      <%= hidden_field_tag :ticket_discount %>
       <table class="table table-striped table-bordered" id="promoter-customers">
         <thead>
           <tr>
@@ -74,6 +60,37 @@
           </tr>
         </tbody>
       </table>
+      <div class="modal hide fade" id="modal-charge" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+        <h3>Are you sure?</h3>
+      </div>
+      <div class="modal-body">
+        <p>If you continue you will charge all your customers, the proceeds will be deposited into your bank account in seven days minus 100 Motel's and Stripe's fees which are <strong>non-refundable.</strong></p>
+        <p>If this is your first event please make sure you have read the <a href="">Terms and Conditions</a> and the <a href="">Getting started guide</a></p>
+        <p>We also strongly advise you to <a href="">sign a contract</a> with your Artists, a contract template is provided in the Getting started section.</p>
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal">Cancel</a>
+        <%= submit_tag "Charge Selected", class: "btn btn-success", id: "charge" %>
+      </div>
+    </div>
     <% end %>
   </div>
+</div>
+<div class="modal hide fade" id="modal-discount">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Discount Tickets</h3>
+  </div>
+  <div class="modal-body">
+    <%= form_tag  promoter_event_path(@event), method: :put, class: "form-horizontal" do %>
+     <%= text_field_tag :price_modification, nil, placeholder: "  -10%", class: "span1" %>
+     <span class="help-block">Enter a negative percentage discount value.</span>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">Cancel</a>
+    <%= submit_tag "Apply Discount", class: "btn btn-large btn-warning" %>
+  </div>
+  <% end %>
 </div>

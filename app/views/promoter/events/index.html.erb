@@ -8,7 +8,8 @@
     </div>
   </div>
   <div class="row">
-    <div class="span2" id="promoter-event-new"><%= link_to "New Event", new_promoter_event_path, class: "btn" %>
+    <div class="span2" id="promoter-event-new">
+      <%= link_to "New Event", new_promoter_event_path, class: "btn" %>
     </div>
   </div>
   <div class="row">
@@ -20,6 +21,7 @@
             <th>Venue</th>
             <th>Date</th>
             <th>Attending</th>
+            <th>Ticket Price</th>
           </tr>
         </thead>
         <tbody>
@@ -29,7 +31,7 @@
             <td> <%= event.venue %> </td>
             <td> <%= time_tag event.date %> </td>
             <td> <%= event.orders.to_a.sum { |item| item.quantity} %> </td>
-            <td> <%= event.location.nil? %> </td>
+            <td> <%= number_to_currency(event.price_modification) %> </td>
             <td >
               <div class="btn-group pull-right">
                 <%= link_to raw('<i class="icon-list"></i>'), [:promoter, event], class: "btn" %>

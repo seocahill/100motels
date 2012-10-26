@@ -30,6 +30,7 @@ OneHundredMotels::Application.routes.draw do
   resources :events, only: [:index, :show] do
     member { post :mercury_update }
     member { post :request_support }
+    member { post :discount }
   end
 
   resources :orders do
