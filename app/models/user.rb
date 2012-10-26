@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   attr_encrypted :api_key, key: ENV['ATTR_ENCRYPTED_KEY']
 
   has_many :requests
-  has_many :events, through: :requests
+  has_many :promoters, through: :requests
   has_one :location, dependent: :destroy
   has_one :profile, dependent: :destroy
 
