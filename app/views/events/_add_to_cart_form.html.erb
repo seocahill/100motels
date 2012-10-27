@@ -23,7 +23,7 @@
       </div>
       <div class="modal-body">
         <p>Pay with card ending #<%= current_user.last4 %>?</p>
-        <p>You can change or update your card in the information tab of <%= link_to "your account", user_path(current_user) %>.</p>
+        <p>Go to the information tab of <%= link_to "your user account", user_path(current_user) %> if you want to change or add a card.</p>
       </div>
       <div class="modal-footer">
         <a href="#" class="btn" data-dismiss="modal">Cancel</a>

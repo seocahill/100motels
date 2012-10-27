@@ -2,14 +2,19 @@
 	<header>
 		<% title(@event.artist, "Events") %>
 	</header>
-	<div>
-		<% if user_signed_in? && current_user == @promoter %>
-			<%= link_to "Edit Your Event", "/editor" + request.path, id: "edit_link", data: {save_url: mercury_update_event_path(@event) }, class: "btn" %>
-		<% elsif @event.users.include?(current_user) %>
-			<button class="btn btn-success">Support Requested <i class="icon-check icon-white"></i></button>
-		<% elsif user_signed_in? %>
-			<%= link_to "Ask to Support", requests_path(event: @event), class: "btn btn-large", method: :post %>
-		<% end %>
+	<div class="row">
+		<div class="span3">
+			<% if user_signed_in? && current_user == @promoter %>
+				<%= link_to "Edit Your Event", "/editor" + request.path, id: "edit_link", data: {save_url: mercury_update_event_path(@event) }, class: "btn" %>
+			<% elsif @event.users.include?(current_user) %>
+				<button class="btn btn-success">Support Requested <i class="icon-check icon-white"></i></button>
+			<% elsif user_signed_in? %>
+				<%= link_to "Ask to Support", requests_path(event_id: @event.id, promoter_id: @event.promoter_id), class: "btn btn-large", method: :post %>
+			<% end %>
+		</div>
+		<div class="span2">
+			<strong>Support Requests: <span class="badge"><%= @event.users.count %></span></strong>
+		</div>
 	</div>
 	<section id="event-info" class="section-box">
 		<div class="row">

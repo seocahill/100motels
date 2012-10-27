@@ -1,13 +1,5 @@
 OneHundredMotels::Application.routes.draw do
 
-  get "requests/create"
-
-  get "requests/destroy"
-
-  get "notifications/create"
-
-  get "notifications/destroy"
-
   mount Mercury::Engine => '/'
 
   use_doorkeeper
@@ -46,6 +38,8 @@ OneHundredMotels::Application.routes.draw do
       post :charge_multiple
     end
   end
+
+  resources :requests, only: [:create, :destroy]
 
   resources :locations
 
