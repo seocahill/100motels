@@ -7,8 +7,22 @@
     <% else %>
       <%= f.input :email, as: :hidden, input_html: { value: current_user.email } %>
     <% end %>
-    <% if current_user.customer_id %>
-      <%= link_to "Buy Now", "#buy-modal", class: "btn btn-success btn-large", rel: "popover", data: {content: "Your card ending #{current_user.last4} has already been provided", trigger: "hover", toggle: "modal"}, id: "buy-now" %>
+    <% if user_signed_in? && current_user.customer_id %>
+      <%= link_to "Buy Now", "#buy-modal", class: "btn btn-success btn-large", data: {toggle: "modal"}, id: "buy-now" %>
+        <div class="modal hide fade" id="buy-modal">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>Order Total is $<span class="order-total"></span></h3>
+          </div>
+          <div class="modal-body">
+            <p>Pay with card ending #<%= current_user.last4 %>?</p>
+            <p>Go to the information tab of <%= link_to "your user account", user_path(current_user) %> if you want to change or add a card.</p>
+          </div>
+          <div class="modal-footer">
+            <a href="#" class="btn" data-dismiss="modal">Cancel</a>
+            <%= f.submit "Complete Order", html: {class: "btn btn-success"} %>
+          </div>
+        </div>
     <% else %>
       <div class="stripe-controls" align="center">
         <script src="https://button.stripe.com/v1/button.js" class="stripe-button"
@@ -16,19 +30,5 @@
         </script>
       </div>
     <% end %>
-    <div class="modal hide fade" id="buy-modal">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h3>Order Total is $<span class="order-total"></span></h3>
-      </div>
-      <div class="modal-body">
-        <p>Pay with card ending #<%= current_user.last4 %>?</p>
-        <p>Go to the information tab of <%= link_to "your user account", user_path(current_user) %> if you want to change or add a card.</p>
-      </div>
-      <div class="modal-footer">
-        <a href="#" class="btn" data-dismiss="modal">Cancel</a>
-        <%= f.submit "Complete Order", html: {class: "btn btn-success"} %>
-      </div>
-    </div>
 <% end %>
 

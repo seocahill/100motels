@@ -20,6 +20,7 @@
           	<li class="active"><a href="#purchases" data-toggle="tab">Purchases</a></li>
             <li class=""><a href="#info" data-toggle="tab">Information</a></li>
             <li class=""><a href="#support-requests" data-toggle="tab">Support Requests</a></li>
+            <li class=""><a href="#tour-requests" data-toggle="tab">Tour Requests</a></li>
 
           </ul>
         </div>
@@ -80,14 +81,15 @@
                   <tr>
                     <th>Event</th>
                     <th>Date</th>
-                    <th></th>
+                    <th>Status</th>
                   </tr>
                 </thead>
                 <tbody>
-                    <% for event in current_user.events.uniq do  %>
+                    <% current_user.requests.where("event_id IS NOT NULL").each do |r|  %>
                     <tr>
-                      <td><%= link_to "#{event.artist}", event_path(event) %></td>
-                      <td><%= time_tag event.date %></td>
+                      <td><%= link_to "#{r.event.artist}", event_path(r.event) %></td>
+                      <td><%= time_tag r.event.date %></td>
+                      <td><%= r.state %></td>
                       <td>
                         <%= link_to raw('Cancel <i class="icon-remove"></i>'), class: "btn", method: :delete, confirm: "Are you sure you want to cancel your order?" %>
                       </td>
@@ -96,7 +98,30 @@
                 </tbody>
             </table>
           </div>
-        <div class="tab-pane active tour-content" id="purchases">
+          <div class="tab-pane tour-content" id="tour-requests">
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Promoter</th>
+                    <th>Sent</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <% current_user.requests.where("event_id IS NULL").each do |r|  %>
+                    <tr>
+                      <td><%= link_to "#{r.promoter.profile.promoter_name}", promoter_profile_path(r.promoter) %></td>
+                      <td><%= time_ago_in_words(r.created_at) %> ago </td>
+                      <td><%= r.state %></td>
+                      <td>
+                        <%= link_to raw('Cancel <i class="icon-remove"></i>'), class: "btn", method: :delete, confirm: "Are you sure you want to cancel your order?" %>
+                      </td>
+                    </tr>
+                    <% end %>
+                </tbody>
+            </table>
+          </div>
+          <div class="tab-pane active tour-content" id="purchases">
 						<table class="table table-striped">
 	              <thead>
 	                <tr>

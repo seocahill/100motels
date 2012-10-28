@@ -10,8 +10,12 @@
         <%= link_to "Request Tour", requests_path(promoter_id: @profile.user_id), class: "btn btn-large", method: :post %>
       <% end %>
     </div>
-    <div class="span3">
-      <strong>Tour Requests: <span class="badge"><%= @requests.count || "None right now" %></span></strong>
+    <div class="span3S">
+       <% if user_signed_in? && current_user.profile == @profile %>
+       <div class="alert" align="center">
+          <%= "Your Profile is currently visible" if @profile.visible? %>
+        </div>
+       <% end %>
     </div>
   </div>
   <section class="section-box">
@@ -43,8 +47,8 @@
           <dl align="center">
             <dt>Status</dt>
             <dd><span class="badge badge" style="font-size:14px;"><%= @profile.state %></span></dd>
-            <dt>Visible?</dt>
-            <dd class="muted"><%= @profile.visible %></dd>
+            <dt>Tour Requests</dt>
+            <dd> <span class="badge"><%= @requests.count || "None currently" %></span></dd>
           </dl>
         </fieldset>
       </div>
