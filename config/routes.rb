@@ -39,7 +39,7 @@ OneHundredMotels::Application.routes.draw do
     end
   end
 
-  resources :requests, only: [:create, :destroy]
+  resources :requests, only: [:create, :destroy, :index]
 
   resources :locations
 

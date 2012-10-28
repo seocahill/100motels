@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="span2">
+    <p>    <%= link_to "Back", promoter_root_path, class: "btn btn-large" %></p>
+  </div>
+  <div class="span12">
+    <div class="tabbable tabs">
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#tour" data-toggle="tab">Tour Requests</a></li>
+        <li class=""><a href="#support" data-toggle="tab">Support Requests</a></li>
+      </ul>
+    </div>
+    <div class="tab-content">
+      <div class="tab-pane" id="support">
+        <table class="table" id="requests">
+          <thead>
+            <tr>
+              <th>Requested</th>
+              <th>Event</th>
+              <th>Name</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @events.each do |event| %>
+              <% for request in event.requests do %>
+                <tr>
+                  <td><%= distance_of_time_in_words_to_now(request.created_at, include_seconds = false) %> ago</td>
+                  <td><%= event.artist %>, <%= event.venue %>, <%= time_tag event.date %></td>
+                  <td><%= request.user.name %></td>
+                  <td><%= request.user.email %></td>
+                  <td><%= link_to raw('<i class="icon-music"></i>'), "", id: "media-preview", class: "btn", data: { media: "#{request.user.media_html}"} %></td>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal large hide fade" id="preview-modal">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3></h3>
+  </div>
+  <div class="modal-body">
+    <div id="media-frame"></div>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">Close</a>
+  </div>
+</div>

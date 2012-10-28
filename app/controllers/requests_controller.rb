@@ -1,4 +1,9 @@
 class RequestsController < ApplicationController
+
+  def index
+    @requests = Request.where(promoter_id: current_user.id)
+  end
+
   def create
     @request = current_user.requests.build(promoter_id: params[:promoter_id], event_id: params[:event_id])
     if @request.save
