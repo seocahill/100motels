@@ -3,17 +3,11 @@
     <p><%= link_to "Back", promoter_root_path, class: "btn btn-large" %></p>
   </div>
   <div class="span12">
-    <div class="tabbable tabs">
-      <ul class="nav nav-tabs">
-        <li class="active"><a href="#tour" data-toggle="tab">Unread</a></li>
-        <li class=""><a href="#support" data-toggle="tab">All</a></li>
-      </ul>
-    </div>
-    <div class="tab-content">
-      <div class="tab-pane" id="support">
+
         <table class="table" id="requests">
           <thead>
             <tr>
+              <th>Support / Tour</th>
               <th>Requested</th>
               <th>Name</th>
               <th>Email</th>
@@ -22,16 +16,17 @@
           <tbody>
             <% @requests.each do |request| %>
               <tr>
+                <td><%= request.event ? Event.find(request.event_id).artist : "Tour Requested"  %></td>
                 <td><%= distance_of_time_in_words_to_now(request.created_at, include_seconds = false) %> ago</td>
                 <td><%= request.user.name %></td>
                 <td><%= request.user.email %></td>
+                <td><%= request.state %></td>
                 <td><%= link_to raw('<i class="icon-music"></i>'), "", id: "media-preview", class: "btn", data: { media: "#{request.user.media_html}"} %></td>
               </tr>
             <% end %>
           </tbody>
         </table>
-      </div>
-    </div>
+
   </div>
 </div>
 <div class="modal large hide fade" id="preview-modal">

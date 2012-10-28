@@ -3,14 +3,10 @@ class Promoter::BaseController < ApplicationController
 
   def index
     @events = Event.where(promoter_id: current_user.id).order('created_at DESC').limit(5).includes(:users)
-    @requests = Request.where(@events.include?(:event))
-    @sales = Order.recent_sales(current_user)
-  end
-
-  def requests
-    @events = Event.where(promoter_id: current_user.id).includes(:users)
-    # @tour_requests =
-    @support_requests = current_user.events
+    @requests = Request.where(promoter_id: current_user.id)
+    @tour_requests = Request.where("promoter_id = ? and state = ? and event_id IS NULL", current_user.id, 0)
+    @support_requests = Request.where("promoter_id = ? and state = ? and event_id IS NOT NULL", current_user.id, 0)
+    # @sales = Event.where(promoter_id: current_user.id).map(&:orders).limit(5)
   end
 
 end
