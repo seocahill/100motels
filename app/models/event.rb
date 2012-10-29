@@ -1,14 +1,19 @@
 class Event < ActiveRecord::Base
   resourcify
-  attr_accessible :artist, :date, :doors, :venue, :venue_capacity, :ticket_price, :event_id,
-                  :music, :video, :about, :image, :target, :price_modification
+  attr_accessible :artist, :date, :doors, :venue, :venue_capacity, :ticket_price,
+                  :music, :video, :about, :image, :target, :price_modification, :location_id, :new_location
+  attr_accessor :new_location
   validates :artist, :venue, :date, :ticket_price, presence: true
+  before_save :create_location
 
-  has_one  :location, dependent: :destroy
-  accepts_nested_attributes_for :location
+  belongs_to  :location
   has_many :orders
   has_many :requests
   has_many :users, through: :requests
+
+  def create_location
+    self.location = Location.create(address: :new_location) if new_location.present?
+  end
 
   auto_html_for :video do
     html_escape

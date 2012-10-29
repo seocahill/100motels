@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121025044444) do
+ActiveRecord::Schema.define(:version => 20121029043014) do
 
   create_table "carts", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -37,7 +37,10 @@ ActiveRecord::Schema.define(:version => 20121025044444) do
     t.string   "music_html"
     t.string   "image"
     t.string   "image_html"
+    t.integer  "location_id"
   end
+
+  add_index "events", ["location_id"], :name => "index_events_on_location_id"
 
   create_table "line_items", :force => true do |t|
     t.integer  "event_id"
@@ -55,16 +58,14 @@ ActiveRecord::Schema.define(:version => 20121025044444) do
 
   create_table "locations", :force => true do |t|
     t.string   "address"
+    t.string   "city"
+    t.string   "country"
+    t.string   "zip"
     t.float    "latitude"
     t.float    "longitude"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.integer  "event_id"
-    t.integer  "user_id"
   end
-
-  add_index "locations", ["event_id"], :name => "index_locations_on_event_id"
-  add_index "locations", ["user_id"], :name => "index_locations_on_user_id"
 
   create_table "oauth_access_grants", :force => true do |t|
     t.integer  "resource_owner_id", :null => false
