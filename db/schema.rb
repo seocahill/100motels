@@ -67,6 +67,8 @@ ActiveRecord::Schema.define(:version => 20121029043014) do
     t.datetime "updated_at", :null => false
   end
 
+  add_index "locations", ["latitude", "longitude"], :name => "index_locations_on_latitude_and_longitude"
+
   create_table "oauth_access_grants", :force => true do |t|
     t.integer  "resource_owner_id", :null => false
     t.integer  "application_id",    :null => false

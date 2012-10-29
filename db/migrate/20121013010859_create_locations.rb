@@ -10,5 +10,6 @@ class CreateLocations < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :locations, [:latitude, :longitude]
   end
 end
