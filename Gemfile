@@ -43,6 +43,7 @@ group :assets do
   gem 'dynamic_form'
   gem 'uglifier', '>= 1.0.3'
   gem 'bootstrap-sass', '~> 2.1.0.0'
+  gem 'turbo-sprockets-rails3'
 end
 
 gem 'jquery-rails'

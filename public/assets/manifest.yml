@@ -4,10 +4,11 @@ facebook.png: facebook-390c802350d9bba09752918debb5e566.png
 rss.png: rss-3d8aff263945ff9028575d807b558d37.png
 twitter.png: twitter-f100018153bd256ea8f0f0dd85b4b560.png
 vimeo.png: vimeo-85b47a7bf188d87f0a5b545e1aff9ac2.png
-application.js: application-a928bac3f5da062e45f421620528ed0b.js
-mercury.js: mercury-f00fb9b06f64fd89a9e2d95d87a41680.js
-application.css: application-f1ede2e4fb7cf27e9093404e6e5856ad.css
-mercury.css: mercury-7a940a11221b4b69f7d202a9de96acb4.css
+application.js: application-0b1bebe63ccc71c1393c500ff5f78815.js
+mercury.js: mercury-0f379bb8d269aa3f69c4d49cd0c9fa9f.js
+application.css: application-1714d3e1bf9f904b3cb291e76ea0e7bf.css
+mercury.css: mercury-0d1830b020d14248eab632ff2f6974ba.css
+mercury_overrides.css: mercury_overrides-1200325bbef3d8e7d30498bd30e6d169.css
 mercury/button.png: mercury/button-77dc9da26371196f3f52d47e01ccf60b.png
 mercury/close.png: mercury/close-6eb51d999a4b569094631875cfc031a3.png
 mercury/default-snippet.png: mercury/default-snippet-cb22d06900274a955933ea58bf4b7d87.png
@@ -31,7 +32,9 @@ mercury/toolbar/primary/preview.png: mercury/toolbar/primary/preview-0f3f71b8715
 mercury/toolbar/primary/redo.png: mercury/toolbar/primary/redo-e6f15c68da2ad1e1e219fa59743d0468.png
 mercury/toolbar/primary/save.png: mercury/toolbar/primary/save-a45e43706db5282ca1895e42897c0cae.png
 mercury/toolbar/primary/snippetpanel.png: mercury/toolbar/primary/snippetpanel-9ee0f575d5cc8d2c591b940391edbc17.png
+mercury/toolbar/primary/tools.png: mercury/toolbar/primary/tools-4b7f314d387e9ce0d0cb26f63b36be2f.png
 mercury/toolbar/primary/undo.png: mercury/toolbar/primary/undo-198778b2ef78a08960304c9489fc37c3.png
+mercury/toolbar/primary/user.png: mercury/toolbar/primary/user-bd7bd3279893e7c68fb6077d317ff4a2.png
 mercury/toolbar/snippets/buttons.png: mercury/toolbar/snippets/buttons-1332f1dd5f0a4737cbaac7553128ae91.png
 doorkeeper/application.js: doorkeeper/application-ccab98dc1abdf097c0af693e20aed861.js
 doorkeeper/application.css: doorkeeper/application-c15195d41f3c95b8cb39e530a9b83296.css
