@@ -1,11 +1,12 @@
 class Order < ActiveRecord::Base
   attr_accessible :email, :name, :plan, :quantity, :event_id
   enum_accessor :stripe_event, [ :pending, :paid, :failed, :refunded, :cancelled ]
-  belongs_to :events
+  belongs_to :event
   validates :email, presence: :true
   validates_format_of :email, :with => /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
   validates :quantity, numericality: :true
 
+  scope :sales_today, where("orders.created_at >= ?", Time.now.yesterday)
 
   def self.recent_sales(current_user)
     events = Event.where(promoter_id: current_user.id)
