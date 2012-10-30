@@ -16,7 +16,7 @@ class EventsController < ApplicationController
 
   def show
     @order = Order.new
-    @promoter = User.find_by_id(@event.promoter_id).profile
+    @promoter = Profile.find(@event.profile_id)
   end
 
   def mercury_update

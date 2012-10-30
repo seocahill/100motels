@@ -6,12 +6,11 @@ before_filter :authorize_admin!
 
   def new
     @event = Event.new
-    @location = @event.build_location
   end
 
   def create
     @event = Event.new(params[:event])
-    @event.promoter_id = current_user.id
+    @event.profile_id = current_user.profile.id
     if @event.save
       flash[:notice] = "Rock and Roll"
       redirect_to @event

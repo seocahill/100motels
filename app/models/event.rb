@@ -8,6 +8,7 @@ class Event < ActiveRecord::Base
   before_save :create_location
 
   belongs_to  :location
+  belongs_to  :profile
   has_many :orders
   has_many :requests
   has_many :users, through: :requests

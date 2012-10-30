@@ -5,8 +5,9 @@ class Profile < ActiveRecord::Base
   attr_encrypted :api_key, key: ENV['ATTR_ENCRYPTED_KEY']
   enum_accessor :state, [ :provisional, :verified, :suspended ]
 
+  has_many :events
   belongs_to :user
-  # belongs_to :location
+
 
   auto_html_for :promoter_media do
     html_escape
