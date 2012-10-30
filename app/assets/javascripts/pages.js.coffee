@@ -12,13 +12,15 @@ $ ->
 goToByScroll = (id) ->
   $('html,body').animate({scrollTop: $(id).offset().top}, 2600)
 
-# clear search form
-$ ->
-  $("#q_reset").click ->
-    $(".search-query").val('')
 
 # Event Carousel
 $ ->
   $('#events-carousel .item:first').addClass('active')
   $('#events-carousel').carousel
     interval: false
+
+$ ->
+  for link in $(".topbar .nav a")
+    do (link) ->
+      if (window.location.pathname == link.pathname)
+        $(link).parent().toggleClass("active")

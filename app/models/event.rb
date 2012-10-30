@@ -11,7 +11,8 @@ class Event < ActiveRecord::Base
   has_many :requests
   has_many :users, through: :requests
 
-  scope :expensive, where("ticket_price >= ?", 12)
+  scope :tonight, lambda { where("date <= ?", Time.now.end_of_day) }
+  scope :week_end, lambda { where("date <= ?", Time.now.end_of_week) }
   scope :month_end, lambda { where("date <= ?", Time.now.end_of_month) }
   scope :event_city, proc { |city| joins(:location).where("city = ?", city) }
 

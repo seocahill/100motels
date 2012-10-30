@@ -2,30 +2,29 @@
 	<div class="row">
 		<div class="span12">
 			<header>
-				<h3 class="page-header"> Showing <%= @location %><i class="icon-globe"></i> <div class="pull-left"></div></h3>
+				<h3 class="page-header">Upcoming Events<div class="pull-left"></div></h3>
 			</header>
 		</div>
 	</div>
 	<div class="row">
 		<div class="span3">
-			<aside id="index-filter">
+			<aside>
 				<div class="well">
 					<header>
 						<h4>Search Controls</h4>
 					</header>
-					<form class="city-select" method="get">
-						<%= select_tag("event_city", options_for_select(@options)) %>
-					</form>
 						<ul class="nav nav-list">
-							<li class="nav-header">Date</li>
-							<li class=""><a href="">Tonight</a></li>
-							<li class=""><a href="">This Week</a></li>
+							<li class="nav-header" id="index-filter">Date of Event</li>
+							<li class=""><%= link_to "Today", request.path + '?tonight=true' %></li>
+							<li class=""><%= link_to "This Week", request.path + '?week_end=true' %></li>
 							<li class="active"><%= link_to "This Month", request.path + '?month_end=true' %></li>
 							<li class="divider"></li>
 							<li class="nav-header">Location</li>
-							<li class="active"><a href="">Near me</a></li>
-							<li class=""><a href="">Same Country</a></li>
-							<li class=""><a href="">Anywhere</a></li>
+							<form class="city-select" method="get">
+								<%= select_tag "event_city", options_for_select(@options), prompt: "Filter by City"  %>
+								<li class="divider"></li>
+								<button class="btn btn-block" value="Reset Form">Clear Filters</button>
+							</form>
 							<li class="divider"></li>
 						</ul>
 				</div>
@@ -52,7 +51,7 @@
 						</li>
 					<% end %>
 				</ul>
-				<%#= will_paginate @events %>
+				<%= will_paginate @events %>
 			</section>
 		</div>
 	</div>

@@ -16,6 +16,5 @@ class Location < ActiveRecord::Base
   has_one :event
   has_one :user
 
-  scope :with_expensive_events, joins(:event) & Event.expensive
 end
 

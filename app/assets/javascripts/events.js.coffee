@@ -28,16 +28,17 @@ $ ->
 $ ->
   $('#buy-now').popover()
 
-# changetab
-# $ ->
-  # changeTab = (e) ->
-  #   e.preventDefault
-  #   $("#index-filter li.active").removeClass "active"
-  #   $(@).addClass "active"
-
-  # $("#index-filter a").click changeTab
+changetab
+$ ->
+  $('.nav li').click (e) ->
+    $('.nave li.active').removeClass('active')
+    @clicked = $(@)
+    unless @clicked.hasClass('active')
+      @clicked.addClass('active')
+    e.preventDefault
 
 #filter form
 $ ->
   $('#event_city').change ->
     $(this).closest('form').trigger('submit')
+
