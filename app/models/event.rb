@@ -65,9 +65,8 @@ class Event < ActiveRecord::Base
     end
   end
 
-  def self.filtered_events
-    events = Event.all
-    events
+  def total_events(user)
+    Event.where("promoter_id = ?", user.id).count
   end
 
 end

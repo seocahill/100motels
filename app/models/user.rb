@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
     self.location = Location.create(address: new_location) if new_location.present?
   end
 
+
   def self.from_omniauth(auth, user)
       user.provider = auth.provider
       user.uid = auth.uid

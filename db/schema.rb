@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121030203325) do
+ActiveRecord::Schema.define(:version => 20121030231437) do
 
   create_table "carts", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -39,9 +39,11 @@ ActiveRecord::Schema.define(:version => 20121030203325) do
     t.string   "image_html"
     t.integer  "location_id"
     t.integer  "state",          :limit => 8,                               :default => 0
+    t.integer  "profile_id"
   end
 
   add_index "events", ["location_id"], :name => "index_events_on_location_id"
+  add_index "events", ["profile_id"], :name => "index_events_on_profile_id"
 
   create_table "line_items", :force => true do |t|
     t.integer  "event_id"
