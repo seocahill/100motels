@@ -22,9 +22,13 @@ class Order < ActiveRecord::Base
           card: token
       )
       self.stripe_customer_token = customer.id
-      saved_customer = Stripe::Customer.retrieve(customer.id)
-      self.name = saved_customer.active_card["name"]
-      # self.last4 = saved_customer.active_card["last4"]
+      self.name = customer.active_card["name"]
+      self.last4 = customer.active_card["last4"]
+      if user.email
+        user.customer_id = customer.id
+        user.last4 = customer.active_card["last4"]
+        user.save
+      end
       save!
     end
   rescue Stripe::InvalidRequestError => e
