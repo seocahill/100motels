@@ -54,4 +54,10 @@ class Event < ActiveRecord::Base
       scoped
     end
   end
+
+  def self.filtered_events
+    events = Event.all
+    events
+  end
+
 end

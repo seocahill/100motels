@@ -4,7 +4,8 @@ class EventsController < ApplicationController
   before_filter :find_event, :only => [:show]
 
   def index
-    @events = Event.text_search(params[:query]).page(params[:page]).per_page(3)
+    # @events = Event.text_search(params[:query]).page(params[:page]).per_page(3)
+    @events = Event.filtered_events
   end
 
   def show

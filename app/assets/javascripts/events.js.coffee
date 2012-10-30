@@ -27,3 +27,12 @@ $ ->
 #popover
 $ ->
   $('#buy-now').popover()
+
+# changetab
+$ ->
+  changeTab = (e) ->
+    e.preventDefault
+    $("#index-filter li.active").removeClass "active"
+    $(@).addClass "active"
+
+  $("#index-filter a").click changeTab

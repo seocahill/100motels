@@ -193,10 +193,6 @@ ActiveRecord::Schema.define(:version => 20121029043014) do
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
     t.boolean  "admin",                  :default => false
-    t.string   "provider"
-    t.string   "uid"
-    t.string   "public_key"
-    t.string   "encrypted_api_key"
     t.string   "customer_id"
     t.string   "name"
     t.string   "avatar"
