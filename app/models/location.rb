@@ -14,5 +14,8 @@ class Location < ActiveRecord::Base
   after_validation :geocode, :if => :address_changed?
 
   has_one :event
+  has_one :user
+
+  scope :with_expensive_events, joins(:event) & Event.expensive
 end
 

@@ -11,13 +11,13 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
-   :provider, :uid, :public_key, :name, :avatar, :last4, :media
-  attr_encrypted :api_key, key: ENV['ATTR_ENCRYPTED_KEY']
+  :name, :avatar, :last4, :media
 
   has_many :requests
   has_many :promoters, through: :requests
   has_one :location, dependent: :destroy
   has_one :profile, dependent: :destroy
+  belongs_to :location
 
 
   def self.from_omniauth(auth, user)

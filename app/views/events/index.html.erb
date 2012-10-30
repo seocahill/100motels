@@ -13,11 +13,12 @@
 					<header>
 						<h4>Search Controls</h4>
 					</header>
+					<form></form>
 						<ul class="nav nav-list">
 							<li class="nav-header">Date</li>
 							<li class=""><a href="">Tonight</a></li>
 							<li class=""><a href="">This Week</a></li>
-							<li class="active"><a href="">This Month</a></li>
+							<li class="active"><%= link_to "This Month", request.path + '?month_end=true' %></li>
 							<li class="divider"></li>
 							<li class="nav-header">Location</li>
 							<li class="active"><a href="">Near me</a></li>
@@ -49,7 +50,7 @@
 						</li>
 					<% end %>
 				</ul>
-				<%= will_paginate @events %>
+				<%#= will_paginate @events %>
 			</section>
 		</div>
 	</div>

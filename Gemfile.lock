@@ -155,6 +155,7 @@ GEM
       guard (>= 1.1)
       spork (>= 0.8.4)
       sys-proctable
+    has_scope (0.5.1)
     hashery (2.0.1)
     hashie (1.2.0)
     hike (1.2.1)
@@ -348,6 +349,7 @@ DEPENDENCIES
   guard-livereload
   guard-rspec
   guard-spork
+  has_scope
   jquery-rails
   launchy
   libnotify

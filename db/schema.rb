@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121029043014) do
+ActiveRecord::Schema.define(:version => 20121030003405) do
 
   create_table "carts", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -199,9 +199,11 @@ ActiveRecord::Schema.define(:version => 20121029043014) do
     t.integer  "last4"
     t.string   "media"
     t.string   "media_html"
+    t.integer  "location_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["location_id"], :name => "index_users_on_location_id"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
   create_table "users_roles", :id => false, :force => true do |t|

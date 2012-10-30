@@ -13,6 +13,14 @@ class ApplicationController < ActionController::Base
       end
     end
 
+    def current_location
+      if user_signed_in? && current_user.location
+        current_user.location.city
+      else
+        "Burnaby"
+      end
+    end
+
     def current_cart
       Cart.find(session[:cart_id])
     rescue ActiveRecord::RecordNotFound

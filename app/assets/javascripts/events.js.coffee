@@ -30,9 +30,14 @@ $ ->
 
 # changetab
 $ ->
-  changeTab = (e) ->
-    e.preventDefault
-    $("#index-filter li.active").removeClass "active"
-    $(@).addClass "active"
+  # changeTab = (e) ->
+  #   e.preventDefault
+  #   $("#index-filter li.active").removeClass "active"
+  #   $(@).addClass "active"
 
-  $("#index-filter a").click changeTab
+  # $("#index-filter a").click changeTab
+
+#filter form
+$ ->
+  $("#index-filter a").click ->
+    $("form").submit

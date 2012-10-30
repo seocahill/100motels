@@ -24,59 +24,59 @@
 				<header class="page-header">
 					<h3>
 						<i class="icon-globe"></i>
-						Shows near <%= @current_address %>
+						Shows near <%= @location %>
 					</h3>
 				</header>
 				<div id="events-carousel" class="carousel slide" data-interval="false">
 					<div class="carousel-inner">
-						<% @events.each_slice(3) do |event| %>
+						<% @locations.each_slice(3) do |loc| %>
 						<div class="item">
 								<ul class="thumbnails">
 									<li class="span4">
 										<div class="thumbnail">
-											<% if event[0].image? %>
-												<%= filepicker_image_tag event[0].image, w: 360, h: 240, fit: 'crop' %>
+											<% if loc[0].event.image? %>
+												<%= filepicker_image_tag loc[0].event.image, w: 360, h: 240, fit: 'crop' %>
 											<% else %>
 												<img src="http://quickimage.it/360x240&text=ArtistPic" alt="">
 											<% end %>
 											<div class="caption">
 												<h4 class="title">
-													<%= event[0].artist %>
+													<%= loc[0].event.artist %>
 												</h4>
-												<p><%= event[0].venue %> on <%= time_tag event[0].date %></p>
-												<%= button_to "Info & Tickets", event_path(event[0]), method: :get, class: "btn btn-success", id: event[0].artist %>
+												<p><%= loc[0].event.venue %> on <%= time_tag loc[0].event.date %></p>
+												<%= button_to "Info & Tickets", event_path(loc[0].event), method: :get, class: "btn btn-success", id: loc[0].event.artist %>
 											</div>
 										</div>
 									</li>
 									<li class="span4">
 										<div class="thumbnail">
-											<% if event[1].image? %>
-												<%= filepicker_image_tag event[1].image, w: 360, h: 240, fit: 'crop' %>
+											<% if loc[1].event.image? %>
+												<%= filepicker_image_tag loc[1].event.image, w: 360, h: 240, fit: 'crop' %>
 											<% else %>
 												<img src="http://quickimage.it/360x240&text=ArtistPic" alt="">
 											<% end %>
 											<div class="caption">
 												<h4 class="title">
-													<%= event[1].artist %>
+													<%= loc[1].event.artist %>
 												</h4>
-												<p><%= event[1].venue %> on <%= time_tag event[1].date %></p>
-												<%= button_to "Info & Tickets", event_path(event[1]), method: :get, class: "btn btn-success", id: event[1].artist %>
+												<p><%= loc[1].event.venue %> on <%= time_tag loc[1].event.date %></p>
+												<%= button_to "Info & Tickets", event_path(loc[1].event), method: :get, class: "btn btn-success", id: loc[1].event.artist %>
 											</div>
 										</div>
 									</li>
 									<li class="span4">
 										<div class="thumbnail">
-											<% if event[2].image? %>
-												<%= filepicker_image_tag event[2].image, w: 360, h: 240, fit: 'crop' %>
+											<% if loc[2].event.image? %>
+												<%= filepicker_image_tag loc[2].event.image, w: 360, h: 240, fit: 'crop' %>
 											<% else %>
 												<img src="http://quickimage.it/360x240&text=ArtistPic" alt="">
 											<% end %>
 											<div class="caption">
 												<h4 class="title">
-													<%= event[2].artist %>
+													<%= loc[2].event.artist %>
 												</h4>
-												<p><%= event[2].venue %> on <%= time_tag event[2].date %></p>
-												<%= button_to "Info & Tickets", event_path(event[2]), method: :get, class: "btn btn-success", id: event[2].artist %>
+												<p><%= loc[2].event.venue %> on <%= time_tag loc[2].event.date %></p>
+												<%= button_to "Info & Tickets", event_path(loc[2].event), method: :get, class: "btn btn-success", id: loc[2].event.artist %>
 											</div>
 										</div>
 									</li>

@@ -11,6 +11,9 @@ class Event < ActiveRecord::Base
   has_many :requests
   has_many :users, through: :requests
 
+  scope :expensive, where("ticket_price >= ?", 12)
+  scope :month_end, lambda { where("date <= ?", Time.now.end_of_month) }
+
   def create_location
     self.location = Location.create(address: new_location) if new_location.present?
   end

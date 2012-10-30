@@ -3,9 +3,14 @@ class EventsController < ApplicationController
   # before_filter :authorize_admin!, :except => [:index, :show]
   before_filter :find_event, :only => [:show]
 
+  has_scope :expensive, type: :boolean
+  has_scope :month_end , type: :boolean
+
   def index
+    @location = current_location
     # @events = Event.text_search(params[:query]).page(params[:page]).per_page(3)
-    @events = Event.filtered_events
+    # @locations = Location.where(city: current_location).includes(:event).page(params[:page]).per_page(3)
+    @events = apply_scopes(Event).all
   end
 
   def show
