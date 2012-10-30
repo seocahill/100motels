@@ -29,7 +29,7 @@ $ ->
   $('#buy-now').popover()
 
 # changetab
-$ ->
+# $ ->
   # changeTab = (e) ->
   #   e.preventDefault
   #   $("#index-filter li.active").removeClass "active"
@@ -39,5 +39,5 @@ $ ->
 
 #filter form
 $ ->
-  $("#index-filter a").click ->
-    $("form").submit
+  $('#event_city').change ->
+    $(this).closest('form').trigger('submit')

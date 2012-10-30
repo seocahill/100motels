@@ -13,6 +13,7 @@ class Event < ActiveRecord::Base
 
   scope :expensive, where("ticket_price >= ?", 12)
   scope :month_end, lambda { where("date <= ?", Time.now.end_of_month) }
+  scope :event_city, proc { |city| joins(:location).where("city = ?", city) }
 
   def create_location
     self.location = Location.create(address: new_location) if new_location.present?

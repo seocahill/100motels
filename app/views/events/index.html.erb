@@ -2,7 +2,7 @@
 	<div class="row">
 		<div class="span12">
 			<header>
-				<h3 class="page-header"> Showing <%= request.location.city %><i class="icon-globe"></i> <div class="pull-left"></div></h3>
+				<h3 class="page-header"> Showing <%= @location %><i class="icon-globe"></i> <div class="pull-left"></div></h3>
 			</header>
 		</div>
 	</div>
@@ -13,7 +13,9 @@
 					<header>
 						<h4>Search Controls</h4>
 					</header>
-					<form></form>
+					<form class="city-select" method="get">
+						<%= select_tag("event_city", options_for_select(@options)) %>
+					</form>
 						<ul class="nav nav-list">
 							<li class="nav-header">Date</li>
 							<li class=""><a href="">Tonight</a></li>

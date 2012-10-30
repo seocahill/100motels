@@ -5,8 +5,10 @@ class EventsController < ApplicationController
 
   has_scope :expensive, type: :boolean
   has_scope :month_end , type: :boolean
+  has_scope :event_city
 
   def index
+    @options = Location.joins(:event).collect(&:city)
     @location = current_location
     # @events = Event.text_search(params[:query]).page(params[:page]).per_page(3)
     # @locations = Location.where(city: current_location).includes(:event).page(params[:page]).per_page(3)
