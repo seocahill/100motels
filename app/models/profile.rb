@@ -1,9 +1,14 @@
 class Profile < ActiveRecord::Base
-  belongs_to :user
+
   attr_accessible :promoter_name, :visible, :image, :available, :fee, :quick_profile,
                   :about, :equipment, :venues, :travel, :accomodation, :support, :promoter_media
   attr_encrypted :api_key, key: ENV['ATTR_ENCRYPTED_KEY']
   enum_accessor :state, [ :provisional, :verified, :suspended ]
+
+  belongs_to :user
+  belongs_to :location
+
+  scope :promoter_city, proc { |city| joins(:location).where("city = ?", city) }
 
   auto_html_for :promoter_media do
     html_escape

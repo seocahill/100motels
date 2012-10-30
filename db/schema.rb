@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121030003405) do
+ActiveRecord::Schema.define(:version => 20121030190249) do
 
   create_table "carts", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -147,8 +147,10 @@ ActiveRecord::Schema.define(:version => 20121030003405) do
     t.text     "support"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.integer  "location_id"
   end
 
+  add_index "profiles", ["location_id"], :name => "index_profiles_on_location_id"
   add_index "profiles", ["user_id"], :name => "index_profiles_on_user_id"
 
   create_table "requests", :force => true do |t|

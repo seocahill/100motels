@@ -2,7 +2,7 @@
   <div class="row">
     <div class="span12">
       <div class="page-header">
-        <h3>Showing Promoter's in <%= request.location.city %></h3>
+        <h3>Promoter Listing</h3>
       </div>
     </div>
   </div>
@@ -15,7 +15,7 @@
       <form class="form">
         <div class="">
           <label>Choose a City</label>
-          <input results="10" type='search' autofocus="autofocus"/> <br>
+          <%= select_tag "promoter_city", options_for_select(@options), prompt: "Filter by City"  %>
           <br>
           <h4>Filter your results</h4> <br>
           <ul class="nav nav-list">
@@ -26,6 +26,8 @@
             <li class="nav-header">Experience</li>
             <li class=""><a href="">Total Events</a></li>
             <li class=""><a href="">Successful</a></li>
+            <li class="divider"></li>
+            <button class="btn btn-block" value="Reset Form">Clear Filters</button>
             <li class="divider"></li>
           </ul>
         </div>

@@ -12,6 +12,8 @@
     <%= f.input :avatar, hint: "upload or select images from twitter, facebook and other services" do %>
       <%= f.filepicker_field :avatar, button_class: "btn btn-primary btn-medium"  %>
     <% end %>
+    <%= f.association :location, label_method: :city, include_blank: false, label: "Choose City" %>
+    <%= f.input :new_location, label: "Or Enter Full Address", placeholder: "123 Cleveland Street, Dublin, Ireland" %>
     <hr>
     <%= f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true %>
   </div>

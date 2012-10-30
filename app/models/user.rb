@@ -11,7 +11,9 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
-  :name, :avatar, :last4, :media
+  :name, :avatar, :last4, :media, :location_id, :new_location
+
+  attr_accessor :new_location
 
   has_many :requests
   has_many :promoters, through: :requests
@@ -19,6 +21,12 @@ class User < ActiveRecord::Base
   has_one :profile, dependent: :destroy
   belongs_to :location
 
+  scope :has_profile, joins(:profile)
+
+
+  def create_location
+    self.location = Location.create(address: new_location) if new_location.present?
+  end
 
   def self.from_omniauth(auth, user)
       user.provider = auth.provider

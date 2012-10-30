@@ -11,8 +11,6 @@ class EventsController < ApplicationController
   def index
     @options = Location.joins(:event).collect(&:city)
     @location = current_location
-    # @events = Event.text_search(params[:query]).page(params[:page]).per_page(3)
-    # @locations = Location.where(city: current_location).includes(:event).page(params[:page]).per_page(3)
     @events = apply_scopes(Event.text_search(params[:query]).page(params[:page]).per_page(3)).all
   end
 
