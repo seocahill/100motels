@@ -4,7 +4,7 @@
       <% if user_signed_in? && current_user.profile == @profile %>
         <%#= link_to "Show Editor", "/editor" + request.path, id: "edit_link", class: "btn btn-large" %>
         <%= link_to "Edit Profile", edit_promoter_profile_path(@profile), class: 'btn' %>
-      <% elsif user_signed_in? && current_user.promoters.include?(@profile.user) %>
+      <% elsif user_signed_in? && current_user.promoters.where("event_id IS NULL").include?(@profile.user) %>
         <button class="btn btn-success">Tour Requested <i class="icon-check icon-white"></i></button>
       <% elsif user_signed_in? %>
         <%= link_to "Request Tour", requests_path(promoter_id: @profile.user_id), class: "btn btn-large", method: :post %>

@@ -3,8 +3,8 @@ class Promoter::ProfilesController < Promoter::BaseController
   has_scope :promoter_city
 
   def index
-    @profiles = apply_scopes(Profile.where("state > ? and visible = ?", 0, true).page(params[:page]).per_page(3)).all
-    @options = Location.joins(:profile).map(&:city)
+    @user_profiles = apply_scopes(User.joins(:profile).where("state > ? and visible = ?", 0, true).page(params[:page]).per_page(3)).all
+    @options = Location.joins(:user => :profile).map(&:city)
   end
 
   def new

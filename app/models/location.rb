@@ -15,7 +15,7 @@ class Location < ActiveRecord::Base
 
   has_one :event
   has_one :user
-  has_one :profile
+  # has_one :profile
 
 end
 

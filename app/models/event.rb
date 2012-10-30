@@ -1,8 +1,9 @@
 class Event < ActiveRecord::Base
   resourcify
   attr_accessible :artist, :date, :doors, :venue, :venue_capacity, :ticket_price,
-                  :music, :video, :about, :image, :target, :price_modification, :location_id, :new_location
+                  :music, :video, :about, :image, :target, :ticket_discount, :location_id, :new_location
   attr_accessor :new_location
+   enum_accessor :state, [ :in_progress, :successful, :failed, :archived, :cancelled ]
   validates :artist, :venue, :date, :ticket_price, presence: true
   before_save :create_location
 
@@ -39,11 +40,11 @@ class Event < ActiveRecord::Base
     simple_format
   end
 
-  def price_modification
-    ticket_price
+  def ticket_discount
+    ticket_price if ticket_price
   end
 
-  def price_modification=(new_price)
+  def ticket_discount=(new_price)
     if new_price.ends_with? "%"
       self.ticket_price += (ticket_price * (new_price.to_f / 100)).round(2)
     else

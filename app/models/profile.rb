@@ -6,9 +6,7 @@ class Profile < ActiveRecord::Base
   enum_accessor :state, [ :provisional, :verified, :suspended ]
 
   belongs_to :user
-  belongs_to :location
-
-  scope :promoter_city, proc { |city| joins(:location).where("city = ?", city) }
+  # belongs_to :location
 
   auto_html_for :promoter_media do
     html_escape

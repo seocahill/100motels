@@ -23,7 +23,7 @@ before_filter :authorize_admin!
 
   def show
     @event = Event.find_by_id(params[:id])
-    @orders = @event.orders.page(params[:page]).per_page(10)
+    @orders = @event.orders.order("created_at DESC").page(params[:page]).per_page(10)
     @orders_no_pages = @event.orders
     respond_to do |format|
       format.html
@@ -50,7 +50,7 @@ before_filter :authorize_admin!
     @event = Event.find(params[:id])
     if @event.update_attributes(params[:event])
       flash[:notice] = "Event has been updated"
-      redirect_to @event
+      redirect_to [:promoter, @event]
     else
       flash[:alert] = "Event has not been updated"
       render :action => "edit"
@@ -61,7 +61,7 @@ before_filter :authorize_admin!
     @event = Event.find(params[:id])
     @event.destroy
     flash[:notice] = "Event has been deleted"
-    redirect_to events_path
+    redirect_to promoter_root_path
   end
 
   private

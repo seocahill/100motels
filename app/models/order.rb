@@ -7,6 +7,7 @@ class Order < ActiveRecord::Base
   validates :quantity, numericality: :true
 
   scope :sales_today, where("orders.created_at >= ?", Time.now.yesterday)
+  scope :sales_average, where("orders.created_at >= ?", Time.now.yesterday)
 
   def self.recent_sales(current_user)
     events = Event.where(promoter_id: current_user.id)
@@ -78,6 +79,6 @@ class Order < ActiveRecord::Base
   end
 
   def total(event)
-    quantity * event.ticket_price
+    quantity * event.ticket_discount
   end
 end

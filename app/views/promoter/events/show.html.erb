@@ -84,8 +84,8 @@
     <h3>Discount Tickets</h3>
   </div>
   <div class="modal-body">
-    <%= form_tag  promoter_event_path(@event), method: :put, class: "form-horizontal" do %>
-     <%= text_field_tag :price_modification, nil, placeholder: "  -10%", class: "span1" %>
+    <%= form_tag  [:promoter, @event], method: :put, class: "form-horizontal" do %>
+     <%= text_field_tag :ticket_discount, nil, placeholder: "  -10%", class: "span1" %>
      <span class="help-block">Enter a negative percentage discount value.</span>
   </div>
   <div class="modal-footer">

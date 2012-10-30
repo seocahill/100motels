@@ -23,7 +23,7 @@
         <ul class="nav nav-list">
           <li class="nav-header">Today's Sales </li>
           <% @sales.each do |s| %>
-            <dd><%= s.event.artist %> <span class="badge badge pull-right"><%= s.quantity %></span></dd>
+            <dd><%= link_to "#{s.event.artist}", promoter_event_path(s.event) %> <span class="badge badge pull-right"><%= s.quantity %></span></dd>
           <% end %>
           <li class="divider"></li>
           <li class="nav-header">Unread Tour requests <span class="badge badge-info pull-right"><%= @tour_requests.count %></span></li>

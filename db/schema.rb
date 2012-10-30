@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121030190249) do
+ActiveRecord::Schema.define(:version => 20121030203325) do
 
   create_table "carts", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -23,9 +23,9 @@ ActiveRecord::Schema.define(:version => 20121030190249) do
     t.string   "venue"
     t.date     "date"
     t.time     "doors"
-    t.datetime "created_at",                                   :null => false
-    t.datetime "updated_at",                                   :null => false
-    t.decimal  "ticket_price",   :precision => 8, :scale => 2
+    t.datetime "created_at",                                                               :null => false
+    t.datetime "updated_at",                                                               :null => false
+    t.decimal  "ticket_price",                :precision => 8, :scale => 2
     t.integer  "promoter_id"
     t.integer  "venue_capacity"
     t.integer  "target"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(:version => 20121030190249) do
     t.string   "image"
     t.string   "image_html"
     t.integer  "location_id"
+    t.integer  "state",          :limit => 8,                               :default => 0
   end
 
   add_index "events", ["location_id"], :name => "index_events_on_location_id"

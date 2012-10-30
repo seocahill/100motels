@@ -21,8 +21,8 @@ class User < ActiveRecord::Base
   has_one :profile, dependent: :destroy
   belongs_to :location
 
-  scope :has_profile, joins(:profile)
-
+  scope :promoter_city, proc { |city| joins(:location).where("city = ?", city) }
+  scope :total_events
 
   def create_location
     self.location = Location.create(address: new_location) if new_location.present?
