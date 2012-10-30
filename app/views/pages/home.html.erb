@@ -49,7 +49,8 @@
 										</div>
 									</li>
 									<li class="span4">
-										<div class="thumbnail">
+										<% if loc[1] %>
+											<div class="thumbnail">
 											<% if loc[1].event.image? %>
 												<%= filepicker_image_tag loc[1].event.image, w: 360, h: 240, fit: 'crop' %>
 											<% else %>
@@ -62,23 +63,30 @@
 												<p><%= loc[1].event.venue %> on <%= time_tag loc[1].event.date %></p>
 												<%= button_to "Info & Tickets", event_path(loc[1].event), method: :get, class: "btn btn-success", id: loc[1].event.artist %>
 											</div>
-										</div>
+											</div>
+										<% else %>
+
+										<% end %>
 									</li>
 									<li class="span4">
-										<div class="thumbnail">
-											<% if loc[2].event.image? %>
-												<%= filepicker_image_tag loc[2].event.image, w: 360, h: 240, fit: 'crop' %>
-											<% else %>
-												<img src="http://quickimage.it/360x240&text=ArtistPic" alt="">
-											<% end %>
-											<div class="caption">
-												<h4 class="title">
-													<%= loc[2].event.artist %>
-												</h4>
-												<p><%= loc[2].event.venue %> on <%= time_tag loc[2].event.date %></p>
-												<%= button_to "Info & Tickets", event_path(loc[2].event), method: :get, class: "btn btn-success", id: loc[2].event.artist %>
+										<% if loc[2] %>
+											<div class="thumbnail">
+												<% if loc[2].event.image? %>
+													<%= filepicker_image_tag loc[2].event.image, w: 360, h: 240, fit: 'crop' %>
+												<% else %>
+													<img src="http://quickimage.it/360x240&text=ArtistPic" alt="">
+												<% end %>
+												<div class="caption">
+													<h4 class="title">
+														<%= loc[2].event.artist %>
+													</h4>
+													<p><%= loc[2].event.venue %> on <%= time_tag loc[2].event.date %></p>
+													<%= button_to "Info & Tickets", event_path(loc[2].event), method: :get, class: "btn btn-success", id: loc[2].event.artist %>
+												</div>
 											</div>
-										</div>
+										<% else %>
+
+										<% end %>
 									</li>
 								</ul>
 						</div>
