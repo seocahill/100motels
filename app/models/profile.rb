@@ -8,6 +8,11 @@ class Profile < ActiveRecord::Base
   has_many :events
   belongs_to :user
 
+  scope :count_events,
+    select("profiles.id, count(events.id) AS events_count").
+    joins(:events).
+    group("profiles.id").
+    order("events_count DESC")
 
   auto_html_for :promoter_media do
     html_escape
