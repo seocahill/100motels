@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
 
   attr_accessor :new_location
 
-  has_many :requests, foreign_key: :profile_id, dependent: :destroy
+  has_many :requests, dependent: :destroy
   has_many :promoters, through: :requests
   has_one :location, dependent: :destroy
   has_one :profile, dependent: :destroy

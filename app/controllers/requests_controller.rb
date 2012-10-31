@@ -1,11 +1,11 @@
 class RequestsController < ApplicationController
 
   def index
-    @requests = Request.where(profile_id: current_user.profile.id)
+    @requests = Request.where(promoter_id: current_user.id)
   end
 
   def create
-    @request = current_user.requests.build(profile_id: params[:profile_id], event_id: params[:event_id])
+    @request = current_user.requests.build(promoter_id: params[:promoter_id], event_id: params[:event_id])
     if @request.save
       flash[:notice] = "Promoter notified."
       redirect_to :back

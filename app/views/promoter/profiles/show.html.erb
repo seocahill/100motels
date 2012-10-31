@@ -7,7 +7,7 @@
       <% elsif user_signed_in? && current_user.promoters.where("event_id IS NULL").include?(@profile.user) %>
         <button class="btn btn-success">Tour Requested <i class="icon-check icon-white"></i></button>
       <% elsif user_signed_in? %>
-        <%= link_to "Request Tour", requests_path(profile_id: @profile.id), class: "btn btn-large", method: :post %>
+        <%= link_to "Request Tour", requests_path(promoter_id: @profile.user_id), class: "btn btn-large", method: :post %>
       <% end %>
     </div>
     <div class="span3S">
