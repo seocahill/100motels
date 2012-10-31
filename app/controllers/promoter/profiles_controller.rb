@@ -25,8 +25,8 @@ class Promoter::ProfilesController < Promoter::BaseController
   def show
     @profile = Profile.find(params[:id])
     @user = User.find(@profile.user_id)
-    @events = Event.where(@user.id == :promoter_id)
-    @requests = Request.where('promoter_id = ? and event_id IS NULL', @profile.user_id)
+    @events = @profile.events
+    @requests = Request.where('profile_id = ? and event_id IS NULL', @profile.id)
   end
 
   def edit

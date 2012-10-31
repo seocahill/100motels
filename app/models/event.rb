@@ -18,9 +18,6 @@ class Event < ActiveRecord::Base
   scope :month_end, lambda { where("date <= ?", Time.now.end_of_month) }
   scope :event_city, proc { |city| joins(:location).where("city = ?", city) }
 
-  def self.promoter_events(user)
-    where("promoter_id = ?", user.id)
-  end
 
   def create_location
     self.location = Location.create(address: new_location) if new_location.present?
@@ -64,10 +61,6 @@ class Event < ActiveRecord::Base
     else
       scoped
     end
-  end
-
-  def total_events(user)
-    Event.where("promoter_id = ?", user.id).count
   end
 
 end

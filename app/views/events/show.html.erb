@@ -9,7 +9,7 @@
 			<% elsif @event.users.include?(current_user) %>
 				<button class="btn btn-success">Support Requested <i class="icon-check icon-white"></i></button>
 			<% elsif user_signed_in? %>
-				<%= link_to "Ask to Support", requests_path(event_id: @event.id, promoter_id: @event.promoter_id), class: "btn btn-large", method: :post %>
+				<%= link_to "Ask to Support", requests_path(event_id: @event.id, profile_id: @event.profile_id), class: "btn btn-large", method: :post %>
 			<% end %>
 		</div>
 		<div class="span2">

@@ -40,7 +40,7 @@ class EventPdf < Prawn::Document
   def promoter
   move_down 20
     t = Time.now
-    text "Promoter: #{User.find_by_id(@event.promoter_id).email}", size: 16
+    text "Promoter: #{@event.profile.user.email}", size: 16
     text "printed on: #{t.strftime("%m/%d/%Y")}"
     text "at: #{t.strftime("%I:%M%p")}"
   end

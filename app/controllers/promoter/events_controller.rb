@@ -1,7 +1,7 @@
 class Promoter::EventsController < Promoter::BaseController
 before_filter :authorize_admin!
   def index
-    @events = Event.where(promoter_id: current_user.id)
+    @events = Event.where(profile_id: current_user.profile.id)
   end
 
   def new

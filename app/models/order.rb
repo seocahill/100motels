@@ -10,7 +10,7 @@ class Order < ActiveRecord::Base
   scope :sales_average, where("orders.created_at >= ?", Time.now.yesterday)
 
   def self.recent_sales(current_user)
-    events = Event.where(promoter_id: current_user.id)
+    events = Event.where(profile_id: current_user.profile.id)
     where(events.include?(:event_id)).order('created_at DESC').limit(5)
   end
 
