@@ -13,9 +13,12 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    def current_location
-      if user_signed_in? && current_user.location
+    def calculate_location
+      current_location = request.location.city
+      if user_signed_in? && current_user.location.city
         current_user.location.city
+      elsif !current_location.empty?
+        current_location
       else
         "Burnaby"
       end
