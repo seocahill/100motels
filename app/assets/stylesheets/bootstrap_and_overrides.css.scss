@@ -1,5 +1,6 @@
-$iconSpritePath: asset-url('glyphicons-halflings.png', image);
-$iconWhiteSpritePath: asset-url("glyphicons-halflings-white.png", image);
-
 @import "bootstrap";
 @import "bootstrap-responsive";
+
+body {
+  font-size: 50px;
+}
