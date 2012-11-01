@@ -4,7 +4,7 @@
 	</header>
 	<div class="row">
 		<div class="span3">
-			<% if user_signed_in? && current_user == @promoter %>
+			<% if user_signed_in? && current_user == @event.profile.user %>
 				<%= link_to "Edit Your Event", "/editor" + request.path, id: "edit_link", data: {save_url: mercury_update_event_path(@event) }, class: "btn" %>
 			<% elsif @event.users.include?(current_user) %>
 				<button class="btn btn-success">Support Requested <i class="icon-check icon-white"></i></button>
