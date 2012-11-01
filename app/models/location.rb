@@ -1,5 +1,5 @@
 class Location < ActiveRecord::Base
-  attr_accessible :address, :latitude, :longitude, :location_id, :new_location
+  attr_accessible :address, :new_location
 
   # geocoded_by :address
   geocoded_by :address do |obj,results|

@@ -20,7 +20,7 @@ $ ->
     interval: false
 
 $ ->
-  for link in $(".topbar .nav a")
-    do (link) ->
-      if (window.location.pathname == link.pathname)
-        $(link).parent().toggleClass("active")
+  $('#promoters-carousel .item:first').addClass('active')
+  $('#promoters-carousel').carousel
+    interval: false
+

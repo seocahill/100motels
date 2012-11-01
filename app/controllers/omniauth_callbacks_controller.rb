@@ -1,7 +1,7 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def all
     user = User.from_omniauth(request.env["omniauth.auth"], current_user)
-    if !user.uid.nil?
+    if !user.profile.api_key.nil?
       flash.notice = "Connected to Stripe successfully"
       redirect_to promoter_root_path
     else
