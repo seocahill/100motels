@@ -1,20 +1,19 @@
-	<div class="container">
-<h1><%= @events_locs %> </h1>
+<div class="container">
 			<div class="section-box">
 				<div class="navbar">
 					<h2 class="welcome-banner">
-					 Hi and Welcome to the 100 Motels demo site!<br>
+					 Hi and Welcome to the 100 Motels Demo<br>
 					 <small>100 Motels is an idea I have to help independent musicians like myself get out on tour without industry backing or paying to play.</small>
 					</h2>
 	  			<div id="welcome-nav" class="navbar-inner" align="center">
-	  				<div class="label-box">What do you want to do?</div>
+	  				<div class="label-box"><del>Alpha</del> Demo!!</div>
+	  				<a class="brand">Click One >></a>
 						<ul class="nav">
-							<li class="span2">
-		    				<a href="#new-promoters">Tour or Support</a>
-		  				</li>
-		  				<li class="span3"><a href="#promoter-apply">Organize a show</a></li>
-		  				<li class="span2"><a href="#latest-events">Buy a ticket</a></li>
-		  				<li class="span3"><%= link_to "More about 100 Motels", info_path %></li>
+							<li class="divider-vertical"></li>
+							<li class="span2"><a href="#new-promoters">Tour or Support</a></li>
+		  				<li class="span2"><a href="#promoter-apply">Organize</a></li>
+		  				<li class="span2"><a href="#latest-events">Shows</a></li>
+		  				<li class="span3"><%= link_to "What is 100 Motels? ", info_path %></li>
 						</ul>
 					</div>
 				</div>
@@ -24,7 +23,7 @@
 				<header class="page-header">
 					<h3>
 						<i class="icon-globe"></i>
-						Shows near <%= @location %>
+						Shows near <%= @location %> <%= link_to "View All >>", events_path, class: "pull-right btn" %>
 					</h3>
 				</header>
 				<div id="events-carousel" class="carousel slide" data-interval="false">
@@ -95,11 +94,23 @@
 					<a class="left carousel-control" href="#events-carousel" data-slide="prev">‹</a>
 					<a class="right carousel-control" href="#events-carousel" data-slide="next">›</a>
 				</div>
+				<hr>
+				<div>
+					<p class="lead">
+						<strong>On the front page</strong>, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+					</p>
+				</div>
+				<hr>
 			</section>
 
 			<section id="new-promoters">
 				<header>
-					<h3 class="page-header"><i class="icon-globe"></i>Promoters near <%= @location %></h3>
+					<h3 class="page-header"><i class="icon-globe"></i>Promoters near <%= @location %> <%= link_to "View All >>", promoter_profiles_path, class: "pull-right btn" %></h3>
 				</header>
 				<div id="promoters-carousel" class="carousel slide" data-interval="false">
 					<div id="promoters" class="carousel-inner">
@@ -177,22 +188,51 @@
 					<a class="left carousel-control" href="#promoters-carousel" data-slide="prev">‹</a>
 					<a class="right carousel-control" href="#promoters-carousel" data-slide="next">›</a>
 				</div>
+				<hr>
+				<div>
+					<p class="lead">
+						<strong>On the front page</strong>, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+					</p>
+				</div>
+				<hr>
 			</section>
 
 			<section id="promoter-apply">
 				<div class="well well-large">
-					<h3>Looking to put on Shows?...Apply to become a Member</h3>
-					<blockquote>
-						<p> Initially at least my idea is to vet prospective promoters as opposed to having a completely open community, although there is technically no reason to prevent the latter. There could be a fee for membership dependent on the level of promoter activity.</p><br>
-						<p>Ordinary users can choose to create an account with 100 Motels when purchasing tickets but for promoters there's a different process. </p>
-					<p>If you click the signup button below you will be taken to Stripe.com to either authorize an existing account for use with 100 Motels or to create one.
-						This enables promoters to be paid directly and is only available to US or Canadian citizens at the time of writing.</p>
-						<p>100 Motels recieves a per transaction fee for each ticket purchased while Stripe's processing fees are applied directly to the promoter's account.</p> <br>
-						<p>For more details on this and all other technical queries regarding the service click on the 'More Info' button below.</p>
-					</blockquote>
-					<div class="btn-group">
-						<a href="#invite" class="btn btn-large btn-primary" data-toggle="modal">Request Invite</a>
-					  <%= link_to "More Info", info_path, class: "btn btn-large" %>
+					<header><h3 class="lead">So Who Organizes the Show?</h3></header>
+					<div class="row-fluid">
+						<div class="span2">
+							<ul class="nav nav-list">
+			          <li class="nav-header">How it Works</li>
+			          <li class="divider"></li>
+			          <li class=""><a href="#">Organizing >></a></li>
+			          <li class=""><a href="#">Funding >></a></li>
+			          <li class=""><a href="#">Touring  >></a></li>
+			          <li class=""><a href="#">Supporting >></a></li>
+			          <li class=""><a href="#">Attending >></a></li>
+			          <li class=""><a href="#">Payment >></a></li>
+			          <li class="divider"></li>
+			        </ul>
+			        <div class="btn-group center">
+								<a href="#invite" class="btn btn-block btn-large btn-primary" data-toggle="modal">Request Invite</a>
+							</div>
+						</div>
+						<div class="span10">
+							<blockquote>
+								<p><strong>Initially at least</strong> my idea is to vet prospective promoters as opposed to having a completely open community, although there is technically no reason to prevent the latter. There could be a fee for membership dependent on the level of promoter activity.</p><br>
+								<p>Ordinary users can choose to create an account with 100 Motels when purchasing tickets but for promoters there's a different process. </p>
+							  <p>If you click the signup button below you will be taken to Stripe.com to either authorize an existing account for use with 100 Motels or to create one.
+									This enables promoters to be paid directly and is only available to US or Canadian citizens at the time of writing.</p>
+								<p>100 Motels recieves a per transaction fee for each ticket purchased while Stripe's processing fees are applied directly to the promoter's account.</p> <br>
+								<p>For more details on this and all other technical queries regarding the service click on the 'More Info' button below.</p>
+							</blockquote>
+						</div>
+						<hr>
 					</div>
 				</div>
 			</section>
@@ -209,7 +249,7 @@
         <a href="#" class="btn" data-dismiss="modal">Close</a>
       </div>
     </div>
-	</div>
+ </div>
 
 
 

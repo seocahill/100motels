@@ -10,7 +10,7 @@ class EventsController < ApplicationController
 
   def index
     @options = Location.joins(:event).collect(&:city)
-    @location = current_location
+    # @location = current_location
     @events = apply_scopes(Event.text_search(params[:query]).page(params[:page]).per_page(3)).all
   end
 
