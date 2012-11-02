@@ -19,7 +19,7 @@ class EventsController < ApplicationController
     @promoter = Profile.find(@event.profile_id)
   end
 
-  def mercury_update
+  def update
     event = Event.find(params[:id])
     event.about = params[:content][:event_about][:value]
     event.save!
