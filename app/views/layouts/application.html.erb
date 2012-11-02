@@ -17,7 +17,7 @@
     <![endif-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
-  <body>
+  <body data-spy="scroll" data-target=".sidebar">
     <div class="navbar">
       <div class="navbar-inner">
         <div class="container" style="width: auto;">
@@ -59,18 +59,18 @@
               </li>
             </ul>
           </div><!-- /.nav-collapse -->
-        </div>
+          <% flash.each do |key, value| %>
+          <div class="alert alert-<%= key == :notice ? "success" : "error" %>">
+            <a class="close" data-dismiss="alert">&#215;</a>
+            <%= content_tag :div, value, :id => "flash_#{key}" if value.is_a?(String) %>
+          </div> <!-- /flash -->
+          <% end %>
+        </div> <!-- container -->
       </div><!-- /navbar-inner -->
-    </div>
-    <div class="container">
-      <% flash.each do |key, value| %>
-      	<div class="alert alert-<%= key == :notice ? "success" : "error" %>">
-          <a class="close" data-dismiss="alert">&#215;</a>
-      		<%= content_tag :div, value, :id => "flash_#{key}" if value.is_a?(String) %>
-      	</div>
-      <% end %>
+    </div>  <!-- /navbar -->
+    <div class="container content">
       <%= yield %>
-    </div>
+    </div> <!-- /content container -->
   </body>
   <footer>
     <div class="container">
