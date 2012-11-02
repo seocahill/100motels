@@ -42,7 +42,7 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'dynamic_form'
   gem 'uglifier', '>= 1.0.3'
-  gem 'bootstrap-sass', '~> 2.1.0.0'
+  gem 'bootstrap-sass', git: 'https://github.com/trisweb/bootstrap-sass.git'
   gem 'turbo-sprockets-rails3'
 end
 

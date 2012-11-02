@@ -13,6 +13,12 @@ GIT
       coffee-rails
       railties (~> 3.2)
 
+GIT
+  remote: https://github.com/trisweb/bootstrap-sass.git
+  revision: 2fc8201565b7e95d0ca1705c71597b192035603d
+  specs:
+    bootstrap-sass (2.2.1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -55,7 +61,6 @@ GEM
       redcarpet (~> 2.0)
       rinku (~> 1.5.0)
     bcrypt-ruby (3.0.1)
-    bootstrap-sass (2.1.0.1)
     bootstrap-will_paginate (0.0.9)
       will_paginate
     builder (3.0.4)
@@ -331,7 +336,7 @@ DEPENDENCIES
   active_attr
   attr_encrypted
   auto_html
-  bootstrap-sass (~> 2.1.0.0)
+  bootstrap-sass!
   bootstrap-will_paginate
   cancan
   capybara
