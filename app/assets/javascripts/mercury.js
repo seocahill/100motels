@@ -439,6 +439,17 @@ window.Mercury = {
       '[data-mercury] .mercury-textarea:focus { outline: none; -webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none; }'
   },
 
+  onload: function() {
+    //Mercury.PageEditor.prototype.iframeSrc = function(url) { return '/testing'; }
+    Mercury.on('ready', function() {
+      var link = $('#mercury_iframe').contents().find('#edit_link');
+      link.hide();
+    });
+
+    Mercury.on('saved', function() {
+      window.location.href = window.location.href.replace(/\/editor\//i, '/');
+    });
+  },
   // ## Silent Mode
   //
   // Turning silent mode on will disable asking about unsaved changes before leaving the page.

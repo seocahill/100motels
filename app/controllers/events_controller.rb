@@ -19,9 +19,13 @@ class EventsController < ApplicationController
     @promoter = Profile.find(@event.profile_id)
   end
 
+  def edit
+    @event = Event.find(params[:id])
+  end
+
   def update
     event = Event.find(params[:id])
-    event.about = params[:content][:event_about][:value]
+    event.artist = params[:content][:artist][:value]
     event.save!
     render text: ""
   end
