@@ -1,7 +1,5 @@
 OneHundredMotels::Application.routes.draw do
 
-  mount Mercury::Engine => '/'
-
   use_doorkeeper
 
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
@@ -27,7 +25,7 @@ OneHundredMotels::Application.routes.draw do
     end
   end
 
-  resources :events, only: [:index, :show, :update] do
+  resources :events do
     member { post :request_support }
     member { post :discount }
   end

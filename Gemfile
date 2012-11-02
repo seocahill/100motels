@@ -61,7 +61,7 @@ gem 'bootstrap-will_paginate'
 gem 'prawn'
 gem "auto_html"
 gem 'filepicker-rails'
-gem 'mercury-rails', git: 'https://github.com/jejacks0n/mercury.git'  #, ref: '6d9c99fe20958ed87e4f1a05e9de19825af702ef'
+# gem 'mercury-rails'
 gem 'client_side_validations'
 gem 'client_side_validations-simple_form'
 gem 'geocoder'

@@ -40,10 +40,6 @@ before_filter :authorize_admin!
     @event = Event.find(params[:id])
   end
 
-  def mercury_update
-    event = Event.find(params[:id])
-    render text: ""
-  end
 
   def update
     @event = Event.find(params[:id])

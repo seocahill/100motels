@@ -6,14 +6,6 @@ GIT
       tilt
 
 GIT
-  remote: https://github.com/jejacks0n/mercury.git
-  revision: d0079a898e45e8b5c59d202f9d1dfeafa6247709
-  specs:
-    mercury-rails (0.9.0)
-      coffee-rails
-      railties (~> 3.2)
-
-GIT
   remote: https://github.com/trisweb/bootstrap-sass.git
   revision: 2fc8201565b7e95d0ca1705c71597b192035603d
   specs:
@@ -366,7 +358,6 @@ DEPENDENCIES
   launchy
   libnotify
   mail_view!
-  mercury-rails!
   omniauth-stripe-connect
   pg
   prawn
