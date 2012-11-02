@@ -12,13 +12,37 @@
 							<li class="divider-vertical"></li>
 							<li class="span2"><a href="#new-promoters">Tour or Support</a></li>
 		  				<li class="span2"><a href="#promoter-apply">Organize</a></li>
-		  				<li class="span2"><a href="#latest-events">Shows</a></li>
+		  				<li class="span2"><a href="#latest-events">Tickets</a></li>
 		  				<li class="span3"><%= link_to "What is 100 Motels? ", info_path %></li>
 						</ul>
 					</div>
 				</div>
 			</div>
 		<div id="content">
+			<!-- <section class="explanation well-small">
+				<div class="row-fluid">
+					<div class="span2" align="center">
+						<img src="//www.gravatar.com/avatar/fd4e9587dd4e9696fecfa8b47f5d6c77.png" class="img-polaroid">
+					</div>
+					<div class="span10">
+						<blockquote>
+							<p class="lead">
+								There are a number of roadblocks in place at the moment that affect a musician's ability to lead a full and satisifying artistic life. 100 Motels is concerned with touring, that is live performance away from home. I worked on the implementation of this application with a few key goals constantly in focus, namely:
+							</p>
+								<ol>
+									<li>Financial Risk</li>
+									<li>Attendence</li>
+									<li>Organizational Burden</li>
+								</ol>
+							<p class="lead">
+								From my own experience, sharing music had led to myriad touring opportunities, mostly forgone due to point 1. The last point is a good reason not to pursue a touring opportunity, an artist has to be allowed to focus on the performance. Even with the aforementioned concerns accounted for, again from experience, a show without a crowd is disheartening and unenjoyable and another good reason not to bother next time, for the artist and the audience alike.
+								<%= link_to "Read More >", info_path %>
+							</p>
+						</blockquote>
+					</div>
+				</div>
+			</section>
+			<hr> -->
 			<section id="latest-events">
 				<header class="page-header">
 					<h3>
@@ -95,22 +119,18 @@
 					<a class="right carousel-control" href="#events-carousel" data-slide="next">›</a>
 				</div>
 				<hr>
-				<div>
+				<!-- div>
 					<p class="lead">
-						<strong>On the front page</strong>, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+						<strong>First and foremost I wanted to focus</strong> on miminizing risk when funding live shows. After that the next, related concern was attendance. With this in mind all sales on 100 motels are provisional thanks to Stripe's innovative API. Funding can be drawn down when the attendance goal is met. <br>
+						<%= link_to "learn more about funding and payments >", info_path %>
 					</p>
 				</div>
-				<hr>
+				<hr> -->
 			</section>
 
 			<section id="new-promoters">
 				<header>
-					<h3 class="page-header"><i class="icon-globe"></i>Promoters near <%= @location %> <%= link_to "View All >>", promoter_profiles_path, class: "pull-right btn" %></h3>
+					<h3 class="page-header"><i class="icon-globe"></i>Organizers near <%= @location %> <%= link_to "View All >>", promoter_profiles_path, class: "pull-right btn" %></h3>
 				</header>
 				<div id="promoters-carousel" class="carousel slide" data-interval="false">
 					<div id="promoters" class="carousel-inner">
@@ -189,7 +209,7 @@
 					<a class="right carousel-control" href="#promoters-carousel" data-slide="next">›</a>
 				</div>
 				<hr>
-				<div>
+				<!-- <div>
 					<p class="lead">
 						<strong>On the front page</strong>, consectetur adipisicing elit, sed do eiusmod
 						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -199,7 +219,7 @@
 						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 					</p>
 				</div>
-				<hr>
+				<hr> -->
 			</section>
 
 			<section id="promoter-apply">
@@ -207,6 +227,9 @@
 					<header><h3 class="lead">So Who Organizes the Show?</h3></header>
 					<div class="row-fluid">
 						<div class="span2">
+							<p>
+								<img src="//www.gravatar.com/avatar/fd4e9587dd4e9696fecfa8b47f5d6c77.png" class="img-circle">
+							</p>
 							<ul class="nav nav-list">
 			          <li class="nav-header">How it Works</li>
 			          <li class="divider"></li>
@@ -224,12 +247,12 @@
 						</div>
 						<div class="span10">
 							<blockquote>
-								<p><strong>Initially at least</strong> my idea is to vet prospective promoters as opposed to having a completely open community, although there is technically no reason to prevent the latter. There could be a fee for membership dependent on the level of promoter activity.</p><br>
-								<p>Ordinary users can choose to create an account with 100 Motels when purchasing tickets but for promoters there's a different process. </p>
-							  <p>If you click the signup button below you will be taken to Stripe.com to either authorize an existing account for use with 100 Motels or to create one.
-									This enables promoters to be paid directly and is only available to US or Canadian citizens at the time of writing.</p>
-								<p>100 Motels recieves a per transaction fee for each ticket purchased while Stripe's processing fees are applied directly to the promoter's account.</p> <br>
-								<p>For more details on this and all other technical queries regarding the service click on the 'More Info' button below.</p>
+								<p><strong>Anyone...excepting Artists.</strong> </p>
+								<br>
+								<p>Artists can do three things on 100 Motels: Add a playlist of their music; make a tour request; make a support request. If they end up playing a show, everything bar the performance will be taken care of by the organizer. It's just like the pro's, except you don't have to make commercial music to play.<strong> You will never pay to play.</strong></p> <br>
+							  <p>Anyone who has a credit card can organize, but it will be controlled until the system matures. The first organizers are likey to be radio hosts, bloggers and other proven contributers to music without profit who naturally command a crowd, like the examples in this demo (all people who I discovered through my music).</p> <br>
+								<p>Along with offloading the organizational burden from the artist there were two other pillar issues that precipitated the idea for 100 Motels: Risk and Attendance. You can organize or fund a 100 Motels show without incurring any costs. A successful campaign is always realised in terms of attaining a target attendance. </p> <br>
+								<p>Follow the adjacent links for more info or for the full details of the implementation <%= link_to "go here.", info_path %></p>
 							</blockquote>
 						</div>
 						<hr>

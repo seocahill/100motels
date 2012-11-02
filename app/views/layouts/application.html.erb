@@ -59,16 +59,16 @@
               </li>
             </ul>
           </div><!-- /.nav-collapse -->
-          <% flash.each do |key, value| %>
-          <div class="alert alert-<%= key == :notice ? "success" : "error" %>">
-            <a class="close" data-dismiss="alert">&#215;</a>
-            <%= content_tag :div, value, :id => "flash_#{key}" if value.is_a?(String) %>
-          </div> <!-- /flash -->
-          <% end %>
         </div> <!-- container -->
       </div><!-- /navbar-inner -->
     </div>  <!-- /navbar -->
     <div class="container content">
+      <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key == :notice ? "success" : "error" %>">
+          <a class="close" data-dismiss="alert">&#215;</a>
+          <%= content_tag :div, value, :id => "flash_#{key}" if value.is_a?(String) %>
+        </div> <!-- /flash -->
+      <% end %>
       <%= yield %>
     </div> <!-- /content container -->
   </body>
