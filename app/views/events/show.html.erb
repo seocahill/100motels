@@ -5,7 +5,7 @@
 	<div class="row">
 		<div class="span3">
 			<% if user_signed_in? && current_user == @event.profile.user %>
-				<%= link_to "Edit Your Event", "/editor" + request.path, id: "edit_link", class: "btn" %>
+				<%= link_to "Edit Your Event", "/editor" + request.path, class: "btn" %>
 			<% elsif @event.users.include?(current_user) %>
 				<button class="btn btn-success">Support Requested <i class="icon-check icon-white"></i></button>
 			<% elsif user_signed_in? %>
@@ -31,7 +31,7 @@
 						<div class="span3 offset1" align="center">
 							<h2>
 								<small><%= @promoter.try(:promoter_name) %> presents...</small> <br>
-								<%= @event.artist %>
+								<div id="artist" data-mercury="full"><%= @event.artist %></div>
 							</h2>
 						</div>
 					</div>
@@ -104,7 +104,7 @@
 		<div class="label-box">About the Artists</div>
 		<div class="row">
 			<div class="span4">
-				<div id="event-about" data-mercury="full">
+				<div id="about">
 					<% if @event.about? %>
 						<%= raw @event.about  %>
 					<% else %>

@@ -47,6 +47,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'mercury-rails'
 gem 'devise'
 gem 'simple_form'
 gem 'stripe'
@@ -61,7 +62,6 @@ gem 'bootstrap-will_paginate'
 gem 'prawn'
 gem "auto_html"
 gem 'filepicker-rails'
-# gem 'mercury-rails'
 gem 'client_side_validations'
 gem 'client_side_validations-simple_form'
 gem 'geocoder'
