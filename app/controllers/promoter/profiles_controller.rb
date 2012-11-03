@@ -34,14 +34,18 @@ class Promoter::ProfilesController < Promoter::BaseController
   end
 
   def update
-    @profile = Profile.find(params[:id])
-    if @profile.update_attributes(params[:profile])
-      flash[:notice] = "profile has been updated"
-      redirect_to [:promoter, @profile]
-    else
-      flash[:alert] = "profile has not been updated"
-      render :action => "edit"
-    end
+    profile = Profile.find(params[:id])
+    profile.promoter_name = params[:content][:name][:value]
+    profile.available = params[:content][:available][:value]
+    profile.fee = params[:content][:fee][:value]
+    profile.about = params[:content][:about][:value]
+    profile.equipment = params[:content][:equipment][:value]
+    profile.venues = params[:content][:venues][:value]
+    profile.travel = params[:content][:travel][:value]
+    profile.accomodation = params[:content][:accomodation][:value]
+    profile.support = params[:content][:support][:value]
+    profile.save!
+    render text: ""
   end
 
   def destroy
