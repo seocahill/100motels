@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
+  # serialize :customer_details, ActiveRecord::Coders::Hstore
   rolify
-  # before_update { user.build_location if user.location.empty? }
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
-  :name, :avatar, :last4, :media, :location_id, :new_location
+  :name, :avatar, :media, :new_location
 
   attr_accessor :new_location
 
@@ -23,6 +23,19 @@ class User < ActiveRecord::Base
 
   scope :promoter_city, proc { |city| joins(:location).where("city = ?", city) }
   scope :total_events
+
+  %w[livemode type exp_month country exp_year cvc_check].each do |key|
+    # attr_accessible key
+    scope "has_#{key}", lambda { |value| where("customer_details @> (? => ?)", key, value) }
+
+    define_method(key) do
+      customer_details && customer_details[key]
+    end
+
+    define_method("#{key}=") do |value|
+      self.customer_details = (customer_details || {}).merge(key => value)
+    end
+  end
 
   def create_location
     self.location = Location.create(address: new_location) if new_location.present?
@@ -52,10 +65,16 @@ class User < ActiveRecord::Base
           description: user.name,
           email: user.email,
           card: card
-      )
+        )
       user.customer_id = customer.id
+      user.livemode = customer.livemode
+      user.type = customer.active_card["type"]
+      user.exp_year = customer.active_card["exp_year"]
+      user.exp_month = customer.active_card["exp_month"]
+      user.country = customer.active_card["country"]
+      user.cvc_check = customer.active_card["cvc_check"]
       user.last4 = customer.active_card["last4"]
-      user.save!
+      user.save
     end
   rescue Stripe::InvalidRequestError => e
     flash[:error] = e.message
