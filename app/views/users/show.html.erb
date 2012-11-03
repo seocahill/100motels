@@ -40,7 +40,7 @@
                   <dt>Current Card</dt>
                   <dd>
                     <% if @user.customer_id %>
-                      ####-####-####-<%= @user.last4 %>
+                      <%= @user.type %> #<%= @user.last4 %>, Exp: <%= @user.exp_month %>/<%= @user.exp_year %>
                     <% else %>
                       none provided
                     <% end %>

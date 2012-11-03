@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   def change_card
     card = params[:stripeToken]
     if @user.save_card(@user, card)
-      redirect_to(@user, notice: "Card updated successfully")
+      redirect_to(root_path, notice: "Card updated successfully")
     else
       redirect_to(@user, notice: "Something went wrong")
     end
