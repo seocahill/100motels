@@ -1,6 +1,9 @@
 <div class="container">
   <div class="row">
-    <div class="span3">
+    <div class="span12">
+      <div class="alert" align="center">
+        <%= "Your Profile is currently visible" if @profile.visible? %>
+      </div>
       <% if user_signed_in? && current_user.profile == @profile %>
         <%#= link_to "Show Editor", "/editor" + request.path, id: "edit_link", class: "btn btn-large" %>
         <%= link_to "Edit Profile", edit_promoter_profile_path(@profile), class: 'btn' %>
@@ -9,13 +12,6 @@
       <% elsif user_signed_in? %>
         <%= link_to "Request Tour", requests_path(promoter_id: @profile.user_id), class: "btn btn-large", method: :post %>
       <% end %>
-    </div>
-    <div class="span3S">
-       <% if user_signed_in? && current_user.profile == @profile %>
-       <div class="alert" align="center">
-          <%= "Your Profile is currently visible" if @profile.visible? %>
-        </div>
-       <% end %>
     </div>
   </div>
   <section class="section-box">

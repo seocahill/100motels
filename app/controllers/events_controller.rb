@@ -26,6 +26,8 @@ class EventsController < ApplicationController
   def update
     event = Event.find(params[:id])
     event.artist = params[:content][:artist][:value]
+    event.about = params[:content][:about][:value]
+    event.video = params[:content][:video][:value]
     event.save!
     render text: ""
   end

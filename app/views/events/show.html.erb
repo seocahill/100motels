@@ -104,9 +104,9 @@
 		<div class="label-box">About the Artists</div>
 		<div class="row">
 			<div class="span4">
-				<div id="about">
+				<div id="about" data-mercury="full">
 					<% if @event.about? %>
-						<%= raw @event.about  %>
+						<%= raw @event.about %>
 					<% else %>
 						<%= render 'body_holder' %>
 					<% end %>
