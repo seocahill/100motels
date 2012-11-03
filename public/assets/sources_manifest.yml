@@ -4,11 +4,12 @@ facebook.png: 390c802350d9bba09752918debb5e566
 rss.png: 3d8aff263945ff9028575d807b558d37
 twitter.png: f100018153bd256ea8f0f0dd85b4b560
 vimeo.png: 85b47a7bf188d87f0a5b545e1aff9ac2
-application.js: bb326ce034238a096ce60d8e486b3992
-mercury.js: b096397cb7cc38d426404a61f6345d7d
-application.css: 81758cc6adaa40c5c0e6b216b1842783
+application.js: 6adbda50cda88410c158b93174eefcd3
+mercury.js: 1ea02331f95541f6c12b442eac3f6813
+application.css: 49b428035ed191f06fea2e83863a6f31
 mercury.css: c2f5cdb2c2ff0a7e3241312906beb66c
-mercury_overrides.css: 84934ab0ce7254e2736069c8d406c709
+doorkeeper/application.js: fd0c6452fea8c5ba6aab022988163a7d
+doorkeeper/application.css: 2604cca19931a3682c12787e29e97738
 mercury/button.png: 77dc9da26371196f3f52d47e01ccf60b
 mercury/close.png: 6eb51d999a4b569094631875cfc031a3
 mercury/default-snippet.png: cb22d06900274a955933ea58bf4b7d87
@@ -36,7 +37,5 @@ mercury/toolbar/primary/tools.png: 4b7f314d387e9ce0d0cb26f63b36be2f
 mercury/toolbar/primary/undo.png: 198778b2ef78a08960304c9489fc37c3
 mercury/toolbar/primary/user.png: bd7bd3279893e7c68fb6077d317ff4a2
 mercury/toolbar/snippets/buttons.png: 1332f1dd5f0a4737cbaac7553128ae91
-doorkeeper/application.js: fd0c6452fea8c5ba6aab022988163a7d
-doorkeeper/application.css: 2604cca19931a3682c12787e29e97738
 glyphicons-halflings-white.png: 13553a5bf21ae3cc374006592488ec64
 glyphicons-halflings.png: ab3144065a860d198f1d7d9a4882640c
