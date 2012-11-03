@@ -44,9 +44,10 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
   gem 'bootstrap-sass'
   gem 'turbo-sprockets-rails3'
+  gem 'jquery-rails'
 end
 
-gem 'jquery-rails'
+
 gem 'mercury-rails'
 gem 'devise'
 gem 'simple_form'
