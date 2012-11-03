@@ -5,12 +5,6 @@ GIT
     mail_view (1.0.1)
       tilt
 
-GIT
-  remote: https://github.com/trisweb/bootstrap-sass.git
-  revision: 2fc8201565b7e95d0ca1705c71597b192035603d
-  specs:
-    bootstrap-sass (2.2.1.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -53,6 +47,7 @@ GEM
       redcarpet (~> 2.0)
       rinku (~> 1.5.0)
     bcrypt-ruby (3.0.1)
+    bootstrap-sass (2.1.1.0)
     bootstrap-will_paginate (0.0.9)
       will_paginate
     builder (3.0.4)
@@ -185,7 +180,7 @@ GEM
       railties (~> 3.2)
     method_source (0.8.1)
     mime-types (1.19)
-    multi_json (1.3.6)
+    multi_json (1.3.7)
     multipart-post (1.1.5)
     nokogiri (1.5.5)
     oauth2 (0.8.0)
@@ -279,7 +274,7 @@ GEM
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
-    selenium-webdriver (2.25.0)
+    selenium-webdriver (2.26.0)
       childprocess (>= 0.2.5)
       libwebsocket (~> 0.1.3)
       multi_json (~> 1.0)
@@ -331,7 +326,7 @@ DEPENDENCIES
   active_attr
   attr_encrypted
   auto_html
-  bootstrap-sass!
+  bootstrap-sass
   bootstrap-will_paginate
   cancan
   capybara
