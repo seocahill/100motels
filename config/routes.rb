@@ -39,7 +39,11 @@ OneHundredMotels::Application.routes.draw do
     end
   end
 
-  resources :requests, only: [:create, :destroy, :index]
+  resources :requests, only: [:create, :destroy, :index]  do
+    collection do
+      post :mark_read
+    end
+  end
 
   resources :locations
 

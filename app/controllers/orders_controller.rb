@@ -62,7 +62,7 @@ class OrdersController < ApplicationController
 private
 
   def find_order
-    @order = Order.find(params[:id])
+    @order = Order.find(params[:id]).where()
     rescue ActiveRecord::RecordNotFound
     redirect_to root_path
   end

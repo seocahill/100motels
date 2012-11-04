@@ -15,7 +15,6 @@ group :developement, :test do
 	gem 'guard-cucumber'
   gem 'factory_girl_rails'
   gem 'guard-livereload'
-  gem 'rack-livereload'
   gem 'mail_view', :git => 'https://github.com/37signals/mail_view.git'
   gem 'foreman'
 end
