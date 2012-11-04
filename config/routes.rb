@@ -32,6 +32,8 @@ OneHundredMotels::Application.routes.draw do
     member { post :discount }
   end
 
+  resources :profiles, only: [:index, :show]
+
   resources :orders do
     collection do
       post :charge_multiple

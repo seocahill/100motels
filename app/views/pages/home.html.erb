@@ -19,30 +19,7 @@
 				</div>
 			</div>
 		<div id="content">
-			<!-- <section class="explanation well-small">
-				<div class="row-fluid">
-					<div class="span2" align="center">
-						<img src="//www.gravatar.com/avatar/fd4e9587dd4e9696fecfa8b47f5d6c77.png" class="img-polaroid">
-					</div>
-					<div class="span10">
-						<blockquote>
-							<p class="lead">
-								There are a number of roadblocks in place at the moment that affect a musician's ability to lead a full and satisifying artistic life. 100 Motels is concerned with touring, that is live performance away from home. I worked on the implementation of this application with a few key goals constantly in focus, namely:
-							</p>
-								<ol>
-									<li>Financial Risk</li>
-									<li>Attendence</li>
-									<li>Organizational Burden</li>
-								</ol>
-							<p class="lead">
-								From my own experience, sharing music had led to myriad touring opportunities, mostly forgone due to point 1. The last point is a good reason not to pursue a touring opportunity, an artist has to be allowed to focus on the performance. Even with the aforementioned concerns accounted for, again from experience, a show without a crowd is disheartening and unenjoyable and another good reason not to bother next time, for the artist and the audience alike.
-								<%= link_to "Read More >", info_path %>
-							</p>
-						</blockquote>
-					</div>
-				</div>
-			</section>
-			<hr> -->
+
 			<section id="latest-events">
 				<header class="page-header">
 					<h3>
@@ -119,13 +96,6 @@
 					<a class="right carousel-control" href="#events-carousel" data-slide="next">›</a>
 				</div>
 				<hr>
-				<!-- div>
-					<p class="lead">
-						<strong>First and foremost I wanted to focus</strong> on miminizing risk when funding live shows. After that the next, related concern was attendance. With this in mind all sales on 100 motels are provisional thanks to Stripe's innovative API. Funding can be drawn down when the attendance goal is met. <br>
-						<%= link_to "learn more about funding and payments >", info_path %>
-					</p>
-				</div>
-				<hr> -->
 			</section>
 
 			<section id="new-promoters">
@@ -148,7 +118,7 @@
 													<div class="caption">
 														<h3 class="title"><%= profile[0].promoter_name || profile[0].user.name %></h3>
 														<h4>location</h4>
-														<%= button_to "Full Profile", promoter_profile_path(profile[0]), method: :get, class: "btn btn-primary" %>
+														<%= button_to "Full Profile", profile_path(profile[0]), method: :get, class: "btn btn-primary" %>
 												</div>
 											<% end %>
 										</div>
@@ -164,7 +134,7 @@
 												<div class="caption">
 													<h3 class="title"><%= profile[1].promoter_name || profile[1].user.name %></h3>
 													<h4>location</h4>
-													<%= button_to "Full Profile", promoter_profile_path(profile[1]), method: :get, class: "btn btn-primary" %>
+													<%= button_to "Full Profile", profile_path(profile[1]), method: :get, class: "btn btn-primary" %>
 												</div>
 											<% end %>
 										</div>
@@ -180,7 +150,7 @@
 												<div class="caption">
 													<h3 class="title"><%= profile[2].promoter_name || profile[2].user.name %></h3>
 													<h4>location</h4>
-													<%= button_to "Full Profile", promoter_profile_path(profile[2]), method: :get, class: "btn btn-primary" %>
+													<%= button_to "Full Profile", profile_path(profile[2]), method: :get, class: "btn btn-primary" %>
 												</div>
 											<% end %>
 										</div>
@@ -196,7 +166,7 @@
 												<div class="caption">
 													<h3 class="title"><%= profile[3].promoter_name || profile[3].user.name %></h3>
 													<h4>location</h4>
-													<%= button_to "Full Profile", promoter_profile_path(profile[3]), method: :get, class: "btn btn-primary" %>
+													<%= button_to "Full Profile", profile_path(profile[3]), method: :get, class: "btn btn-primary" %>
 												</div>
 											<% end %>
 										</div>
@@ -209,17 +179,6 @@
 					<a class="right carousel-control" href="#promoters-carousel" data-slide="next">›</a>
 				</div>
 				<hr>
-				<!-- <div>
-					<p class="lead">
-						<strong>On the front page</strong>, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-					</p>
-				</div>
-				<hr> -->
 			</section>
 
 			<section id="promoter-apply">

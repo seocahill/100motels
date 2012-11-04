@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="row">
+    <div class="span12">
+      <div class="page-header">
+        <h3>Promoter Listing</h3>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <aside id="users-searchform" class="span3">
+      <div class="well">
+      <header>
+        <h3>Search Controls</h3>
+      </header>
+      <form class="form">
+        <div class="">
+          <%= select_tag "promoter_city", options_for_select(@options), prompt: "Filter by City"  %>
+          <br>
+          <h4>Sort your results</h4> <br>
+          <ul class="nav nav-list">
+            <li class="nav-header">Event Average</li>
+            <li class=""><a href="">Sales</a></li>
+            <li class=""><a href="">Attendence</a></li>
+            <li class="divider"></li>
+            <li class="nav-header">Experience</li>
+            <li class=""><a href="">Total Events</a></li>
+            <li class=""><a href="">Successful</a></li>
+            <li class="divider"></li>
+            <button class="btn btn-block" value="Reset Form">Clear Filters</button>
+            <li class="divider"></li>
+          </ul>
+        </div>
+      </form>
+      </div>
+    </aside>
+
+    <section id="user-index-grid" class="span9">
+          <ul class="thumbnails">
+            <% @user_profiles.each do |up| %>
+            <li class="span3">
+              <a class="thumbnail" href="#">
+                <% if up.profile.image? %>
+                  <%= filepicker_image_tag up.profile.avatar, w: 300, h: 240, fit: 'crop' %>
+                <% else %>
+                  <img src="http://placehold.it/300x240" alt="">
+                <% end %>
+              </a>
+              <h3>
+                <%= up.profile.promoter_name || up.name  %>
+              </h3>
+              <p><%= up.profile.quick_profile || "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, ." %>.</p>
+              <p><%= button_to "View Profile", profile_path(up.profile), method: :get, class: "btn button-primary" %></p>
+            </li>
+            <% end %>
+          </ul>
+          <%= will_paginate @user_profiles %>
+    </section>
+  </div>
+</div>

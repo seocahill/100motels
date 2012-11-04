@@ -1,5 +1,5 @@
 class Promoter::BaseController < ApplicationController
-  # before_filter :authorize_admin!
+  before_filter :authorize_admin!
 
   def index
     @events = Event.where(profile_id: current_user.profile.id).order('created_at DESC').limit(5).includes(:users)
