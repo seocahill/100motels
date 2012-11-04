@@ -1,5 +1,7 @@
 class OrdersController < ApplicationController
 
+  before_filter :find_order, only: [:show]
+
   def new
     @order = Order.new
   end
@@ -56,4 +58,13 @@ class OrdersController < ApplicationController
     flash[:notice] = "Your order was cancelled"
     redirect_to :back
   end
+
+private
+
+  def find_order
+    @order = Order.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+    redirect_to root_path
+  end
+
 end
