@@ -13,68 +13,67 @@
 				</h4>
 				<p><%= link_to "Edit Account Settings", edit_user_registration_path(@user), class: "btn btn-block" %></p>
 			</div>
-
-			<div class="span9">
+      <div class="span9">
+        <div class="row-fluid">
+          <div class="span3">
+            <dl>
+              <dt>Email</dt>
+              <dd><%= @user.email %></dd>
+              <dt>Username</dt>
+              <dd><%= @user.name %></dd>
+              <dt>Location</dt>
+              <dd><%= @user.location.address %></dd>
+            </dl>
+          </div>
+          <div class="span4">
+            <dl>
+              <dt>Current Card</dt>
+              <dd>
+                <% if @user.customer_id %>
+                  <%= @user.type %> #<%= @user.last4 %>, Expires: <%= @user.exp_month %>/<%= @user.exp_year %>
+                <% else %>
+                  none provided
+                <% end %>
+              </dd>
+              <dt>Change or Add card</dt>
+              <dd>
+                <form action="<%= request.path + "/change_card" %>" method="post">
+                  <script src="https://button.stripe.com/v1/button.js" class="stripe-button" data-panel-label="Save" data-label="Add Card" data-key="<%= ENV['STRIPE_PUBLIC_KEY'] %>" >
+                  </script>
+                </form>
+              </dd>
+            </dl>
+          </div>
+          <div class="span4">
+            <dl>
+              <dt>Artist Media</dt>
+              <% if @user.media %>
+              <dd> <%= @user.media %> </dd>
+              <dt>Preview (opens in new window)</dt>
+              <dd>
+                <a href="#preview-modal" data-toggle="modal" class="btn">Preview Media</a>
+              </dd>
+              <% else %>
+              <dd><p>You can add a Vimeo, Youtube or Soundcloud playlist here.</p></dd>
+              <!-- <dd class="user-account-spacer"></dd> -->
+              <dd>
+                <%= link_to "Add Media", edit_user_registration_path(@user), class: "btn" %>
+              </dd>
+              <% end %>
+              </dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+			<div class="span11" id="user-profile-tabs">
         <div class="tabbable tabs">
           <ul class="nav nav-tabs">
           	<li class="active"><a href="#purchases" data-toggle="tab">Purchases</a></li>
-            <li class=""><a href="#info" data-toggle="tab">Information</a></li>
             <li class=""><a href="#support-requests" data-toggle="tab">Support Requests</a></li>
             <li class=""><a href="#tour-requests" data-toggle="tab">Tour Requests</a></li>
-
           </ul>
         </div>
         <div class="tab-content">
-          <div class="tab-pane tour-content" id="info">
-            <div class="row">
-              <div class="span3">
-              	<dl>
-              		<dt>Email</dt>
-              		<dd><%= @user.email %></dd>
-              		<dt>Username</dt>
-              		<dd><%= @user.name %></dd>
-              	</dl>
-              </div>
-              <div class="span3">
-                <dl>
-                  <dt>Current Card</dt>
-                  <dd>
-                    <% if @user.customer_id %>
-                      <%= @user.type %> #<%= @user.last4 %>, Exp: <%= @user.exp_month %>/<%= @user.exp_year %>
-                    <% else %>
-                      none provided
-                    <% end %>
-                  </dd>
-                  <dt>Change or Add card</dt>
-                  <dd>
-                    <form action="<%= request.path + "/change_card" %>" method="post">
-                      <script src="https://button.stripe.com/v1/button.js" class="stripe-button" data-panel-label="Save" data-label="Add Card" data-key="<%= ENV['STRIPE_PUBLIC_KEY'] %>" >
-                      </script>
-                    </form>
-                  </dd>
-                </dl>
-              </div>
-              <div class="span3">
-                <dl>
-                  <dt>Artist Media</dt>
-                  <% if @user.media %>
-                  <dd> <%= @user.media %> </dd>
-                  <dt>Preview (opens in new window)</dt>
-                  <dd>
-                    <a href="#preview-modal" data-toggle="modal" class="btn">Preview Media</a>
-                  </dd>
-                  <% else %>
-                  <dd><p>You can add a Vimeo, Youtube or Soundcloud playlist here.</p></dd>
-                  <!-- <dd class="user-account-spacer"></dd> -->
-                  <dd>
-                    <%= link_to "Add Media", edit_user_registration_path(@user), class: "btn" %>
-                  </dd>
-                  <% end %>
-                  </dd>
-                </dl>
-              </div>
-            </div>
-          </div>
 					<div class="tab-pane tour-content" id="support-requests">
             <table class="table table-striped">
                 <thead>

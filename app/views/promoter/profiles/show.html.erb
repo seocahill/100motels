@@ -112,7 +112,6 @@
             <li><a href="#travel" data-toggle="tab">Getting here</a></li>
             <li><a href="#accomodation" data-toggle="tab">Accomodation</a></li>
             <li><a href="#history" data-toggle="tab">Current & Past Shows</a></li>
-            <li><a href="#support" data-toggle="tab">Local Support</a></li>
           </ul>
         </div>
         <div class="tab-content">
@@ -188,22 +187,6 @@
                 <% end %>
               </tbody>
             </table>
-          </div>
-          <div class="tab-pane" id="support" data-mercury="full">
-            <% if @profile.support? %>
-              <%= raw @profile.support %>
-            <% else %>
-              <p>Usually support will be local which is good for providing gear and bumping up the attendance.</p>
-              <p> So this would be a good place to talk about local bands and to link to our list the ones you use for support. Maybe the touring artist will have a preference?</p>
-              <p>Also local artists browsing the promoters in their city might be looking for a support slot, this would be a good place to list any openings for particular shows you're running.</p>
-              <ul>
-                <li><a href="">Local Support</a> </li>
-                <li><a href="">Local Support</a> </li>
-                <li><a href="">Local Support</a> </li>
-                <li><a href="">Local Support</a> </li>
-                <li><a href="">Local Support</a> </li>
-              </ul>
-            <% end %>
           </div>
         </div>
       </div>

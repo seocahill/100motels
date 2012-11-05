@@ -3,7 +3,7 @@
     <%= f.input :event_id, as: :hidden, input_html: { value: @event.id } %>
     <%= f.input :quantity, collection: 1..4, input_html: { class: "input-mini"} %>
     <% if !user_signed_in? %>
-      <%= f.input :email, label: false, placeholder: "  your email address", input_html: { class: "input-medium" } %>
+      <%= f.input :email, label: false, placeholder: "  your email address", input_html: { class: "input-medium" }, required: :true %>
     <% else %>
       <%= f.input :email, as: :hidden, input_html: { value: current_user.email } %>
     <% end %>
