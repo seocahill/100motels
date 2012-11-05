@@ -17,11 +17,12 @@
       <div id="promoter-pic" class="span2">
         <% if @profile.image? %>
           <%= filepicker_image_tag @profile.image, w: 200, h: 200, fit: 'crop' %>
-        <% elsif @user.avatar? %>
-          <%= filepicker_image_tag @user.avatar, w: 200, h: 200, fit: 'crop' %>
         <% else %>
           <img src="//placehold.it/200" class="img-polaroid">
         <% end %>
+        <div align="center">
+          <%= link_to "Change Image", edit_promoter_profile_path(@profile) %>
+        </div>
       </div>
       <div class="span3 offset2" align="center">
         <div class="page-header">
@@ -206,11 +207,13 @@
           </div>
         </div>
       </div>
-      <div class="span6" id="promoter-media">
-        <label>Add/Edit a youtube, vimeo or soundcloud url here</label>
+      <div class="span6" id="promoter-media" align="center">
+        <h5>Youtube, vimeo, soundcloud or images here.</h5>
         <div data-mercury="simple" id="media">
           <%= @profile.promoter_media %>
         </div>
+        <br>
+        <div><%= @profile.promoter_media_html || image_tag("//quickimage.it/460x340&text=Media") %></div>
       </div>
     </div>
   </section>

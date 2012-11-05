@@ -5,14 +5,9 @@
     <legend></legend>
 
     <%= f.input :visible  %>
-    <%= f.input :promoter_name %>
     <%= f.input :image, label: "Image or Logo" do %>
-      <%= f.filepicker_field :image, button_class: "btn btn-primary btn-medium"  %>
+      <%= f.filepicker_field :image, button_class: "btn btn-primary btn-block"  %>
     <% end %>
-    <%= f.input :available %>
-    <%= f.input :fee %>
-    <%= f.input :quick_profile %>
-    <%= f.input :about %>
     <%= f.input :promoter_media %>
 
     <div class="form-actions">

@@ -35,18 +35,26 @@ class Promoter::ProfilesController < Promoter::BaseController
 
   def update
     profile = Profile.find(params[:id])
-    profile.promoter_name = params[:content][:name][:value]
-    profile.available = params[:content][:available][:value]
-    profile.fee = params[:content][:fee][:value]
-    profile.about = params[:content][:about][:value]
-    profile.equipment = params[:content][:equipment][:value]
-    profile.venues = params[:content][:venues][:value]
-    profile.travel = params[:content][:travel][:value]
-    profile.accomodation = params[:content][:accomodation][:value]
-    profile.support = params[:content][:support][:value]
-    profile.promoter_media = params[:content][:media][:value]
-    profile.save!
-    render text: ""
+    if params[:content]
+      profile.promoter_name = params[:content][:name][:value]
+      profile.available = params[:content][:available][:value]
+      profile.fee = params[:content][:fee][:value]
+      profile.about = params[:content][:about][:value]
+      profile.equipment = params[:content][:equipment][:value]
+      profile.venues = params[:content][:venues][:value]
+      profile.travel = params[:content][:travel][:value]
+      profile.accomodation = params[:content][:accomodation][:value]
+      profile.support = params[:content][:support][:value]
+      profile.save!
+      render text: ""
+    elsif profile.update_attributes(params[:profile])
+      flash[:notice] = "Event has been updated"
+      redirect_to profile
+    else
+      flash[:alert] = "Event has not been updated"
+      render :action => "edit"
+    end
+
   end
 
   def destroy

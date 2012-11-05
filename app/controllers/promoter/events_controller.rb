@@ -45,7 +45,7 @@ before_filter :authorize_admin!
     @event = Event.find(params[:id])
     if @event.update_attributes(params[:event])
       flash[:notice] = "Event has been updated"
-      redirect_to [:promoter, @event]
+      redirect_to @event
     else
       flash[:alert] = "Event has not been updated"
       render :action => "edit"
