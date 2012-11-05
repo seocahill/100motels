@@ -9,7 +9,7 @@ class EventsController < ApplicationController
   has_scope :event_city
 
   def index
-    @options = Location.joins(:event).collect(&:city)
+    @options = Location.joins(:event).collect(&:city).uniq
     # @location = current_location
     @events = apply_scopes(Event.text_search(params[:query]).page(params[:page]).per_page(3)).all
   end
