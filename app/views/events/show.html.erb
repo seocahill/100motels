@@ -88,7 +88,8 @@
 								About <%= @promoter.try(:promoter_name) %>...
 							</p>
 							<p>
-								<%= @promoter.try(:quick_profile) %>
+								<%= truncate @promoter.about, length: 250, separator: '.' || "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua." %>
 							</p>
 								<%= link_to "Full Profile", promoter_profile_path(@promoter), class: "btn btn-medium" %>
 						</div>
