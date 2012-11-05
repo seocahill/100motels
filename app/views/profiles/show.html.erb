@@ -2,7 +2,7 @@
   <div class="row">
     <div class="span12">
       <% if user_signed_in? && current_user.profile == @profile %>
-        <%= link_to "Show Editor", "/editor" + request.path, id: "edit_link", class: "btn btn-large" %>
+        <%= link_to "Show Editor", "/editor/promoter" + request.path, id: "edit_link", class: "btn btn-large" %>
       <% elsif user_signed_in? && current_user.promoters.where("event_id IS NULL").include?(@profile.user) %>
         <button class="btn btn-success">Tour Requested <i class="icon-check icon-white"></i></button>
       <% elsif user_signed_in? %>
@@ -12,7 +12,7 @@
   </div>
   <section class="section-box">
     <div class="row">
-      <div class="label-box">Promoter Info</div>
+      <div class="label-box">Organizer Info</div>
       <div id="promoter-pic" class="span2">
         <% if @profile.image? %>
           <%= filepicker_image_tag @profile.image, w: 200, h: 200, fit: 'crop' %>
@@ -25,7 +25,7 @@
       <div class="span3 offset2" align="center">
         <div class="page-header">
           <h2>
-            <div id="name" data-mercury="full">
+            <div id="name">
               <%= @profile.promoter_name || "Promoter Name" %>
             </div>
           </h2>
@@ -46,7 +46,7 @@
   </section>
 
   <section id="promoter-stats" class="section-box">
-    <div class="label-box">Promoter Stats</div>
+    <div class="label-box">Organizer Stats</div>
       <div class="row">
         <div class="span4">
           <fieldset>
@@ -55,9 +55,9 @@
               <dt>Joined: </dt>
               <dd><%= time_ago_in_words(@user.confirmed_at) %> ago</dd>
               <dt>Availability: </dt>
-              <dd id="available" data-mercury="full"><%= @profile.available %></dd>
+              <dd id="available"><%= @profile.available %></dd>
               <dt>Fee: </dt>
-              <dd id="fee" data-mercury="full"><%= @profile.fee %></dd>
+              <dd id="fee"><%= @profile.fee %></dd>
             </dl>
           </fieldset>
         </div>
@@ -114,7 +114,7 @@
           </ul>
         </div>
         <div class="tab-content">
-          <div class="tab-pane active tour-content" id="about" data-mercury="full">
+          <div class="tab-pane active tour-content" id="about">
             <% if @profile.about? %>
               <%= raw @profile.about %>
             <% else %>
@@ -130,7 +130,7 @@
               <p lead><%= @user.name %></p>
             <% end %>
           </div>
-          <div class="tab-pane" id="equipment" data-mercury="full">
+          <div class="tab-pane" id="equipment">
             <% if @profile.equipment? %>
               <%= raw @profile.equipment %>
             <% else %>
@@ -138,7 +138,7 @@
               <p>A lot of bands for smaller shows will be traveling with light, instruments only. They may also tailor the size of the touring band based on what the promoter can offer.</p>
             <% end %>
           </div>
-          <div class="tab-pane" id="venues" data-mercury="full">
+          <div class="tab-pane" id="venues">
             <% if @profile.venues? %>
               <%= raw @profile.venues %>
             <% else %>
@@ -147,7 +147,7 @@
               <p>If you're using a music club we expect them to pay up you based on ticket sales and likely bar takings. We also expect them to allow some kind of rider for the artist, whatever way they want to work it.</p>
             <% end %>
           </div>
-          <div class="tab-pane" id="travel" data-mercury="full">
+          <div class="tab-pane" id="travel">
             <% if @profile.travel? %>
               <%= raw @profile.travel %>
             <% else %>
@@ -156,7 +156,7 @@
               <p>Another important consideration for international artists is the visa / immigration situation.</p>
             <% end %>
           </div>
-          <div class="tab-pane" id="accomodation" data-mercury="full">
+          <div class="tab-pane" id="accomodation">
             <% if @profile.accomodation? %>
               <%= raw @profile.accomodation %>
             <% else %>
@@ -187,7 +187,7 @@
               </tbody>
             </table>
           </div>
-          <div class="tab-pane" id="support" data-mercury="full">
+          <div class="tab-pane" id="support">
             <% if @profile.support? %>
               <%= raw @profile.support %>
             <% else %>

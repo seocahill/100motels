@@ -38,7 +38,7 @@
               <small>&copy; <a href="http://www.zappa.com/stufftoget/wallpaper/index.html">Zappa.com</a></small>
             </p>
             <br>
-          <h3>Hi I'm Seosamh Cahill. <span class="muted">I developed 100 Motels.</span></h2>
+          <h3><span class="muted">Hi, I'm Seosamh and I developed 100 Motels.</span></h2>
           <p class="lead">My experience in music has inspired me to try and change some things, and this is my first cut at it. The focus of 100 Motels is live musical performance, specifically touring. If you're curious about my background, my thoughts on music, web development or anything else check out <a href="//seocahill.com">my blog</a>.  </p>
         </div>
       </section>
@@ -49,25 +49,38 @@
 
         <div class="featurette">
           <!-- <img class="featurette-image pull-right img-circle" src="//placehold.it/200"> -->
-          <%= image_tag "cb-black.png", class: "featurette-image pull-right img-circle" %>
-          <div class="page-header"><h1 class="featurette-heading">What's the problem? </h1></div>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+          <%#= image_tag "cb-black.png", class: "featurette-image pull-right img-circle" %>
+          <div class="page-header"><h1 class="featurette-heading" id="artist">The Artist. <span class="muted">Concentrate on Performing.</span></h1></div>
+          <p class="lead">When you sign up add a music or video playlist to your profile. After that you can browse the events index for a support slot, or organizer profiles if you're looking to tour their listed location. To register your interest just click the request button on the event/organizer profile page. The organizer will receive a private message with your media and contact email. <strong>PR/lobbying/experience is irrelevant.</strong> Music decides, there is no other consideration. So make recordings you like, get them out into the commons and then practice your performance.</p>
+        </div>
+
+        <!-- <hr class="featurette-divider"> -->
+
+        <div class="featurette" id="organizer">
+          <%#= image_tag "cb-black.png", class: "featurette-image pull-right img-circle" %>
+          <div class="page-header"><h1 class="featurette-heading">The Organizer. <span class="muted">Put your musical opinions on Stage.</span></h1></div>
+          <p class="lead">If you already spend a lot of time picking music for the benefit of other people, why not organize a show? I built 100 Motels so that anyone who wanted to do so, would have the tools to fund and organize the live performance of a Touring Artist.
+            <ul class="lead">
+              <li>You're free to pick your own touring Artists and local support or to choose from your private request messages.</li><br>
+              <li>You get mobile ticketing and risk-free crowd-funding for you event.</li><br>
+              <li>All sales monies are deposited directly into your account, 7 days after you decide to draw down payment.</li><br>
+              <li>How much profit you take is between you and the Artist but bear in mind  <strong> that the Artist must never pay to play.</strong></li><br>
+            </ul>
+          </p>
         </div>
 
         <hr class="featurette-divider">
 
-        <div class="featurette">
-          <%= image_tag "cb-black.png", class: "featurette-image pull-right img-circle" %>
-          <h2 class="featurette-heading">Oh yeah, it's that good. <span class="muted">See for yourself.</span></h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-        </div>
-
-        <hr class="featurette-divider">
-
-        <div class="featurette">
-          <%= image_tag "cb-black.png", class: "featurette-image pull-right img-circle" %>
-          <h2 class="featurette-heading">And lastly, this one. <span class="muted">Checkmate.</span></h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        <div class="featurette" id="">
+          <%#= image_tag "cb-black.png", class: "featurette-image pull-right img-circle" %>
+          <h1 class="featurette-heading">Attending a Show. <span class="muted">Try music that's not from a tin.</span></h1>
+          <p class="lead">Buying tickets on 100 Motels is a pain-free experience. </p>
+          <ul class="lead">
+            <li>There are no ads, promotions or hidden charges.</li><br>
+             <li><strong>We never see your payment information</strong>, all credit card processing is handled directly by our payments provider, Stripe.</li><br>
+             <li>You can save a user account at any time when making a purchase but it's not necessary. If you choose to create an account you can purchase tickets with a saved credit card (one mouse-click) and also track and cancel existing orders.</li><br>
+             <li>You don't have to print anything, the barcoded email receipt on your phone is your ticket. If the event is cancelled for some reason, you get a refund of the full ticket price.</li><br>
+           </ul>
         </div>
 
         <hr class="featurette-divider">
