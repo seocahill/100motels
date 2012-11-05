@@ -3,6 +3,7 @@
     <div class="span12">
       <% if user_signed_in? && current_user.profile == @profile %>
         <%= link_to "Show Editor", "/editor" + request.path, id: "edit_link", class: "btn btn-large" %>
+        <%= link_to "Public Profile", profile_path(@profile), class: "btn btn-large" %>
       <% elsif user_signed_in? && current_user.promoters.where("event_id IS NULL").include?(@profile.user) %>
         <button class="btn btn-success">Tour Requested <i class="icon-check icon-white"></i></button>
       <% elsif user_signed_in? %>
@@ -206,12 +207,10 @@
         </div>
       </div>
       <div class="span6" id="promoter-media">
-        <% if @profile.promoter_media? %>
-          <%= @profile.promoter_media_html %>
-        <% else %>
-          <div id="placeholder"></div>
-          <div><img src="//quickimage.it/460x340&text=Media"></div>
-        <% end %>
+        <label>Add/Edit a youtube, vimeo or soundcloud url here</label>
+        <div data-mercury="simple" id="media">
+          <%= @profile.promoter_media %>
+        </div>
       </div>
     </div>
   </section>

@@ -44,6 +44,7 @@ class Promoter::ProfilesController < Promoter::BaseController
     profile.travel = params[:content][:travel][:value]
     profile.accomodation = params[:content][:accomodation][:value]
     profile.support = params[:content][:support][:value]
+    profile.promoter_media = params[:content][:media][:value]
     profile.save!
     render text: ""
   end
