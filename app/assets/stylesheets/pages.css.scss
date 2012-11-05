@@ -44,3 +44,15 @@
     margin-bottom: 20px;
   }
 }
+
+.featurette {
+  padding-top: 30px;
+}
+
+.featurette-image.pull-left,
+.featurette-image.pull-right {
+  display: block;
+  float: none;
+  max-width: 40%;
+  margin: 0 auto 20px;
+}
