@@ -181,10 +181,10 @@
         </div>
       </div>
       <div class="span6" id="promoter-media">
+        <div id="placeholder"></div>
         <% if @profile.promoter_media? %>
           <%= @profile.promoter_media_html %>
         <% else %>
-          <div id="placeholder"></div>
           <div><img src="//quickimage.it/460x340&text=Media"></div>
         <% end %>
       </div>
