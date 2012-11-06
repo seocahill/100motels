@@ -40,7 +40,7 @@
             <li class="span3">
               <a class="thumbnail" href="#">
                 <% if up.profile.image? %>
-                  <%= filepicker_image_tag up.profile.avatar, w: 300, h: 240, fit: 'crop' %>
+                  <%= filepicker_image_tag up.profile.image, w: 300, h: 240, fit: 'crop' %>
                 <% else %>
                   <img src="http://placehold.it/300x240" alt="">
                 <% end %>
