@@ -2,7 +2,7 @@
   <div class="row">
     <div class="span12">
       <% if user_signed_in? && current_user.profile == @profile %>
-        <%= link_to "Show Editor", "/editor/promoter" + request.path, id: "edit_link", class: "btn btn-large" %>
+        <%= link_to "Edit your Profile", "/editor/promoter" + request.path, id: "edit_link", class: "btn btn-large" %>
       <% elsif user_signed_in? && current_user.promoters.where("event_id IS NULL").include?(@profile.user) %>
         <button class="btn btn-success">Tour Requested <i class="icon-check icon-white"></i></button>
       <% elsif user_signed_in? %>

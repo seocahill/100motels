@@ -44,6 +44,7 @@ class Promoter::ProfilesController < Promoter::BaseController
       profile.venues = params[:content][:venues][:value]
       profile.travel = params[:content][:travel][:value]
       profile.accomodation = params[:content][:accomodation][:value]
+      profile.promoter_media = params[:content][:media][:value]
       profile.save!
       render text: ""
     elsif profile.update_attributes(params[:profile])

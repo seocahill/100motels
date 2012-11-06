@@ -16,6 +16,7 @@ class Profile < ActiveRecord::Base
 
   auto_html_for :promoter_media do
     html_escape
+    image
     youtube(:width => 630, :height => 430)
     vimeo(:width => 630, :height => 430)
     soundcloud(:width => 630, :height => 200)

@@ -4,7 +4,7 @@
   <fieldset>
     <legend></legend>
 
-    <%= f.input :visible  %>
+    <%= f.input :visible, as: :select  %>
     <%= f.input :image, label: "Image or Logo" do %>
       <%= f.filepicker_field :image, button_class: "btn btn-primary btn-large"  %>
     <% end %>
