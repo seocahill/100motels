@@ -46,7 +46,7 @@
   </section>
 
   <section id="promoter-stats" class="section-box">
-    <div class="label-box">Organizer Stats</div>
+    <div class="label-box">Promoter Stats</div>
       <div class="row">
         <div class="span4">
           <fieldset>
@@ -55,9 +55,9 @@
               <dt>Joined: </dt>
               <dd><%= time_ago_in_words(@user.confirmed_at) %> ago</dd>
               <dt>Availability: </dt>
-              <dd id="available"><%= @profile.available %></dd>
+              <dd id="available" data-mercury="full"><%= @profile.available %></dd>
               <dt>Fee: </dt>
-              <dd id="fee"><%= @profile.fee %></dd>
+              <dd id="fee" data-mercury="full"><%= @profile.fee %></dd>
             </dl>
           </fieldset>
         </div>
@@ -66,11 +66,11 @@
             <legend align="center">Event History</legend>
           <dl class="dl-horizontal">
             <dt>Total: </dt>
-            <dd><%= Event.where(profile_id: @profile.id).count %></dd>
+            <dd><%= @profile.events.count || 0 %></dd>
             <dt>Successful: </dt>
-            <dd>n/a</dd>
+            <dd> 0 </dd>
             <dt>Upcoming: </dt>
-            <dd><%= Event.where(profile_id: @profile.id).count %></dd>
+            <dd><%= @profile.events.count || 0 %></dd>
           </dl>
           </fieldset>
         </div>
@@ -81,19 +81,11 @@
             <dt>Funding: </dt>
             <dd><%= number_to_currency(1000) %></dd>
             <dt>Attendance: </dt>
-            <dd><%= @events.first.orders.count %></dd>
+            <dd>100</dd>
             <dt>Ticket Price: </dt>
-            <dd><%= number_to_currency(@events.last.ticket_price) %></dd>
+            <dd><%= number_to_currency(10) %></dd>
           </dl>
           </fieldset>
-        </div>
-
-      </div>
-      <div class="row">
-        <div class="span2">
-          <!-- span>
-            <button class="btn btn-primary btn-block">Full History</button>
-          </span> -->
         </div>
       </div>
   </section>
