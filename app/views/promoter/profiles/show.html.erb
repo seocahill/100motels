@@ -68,11 +68,11 @@
             <legend align="center">Event History</legend>
           <dl class="dl-horizontal">
             <dt>Total: </dt>
-            <dd><%= Event.where(profile_id: @profile.id).count %></dd>
+            <dd><%= @profile.events.count || 0 %></dd>
             <dt>Successful: </dt>
-            <dd>n/a</dd>
+            <dd> 0 </dd>
             <dt>Upcoming: </dt>
-            <dd><%= Event.where(profile_id: @profile.id).count %></dd>
+            <dd><%= @profile.events.count || 0 %></dd>
           </dl>
           </fieldset>
         </div>
@@ -83,9 +83,9 @@
             <dt>Funding: </dt>
             <dd><%= number_to_currency(1000) %></dd>
             <dt>Attendance: </dt>
-            <dd><%= @events.first.orders.count %></dd>
+            <dd>100</dd>
             <dt>Ticket Price: </dt>
-            <dd><%= number_to_currency(@events.last.ticket_price) %></dd>
+            <dd><%= number_to_currency(10) %></dd>
           </dl>
           </fieldset>
         </div>
