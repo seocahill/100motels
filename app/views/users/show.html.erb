@@ -22,7 +22,7 @@
               <dt>Username</dt>
               <dd><%= @user.name || "none provided" %></dd>
               <dt>Location</dt>
-              <dd><%= @user.location.try(:address) || "none provided" %></dd>
+              <dd><%= @user.location.try(:city) || "none provided" %></dd>
             </dl>
           </div>
           <div class="span4">
