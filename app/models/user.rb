@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   has_one :profile, dependent: :destroy
   belongs_to :location
 
-  scope :promoter_city, proc { |city| joins(:location).where("city = ?", city) }
+
   scope :total_events
 
   %w[livemode type exp_month country exp_year cvc_check].each do |key|
@@ -35,10 +35,6 @@ class User < ActiveRecord::Base
     define_method("#{key}=") do |value|
       self.customer_details = (customer_details || {}).merge(key => value)
     end
-  end
-
-  def create_location
-    self.location = Location.create(address: new_location) if new_location.present?
   end
 
 

@@ -21,8 +21,6 @@
               <dd><%= @user.email %></dd>
               <dt>Username</dt>
               <dd><%= @user.name || "none provided" %></dd>
-              <dt>Location</dt>
-              <dd><%= @user.location.try(:city) || "none provided" %></dd>
             </dl>
           </div>
           <div class="span4">

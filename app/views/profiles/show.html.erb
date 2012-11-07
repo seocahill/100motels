@@ -31,8 +31,8 @@
           </h2>
         </div>
         <h4><p class="muted">
-          <% if @profile.user.location %>
-            <%= @profile.user.location.city %>, <%= @profile.user.location.country %>
+          <% if @profile.location %>
+            <%= @profile.location.city %>, <%= @profile.location.country %>
           <% else %>
               set a location in your user account
           <% end %>

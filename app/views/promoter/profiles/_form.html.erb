@@ -9,6 +9,8 @@
       <%= f.filepicker_field :image, button_class: "btn btn-primary btn-large"  %>
     <% end %>
     <%= f.input :promoter_media %>
+    <%= f.association :location, label_method: :city, include_blank: false, label: "Choose City" %>
+    <%= f.input :new_location, label: "Or Enter Full Address", placeholder: "123 Cleveland Street, Dublin, Ireland" %>
 
     <div class="form-actions">
         <%= f.submit nil, class: "btn btn-primary" %>
