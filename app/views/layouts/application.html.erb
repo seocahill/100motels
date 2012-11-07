@@ -47,11 +47,11 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.email %><b class="caret"></b></a>
                 <% end %>
                 <ul class="dropdown-menu">
-                  <li><%= link_to "Account Settings", edit_user_registration_path %></li>
-                  <li><%= link_to "User Profile", current_user %></li>
+                  <li><%= link_to "User Account", current_user %></li>
                   <% if user_signed_in? %>
-                    <% if current_user.has_role? :god || :promoter %>
+                    <% if current_user.has_role? :promoter %>
                     <li> <%= link_to "Promoter Admin", promoter_root_path %>  </li>
+                    <li> <%= link_to "Promoter Profile", profile_path(current_user.profile) %>  </li>
                     <% end %>
                   <% end %>
                     <li class="divider"></li>
