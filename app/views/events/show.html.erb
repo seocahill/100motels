@@ -6,7 +6,7 @@
 		<div class="span3">
 			<% if user_signed_in? && current_user == @event.profile.user %>
 				<%= link_to "Text Editor", "/editor" + request.path, class: "btn", id: "edit_link" %>
-				<%= link_to "Edit Media", edit_promoter_event_path(@event), class: "btn", id: "edit_link" %>
+				<%= link_to "Edit Settings", edit_promoter_event_path(@event), class: "btn", id: "edit_link" %>
 			<% elsif @event.users.include?(current_user) %>
 				<button class="btn btn-success">Support Requested <i class="icon-check icon-white"></i></button>
 			<% elsif user_signed_in? %>
@@ -16,7 +16,10 @@
 		<div class="span2">
 			<strong>Support Requests: <span class="badge"><%= @event.users.count %></span></strong>
 		</div>
-	</div>
+		<div class="span2">
+				<strong>State: <span class="badge"><%= @event.state %></span></strong>
+			</div>
+		</div>
 	<section id="event-info" class="section-box">
 		<div class="row">
 			<div class="label-box">Ticket Info</div>

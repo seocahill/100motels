@@ -4,6 +4,7 @@
   <fieldset>
     <legend><%= controller.action_name.capitalize %> Event</legend>
 
+    <%= f.input :state, :label => "Visibility", :collection => ["hidden","visible"], :selected => "hidden" %>
     <%= f.input :artist %>
     <%= f.input :venue %>
     <%= f.association :location, label_method: :city, include_blank: false, label: "Choose City" %>

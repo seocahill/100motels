@@ -20,9 +20,9 @@
               <dt>Email</dt>
               <dd><%= @user.email %></dd>
               <dt>Username</dt>
-              <dd><%= @user.name %></dd>
+              <dd><%= @user.name || "none provided" %></dd>
               <dt>Location</dt>
-              <dd><%= @user.location.address %></dd>
+              <dd><%= @user.location.try(:address) || "none provided" %></dd>
             </dl>
           </div>
           <div class="span4">

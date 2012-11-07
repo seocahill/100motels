@@ -30,7 +30,13 @@
             </div>
           </h2>
         </div>
-        <h4><p class="muted"><%= @profile.user.location.city %>, <%= @profile.user.location.country %></p></h4>
+        <h4><p class="muted">
+          <% if @profile.user.location %>
+            <%= @profile.user.location.city %>, <%= @profile.user.location.country %>
+          <% else %>
+              set a location in your user account
+          <% end %>
+        </p></h4>
       </div>
       <div class="span2 offset2">
         <fieldset>

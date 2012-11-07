@@ -1,9 +1,9 @@
 class Event < ActiveRecord::Base
   resourcify
   attr_accessible :artist, :date, :doors, :venue, :venue_capacity, :ticket_price,
-                  :music, :video, :about, :image, :target, :ticket_discount, :location_id, :new_location
+                  :music, :video, :about, :image, :target, :ticket_discount, :location_id, :new_location, :visible, :state
   attr_accessor :new_location
-   enum_accessor :state, [ :in_progress, :successful, :failed, :archived, :cancelled ]
+  enum_accessor :state, [ :hidden, :visible, :successful, :failed, :archived, :cancelled ]
   validates :artist, :venue, :date, :ticket_price, presence: true
   before_save :create_location
 
@@ -18,6 +18,17 @@ class Event < ActiveRecord::Base
   scope :month_end, lambda { where("date <= ?", Time.now.end_of_month) }
   scope :event_city, proc { |city| joins(:location).where("city = ?", city) }
 
+  def visible
+    state
+  end
+
+  def visible=(new_state)
+    if new_state = "visible"
+      self.state = :visible
+    else
+      self.state = :hidden
+    end
+  end
 
   def create_location
     self.location = Location.create(address: new_location) if new_location.present?
