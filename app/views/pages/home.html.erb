@@ -1,11 +1,7 @@
 <div class="container">
 			<div class="section-box" id="opener">
 				<div class="navbar">
-					<h2 class="welcome-banner">
-					 Hi and Welcome to the 100 Motels Demo<br>
-					 <small>100 Motels is an idea I have to help independent musicians like myself get out on tour without industry backing or paying to play.</small>
-					</h2>
-	  			<div id="welcome-nav" class="navbar-inner" align="center">
+					<div id="welcome-nav" class="navbar-inner" align="center">
 	  				<div class="label-box"><del>Alpha</del> Demo!!</div>
 	  				<a class="brand">Click One >></a>
 						<ul class="nav">
@@ -13,13 +9,39 @@
 							<li class="span2"><a href="#new-promoters">Tour or Support</a></li>
 		  				<li class="span2"><a href="#promoter-apply">Organize</a></li>
 		  				<li class="span2"><a href="#latest-events">Tickets</a></li>
-		  				<li class="span3"><%= link_to "What is 100 Motels? ", info_path %></li>
+		  				<li class="span3"><%= link_to "100 Motels? ", info_path %></li>
 						</ul>
+					</div> <!-- /inner nav -->
+					<div class="jumbotron">
+						<h1 class="welcome-banner">
+						 100 Motels Demo<br>
+						 <small>100 Motels is an idea I have to help independent musicians like myself get out on tour without industry backing or paying to play.</small>
+						</h1>
 					</div>
-				</div>
+				</div> <!-- /navbar -->
+				<div class="row-fluid headlines">
+					<div class="span4">
+	          <!-- <img class="img-circle" src="http://placehold.it/140x140"> -->
+	          <h2>Funding</h2>
+	          <p>100 Motels lets you fund potential shows without taking on any financial liability until you're sure it's viable. Also all monies go straight to the Organizers bank account - we don't hold your cash.</p>
+	          <p><a class="btn" href="#">View details »</a></p>
+	        </div>
+					<div class="span4">
+	          <!-- <img class="img-circle" src="http://placehold.it/140x140"> -->
+	          <h2>Organizing</h2>
+	          <p>Everything you would expect of a modern ticketing platform. Hassle free purchases, barcoded tickets and a mobile app 'Doorman' for keeping track of things on the night.</p>
+	          <p><a class="btn" href="#">View details »</a></p>
+	        </div>
+					<div class="span4">
+	          <!-- <img class="img-circle" src="http://placehold.it/140x140"> -->
+	          <h2>A World Tour</h2>
+	          <p>If you have a single fan in a particular city then that's potentially a show. We will give anyone a chance to organize a tour for an Artist. Hustlers, conmen or pay for play will not be tolerated. </p>
+	          <p><a class="btn" href="#">View details »</a></p>
+	        </div>
+				</div> <!-- /headlines -->
 			</div>
+			<!-- THE THREE MAIN SECTION -->
 		<div id="content">
-
 			<section id="latest-events">
 				<header class="page-header">
 					<h3>
@@ -199,6 +221,7 @@
 			          <li><%= link_to "Attending", info_path(anchor: "attending") %></li>
 			          <br>
 			          <li class="divider"></li>
+			          <br>
 			        </ul>
 			        <div class="btn-group center">
 								<a href="#invite" class="btn btn-block btn-large btn-primary" data-toggle="modal">Request Invite</a>
@@ -211,14 +234,16 @@
 								<p>Artists can do three things on 100 Motels: Add a playlist of their music; make a tour request; make a support request. If they end up playing a show, everything bar the performance will be taken care of by the organizer. It's just like the pro's, except you don't have to make commercial music to play.<strong> You will never pay to play.</strong></p> <br>
 							  <p>Anyone who has a credit card can organize, but it will be controlled until the service matures. The first organizers will be radio hosts, bloggers and other proven contributers to music without profit who naturally command a crowd. Check out the organizers in this demo, all people who I discovered through my music.</p> <br>
 								<p>Along with offloading the organizational burden from the artist there were two other pillar issues that precipitated the idea for 100 Motels: Risk and Attendance. You can organize or fund a 100 Motels show without incurring any costs. A successful campaign is always realised in terms of attaining a target attendance. </p> <br>
-								<p>Follow the adjacent links for more info or for the full details of the implementation <%= link_to "go here.", info_path %></p>
+								<p>Follow the adjacent links for more info or for the full details of the implementation <%= link_to "go here.", info_path %> </p>
 							</blockquote>
+							<p class="pull-right"><a href="#">back to top</a></p>
 						</div>
 						<hr>
 					</div>
 				</div>
 			</section>
 		</div>
+		<!-- MODAL FOR ORGANIZER -->
 		<div class="modal hide fade" id="invite" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
@@ -231,7 +256,7 @@
         <a href="#" class="btn" data-dismiss="modal">Close</a>
       </div>
     </div>
- </div>
+</div> <!-- /main container -->
 
 
 
