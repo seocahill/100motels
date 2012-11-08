@@ -30,7 +30,7 @@
         <% end %>
         <%= link_to "Generate pdf", promoter_event_path(@event, format: "pdf"), class: "btn" %>
       </div>
-      <%= hidden_field_tag "promoter", current_user.id %>
+      <%= hidden_field_tag "promoter", current_user.profile.id %>
       <%= hidden_field_tag :ticket_discount %>
       <table class="table table-striped table-bordered" id="promoter-customers">
         <thead>
