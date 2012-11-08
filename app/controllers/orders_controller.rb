@@ -16,17 +16,13 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(params[:order])
-    if params[:stripeToken]
-      stripe_token = params[:stripeToken]
-      if @order.save_customer(stripe_token, current_user)
-        Notifier.order_processed(@order).deliver
-        redirect_to(@order, notice: "Processed successfully")
-      end
-    elsif current_user.customer_id
-      if @order.customer_order(current_user)
-        Notifier.order_processed(@order).deliver
-        redirect_to(@order, notice: "Processed successfully")
-      end
+    if current_user && current_user.customer_id
+      @order.customer_order
+      Notifier.order_processed(@order).deliver
+      redirect_to(@order, notice: "Processed successfully")
+    elsif @order.save_customer(params[:stripeToken])
+      Notifier.order_processed(@order).deliver
+      redirect_to(@order, notice: "Processed successfully")
     else
       redirect_to(:back, notice: "failed validations")
     end

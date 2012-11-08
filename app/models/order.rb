@@ -1,5 +1,5 @@
 class Order < ActiveRecord::Base
-  attr_accessible :email, :name, :plan, :quantity, :event_id
+  attr_accessible :email, :name, :plan, :quantity, :event_id, :user_id
   enum_accessor :stripe_event, [ :pending, :paid, :failed, :refunded, :cancelled, :dummy ]
   belongs_to :event
   validates :email, presence: :true
@@ -14,18 +14,18 @@ class Order < ActiveRecord::Base
     where(events.include?(:event_id)).order('created_at DESC').limit(5)
   end
 
-  def save_customer(token, user)
+  def save_customer(token)
     if valid?
       Stripe.api_key = ENV['STRIPE_API_KEY']
       customer = Stripe::Customer.create(
-          description: name,
           email: email,
           card: token
       )
       self.stripe_customer_token = customer.id
       self.name = customer.active_card["name"]
       self.last4 = customer.active_card["last4"]
-      if user.email
+      if user_id
+        user = User.find(user_id)
         user.customer_id = customer.id
         user.last4 = customer.active_card["last4"]
         user.save
