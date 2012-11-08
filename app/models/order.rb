@@ -44,8 +44,9 @@ class Order < ActiveRecord::Base
   def customer_order
     user = User.find(user_id)
     self.user_id = user.id
-    self.name = user.name
+    self.name = user.name || user.email
     self.email = user.email
+    self.last4 = user.last4
     self.stripe_customer_token = user.customer_id
     save!
   end

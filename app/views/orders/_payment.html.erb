@@ -1,11 +1,11 @@
 <div class="well">
 	<dl class="dl-horizontal">
-		<dt>Name on Card: </dt>
+		<dt>Name: </dt>
 	  <dd><%= @order.name %></dd>
 	  <dt>Email address: </dt>
 		<dd><%= @order.email %></dd>
 		<dt>Last 4 Digits: </dt>
-		<dd>4935</dd>
+		<dd><%= @order.last4 %></dd>
 		<dt>Total Paid</dt>
 		<dd><%= number_to_currency(@order.total(@event)) %></dd>
 	</dl>
