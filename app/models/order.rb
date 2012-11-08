@@ -28,6 +28,9 @@ class Order < ActiveRecord::Base
         user = User.find(user_id)
         user.customer_id = customer.id
         user.last4 = customer.active_card["last4"]
+        user.type = customer.active_card["type"]
+        user.exp_year = customer.active_card["exp_year"]
+        user.exp_month = customer.active_card["exp_month"]
         user.save
       end
       save!
@@ -37,8 +40,11 @@ class Order < ActiveRecord::Base
     redirect_to(:back)
   end
 
-  def customer_order(user)
+  def customer_order
+    user = User.find(user_id)
+    self.user_id = user.id
     self.name = user.name
+    self.email = user.email
     self.stripe_customer_token = user.customer_id
     save!
   end
