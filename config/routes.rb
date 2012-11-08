@@ -7,7 +7,7 @@ OneHundredMotels::Application.routes.draw do
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
 
   resources :users, only: [:index, :show] do
-    member { post :change_card }
+    member { put :change_card }
   end
 
   root :to => 'pages#home'

@@ -41,7 +41,6 @@ class User < ActiveRecord::Base
   def self.from_omniauth(auth, user)
       user.profile.api_key = auth.credentials["token"]
       user.profile.save
-      user.save!
       user
   end
 
@@ -55,25 +54,27 @@ class User < ActiveRecord::Base
   end
 
   def save_card(user, card)
-    if valid?
-      Stripe.api_key = ENV['STRIPE_API_KEY']
+    Stripe.api_key = ENV['STRIPE_API_KEY']
+    if user.customer_id
+      customer = Stripe::Customer.retrieve(user.customer_id)
+      customer.description = "Update card for #{user.email}"
+      customer.card = card
+      customer.save
+    else
       customer = Stripe::Customer.create(
           description: user.name,
           email: user.email,
           card: card
         )
       user.customer_id = customer.id
-      user.livemode = customer.livemode
-      user.type = customer.active_card["type"]
-      user.exp_year = customer.active_card["exp_year"]
-      user.exp_month = customer.active_card["exp_month"]
-      user.country = customer.active_card["country"]
-      user.cvc_check = customer.active_card["cvc_check"]
-      user.last4 = customer.active_card["last4"]
-      user.save
     end
-  rescue Stripe::InvalidRequestError => e
-    flash[:error] = e.message
-    redirect_to user_path(user)
+    user.livemode = customer.livemode
+    user.type = customer.active_card["type"]
+    user.exp_year = customer.active_card["exp_year"]
+    user.exp_month = customer.active_card["exp_month"]
+    user.country = customer.active_card["country"]
+    user.cvc_check = customer.active_card["cvc_check"]
+    user.last4 = customer.active_card["last4"]
+    user.save
   end
 end

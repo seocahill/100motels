@@ -35,10 +35,10 @@
               </dd>
               <dt>Change or Add card</dt>
               <dd>
-                <form action="<%= request.path + "/change_card" %>" method="post">
+                <%= form_tag  change_card_user_path, method: :put do %>
                   <script src="https://button.stripe.com/v1/button.js" class="stripe-button" data-panel-label="Save" data-label="Add Card" data-key="<%= ENV['STRIPE_PUBLIC_KEY'] %>" >
                   </script>
-                </form>
+                <% end %>
               </dd>
             </dl>
           </div>

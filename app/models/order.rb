@@ -28,6 +28,7 @@ class Order < ActiveRecord::Base
         user = User.find(user_id)
         user.customer_id = customer.id
         user.last4 = customer.active_card["last4"]
+        user.cvc_check = customer.active_card["cvc_check"]
         user.type = customer.active_card["type"]
         user.exp_year = customer.active_card["exp_year"]
         user.exp_month = customer.active_card["exp_month"]
