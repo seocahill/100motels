@@ -106,7 +106,7 @@
             <li><a href="#equipment" data-toggle="tab">Equipment</a></li>
             <li><a href="#venues" data-toggle="tab">Venues</a></li>
             <li><a href="#travel" data-toggle="tab">Getting here</a></li>
-            <li><a href="#accomodation" data-toggle="tab">Accomodation</a></li>
+            <li><a href="#accomodation" data-toggle="tab">Accommodation</a></li>
             <li><a href="#history" data-toggle="tab">Current & Past Shows</a></li>
           </ul>
         </div>
@@ -115,14 +115,15 @@
             <% if @profile.about? %>
               <%= raw @profile.about %>
             <% else %>
-              <p>This is where you can talk about your attitude and commitment to music and musicians. Why do you want to put on shows? What do you hope to get it out of it, what motivates you?</p>
+              <p>This is where you can talk about your music life! I'm assuming most of the Organizers will have a background in music appreciation, but of course a lot of appreciaters are musicians also.</p>
 
-              <p>Have you any visible presence on the web that shows your commitment to music as an artform? If so what is it, does it bring people together to appreciate music? Perhaps you have a radio show or a music blog? Perhaps you are an artist yourself?</p>
+              <p>I really hope that all the seekers of good music will start organizing shows. There are more independent radio shows, podcasts and blogs than ever and that's really great but the follow on needs to be a live show - musicians need to perform.</p>
 
-              <p>Bearing in mind what you say above you should tell artists if it isn't obvious already where they can go to watch, listen or read about you. You can read my blog for instance at <a href="//seocahill.com">seocahill.com</a>, listen to seocahill's playlists at Grooveshark or google my band, Crete Boom. </p>
+              <p>So tell artists if it isn't obvious already where they can go to watch, listen or read about you. You can read my blog for instance at <a href="//seocahill.com">seocahill.com</a>, listen to seocahill's playlists at Grooveshark or google my band, Crete Boom. </p>
 
-              <p> How you pick your bands is important too. Do you prefer to pick artists yourself in your own time, or are you open to persuasion? Should artists contact you for a show? Do you have certain prerequisites?
-              Ultimately this section if for everything and anything you think might interest an artist that doesn't fit into the other sections.
+              <p> In the media section opposite maybe stick in a slideshow or video of the venue/s you're using, or of past events. </p>
+
+              <p>Ultimately this section is for everything and anything you think might interest an artist that doesn't fit into the other sections.
               </p>
               <p lead><%= @user.name %></p>
             <% end %>
@@ -148,16 +149,16 @@
             <% if @profile.travel? %>
               <%= raw @profile.travel %>
             <% else %>
-              <p>General advice about airports and ground transport is essential, especially when trying to work out a budget for the show.</p>
-              <p>Which airlines to use, is there a cheap time to come to your city, general tips and hints about hauling gear or not? You should know all this from experience but the artist probably won't.</p>
-              <p>Another important consideration for international artists is the visa / immigration situation.</p>
+              <p>General advice about airports and ground transport would be a great help, especially when trying to work out a budget for the show.</p>
+              <p>Which airlines to use, is there a cheap time to come to your city, general tips and hints about hauling gear or not? You probably know these things from experience.</p>
+              <p>Another important consideration for international artists is the visa / immigration situation. In many countries, musicians are officially or unofficially excepted from normal work restrictions but that may not be the case in your coutnry.</p>
             <% end %>
           </div>
           <div class="tab-pane" id="accomodation">
             <% if @profile.accomodation? %>
               <%= raw @profile.accomodation %>
             <% else %>
-              <p>We should aim slightly higher than couchsurf but as long as you offer some kind of definite accomodation or offer to organize it than good enough. Couches, hostels or hotels, free or priced into the show, the follow throught is what's important.</p>
+              <p>Try to aim slightly higher than couchsurf but as long as you offer some kind of definite accomodation or to organize it than good enough. Couches, hostels or hotels, free or priced into the show, as long as the artists are looked after.</p>
               <p> Leaving bands roofless after a show or any other music industry type behaviour will not be tolerated!</p>
             <% end %>
           </div>
