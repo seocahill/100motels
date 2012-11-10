@@ -17,7 +17,7 @@ class Event < ActiveRecord::Base
   scope :week_end, lambda { where("date <= ?", Time.now.end_of_week) }
   scope :month_end, lambda { where("date <= ?", Time.now.end_of_month) }
   scope :event_city, proc { |city| joins(:location).where("city = ?", city) }
-
+  scope :visible, where("visible = ?", true)
   def visible
     state
   end

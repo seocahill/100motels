@@ -8,6 +8,7 @@ class Order < ActiveRecord::Base
 
   scope :sales_today, where("orders.created_at >= ?", Time.now.yesterday)
   scope :sales_average, where("orders.created_at >= ?", Time.now.yesterday)
+  scope :pre_sales, where("orders.stripe_event < ?", 2)
 
   def self.recent_sales(current_user)
     events = Event.where(profile_id: current_user.profile.id)

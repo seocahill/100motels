@@ -55,7 +55,7 @@
 								<dt>Venue Capacity: </dt>
 								<dd><%= @event.venue_capacity %></dd>
 								<dt>Sales / Target:</dt>
-								<dd><%= @event.orders.to_a.sum { |item| item.quantity} %> / <%= @event.target %></dd>
+								<dd><%= @event.orders.pre_sales.to_a.sum { |item| item.quantity} %> / <%= @event.target %></dd>
 								<dt>Time left to go:</dt>
 								<dd><%= distance_of_time_in_words(Time.now, @event.date, true) %></dd>
 							</dl>
