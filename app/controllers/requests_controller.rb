@@ -2,6 +2,7 @@ class RequestsController < ApplicationController
 
   def index
     @requests = Request.where(promoter_id: current_user.id)
+    @unread = Request.unread
   end
 
   def create
@@ -13,6 +14,13 @@ class RequestsController < ApplicationController
       flash[:error] = "Promoter not available."
       redirect_to root_url
     end
+  end
+
+  def mark_read
+    requests = Request.find(params[:request_ids])
+    requests.each { |r| r.state = :read }
+    requests.each(&:save)
+    redirect_to requests_path, notice: "marked as read and archived"
   end
 
   def destroy
