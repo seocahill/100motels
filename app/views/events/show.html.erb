@@ -8,9 +8,9 @@
 				<%= link_to "Text Editor", "/editor" + request.path, class: "btn", id: "edit_link" %>
 				<%= link_to "Edit Settings", edit_promoter_event_path(@event), class: "btn", id: "edit_link" %>
 			<% elsif @event.users.include?(current_user) %>
-				<button class="btn btn-success">Support Requested <i class="icon-check icon-white"></i></button>
+				<button class="btn btn-success requests" rel="popover" data-content="This is content" data-original-title="A Title" data-trigger="hover">Support Requested <i class="icon-check icon-white"></i></button>
 			<% elsif user_signed_in? %>
-				<%= link_to "Ask to Support", requests_path(event_id: @event.id, promoter_id: @event.profile.user_id), class: "btn btn-large", method: :post %>
+				<%= link_to "Ask to Support", requests_path(event_id: @event.id, promoter_id: @event.profile.user_id), class: "btn btn-large requests", method: :post, rel: "popover", data: { content: "This is content", trigger: "hover", :"original-title" => "A Title" } %>
 			<% end %>
 		</div>
 		<div class="span2">

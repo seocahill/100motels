@@ -26,7 +26,7 @@ $ ->
 
 #popover
 $ ->
-  $('#buy-now').popover()
+  $('.requests').popover()
 
 #filter form
 $ ->
