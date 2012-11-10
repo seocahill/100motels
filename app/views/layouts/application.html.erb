@@ -32,7 +32,7 @@
             <ul class="nav topbar" id="">
               <li class=""><%= link_to "Home", root_path %></li>
               <li><%= link_to "Events", events_path %></li>
-              <li><%= link_to "Promoters", profiles_path %></li>
+              <li><%= link_to "Organizers", profiles_path %></li>
               <li><%= link_to "Help &Info", info_path %></li>
               <li><%= render 'events/search' %></li>
             </ul>
@@ -44,16 +44,25 @@
               <li class="divider-vertical"></li>
               <li class="dropdown">
                 <% if user_signed_in? %>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Organizer menu<b class="caret"></b></a>
+                <% end %>
+                <ul class="dropdown-menu">
+                  <% if user_signed_in? %>
+                    <% if current_user.has_role? :promoter %>
+                    <li> <%= link_to "Admin", promoter_root_path %>  </li>
+                    <li> <%= link_to "Public Profile", profile_path(current_user.profile) %>  </li>
+                    <li> <%= link_to "Events", promoter_events_path %>  </li>
+                    <% end %>
+                  <% end %>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <% if user_signed_in? %>
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.email %><b class="caret"></b></a>
                 <% end %>
                 <ul class="dropdown-menu">
                   <li><%= link_to "User Account", current_user %></li>
-                  <% if user_signed_in? %>
-                    <% if current_user.has_role? :promoter %>
-                    <li> <%= link_to "Promoter Admin", promoter_root_path %>  </li>
-                    <li> <%= link_to "Promoter Profile", profile_path(current_user.profile) %>  </li>
-                    <% end %>
-                  <% end %>
+                  <li><%= link_to "Account Settings", edit_registration_path(current_user) %></li>
                     <li class="divider"></li>
                   <li><%= link_to "Sign out", destroy_user_session_path, :method => 'delete' %></li>
                 </ul>

@@ -9,9 +9,9 @@ class EventsController < ApplicationController
   has_scope :event_city
 
   def index
-    @options = Location.joins(:event).collect(&:city).uniq
+    @options = Location.joins(:event).collect(&:city).uniq & Event.visible
     # @location = current_location
-    @events = apply_scopes(Event.text_search(params[:query]).page(params[:page]).per_page(3)).all
+    @events = apply_scopes(Event.visible.text_search(params[:query]).page(params[:page]).per_page(3))
   end
 
   def show
