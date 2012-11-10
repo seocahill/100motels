@@ -2,7 +2,7 @@ class RequestsController < ApplicationController
 
   def index
     @requests = Request.where(promoter_id: current_user.id)
-    @unread = Request.unread
+    @unread = Request.unread.where(promoter_id: current_user.id)
   end
 
   def create
