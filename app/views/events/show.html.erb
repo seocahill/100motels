@@ -5,8 +5,8 @@
 	<div class="row">
 		<div class="span3">
 			<% if user_signed_in? && current_user == @event.profile.user %>
-				<%= link_to "Text Editor", "/editor" + request.path, class: "btn", id: "edit_link" %>
-				<%= link_to "Edit Settings", edit_promoter_event_path(@event), class: "btn", id: "edit_link" %>
+				<%= link_to "Text Editor", "/editor" + request.path, class: "btn editor", rel: "popover", data: { content: "This will reveal a toolbar allowing you to edit text content on the page. Click the save icon in the toolbar when you're finished.", trigger: "hover", :"original-title" => "Editing Content" }, id: "edit_link" %>
+				<%= link_to "Edit Settings", edit_promoter_event_path(@event), class: "btn editor", rel: "popover", data: { content: "Edit the Event details and visibility.", trigger: "hover", :"original-title" => "Event Settings" }, id: "edit_link" %>
 			<% elsif @event.users.include?(current_user) %>
 				<button class="btn btn-success requests" rel="popover" data-content="You have requested to play support at this event. Check the status of this request or cancel it in your user account." data-original-title="About requests" data-trigger="hover">Support Requested <i class="icon-check icon-white"></i></button>
 			<% elsif user_signed_in? %>
@@ -17,9 +17,11 @@
 			<strong>Support Requests: <span class="badge"><%= @event.users.count %></span></strong>
 		</div>
 		<div class="span2">
+			<% if user_signed_in? && current_user == @event.profile.user %>
 				<strong>State: <span class="badge"><%= @event.state %></span></strong>
-			</div>
+			<% end %>
 		</div>
+	</div>
 	<section id="event-info" class="section-box">
 		<div class="row">
 			<div class="label-box">Ticket Info</div>

@@ -7,7 +7,7 @@
       <% elsif user_signed_in? && current_user.promoters.where("event_id IS NULL").include?(@profile.user) %>
         <button class="btn btn-success">Tour Requested <i class="icon-check icon-white"></i></button>
       <% elsif user_signed_in? %>
-        <%= link_to "Request Tour", requests_path(promoter_id: @profile.user_id), class: "btn btn-large", method: :post %>
+        <%= link_to "Request Tour", requests_path(promoter_id: @profile.user_id), class: "btn btn-large requests", method: :post, rel: "popover", data: { content: "By pressing this button the Organizer will receive a private message containing your contact details and your media. Click on Help &Info for more on how requests work.", trigger: "hover", :"original-title" => "About Requests" }, method: :post %>
       <% end %>
     </div>
   </div>
@@ -35,7 +35,7 @@
           <% if @profile.location %>
             <%= @profile.location.city %>, <%= @profile.location.country %>
           <% else %>
-              set a location in your user account
+              location not set
           <% end %>
         </p></h4>
       </div>
@@ -86,11 +86,11 @@
             <legend align="center">Event Average</legend>
           <dl class="dl-horizontal">
             <dt>Funding: </dt>
-            <dd><%= number_to_currency(1000) %></dd>
+            <dd> n/a </dd>
             <dt>Attendance: </dt>
-            <dd>100</dd>
+            <dd> n/a </dd>
             <dt>Ticket Price: </dt>
-            <dd><%= number_to_currency(10) %></dd>
+            <dd> n/a </dd>
           </dl>
           </fieldset>
         </div>
