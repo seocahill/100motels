@@ -1,0 +1,3 @@
+#popover
+$ ->
+  $('.editor').popover()

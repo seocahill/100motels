@@ -4,13 +4,12 @@
   <fieldset>
     <legend></legend>
 
-    <%= f.input :visible, as: :select  %>
-    <%= f.input :image, label: "Image or Logo" do %>
+    <%= f.input :visible, as: :select, hint: "you can hide your profile from the public"  %>
+    <%= f.input :image, label: "Image or Logo", hint: "upload or pick an image or logo for your Organizer profile" do %>
       <%= f.filepicker_field :image, button_class: "btn btn-primary btn-large"  %>
     <% end %>
-    <%= f.input :promoter_media %>
-    <%= f.association :location, label_method: :city, include_blank: false, label: "Choose City" %>
-    <%= f.input :new_location, label: "Or Enter Full Address", placeholder: "123 Cleveland Street, Dublin, Ireland" %>
+    <%= f.input :promoter_media, hint: "This can be an Image or a Video of your choosing, perhaps of a past event or pictures of the venue you use?" %>
+    <%= f.input :new_location, label: "Enter your Location", placeholder: "Dublin, Ireland.", hint: "This should be the general location of where you run your events." %>
 
     <div class="form-actions">
         <%= f.submit nil, class: "btn btn-primary" %>

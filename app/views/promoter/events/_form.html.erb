@@ -1,23 +1,22 @@
 <%= simple_form_for [:promoter, @event], :html => { class: 'form-horizontal' } do |f| %>
-  <%#= f.error_messages %>
+  <%= f.error_messages %>
 
   <fieldset>
     <legend><%= controller.action_name.capitalize %> Event</legend>
 
-    <%= f.input :state, :label => "Visibility", :collection => ["hidden","visible"], :selected => "hidden" %>
-    <%= f.input :artist %>
-    <%= f.input :venue %>
-    <%= f.association :location, label_method: :city, include_blank: false, label: "Choose City" %>
-    <%= f.input :new_location, label: "Or Enter Full Address", placeholder: "123 Cleveland Street, Dublin, Ireland" %>
-    <%= f.input :venue_capacity %>
-    <%= f.input :date %>
-    <%= f.input :doors %>
-    <%= f.input :ticket_price %>
-    <%= f.input :target %>
-    <%= f.input :video %>
-    <%= f.input :music %>
+    <%= f.input :state, :label => "Visible to Public?", :collection => ["hidden","visible"], :selected => "hidden" %>
+    <%= f.input :artist, label: "Artist / Event Name", placeholder: "Crete Boom" %>
+    <%= f.input :venue, label: "Name of Venue", placeholder: "The Rickshaw" %>
+    <%= f.input :new_location, label: "Location of Venue", placeholder: "123 Back Street, Dublin, Ireland" %>
+    <%= f.input :venue_capacity, placeholder: "100" %>
+    <%= f.input :date, label: "Date of Event" %>
+    <%= f.input :doors, label: "Event start time" %>
+    <%= f.input :ticket_price, placeholder: "10.50" %>
+    <%= f.input :target, label: "Target Attendence", placeholder: "100" %>
+    <%= f.input :video, label: "Youtube/Vimeo url", placeholder: "http://youtu.be/x953GwKEwI8", hint: "Showcase the Artists playing at your event" %>
+    <%= f.input :music, label: "Soundcloud url", placeholder: "http://snd.sc/ZmJJnw", hint: "A playlist featuring your Artists, that users can download and share" %>
     <%= f.input :image, label: "Upload Artist Images" do %>
-        <%= f.filepicker_field :image, button_class: "btn btn-primary btn-medium" %>
+        <%= f.filepicker_field :image, button_class: "btn btn-primary btn-medium", hint: "Upload an image or connect to other service providers to pick one instead" %>
     <% end %>
 
     <div class="form-actions">
