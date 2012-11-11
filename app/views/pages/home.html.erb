@@ -24,7 +24,7 @@
 	          <!-- <img class="img-circle" src="http://placehold.it/140x140"> -->
 	          <h2>Funding</h2>
 	          <p>100 Motels lets you fund a potential show without taking on any financial liability until you're sure it's viable. Also all monies go straight to the Organizer's bank account - we don't hold your cash.</p>
-	          <p align="center"><a class="btn" href="#">Learn More »</a></p>
+	          <p align="center"><%= link_to "Learn More »", info_path(anchor: "funding"), class: "btn" %></p>
 	        </div>
 					<div class="span4">
 	          <!-- <img class="img-circle" src="http://placehold.it/140x140"> -->
@@ -35,7 +35,7 @@
 					<div class="span4">
 	          <!-- <img class="img-circle" src="http://placehold.it/140x140"> -->
 	          <h2>A World Tour</h2>
-	          <p>A single fan in a particular city is potentially a show. I want to give anyone a chance to organize a tour date for an Artist. Hustlers, conmen or pay for play will not be here. </p> <br>
+	          <p>A single fan in a particular city is potentially a show. I want to give anyone a chance to organize a tour date for an Artist. We'll keep out the hustlers and conmen, and you will never have to pay to play. </p> <br>
 	          <p align="center"><a class="btn" href="#">Learn More »</a></p>
 	        </div>
 				</div> <!-- /headlines -->
@@ -216,7 +216,7 @@
 			          <li class="divider"></li>
 			          <li><%= link_to "Organizing", info_path(anchor: "organizer") %></li>
 			          <li><%= link_to "Artists", info_path(anchor: "artist") %></li>
-			          <li><%= link_to "Funding", info_path(anchor: "touring") %></li>
+			          <li><%= link_to "Funding", info_path(anchor: "funding") %></li>
 			          <li><%= link_to "Requests", info_path(anchor: "requests") %></li>
 			          <li><%= link_to "Attending", info_path(anchor: "attending") %></li>
 			          <br>
