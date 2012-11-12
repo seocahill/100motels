@@ -18,6 +18,7 @@ class Event < ActiveRecord::Base
   scope :month_end, lambda { where("date <= ?", Time.now.end_of_month) }
   scope :event_city, proc { |city| joins(:location).where("city = ?", city) }
   scope :visible, where("state > 0 and state < 3")
+
   def visible
     state
   end
@@ -49,17 +50,17 @@ class Event < ActiveRecord::Base
     simple_format
   end
 
-  def ticket_discount
-    ticket_price if ticket_price
-  end
+  # def ticket_discount
+  #   ticket_price if ticket_price
+  # end
 
-  def ticket_discount=(new_price)
-    if new_price.ends_with? "%"
-      self.ticket_price += (ticket_price * (new_price.to_f / 100)).round(2)
-    else
-      self.ticket_price = new_price
-    end
-  end
+  # def ticket_discount=(new_price)
+  #   if new_price.ends_with? "%"
+  #     self.ticket_price += (ticket_price * (new_price.to_f / 100)).round(2)
+  #   else
+  #     self.ticket_price = new_price
+  #   end
+  # end
 
   def sold_out
     space_left = User.checkedin_count(self.venue)

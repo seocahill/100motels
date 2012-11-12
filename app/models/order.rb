@@ -87,6 +87,6 @@ class Order < ActiveRecord::Base
   end
 
   def total(event)
-    quantity * event.ticket_discount
+    quantity * event.ticket_price
   end
 end

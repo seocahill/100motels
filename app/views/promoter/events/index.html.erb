@@ -31,7 +31,7 @@
             <td> <%= event.venue %> </td>
             <td> <%= time_tag event.date %> </td>
             <td> <%= event.orders.to_a.sum { |item| item.quantity} %> </td>
-            <td> <%= number_to_currency(event.ticket_discount) %> </td>
+            <td> <%= number_to_currency(event.ticket_price) %> </td>
             <td >
               <div class="btn-group pull-right">
                 <%= link_to raw('<i class="icon-list"></i>'), [:promoter, event], class: "btn" %>
