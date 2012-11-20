@@ -88,25 +88,25 @@
             <dd>ToS</dd>
             <dd>Legal</dd>
             <dd>Privacy</dd>
-            <dd>Tech Support</dd>
+            <dd><%= link_to "Support", info_path %></dd>
           </dl>
         </div>
         <div class="span3 border-divider">
           <dl>
-            <dt>How it works</dt>
-            <dd>Pricing</dd>
-            <dd>Membership</dd>
-            <dd>FAQ</dd>
-            <dd>Customer Support</dd>
+            <dt><%= link_to "How it works", info_path(anchor: "how") %></dt>
+            <dd><%= link_to "Pricing", info_path(anchor: "money") %></dd>
+            <dd><%= link_to "Artists", info_path(anchor: "artist") %></dd>
+            <dd><%= link_to "Organizing", info_path(anchor: "organizing") %></dd>
+            <dd><%= link_to "Customer Support", info_path(anchor: "attending") %></dd>
           </dl>
         </div>
         <div class="span3 border-divider">
           <dl>
             <dt>About Us</dt>
-            <dd>Founders</dd>
+            <dd><%= link_to "Founders", info_path(anchor: "intro") %></dd>
             <dt>Opportunities</dt>
             <dd>Jobs</dd>
-            <dd>API / Developer support</dd>
+            <dd>API / Developer</dd>
           </dl>
         </div>
         <div class="span2">
@@ -114,9 +114,9 @@
             <dt><a href="//seocahill.com">Visit Our Blog</a></dt>
             <dd>
               <a href="//twitter.com/showkhill"><%= image_tag "twitter.png" %></a>
-              <%= image_tag "facebook.png" %>
-              <%= image_tag "rss.png" %>
-              <%= image_tag "vimeo.png" %>
+              <a href="//facebook.com.com/seocahill"><%= image_tag "facebook.png" %>
+              <a href="//www.seocahill.com/atom.xml"><%= image_tag "rss.png" %>
+              <a href="//vimeo.com/creteboom"><%= image_tag "vimeo.png" %>
             </dd>
             <div class="row">
             </div>
@@ -125,7 +125,7 @@
       </div>
       <div class="row footer-bottom">
         <div class="span12">
-          Seo Cahill 2012
+          <a href="//github.com/seocahill">Seo Cahill 2012</a>
         </div>
       </div>
     </div>
