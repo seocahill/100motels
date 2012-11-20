@@ -6,9 +6,9 @@
 	  				<a class="brand">Click One >></a>
 						<ul class="nav">
 							<li class="divider-vertical"></li>
+							<li class="span2"><a href="#latest-events">Tickets</a></li>
 							<li class="span2"><a href="#new-promoters">Tour or Support</a></li>
 		  				<li class="span2"><a href="#promoter-apply">Organize</a></li>
-		  				<li class="span2"><a href="#latest-events">Tickets</a></li>
 		  				<li class="span3"><%= link_to "100 Motels? ", info_path %></li>
 						</ul>
 					</div> <!-- /inner nav -->
@@ -23,20 +23,20 @@
 					<div class="span4">
 	          <!-- <img class="img-circle" src="http://placehold.it/140x140"> -->
 	          <h2>Funding</h2>
-	          <p>100 Motels lets you fund a potential show without taking on any financial liability until you're sure it's viable. Also all monies go straight to the Organizer's bank account - we don't hold your cash.</p>
-	          <p align="center"><%= link_to "Learn More »", info_path(anchor: "funding"), class: "btn" %></p>
+	          <p>100 Motels lets you fund a potential show without taking on any financial liability. When you're happy enough money has been raised, you can draw it down.</p><br>
+	          <p align="center"><%= link_to "Learn More »", info_path(anchor: "money"), class: "btn" %></p>
 	        </div>
 					<div class="span4">
 	          <!-- <img class="img-circle" src="http://placehold.it/140x140"> -->
 	          <h2>Organizing</h2>
 	          <p>Everything you would expect of a modern ticketing platform. Hassle free purchases, barcoded tickets and a mobile app 'Doorman' for keeping track of things on the night.</p> <br>
-	          <p align="center"><%= link_to "Learn More »", info_path(anchor: "organizer"), class: "btn" %></p>
+	          <p align="center"><%= link_to "Learn More »", info_path(anchor: "organizing"), class: "btn" %></p>
 	        </div>
 					<div class="span4">
 	          <!-- <img class="img-circle" src="http://placehold.it/140x140"> -->
-	          <h2>A World Tour</h2>
-	          <p>100 Motels gives anyone a chance to organize a tour date for an Artist they like, and gives Artists a resource where they can find an organizer for a location where they have fans. </p><br>
-	          <p align="center"><a class="btn" href="#">Learn More »</a></p>
+	          <h2>Touring</h2>
+	          <p>Anyone can organize a tour date for the artist of their choosing. Artists can find organizers for a location where they have fans or find support slots for other shows. </p><br>
+	          <p align="center"><%= link_to "Learn More »", info_path(anchor: "how"), class: "btn" %></p>
 	        </div>
 				</div> <!-- /headlines -->
 			</div>
