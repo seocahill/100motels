@@ -18,9 +18,9 @@ class EventsController < ApplicationController
     @promoter = Profile.find(@event.profile_id)
   end
 
-  def edit
-    @event = Event.find(params[:id])
-  end
+  # def edit
+  #   @event = Event.find(params[:id])
+  # end
 
   def update
     event = Event.find(params[:id])

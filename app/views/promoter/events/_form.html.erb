@@ -4,7 +4,7 @@
   <fieldset>
     <legend><%= controller.action_name.capitalize %> Event</legend>
 
-    <%= f.input :state, :label => "Visible to Public?", :collection => ["hidden","visible"], :selected => "hidden" %>
+    <%= f.input :state, :label => "Visible to Public?", :collection => ["hidden","visible"] %>
     <%= f.input :artist, label: "Artist / Event Name", placeholder: "Crete Boom" %>
     <%= f.input :venue, label: "Name of Venue", placeholder: "The Rickshaw" %>
     <%= f.input :new_location, label: "Location of Venue", placeholder: "123 Back Street, Dublin, Ireland" %>
