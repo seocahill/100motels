@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
 
   has_many :requests, dependent: :destroy
   has_many :promoters, through: :requests
+  has_many :orders
   has_one :location, dependent: :destroy
   has_one :profile, dependent: :destroy
   belongs_to :location

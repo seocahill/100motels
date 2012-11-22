@@ -125,7 +125,8 @@
 	                  <th>Promoter</th>
 	                  <th>Event</th>
 	                  <th>Status</th>
-	                  <th>Purchased on</th>
+                    <th>Purchased on</th>
+	                  <th></th>
 	                </tr>
 	              </thead>
 	              <tbody>
@@ -134,7 +135,8 @@
 		                  <td><%= link_to "#{order.event.profile.user.name}", promoter_profile_path(order.event.profile) %></td>
 		                  <td><%= link_to "#{order.event.artist}", event_path(order.event) %></td>
 		                  <td><%= order.stripe_event %></td>
-		                  <td><%= time_tag order.created_at %></td>
+                      <td><%= time_tag order.created_at %></td>
+		                  <td><%= link_to "view order", order_path(order) %></td>
 		                  <% if order.stripe_event == :pending %>
 			                  <td><%= link_to raw('Cancel <i class="icon-remove"></i>'), order_path(order), class: "btn", method: :delete, confirm: "Are you sure you want to cancel your order?" %></td>
                       <% else %>

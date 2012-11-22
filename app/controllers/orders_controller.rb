@@ -58,7 +58,8 @@ class OrdersController < ApplicationController
 private
 
   def find_order
-    @order = Order.find(params[:id])
+    authenticate_user!
+    @order = current_user.orders.find(params[:id])
     rescue ActiveRecord::RecordNotFound
     redirect_to root_path
   end
