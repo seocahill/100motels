@@ -11,3 +11,7 @@ $ ->
 $ ->
   $('#promoter_city').change ->
     $(this).closest('form').trigger('submit')
+
+#datepicker
+$ ->
+  $('.datepicker').datepicker
