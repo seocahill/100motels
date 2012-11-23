@@ -9,13 +9,14 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find_by_id(params[:id])
     @event = Event.find_by_id(@order.event_id)
+    @guest = guest_user
   end
 
   def edit
   end
 
   def create
-    @order = Order.new(params[:order])
+    @order = current_or_guest_user.orders.new(params[:order])
     if current_user && current_user.customer_id
       @order.customer_order
       Notifier.order_processed(@order).deliver
@@ -58,8 +59,8 @@ class OrdersController < ApplicationController
 private
 
   def find_order
-    authenticate_user!
-    @order = current_user.orders.find(params[:id])
+    # authenticate_user!
+    @order = current_or_guest_user.orders.find(params[:id])
     rescue ActiveRecord::RecordNotFound
     redirect_to root_path
   end

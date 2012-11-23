@@ -1,7 +1,7 @@
 <%= simple_form_for @order, :validate => true do |f| %>
     <div id="ticket-price" data-url="<%= @event.ticket_price * 100 %>"></div>
     <%= f.input :event_id, as: :hidden, input_html: { value: @event.id } %>
-    <%= f.input :user_id, as: :hidden, input_html: { value: current_user.try(:id) } %>
+    <%#= f.input :user_id, as: :hidden, input_html: { value: current_user.try(:id) } %>
     <%= f.input :quantity, collection: 1..4, input_html: { class: "input-mini"} %>
     <% if !user_signed_in? %>
       <%= f.input :email, label: false, placeholder: "  your email address", input_html: { class: "input-medium" }, required: :true %>

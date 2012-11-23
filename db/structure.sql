@@ -495,7 +495,7 @@ CREATE TABLE users (
     media_html character varying(255),
     location_id integer,
     customer_details hstore,
-    guest boolean
+    guest_id integer
 );
 
 
@@ -952,4 +952,4 @@ INSERT INTO schema_migrations (version) VALUES ('20121103014107');
 
 INSERT INTO schema_migrations (version) VALUES ('20121103014633');
 
-INSERT INTO schema_migrations (version) VALUES ('20121122232103');
+INSERT INTO schema_migrations (version) VALUES ('20121123020503');
