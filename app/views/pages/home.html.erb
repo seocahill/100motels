@@ -65,7 +65,7 @@
 												<h4 class="title">
 													<%= loc[0].event.artist %>
 												</h4>
-												<p><%= loc[0].event.venue %> on <%= time_tag loc[0].event.date %></p>
+												<h4><em><%= time_tag loc[0].event.date %> at <%= loc[0].event.venue %></em></h4>
 												<%= button_to "Info & Tickets", event_path(loc[0].event), method: :get, class: "btn btn-success", id: loc[0].event.artist %>
 											</div>
 										</div>
@@ -82,7 +82,7 @@
 												<h4 class="title">
 													<%= loc[1].event.artist %>
 												</h4>
-												<p><%= loc[1].event.venue %> on <%= time_tag loc[1].event.date %></p>
+												<h4><em><%= time_tag loc[1].event.date %> at <%= loc[1].event.venue %></em></h4>
 												<%= button_to "Info & Tickets", event_path(loc[1].event), method: :get, class: "btn btn-success", id: loc[1].event.artist %>
 											</div>
 											</div>
@@ -102,7 +102,7 @@
 													<h4 class="title">
 														<%= loc[2].event.artist %>
 													</h4>
-													<p><%= loc[2].event.venue %> on <%= time_tag loc[2].event.date %></p>
+													<h4><em><%= time_tag loc[2].event.date %> at <%= loc[2].event.venue %></em></h4>
 													<%= button_to "Info & Tickets", event_path(loc[2].event), method: :get, class: "btn btn-success", id: loc[2].event.artist %>
 												</div>
 											</div>
