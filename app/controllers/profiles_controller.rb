@@ -3,7 +3,7 @@ class ProfilesController < ApplicationController
   has_scope :promoter_city
 
   def index
-    @profiles = apply_scopes(Profile.where("state > ? and visible = ?", 0, true).page(params[:page]).per_page(3)).all
+    @profiles = apply_scopes(Profile.where("state > ? and visible = ?", 0, true).page(params[:page]).per_page(9)).all
     @options = Location.joins(:profile).collect(&:city).uniq
   end
 

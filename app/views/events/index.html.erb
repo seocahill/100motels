@@ -34,20 +34,15 @@
 			<section id="events-index-grid" class="events">
 				<ul class="thumbnails">
 					<% @events.each do |event| %>
-						<li class="span3">
-							<a class="thumbnail" href="#">
+						<li class="span3 pull-left">
+							<a class="thumbnail" href="<%= event_path(event) %>">
 								<% if event.image? %>
-                  <%= filepicker_image_tag event.image, w: 240, h: 240, fit: 'crop' %>
+                  <%= filepicker_image_tag event.image, w: 240, h: 140, fit: 'crop' %>
                 <% else %>
                   <img src="http://placehold.it/240" alt="">
                 <% end %>
 							</a>
 							<h3><%= event.artist %></h3>
-							<h5><%= event.venue %></h5>
-							<h5><%= time_tag event.date %></h5>
-							<p>
-								<%= button_to "Info and Tickets", event_path(event), method: :get, class: "btn btn-primary" %></a>
-							</p>
 						</li>
 					<% end %>
 				</ul>

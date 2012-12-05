@@ -2,7 +2,7 @@
   <div class="row">
     <div class="span12">
       <div class="page-header">
-        <h3>All Organizers</h3>
+        <h3>Organizers</h3>
       </div>
     </div>
   </div>
@@ -38,9 +38,9 @@
           <ul class="thumbnails">
             <% @profiles.each do |profile| %>
             <li class="span3">
-              <a class="thumbnail" href="#">
+              <a class="thumbnail" href="<%= profile_path(profile) %>">
                 <% if profile.image? %>
-                  <%= filepicker_image_tag profile.image, w: 300, h: 240, fit: 'crop' %>
+                  <%= filepicker_image_tag profile.image, w: 240, h: 140, fit: 'crop' %>
                 <% else %>
                   <img src="http://placehold.it/300x240" alt="">
                 <% end %>
@@ -48,9 +48,6 @@
               <h3>
                 <%= profile.promoter_name || "promoter name"  %>
               </h3>
-              <p><%= truncate profile.about, length: 250, separator: '.' || "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                  tempor incididunt ut labore et dolore magna aliqua." %></p>
-              <p><%= button_to "View Profile", profile_path(profile), method: :get, class: "btn button-primary" %></p>
             </li>
             <% end %>
           </ul>
