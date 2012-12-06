@@ -24,7 +24,7 @@ class Event < ActiveRecord::Base
   end
 
   def visible=(new_state)
-    if new_state = "visible"
+    if new_state == "visible"
       self.state = :visible
     else
       self.state = :hidden
