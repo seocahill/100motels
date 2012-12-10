@@ -51,6 +51,9 @@ GEM
       redcarpet (~> 2.0)
       rinku (~> 1.5.0)
     bcrypt-ruby (3.0.1)
+    better_errors (0.0.8)
+      coderay
+      erubis
     bootstrap-sass (2.1.1.0)
     bootstrap-will_paginate (0.0.9)
       will_paginate
@@ -330,6 +333,7 @@ DEPENDENCIES
   activerecord-postgres-hstore
   attr_encrypted
   auto_html
+  better_errors
   bootstrap-sass
   bootstrap-will_paginate
   cancan

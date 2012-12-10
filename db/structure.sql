@@ -43,36 +43,6 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: carts; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE carts (
-    id integer NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: carts_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE carts_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: carts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE carts_id_seq OWNED BY carts.id;
-
-
---
 -- Name: events; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -119,42 +89,6 @@ CREATE SEQUENCE events_id_seq
 --
 
 ALTER SEQUENCE events_id_seq OWNED BY events.id;
-
-
---
--- Name: line_items; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE line_items (
-    id integer NOT NULL,
-    event_id integer,
-    cart_id integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    quantity integer DEFAULT 1,
-    order_id integer,
-    promoter_id integer,
-    purchased boolean
-);
-
-
---
--- Name: line_items_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE line_items_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: line_items_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE line_items_id_seq OWNED BY line_items.id;
 
 
 --
@@ -532,21 +466,7 @@ CREATE TABLE users_roles (
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY carts ALTER COLUMN id SET DEFAULT nextval('carts_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY events ALTER COLUMN id SET DEFAULT nextval('events_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY line_items ALTER COLUMN id SET DEFAULT nextval('line_items_id_seq'::regclass);
 
 
 --
@@ -613,27 +533,11 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 
 
 --
--- Name: carts_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY carts
-    ADD CONSTRAINT carts_pkey PRIMARY KEY (id);
-
-
---
 -- Name: events_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY events
     ADD CONSTRAINT events_pkey PRIMARY KEY (id);
-
-
---
--- Name: line_items_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY line_items
-    ADD CONSTRAINT line_items_pkey PRIMARY KEY (id);
 
 
 --
@@ -720,20 +624,6 @@ CREATE INDEX index_events_on_location_id ON events USING btree (location_id);
 --
 
 CREATE INDEX index_events_on_profile_id ON events USING btree (profile_id);
-
-
---
--- Name: index_line_items_on_cart_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_line_items_on_cart_id ON line_items USING btree (cart_id);
-
-
---
--- Name: index_line_items_on_event_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_line_items_on_event_id ON line_items USING btree (event_id);
 
 
 --
@@ -898,9 +788,13 @@ INSERT INTO schema_migrations (version) VALUES ('20120814041600');
 
 INSERT INTO schema_migrations (version) VALUES ('20120814042323');
 
+INSERT INTO schema_migrations (version) VALUES ('20120816200336');
+
 INSERT INTO schema_migrations (version) VALUES ('20120831014218');
 
 INSERT INTO schema_migrations (version) VALUES ('20120904021017');
+
+INSERT INTO schema_migrations (version) VALUES ('20121002225612');
 
 INSERT INTO schema_migrations (version) VALUES ('20121003171417');
 
@@ -909,8 +803,6 @@ INSERT INTO schema_migrations (version) VALUES ('20121005042913');
 INSERT INTO schema_migrations (version) VALUES ('20121005051040');
 
 INSERT INTO schema_migrations (version) VALUES ('20121005191503');
-
-INSERT INTO schema_migrations (version) VALUES ('20121006031805');
 
 INSERT INTO schema_migrations (version) VALUES ('20121008044748');
 
@@ -953,3 +845,9 @@ INSERT INTO schema_migrations (version) VALUES ('20121103014107');
 INSERT INTO schema_migrations (version) VALUES ('20121103014633');
 
 INSERT INTO schema_migrations (version) VALUES ('20121123020503');
+
+INSERT INTO schema_migrations (version) VALUES ('20121210113239');
+
+INSERT INTO schema_migrations (version) VALUES ('20121210113254');
+
+INSERT INTO schema_migrations (version) VALUES ('20121210113309');
