@@ -45,13 +45,13 @@ class User < ActiveRecord::Base
       user
   end
 
-  auto_html_for :media do
-    html_escape
-    youtube(:width => 630, :height => 430)
-    vimeo(:width => 630, :height => 430)
-    soundcloud(:width => 630, :height => 200)
-    link :target => "_blank", :rel => "nofollow"
-    simple_format
+  # auto_html_for :media do
+  #   html_escape
+  #   youtube(:width => 630, :height => 430)
+  #   vimeo(:width => 630, :height => 430)
+  #   soundcloud(:width => 630, :height => 200)
+  #   link :target => "_blank", :rel => "nofollow"
+  #   simple_format
   end
 
   def save_card(user, card)
