@@ -43,16 +43,16 @@ test: &test
   encoding: unicode
   database: one_hundred_motels_test
   pool: 5
-  username: seo
-  password: seocahill
+  username: postgres
+  password:
 
-production:
-  adapter: postgresql
-  encoding: unicode
-  database: one_hundred_motels_production
-  pool: 5
-  username: seo
-  password: seocahill
+# production:
+#   adapter: postgresql
+#   encoding: unicode
+#   database: one_hundred_motels_production
+#   pool: 5
+#   username: seo
+#   password: seocahill
 
 cucumber:
   <<: *test

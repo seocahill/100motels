@@ -104,7 +104,9 @@ CREATE TABLE locations (
     latitude double precision,
     longitude double precision,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    event_id integer,
+    user_id integer
 );
 
 
@@ -627,10 +629,24 @@ CREATE INDEX index_events_on_profile_id ON events USING btree (profile_id);
 
 
 --
+-- Name: index_locations_on_event_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_locations_on_event_id ON locations USING btree (event_id);
+
+
+--
 -- Name: index_locations_on_latitude_and_longitude; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX index_locations_on_latitude_and_longitude ON locations USING btree (latitude, longitude);
+
+
+--
+-- Name: index_locations_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_locations_on_user_id ON locations USING btree (user_id);
 
 
 --
@@ -788,13 +804,9 @@ INSERT INTO schema_migrations (version) VALUES ('20120814041600');
 
 INSERT INTO schema_migrations (version) VALUES ('20120814042323');
 
-INSERT INTO schema_migrations (version) VALUES ('20120816200336');
-
 INSERT INTO schema_migrations (version) VALUES ('20120831014218');
 
 INSERT INTO schema_migrations (version) VALUES ('20120904021017');
-
-INSERT INTO schema_migrations (version) VALUES ('20121002225612');
 
 INSERT INTO schema_migrations (version) VALUES ('20121003171417');
 
@@ -807,8 +819,6 @@ INSERT INTO schema_migrations (version) VALUES ('20121005191503');
 INSERT INTO schema_migrations (version) VALUES ('20121008044748');
 
 INSERT INTO schema_migrations (version) VALUES ('20121009043159');
-
-INSERT INTO schema_migrations (version) VALUES ('20121010000250');
 
 INSERT INTO schema_migrations (version) VALUES ('20121010000421');
 

@@ -6,10 +6,8 @@ class PagesController < ApplicationController
     @events = Event.limit(6)
     @users = User.with_role(:promoter)
     @profiles = Profile.where("state > ? and visible = ?", 0, true).limit(8)
-    @seo = User.find(1)
   end
 
   def info
-    @seo = User.find(1)
   end
 end

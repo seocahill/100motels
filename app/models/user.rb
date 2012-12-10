@@ -52,7 +52,7 @@ class User < ActiveRecord::Base
   #   soundcloud(:width => 630, :height => 200)
   #   link :target => "_blank", :rel => "nofollow"
   #   simple_format
-  end
+  # end
 
   def save_card(user, card)
     Stripe.api_key = ENV['STRIPE_API_KEY']
