@@ -6,21 +6,20 @@ Feature: View the homepage
 
 	 Background:
 
-   Given there are 5 users:
+   Given there are 5 organizers:
    And there are 5 events:
    And I visit the homepage
-	
-	Scenario: Homepage should have App name
-		
-		Then I should see "100 Motels, A Place for Anarchy"
 
-	Scenario: Homepage should list newest users only
+	Scenario: Homepage should have App name
+
+		Then I should see "100 Motels"
+
+	Scenario: Homepage should display some events
 
 		Then those users should be listed
-	
-	Scenario: Homepage should list latest events
+
+	Scenario: Homepage should display some organizers
 
 		Then those events should be listed
-		
-		
-	
+
+
