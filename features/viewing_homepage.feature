@@ -6,8 +6,8 @@ Feature: View the homepage
 
 	 Background:
 
-   Given there are 5 organizers:
-   And there are 5 events:
+   Given there are 4 organizers:
+   And there are 3 events:
    And I visit the homepage
 
 	Scenario: Homepage should have App name
@@ -16,10 +16,11 @@ Feature: View the homepage
 
 	Scenario: Homepage should display some events
 
-		Then those users should be listed
+		Then the events should be listed
+    Then show me the page
 
 	Scenario: Homepage should display some organizers
 
-		Then those events should be listed
+		Then the organizers should be listed
 
 

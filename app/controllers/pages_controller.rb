@@ -3,8 +3,7 @@ class PagesController < ApplicationController
   def home
     @location ||= calculate_location
     @locations = Location.joins(:event).where("events.state > 0 and events.state < 3").uniq.limit(6)
-    @events = Event.limit(6)
-    @users = User.with_role(:promoter)
+    @events = Event.where("events.state > 0 and events.state < 3").uniq.limit(6)
     @profiles = Profile.where("state > ? and visible = ?", 0, true).limit(8)
   end
 

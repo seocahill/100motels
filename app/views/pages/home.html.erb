@@ -1,17 +1,11 @@
 <div class="container">
 			<div class="section-box" id="opener">
 				<div class="navbar">
-					<!-- <div id="welcome-nav" class="navbar-inner" align="center">
-	  				<div class="label-box"><del>Alpha</del> Demo!!</div>
-	  				<a class="brand">Click One >></a>
-						<ul class="nav">
-							<li class="divider-vertical"></li>
-							<li class="span2"><a href="#latest-events">Tickets</a></li>
-							<li class="span2"><a href="#new-promoters">Tour or Support</a></li>
-		  				<li class="span2"><a href="#promoter-apply">Organize</a></li>
-		  				<li class="span3"><%= link_to "100 Motels? ", info_path %></li>
-						</ul>
-					</div> --> <!-- /inner nav -->
+					<ul>
+						<% @events.each do |e| %>
+						<li><%= e.artist %></li>
+						<% end %>
+					</ul>
 					<div class="jumbotron">
 						<h1 class="welcome-banner">
 						 100 Motels<br>

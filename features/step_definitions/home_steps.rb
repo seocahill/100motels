@@ -1,9 +1,9 @@
 Given /^there are (#{CAPTURE_A_NUMBER}) events:$/ do |n|
-  @events = n.times.map { FactoryGirl.create(:event) }
+  @events = n.times.map { FactoryGirl.create(:event, :visible, artist: "Crete Boom") }
 end
 
 Given /^there are (#{CAPTURE_A_NUMBER}) organizers:$/ do |n|
-  @users = n.times.map { FactoryGirl.create(:user) }
+  @users = n.times.map { FactoryGirl.create(:profile, promoter_name: "Seo") }
 end
 
 And /^I visit the homepage$/ do
@@ -14,6 +14,10 @@ Then /^I should see "(.*?)"$/ do |arg1|
   page.should have_content(arg1)
 end
 
-Then /^those users should be listed$/ do
+Then /^the organizers should be listed$/ do
+  pending
+end
+
+Then /^the events should be listed$/ do
   pending
 end
