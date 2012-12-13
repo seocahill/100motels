@@ -15,7 +15,6 @@ group :developement, :test do
 	gem 'guard-cucumber'
   gem 'factory_girl_rails'
   gem 'guard-livereload'
-
 end
 
 group :developement do
@@ -37,6 +36,7 @@ group :test do
   gem 'email_spec'
   gem "shoulda-matchers"
   gem 'capybara-page-object'
+  gem 'poltergeist'
 end
 
 # Gems used only for assets and not required

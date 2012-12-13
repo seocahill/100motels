@@ -3,7 +3,7 @@ Given /^there are (#{CAPTURE_A_NUMBER}) events:$/ do |n|
 end
 
 Given /^there are (#{CAPTURE_A_NUMBER}) organizers:$/ do |n|
-  @users = n.times.map { FactoryGirl.create(:profile, promoter_name: "Seo") }
+  @users = n.times.map { FactoryGirl.create(:profile, promoter_name: "Jimmy McGee") }
 end
 
 And /^I visit the homepage$/ do
@@ -15,9 +15,9 @@ Then /^I should see "(.*?)"$/ do |arg1|
 end
 
 Then /^the organizers should be listed$/ do
-  pending
+  page.should have_content("Jimmy McGee")
 end
 
 Then /^the events should be listed$/ do
-  pending
+  page.should have_content("Crete Boom")
 end
