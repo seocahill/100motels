@@ -4,8 +4,6 @@ gem 'rails', '3.2.8'
 
 group :production do
 	gem 'pg'
-  gem 'faker'
-  gem 'factory_girl_rails'
   gem 'thin'
 end
 
@@ -34,9 +32,9 @@ group :test do
 	gem 'database_cleaner'
   gem 'launchy'
   gem 'email_spec'
-  gem "shoulda-matchers"
   gem 'capybara-page-object'
   gem 'poltergeist'
+  gem 'capybara-screenshot'
 end
 
 # Gems used only for assets and not required

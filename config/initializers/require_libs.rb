@@ -1,1 +1,0 @@
-require File.join(Rails.root, "lib/simple_form.rb")

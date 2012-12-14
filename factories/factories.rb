@@ -35,6 +35,7 @@ FactoryGirl.define do
   factory :profile do
     promoter_name { Faker::Name.name }
     trait :visible_verified do
+
       state :verified
       visible true
     end
