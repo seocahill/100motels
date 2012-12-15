@@ -9,11 +9,11 @@ require 'spork'
 
 Spork.prefork do
   require 'cucumber/rails'
-  require 'capybara/poltergeist'
-  require 'capybara-screenshot/cucumber'
+  # require 'capybara/poltergeist'
+  # require 'capybara-screenshot/cucumber'
 
-  Capybara.default_selector = :css
-  Capybara.javascript_driver = :poltergeist
+  # Capybara.default_selector = :css
+  # Capybara.javascript_driver = :poltergeist
 end
 
 Spork.each_run do
