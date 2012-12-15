@@ -1,27 +1,18 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
+gem 'pg'
+gem 'thin'
 
-group :production do
-	gem 'pg'
-  gem 'thin'
-end
 
-group :developement, :test do
+group :development, :test do
 	gem 'rspec-rails'
 	gem 'guard-rspec'
 	gem 'guard-cucumber'
   gem 'factory_girl_rails'
   gem 'guard-livereload'
-end
-
-group :developement do
   gem 'mail_view', :git => 'https://github.com/37signals/mail_view.git'
-  gem 'foreman'
   gem 'better_errors'
-end
-
-group :test do
   gem 'faker'
 	gem 'capybara'
 	gem 'rb-inotify'
