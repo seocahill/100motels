@@ -13,6 +13,7 @@ group :development, :test do
   gem 'guard-livereload'
   gem 'mail_view', :git => 'https://github.com/37signals/mail_view.git'
   gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'faker'
 	gem 'capybara'
 	gem 'rb-inotify'
