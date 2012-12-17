@@ -45,22 +45,22 @@ class ApplicationController < ActionController::Base
       end
     end
 
-  # called (once) when the user logs in, insert any code your application needs
-  # to hand off from guest_user to current_user.
-  def guest_orders
-    guest_orders = User.find(current_user.guest_id).orders.all
-    guest_orders.each do |order|
-      order.user_id = current_user.id
-      order.save
+    # called (once) when the user logs in, insert any code your application needs
+    # to hand off from guest_user to current_user.
+    def guest_orders
+      guest_orders = User.find(current_user.guest_id).orders.all
+      guest_orders.each do |order|
+        order.user_id = current_user.id
+        order.save
+      end
+      current_user.guest_id = nil
+      current_user.save
     end
-    current_user.guest_id = nil
-    current_user.save
-  end
 
-  def create_guest_user
-    u = User.create(:email => "guest_#{Time.now.to_i}#{rand(99)}@example.com")
-    u.save(:validate => false)
-    u
-  end
+    def create_guest_user
+      u = User.create(:email => "guest_#{Time.now.to_i}#{rand(99)}@example.com")
+      u.save(:validate => false)
+      u
+    end
 
 end
