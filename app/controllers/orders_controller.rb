@@ -23,9 +23,9 @@ class OrdersController < ApplicationController
       redirect_to(@order, notice: "Processed successfully")
     elsif @order.save_customer(params[:stripeToken])
       Notifier.order_processed(@order).deliver
-      redirect_to(@order, notice: "Processed successfully")
+      redirect_to :back, notice: "Thanks! Please check your email for your receipt."
     else
-      redirect_to(:back, notice: "failed validations")
+      redirect_to :back, flash: { error: "Sorry something went wrong. Did you fill in all the fields?" }
     end
   end
 

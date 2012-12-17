@@ -1,4 +1,4 @@
-<div class="well">
+<div class="">
 	<table class="table">
 		<thead>
 			<tr>
@@ -15,7 +15,7 @@
 		</tfoot>
 		<tbody>
 			<tr>
-				<td><%= @event.artist %>, <%= @event.venue %>, <%= time_tag @event.date %></td>
+				<td><%= time_tag @event.date %> in <%= @event.venue %></td>
 				<td><%= @order.quantity %></td>
 				<td><%= number_to_currency(@event.ticket_price) %></td>
 			</tr>
