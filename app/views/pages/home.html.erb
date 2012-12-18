@@ -15,13 +15,11 @@
 	          <p align="center"><%= link_to "Learn More »", info_path(anchor: "money"), class: "btn" %></p>
 	        </div>
 					<div class="span4">
-	          <!-- <img class="img-circle" src="http://placehold.it/140x140"> -->
 	          <h2>Ticketing</h2>
 	          <p>A modern ticketing platform with one-click purchases, QR coded tickets and a mobile app 'Doorman' for keeping track of things on the night.</p> <br>
 	          <p align="center"><%= link_to "Learn More »", info_path(anchor: "organizing"), class: "btn" %></p>
 	        </div>
 					<div class="span4">
-	          <!-- <img class="img-circle" src="http://placehold.it/140x140"> -->
 	          <h2>Organizing</h2>
 	          <p>Organize a live show for the artist or artists of your choosing. Find an organizer to put on a show for you or play as support for other artists. </p><br>
 	          <p align="center"><%= link_to "Learn More »", info_path(anchor: "how"), class: "btn" %></p>
@@ -33,67 +31,66 @@
 			<section id="latest-events">
 				<header class="page-header">
 					<h3>
-						<i class="icon-globe"></i>
-						Shows near <%= @location %> <%= link_to "View All >>", events_path, class: "pull-right btn" %>
+						Latest Shows <%= link_to "View All in #{@location} »", events_path, class: "pull-right btn btn-large" %>
 					</h3>
 				</header>
 				<div id="events-carousel" class="carousel slide" data-interval="false">
 					<div class="carousel-inner">
-						<% @locations.each_slice(3) do |loc| %>
+						<% @events.each_slice(3) do |event| %>
 						<div class="item">
 								<ul class="thumbnails">
 									<li class="span4">
-										<div class="thumbnail">
-											<% if loc[0].event.image? %>
-												<%= filepicker_image_tag loc[0].event.image, w: 360, h: 240, fit: 'crop' %>
+										<a class="thumbnail" href="<%= event_path(event[0]) %>">
+											<% if event[0].image? %>
+												<%= filepicker_image_tag event[0].image, w: 360, h: 240, fit: 'crop' %>
 											<% else %>
 												<img src="http://quickimage.it/360x240&text=ArtistPic" alt="">
 											<% end %>
 											<div class="caption">
 												<h4 class="title">
-													<%= loc[0].event.artist %>
+													<%= event[0].artist %>
 												</h4>
-												<h4><em><%= time_tag loc[0].event.date %> at <%= loc[0].event.venue %></em></h4>
-												<%= button_to "Info & Tickets", event_path(loc[0].event), method: :get, class: "btn btn-success", id: loc[0].event.artist %>
+												<h4><em><%= time_tag event[0].date %> at <%= event[0].venue %></em></h4>
+												<%= button_to "Info & Tickets", event_path(event[0]), method: :get, class: "btn btn-success", id: event[0].artist %>
 											</div>
-										</div>
+										</a>
 									</li>
 									<li class="span4">
-										<% if loc[1] %>
-											<div class="thumbnail">
-											<% if loc[1].event.image? %>
-												<%= filepicker_image_tag loc[1].event.image, w: 360, h: 240, fit: 'crop' %>
-											<% else %>
-												<img src="http://quickimage.it/360x240&text=ArtistPic" alt="">
-											<% end %>
-											<div class="caption">
-												<h4 class="title">
-													<%= loc[1].event.artist %>
-												</h4>
-												<h4><em><%= time_tag loc[1].event.date %> at <%= loc[1].event.venue %></em></h4>
-												<%= button_to "Info & Tickets", event_path(loc[1].event), method: :get, class: "btn btn-success", id: loc[1].event.artist %>
-											</div>
-											</div>
-										<% else %>
-
-										<% end %>
-									</li>
-									<li class="span4">
-										<% if loc[2] %>
-											<div class="thumbnail">
-												<% if loc[2].event.image? %>
-													<%= filepicker_image_tag loc[2].event.image, w: 360, h: 240, fit: 'crop' %>
+										<% if event[1] %>
+											<a class="thumbnail" href="<%= event_path(event[1]) %>">
+												<% if event[1].image? %>
+													<%= filepicker_image_tag event[1].image, w: 360, h: 240, fit: 'crop' %>
 												<% else %>
 													<img src="http://quickimage.it/360x240&text=ArtistPic" alt="">
 												<% end %>
 												<div class="caption">
 													<h4 class="title">
-														<%= loc[2].event.artist %>
+														<%= event[1].artist %>
 													</h4>
-													<h4><em><%= time_tag loc[2].event.date %> at <%= loc[2].event.venue %></em></h4>
-													<%= button_to "Info & Tickets", event_path(loc[2].event), method: :get, class: "btn btn-success", id: loc[2].event.artist %>
+													<h4><em><%= time_tag event[1].date %> at <%= event[1].venue %></em></h4>
+													<%= button_to "Info & Tickets", event_path(event[1]), method: :get, class: "btn btn-success", id: event[1].artist %>
 												</div>
-											</div>
+											</a>
+										<% else %>
+
+										<% end %>
+									</li>
+									<li class="span4">
+										<% if event[2] %>
+											<a class="thumbnail" href="<%= event_path(event[2]) %>">
+												<% if event[2].image? %>
+													<%= filepicker_image_tag event[2].image, w: 360, h: 240, fit: 'crop' %>
+												<% else %>
+													<img src="http://quickimage.it/360x240&text=ArtistPic" alt="">
+												<% end %>
+												<div class="caption">
+													<h4 class="title">
+														<%= event[2].artist %>
+													</h4>
+													<h4><em><%= time_tag event[2].date %> at <%= event[2].venue %></em></h4>
+													<%= button_to "Info & Tickets", event_path(event[2]), method: :get, class: "btn btn-success", id: event[2].artist %>
+												</div>
+											</a>
 										<% else %>
 
 										<% end %>
@@ -110,7 +107,7 @@
 
 			<section id="new-promoters">
 				<header>
-					<h3 class="page-header"><i class="icon-globe"></i>Organizers near <%= @location %> <%= link_to "View All >>", profiles_path, class: "pull-right btn" %></h3>
+					<h3 class="page-header">Newest Organizers <%= link_to "View All in #{@location} »", profiles_path, class: "pull-right btn btn-large" %></h3>
 				</header>
 				<div id="promoters-carousel" class="carousel slide" data-interval="false">
 					<div id="promoters" class="carousel-inner">
@@ -118,7 +115,7 @@
 						<div class="item">
 								<ul class="thumbnails">
 									<li class="span3">
-										<div class="thumbnail">
+										<a class="thumbnail" href="<%= profile_path(profile[0]) %>">
 											<% if profile[0] %>
 												<% if profile[0].image? %>
 				                  <%= filepicker_image_tag profile[0].image, w: 360, h: 360, fit: 'crop' %>
@@ -131,10 +128,10 @@
 														<%= button_to "Full Profile", profile_path(profile[0]), method: :get, class: "btn btn-primary" %>
 												</div>
 											<% end %>
-										</div>
+										</a>
 									</li>
 									<li class="span3">
-										<div class="thumbnail">
+										<a class="thumbnail" href="<%= profile_path(profile[1]) %>">
 											<% if profile[1] %>
 												<% if profile[1].image? %>
 				                  <%= filepicker_image_tag profile[1].image, w: 360, h: 360, fit: 'crop' %>
@@ -147,10 +144,10 @@
 													<%= button_to "Full Profile", profile_path(profile[1]), method: :get, class: "btn btn-primary" %>
 												</div>
 											<% end %>
-										</div>
+										</a>
 									</li>
 									<li class="span3">
-										<div class="thumbnail">
+										<a class="thumbnail" href="<%= profile_path(profile[2]) %>">
 											<% if profile[2] %>
 												<% if profile[2].image? %>
 				                  <%= filepicker_image_tag profile[2].image, w: 360, h: 360, fit: 'crop' %>
@@ -163,10 +160,10 @@
 													<%= button_to "Full Profile", profile_path(profile[2]), method: :get, class: "btn btn-primary" %>
 												</div>
 											<% end %>
-										</div>
+										</a>
 									</li>
 									<li class="span3">
-										<div class="thumbnail">
+										<a class="thumbnail" href="<%= profile_path(profile[3]) %>">
 											<% if profile[3] %>
 												<% if profile[3].image? %>
 				                  <%= filepicker_image_tag profile[3].image, w: 360, h: 360, fit: 'crop' %>
@@ -179,7 +176,7 @@
 													<%= button_to "Full Profile", profile_path(profile[3]), method: :get, class: "btn btn-primary" %>
 												</div>
 											<% end %>
-										</div>
+										</a>
 									</li>
 								</ul>
 						</div>
