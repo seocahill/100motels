@@ -14,7 +14,6 @@
 			<% end %>
 		</div>
 		<div class="span2">
-			<strong>Support Requests: <span class="badge"><%= @event.users.count %></span></strong>
 		</div>
 		<div class="span2">
 			<% if user_signed_in? && current_user == @event.profile.user %>
@@ -23,7 +22,7 @@
 		</div>
 	</div>
 	<section id="event-info" class="section-box">
-		<div class="row">
+		<div class="row-fluid">
 			<div class="label-box">Ticket Info</div>
 				<div class="span3">
 					<% if @event.image? %>
@@ -32,40 +31,25 @@
 						<img src="//quickimage.it/300&text=Artist">
 					<% end %>
 				</div>
-				<div class="span5">
-					<div class="row">
-						<div class="span3 offset1" align="center">
-							<h2>
-								<small><%= @promoter.try(:promoter_name) %> presents...</small> <br>
-								<div id="artist" data-mercury="full"><%= @event.artist %></div>
-							</h2>
-						</div>
-					</div>
-					<div class="row">
-						<div class="span2 pull-right">
-							<dl>
-								<dt>Venue: </dt>
-								<dd><%= @event.venue %></dd>
-								<dt>Date: </dt>
-								<dd><%= time_tag @event.date %></dd>
-								<dt>Doors: </dt>
-								<dd><%= @event.doors.strftime("%l:%M %p") %></dd>
-							</dl>
-						</div>
-						<div class="span2 pull-right">
-							<dl>
-								<dt>Venue Capacity: </dt>
-								<dd><%= @event.venue_capacity %></dd>
-								<dt>Sales / Target:</dt>
-								<dd><%= @event.orders.pre_sales.to_a.sum { |item| item.quantity} %> / <%= @event.target %></dd>
-								<dt>Time left to go:</dt>
-								<dd><%= distance_of_time_in_words(Time.now, @event.date, true) %></dd>
-							</dl>
-						</div>
-					</div>
+				<div class="span5" align="center">
+					<h2>
+						<small><%= @promoter.try(:promoter_name) %> presents...</small> <br>
+						<div id="artist" data-mercury="full"><%= @event.artist %></div>
+					</h2>
+					<h4>
+						<%= @event.date.strftime("%a, %d %b %Y") %> <br>
+						 <br>
+						<%= @event.venue %> <br>
+					</h4>
+					<h1>~</h1>
+					<h4>
+						Doors  <br>
+						at <br>
+						<%= @event.doors.strftime("%l:%M %p") %>
+					</h4>
 				</div>
 				<div class="span3">
-					<div id="" class="section-box centered-box">
+					<div class="section-box centered-box">
 						<h1>
 							<%= number_to_currency(@event.ticket_price) %> <br>
 							<small>per ticket</small>
@@ -76,33 +60,57 @@
 		</div>
 	</section>
 
-	<section id ="your-promoter" class="section-box">
+	<section id ="your-promoter">
 		<div class="row">
-			<div class="span12">
-				<div class="label-box">Your Promoter</div>
+			<div class="span6">
+				<div class="section-box">
+					<div class="label-box">Your Promoter</div>
 					<div class="row">
 						<div class="span2">
+							<a class="thumbnail" href="<%= profile_path(@promoter) %>">
 								<% if @promoter.try(:image?) %>
 									<%= filepicker_image_tag @promoter.image, w: 100, h: 100, fit: 'crop' %>
 								<% else %>
 									<img src="//quickimage.it/100">
 								<% end %>
+							</a>
 						</div>
-						<div class="span9">
-							<p class="lead">
-								About <%= @promoter.try(:promoter_name) %>...
-							</p>
-							<p>
-								<%= truncate @promoter.about, length: 250, separator: '.' || "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua." %>
-							</p>
-								<%= link_to "Full Profile", profile_path(@promoter), class: "btn btn-medium" %>
+						<div class="span3">
+							<dl class="dl-horizontal">
+		            <dt>Total Events: </dt>
+		            <dd><%= @promoter.events.count || 0 %></dd>
+		            <dt>Total Requests: </dt>
+		            <dd><%= @requests.count || 0 %> </dd>
+		            <dt>Total Sales: </dt>
+		            <dd><%= 0 %></dd>
+		          </dl>
 						</div>
 					</div>
 					<div class="row">
 						<div class="span12">
 						</div>
 					</div>
+				</div>
+			</div>
+			<div class="span6">
+				<div class="section-box">
+					<div class="label-box">Funding / Attendance</div>
+					<div class="row">
+						<div class="span5">
+							<a class="thumbnail" href="<%= profile_path(@promoter) %>">
+								<% if @promoter.try(:image?) %>
+									<%= filepicker_image_tag @promoter.image, w: 100, h: 100, fit: 'crop' %>
+								<% else %>
+									<img src="//quickimage.it/100">
+								<% end %>
+							</a>
+						</div>
+					</div>
+					<div class="row">
+						<div class="span12">
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</section>

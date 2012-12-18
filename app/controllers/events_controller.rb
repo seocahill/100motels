@@ -16,6 +16,8 @@ class EventsController < ApplicationController
   def show
     @order = Order.new
     @promoter = Profile.find(@event.profile_id)
+    @requests = Request.where('promoter_id = ?', @promoter.user_id)
+    @sales = Order.where('profile_id ')
   end
 
   # def edit

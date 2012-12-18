@@ -20,7 +20,7 @@ class OrdersController < ApplicationController
     if current_user && current_user.customer_id
       @order.customer_order
       Notifier.order_processed(@order).deliver
-      redirect_to(@order, notice: "Processed successfully")
+      redirect_to :back, notice: "Thanks! Please check your email for your receipt."
     elsif @order.save_customer(params[:stripeToken])
       Notifier.order_processed(@order).deliver
       redirect_to :back, notice: "Thanks! Please check your email for your receipt."
@@ -38,11 +38,11 @@ class OrdersController < ApplicationController
     refund = params[:refund]
     if orders && promoter && !refund
       orders.each { |order| order.charge_customer(promoter)}
-      # orders.each { |order| Notifier.order_charged(order).deliver }
+      orders.each { |order| Notifier.ticket(order).deliver }
       redirect_to(:back, notice: "Charge successful")
     elsif orders && promoter && refund
       orders.each { |order| order.refund_customer(promoter) }
-      # orders.each { |order| Notifier.order_refunded(order).deliver }
+      orders.each { |order| Notifier.ticket(order).deliver }
       redirect_to(:back, notice: "Refund successful")
     else
       redirect_to(:back, notice: "Something went wrong")
