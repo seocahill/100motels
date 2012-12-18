@@ -22,7 +22,7 @@ class Profile < ActiveRecord::Base
     group("profiles.id").
     order("events_count DESC")
 
-  auto_html_for :organizer_media do
+  auto_html_for :promoter_media do
     html_escape
     image
     flickr
