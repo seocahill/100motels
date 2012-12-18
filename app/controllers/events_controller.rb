@@ -36,7 +36,7 @@ class EventsController < ApplicationController
     event = Event.find(params[:id])
     event.users << current_user
     event.save!
-    redirect_to :back, notice: "The Promoter has been notified"
+    redirect_to :back, notice: "The Organizer has been notified"
   end
 
 private

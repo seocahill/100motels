@@ -13,7 +13,7 @@
   </div>
   <section class="section-box">
     <div class="row">
-      <div class="label-box">Promoter Info</div>
+      <div class="label-box">Organizer Info</div>
       <div id="promoter-pic" class="span2">
         <% if @profile.image? %>
           <%= filepicker_image_tag @profile.image, w: 200, h: 200, fit: 'crop' %>
@@ -28,7 +28,7 @@
         <div class="page-header">
           <h2>
             <div id="name" data-mercury="full">
-              <%= @profile.promoter_name || "Promoter Name" %>
+              <%= @profile.promoter_name || "Organizer Name" %>
             </div>
           </h2>
         </div>
@@ -56,7 +56,7 @@
   </section>
 
   <section id="promoter-stats" class="section-box">
-    <div class="label-box">Promoter Stats</div>
+    <div class="label-box">Organizer Stats</div>
       <div class="row">
         <div class="span4">
           <fieldset>

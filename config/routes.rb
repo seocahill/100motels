@@ -14,7 +14,7 @@ OneHundredMotels::Application.routes.draw do
 
   match '/info' => 'pages#info'
 
-  namespace :promoter do
+  namespace :organizer do
     root :to => 'base#index'
     resources :events
     resources :profiles
