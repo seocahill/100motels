@@ -68,13 +68,11 @@
 				<div class="row-fluid">
 					<div class="span5" align="center">
 						<a class="thumbnail" href="<%= profile_path(@promoter) %>">
-							<!-- <p><small>Organized by</small></p> -->
 							<%= filepicker_image_tag @promoter.try(:image), w: 100, h: 100, fit: 'crop' %>
-							<!-- <p><%= @promoter.promoter_name %></p> -->
 						</a>
 					</div>
 					<div class="span7" align="center">
-						<h1>95 <br>Tickets <br>Left</h1>
+						<h1><%= @event.viable %> <br>Tickets <br>Left</h1>
 					</div>
 				</div>
 				<div class="row">

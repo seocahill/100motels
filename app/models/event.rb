@@ -1,7 +1,7 @@
 class Event < ActiveRecord::Base
   resourcify
   attr_accessible :artist, :date, :doors, :venue, :venue_capacity, :ticket_price,
-                  :music, :video, :about, :image, :target, :ticket_discount, :location_id, :new_location, :visible, :state
+                  :music, :video, :about, :image, :target, :location_id, :new_location, :visible, :state
   attr_accessor :new_location
   enum_accessor :state, [ :hidden, :visible, :successful, :failed, :archived, :cancelled ]
   validates :artist, :venue, :date, :ticket_price, presence: true
@@ -61,6 +61,10 @@ class Event < ActiveRecord::Base
     else
       scoped
     end
+  end
+
+  def viable
+    target - self.orders.count
   end
 
 end
