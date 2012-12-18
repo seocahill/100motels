@@ -16,11 +16,11 @@ class Profile < ActiveRecord::Base
     self.location = Location.create(address: new_location) if new_location.present?
   end
 
-  scope :count_events,
-    select("profiles.id, count(events.id) AS events_count").
-    joins(:events).
-    group("profiles.id").
-    order("events_count DESC")
+  # scope :count_events,
+  #   select("profiles.id, count(events.id) AS events_count").
+  #   joins(:events).
+  #   group("profiles.id").
+  #   order("events_count DESC")
 
   auto_html_for :promoter_media do
     html_escape
