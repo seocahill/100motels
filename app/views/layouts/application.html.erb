@@ -47,9 +47,9 @@
                   <ul class="dropdown-menu">
                     <li><%= link_to "User Account", current_user %></li>
                     <% if current_user.has_role? :organizer %>
-                      <li> <%= link_to "Public Profile", profile_path(current_user.profile) %>  </li>
-                      <li> <%= link_to "Events", organizer_events_path %>  </li>
-                      <li> <%= link_to "Requests", requests_path %>  </li>
+                      <li> <%= link_to "Organizer Profile", profile_path(current_user.profile) %>  </li>
+                      <li> <%= link_to "Your Events", organizer_events_path %>  </li>
+                      <li> <%= link_to "Your Requests", requests_path %>  </li>
                     <% end %>
                     <li class="divider"></li>
                     <li><%= link_to "Sign out", destroy_user_session_path, :method => 'delete' %></li>
@@ -61,15 +61,17 @@
         </div> <!-- container -->
       </div><!-- /navbar-inner -->
     </div>  <!-- /navbar -->
-    <div class="container content">
-      <% flash.each do |key, value| %>
-        <div class="alert alert-<%= key == :notice ? "success" : "error" %>">
-          <a class="close" data-dismiss="alert">&#215;</a>
-          <%= content_tag :div, value, :id => "flash_#{key}" if value.is_a?(String) %>
-        </div> <!-- /flash -->
-      <% end %>
-      <%= yield %>
-    </div> <!-- /content container -->
+    <div id="wrap">
+      <div class="container content" id="main">
+        <% flash.each do |key, value| %>
+          <div class="alert alert-<%= key == :notice ? "success" : "error" %>">
+            <a class="close" data-dismiss="alert">&#215;</a>
+            <%= content_tag :div, value, :id => "flash_#{key}" if value.is_a?(String) %>
+          </div> <!-- /flash -->
+        <% end %>
+        <%= yield %>
+      </div> <!-- /content container -->
+    </div>
   </body>
   <footer>
     <div class="container">

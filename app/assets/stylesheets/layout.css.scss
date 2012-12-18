@@ -3,6 +3,19 @@
 
 //inset title box
 
+html, body {
+  height: 100%;
+}
+
+#wrap {
+  min-height: 100%;
+}
+
+#main {
+  overflow:auto;
+  padding-bottom:200px; /* this needs to be bigger than footer height*/
+}
+
 .section-box {
   position: relative;
   margin: 25px 0;
@@ -35,6 +48,8 @@
 
 footer {
   position: relative;
+  margin-top: -200px;
+  clear:both;
   font-size: 14px;
   color: #666;
   background-color: #333;
