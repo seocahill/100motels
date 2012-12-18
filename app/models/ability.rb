@@ -4,7 +4,7 @@ class Ability
   def initialize(user)
     if user.has_role? :god
         can :manage, :all
-    elsif user.has_role? :promoter
+    elsif user.has_role? :organizer
         can :manage, :all
     else
         can :read, :all

@@ -23,7 +23,7 @@ $ ->
     interval: false
 
 $ ->
-  $('#promoters-carousel .item:first').addClass('active')
-  $('#promoters-carousel').carousel
+  $('#organizers-carousel .item:first').addClass('active')
+  $('#organizers-carousel').carousel
     interval: false
 

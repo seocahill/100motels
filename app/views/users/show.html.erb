@@ -3,7 +3,7 @@
 	<section class="section-box">
 		<div class="row">
 			<div class="label-box">User Info</div>
-			<div id="promoter-pic" class="span2" align="center">
+			<div id="organizer-pic" class="span2" align="center">
 				<% if @user.avatar? %>
 					<%= filepicker_image_tag @user.avatar, w: 200, h: 200, fit: 'crop' %>
 				<% else %>
@@ -107,7 +107,7 @@
                 <tbody>
                     <% current_user.requests.where("event_id IS NULL").each do |r|  %>
                     <tr>
-                      <td><%= link_to "#{r.promoter.profile.promoter_name}", promoter_profile_path(r.promoter) %></td>
+                      <td><%= link_to "#{r.organizer.profile.organizer_name}", organizer_profile_path(r.organizer) %></td>
                       <td><%= time_ago_in_words(r.created_at) %> ago </td>
                       <td><%= r.state %></td>
                       <td>
@@ -132,7 +132,7 @@
 	              <tbody>
 		                <% @orders.each do |order| %>
 		                <tr>
-		                  <td><%= link_to "#{order.event.profile.user.name}", promoter_profile_path(order.event.profile) %></td>
+		                  <td><%= link_to "#{order.event.profile.user.name}", organizer_profile_path(order.event.profile) %></td>
 		                  <td><%= link_to "#{order.event.artist}", event_path(order.event) %></td>
 		                  <td><%= order.stripe_event %></td>
                       <td><%= time_tag order.created_at %></td>

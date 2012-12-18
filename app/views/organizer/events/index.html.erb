@@ -2,14 +2,14 @@
   <div class="row">
     <div class="span4">
       <ul class="breadcrumb">
-        <li><i class="icon-home"></i> <%= link_to "Organizer Home", promoter_root_path %><span class="divider">/</span></li>
+        <li><i class="icon-home"></i> <%= link_to "Organizer Home", organizer_root_path %><span class="divider">/</span></li>
         <li><a href="" class="active">All Events</a></li>
       </ul>
     </div>
   </div>
   <div class="row">
-    <div class="span2" id="promoter-event-new">
-      <%= link_to "New Event", new_promoter_event_path, class: "btn" %>
+    <div class="span2" id="organizer-event-new">
+      <%= link_to "New Event", new_organizer_event_path, class: "btn" %>
     </div>
   </div>
   <div class="row">
@@ -27,16 +27,16 @@
         <tbody>
           <% @events.each do |event| %>
           <tr>
-            <td><%= link_to event.artist, [:promoter, event], class: "" %></td>
+            <td><%= link_to event.artist, [:organizer, event], class: "" %></td>
             <td> <%= event.venue %> </td>
             <td> <%= time_tag event.date %> </td>
             <td> <%= event.orders.to_a.sum { |item| item.quantity} %> </td>
             <td> <%= number_to_currency(event.ticket_price) %> </td>
             <td >
               <div class="btn-group pull-right">
-                <%= link_to raw('<i class="icon-list"></i>'), [:promoter, event], class: "btn" %>
+                <%= link_to raw('<i class="icon-list"></i>'), [:organizer, event], class: "btn" %>
                 <%= link_to raw('<i class="icon-eye-open"></i>'), event_path(event), class: "btn" %>
-                <%= link_to raw('<i class="icon-pencil"></i>'), edit_promoter_event_path(event), class: "btn" %>
+                <%= link_to raw('<i class="icon-pencil"></i>'), edit_organizer_event_path(event), class: "btn" %>
               </div>
             </td>
           </tr>

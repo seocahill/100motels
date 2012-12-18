@@ -6,7 +6,7 @@ class RequestsController < ApplicationController
   end
 
   def create
-    @request = current_user.requests.build(promoter_id: params[:promoter_id], event_id: params[:event_id])
+    @request = current_user.requests.build(organizer_id: params[:organizer_id], event_id: params[:event_id])
     if @request.save
       flash[:notice] = "Organizer notified."
       redirect_to :back

@@ -1,7 +1,7 @@
 class Profile < ActiveRecord::Base
 
-  attr_accessible :promoter_name, :visible, :image, :available, :fee, :quick_profile,
-                  :about, :equipment, :venues, :travel, :accomodation, :support, :promoter_media, :location_id, :new_location
+  attr_accessible :organizer_name, :visible, :image, :available, :fee, :quick_profile,
+                  :about, :equipment, :venues, :travel, :accomodation, :support, :organizer_media, :location_id, :new_location
   attr_encrypted :api_key, key: ENV['ATTR_ENCRYPTED_KEY']
   attr_accessor :new_location
   enum_accessor :state, [ :provisional, :verified, :suspended ]
@@ -10,7 +10,7 @@ class Profile < ActiveRecord::Base
   has_many :events
   belongs_to :user
   belongs_to :location
-  scope :promoter_city, proc { |city| joins(:location).where("city = ?", city) }
+  scope :organizer_city, proc { |city| joins(:location).where("city = ?", city) }
 
   def create_location
     self.location = Location.create(address: new_location) if new_location.present?
@@ -22,7 +22,7 @@ class Profile < ActiveRecord::Base
     group("profiles.id").
     order("events_count DESC")
 
-  auto_html_for :promoter_media do
+  auto_html_for :organizer_media do
     html_escape
     image
     flickr

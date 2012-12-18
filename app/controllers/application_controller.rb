@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
 
     def authorize_admin!
       authenticate_user!
-      unless current_user.has_role? :promoter
+      unless current_user.has_role? :organizer
         flash[:alert] = "You can't do that"
         redirect_to root_path
       end

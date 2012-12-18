@@ -1,7 +1,7 @@
 # Changing css on status labels
 
 $ ->
-  $("#promoter-customers td span").each ->
+  $("#organizer-customers td span").each ->
     label = $(@)
     switch
       when  label.html() is "refunded" then label.addClass('label-important')

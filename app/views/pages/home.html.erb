@@ -105,12 +105,12 @@
 				<hr>
 			</section>
 
-			<section id="new-promoters">
+			<section id="new-organizers">
 				<header>
 					<h3 class="page-header">Newest Organizers <%= link_to "View All in #{@location} »", profiles_path, class: "pull-right btn btn-large" %></h3>
 				</header>
-				<div id="promoters-carousel" class="carousel slide" data-interval="false">
-					<div id="promoters" class="carousel-inner">
+				<div id="organizers-carousel" class="carousel slide" data-interval="false">
+					<div id="organizers" class="carousel-inner">
 						<% @profiles.each_slice(4) do |profile| %>
 						<div class="item">
 								<ul class="thumbnails">
@@ -182,8 +182,8 @@
 						</div>
 						<% end %>
 					</div>
-					<a class="left carousel-control" href="#promoters-carousel" data-slide="prev">‹</a>
-					<a class="right carousel-control" href="#promoters-carousel" data-slide="next">›</a>
+					<a class="left carousel-control" href="#organizers-carousel" data-slide="prev">‹</a>
+					<a class="right carousel-control" href="#organizers-carousel" data-slide="next">›</a>
 				</div>
 				<hr>
 			</section>

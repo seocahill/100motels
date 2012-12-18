@@ -34,14 +34,14 @@ class OrdersController < ApplicationController
 
   def charge_multiple
     orders = Order.find(params[:order_ids])
-    promoter = Profile.find(params[:promoter])
+    organizer = Profile.find(params[:organizer])
     refund = params[:refund]
-    if orders && promoter && !refund
-      orders.each { |order| order.charge_customer(promoter)}
+    if orders && organizer && !refund
+      orders.each { |order| order.charge_customer(organizer)}
       orders.each { |order| Notifier.ticket(order).deliver }
       redirect_to(:back, notice: "Charge successful")
-    elsif orders && promoter && refund
-      orders.each { |order| order.refund_customer(promoter) }
+    elsif orders && organizer && refund
+      orders.each { |order| order.refund_customer(organizer) }
       orders.each { |order| Notifier.ticket(order).deliver }
       redirect_to(:back, notice: "Refund successful")
     else

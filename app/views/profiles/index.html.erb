@@ -14,7 +14,7 @@
       </header>
       <form class="form">
         <div class="">
-          <%= select_tag "promoter_city", options_for_select(@options), prompt: "Filter by City"  %>
+          <%= select_tag "organizer_city", options_for_select(@options), prompt: "Filter by City"  %>
           <br>
           <!-- <h4>Sort your results</h4> <br> -->
           <ul class="nav nav-list">
@@ -46,7 +46,7 @@
                 <% end %>
               </a>
               <h3>
-                <%= profile.promoter_name || "promoter name"  %>
+                <%= profile.organizer_name || "organizer name"  %>
               </h3>
             </li>
             <% end %>

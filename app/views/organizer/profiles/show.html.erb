@@ -14,14 +14,14 @@
   <section class="section-box">
     <div class="row">
       <div class="label-box">Organizer Info</div>
-      <div id="promoter-pic" class="span2">
+      <div id="organizer-pic" class="span2">
         <% if @profile.image? %>
           <%= filepicker_image_tag @profile.image, w: 200, h: 200, fit: 'crop' %>
         <% else %>
           <img src="//placehold.it/200" class="img-polaroid">
         <% end %>
         <div align="center">
-          <%= link_to "Change Image", edit_promoter_profile_path(@profile) %>
+          <%= link_to "Change Image", edit_organizer_profile_path(@profile) %>
         </div>
       </div>
       <div class="span3 offset2" align="center">
@@ -55,7 +55,7 @@
     </div>
   </section>
 
-  <section id="promoter-stats" class="section-box">
+  <section id="organizer-stats" class="section-box">
     <div class="label-box">Organizer Stats</div>
       <div class="row">
         <div class="span4">
@@ -144,7 +144,7 @@
               <%= raw @profile.equipment %>
             <% else %>
               <p>What sort of bands do you cater for? Can you hand large ensembles with specific needs equipment wise? If so will this cost, do you borrow, how do you source music gear?</p>
-              <p>A lot of bands for smaller shows will be traveling with light, instruments only. They may also tailor the size of the touring band based on what the promoter can offer.</p>
+              <p>A lot of bands for smaller shows will be traveling with light, instruments only. They may also tailor the size of the touring band based on what the organizer can offer.</p>
             <% end %>
           </div>
           <div class="tab-pane" id="venues" data-mercury="full">
@@ -198,7 +198,7 @@
           </div>
         </div>
       </div>
-      <div class="span6" id="promoter-media" align="center">
+      <div class="span6" id="organizer-media" align="center">
         <h5>Youtube, vimeo, soundcloud or images here.</h5>
         <div id="media">
           <%= @profile.promoter_media %>

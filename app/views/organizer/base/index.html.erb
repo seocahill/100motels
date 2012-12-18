@@ -13,7 +13,7 @@
       <div class="page-header">
           <h2>
             Hi <%= current_user.name %>
-            <small>This is your promoter administrative area</small>
+            <small>This is your organizer administrative area</small>
           </h2>
       </div>
     </div>
@@ -25,7 +25,7 @@
         <ul class="nav nav-list">
           <li class="nav-header">Today's Sales </li>
           <% @sales.each do |s| %>
-            <dd><%= link_to "#{s.event.artist}", promoter_event_path(s.event) %> <span class="badge badge pull-right"><%= s.quantity %></span></dd>
+            <dd><%= link_to "#{s.event.artist}", organizer_event_path(s.event) %> <span class="badge badge pull-right"><%= s.quantity %></span></dd>
           <% end %>
           <li class="divider"></li>
           <li class="nav-header">Unread Tour requests <span class="badge badge-info pull-right"><%= @tour_requests.count %></span></li>
@@ -54,12 +54,12 @@
           <h4>Public Profile</h4>
 
           <p>Your public profile is where people can view information and statistics about all the shows you have organized. You can edit it in place by clicking on the edit link at the top of your profile. You can also hide or delete your profile at any time, by default your profile is hidden. </p> <br>
-          <p><%= link_to "View >>", promoter_profile_path(current_user.profile), class: "btn btn-primary" %></p>
+          <p><%= link_to "View >>", organizer_profile_path(current_user.profile), class: "btn btn-primary" %></p>
         </div><!--/span-->
         <div class="span6">
           <h4>Your Events</h4>
           <p>All your current and past events are listed here. You can edit the event details, including applying on-the-fly ticket discounts (info docs for more) as well as viewing all current tickets sales and customer details. Charges and refunds can also be applied in this section, either in bulk or isolation. </p>
-          <p><%= link_to "View >>", promoter_events_path, class: "btn btn-primary" %></p>
+          <p><%= link_to "View >>", organizer_events_path, class: "btn btn-primary" %></p>
         </div>
         <br>
       <div class="row-fluid">
@@ -74,7 +74,7 @@
         </div><!--/span-->
         <div class="span6">
           <h4>Your Account</h4>
-          <p>This is your normal user account where you can update or change basic details like your password, primary email etc. If you are also a customer of other 100 Motels promoters you can add or update a credit card here. </p> <br><br>
+          <p>This is your normal user account where you can update or change basic details like your password, primary email etc. If you are also a customer of other 100 Motels organizers you can add or update a credit card here. </p> <br><br>
           <p><%= link_to "View >>", user_path(current_user), class: "btn btn-primary" %></p>
         </div><!--/span-->
       </div>

@@ -9,7 +9,7 @@ $ ->
 
 #filter form
 $ ->
-  $('#promoter_city').change ->
+  $('#organizer_city').change ->
     $(this).closest('form').trigger('submit')
 
 #datepicker

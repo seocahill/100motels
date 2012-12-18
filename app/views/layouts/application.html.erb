@@ -46,9 +46,9 @@
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.email %> <i class="icon-user"></i></b></a>
                   <ul class="dropdown-menu">
                     <li><%= link_to "User Account", current_user %></li>
-                    <% if current_user.has_role? :promoter %>
+                    <% if current_user.has_role? :organizer %>
                       <li> <%= link_to "Public Profile", profile_path(current_user.profile) %>  </li>
-                      <li> <%= link_to "Events", promoter_events_path %>  </li>
+                      <li> <%= link_to "Events", organizer_events_path %>  </li>
                       <li> <%= link_to "Requests", requests_path %>  </li>
                     <% end %>
                     <li class="divider"></li>

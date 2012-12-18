@@ -18,8 +18,8 @@
 //= require pages
 //= require events
 //= require profiles
-//= require promoter/events
-//= require promoter/base
+//= require organizer/events
+//= require organizer/base
 //= require jquery.scrollTo
 
 

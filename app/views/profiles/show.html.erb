@@ -2,9 +2,9 @@
   <div class="row">
     <div class="span12">
       <% if user_signed_in? && current_user.profile == @profile %>
-        <%= link_to "Content Editor", "/editor/promoter" + request.path, id: "edit_link", class: "btn btn-large editor", rel: "popover", data: { content: "This will reveal a toolbar allowing you to edit your name, general info and tour info on the page. Click the save icon in the toolbar when you're finished.", trigger: "hover", :"original-title" => "Editing Content" } %>
-        <%= link_to "Profile Settings", edit_promoter_profile_path(@profile), class: "btn btn-large editor", rel: "popover", data: { content: "Edit your picture, media, location and hide/un-hide your profile.", trigger: "hover", :"original-title" => "Profile Settings" } %>
-      <% elsif user_signed_in? && current_user.promoters.where("event_id IS NULL").include?(@profile.user) %>
+        <%= link_to "Content Editor", "/editor/organizer" + request.path, id: "edit_link", class: "btn btn-large editor", rel: "popover", data: { content: "This will reveal a toolbar allowing you to edit your name, general info and tour info on the page. Click the save icon in the toolbar when you're finished.", trigger: "hover", :"original-title" => "Editing Content" } %>
+        <%= link_to "Profile Settings", edit_organizer_profile_path(@profile), class: "btn btn-large editor", rel: "popover", data: { content: "Edit your picture, media, location and hide/un-hide your profile.", trigger: "hover", :"original-title" => "Profile Settings" } %>
+      <% elsif user_signed_in? && current_user.organizers.where("event_id IS NULL").include?(@profile.user) %>
         <button class="btn btn-success">Tour Requested <i class="icon-check icon-white"></i></button>
       <% elsif user_signed_in? %>
         <%= link_to "Request Tour", requests_path(promoter_id: @profile.user_id), class: "btn btn-large requests", method: :post, rel: "popover", data: { content: "By pressing this button the Organizer will receive a private message containing your contact details and your media. Click on Help &Info for more on how requests work.", trigger: "hover", :"original-title" => "About Requests" }, method: :post %>
@@ -14,7 +14,7 @@
   <section class="section-box">
     <div class="row">
       <div class="label-box">Organizer Info</div>
-      <div id="promoter-pic" class="span2">
+      <div id="organizer-pic" class="span2">
         <% if @profile.image? %>
           <%= filepicker_image_tag @profile.image, w: 200, h: 200, fit: 'crop' %>
         <% elsif @user.avatar? %>
@@ -52,7 +52,7 @@
     </div>
   </section>
 
-  <section id="promoter-stats" class="section-box">
+  <section id="organizer-stats" class="section-box">
     <div class="label-box">Organizer's Events</div>
       <div class="row-fluid">
         <table class="table table-striped">
