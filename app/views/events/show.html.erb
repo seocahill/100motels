@@ -64,12 +64,13 @@
 		<div class="label-box">Event Info</div>
 		<div class="row">
 			<div class="span4">
-				<h3>Read...</h3>
+				<h3>About...</h3>
 				<div class="row-fluid">
 					<div class="span5" align="center">
 						<a class="thumbnail" href="<%= profile_path(@promoter) %>">
+							<!-- <p><small>Organized by</small></p> -->
 							<%= filepicker_image_tag @promoter.try(:image), w: 100, h: 100, fit: 'crop' %>
-							<p><%= @promoter.promoter_name %></p>
+							<!-- <p><%= @promoter.promoter_name %></p> -->
 						</a>
 					</div>
 					<div class="span7" align="center">
@@ -78,6 +79,7 @@
 				</div>
 				<div class="row">
 					<div class="span4">
+						<h3><%= @promoter.promoter_name %> says...</h3>
 						<div id="about" data-mercury="full">
 							<% if @event.about? %>
 								<%= raw @event.about %>
