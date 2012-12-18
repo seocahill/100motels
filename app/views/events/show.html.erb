@@ -60,71 +60,32 @@
 		</div>
 	</section>
 
-	<section id ="your-promoter">
-		<div class="row">
-			<div class="span6">
-				<div class="section-box">
-					<div class="label-box">Your Promoter</div>
-					<div class="row">
-						<div class="span2">
-							<a class="thumbnail" href="<%= profile_path(@promoter) %>">
-								<% if @promoter.try(:image?) %>
-									<%= filepicker_image_tag @promoter.image, w: 100, h: 100, fit: 'crop' %>
-								<% else %>
-									<img src="//quickimage.it/100">
-								<% end %>
-							</a>
-						</div>
-						<div class="span3">
-							<dl class="dl-horizontal">
-		            <dt>Total Events: </dt>
-		            <dd><%= @promoter.events.count || 0 %></dd>
-		            <dt>Total Requests: </dt>
-		            <dd><%= @requests.count || 0 %> </dd>
-		            <dt>Total Sales: </dt>
-		            <dd><%= 0 %></dd>
-		          </dl>
-						</div>
-					</div>
-					<div class="row">
-						<div class="span12">
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="span6">
-				<div class="section-box">
-					<div class="label-box">Funding / Attendance</div>
-					<div class="row">
-						<div class="span5">
-							<a class="thumbnail" href="<%= profile_path(@promoter) %>">
-								<% if @promoter.try(:image?) %>
-									<%= filepicker_image_tag @promoter.image, w: 100, h: 100, fit: 'crop' %>
-								<% else %>
-									<img src="//quickimage.it/100">
-								<% end %>
-							</a>
-						</div>
-					</div>
-					<div class="row">
-						<div class="span12">
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-
 	<section id="about-artist" class="section-box">
-		<div class="label-box">About the Artists</div>
+		<div class="label-box">Event Info</div>
 		<div class="row">
 			<div class="span4">
-				<div id="about" data-mercury="full">
-					<% if @event.about? %>
-						<%= raw @event.about %>
-					<% else %>
-						<%= render 'body_holder' %>
-					<% end %>
+				<h3>Read...</h3>
+				<div class="row-fluid">
+					<div class="span5" align="center">
+						<a class="thumbnail" href="<%= profile_path(@promoter) %>">
+							<%= filepicker_image_tag @promoter.try(:image), w: 100, h: 100, fit: 'crop' %>
+							<p><%= @promoter.promoter_name %></p>
+						</a>
+					</div>
+					<div class="span7" align="center">
+						<h1>95 <br>Tickets <br>Left</h1>
+					</div>
+				</div>
+				<div class="row">
+					<div class="span4">
+						<div id="about" data-mercury="full">
+							<% if @event.about? %>
+								<%= raw @event.about %>
+							<% else %>
+								<%= render 'body_holder' %>
+							<% end %>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="span6">
