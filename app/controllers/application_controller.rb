@@ -35,14 +35,7 @@ class ApplicationController < ActionController::Base
     end
 
     def calculate_location
-      current_location = request.location.city
-      if user_signed_in? && current_user.location
-        current_user.location.city
-      elsif !current_location.empty?
-        current_location
-      else
         "Burnaby"
-      end
     end
 
     # called (once) when the user logs in, insert any code your application needs
