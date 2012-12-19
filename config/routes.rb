@@ -18,6 +18,7 @@ OneHundredMotels::Application.routes.draw do
     root :to => 'events#index'
     resources :events
     resources :profiles
+    resources :requests, only: [:index]
   end
 
   namespace :api, defaults: {format: 'json'} do
@@ -39,7 +40,7 @@ OneHundredMotels::Application.routes.draw do
     end
   end
 
-  resources :requests, only: [:create, :destroy, :index]  do
+  resources :requests, only: [:create, :destroy]  do
     collection do
       post :mark_read
     end

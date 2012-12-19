@@ -8,8 +8,9 @@ class Order < ActiveRecord::Base
   validates :quantity, numericality: :true
 
   scope :sales_today, where("orders.created_at >= ?", Time.now.yesterday)
-  scope :sales_average, where("orders.created_at >= ?", Time.now.yesterday)
-  scope :pre_sales, where("orders.stripe_event < ?", 2)
+  scope :pending, where("stripe_event = ?", 0)
+  scope :paid, where("stripe_event = ?", 1)
+  scope :total, where("stripe_event <= ?", 1)
 
   def self.recent_sales(current_user)
     events = Event.where(profile_id: current_user.profile.id)
@@ -55,7 +56,8 @@ class Order < ActiveRecord::Base
 
   def charge_customer(organizer)
       # create a Token from the existing customer on the application's account
-    order_amount = (quantity * Event.find(event_id).ticket_price * 100).to_i
+    order_amount = (quantity * event.ticket_price * 100).to_i
+    fee = order_amount / 100
     key = organizer.api_key
     token = Stripe::Token.create(
       {:customer => stripe_customer_token},
@@ -68,7 +70,7 @@ class Order < ActiveRecord::Base
         :currency => "usd",
         :card => token["id"],
         :description => "testing 3rd party charges",
-        :application_fee => 100
+        :application_fee => fee
       }, key
     )
     #update the order to reflect the response
@@ -89,5 +91,12 @@ class Order < ActiveRecord::Base
 
   def total(event)
     quantity * event.ticket_price
+  end
+
+  def banked
+    gross = quantity * event.ticket_price
+    bank_charges = (gross / 100) * 2.9 + 0.30
+    motel_fee = gross / 100
+    banked = gross - bank_charges - motel_fee
   end
 end

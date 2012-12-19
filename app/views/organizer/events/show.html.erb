@@ -7,16 +7,6 @@
 </div>
 <div class="row">
   <div class="span12">
-    <ul class="breadcrumb">
-      <li><i class="icon-home"></i> <%= link_to "Organizer Home", organizer_root_path %><span class="divider">/</span></li>
-      <li><%= link_to "All Events", organizer_events_path %><span class="divider">/</span></li>
-      <li><a href="" class="active">Event Orders</a></li>
-      <li></li>
-    </ul>
-  </div>
-</div>
-<div class="row">
-  <div class="span12">
     <%= will_paginate @orders %>
 
     <%= form_tag  charge_multiple_orders_path, method: :post  do %>

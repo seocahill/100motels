@@ -3,21 +3,23 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th>Artist</th>
-          <th>Venue</th>
-          <th>Date</th>
-          <th>Attending</th>
-          <th>Ticket Price</th>
+          <th>Event</th>
+          <th>Time to Show</th>
+          <th>All Sales / Target</th>
+          <th>Un-Banked Sales</th>
+          <th>Cash in Bank</th>
         </tr>
       </thead>
       <tbody>
         <% @events.each do |event| %>
         <tr>
-          <td><%= link_to event.artist, [:organizer, event], class: "" %></td>
-          <td> <%= event.venue %> </td>
-          <td> <%= time_tag event.date %> </td>
-          <td> <%= event.orders.to_a.sum { |item| item.quantity} %> </td>
-          <td> <%= number_to_currency(event.ticket_price) %> </td>
+          <td><%= link_to event.artist, event_path(event), class: "" %></td>
+          <td> <%= distance_of_time_in_words(Time.now, event.date) %> </td>
+          <td> <%= event.orders.total.to_a.sum { |item| item.quantity} %> /
+               <%= event.target %> Tickets
+          </td>
+          <td> <%= event.orders.pending.to_a.sum { |item| item.quantity} %> Tickets </td>
+          <td> <%= number_to_currency(event.orders.paid.to_a.sum { |order| order.banked}) %> </td>
           <td >
             <div class="btn-group pull-right">
               <%= link_to raw('<i class="icon-list"></i>'), [:organizer, event], class: "btn" %>
