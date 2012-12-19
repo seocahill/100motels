@@ -5,13 +5,9 @@ $ ->
     $('#media-frame').html(media)
     $('#preview-modal').modal()
 
-  $("#requests td a").click mediaPreview
+  $("#requests td a.btn").click mediaPreview
 
 #filter form
 $ ->
   $('#organizer_city').change ->
     $(this).closest('form').trigger('submit')
-
-#datepicker
-$ ->
-  $('.datepicker').datepicker

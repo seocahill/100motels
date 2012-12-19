@@ -46,7 +46,7 @@
                   <i class="icon-ok"></i>
                 </button>
               </th>
-              <th>Support / Tour</th>
+              <th>Support?</th>
               <th>Requested</th>
               <th>Name</th>
               <th>Email</th>
@@ -56,7 +56,7 @@
             <% @requests.each do |request| %>
               <tr>
                 <td><%= check_box_tag "request_ids[]", request.id %> </td>
-                <td><%= request.event ? Event.find(request.event_id).artist : "Tour Requested"  %></td>
+                <td><%= request.event ? link_to(request.event.artist, event_path(request.event)) : "Tour Requested"  %></td>
                 <td><%= distance_of_time_in_words_to_now(request.created_at, include_seconds = false) %> ago</td>
                 <td><%= request.user.name %></td>
                 <td><%= request.user.email %></td>
