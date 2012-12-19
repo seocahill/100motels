@@ -2,13 +2,14 @@
 			<div class="section-box" id="opener">
 				<div class="navbar">
 					<div class="jumbotron">
-						<h1 class="welcome-banner">
+						<h1>
 						 100 Motels<br>
-						 <small>Funding, Ticketing, Organizing, Live Music.</small>
+						 <small>Hit the Road</small> <br>
+						 <%= link_to "WTF", new_user_registration_path, class: "btn btn-large btn-inverse" %>
 						</h1>
 					</div>
 				</div> <!-- /navbar -->
-				<div class="row-fluid headlines">
+				<!-- <div class="row-fluid headlines">
 					<div class="span4">
 	          <h2>Funding</h2>
 	          <p>Fund a live show without incurring fees or charges. When you're happy with the numbers get your money.</p><br>
@@ -31,7 +32,7 @@
 			<section id="latest-events">
 				<header class="page-header">
 					<h3>
-						Latest Shows <%= link_to "View All in #{@location} »", events_path, class: "pull-right btn btn-large" %>
+						Latest Shows <%= link_to "Wherever you are »", events_path, class: "pull-right btn btn-large" %>
 					</h3>
 				</header>
 				<div id="events-carousel" class="carousel slide" data-interval="false">
@@ -107,7 +108,7 @@
 
 			<section id="new-organizers">
 				<header>
-					<h3 class="page-header">Newest Organizers <%= link_to "View All in #{@location} »", profiles_path, class: "pull-right btn btn-large" %></h3>
+					<h3 class="page-header">Newest Organizers <%= link_to "Wherever you are »", profiles_path, class: "pull-right btn btn-large" %></h3>
 				</header>
 				<div id="organizers-carousel" class="carousel slide" data-interval="false">
 					<div id="organizers" class="carousel-inner">
