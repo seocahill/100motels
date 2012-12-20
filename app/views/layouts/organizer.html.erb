@@ -75,9 +75,9 @@
             <ul class="nav nav-tabs nav-stacked">
               <li><%= link_to "Home", organizer_root_path %></li>
               <li><%= link_to "New Event", new_organizer_event_path %></li>
-              <li><%= link_to "Edit Profile"  %></li>
+              <li><%= link_to "Edit Profile", edit_organizer_profile_path(current_user.profile)  %></li>
               <li><%= link_to "Your Sales" %></li>
-              <li><%= link_to "Your Events" %></li>
+              <li><%= link_to "Your Events", organizer_events_path %></li>
               <li><%= link_to "Your Requests", organizer_requests_path %></li>
             </ul>
           </div> <!-- /sidebar -->
