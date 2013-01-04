@@ -79,6 +79,13 @@
               <li><%= link_to "Your Sales" %></li>
               <li><%= link_to "Your Events", organizer_events_path %></li>
               <li><%= link_to "Your Requests", organizer_requests_path %></li>
+              <li>
+                <% if current_user.profile.api_key %>
+                  <button class="btn btn-success">Connected <i class="icon-ok-circle icon-white"></i></button>
+                <% elsif current_user.profile %>
+                  <%= link_to image_tag('blue.png'), user_omniauth_authorize_path(:stripe_connect), class: "" %>
+                <% end %>
+              </li>
             </ul>
           </div> <!-- /sidebar -->
           <div class="span9 offset1">

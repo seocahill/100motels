@@ -46,7 +46,7 @@
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.email %> <i class="icon-user"></i></b></a>
                   <ul class="dropdown-menu">
                     <li><%= link_to "User Account", current_user %></li>
-                    <% if current_user %>
+                    <% if current_user.profile %>
                       <li> <%= link_to "Organizer Profile", profile_path(current_user.profile) %>  </li>
                       <li> <%= link_to "Your Events", organizer_events_path %>  </li>
                       <li> <%= link_to "Your Requests", requests_path %>  </li>
