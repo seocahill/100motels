@@ -39,8 +39,6 @@ class User < ActiveRecord::Base
 
 
   def self.from_omniauth(auth, user)
-    user.provider = auth.provider
-    user.uid = auth.uid
     user.profile.api_key = auth.credentials["token"]
     user.profile.save
     user
