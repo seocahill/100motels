@@ -11,7 +11,8 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
-  :name, :avatar, :media, :new_location, :location_id, :guest_id
+  :name, :avatar, :media, :new_location, :location_id, :guest_id, :uid, :provider
+
 
   attr_accessor :new_location
 
@@ -40,19 +41,21 @@ class User < ActiveRecord::Base
 
 
   def self.from_omniauth(auth, user)
-      user.profile.api_key = auth.credentials["token"]
-      user.profile.save
-      user
+    user.provider = auth.provider
+    user.uid = auth.uid
+    user.profile.api_key = auth.credentials["token"]
+    user.profile.save
+    user
   end
 
-  # auto_html_for :media do
-  #   html_escape
-  #   youtube(:width => 630, :height => 430)
-  #   vimeo(:width => 630, :height => 430)
-  #   soundcloud(:width => 630, :height => 200)
-  #   link :target => "_blank", :rel => "nofollow"
-  #   simple_format
-  # end
+  auto_html_for :media do
+    html_escape
+    youtube(:width => 630, :height => 430)
+    vimeo(:width => 630, :height => 430)
+    soundcloud(:width => 630, :height => 200)
+    link :target => "_blank", :rel => "nofollow"
+    simple_format
+  end
 
   def save_card(user, card)
     Stripe.api_key = ENV['STRIPE_API_KEY']

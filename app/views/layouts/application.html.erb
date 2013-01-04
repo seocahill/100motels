@@ -29,7 +29,7 @@
           <%= link_to image_tag('ic_launcher.png') + "100 Motels", root_path, class: "brand brand-center" %>
           <div class="nav-collapse">
             <ul class="nav topbar" id="">
-              <li class=""><%= link_to "Home", root_path %></li>
+              <!-- <li class=""><%= link_to "Home", root_path %></li> -->
               <li><%= link_to "Events", events_path %></li>
               <li><%= link_to "Organizers", profiles_path %></li>
               <li><%= link_to "Info", info_path %></li>
@@ -75,7 +75,7 @@
   </body>
   <footer>
     <div class="container">
-      <div class="row footer-top">
+      <div class="row-fluid footer-top">
         <div class="span3 border-divider">
           <dl>
             <dt>Help Pages</dt>
@@ -103,14 +103,12 @@
             <dd>API / Developer</dd>
           </dl>
         </div>
-        <div class="span2">
+        <div class="span3">
           <dl>
-            <dt><a href="//seocahill.com">Visit Our Blog</a></dt>
+            <dt><a href="//seocahill.com">My Blog</a></dt>
             <dd>
               <a href="//twitter.com/showkhill"><%= image_tag "twitter.png" %></a>
               <a href="//facebook.com.com/seocahill"><%= image_tag "facebook.png" %>
-              <a href="//www.seocahill.com/atom.xml"><%= image_tag "rss.png" %>
-              <a href="//vimeo.com/creteboom"><%= image_tag "vimeo.png" %>
             </dd>
             <div class="row">
             </div>
