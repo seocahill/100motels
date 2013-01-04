@@ -46,11 +46,11 @@
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.email %> <i class="icon-user"></i></b></a>
                   <ul class="dropdown-menu">
                     <li><%= link_to "User Account", current_user %></li>
-                    <% if current_user %>
+                    <% if current_user.profile %>
                       <li> <%= link_to "Organizer Profile", profile_path(current_user.profile) %>  </li>
+                    <% end %>
                       <li> <%= link_to "Your Events", organizer_events_path %>  </li>
                       <li> <%= link_to "Your Requests", requests_path %>  </li>
-                    <% end %>
                     <li class="divider"></li>
                     <li><%= link_to "Sign out", destroy_user_session_path, :method => 'delete' %></li>
                   </ul>
@@ -75,12 +75,18 @@
             <ul class="nav nav-tabs nav-stacked">
               <li><%= link_to "Home", organizer_root_path %></li>
               <li><%= link_to "New Event", new_organizer_event_path %></li>
-              <li><%= link_to "Edit Profile", edit_organizer_profile_path(current_user.profile)  %></li>
+              <li>
+                <% if current_user.profile %>
+                  <%= link_to "Edit Profile", edit_organizer_profile_path(current_user.profile)  %>
+                <% else %>
+                  <%= link_to "Create Profile", new_organizer_profile_path %>
+                <% end %>
+              </li>
               <li><%= link_to "Your Sales" %></li>
               <li><%= link_to "Your Events", organizer_events_path %></li>
               <li><%= link_to "Your Requests", organizer_requests_path %></li>
               <li>
-                <% if current_user.profile.api_key %>
+                <% if current_user.profile && current_user.profile.api_key %>
                   <a>Stripe <i class="icon-ok-circle "></i></a>
                 <% elsif current_user.profile %>
                   <%= link_to image_tag('blue.png'), user_omniauth_authorize_path(:stripe_connect), class: "" %>

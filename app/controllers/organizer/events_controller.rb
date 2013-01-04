@@ -1,7 +1,8 @@
 class Organizer::EventsController < Organizer::BaseController
 before_filter :authorize_admin!
   def index
-    @events = Event.where(profile_id: current_user.profile.id)
+    # @events = Event.where(profile_id: current_user.profile.id)
+    @events = current_user.profile.events if current_user.profile
     @profile = current_user.profile
   end
 

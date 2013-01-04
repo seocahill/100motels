@@ -48,9 +48,9 @@
                     <li><%= link_to "User Account", current_user %></li>
                     <% if current_user.profile %>
                       <li> <%= link_to "Organizer Profile", profile_path(current_user.profile) %>  </li>
+                    <% end %>
                       <li> <%= link_to "Your Events", organizer_events_path %>  </li>
                       <li> <%= link_to "Your Requests", requests_path %>  </li>
-                    <% end %>
                     <li class="divider"></li>
                     <li><%= link_to "Sign out", destroy_user_session_path, :method => 'delete' %></li>
                   </ul>
