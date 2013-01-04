@@ -81,7 +81,7 @@
               <li><%= link_to "Your Requests", organizer_requests_path %></li>
               <li>
                 <% if current_user.profile.api_key %>
-                  <button class="btn btn-success">Connected <i class="icon-ok-circle icon-white"></i></button>
+                  <a>Stripe <i class="icon-ok-circle "></i></a>
                 <% elsif current_user.profile %>
                   <%= link_to image_tag('blue.png'), user_omniauth_authorize_path(:stripe_connect), class: "" %>
                 <% end %>
