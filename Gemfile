@@ -50,8 +50,6 @@ gem 'roadie'
 gem 'rabl'
 gem 'omniauth-stripe-connect'
 gem 'attr_encrypted'
-gem 'cancan'
-gem 'rolify'
 gem 'bootstrap-will_paginate'
 gem 'prawn'
 gem "auto_html"

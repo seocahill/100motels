@@ -1,7 +1,5 @@
 class User < ActiveRecord::Base
   # serialize :customer_details, ActiveRecord::Coders::Hstore
-  rolify
-
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable

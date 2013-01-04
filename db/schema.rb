@@ -13,6 +13,11 @@
 
 ActiveRecord::Schema.define(:version => 20121210113309) do
 
+  create_table "carts", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "events", :force => true do |t|
     t.string   "artist"
     t.string   "venue"
@@ -39,6 +44,25 @@ ActiveRecord::Schema.define(:version => 20121210113309) do
 
   add_index "events", ["location_id"], :name => "index_events_on_location_id"
   add_index "events", ["profile_id"], :name => "index_events_on_profile_id"
+
+  create_table "events_users", :id => false, :force => true do |t|
+    t.integer "event_id"
+    t.integer "user_id"
+  end
+
+  create_table "line_items", :force => true do |t|
+    t.integer  "event_id"
+    t.integer  "cart_id"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+    t.integer  "quantity",    :default => 1
+    t.integer  "order_id"
+    t.integer  "promoter_id"
+    t.boolean  "purchased"
+  end
+
+  add_index "line_items", ["cart_id"], :name => "index_line_items_on_cart_id"
+  add_index "line_items", ["event_id"], :name => "index_line_items_on_event_id"
 
   create_table "locations", :force => true do |t|
     t.string   "address"
