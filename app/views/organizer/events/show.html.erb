@@ -1,16 +1,36 @@
 <div class="row">
-  <div class="span12">
-
+  <div class="span12" id="button-menu">
     <%= form_tag  charge_multiple_orders_path, method: :post  do %>
       <div class="option-buttons">
         <% if current_user.profile && current_user.profile.api_key %>
-          <%= link_to "Charge Selected", "#modal-charge", class: "btn btn-success", data: {toggle: "modal"}, id: "charge" %>
+          <%= submit_tag "Charge Selected", class: "btn btn-success", id: "charge" %>
           <%= submit_tag "Refund Selected", name: 'refund', class: "btn btn-danger", id: "refund" %>
         <% elsif current_user.profile %>
           <%= link_to image_tag('blue.png'), user_omniauth_authorize_path(:stripe_connect), class: "" %>
         <% end %>
         <%= link_to "Generate pdf", organizer_event_path(@event, format: "pdf"), class: "btn" %>
       </div>
+      <hr>
+  </div> <!-- /button menu -->
+</div> <!-- /row -->
+<div class="row">
+  <aside class="span2">
+    <ul class="nav nav-tabs nav-stacked">
+      <li><%= link_to "Home", organizer_root_path %></li>
+      <li><%= link_to "New Event", new_organizer_event_path %></li>
+      <li>
+        <% if current_user.profile %>
+          <%= link_to "Edit Profile", edit_organizer_profile_path(current_user.profile)  %>
+        <% else %>
+          <%= link_to "Create Profile", new_organizer_profile_path %>
+        <% end %>
+      </li>
+      <li><%= link_to "Your Sales" %></li>
+      <li><%= link_to "Your Events", organizer_events_path %></li>
+      <li><%= link_to "Your Requests", organizer_requests_path %></li>
+    </ul>
+  </aside>
+  <div class="span9">
       <%= hidden_field_tag "organizer", current_user.profile.id %>
       <table class="table table-striped table-bordered" id="organizer-customers">
         <thead>
@@ -40,21 +60,6 @@
           </tr>
         </tbody>
       </table>
-      <div class="modal hide fade" id="modal-charge" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-        <h3>Are you sure?</h3>
-      </div>
-      <div class="modal-body">
-        <p>If you continue you will charge all your customers, the proceeds will be deposited into your bank account in seven days minus 100 Motel's and Stripe's fees which are <strong>non-refundable.</strong></p>
-        <p>If this is your first event please make sure you have read the <a href="">Terms and Conditions</a> and the <a href="">Getting started guide</a></p>
-        <p>We also strongly advise you to <a href="">sign a contract</a> with your Artists, a contract template is provided in the Getting started section.</p>
-      </div>
-      <div class="modal-footer">
-        <a href="#" class="btn" data-dismiss="modal">Cancel</a>
-        <%= submit_tag "Charge Selected", class: "btn btn-success", id: "charge" %>
-      </div>
-    </div>
     <% end %>
-  </div>
-</div>
+  </div> <!-- /table form -->
+</div> <!-- /row -->
