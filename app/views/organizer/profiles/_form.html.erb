@@ -2,10 +2,9 @@
   <%#= f.error_messages %>
 
   <fieldset>
-    <legend></legend>
 
-    <%= f.input :visible, as: :select, hint: "you can hide your profile from the public"  %>
-    <%= f.input :image, label: "Image or Logo", hint: "upload or pick an image or logo for your Organizer profile" do %>
+    <%= f.input :visible, as: :select, hint: "your profile can be hidden or public"  %>
+    <%= f.input :image, label: "Image or Logo", hint: "upload or pick an image from other services (Facebook, Twitter etc)" do %>
       <%= f.filepicker_field :image, button_class: "btn btn-primary btn-large"  %>
     <% end %>
     <%= f.input :promoter_media, hint: "This can be an Image or a Video of your choosing, perhaps of a past event or pictures of the venue you use?" %>

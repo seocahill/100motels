@@ -44,6 +44,15 @@ class User < ActiveRecord::Base
     user
   end
 
+  def confirm!
+    super
+    profile = self.create_profile
+    event = Event.create
+    event.profile_id = profile.id
+    event.date = Time.now
+    event.save
+  end
+
   auto_html_for :media do
     html_escape
     youtube(:width => 630, :height => 430)

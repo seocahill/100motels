@@ -52,4 +52,8 @@ class ApplicationController < ActionController::Base
       u
     end
 
+    def after_sign_in_path_for(user)
+     user_path(current_user)
+    end
+
 end

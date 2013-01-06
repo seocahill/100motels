@@ -63,7 +63,7 @@ class Event < ActiveRecord::Base
   end
 
   def viable
-    target - self.orders.count
+    # target - self.orders.count
   end
 
 end

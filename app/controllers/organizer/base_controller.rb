@@ -1,5 +1,5 @@
 class Organizer::BaseController < ApplicationController
-  layout 'organizer'
+  # layout 'organizer'
   before_filter :authorize_admin!
 
   def index

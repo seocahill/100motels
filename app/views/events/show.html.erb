@@ -45,7 +45,7 @@
 					<h4>
 						Doors  <br>
 						at <br>
-						<%= @event.doors.strftime("%l:%M %p") %>
+						<%= @event.date.strftime("%l:%M %p") %>
 					</h4>
 				</div>
 				<div class="span3">
@@ -64,17 +64,6 @@
 		<div class="label-box">Event Info</div>
 		<div class="row">
 			<div class="span4">
-				<h3>About...</h3>
-				<div class="row-fluid">
-					<div class="span5" align="center">
-						<a class="thumbnail" href="<%= profile_path(@organizer) %>">
-							<%= filepicker_image_tag @organizer.try(:image), w: 100, h: 100, fit: 'crop' %>
-						</a>
-					</div>
-					<div class="span7" align="center">
-						<h1><%= @event.viable %> <br>Tickets <br>Left</h1>
-					</div>
-				</div>
 				<div class="row">
 					<div class="span4">
 						<h3><%= @organizer.promoter_name %> says...</h3>
@@ -104,9 +93,8 @@
 					<% else %>
 						<img src="//quickimage.it/565x170&text=Soundcloud+playlist" class="align_left">
 					<% end %>
-
 				</h3>
-					<h3>Share...</h3>
+					<!-- <h3>Share...</h3>
 				<div class="well">
 						<span class='st_sharethis_large' displayText='ShareThis'></span>
 						<span class='st_facebook_large' displayText='Facebook'></span>
@@ -120,7 +108,7 @@
 						<span class='st_googleplus_large' displayText='Google +'></span>
 						<span class='st_twitter_large' displayText='Tweet'></span>
 						<span class='st_email_large' displayText='Email'></span>
-				</div>
+				</div>  -->
 			</div>
 	</section>
 </div>

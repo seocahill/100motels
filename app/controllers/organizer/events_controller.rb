@@ -24,12 +24,11 @@ before_filter :authorize_admin!
 
   def show
     @event = Event.find_by_id(params[:id])
-    @orders = @event.orders.order("created_at DESC").page(params[:page]).per_page(10)
-    @orders_no_pages = @event.orders
+    @orders = @event.orders.order("created_at DESC")
     respond_to do |format|
       format.html
       format.pdf do
-        pdf = EventPdf.new(@event, @orders_no_pages, view_context)
+        pdf = EventPdf.new(@event, @orders, view_context)
         send_data pdf.render, filename: "#{@event.artist}_#{@event.date}.pdf",
                               type: "application/pdf",
                               disposition: "inline"

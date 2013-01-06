@@ -8,7 +8,14 @@ class Organizer::ProfilesController < Organizer::BaseController
   end
 
   def new
-    @profile = current_user.build_profile
+    @profile = current_user.create_profile
+    if @profile.save
+      flash[:notice] = "Profile Created"
+      redirect_to [:organizer, @profile]
+    else
+      flash[:alert] = "profile has not been created"
+      render :action => "new"
+    end
   end
 
   def create
