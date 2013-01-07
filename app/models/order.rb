@@ -1,5 +1,5 @@
 class Order < ActiveRecord::Base
-  attr_accessible :email, :name, :plan, :quantity, :event_id, :user_id
+  attr_accessible :email, :name, :quantity, :event_id, :user_id
   enum_accessor :stripe_event, [ :pending, :paid, :failed, :refunded, :cancelled, :dummy ]
   belongs_to :event
   belongs_to :user
@@ -10,6 +10,9 @@ class Order < ActiveRecord::Base
   scope :sales_today, where("orders.created_at >= ?", Time.now.yesterday)
   scope :pending, where("stripe_event = ?", 0)
   scope :paid, where("stripe_event = ?", 1)
+  scope :failed, where("stripe_event = ?", 2)
+  scope :refunded, where("stripe_event = ?", 3)
+  scope :cancelled, where("stripe_event = ?", 4)
   scope :total, where("stripe_event <= ?", 1)
 
   def self.recent_sales(current_user)

@@ -1,5 +1,10 @@
 class Organizer::EventsController < Organizer::BaseController
 before_filter :authorize_admin!
+has_scope :pending, type: :boolean
+has_scope :paid, type: :boolean
+has_scope :failed, type: :boolean
+has_scope :refunded, type: :boolean
+
   def index
     # @events = Event.where(profile_id: current_user.profile.id)
     @events = current_user.profile.events if current_user.profile
@@ -24,7 +29,7 @@ before_filter :authorize_admin!
 
   def show
     @event = Event.find_by_id(params[:id])
-    @orders = @event.orders.order("created_at DESC")
+    @orders = apply_scopes(Order).where(event_id: @event.id)
     respond_to do |format|
       format.html
       format.pdf do

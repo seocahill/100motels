@@ -7,9 +7,10 @@
           <%= submit_tag "Refund Selected", name: 'refund', class: "btn btn-danger", id: "refund" %>
         <% elsif current_user.profile %>
           <%= link_to image_tag('blue.png'), user_omniauth_authorize_path(:stripe_connect), class: "" %>
-          <%= submit_tag "Cancel Event", name: 'refund', class: "btn btn-danger", id: "refund" %>
         <% end %>
-        <%= link_to "Generate pdf", organizer_event_path(@event, format: "pdf"), class: "btn" %>
+        <%= link_to "Generate PDF", organizer_event_path(@event, format: "pdf"), class: "btn" %>
+        <%= submit_tag "Cancel Event", name: 'refund', class: "btn btn-danger" %>
+        <%= link_to "Check In View", root_path, class: "btn" %>
       </div>
       <hr>
   </div> <!-- /button menu -->
@@ -17,11 +18,11 @@
 <div class="row">
   <aside class="span2">
     <ul class="nav nav-tabs nav-stacked">
-      <li><%= link_to "All", organizer_root_path %></li>
-      <li><%= link_to "Pending", new_organizer_event_path %></li>
-      <li><%= link_to "Paid" %></li>
-      <li><%= link_to "Failed", organizer_requests_path %></li>
-      <li><%= link_to "Refunded", organizer_events_path %></li>
+      <li><%= link_to "All", organizer_event_path(@event) %></li>
+      <li><%= link_to "Pending", request.path + '?pending=true' %></li>
+      <li><%= link_to "Paid", request.path + '?paid=true' %></li>
+      <li><%= link_to "Failed", request.path + '?failed=true' %></li>
+      <li><%= link_to "Refunded", request.path + '?refunded=true' %></li>
     </ul>
   </aside>
   <div class="span9">
