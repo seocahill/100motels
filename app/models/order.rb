@@ -74,9 +74,14 @@ class Order < ActiveRecord::Base
       }, key
     )
     #update the order to reflect the response
-    self.stripe_charge_id = charge[:id]
-    self.stripe_event = :paid
-    save!
+    # self.stripe_charge_id = charge.id
+    # self.stripe_event = :paid
+    # save!
+  rescue Stripe::CardError => e
+    logger.error "Stripe error while creating customer: #{e.message}"
+    self.stripe_event = :failed
+    save
+    false
   end
 
   def refund_customer(organizer)

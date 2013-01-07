@@ -3,10 +3,11 @@
     <%= form_tag  charge_multiple_orders_path, method: :post  do %>
       <div class="option-buttons">
         <% if current_user.profile && current_user.profile.api_key %>
-          <%= submit_tag "Charge Selected", class: "btn btn-success", id: "charge" %>
+          <%= submit_tag "Charge Selected", class: "btn btn-success" %>
           <%= submit_tag "Refund Selected", name: 'refund', class: "btn btn-danger", id: "refund" %>
         <% elsif current_user.profile %>
           <%= link_to image_tag('blue.png'), user_omniauth_authorize_path(:stripe_connect), class: "" %>
+          <%= submit_tag "Cancel Event", name: 'refund', class: "btn btn-danger", id: "refund" %>
         <% end %>
         <%= link_to "Generate pdf", organizer_event_path(@event, format: "pdf"), class: "btn" %>
       </div>
@@ -16,18 +17,11 @@
 <div class="row">
   <aside class="span2">
     <ul class="nav nav-tabs nav-stacked">
-      <li><%= link_to "Home", organizer_root_path %></li>
-      <li><%= link_to "New Event", new_organizer_event_path %></li>
-      <li>
-        <% if current_user.profile %>
-          <%= link_to "Edit Profile", edit_organizer_profile_path(current_user.profile)  %>
-        <% else %>
-          <%= link_to "Create Profile", new_organizer_profile_path %>
-        <% end %>
-      </li>
-      <li><%= link_to "Your Sales" %></li>
-      <li><%= link_to "Your Events", organizer_events_path %></li>
-      <li><%= link_to "Your Requests", organizer_requests_path %></li>
+      <li><%= link_to "All", organizer_root_path %></li>
+      <li><%= link_to "Pending", new_organizer_event_path %></li>
+      <li><%= link_to "Paid" %></li>
+      <li><%= link_to "Failed", organizer_requests_path %></li>
+      <li><%= link_to "Refunded", organizer_events_path %></li>
     </ul>
   </aside>
   <div class="span9">

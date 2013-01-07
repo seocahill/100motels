@@ -27,6 +27,7 @@ group :development, :test do
   gem 'capybara-page-object'
   gem 'poltergeist'
   gem 'capybara-screenshot'
+  gem 'meta_request', '0.2.1'
 end
 
 # Gems used only for assets and not required

@@ -38,7 +38,7 @@ class OrdersController < ApplicationController
     refund = params[:refund]
     if orders && organizer && !refund
       orders.each { |order| order.charge_customer(organizer)}
-      orders.each { |order| Notifier.ticket(order).deliver }
+      # orders.each { |order| Notifier.ticket(order).deliver }
       redirect_to(:back, notice: "Charge successful")
     elsif orders && organizer && refund
       orders.each { |order| order.refund_customer(organizer) }
