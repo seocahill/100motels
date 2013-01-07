@@ -28,6 +28,7 @@ has_scope :refunded, type: :boolean
   end
 
   def show
+    @events = current_user.profile.events
     @event = Event.find_by_id(params[:id])
     @orders = apply_scopes(Order).where(event_id: @event.id)
     respond_to do |format|
