@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.8'
+gem 'rails'
 gem 'pg'
 gem 'thin'
 
@@ -12,7 +12,6 @@ end
 group :test do
   gem "cucumber-rails", "~> 1.0", require: false
   gem 'capybara'
-	gem 'guard-rspec'
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'vcr'
@@ -25,8 +24,6 @@ group :test do
   gem 'meta_request', '0.2.1'
 end
 
-# Gems used only for assets and not required
-# in production environments by default.
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'

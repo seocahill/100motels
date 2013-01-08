@@ -13,5 +13,8 @@ FakeWeb.allow_net_connect = false
 RSpec.configure do |config|
   config.mock_with :rspec
   config.use_transactional_fixtures = true
+  config.before(:each)  do
+    FakeWeb.clean_registry
+  end
 end
 
