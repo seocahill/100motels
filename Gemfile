@@ -12,11 +12,7 @@ end
 group :test do
   gem "cucumber-rails", "~> 1.0", require: false
   gem 'capybara'
-  gem 'spork'
-  gem 'guard-spork'
 	gem 'guard-rspec'
-	gem 'guard-cucumber'
-  gem 'guard-livereload'
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'vcr'
