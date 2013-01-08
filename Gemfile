@@ -7,26 +7,25 @@ gem 'thin'
 
 group :development, :test do
 	gem 'rspec-rails'
+end
+
+group :test do
+  gem "cucumber-rails", "~> 1.0", require: false
+  gem 'capybara'
+  gem 'spork'
+  gem 'guard-spork'
 	gem 'guard-rspec'
 	gem 'guard-cucumber'
-  gem 'factory_girl_rails'
   gem 'guard-livereload'
+  gem 'factory_girl_rails'
+  gem 'faker'
+  gem 'vcr'
+  gem 'fakeweb'
+  gem 'database_cleaner'
+  gem 'launchy'
   gem 'mail_view', :git => 'https://github.com/37signals/mail_view.git'
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'faker'
-	gem 'capybara'
-	gem 'rb-inotify'
-	gem 'libnotify'
-	gem 'spork'
-	gem 'guard-spork'
-	gem "cucumber-rails", "~> 1.0", require: false
-	gem 'database_cleaner'
-  gem 'launchy'
-  gem 'email_spec'
-  gem 'capybara-page-object'
-  gem 'poltergeist'
-  gem 'capybara-screenshot'
   gem 'meta_request', '0.2.1'
 end
 
