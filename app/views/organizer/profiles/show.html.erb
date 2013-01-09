@@ -16,7 +16,7 @@
       <div class="label-box">Organizer Info</div>
       <div id="organizer-pic" class="span2">
         <% if @profile.image? %>
-          <%= filepicker_image_tag @profile.image, w: 200, h: 200, fit: 'crop' %>
+          <%= filepicker_image_tag @profile.image, width: 200, height: 200, fit: 'crop' %>
         <% else %>
           <img src="//placehold.it/200" class="img-polaroid">
         <% end %>

@@ -5,7 +5,7 @@
 			<div class="label-box">User Info</div>
 			<div id="organizer-pic" class="span2" align="center">
 				<% if @user.avatar? %>
-					<%= filepicker_image_tag @user.avatar, w: 200, h: 200, fit: 'crop' %>
+					<%= filepicker_image_tag @user.avatar, width: 200, height: 200, fit: 'crop' %>
 				<% else %>
 					<img src="//placehold.it/200" class="img-polaroid">
 				<% end %>

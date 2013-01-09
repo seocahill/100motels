@@ -26,7 +26,7 @@
 			<div class="label-box">Ticket Info</div>
 				<div class="span3">
 					<% if @event.image? %>
-						<%= filepicker_image_tag @event.image, w: 300, h: 300, fit: 'crop' %>
+						<%= filepicker_image_tag @event.image, width: 300, height: 300, fit: 'crop' %>
 					<% else %>
 						<img src="//quickimage.it/300&text=Artist">
 					<% end %>

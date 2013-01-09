@@ -43,7 +43,7 @@
 									<li class="span4">
 										<a class="thumbnail" href="<%= event_path(event[0]) %>">
 											<% if event[0].image? %>
-												<%= filepicker_image_tag event[0].image, w: 360, h: 240, fit: 'crop' %>
+												<%= filepicker_image_tag event[0].image, width: 360, height: 240, fit: 'crop' %>
 											<% else %>
 												<img src="http://quickimage.it/360x240&text=ArtistPic" alt="">
 											<% end %>
@@ -60,7 +60,7 @@
 										<% if event[1] %>
 											<a class="thumbnail" href="<%= event_path(event[1]) %>">
 												<% if event[1].image? %>
-													<%= filepicker_image_tag event[1].image, w: 360, h: 240, fit: 'crop' %>
+													<%= filepicker_image_tag event[1].image, width: 360, height: 240, fit: 'crop' %>
 												<% else %>
 													<img src="http://quickimage.it/360x240&text=ArtistPic" alt="">
 												<% end %>
@@ -80,7 +80,7 @@
 										<% if event[2] %>
 											<a class="thumbnail" href="<%= event_path(event[2]) %>">
 												<% if event[2].image? %>
-													<%= filepicker_image_tag event[2].image, w: 360, h: 240, fit: 'crop' %>
+													<%= filepicker_image_tag event[2].image, width: 360, height: 240, fit: 'crop' %>
 												<% else %>
 													<img src="http://quickimage.it/360x240&text=ArtistPic" alt="">
 												<% end %>
@@ -119,7 +119,7 @@
 										<a class="thumbnail" href="<%= profile_path(profile[0]) %>">
 											<% if profile[0] %>
 												<% if profile[0].image? %>
-				                  <%= filepicker_image_tag profile[0].image, w: 360, h: 360, fit: 'crop' %>
+				                  <%= filepicker_image_tag profile[0].image, width: 360, height: 360, fit: 'crop' %>
 				                <% else %>
 				                  <img src="http://placehold.it/360x360" alt="">
 				                <% end %>
@@ -135,7 +135,7 @@
 										<a class="thumbnail" href="<%= profile_path(profile[1]) %>">
 											<% if profile[1] %>
 												<% if profile[1].image? %>
-				                  <%= filepicker_image_tag profile[1].image, w: 360, h: 360, fit: 'crop' %>
+				                  <%= filepicker_image_tag profile[1].image, width: 360, height: 360, fit: 'crop' %>
 				                <% else %>
 				                  <img src="http://placehold.it/360x360" alt="">
 				                <% end %>
@@ -151,7 +151,7 @@
 										<a class="thumbnail" href="<%= profile_path(profile[2]) %>">
 											<% if profile[2] %>
 												<% if profile[2].image? %>
-				                  <%= filepicker_image_tag profile[2].image, w: 360, h: 360, fit: 'crop' %>
+				                  <%= filepicker_image_tag profile[2].image, width: 360, height: 360, fit: 'crop' %>
 				                <% else %>
 				                  <img src="http://placehold.it/360x360" alt="">
 				                <% end %>
@@ -167,7 +167,7 @@
 										<a class="thumbnail" href="<%= profile_path(profile[3]) %>">
 											<% if profile[3] %>
 												<% if profile[3].image? %>
-				                  <%= filepicker_image_tag profile[3].image, w: 360, h: 360, fit: 'crop' %>
+				                  <%= filepicker_image_tag profile[3].image, width: 360, height: 360, fit: 'crop' %>
 				                <% else %>
 				                  <img src="http://placehold.it/360x360" alt="">
 				                <% end %>

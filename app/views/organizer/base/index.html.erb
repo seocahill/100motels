@@ -2,9 +2,9 @@
   <div class="row-fluid row">
     <div class="span2">
       <% if current_user.profile.image? %>
-        <%= filepicker_image_tag current_user.profile.image, w: 75, h: 75, fit: 'crop' %>
+        <%= filepicker_image_tag current_user.profile.image, width: 75, height: 75, fit: 'crop' %>
       <% elsif current_user.avatar? %>
-        <%= filepicker_image_tag current_user.avatar, w: 75, h: 75, fit: 'crop' %>
+        <%= filepicker_image_tag current_user.avatar, width: 75, height: 75, fit: 'crop' %>
       <% else %>
         <img src="//placehold.it/75" class="img-polaroid">
       <% end %>

@@ -1,7 +1,6 @@
 require 'faker'
 
 FactoryGirl.define do
-
   factory :event do
     artist { Faker::Name.name }
     venue { Faker::Address.city }
