@@ -6,11 +6,13 @@ class Customer
   end
 
   def add_customer_to_order
-    customer = @user.customer_id ? retrieve_customer : create_customer
-    @order.stripe_customer_token = customer.id
-    @order.name = customer.active_card["name"]
-    @order.last4 = customer.active_card["last4"]
-    @order.save!
+    if @order.valid?
+      customer = @user.customer_id ? retrieve_customer : create_customer
+      @order.stripe_customer_token = customer.id
+      @order.name = customer.active_card["name"]
+      @order.last4 = customer.active_card["last4"]
+      @order.save!
+    end
   end
 
   def create_customer
