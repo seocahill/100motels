@@ -2,6 +2,8 @@ OneHundredMotels::Application.routes.draw do
 
   mount Mercury::Engine => '/'
 
+  mount StripeEvent::Engine => '/stripe'
+
   use_doorkeeper
 
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
