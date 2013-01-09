@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
   def create
     order = current_or_guest_user.orders.new(params[:order])
     customer = Customer.new(order, params[:stripeToken])
-    if customer.add_customer_to_order?
+    if customer.add_customer_to_order
       Notifier.order_processed(order).deliver
       redirect_to :back, notice: "Thanks! We sent you an email with a receipt for your order."
     else
