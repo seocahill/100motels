@@ -1,4 +1,5 @@
 class Customer
+
   def initialize(order, token = nil)
     @order = order
     @token = token

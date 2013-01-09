@@ -12,7 +12,7 @@ OneHundredMotels::Application.routes.draw do
 
   root :to => 'pages#home'
 
-  match '/info' => 'pages#info'
+  get '/info' => 'pages#info'
 
   namespace :organizer do
     root :to => 'events#index'
@@ -36,7 +36,7 @@ OneHundredMotels::Application.routes.draw do
 
   resources :orders do
     collection do
-      post :charge_multiple
+      post :charge_or_refund
     end
   end
 

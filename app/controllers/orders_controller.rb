@@ -16,29 +16,26 @@ class OrdersController < ApplicationController
       Notifier.order_processed(order).deliver
       redirect_to :back, notice: "Thanks! We sent you an email with a receipt for your order."
     else
-      redirect_to :back, flash: { error: "Sorry something went wrong. Did you fill in all the fields?" }
+      redirect_to :back, flash: { error: "Did you fill in the email field and select a quantity?" }
     end
   end
 
-  def charge_orders
-    charges = ChargeCustomers.new(@orders)
-    if charges.charged?
-      orders.each { |order| order.charge_customer(organizer)}
-      orders.each { |order| Notifier.ticket(order).deliver }
-      redirect_to(:back, notice: "Charge successful")
+  def charge_or_refund
+    if params[:name] == "charge"
+      orders.each do |order|
+        charge = ChargeCustomer.new(order, current_user)
+        if charge.processed?
+          # email and ticket
+        else
+          # fail email no ticket
+        end
+      end
+      redirect_to(:back, notice: "Processing in the background")
+    elsif params[:name] == "refund"
+      orders.each { |order| RefundCustomer.new(order, current_user)}
+      redirect_to(:back, notice: "Processing in the background")
     else
-      redirect_to(:back, notice: "Something went wrong")
-    end
-  end
-
-  def refund_orders
-    RefundCustomers.new(@orders)
-    if valid?
-      orders.each { |order| order.refund_customer(organizer) }
-      orders.each { |order| Notifier.ticket(order).deliver }
-      redirect_to(:back, notice: "Refund successful")
-    else
-      redirect_to(:back, notice: "Something went wrong")
+      redirect_to :back, flash: { error: "Something went wrong" }
     end
   end
 
