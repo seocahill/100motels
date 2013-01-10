@@ -9,8 +9,6 @@ class StripeEventsController < ApplicationController
     Stripe.api_key = ENV['STRIPE_API_KEY']
     event = Stripe::Event.retrieve(data["id"])
 
-    if event.type == 'charge.succeeded'
-      print logger.debug 'webhooks working!'
-    end
+    StripeEventsHandler.new(event).process_stripe_event
   end
 end

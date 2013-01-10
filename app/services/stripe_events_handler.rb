@@ -4,7 +4,9 @@ class StripeEventsHandler
     @stripe_event = event
   end
 
-  def case_statement
-   # figure out which event it is then call a method to handle it
+  def process_stripe_event
+   if @stripe_event.type == 'charge.succeeded'
+      print Rails.logger.debug 'webhooks working!'
+    end
   end
 end
