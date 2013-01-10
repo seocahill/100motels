@@ -48,7 +48,7 @@ OneHundredMotels::Application.routes.draw do
 
   resources :locations
 
-  post 'stripe_events/listener'
+  post '/stripe' => 'stripe_events#listen'
 
   if Rails.env.development?
     mount Notifier::Preview => 'mail_view'
