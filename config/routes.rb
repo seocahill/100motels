@@ -2,8 +2,6 @@ OneHundredMotels::Application.routes.draw do
 
   mount Mercury::Engine => '/'
 
-  mount StripeEvent::Engine => '/stripe'
-
   use_doorkeeper
 
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
@@ -49,6 +47,8 @@ OneHundredMotels::Application.routes.draw do
   end
 
   resources :locations
+
+  post 'stripe_events/listener'
 
   if Rails.env.development?
     mount Notifier::Preview => 'mail_view'

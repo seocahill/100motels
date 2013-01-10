@@ -57,4 +57,3 @@ gem 'has_scope'
 gem 'active_attr'
 gem 'activerecord-postgres-hstore'
 gem 'newrelic_rpm', group: [:production]
-gem 'stripe_event'
