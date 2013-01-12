@@ -7,12 +7,14 @@ class ChargeCustomer
 
   def process_charge
     charge = charge_customer
-    unless charge
+    Rails.logger.error "is this it #{charge}"
+    unless charge.nil?
       @order.stripe_charge_id = charge[:id]
       charge[:paid] == true ? @order.stripe_event = :paid : @order.stripe_event = :failed
     else
       @order.stripe_event = :failed
     end
+    @order.save!
   end
 
   def create_charge_token
@@ -39,5 +41,6 @@ class ChargeCustomer
     )
   rescue Stripe::CardError => e
     Rails.logger.error "Stripe error while creating customer: #{e.message}"
+    return nil
   end
 end
