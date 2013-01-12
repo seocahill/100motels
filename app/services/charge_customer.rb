@@ -7,7 +7,6 @@ class ChargeCustomer
 
   def process_charge
     charge = charge_customer
-    Rails.logger.error "is this it #{charge}"
     unless charge.nil?
       @order.stripe_charge_id = charge[:id]
       charge[:paid] == true ? @order.stripe_event = :paid : @order.stripe_event = :failed
@@ -28,7 +27,7 @@ class ChargeCustomer
 
   def charge_customer
     total = (@order.total * 100).to_i
-    fee = total.round
+    fee = @order.total.round
     token = create_charge_token
     charge = Stripe::Charge.create(
       {
