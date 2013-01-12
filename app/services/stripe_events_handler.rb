@@ -6,8 +6,10 @@ class StripeEventsHandler
 
   def process_stripe_event
     case @stripe_event.type
+    when 'customer.created' then customer_created
     when 'charge.succeeded' then charge_succeeded
     when 'charge.failed' then charge_failed
+    when 'charge.refunded' then charge_refunded
     else false
     end
   end

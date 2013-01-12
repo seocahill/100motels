@@ -7,6 +7,7 @@ gem 'thin'
 
 group :development, :test do
 	gem 'rspec-rails'
+  gem 'debugger'
 end
 
 group :test do

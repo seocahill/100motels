@@ -7,18 +7,6 @@
 				<th>Ticket Price</th>
 			</tr>
 		</thead>
-		<tfoot>
-			<tr>
-				<td colspan="2"><strong>Total Price</strong></td>
-				<td><%= number_to_currency(@order.quantity * @event.ticket_price) %></td>
-			</tr>
-		</tfoot>
-		<tbody>
-			<tr>
-				<td><%= time_tag @event.date %> in <%= @event.venue %></td>
-				<td><%= @order.quantity %></td>
-				<td><%= number_to_currency(@event.ticket_price) %></td>
-			</tr>
-		</tbody>
+		<!- -->
 	</table>
 </div>

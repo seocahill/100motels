@@ -1,48 +1,35 @@
 class ChargeCustomer
 
-  def initialize(order, current_user)
+  def initialize(order, organizer)
     @order = order
-    @organizer = User.find(current_user.profile.id)
-    @token = []
-    @charge = []
-  end
-
-  def processed?
-    @order.stripe_event == :paid ?
+    @organizer = organizer
   end
 
   def create_charge_token
-    total = (@order.total * 100).to_i
-    fee = total.round
-    key = @organizer.api_key
-    @token = Stripe::Token.create(
-      {:customer => stripe_customer_token},
+    Stripe.api_key = @organizer.api_key
+    token = Stripe::Token.create(
+      { customer: @order.stripe_customer_token },
       key
     )
+  rescue Stripe::InvalidRequestError => e
+    Rails.logger.error "Stripe error while creating token: #{e.message}"
   end
 
-  def charge_customer
-    # create the charge
-    @charge = Stripe::Charge.create(
+  def charge_customer(&:create_charge_token)
+    total = (@order.total * 100).to_i
+    fee = total.round
+    token = yield
+    Stripe.api_key = @organizer.api_key
+    charge = Stripe::Charge.create(
       {
-        :amount => order_amount,
-        :currency => "usd",
-        :card => @token["id"],
-        :description => "testing 3rd party charges",
-        :application_fee => fee
+        amount: order_amount,
+        currency: "usd",
+        card: token["id"],
+        description: "testing 3rd party charges",
+        application_fee: fee
       }, key
     )
   rescue Stripe::CardError => e
-    logger.error "Stripe error while creating customer: #{e.message}"
-  end
-
-  def handle_charge_response
-    unless @charge[:failure_message]
-      @order.stripe_charge_id = charge.id
-      @order.stripe_event = :paid
-    else
-      @order.stripe_event = :failed
-    end
-    save
+    Rails.logger.error "Stripe error while creating customer: #{e.message}"
   end
 end

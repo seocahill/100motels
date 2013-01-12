@@ -17,7 +17,7 @@
     <div class="btn-group">
       <% if current_user.profile && current_user.profile.api_key %>
         <%= submit_tag "Charge Selected", name: 'charge', class: "btn" %>
-        <%= submit_tag "Refund Selected", name: 'refund', class: "btn", id: "refund" %>
+        <%= submit_tag "Refund Selected", name: 'refund', class: "btn" %>
       <% elsif current_user.profile %>
         <%= link_to image_tag('blue.png'), user_omniauth_authorize_path(:stripe_connect), class: "" %>
       <% end %>

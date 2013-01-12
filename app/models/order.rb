@@ -17,7 +17,4 @@ class Order < ActiveRecord::Base
   scope :cancelled, where("stripe_event = ?", 4)
   scope :total, where("stripe_event <= ?", 1)
 
-  def total(event)
-    quantity * event.ticket_price
-  end
 end

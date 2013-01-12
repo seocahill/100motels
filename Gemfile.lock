@@ -82,6 +82,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.4.0)
+    columnize (0.3.6)
     css_parser (1.2.6)
       addressable
       rdoc
@@ -96,6 +97,13 @@ GEM
       nokogiri (>= 1.5.0)
     daemons (1.1.9)
     database_cleaner (0.9.1)
+    debugger (1.2.3)
+      columnize (>= 0.3.1)
+      debugger-linecache (~> 1.1.1)
+      debugger-ruby_core_source (~> 1.1.5)
+    debugger-linecache (1.1.2)
+      debugger-ruby_core_source (>= 1.1.1)
+    debugger-ruby_core_source (1.1.6)
     devise (2.2.0)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -307,6 +315,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   cucumber-rails (~> 1.0)
   database_cleaner
+  debugger
   devise
   doorkeeper
   dynamic_form

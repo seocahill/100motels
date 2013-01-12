@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_filter :find_order, only: [:show]
-  before_filter :find_orders, only: [:charge_orders, :refund_orders]
+  before_filter :find_orders, only: [:charge_or_refund]
 
   def new
     @order = Order.new
@@ -10,33 +10,29 @@ class OrdersController < ApplicationController
   end
 
   def create
-    order = current_or_guest_user.orders.new(params[:order])
-    customer = Customer.new(order, params[:stripeToken])
+    @order = current_or_guest_user.orders.new(params[:order])
+    customer = CustomerOrder.new(@order, params[:stripeToken])
     if customer.add_customer_to_order
-      Notifier.order_processed(order).deliver
-      redirect_to :back, notice: "Thanks! We sent you an email with a receipt for your order."
+      Notifier.order_processed(@order).deliver
+      redirect_to @order
+      flash[:notice] = "Thanks! We sent you an email with a receipt for your order."
     else
       redirect_to :back, flash: { error: "Did you fill in the email field and select a quantity?" }
     end
   end
 
   def charge_or_refund
-    if params[:name] == "charge"
-      orders.each do |order|
-        charge = ChargeCustomer.new(order, current_user)
-        if charge.processed?
-          # email and ticket
-        else
-          # fail email no ticket
-        end
-      end
-      redirect_to(:back, notice: "Processing in the background")
-    elsif params[:name] == "refund"
-      orders.each { |order| RefundCustomer.new(order, current_user)}
-      redirect_to(:back, notice: "Processing in the background")
+    @organizer = Profile.find(current_user.profile)
+    if params[:charge]
+      @orders.each { |order| ChargeCustomer.new(order, @organizer) if order.stripe_event == :pending }
+      flash[:notice] = "Successfully charged #{@orders.count} Customers."
+    elsif params[:refund]
+      @orders.each { |order| RefundCustomer.new(order, @organizer).refund_charge if order.stripe_event == :paid }
+      flash[:notice] = "Successfully refunded #{@orders.count} Customers."
     else
-      redirect_to :back, flash: { error: "Something went wrong" }
+      flash[:error] = "Something went wrong."
     end
+    redirect_to :back
   end
 
 private
@@ -50,6 +46,6 @@ private
   def find_orders
     @orders = Order.find(params[:order_ids])
     rescue ActiveRecord::RecordNotFound
-    redirect_to :back, notice: "some records weren't found?"
+    redirect_to organizer_root_path, notice: "Some records weren't found?"
   end
 end
