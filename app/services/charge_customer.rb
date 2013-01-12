@@ -2,32 +2,30 @@ class ChargeCustomer
 
   def initialize(order, organizer)
     @order = order
-    @organizer = organizer
+    @key = organizer.api_key
   end
 
   def create_charge_token
-    Stripe.api_key = @organizer.api_key
     token = Stripe::Token.create(
       { customer: @order.stripe_customer_token },
-      key
+      @key
     )
   rescue Stripe::InvalidRequestError => e
     Rails.logger.error "Stripe error while creating token: #{e.message}"
   end
 
-  def charge_customer(&:create_charge_token)
+  def charge_customer
     total = (@order.total * 100).to_i
     fee = total.round
-    token = yield
-    Stripe.api_key = @organizer.api_key
+    token = create_charge_token
     charge = Stripe::Charge.create(
       {
-        amount: order_amount,
+        amount: total,
         currency: "usd",
         card: token["id"],
         description: "testing 3rd party charges",
         application_fee: fee
-      }, key
+      }, @key
     )
   rescue Stripe::CardError => e
     Rails.logger.error "Stripe error while creating customer: #{e.message}"

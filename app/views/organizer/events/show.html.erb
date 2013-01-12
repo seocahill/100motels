@@ -71,7 +71,7 @@
             <td><%= order.name %> </td>
             <td><%= order.email %> </td>
             <td> <%= order.quantity %></td>
-            <td> <%= number_to_currency(order.total(@event)) %></td>
+            <td> <%= number_to_currency(order.total) %></td>
             <td> <span class="label"><%= order.stripe_event  %></span> </td>
             <% end %>
           </tr>
