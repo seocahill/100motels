@@ -5,6 +5,16 @@ class ChargeCustomer
     @key = organizer.api_key
   end
 
+  def process_charge
+    charge = charge_customer
+    unless charge
+      @order.stripe_charge_id = charge[:id]
+      charge[:paid] == true ? @order.stripe_event = :paid : @order.stripe_event = :failed
+    else
+      @order.stripe_event = :failed
+    end
+  end
+
   def create_charge_token
     token = Stripe::Token.create(
       { customer: @order.stripe_customer_token },
