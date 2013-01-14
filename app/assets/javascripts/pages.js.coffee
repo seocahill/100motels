@@ -6,7 +6,6 @@
 jQuery(parent).trigger('initialize:frame');
 
 # scrollspy nav with animation
-
 $ ->
   $("#welcome-nav a").click ->
     goToByScroll $(this).attr("href")
@@ -21,9 +20,3 @@ $ ->
   $('#events-carousel .item:first').addClass('active')
   $('#events-carousel').carousel
     interval: false
-
-$ ->
-  $('#organizers-carousel .item:first').addClass('active')
-  $('#organizers-carousel').carousel
-    interval: false
-

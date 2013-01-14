@@ -26,10 +26,9 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <%= link_to image_tag('ic_launcher.png') + "100 Motels", root_path, class: "brand brand-center" %>
+          <%= link_to "100 Motels", root_path, class: "brand" %>
           <div class="nav-collapse">
             <ul class="nav topbar" id="">
-              <!-- <li class=""><%= link_to "Home", root_path %></li> -->
               <li><%= link_to "Events", events_path %></li>
               <li><%= link_to "Info", info_path %></li>
               <li><%= render 'events/search' %></li>

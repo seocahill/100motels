@@ -6,8 +6,7 @@ has_scope :failed, type: :boolean
 has_scope :refunded, type: :boolean
 
   def index
-    @events = current_user.profile.events if current_user.profile
-    @profile = current_user.profile
+    @events = Event.where(promoter_id: current_user.id)
   end
 
   def new
@@ -15,10 +14,9 @@ has_scope :refunded, type: :boolean
   end
 
   def create
-    @event = Event.new(params[:event])
-    @event.profile_id = current_user.profile.id
+    @event = current_user.events.new(params[:event])
     if @event.save
-      flash[:notice] = "Rock and Roll"
+      flash[:notice] = "Event Created Successfully"
       redirect_to @event
     else
       flash[:alert] = "Event has not been created"
@@ -27,7 +25,7 @@ has_scope :refunded, type: :boolean
   end
 
   def show
-    @events = current_user.profile.events
+    @events = Event.where(promoter_id: current_user.id)
     @event = Event.find_by_id(params[:id])
     @orders = apply_scopes(Order).where(event_id: @event.id)
     respond_to do |format|
@@ -57,14 +55,4 @@ has_scope :refunded, type: :boolean
       render :action => "edit"
     end
   end
-
-  def destroy
-    @event = Event.find(params[:id])
-    @event.destroy
-    flash[:notice] = "Event has been deleted"
-    redirect_to organizer_root_path
-  end
-
-  private
-
 end

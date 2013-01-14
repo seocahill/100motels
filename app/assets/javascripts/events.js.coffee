@@ -4,14 +4,12 @@
 
 # Sum Order
 $ ->
-  # price = $('#ticket-price').data('url')
-  # $('.stripe-button').attr('data-amount', price)
   $('#order_quantity').click ->
     orderTotal()
   $('.stripe-button').click(orderTotal())
   $('#buy-now').click(orderTotal())
 
-
+# Order Total for stripe button
 orderTotal = ->
   quantity = $('#order_quantity').val()
   price = $('#ticket-price').data('url')
@@ -23,10 +21,6 @@ orderTotal = ->
 $ ->
   $('#check_all').click () ->
     $('input[type="checkbox"]').click()
-
-#popover
-$ ->
-  $('.requests').popover()
 
 #filter form
 $ ->

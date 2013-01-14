@@ -29,7 +29,7 @@
 				</div>
 				<div class="span5" align="center">
 					<h2>
-						<small><%= @organizer.try(:promoter_name) %> presents...</small> <br>
+						<small>Promoter presents...</small> <br>
 						<div id="artist" data-mercury="full"><%= @event.artist %></div>
 					</h2>
 					<h4>
@@ -62,7 +62,7 @@
 			<div class="span4">
 				<div class="row">
 					<div class="span4">
-						<h3><%= @organizer.promoter_name %> says...</h3>
+						<h3>Promoter says...</h3>
 						<div id="about" data-mercury="full">
 							<% if @event.about? %>
 								<%= raw @event.about %>
