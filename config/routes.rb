@@ -18,7 +18,11 @@ OneHundredMotels::Application.routes.draw do
 
   namespace :organizer do
     root :to => 'events#index'
-    resources :events
+    resources :events do
+      member do
+        put :cancel
+      end
+    end
   end
 
   namespace :api, defaults: {format: 'json'} do
@@ -27,9 +31,7 @@ OneHundredMotels::Application.routes.draw do
     end
   end
 
-  resources :events do
-    member { post :request_support }
-  end
+  resources :events
 
   resources :orders do
     collection do

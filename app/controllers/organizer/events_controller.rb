@@ -55,4 +55,19 @@ has_scope :refunded, type: :boolean
       render :action => "edit"
     end
   end
+
+  def cancel_event
+    event = Event.find(params[:id])
+    orders = event.orders.all
+    if orders.each { |order| CancelEventOrders.new(event, order).cancel_or_refund_order }
+      event.state = :cancelled
+      event.save!
+      flash[:notice] = "Event has been cancelled"
+      render 'organizer/events/index'
+    else
+      flash[:error] = "Event could not be cancelled at this time"
+      redirect_to :back
+    end
+  end
+
 end
