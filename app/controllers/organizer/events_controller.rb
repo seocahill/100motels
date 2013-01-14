@@ -6,7 +6,6 @@ has_scope :failed, type: :boolean
 has_scope :refunded, type: :boolean
 
   def index
-    # @events = Event.where(profile_id: current_user.profile.id)
     @events = current_user.profile.events if current_user.profile
     @profile = current_user.profile
   end
