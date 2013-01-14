@@ -18,6 +18,11 @@ class Notifier < ActionMailer::Base
     mail to: order.email, subject: "Your Tickets 100 Motels"
   end
 
+  def transaction_summary(orders, organizer)
+    @orders = orders
+    @organizer = organizer
+    mail to: @organizer.email, subject: "Transaction Summary"
+  end
 
 require 'mail_view'
   class Preview < MailView
@@ -30,6 +35,11 @@ require 'mail_view'
       order = Order.find(163)
       Notifier::Preview::Notifier.ticket(order)
     end
-  end
 
+    def transaction_summary
+      orders = Order.find([177, 178, 179, 180, 181, 152, 168, 171, 170, 153])
+      organizer = User.find(1)
+      Notifier::Preview::Notifier.ticket(orders, organizer)
+    end
+  end
 end

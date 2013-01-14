@@ -1,6 +1,6 @@
 OneHundredMotels::Application.routes.draw do
 
-  root :to => 'pages#home'
+  root :to => 'pages#index'
 
   mount Mercury::Engine => '/'
 
@@ -15,6 +15,7 @@ OneHundredMotels::Application.routes.draw do
   post '/stripe' => 'stripe_events#listen'
 
   get '/info' => 'pages#info'
+  get '/home' => 'pages#home'
 
   namespace :organizer do
     root :to => 'events#index'

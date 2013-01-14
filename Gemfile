@@ -4,10 +4,17 @@ gem 'rails'
 gem 'pg'
 gem 'thin'
 
-
 group :development, :test do
 	gem 'rspec-rails'
   gem 'debugger'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'meta_request', '0.2.1'
+end
+
+group :development do
+  gem "mail_view", "~> 1.0.3"
+  gem "letter_opener", :group => :development
 end
 
 group :test do
@@ -19,10 +26,6 @@ group :test do
   gem 'fakeweb'
   gem 'database_cleaner'
   gem 'launchy'
-  gem 'mail_view', :git => 'https://github.com/37signals/mail_view.git'
-  gem 'better_errors'
-  gem 'binding_of_caller'
-  gem 'meta_request', '0.2.1'
 end
 
 group :assets do

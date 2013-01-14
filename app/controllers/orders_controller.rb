@@ -25,6 +25,7 @@ class OrdersController < ApplicationController
     @organizer = current_user
     if params[:charge]
       @orders.each { |order| ChargeCustomer.new(order, @organizer).process_charge if [:pending, :failed].include? order.stripe_event }
+      Notifier.transaction_summary(@orders, @organizer).deliver
       flash[:notice] = "Successfully charged #{@orders.count} Customers."
     elsif params[:refund]
       @orders.each { |order| RefundCustomer.new(order, @organizer).refund_charge if order.stripe_event == :paid }
