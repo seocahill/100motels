@@ -2,8 +2,11 @@ class Event < ActiveRecord::Base
   attr_accessible :artist, :date, :doors, :venue, :venue_capacity, :ticket_price,
                   :music, :video, :about, :image, :target, :location_id, :new_location, :visible, :state
   attr_accessor :new_location
-  enum_accessor :state, [ :hidden, :visible, :successful, :failed, :archived, :cancelled ]
+  enum_accessor :state, [ :hidden, :visible, :rescheduled, :archived, :cancelled ]
   validates :artist, :venue, :date, :ticket_price, presence: true
+
+  include EmbedMedia
+
   before_save :create_location
 
   belongs_to  :location
@@ -31,24 +34,9 @@ class Event < ActiveRecord::Base
     self.location = Location.create(address: new_location) if new_location.present?
   end
 
-  auto_html_for :video do
-    html_escape
-    youtube(:width => 630, :height => 430)
-    vimeo(:width => 630, :height => 430)
-    link :target => "_blank", :rel => "nofollow"
-    simple_format
-  end
-
-  auto_html_for :music do
-    html_escape
-    soundcloud(:width => 630, :height => 200)
-    link :target => "_blank", :rel => "nofollow"
-    simple_format
-  end
-
   def self.text_search(query)
     if query.present?
-      where("artist @@ :q or venue @@ :q", q: "#{query}")
+      search(query)
     else
       scoped
     end

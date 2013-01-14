@@ -11,13 +11,15 @@ class User < ActiveRecord::Base
 
   attr_accessor :new_location
 
+  include EmbedMedia
+
   has_many :orders
   belongs_to :location
 
   scope :total_events
 
+  # Set Hstore attributes
   %w[livemode type exp_month country exp_year cvc_check].each do |key|
-    # attr_accessible key
     scope "has_#{key}", lambda { |value| where("customer_details @> (? => ?)", key, value) }
 
     define_method(key) do
@@ -33,15 +35,6 @@ class User < ActiveRecord::Base
     user.api_key = auth.credentials["token"]
     user.save
     user
-  end
-
-  auto_html_for :media do
-    html_escape
-    youtube(:width => 630, :height => 430)
-    vimeo(:width => 630, :height => 430)
-    soundcloud(:width => 630, :height => 200)
-    link :target => "_blank", :rel => "nofollow"
-    simple_format
   end
 
   def save_card(user, card)
