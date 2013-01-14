@@ -34,11 +34,9 @@ ActiveRecord::Schema.define(:version => 20121210113309) do
     t.string   "image_html"
     t.integer  "location_id"
     t.integer  "state",          :limit => 8,                               :default => 0
-    t.integer  "profile_id"
   end
 
   add_index "events", ["location_id"], :name => "index_events_on_location_id"
-  add_index "events", ["profile_id"], :name => "index_events_on_profile_id"
 
   create_table "locations", :force => true do |t|
     t.string   "address"
@@ -110,45 +108,6 @@ ActiveRecord::Schema.define(:version => 20121210113309) do
 
   add_index "orders", ["event_id"], :name => "index_orders_on_event_id"
   add_index "orders", ["user_id"], :name => "index_orders_on_user_id"
-
-  create_table "profiles", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "state",               :default => 0
-    t.boolean  "visible",             :default => false
-    t.string   "encrypted_api_key"
-    t.string   "promoter_name"
-    t.string   "image"
-    t.string   "available"
-    t.string   "fee"
-    t.string   "promoter_media"
-    t.string   "promoter_media_html"
-    t.text     "quick_profile"
-    t.text     "about"
-    t.text     "equipment"
-    t.text     "venues"
-    t.text     "travel"
-    t.text     "accomodation"
-    t.text     "support"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
-    t.integer  "location_id"
-  end
-
-  add_index "profiles", ["location_id"], :name => "index_profiles_on_location_id"
-  add_index "profiles", ["user_id"], :name => "index_profiles_on_user_id"
-
-  create_table "requests", :force => true do |t|
-    t.integer  "promoter_id"
-    t.integer  "user_id"
-    t.integer  "event_id"
-    t.integer  "state",       :limit => 8, :default => 0
-    t.datetime "created_at",                              :null => false
-    t.datetime "updated_at",                              :null => false
-  end
-
-  add_index "requests", ["event_id"], :name => "index_requests_on_event_id"
-  add_index "requests", ["promoter_id"], :name => "index_requests_on_promoter_id"
-  add_index "requests", ["user_id"], :name => "index_requests_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "",    :null => false

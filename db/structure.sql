@@ -67,8 +67,7 @@ CREATE TABLE events (
     image character varying(255),
     image_html character varying(255),
     location_id integer,
-    state bigint DEFAULT 0,
-    profile_id integer
+    state bigint DEFAULT 0
 );
 
 
@@ -275,88 +274,6 @@ ALTER SEQUENCE orders_id_seq OWNED BY orders.id;
 
 
 --
--- Name: profiles; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE profiles (
-    id integer NOT NULL,
-    user_id integer,
-    state integer DEFAULT 0,
-    visible boolean DEFAULT false,
-    encrypted_api_key character varying(255),
-    promoter_name character varying(255),
-    image character varying(255),
-    available character varying(255),
-    fee character varying(255),
-    promoter_media character varying(255),
-    promoter_media_html character varying(255),
-    quick_profile text,
-    about text,
-    equipment text,
-    venues text,
-    travel text,
-    accomodation text,
-    support text,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    location_id integer
-);
-
-
---
--- Name: profiles_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE profiles_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: profiles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE profiles_id_seq OWNED BY profiles.id;
-
-
---
--- Name: requests; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE requests (
-    id integer NOT NULL,
-    promoter_id integer,
-    user_id integer,
-    event_id integer,
-    state bigint DEFAULT 0,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: requests_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE requests_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: requests_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE requests_id_seq OWNED BY requests.id;
-
-
---
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -465,20 +382,6 @@ ALTER TABLE ONLY orders ALTER COLUMN id SET DEFAULT nextval('orders_id_seq'::reg
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY profiles ALTER COLUMN id SET DEFAULT nextval('profiles_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY requests ALTER COLUMN id SET DEFAULT nextval('requests_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
@@ -531,22 +434,6 @@ ALTER TABLE ONLY orders
 
 
 --
--- Name: profiles_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY profiles
-    ADD CONSTRAINT profiles_pkey PRIMARY KEY (id);
-
-
---
--- Name: requests_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY requests
-    ADD CONSTRAINT requests_pkey PRIMARY KEY (id);
-
-
---
 -- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -559,13 +446,6 @@ ALTER TABLE ONLY users
 --
 
 CREATE INDEX index_events_on_location_id ON events USING btree (location_id);
-
-
---
--- Name: index_events_on_profile_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_events_on_profile_id ON events USING btree (profile_id);
 
 
 --
@@ -622,41 +502,6 @@ CREATE INDEX index_orders_on_event_id ON orders USING btree (event_id);
 --
 
 CREATE INDEX index_orders_on_user_id ON orders USING btree (user_id);
-
-
---
--- Name: index_profiles_on_location_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_profiles_on_location_id ON profiles USING btree (location_id);
-
-
---
--- Name: index_profiles_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_profiles_on_user_id ON profiles USING btree (user_id);
-
-
---
--- Name: index_requests_on_event_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_requests_on_event_id ON requests USING btree (event_id);
-
-
---
--- Name: index_requests_on_promoter_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_requests_on_promoter_id ON requests USING btree (promoter_id);
-
-
---
--- Name: index_requests_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_requests_on_user_id ON requests USING btree (user_id);
 
 
 --
@@ -758,8 +603,6 @@ INSERT INTO schema_migrations (version) VALUES ('20121030003405');
 INSERT INTO schema_migrations (version) VALUES ('20121030190249');
 
 INSERT INTO schema_migrations (version) VALUES ('20121030203325');
-
-INSERT INTO schema_migrations (version) VALUES ('20121030231437');
 
 INSERT INTO schema_migrations (version) VALUES ('20121103014107');
 

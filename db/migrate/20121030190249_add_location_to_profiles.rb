@@ -1,6 +1,6 @@
 class AddLocationToProfiles < ActiveRecord::Migration
-  def change
-    add_column :profiles, :location_id, :integer
-    add_index :profiles, :location_id
-  end
+  # def change
+  #   add_column :profiles, :location_id, :integer
+  #   add_index :profiles, :location_id
+  # end
 end
