@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
   :name, :avatar, :media, :new_location, :location_id, :guest_id, :uid, :provider
-
+  # attr_encrypted :api_key, key: ENV['ATTR_ENCRYPTED_KEY']
 
   attr_accessor :new_location
 

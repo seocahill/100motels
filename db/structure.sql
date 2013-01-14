@@ -313,7 +313,9 @@ CREATE TABLE users (
     media_html character varying(255),
     location_id integer,
     customer_details hstore,
-    guest_id integer
+    guest_id integer,
+    state bigint DEFAULT 0,
+    encrypted_api_key character varying(255)
 );
 
 
@@ -604,6 +606,8 @@ INSERT INTO schema_migrations (version) VALUES ('20121030190249');
 
 INSERT INTO schema_migrations (version) VALUES ('20121030203325');
 
+INSERT INTO schema_migrations (version) VALUES ('20121030231437');
+
 INSERT INTO schema_migrations (version) VALUES ('20121103014107');
 
 INSERT INTO schema_migrations (version) VALUES ('20121103014633');
@@ -615,3 +619,5 @@ INSERT INTO schema_migrations (version) VALUES ('20121210113239');
 INSERT INTO schema_migrations (version) VALUES ('20121210113254');
 
 INSERT INTO schema_migrations (version) VALUES ('20121210113309');
+
+INSERT INTO schema_migrations (version) VALUES ('20130114130412');
