@@ -7,10 +7,7 @@ class Event < ActiveRecord::Base
   before_save :create_location
 
   belongs_to  :location
-  belongs_to  :profile
   has_many :orders
-  has_many :requests
-  has_many :users, through: :requests
 
   scope :tonight, lambda { where("date <= ?", Time.now.end_of_day) }
   scope :week_end, lambda { where("date <= ?", Time.now.end_of_week) }
@@ -49,21 +46,12 @@ class Event < ActiveRecord::Base
     simple_format
   end
 
-  def sold_out
-    space_left = User.checkedin_count(self.venue)
-    "There are #{space_left} tickets left on the door"
-  end
-
   def self.text_search(query)
     if query.present?
       where("artist @@ :q or venue @@ :q", q: "#{query}")
     else
       scoped
     end
-  end
-
-  def viable
-    # target - self.orders.count
   end
 
 end

@@ -1,26 +1,18 @@
 class User < ActiveRecord::Base
-  # serialize :customer_details, ActiveRecord::Coders::Hstore
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable,
-  # :lockable, :timeoutable and :omniauthable
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :omniauthable
 
-  # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
   :name, :avatar, :media, :new_location, :location_id, :guest_id, :uid, :provider
-  # attr_encrypted :api_key, key: ENV['ATTR_ENCRYPTED_KEY']
+
+  attr_encrypted :api_key, key: ENV['ATTR_ENCRYPTED_KEY']
 
   attr_accessor :new_location
 
-  has_many :requests, dependent: :destroy
-  has_many :promoters, through: :requests
   has_many :orders
-  has_one :location, dependent: :destroy
-  has_one :profile, dependent: :destroy
   belongs_to :location
-
 
   scope :total_events
 
@@ -37,20 +29,10 @@ class User < ActiveRecord::Base
     end
   end
 
-
   def self.from_omniauth(auth, user)
-    user.profile.api_key = auth.credentials["token"]
-    user.profile.save
+    user.api_key = auth.credentials["token"]
+    user.save
     user
-  end
-
-  def confirm!
-    super
-    profile = self.create_profile
-    event = Event.create
-    event.profile_id = profile.id
-    event.date = Time.now
-    event.save
   end
 
   auto_html_for :media do

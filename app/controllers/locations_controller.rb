@@ -1,13 +1,5 @@
 class LocationsController < ApplicationController
 
-  def index
-    if params[:search].present?
-      @locations = Location.near(params[:search], 300, order: :distance)
-    else
-    @locations = Location.all
-    end
-  end
-
   def new
     @location = Location.new
   end
@@ -23,7 +15,4 @@ class LocationsController < ApplicationController
     end
   end
 
-  def show
-    @location = Location.find(params[:id])
-  end
 end

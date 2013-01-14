@@ -4,19 +4,15 @@
 	</header>
 	<div class="row">
 		<div class="span3">
-			<% if user_signed_in? && current_user == @event.profile.user %>
+			<% if user_signed_in?  %>
 				<%= link_to "Text Editor", "/editor" + request.path, class: "btn editor", rel: "popover", data: { content: "This will reveal a toolbar allowing you to edit text content on the page. Click the save icon in the toolbar when you're finished.", trigger: "hover", :"original-title" => "Editing Content" }, id: "edit_link" %>
 				<%= link_to "Edit Settings", edit_organizer_event_path(@event), class: "btn editor", rel: "popover", data: { content: "Edit the Event details and visibility.", trigger: "hover", :"original-title" => "Event Settings" }, id: "edit_link" %>
-			<% elsif @event.users.include?(current_user) %>
-				<button class="btn btn-success requests" rel="popover" data-content="You have requested to play support at this event. Check the status of this request or cancel it in your user account." data-original-title="About requests" data-trigger="hover">Support Requested <i class="icon-check icon-white"></i></button>
-			<% elsif user_signed_in? %>
-				<%= link_to "Ask to Support", requests_path(event_id: @event.id, organizer_id: @event.profile.user_id), class: "btn btn-large requests", method: :post, rel: "popover", data: { content: "By pressing this button the Organizer of this event will receive a private message containing your contact details and your media. Click on Help &Info for more on how requests work.", trigger: "hover", :"original-title" => "About Requests" } %>
 			<% end %>
 		</div>
 		<div class="span2">
 		</div>
 		<div class="span2">
-			<% if user_signed_in? && current_user == @event.profile.user %>
+			<% if user_signed_in?  %>
 				<strong>State: <span class="badge"><%= @event.state %></span></strong>
 			<% end %>
 		</div>
@@ -94,25 +90,6 @@
 						<img src="//quickimage.it/565x170&text=Soundcloud+playlist" class="align_left">
 					<% end %>
 				</h3>
-					<!-- <h3>Share...</h3>
-				<div class="well">
-						<span class='st_sharethis_large' displayText='ShareThis'></span>
-						<span class='st_facebook_large' displayText='Facebook'></span>
-						<span class='st_pinterest_large' displayText='Pinterest'></span>
-						<span class='st_wordpress_large' displayText='WordPress'></span>
-						<span class='st_stumbleupon_large' displayText='StumbleUpon'></span>
-						<span class='st_tumblr_large' displayText='Tumblr'></span>
-						<span class='st_reddit_large' displayText='Reddit'></span>
-						<span class='st_myspace_large' displayText='MySpace'></span>
-						<span class='st_identi_large' displayText='identi.ca'></span>
-						<span class='st_googleplus_large' displayText='Google +'></span>
-						<span class='st_twitter_large' displayText='Tweet'></span>
-						<span class='st_email_large' displayText='Email'></span>
-				</div>  -->
 			</div>
 	</section>
 </div>
-
-<script type="text/javascript">var switchTo5x=true;</script>
-<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
-<script type="text/javascript">stLight.options({publisher: "8922bdf2-4f99-4c8e-af44-1b1791ab0dcf"});</script>

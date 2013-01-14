@@ -5,7 +5,7 @@ module Api
 
 
       def index
-        @events = Event.where("profile_id = ?", current_user.profile.id)
+        @events = Event.where("promoter_id = ?", current_user.id)
       end
 
       def show

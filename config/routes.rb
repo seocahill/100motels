@@ -1,5 +1,7 @@
 OneHundredMotels::Application.routes.draw do
 
+  root :to => 'pages#home'
+
   mount Mercury::Engine => '/'
 
   use_doorkeeper
@@ -10,15 +12,13 @@ OneHundredMotels::Application.routes.draw do
     member { put :change_card }
   end
 
-  root :to => 'pages#home'
+  post '/stripe' => 'stripe_events#listen'
 
   get '/info' => 'pages#info'
 
   namespace :organizer do
     root :to => 'events#index'
     resources :events
-    resources :profiles
-    resources :requests, only: [:index]
   end
 
   namespace :api, defaults: {format: 'json'} do
@@ -29,10 +29,7 @@ OneHundredMotels::Application.routes.draw do
 
   resources :events do
     member { post :request_support }
-    member { post :discount }
   end
-
-  resources :profiles, only: [:index, :show]
 
   resources :orders do
     collection do
@@ -40,15 +37,7 @@ OneHundredMotels::Application.routes.draw do
     end
   end
 
-  resources :requests, only: [:create, :destroy]  do
-    collection do
-      post :mark_read
-    end
-  end
-
   resources :locations
-
-  post '/stripe' => 'stripe_events#listen'
 
   if Rails.env.development?
     mount Notifier::Preview => 'mail_view'

@@ -16,5 +16,4 @@ class Order < ActiveRecord::Base
   scope :refunded, where("stripe_event = ?", 3)
   scope :cancelled, where("stripe_event = ?", 4)
   scope :total, where("stripe_event <= ?", 1)
-
 end

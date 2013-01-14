@@ -14,14 +14,8 @@ class EventsController < ApplicationController
 
   def show
     @order = Order.new
-    @organizer = Profile.find(@event.profile_id)
-    @requests = Request.where('promoter_id = ?', @organizer.user_id)
-    @sales = Order.where('profile_id')
+    @organizer = User.find(@event.promoter_id)
   end
-
-  # def edit
-  #   @event = Event.find(params[:id])
-  # end
 
   def update
     event = Event.find(params[:id])
@@ -29,13 +23,6 @@ class EventsController < ApplicationController
     event.about = params[:content][:about][:value]
     event.save!
     render text: ""
-  end
-
-  def request_support
-    event = Event.find(params[:id])
-    event.users << current_user
-    event.save!
-    redirect_to :back, notice: "The Organizer has been notified"
   end
 
 private

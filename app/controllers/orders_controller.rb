@@ -22,7 +22,7 @@ class OrdersController < ApplicationController
   end
 
   def charge_or_refund
-    @organizer = Profile.find(current_user.profile)
+    @organizer = current_user
     if params[:charge]
       @orders.each { |order| ChargeCustomer.new(order, @organizer).process_charge if [:pending, :failed].include? order.stripe_event }
       flash[:notice] = "Successfully charged #{@orders.count} Customers."
