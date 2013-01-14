@@ -5,8 +5,6 @@ class Event < ActiveRecord::Base
   enum_accessor :state, [ :hidden, :visible, :rescheduled, :archived, :cancelled ]
   validates :artist, :venue, :date, :ticket_price, presence: true
 
-  include EmbedMedia
-
   before_save :create_location
 
   belongs_to  :location
@@ -42,4 +40,18 @@ class Event < ActiveRecord::Base
     end
   end
 
+  auto_html_for :video do
+    html_escape
+    youtube(:width => 630, :height => 430)
+    vimeo(:width => 630, :height => 430)
+    link :target => "_blank", :rel => "nofollow"
+    simple_format
+  end
+
+  auto_html_for :music do
+    html_escape
+    soundcloud(:width => 630, :height => 200)
+    link :target => "_blank", :rel => "nofollow"
+    simple_format
+  end
 end
