@@ -8,7 +8,7 @@
         </a>
         <ul class="dropdown-menu">
           <% @events.each do |e| %>
-          <li><%= link_to "#{e.artist}", organizer_event_path(e) %></li>
+          <li><%= link_to "#{e.artist} | #{e.venue} | #{e.date.strftime('%d %b')}", organizer_event_path(e) %></li>
           <% end %>
         </ul>
       </div>

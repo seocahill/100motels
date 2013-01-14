@@ -5,9 +5,8 @@ class EventPdf < Prawn::Document
     @view = view
     @orders = orders
     event_number
-    organizer
+    # organizer
     items
-    # total_price
 
   end
 
@@ -37,11 +36,11 @@ class EventPdf < Prawn::Document
     @view.number_to_currency(num)
   end
 
-  def organizer
-  move_down 20
-    t = Time.now
-    text "Organizer: #{@event.profile.user.email}", size: 16
-    text "printed on: #{t.strftime("%m/%d/%Y")}"
-    text "at: #{t.strftime("%I:%M%p")}"
-  end
+  # def organizer
+  # move_down 20
+  #   t = Time.now
+  #   text "Organizer: #{@event.profile.user.email}", size: 16
+  #   text "printed on: #{t.strftime("%m/%d/%Y")}"
+  #   text "at: #{t.strftime("%I:%M%p")}"
+  # end
 end

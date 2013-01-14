@@ -206,7 +206,7 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
-  config.omniauth :stripe_connect, ENV['STRIPE_PLATFORM_CLIENT_ID'], ENV['STRIPE_API_KEY'] #, {:scope => 'read_write'} # or :scope => 'read_only'
+  config.omniauth :stripe_connect, ENV['STRIPE_PLATFORM_CLIENT_ID'], ENV['STRIPE_API_KEY'], {:scope => 'read_write'} # or :scope => 'read_only'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
