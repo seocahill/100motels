@@ -2,6 +2,7 @@ class Order < ActiveRecord::Base
   attr_accessible :email, :name, :quantity, :event_id, :user_id
   enum_accessor :stripe_event, [ :pending, :paid, :failed, :refunded, :cancelled, :dummy ]
 
+  has_many :tickets
   belongs_to :event
   belongs_to :user
 

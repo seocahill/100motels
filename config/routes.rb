@@ -41,9 +41,4 @@ OneHundredMotels::Application.routes.draw do
   end
 
   resources :locations
-
-  if Rails.env.development?
-    mount Notifier::Preview => 'mail_view'
-  end
-
 end

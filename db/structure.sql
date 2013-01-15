@@ -283,6 +283,39 @@ CREATE TABLE schema_migrations (
 
 
 --
+-- Name: tickets; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE tickets (
+    id integer NOT NULL,
+    number character varying(255),
+    order_id integer,
+    event_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: tickets_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE tickets_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: tickets_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE tickets_id_seq OWNED BY tickets.id;
+
+
+--
 -- Name: users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -384,6 +417,13 @@ ALTER TABLE ONLY orders ALTER COLUMN id SET DEFAULT nextval('orders_id_seq'::reg
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY tickets ALTER COLUMN id SET DEFAULT nextval('tickets_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
@@ -433,6 +473,14 @@ ALTER TABLE ONLY oauth_applications
 
 ALTER TABLE ONLY orders
     ADD CONSTRAINT orders_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: tickets_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY tickets
+    ADD CONSTRAINT tickets_pkey PRIMARY KEY (id);
 
 
 --
@@ -504,6 +552,20 @@ CREATE INDEX index_orders_on_event_id ON orders USING btree (event_id);
 --
 
 CREATE INDEX index_orders_on_user_id ON orders USING btree (user_id);
+
+
+--
+-- Name: index_tickets_on_event_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_tickets_on_event_id ON tickets USING btree (event_id);
+
+
+--
+-- Name: index_tickets_on_order_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_tickets_on_order_id ON tickets USING btree (order_id);
 
 
 --
@@ -621,3 +683,5 @@ INSERT INTO schema_migrations (version) VALUES ('20121210113254');
 INSERT INTO schema_migrations (version) VALUES ('20121210113309');
 
 INSERT INTO schema_migrations (version) VALUES ('20130114130412');
+
+INSERT INTO schema_migrations (version) VALUES ('20130115135959');
