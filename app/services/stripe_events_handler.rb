@@ -18,4 +18,8 @@ class StripeEventsHandler
   def charge_succeeded
     print Rails.logger.debug 'webhooks working!'
   end
+
+  def charge_failed
+    # do something
+  end
 end

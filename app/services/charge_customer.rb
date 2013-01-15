@@ -12,6 +12,7 @@ class ChargeCustomer
       charge[:paid] == true ? @order.stripe_event = :paid : @order.stripe_event = :failed
     else
       @order.stripe_event = :failed
+      Notifier.charge_failed(@order).deliver
     end
     @order.save!
   end

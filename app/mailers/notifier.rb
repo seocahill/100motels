@@ -24,22 +24,8 @@ class Notifier < ActionMailer::Base
     mail to: @organizer.email, subject: "Transaction Summary"
   end
 
-require 'mail_view'
-  class Preview < MailView
-    def order_processed
-      order = Order.last
-      Notifier::Preview::Notifier.order_processed(order)
-    end
-
-    def ticket
-      order = Order.find(163)
-      Notifier::Preview::Notifier.ticket(order)
-    end
-
-    def transaction_summary
-      orders = Order.find([177, 178, 179, 180, 181, 152, 168, 171, 170, 153])
-      organizer = User.find(1)
-      Notifier::Preview::Notifier.ticket(orders, organizer)
-    end
+  def charge_failed(order)
+    @order = order
+    mail to: order.email, subject: "We could not complete your order"
   end
 end
