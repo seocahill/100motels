@@ -23,8 +23,8 @@ OneHundredMotels::Application.routes.draw do
       member do
         put :cancel
       end
+      resources :tickets, only: [:index, :update]
     end
-    resources :tickets, only: [:index]
   end
 
   namespace :api, defaults: {format: 'json'} do

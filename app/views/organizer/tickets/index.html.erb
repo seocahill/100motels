@@ -1,1 +1,34 @@
-hello world
+<div class="container">
+  <div class="row">
+    <div class="span12">
+      <ul class="dropdown-menu">
+        <% @events.each do |e| %>
+        <li><%= link_to "#{e.artist} | #{e.venue} | #{e.date.strftime('%d %b')}", organizer_event_tickets_path(e) %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span12">
+      <%= link_to "Back", organizer_event_path(@event), class: "btn" %>
+      <%= form_tag organizer_event_tickets_path, method: :get, class: "" do %>
+          <%= text_field_tag :query, params[:query], class: "span3 pull-right", placeholder: "Enter Ticket Number" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span12">
+      <table class="table table-striped">
+        <tbody>
+         <% @tickets.each do |t| %>
+          <tr>
+            <td><%= link_to t.order.name, order_path(t.order) %></td>
+            <td><%= t.admitted ? "Admitted #{t.admitted}" : "Not Admitted" %></td>
+            <td><%= link_to "Admit", organizer_event_ticket_path(@event, t), method: :put, class: "btn btn-warning" unless t.admitted %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -9,7 +9,7 @@ class Event < ActiveRecord::Base
 
   has_many :orders
   has_many :tickets
-  belongs_to  :location
+  belongs_to :location
 
   scope :tonight, lambda { where("date <= ? and date >= ?", Time.now.end_of_day, Time.now) }
   scope :week_end, lambda { where("date <= ? and date >= ?", Time.now.end_of_week, Time.now) }

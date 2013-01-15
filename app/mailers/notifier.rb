@@ -33,6 +33,4 @@ class Notifier < ActionMailer::Base
     @order = order
     mail to: order.email, subject: "You have been refunded"
   end
-
-
 end

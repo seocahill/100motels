@@ -18,6 +18,7 @@
 //= require pages
 //= require events
 //= require organizer/events
+//= require organizer/tickets
 //= require organizer/base
 //= require jquery.scrollTo
 

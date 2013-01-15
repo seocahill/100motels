@@ -6,6 +6,16 @@ class Ticket < ActiveRecord::Base
   before_create :generate_ticket_number
   after_create :mail_ticket
 
+  scope :event_tickets, proc { |event| joins(:event).where("event_id = ?", event.id) }
+
+  def self.text_search(query)
+    if query.present?
+      search(query)
+    else
+      scoped
+    end
+  end
+
 private
 
   def generate_ticket_number
