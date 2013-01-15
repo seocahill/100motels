@@ -9,7 +9,7 @@ class OrdersController < ApplicationController
     @order = current_or_guest_user.orders.new(params[:order])
     customer = CustomerOrder.new(@order, params[:stripeToken])
     if customer.add_customer_to_order
-      Notifier.ticket(@order).deliver
+      Notifier.order_processed(@order).deliver
       redirect_to @order, notice: "Thanks! We sent you an email with a receipt for your order."
     else
       redirect_to :back, flash: { error: "Did you fill in the email field and select a quantity?" }
@@ -20,7 +20,7 @@ class OrdersController < ApplicationController
     @organizer = current_user
     if params[:charge]
       @orders.each { |order| ChargeCustomer.new(order, @organizer).process_charge if [:pending, :failed].include? order.stripe_event }
-      @orders.each { |order| order.quantity.times {order.tickets.create(event_id: order.event_id)} == :paid }
+      @orders.each { |order| order.quantity.times {order.tickets.create(event_id: order.event_id)} if order.stripe_event == :paid }
       Notifier.transaction_summary(@orders, @organizer).deliver
       flash[:notice] = "Finished processing #{@orders.count} Customers, check your email for details."
     elsif params[:refund]

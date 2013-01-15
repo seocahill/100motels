@@ -25,14 +25,14 @@ class CustomerOrder
           card: @token
       )
   rescue Stripe::InvalidRequestError => e
-    logger.error "Stripe error while creating customer: #{e.message}"
+    Rails.logger.error "Stripe error while creating customer: #{e.message}"
   end
 
   def retrieve_customer
     Stripe.api_key = ENV['STRIPE_API_KEY']
     customer = Stripe::Customer.retrieve(@user.customer_id)
   rescue Stripe::InvalidRequestError => e
-    logger.error "Stripe error while retrieving customer: #{e.message}"
+    Rails.logger.error "Stripe error while retrieving customer: #{e.message}"
   end
 
   def order_price

@@ -16,10 +16,17 @@ class StripeEventsHandler
 
 
   def charge_succeeded
-    print Rails.logger.debug 'webhooks working!'
+    # check to make sure the refund was handled correctly by 100 Motels,
+    # if not reprocess the transaction in the background
   end
 
+  def charge_refunded
+    # check to make sure the refund was handled correctly by 100 Motels,
+    # if not reprocess the transaction in the background
+
   def charge_failed
-    # do something
+    # check to make sure the refund was handled correctly by 100 Motels,
+    # if not reprocess the transaction in the background
   end
+
 end

@@ -16,6 +16,12 @@ private
 
   def mail_ticket
     order = self.order
-    Notifier.ticket(order, ticket).deliver
+    Notifier.ticket(order, self).deliver
+    update_order_state(order)
+  end
+
+  def update_order_state(order)
+    order.stripe_event = :tickets_sent
+    order.save!
   end
 end

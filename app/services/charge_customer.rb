@@ -10,7 +10,6 @@ class ChargeCustomer
     unless charge.nil?
       @order.stripe_charge_id = charge[:id]
       charge[:paid] == true ? @order.stripe_event = :paid : @order.stripe_event = :failed
-      Notifier.ticket(@order).deliver
     else
       @order.stripe_event = :failed
       Notifier.charge_failed(@order).deliver
