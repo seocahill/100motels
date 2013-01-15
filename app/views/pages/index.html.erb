@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <div class="row jumbotron">
     <div class="span12">
       <h1>
@@ -7,16 +7,42 @@
       </h1>
     </div>
     <div class="span12 offset4">
-      <section><%= render 'events/search' %></section>
+      <section><%#= render 'events/search' %></section>
     </div>
     <div class="span12">
-      <section><%= link_to "Sign In", new_user_registration_path, class: 'btn btn-large' %></section>
+      <section><%#= link_to "Sign In", new_user_registration_path, class: 'btn btn-large' %></section>
     </div>
     <div class="span12">
       <section>
-        <%= link_to "New Event", class: 'btn btn-large' %>
+        <%#= link_to "New Event", class: 'btn btn-large' %>
       </section>
     </div>
 
   </div>
-</div>
+</div> -->
+<div class="container-narrow">
+
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><%= link_to "Events", events_path %></li>
+          <li><%= link_to "Help & Information", info_path %></li>
+          <li><%= link_to "Sign In", new_user_session_path %></li>
+        </ul>
+        <h3 class="muted">100 Motels</h3>
+      </div>
+
+      <hr>
+
+      <div class="jumbotron">
+        <h1>Super awesome marketing speak!</h1>
+        <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+        <%= link_to "New Event", new_organizer_event_path, class: 'btn btn-large btn-success' %>
+      </div>
+
+      <hr>
+
+      <div class="footer">
+        <p>© seocahill 2012</p>
+      </div>
+
+    </div>

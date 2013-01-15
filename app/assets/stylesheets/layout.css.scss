@@ -7,6 +7,13 @@ html, body {
   height: 100%;
 }
 
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  color: #333;
+}
+
 #wrap {
   min-height: 100%;
 }
@@ -46,66 +53,5 @@ html, body {
 
 // Footer
 
-footer {
-  position: relative;
-  margin-top: -200px;
-  clear:both;
-  font-size: 14px;
-  color: #666;
-  background-color: #333;
-  min-height: 275px;
-  border-top: 2px solid #222;
-}
 
-footer .footer-top {
-  border-bottom: 1px solid #222;
-  padding-bottom: 20px;
-  padding-top: 20px;
-
-}
-
-footer .footer-bottom {
-  border-top: 1px solid #444;
-  padding-top: 20px;
-  padding-bottom: 10px;
-}
-
-footer dt, dd {
-  color: #0088CC;
-  padding: 5px 0;
-}
-
-footer img  {
-  padding: 0;
-  margin: 0;
-}
-
-.border-divider {
-  border-right: 1px solid #595959;
-}
-
-// Image text wrapping
-.align_left {
-    float: left;
-    margin-right: 1em;
-    margin-bottom: 1em;
-}
-
-.align_right {
-    float: right;
-    margin-left: 1em;
-    margin-bottom: 1em;
-}
-
-.align_center {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-//social buttons
-
-#twitter-button  {
-  background: image-url("twitter.png")
-}
 
