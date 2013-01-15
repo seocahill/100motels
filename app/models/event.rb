@@ -10,9 +10,9 @@ class Event < ActiveRecord::Base
   belongs_to  :location
   has_many :orders
 
-  scope :tonight, lambda { where("date <= ?", Time.now.end_of_day) }
-  scope :week_end, lambda { where("date <= ?", Time.now.end_of_week) }
-  scope :month_end, lambda { where("date <= ?", Time.now.end_of_month) }
+  scope :tonight, lambda { where("date <= ? and date >= ?", Time.now.end_of_day, Time.now) }
+  scope :week_end, lambda { where("date <= ? and date >= ?", Time.now.end_of_week, Time.now) }
+  scope :month_end, lambda { where("date <= ? and date >= ?", Time.now.end_of_month, Time.now) }
   scope :event_city, proc { |city| joins(:location).where("city = ?", city) }
   scope :visible, where("state > 0 and state < 3")
 

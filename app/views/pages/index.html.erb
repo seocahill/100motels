@@ -1,13 +1,22 @@
 <div class="container">
-  <div class="row">
-    <div class="span4 offset4">
+  <div class="row jumbotron">
+    <div class="span12">
       <h1>
         100 Motels
         <small>We do stuff</small>
       </h1>
-      <%= render 'events/search' %>
-      <%= render 'events/form' %>
-      <%= link_to "Sign In", new_user_registration_path %>
     </div>
+    <div class="span12 offset4">
+      <section><%= render 'events/search' %></section>
+    </div>
+    <div class="span12">
+      <section><%= link_to "Sign In", new_user_registration_path, class: 'btn btn-large' %></section>
+    </div>
+    <div class="span12">
+      <section>
+        <%= render '/events/form' %>
+      </section>
+    </div>
+
   </div>
 </div>
