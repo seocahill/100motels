@@ -1,5 +1,4 @@
 class Organizer::EventsController < Organizer::BaseController
-before_filter :authorize_admin!
 has_scope :pending, type: :boolean
 has_scope :paid, type: :boolean
 has_scope :failed, type: :boolean

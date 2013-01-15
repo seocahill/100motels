@@ -11,6 +11,7 @@ class RefundCustomer
     refund = charge.refund
     @order.stripe_event = :refunded if refund[:refunded] == true
     @order.save!
+    Notifier.refund_customer_order(@order).deliver
   rescue Stripe::InvalidRequestError => e
     Rails.logger.error "Stripe error while processing refund: #{e.message}"
   end

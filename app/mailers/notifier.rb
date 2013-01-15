@@ -28,4 +28,11 @@ class Notifier < ActionMailer::Base
     @order = order
     mail to: order.email, subject: "We could not complete your order"
   end
+
+  def refund_customer_order(order)
+    @order = order
+    mail to: order.email, subject: "You have been refunded"
+  end
+
+
 end

@@ -24,7 +24,8 @@ class OrdersController < ApplicationController
       Notifier.transaction_summary(@orders, @organizer).deliver
       flash[:notice] = "Finished processing #{@orders.count} Customers, check your email for details."
     elsif params[:refund]
-      @orders.each { |order| RefundCustomer.new(order, @organizer).refund_charge if order.stripe_event == :paid }
+      @orders.each { |order| RefundCustomer.new(order, @organizer).refund_charge if [:paid, :tickets_sent].include? order.stripe_event }
+      Notifier.transaction_summary(@orders, @organizer).deliver
       flash[:notice] = "Finished processing #{@orders.count} Customers, check your email for details."
     else
       flash[:error] = "Something went wrong."
