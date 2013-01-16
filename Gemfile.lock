@@ -45,6 +45,9 @@ GEM
       redcarpet (~> 2.0)
       rinku (~> 1.5.0)
     bcrypt-ruby (3.0.1)
+    best_in_place (2.0.2)
+      jquery-rails
+      rails (~> 3.1)
     better_errors (0.3.2)
       coderay (>= 1.0.0)
       erubis (>= 2.7.0)
@@ -156,9 +159,6 @@ GEM
       treetop (~> 1.4.8)
     mail_view (1.0.3)
       tilt
-    mercury-rails (0.9.0)
-      coffee-rails
-      railties (~> 3.2)
     meta_request (0.2.1)
       rack-contrib
       rails
@@ -302,6 +302,7 @@ DEPENDENCIES
   activerecord-postgres-hstore
   attr_encrypted
   auto_html
+  best_in_place
   better_errors
   binding_of_caller
   bootstrap-sass
@@ -328,7 +329,6 @@ DEPENDENCIES
   launchy
   letter_opener
   mail_view (~> 1.0.3)
-  mercury-rails
   meta_request (= 0.2.1)
   newrelic_rpm
   omniauth-stripe-connect

@@ -38,7 +38,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
-gem 'mercury-rails'
+gem 'best_in_place'
 gem 'devise'
 gem 'simple_form'
 gem 'stripe'
