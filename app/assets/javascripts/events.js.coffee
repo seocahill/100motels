@@ -27,3 +27,9 @@ $ ->
   $('#event_city').change ->
     $(this).closest('form').trigger('submit')
 
+# BIP
+jQuery ->
+  $('.best_in_place').best_in_place()
+
+$(".best_in_place").bind "ajax:success", ->
+  $(this).closest('tr').effect('highlight')

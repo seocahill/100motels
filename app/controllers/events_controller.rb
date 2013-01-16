@@ -1,7 +1,6 @@
 class EventsController < ApplicationController
 
-  before_filter :find_event, :only => [:show, :update]
-  respond_to :html, :json
+  before_filter :find_event, :only => [:show, :update, :edit]
 
   has_scope :tonight , type: :boolean
   has_scope :week_end , type: :boolean
@@ -29,10 +28,20 @@ class EventsController < ApplicationController
     redirect_to @event, notice: "Welcome to your event, you can save this account at any time, click on 'save account' in the top menu"
   end
 
+  def edit
+  end
+
   def update
     @event.update_attributes(params[:event])
-    respond_with @event
-
+    respond_to do |format|
+      if @event.update_attributes(params[:event])
+        format.html { redirect_to(@event, :notice => 'User was successfully updated.') }
+        format.json { respond_with_bip(@event) }
+      else
+        format.html { render :action => "edit" }
+        format.json { respond_with_bip(@event) }
+      end
+    end
   end
 
 private

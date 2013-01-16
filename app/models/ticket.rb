@@ -34,4 +34,11 @@ private
     order.stripe_event = :tickets_sent
     order.save!
   end
+
+  def calculate_cumulative_quantity_by_email
+    # after_create
+    count = Order.where(email: self.order.email, event_id: self.event_id).count
+    # ticket.quantity_counter = count
+    # ticket.save!
+  end
 end

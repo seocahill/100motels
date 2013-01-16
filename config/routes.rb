@@ -31,7 +31,7 @@ OneHundredMotels::Application.routes.draw do
     end
   end
 
-  resources :events, only: [:show, :index, :create, :update]
+  resources :events
 
   resources :orders do
     collection do
