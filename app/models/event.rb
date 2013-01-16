@@ -17,19 +17,8 @@ class Event < ActiveRecord::Base
   scope :week_end, lambda { where("date <= ? and date >= ?", Time.now.end_of_week, Time.now) }
   scope :month_end, lambda { where("date <= ? and date >= ?", Time.now.end_of_month, Time.now) }
   scope :event_city, proc { |city| joins(:location).where("city = ?", city) }
-  scope :visible, where("state > 0 and state < 3")
+  scope :visible, where("state > 0 and state < 3").where(visible: :true)
 
-  def visible
-    state
-  end
-
-  def visible=(new_state)
-    if new_state == "visible"
-      self.state = :visible
-    else
-      self.state = :hidden
-    end
-  end
 
   def create_location
     self.location = Location.create(address: new_location) if new_location.present?

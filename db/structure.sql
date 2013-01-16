@@ -67,7 +67,8 @@ CREATE TABLE events (
     image character varying(255),
     image_html character varying(255),
     location_id integer,
-    state bigint DEFAULT 0
+    state bigint DEFAULT 0,
+    visible boolean DEFAULT false
 );
 
 
@@ -755,3 +756,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130115203408');
 INSERT INTO schema_migrations (version) VALUES ('20130116115846');
 
 INSERT INTO schema_migrations (version) VALUES ('20130116124613');
+
+INSERT INTO schema_migrations (version) VALUES ('20130116173928');

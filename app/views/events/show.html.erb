@@ -9,7 +9,7 @@
 		</div>
 		<div class="span2">
 			<% if user_signed_in?  %>
-				<strong>State: <span class="badge"><%= @event.state %></span></strong>
+				<strong>Event Visible?: <span class="badge"><%= best_in_place_if user_signed_in?, @event, :visible, :type => :checkbox %></span></strong>
 			<% end %>
 		</div>
 	</div>
@@ -17,9 +17,7 @@
 		<div class="row-fluid">
 			<div class="label-box">Ticket Info</div>
 				<div class="span3">
-					<%= form_for @event do |f| %>
-						<%= f.filepicker_field :image, onchange: "this.form.submit();" %>
-					<% end %>
+					<%= form_for @event do |f| f.filepicker_field(:image, onchange: "this.form.submit();") end %>
 					<% if @event.image? %>
 						<%= filepicker_image_tag @event.image, width: 300, height: 300, fit: 'crop' %>
 					<% else %>
@@ -46,7 +44,7 @@
 				<div class="span3">
 					<div class="section-box centered-box">
 						<h1>
-							<%= number_to_currency(@event.ticket_price) %> <br>
+							<%= best_in_place_if user_signed_in?, @event, :ticket_price, display_with: :number_to_currency %> <br>
 							<small>per ticket</small>
 						</h1>
 						<%= render 'add_to_cart_form' %>
