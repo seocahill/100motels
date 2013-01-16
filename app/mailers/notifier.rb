@@ -11,6 +11,7 @@ class Notifier < ActionMailer::Base
   end
 
   def ticket(order, ticket)
+    @ticket = ticket
     @order = order
     @qr = ticket.number.to_qr_image(:size => "170x170")
     @event = Event.find(order.event_id)

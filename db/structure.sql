@@ -326,7 +326,8 @@ CREATE TABLE tickets (
     event_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    admitted timestamp without time zone
+    admitted timestamp without time zone,
+    quantity_counter integer
 );
 
 
@@ -752,3 +753,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130115135959');
 INSERT INTO schema_migrations (version) VALUES ('20130115203408');
 
 INSERT INTO schema_migrations (version) VALUES ('20130116115846');
+
+INSERT INTO schema_migrations (version) VALUES ('20130116124613');
