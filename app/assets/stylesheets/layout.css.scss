@@ -1,28 +1,25 @@
 // Fonts
 @import url(//fonts.googleapis.com/css?family=Racing+Sans+One);
 
-//inset title box
+//sticky footer
 
+* {
+  margin: 0;
+}
 html, body {
   height: 100%;
 }
-
-body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  line-height: 20px;
-  color: #333;
-}
-
-#wrap {
+.wrapper {
   min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -142px; /* the bottom margin is the negative value of the footer's height */
+}
+.footer, .push {
+  height: 142px; /* .push must be the same height as .footer */
 }
 
-#main {
-  overflow:auto;
-  padding-bottom:200px; /* this needs to be bigger than footer height*/
-}
-
+// other stuff
 .section-box {
   position: relative;
   margin: 25px 0;

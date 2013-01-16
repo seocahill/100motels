@@ -24,7 +24,7 @@
           <tr>
             <td><%= link_to t.order.name, order_path(t.order) %></td>
             <td><%= t.admitted ? "Admitted #{t.admitted}" : "Not Admitted" %></td>
-            <td><%= link_to "Admit", organizer_event_ticket_path(@event, t), method: :put, class: "btn btn-warning" unless t.admitted %></td>
+            <td><%= link_to "Admit", organizer_event_ticket_path(@event, t), method: :put, class: "btn btn-warning", data: {confirm: t.number} unless t.admitted %></td>
           </tr>
           <% end %>
         </tbody>

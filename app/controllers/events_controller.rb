@@ -17,12 +17,15 @@ class EventsController < ApplicationController
     @organizer = User.find(@event.promoter_id)
   end
 
-  def update
-    event = Event.find(params[:id])
-    event.artist = params[:content][:artist][:value]
-    event.about = params[:content][:about][:value]
-    event.save!
-    render text: ""
+  def create
+    @event = Event.new
+    @event.artist = "Your Artist"
+    @event.venue = "Somewhere"
+    @event.date = 1.month.from_now
+    @event.ticket_price = 15.0
+    @event.promoter_id = current_or_guest_user.id
+    @event.save!
+    redirect_to @event, notice: "Welcome to your event"
   end
 
 private

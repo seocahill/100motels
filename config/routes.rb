@@ -2,8 +2,6 @@ OneHundredMotels::Application.routes.draw do
 
   root :to => 'pages#index'
 
-  mount Mercury::Engine => '/'
-
   use_doorkeeper
 
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
