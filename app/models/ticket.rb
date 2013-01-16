@@ -18,9 +18,8 @@ class Ticket < ActiveRecord::Base
   end
 
   def calculate_cumulative_quantity_by_email
-    # count = Order.where(email: self.order.email, event_id: self.event_id).pluck(:quantity)
-    self.quantity_counter = 3 #count.inject(:+)
-    self.save!
+    orders = Order.where(email: self.order.email, event_id: self.event_id).pluck(:id)
+    self.quantity_counter = Ticket.where(order_id: orders).count
   end
 
 private
