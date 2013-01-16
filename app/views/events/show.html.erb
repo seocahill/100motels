@@ -17,6 +17,9 @@
 		<div class="row-fluid">
 			<div class="label-box">Ticket Info</div>
 				<div class="span3">
+					<%= form_for @event do |f| %>
+						<%= f.filepicker_field :image, onchange: "this.form.submit();" %>
+					<% end %>
 					<% if @event.image? %>
 						<%= filepicker_image_tag @event.image, width: 300, height: 300, fit: 'crop' %>
 					<% else %>
@@ -26,7 +29,7 @@
 				<div class="span5" align="center">
 					<h2>
 						<small>Promoter presents...</small> <br>
-						<div id="artist"><%= best_in_place @event, :artist %></div>
+						<div id="artist"><%= best_in_place_if user_signed_in?, @event, :artist %></div>
 					</h2>
 					<h4>
 						<%= @event.date.strftime("%a, %d %b %Y") %> <br>
@@ -60,14 +63,15 @@
 					<div class="span4">
 						<h3>Promoter says...</h3>
 						<div id="about">
-							<%= best_in_place @event, :about, :type => :textarea, :ok_button => 'Save', :cancel_button => 'Cancel', :nil => "Click me to add content!"  %>
+							<%= best_in_place @event, :about, :type => :textarea, :ok_button => 'Save', :cancel_button => 'Cancel', :nil => "Click me to add content!", :display_with => :simple_format  %>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="span6">
 				<h3>
-					Watch....
+					Watch.... <br>
+					<small><%= best_in_place_if user_signed_in?, @event, :video %></small>
 					<% if @event.video_html? %>
 						<%= @event.video_html  %>
 					<% else %>
@@ -75,7 +79,8 @@
 					<% end %>
 				</h3>
 				<h3>
-					Listen....
+					Listen.... <br>
+					<small><%= best_in_place_if user_signed_in?, @event, :music %></small>
 					<% if @event.music_html? %>
 						<%= @event.music_html  %>
 					<% else %>

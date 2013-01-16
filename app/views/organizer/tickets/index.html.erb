@@ -11,6 +11,7 @@
   <div class="row">
     <div class="span12">
       <%= link_to "Back", organizer_event_path(@event), class: "btn" %>
+      <p class="lead"><%= @tickets.where('admitted is not null').count %> out of <%= @tickets.count %> Admitted </p>
       <%= form_tag organizer_event_tickets_path, method: :get, class: "" do %>
           <%= text_field_tag :query, params[:query], class: "span3 pull-right", placeholder: "Enter Ticket Number" %>
       <% end %>
