@@ -4,7 +4,7 @@ OneHundredMotels::Application.routes.draw do
 
   use_doorkeeper
 
-  devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
+  post 'auth/:provider/callback', to: 'omniauth_callbacks#all'
 
   resources :users, only: [:index, :show] do
     member { put :change_card }
