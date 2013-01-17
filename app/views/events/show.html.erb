@@ -8,9 +8,9 @@
 		<div class="span2">
 		</div>
 		<div class="span2">
-			<% if user_signed_in?  %>
+			<% if current_user  %>
 				<strong>Event Visible?:
-					<span class="badge"><%= best_in_place_if user_signed_in?, @event, :visible, :type => :checkbox %></span>
+					<span class="badge"><%= best_in_place_if current_user, @event, :visible, :type => :checkbox %></span>
 				</strong>
 				<p><%= link_to "Edit in form", edit_event_path(@event) %> </p>
 			<% end %>
@@ -30,11 +30,11 @@
 				<div class="span5" align="center">
 					<h2>
 						<small>Promoter presents...</small> <br>
-						<div id="artist"><%= best_in_place_if user_signed_in?, @event, :artist %></div>
+						<div id="artist"><%= best_in_place_if current_user, @event, :artist %></div>
 					</h2>
 					<h4>
 						<%#= @event.date.strftime("%a, %d %b %Y") %> <br>
-						<%= best_in_place_if user_signed_in?, @event, :date, type: :date, display_with: lambda { |v| v.strftime("%a, %d %b %Y") } %>
+						<%= best_in_place_if current_user, @event, :date, type: :date, display_with: lambda { |v| v.strftime("%a, %d %b %Y") } %>
 						 <br>
 						<%= best_in_place @event, :venue %> <br>
 					</h4>
@@ -48,7 +48,7 @@
 				<div class="span3">
 					<div class="section-box centered-box">
 						<h1>
-							<%= best_in_place_if user_signed_in?, @event, :ticket_price, display_with: :number_to_currency %> <br>
+							<%= best_in_place_if current_user, @event, :ticket_price, display_with: :number_to_currency %> <br>
 							<small>per ticket</small>
 						</h1>
 						<%= render 'add_to_cart_form' %>
@@ -73,7 +73,7 @@
 			<div class="span6">
 				<h3>
 					Watch.... <br>
-					<small><%= best_in_place_if user_signed_in?, @event, :video %></small>
+					<small><%= best_in_place_if current_user, @event, :video %></small>
 					<% if @event.video_html? %>
 						<%= @event.video_html  %>
 					<% else %>
@@ -82,7 +82,7 @@
 				</h3>
 				<h3>
 					Listen.... <br>
-					<small><%= best_in_place_if user_signed_in?, @event, :music %></small>
+					<small><%= best_in_place_if current_user, @event, :music %></small>
 					<% if @event.music_html? %>
 						<%= @event.music_html  %>
 					<% else %>

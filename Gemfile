@@ -38,6 +38,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'bcrypt-ruby'
 gem 'best_in_place'
 gem 'simple_form'
 gem 'stripe'

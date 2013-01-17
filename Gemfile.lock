@@ -44,6 +44,7 @@ GEM
     auto_html (1.6.0)
       redcarpet (~> 2.0)
       rinku (~> 1.5.0)
+    bcrypt-ruby (3.0.1)
     best_in_place (2.0.2)
       jquery-rails
       rails (~> 3.1)
@@ -293,6 +294,7 @@ DEPENDENCIES
   activerecord-postgres-hstore
   attr_encrypted
   auto_html
+  bcrypt-ruby
   best_in_place
   better_errors
   binding_of_caller

@@ -4,14 +4,10 @@
 		<div class="row">
 			<div class="label-box">User Info</div>
 			<div id="organizer-pic" class="span2" align="center">
-				<% if @user.avatar? %>
-					<%= filepicker_image_tag @user.avatar, width: 200, height: 200, fit: 'crop' %>
-				<% else %>
-					<img src="//placehold.it/200" class="img-polaroid">
-				<% end %>
+				<!-- user image -->
 				<h4>
 				</h4>
-				<p><%= link_to "Edit Account Settings", edit_user_registration_path(@user), class: "btn btn-block" %></p>
+				<p><%= link_to "Edit Account Settings", class: "btn btn-block" %></p>
 			</div>
       <div class="span9">
         <div class="row-fluid">
@@ -20,18 +16,18 @@
               <dt>Email</dt>
               <dd><%= @user.email %></dd>
               <dt>Username</dt>
-              <dd><%= @user.name || "none provided" %></dd>
+              <dd><%#= @user.name || "none provided" %></dd>
             </dl>
           </div>
           <div class="span4">
             <dl>
               <dt>Current Card</dt>
               <dd>
-                <% if @user.customer_id %>
-                  <%= @user.type %> #<%= @user.last4 %>, Expires: <%= @user.exp_month %>/<%= @user.exp_year %>
-                <% else %>
+                <%# if @user.customer_id %>
+                  <%#= @user.type %> <%#= @user.last4 %>, Expires: <%#= @user.exp_month %>/<%#= @user.exp_year %>
+                <%# else %>
                   none provided
-                <% end %>
+                <%# end %>
               </dd>
               <dt>Change or Add card</dt>
               <dd>
@@ -45,19 +41,18 @@
           <div class="span4">
             <dl>
               <dt>Artist Media</dt>
-              <% if @user.media %>
-              <dd> <%= @user.media %> </dd>
+
               <dt>Preview (opens in new window)</dt>
               <dd>
                 <a href="#preview-modal" data-toggle="modal" class="btn">Preview Media</a>
               </dd>
-              <% else %>
+
               <dd><p>You can add a Vimeo, Youtube or Soundcloud playlist here.</p></dd>
               <!-- <dd class="user-account-spacer"></dd> -->
               <dd>
-                <%= link_to "Add Media", edit_user_registration_path(@user), class: "btn" %>
+
               </dd>
-              <% end %>
+
               </dd>
             </dl>
           </div>
@@ -73,7 +68,7 @@
     </div>
     <div class="modal-body">
       <div id="media-frame"></div>
-        <%= current_user.media_html %>
+
     </div>
     <div class="modal-footer">
       <a href="#" class="btn" data-dismiss="modal">Close</a>

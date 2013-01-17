@@ -2,12 +2,12 @@
     <div id="ticket-price" data-url="<%= @event.ticket_price * 100 %>"></div>
     <%= f.input :event_id, as: :hidden, input_html: { value: @event.id } %>
     <%= f.input :quantity, collection: 1..4, input_html: { class: "input-mini"} %>
-    <% if !user_signed_in? %>
+    <% if !current_user %>
       <%= f.input :email, label: false, placeholder: "  your email address", input_html: { class: "input-medium" }, required: :true %>
     <% else %>
       <%= f.input :email, as: :hidden, input_html: { value: current_user.email } %>
     <% end %>
-    <% if user_signed_in? && current_user.customer_id %>
+    <% if current_user && current_user.customer_id %>
       <%= link_to "Buy Now", "#buy-modal", class: "btn btn-success btn-large", data: {toggle: "modal"}, id: "buy-now" %>
         <div class="modal hide fade" id="buy-modal">
           <div class="modal-header">

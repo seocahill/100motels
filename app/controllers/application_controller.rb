@@ -5,14 +5,15 @@ class ApplicationController < ActionController::Base
   private
 
     def authorize_admin!
-      # authenticate_user!
+      redirect_to login_url, alert: "Not authorized" if current_user.nil?
     end
 
-    def user_signed_in?
+    def current_user
       # not working yet
     end
 
-    def current_or_guest_user
-      # does nothing yet
+    def current_user
+      @current_user ||= User.find(session[:user_id]) if session[:user_id]
     end
+    helper_method :current_user
 end
