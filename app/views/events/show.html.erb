@@ -9,7 +9,10 @@
 		</div>
 		<div class="span2">
 			<% if user_signed_in?  %>
-				<strong>Event Visible?: <span class="badge"><%= best_in_place_if user_signed_in?, @event, :visible, :type => :checkbox %></span></strong>
+				<strong>Event Visible?:
+					<span class="badge"><%= best_in_place_if user_signed_in?, @event, :visible, :type => :checkbox %></span>
+				</strong>
+				<p><%= link_to "Edit in form", edit_event_path(@event) %> </p>
 			<% end %>
 		</div>
 	</div>
