@@ -1,49 +1,18 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  before_filter :current_or_guest_user
 
-  def current_or_guest_user
-    if current_user
-      if session[:guest_user_id]
-        session[:guest_user_id] = nil
-      end
-      if current_user.guest_id
-        guest_orders
-      end
-      current_user
-    else
-      guest_user
-    end
-  end
-
-  def guest_user
-    User.find(session[:guest_user_id] ||= create_guest_user.id)
-  end
 
   private
 
     def authorize_admin!
-      authenticate_user!
+      # authenticate_user!
     end
 
-    def guest_orders
-      guest_orders = User.find(current_user.guest_id).orders.all
-      guest_orders.each do |order|
-        order.user_id = current_user.id
-        order.save
-      end
-      current_user.guest_id = nil
-      current_user.save
+    def user_signed_in?
+      # not working yet
     end
 
-    def create_guest_user
-      u = User.create(:email => "guest_#{Time.now.to_i}#{rand(99)}@example.com")
-      u.save(:validate => false)
-      u
+    def current_or_guest_user
+      # does nothing yet
     end
-
-    def after_sign_in_path_for(user)
-     user_path(current_user)
-    end
-
 end

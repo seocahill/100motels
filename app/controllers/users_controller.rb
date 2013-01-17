@@ -1,12 +1,36 @@
 class UsersController < ApplicationController
 
-  def index
-    @users = User.all(order: "email")
-  end
-
   def show
     @user = User.find(params[:id])
-    @orders = current_user.orders.page(params[:page]).per_page(3)
+    @orders = Order.all
+  end
+
+  def create
+    @user = User.new(params[:user])
+    respond_to do |format|
+      if @user.save
+        flash[:notice] = 'User was successfully created.'
+        format.html { redirect_to(@user) }
+        format.xml { render xml: @user, status: :created, location: @user }
+      else
+        format.html { render action: "new" }
+        format.xml { render xml: @user.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    @user.update_attributes(params[:user])
+    @user.save!
+  end
+
+  def destroy
+    user = User.find(params[:id])
   end
 
   def change_card

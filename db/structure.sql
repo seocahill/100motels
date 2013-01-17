@@ -352,6 +352,41 @@ ALTER SEQUENCE tickets_id_seq OWNED BY tickets.id;
 
 
 --
+-- Name: users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE users (
+    id integer NOT NULL,
+    email character varying(255),
+    password_digest character varying(255),
+    auth_token character varying(255),
+    password_reset_token character varying(255),
+    password_reset_sent_at timestamp without time zone,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE users_id_seq OWNED BY users.id;
+
+
+--
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -405,6 +440,13 @@ ALTER TABLE ONLY orders ALTER COLUMN id SET DEFAULT nextval('orders_id_seq'::reg
 --
 
 ALTER TABLE ONLY tickets ALTER COLUMN id SET DEFAULT nextval('tickets_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
 --
@@ -469,6 +511,14 @@ ALTER TABLE ONLY orders
 
 ALTER TABLE ONLY tickets
     ADD CONSTRAINT tickets_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
 
 
 --
@@ -560,6 +610,20 @@ CREATE INDEX index_tickets_on_event_id ON tickets USING btree (event_id);
 --
 
 CREATE INDEX index_tickets_on_order_id ON tickets USING btree (order_id);
+
+
+--
+-- Name: index_users_on_auth_token; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_users_on_auth_token ON users USING btree (auth_token);
+
+
+--
+-- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_users_on_email ON users USING btree (email);
 
 
 --
@@ -664,3 +728,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130116115846');
 INSERT INTO schema_migrations (version) VALUES ('20130116124613');
 
 INSERT INTO schema_migrations (version) VALUES ('20130116173928');
+
+INSERT INTO schema_migrations (version) VALUES ('20130117210849');

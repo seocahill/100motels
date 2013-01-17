@@ -1,7 +1,6 @@
 OneHundredMotels::Application.routes.draw do
 
-  resources :users
-
+  get "sessions/new"
 
   root :to => 'pages#index'
 
@@ -9,7 +8,7 @@ OneHundredMotels::Application.routes.draw do
 
   post 'auth/:provider/callback', to: 'omniauth_callbacks#all'
 
-  resources :users, only: [:index, :show] do
+  resources :users do
     member { put :change_card }
   end
 

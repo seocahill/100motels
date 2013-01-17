@@ -11,15 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121210113309) do
+ActiveRecord::Schema.define(:version => 20130117210849) do
 
   create_table "events", :force => true do |t|
     t.string   "artist"
     t.string   "venue"
     t.date     "date"
     t.time     "doors"
-    t.datetime "created_at",                                                               :null => false
-    t.datetime "updated_at",                                                               :null => false
+    t.datetime "created_at",                                                                   :null => false
+    t.datetime "updated_at",                                                                   :null => false
     t.decimal  "ticket_price",                :precision => 8, :scale => 2
     t.integer  "promoter_id"
     t.integer  "venue_capacity"
@@ -34,9 +34,21 @@ ActiveRecord::Schema.define(:version => 20121210113309) do
     t.string   "image_html"
     t.integer  "location_id"
     t.integer  "state",          :limit => 8,                               :default => 0
+    t.boolean  "visible",                                                   :default => false
   end
 
   add_index "events", ["location_id"], :name => "index_events_on_location_id"
+
+  create_table "events_users", :force => true do |t|
+    t.integer  "event_id"
+    t.integer  "user_id"
+    t.integer  "state",      :default => 0
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  add_index "events_users", ["event_id"], :name => "index_events_users_on_event_id"
+  add_index "events_users", ["user_id"], :name => "index_events_users_on_user_id"
 
   create_table "locations", :force => true do |t|
     t.string   "address"
@@ -109,37 +121,30 @@ ActiveRecord::Schema.define(:version => 20121210113309) do
   add_index "orders", ["event_id"], :name => "index_orders_on_event_id"
   add_index "orders", ["user_id"], :name => "index_orders_on_user_id"
 
-  create_table "users", :force => true do |t|
-    t.string   "email",                  :default => "",    :null => false
-    t.string   "encrypted_password",     :default => "",    :null => false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.string   "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email"
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
-    t.boolean  "admin",                  :default => false
-    t.string   "customer_id"
-    t.string   "name"
-    t.string   "avatar"
-    t.integer  "last4"
-    t.string   "media"
-    t.string   "media_html"
-    t.integer  "location_id"
-    t.hstore   "customer_details"
-    t.integer  "guest_id"
+  create_table "tickets", :force => true do |t|
+    t.string   "number"
+    t.integer  "order_id"
+    t.integer  "event_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.datetime "admitted"
+    t.integer  "quantity_counter"
   end
 
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
-  add_index "users", ["location_id"], :name => "index_users_on_location_id"
-  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  add_index "tickets", ["event_id"], :name => "index_tickets_on_event_id"
+  add_index "tickets", ["order_id"], :name => "index_tickets_on_order_id"
+
+  create_table "users", :force => true do |t|
+    t.string   "email"
+    t.string   "password_digest"
+    t.string   "auth_token"
+    t.string   "password_reset_token"
+    t.datetime "password_reset_sent_at"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
+  end
+
+  add_index "users", ["auth_token"], :name => "index_users_on_auth_token"
+  add_index "users", ["email"], :name => "index_users_on_email"
 
 end
