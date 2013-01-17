@@ -1,5 +1,8 @@
 OneHundredMotels::Application.routes.draw do
 
+  resources :users
+
+
   root :to => 'pages#index'
 
   use_doorkeeper
