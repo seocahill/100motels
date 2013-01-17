@@ -47,3 +47,4 @@ class Event < ActiveRecord::Base
     simple_format
   end
 end
+
