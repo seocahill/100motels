@@ -13,7 +13,11 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     respond_to do |format|
       if @user.save
-        session[:user_id] = @user.id
+        if params[:remember_me]
+        cookies.permanent[:auth_token] = @user.auth_token
+      else
+        cookies[:auth_token] = @user.auth_token
+      end
         flash[:notice] = 'Thank you for signing up!.'
         format.html { redirect_to(@user) }
       else

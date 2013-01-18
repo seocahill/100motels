@@ -16,6 +16,8 @@ OneHundredMotels::Application.routes.draw do
     member { put :change_card }
   end
 
+  resources :password_resets
+
   post '/stripe' => 'stripe_events#listen'
 
   get '/info' => 'pages#info'
