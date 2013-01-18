@@ -4,7 +4,7 @@
         <ul class="nav nav-pills pull-right">
           <li><%= link_to "Search Events", events_path %></li>
           <li><%= link_to "Help & Information", info_path %></li>
-          <li><%= current_user ? link_to(current_user.email, user_path(current_user)) : link_to("Sign In", login_path) %></li>
+          <li><%= current_user ? link_to(current_user.your_account_or_email, user_path(current_user)) : link_to("Sign In", login_path) %></li>
         </ul>
         <h3 class="muted">100 Motels</h3>
       </div>
@@ -17,7 +17,7 @@
         </h1> <br>
         <p class="lead">As a musician I get this a lot. People want me to play for them, I want to play for them but neither of us
           wants to pay the cost of the show up front. Hoping to recoup costs ('build it and they will come') is worrisome  while paying for promotion is expensive with no guaranteed return. 100 Motels is a better option I think. Go ahead, try it out.  </p>
-        <%= link_to "New Event", events_path, method: :post, class: 'btn btn-large btn-success' %>
+        <%= link_to "New Event", guest_profiles_path, method: :post, class: 'btn btn-large btn-success' %>
       </div>
 
       <hr>

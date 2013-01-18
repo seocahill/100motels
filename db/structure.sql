@@ -43,6 +43,38 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: event_users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE event_users (
+    id integer NOT NULL,
+    event_id integer,
+    user_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: event_users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE event_users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: event_users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE event_users_id_seq OWNED BY event_users.id;
+
+
+--
 -- Name: events; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -92,24 +124,21 @@ ALTER SEQUENCE events_id_seq OWNED BY events.id;
 
 
 --
--- Name: events_users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: guest_profiles; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE TABLE events_users (
+CREATE TABLE guest_profiles (
     id integer NOT NULL,
-    event_id integer,
-    user_id integer,
-    state integer DEFAULT 0,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
 
 
 --
--- Name: events_users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: guest_profiles_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE events_users_id_seq
+CREATE SEQUENCE guest_profiles_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -118,10 +147,10 @@ CREATE SEQUENCE events_users_id_seq
 
 
 --
--- Name: events_users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: guest_profiles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE events_users_id_seq OWNED BY events_users.id;
+ALTER SEQUENCE guest_profiles_id_seq OWNED BY guest_profiles.id;
 
 
 --
@@ -158,6 +187,45 @@ CREATE SEQUENCE locations_id_seq
 --
 
 ALTER SEQUENCE locations_id_seq OWNED BY locations.id;
+
+
+--
+-- Name: member_profiles; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE member_profiles (
+    id integer NOT NULL,
+    name character varying(255),
+    avatar character varying(255),
+    email character varying(255),
+    password_digest character varying(255),
+    auth_token character varying(255),
+    password_reset_token character varying(255),
+    password_reset_sent_at timestamp without time zone,
+    confirmation_token character varying(255),
+    confirmation_sent_at timestamp without time zone,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: member_profiles_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE member_profiles_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: member_profiles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE member_profiles_id_seq OWNED BY member_profiles.id;
 
 
 --
@@ -357,11 +425,8 @@ ALTER SEQUENCE tickets_id_seq OWNED BY tickets.id;
 
 CREATE TABLE users (
     id integer NOT NULL,
-    email character varying(255),
-    password_digest character varying(255),
-    auth_token character varying(255),
-    password_reset_token character varying(255),
-    password_reset_sent_at timestamp without time zone,
+    profile_id integer,
+    profile_type character varying(255),
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -390,6 +455,13 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY event_users ALTER COLUMN id SET DEFAULT nextval('event_users_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY events ALTER COLUMN id SET DEFAULT nextval('events_id_seq'::regclass);
 
 
@@ -397,7 +469,7 @@ ALTER TABLE ONLY events ALTER COLUMN id SET DEFAULT nextval('events_id_seq'::reg
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY events_users ALTER COLUMN id SET DEFAULT nextval('events_users_id_seq'::regclass);
+ALTER TABLE ONLY guest_profiles ALTER COLUMN id SET DEFAULT nextval('guest_profiles_id_seq'::regclass);
 
 
 --
@@ -405,6 +477,13 @@ ALTER TABLE ONLY events_users ALTER COLUMN id SET DEFAULT nextval('events_users_
 --
 
 ALTER TABLE ONLY locations ALTER COLUMN id SET DEFAULT nextval('locations_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY member_profiles ALTER COLUMN id SET DEFAULT nextval('member_profiles_id_seq'::regclass);
 
 
 --
@@ -450,6 +529,14 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 
 
 --
+-- Name: event_users_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY event_users
+    ADD CONSTRAINT event_users_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: events_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -458,11 +545,11 @@ ALTER TABLE ONLY events
 
 
 --
--- Name: events_users_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: guest_profiles_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
-ALTER TABLE ONLY events_users
-    ADD CONSTRAINT events_users_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY guest_profiles
+    ADD CONSTRAINT guest_profiles_pkey PRIMARY KEY (id);
 
 
 --
@@ -471,6 +558,14 @@ ALTER TABLE ONLY events_users
 
 ALTER TABLE ONLY locations
     ADD CONSTRAINT locations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: member_profiles_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY member_profiles
+    ADD CONSTRAINT member_profiles_pkey PRIMARY KEY (id);
 
 
 --
@@ -522,6 +617,20 @@ ALTER TABLE ONLY users
 
 
 --
+-- Name: index_event_users_on_event_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_event_users_on_event_id ON event_users USING btree (event_id);
+
+
+--
+-- Name: index_event_users_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_event_users_on_user_id ON event_users USING btree (user_id);
+
+
+--
 -- Name: index_events_on_location_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -529,24 +638,24 @@ CREATE INDEX index_events_on_location_id ON events USING btree (location_id);
 
 
 --
--- Name: index_events_users_on_event_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_events_users_on_event_id ON events_users USING btree (event_id);
-
-
---
--- Name: index_events_users_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_events_users_on_user_id ON events_users USING btree (user_id);
-
-
---
 -- Name: index_locations_on_latitude_and_longitude; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX index_locations_on_latitude_and_longitude ON locations USING btree (latitude, longitude);
+
+
+--
+-- Name: index_member_profiles_on_auth_token; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_member_profiles_on_auth_token ON member_profiles USING btree (auth_token);
+
+
+--
+-- Name: index_member_profiles_on_email; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_member_profiles_on_email ON member_profiles USING btree (email);
 
 
 --
@@ -613,17 +722,17 @@ CREATE INDEX index_tickets_on_order_id ON tickets USING btree (order_id);
 
 
 --
--- Name: index_users_on_auth_token; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_users_on_profile_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE INDEX index_users_on_auth_token ON users USING btree (auth_token);
+CREATE INDEX index_users_on_profile_id ON users USING btree (profile_id);
 
 
 --
--- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_users_on_profile_type; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE INDEX index_users_on_email ON users USING btree (email);
+CREATE INDEX index_users_on_profile_type ON users USING btree (profile_type);
 
 
 --
@@ -723,10 +832,14 @@ INSERT INTO schema_migrations (version) VALUES ('20130115135959');
 
 INSERT INTO schema_migrations (version) VALUES ('20130115203408');
 
-INSERT INTO schema_migrations (version) VALUES ('20130116115846');
-
 INSERT INTO schema_migrations (version) VALUES ('20130116124613');
 
 INSERT INTO schema_migrations (version) VALUES ('20130116173928');
 
 INSERT INTO schema_migrations (version) VALUES ('20130117210849');
+
+INSERT INTO schema_migrations (version) VALUES ('20130118163025');
+
+INSERT INTO schema_migrations (version) VALUES ('20130118163050');
+
+INSERT INTO schema_migrations (version) VALUES ('20130118184821');

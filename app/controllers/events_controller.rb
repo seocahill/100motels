@@ -18,12 +18,11 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new
+    @event = current_user.events.new
     @event.artist = "A Title for your Event"
     @event.venue = "A Dungeon or Speak hopefully"
     @event.date = 1.month.from_now
     @event.ticket_price = 15.0
-    @event.promoter_id = current_or_guest_user.id
     @event.save!
     redirect_to @event, notice: "Welcome to your event, you can save this account at any time, click on 'save account' in the top menu"
   end

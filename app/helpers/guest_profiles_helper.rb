@@ -1,0 +1,2 @@
+module GuestProfilesHelper
+end

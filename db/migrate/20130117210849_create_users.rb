@@ -1,15 +1,12 @@
 class CreateUsers < ActiveRecord::Migration
   def change
     create_table :users do |t|
-      t.string :email
-      t.string :password_digest
-      t.string :auth_token
-      t.string :password_reset_token
-      t.datetime :password_reset_sent_at
+      t.integer :profile_id
+      t.string :profile_type
 
       t.timestamps
     end
-    add_index :users, :email
-    add_index :users, :auth_token
+    add_index :users, :profile_id
+    add_index :users, :profile_type
   end
 end
