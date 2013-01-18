@@ -19,15 +19,17 @@ class Ticket < ActiveRecord::Base
 
   def calculate_cumulative_quantity_by_email
     orders = Order.where(email: self.order.email, event_id: self.event_id).pluck(:id)
-    self.quantity_counter = Ticket.where(order_id: orders).count
+    previous_tickets = Ticket.where(order_id: orders).count
+    self.quantity_counter = previous_tickets + 1
   end
 
 private
 
   def generate_ticket_number
+    event = Event.find(self.event_id)
     begin
       self.number = (0...8).map{65.+(rand(26)).chr}.join
-    end while self.class.exists?(number: number)
+    end while event.tickets.exists?(number: number)
   end
 
   def mail_ticket

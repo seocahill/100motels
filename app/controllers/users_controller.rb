@@ -32,10 +32,6 @@ class UsersController < ApplicationController
     @user.save!
   end
 
-  def destroy
-    user = User.find(params[:id])
-  end
-
   def change_card
     @user = User.find(params[:id])
     card = params[:stripeToken]
