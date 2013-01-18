@@ -5,7 +5,6 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :remember_me
   attr_encrypted :api_key, key: ENV['ATTR_ENCRYPTED_KEY']
 
-  validates_presence_of :password, on: :create
   validates :email, presence: :true, uniqueness: :true
   validates_format_of :email, with: /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
 
