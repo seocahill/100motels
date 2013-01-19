@@ -5,13 +5,13 @@ class SessionsController < ApplicationController
 
   def create
     profile = MemberProfile.find_by_email(params[:email])
+    user = profile.user
     if profile && profile.authenticate(params[:password])
-      # if params[:remember_me]
-        # cookies.permanent[:auth_token] = user.auth_token
-        session[:user_id] = profile.user.id
-      # else
-      #   cookies[:auth_token] = user.auth_token
-      # end
+      if params[:remember_me]
+        cookies.permanent[:auth_token] = user.auth_token
+      else
+        cookies[:auth_token] = user.auth_token
+      end
       redirect_to root_url, notice: "Logged in!"
     else
       flash.now.alert = "Email or password is invalid."
@@ -20,8 +20,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    # cookies.delete(:auth_token)
-    session[:user_id] = nil
+    cookies.delete(:auth_token)
     redirect_to root_url, notice: "Logged out!"
   end
 end

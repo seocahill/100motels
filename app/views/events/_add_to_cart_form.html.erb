@@ -5,7 +5,7 @@
     <% unless current_user && current_user.your_account_or_email != "your account" %>
       <%= f.input :email, label: false, placeholder: "  your email address", input_html: { class: "input-medium" }, required: :true %>
     <% else %>
-      <%= f.input :email, as: :hidden, input_html: { value: current_user.email } %>
+      <%= f.input :email, as: :hidden, input_html: { value: current_user.your_account_or_email } %>
     <% end %>
     <% if current_user && current_user.customer_id? %>
       <%= link_to "Buy Now", "#buy-modal", class: "btn btn-success btn-large", data: {toggle: "modal"}, id: "buy-now" %>

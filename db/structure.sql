@@ -428,7 +428,8 @@ CREATE TABLE users (
     profile_id integer,
     profile_type character varying(255),
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    auth_token character varying(255)
 );
 
 
@@ -722,6 +723,13 @@ CREATE INDEX index_tickets_on_order_id ON tickets USING btree (order_id);
 
 
 --
+-- Name: index_users_on_auth_token; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_users_on_auth_token ON users USING btree (auth_token);
+
+
+--
 -- Name: index_users_on_profile_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -843,3 +851,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130118163025');
 INSERT INTO schema_migrations (version) VALUES ('20130118163050');
 
 INSERT INTO schema_migrations (version) VALUES ('20130118184821');
+
+INSERT INTO schema_migrations (version) VALUES ('20130119003428');
