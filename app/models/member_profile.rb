@@ -2,12 +2,12 @@ class MemberProfile < ActiveRecord::Base
   has_one :user, as: :profile, dependent: :destroy
 
   attr_accessible :auth_token, :avatar, :confirmation_sent_at, :confirmation_token,
-   :email, :name, :password_digest, :password_reset_sent_at, :password_reset_token
+   :email, :name, :password, :password_reset_sent_at, :password_reset_token
 
   validates :email, presence: :true, uniqueness: :true
   validates_format_of :email, with: /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
 
-  before_create { generate_token(:auth_token) }
+  # before_create { generate_token(:auth_token) }
 
   has_secure_password
 

@@ -12,5 +12,13 @@ class GuestProfile < ActiveRecord::Base
   def customer_id?
     false
   end
+
+  def become_member(member_profile)
+    user.profile = member_profile
+    user.save!
+  end
+
+  def send_password_reset
+  end
 end
 
