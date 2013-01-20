@@ -429,7 +429,8 @@ CREATE TABLE users (
     profile_type character varying(255),
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    auth_token character varying(255)
+    auth_token character varying(255),
+    encrypted_api_key character varying(255)
 );
 
 
@@ -853,3 +854,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130118163050');
 INSERT INTO schema_migrations (version) VALUES ('20130118184821');
 
 INSERT INTO schema_migrations (version) VALUES ('20130119003428');
+
+INSERT INTO schema_migrations (version) VALUES ('20130120161359');

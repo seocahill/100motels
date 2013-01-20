@@ -2,7 +2,7 @@ OneHundredMotels::Application.routes.draw do
 
   root :to => 'pages#index'
 
-  get 'auth/:provider/callback', to: 'sessions#create'
+  get 'auth/:provider/callback', to: 'omniauth_callbacks#all'
   get 'auth/failure', to: redirect('/')
   post '/stripe' => 'stripe_events#listen'
   get 'signup', to: 'member_profiles#new', as: 'signup'
