@@ -9,8 +9,8 @@ class Event < ActiveRecord::Base
 
   has_many :orders
   has_many :tickets
-  has_many :event_users
-  has_many :users, through: :event_users
+  has_one :event_user
+  has_one :user, through: :event_user
   belongs_to :location
 
   scope :tonight, lambda { where("date <= ? and date >= ?", Time.now.end_of_day, Time.now) }
