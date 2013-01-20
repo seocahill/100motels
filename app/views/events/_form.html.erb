@@ -6,11 +6,18 @@
 		<%= f.input :artist %>
 		<%= f.input :venue %>
 		<%= f.input :date %>
+		<%= f.input :doors %>
 		<%= f.input :ticket_price %>
+		<%= f.input :video, hint: "a youtube, vimeo or link" %>
+		<%= f.input :music, hint: "a soundcloud link" %>
+		<%= f.input :about %>
+		<%= f.input :image, hint: "upload or select images from twitter, facebook and other services" do %>
+      <%= f.filepicker_field :image, button_class: "btn btn-primary btn-medium"  %>
+    <% end %>
 
 		<div class="form-actions">
 				<%= f.submit nil, class: "btn btn-primary" %>
-				<%= link_to 'Cancel', events_path, class: 'btn' %>
+				<%= link_to 'Cancel', event_path(@event), class: 'btn' %>
 		</div>
 	</fieldset>
 

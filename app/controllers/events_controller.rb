@@ -17,14 +17,22 @@ class EventsController < ApplicationController
     @organizer = User.first #hack for now
   end
 
-  def create
+  def new
     @event = current_user.events.new
-    @event.artist = "A Title for your Event"
-    @event.venue = "A Dungeon or Speak hopefully"
-    @event.date = 1.month.from_now
-    @event.ticket_price = 15.0
-    @event.save!
-    redirect_to @event, notice: "Welcome to your event, you can save this account at any time, click on 'save account' in the top menu"
+  end
+
+  def create
+    @event = current_user.events.new(params[:event])
+    respond_to do |format|
+      if @event.save
+        flash[:notice] = 'Event was successfully created.'
+        format.html { redirect_to(@event) }
+        format.xml { render xml: @event, status: :created, location: @event }
+      else
+        format.html { render action: "new" }
+        format.xml { render xml: @event.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def edit
@@ -52,6 +60,5 @@ private
     " could not be found"
     redirect_to events_path
   end
-
 end
 

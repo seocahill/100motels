@@ -13,6 +13,7 @@ private
     event.artist = "Title for your Event"
     event.venue = "A Dungeon or Speak hopefully"
     event.date = 1.month.from_now
+    event.doors = Time.now.midnight
     event.ticket_price = 15.0
     event.promoter_id = user.id
     event.save!

@@ -43,3 +43,4 @@ jQuery ->
 $ ->
   window.onload = ->
     $('#gettingStarted').modal() if $('#gettingStarted').data('guest') == true
+    # fire if current_user.events is true or only if new event
