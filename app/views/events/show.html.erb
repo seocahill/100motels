@@ -93,7 +93,7 @@
 	</section>
 </div>
 <!-- Modal -->
-<div id="gettingStarted" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-guest="<%= current_user.guest? if current_user %>">
+<div id="gettingStarted" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-guest="<%= @organizer.guest? %>">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 id="myModalLabel">Wecome to your first event!</h3>
