@@ -1,11 +1,10 @@
 class Authentication
-  def initialize(params, omniauth = nil)
+  def initialize(params)
     @params = params
-    @omniauth = omniauth
   end
 
   def user
-    @user ||= @omniauth ? user_from_omniauth : user_with_password
+    @user ||= user_with_password
   end
 
   def authenticated?
@@ -14,17 +13,10 @@ class Authentication
 
 private
 
-  def user_from_omniauth
-    User.where(@omniauth.slice(:provider, :uid)).first_or_initialize.tap do |user|
-      user.provider = @omniauth[:provider]
-      user.uid = @omniauth[:uid]
-      user.username = @omniauth[:info][:nickname]
-      user.save!
-    end
-  end
-
   def user_with_password
-    user = User.find_by_username(@params[:username])
-    user && user.authenticate(@params[:password])
+    member = MemberProfile.find_by_email(@params[:email])
+    if member && member.authenticate(@params[:password])
+      member.user
+    end
   end
 end
