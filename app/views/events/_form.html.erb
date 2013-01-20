@@ -17,7 +17,7 @@
 
 		<div class="form-actions">
 				<%= f.submit nil, class: "btn btn-primary" %>
-				<%= link_to 'Cancel', event_path(@event), class: 'btn' %>
+				<%= link_to_if @event, 'Cancel', @event, class: 'btn' %>
 		</div>
 	</fieldset>
 

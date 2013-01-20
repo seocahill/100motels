@@ -9,7 +9,8 @@ class GuestProfilesController < ApplicationController
 
 private
   def create_starter_event(user)
-    event = user.events.new
+    event = Event.new
+    event.event_users.build(user_id: user.id)
     event.artist = "Title for your Event"
     event.venue = "A Dungeon or Speak hopefully"
     event.date = 1.month.from_now
