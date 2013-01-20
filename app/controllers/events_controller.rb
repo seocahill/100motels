@@ -14,7 +14,7 @@ class EventsController < ApplicationController
 
   def show
     @order = Order.new
-    @organizer = User.first #hack for now
+    @organizer = @event.user
   end
 
   def new

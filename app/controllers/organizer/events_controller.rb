@@ -5,7 +5,7 @@ has_scope :failed, type: :boolean
 has_scope :refunded, type: :boolean
 
   def index
-    @events = Event.where(promoter_id: current_user.id)
+    @events = current_user.events
   end
 
   def new
