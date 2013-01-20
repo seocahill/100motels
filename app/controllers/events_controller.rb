@@ -14,7 +14,7 @@ class EventsController < ApplicationController
 
   def show
     @order = Order.new
-    @organizer = User.find(@event.promoter_id)
+    @organizer = User.first #hack for now
   end
 
   def create

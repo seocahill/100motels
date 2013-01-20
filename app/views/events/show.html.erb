@@ -92,3 +92,16 @@
 			</div>
 	</section>
 </div>
+<!-- Modal -->
+<div id="gettingStarted" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-guest="<%= current_user.guest? if current_user %>">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Wecome to your first event!</h3>
+  </div>
+  <div class="modal-body">
+    <p>Hi there  here's some basic instructions to get you going...</p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true" >Got it!</button>
+  </div>
+</div>

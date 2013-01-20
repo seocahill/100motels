@@ -38,3 +38,8 @@ $ ->
 # Jquery Ui Datepicker
 jQuery ->
   $.datepicker.setDefaults()
+
+# Getting Started Modal
+$ ->
+  window.onload = ->
+    $('#gettingStarted').modal() if $('#gettingStarted').data('guest') == true
