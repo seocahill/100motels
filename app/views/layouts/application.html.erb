@@ -45,7 +45,7 @@
                   <ul class="dropdown-menu">
                     <li><%= link_to "Save your Account", signup_path if current_user.guest? %></li>
                     <li><%= link_to "User Account", user_path(current_user) %></li>
-                    <li> <%= link_to "Your Events", organizer_events_path %>  </li>
+                    <li> <%= link_to "Your Events", organizer_event_path(current_user.events.first.id) %>  </li>
                     <li class="divider"></li>
                     <li><%= link_to "Sign out", logout_path %></li>
                   </ul>

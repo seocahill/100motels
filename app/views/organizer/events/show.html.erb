@@ -19,7 +19,7 @@
         <%= submit_tag "Charge Selected", name: 'charge', class: "btn" %>
         <%= submit_tag "Refund Selected", name: 'refund', class: "btn" %>
       <% elsif current_user %>
-        <%= link_to image_tag('blue.png'), user_omniauth_authorize_path(:stripe_connect), class: "" %>
+        <%= link_to image_tag('blue.png'), '/auth/stripe_connect', class: "" %>
       <% end %>
     </div>
   </div>

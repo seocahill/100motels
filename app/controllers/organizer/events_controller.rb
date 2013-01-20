@@ -4,10 +4,6 @@ has_scope :paid, type: :boolean
 has_scope :failed, type: :boolean
 has_scope :refunded, type: :boolean
 
-  def index
-    @events = current_user.events
-  end
-
   def new
     @event = Event.new
   end
@@ -24,7 +20,7 @@ has_scope :refunded, type: :boolean
   end
 
   def show
-    @events = Event.where(promoter_id: current_user.id)
+    @events = current_user.events
     @event = Event.find_by_id(params[:id])
     @orders = apply_scopes(Order).where(event_id: @event.id)
     respond_to do |format|
