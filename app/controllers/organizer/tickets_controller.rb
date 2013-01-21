@@ -3,7 +3,7 @@ class Organizer::TicketsController < Organizer::BaseController
   def index
     @events = current_user.events
     @event = Event.find(params[:event_id])
-    @tickets = @event.tickets.text_search(params[:query]).joins(:order).order('name, updated_at')
+    @tickets = @event.tickets.text_search(params[:query]).joins(:order).where("stripe_event = ?", 5).order('name, updated_at')
     respond_to do |format|
       format.html
       format.pdf do
