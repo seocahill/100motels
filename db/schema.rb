@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130117210849) do
+ActiveRecord::Schema.define(:version => 20130121153601) do
+
+  create_table "event_users", :force => true do |t|
+    t.integer  "event_id"
+    t.integer  "user_id"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.integer  "state",      :default => 0
+  end
+
+  add_index "event_users", ["event_id"], :name => "index_event_users_on_event_id"
+  add_index "event_users", ["user_id"], :name => "index_event_users_on_user_id"
 
   create_table "events", :force => true do |t|
     t.string   "artist"
@@ -39,16 +50,10 @@ ActiveRecord::Schema.define(:version => 20130117210849) do
 
   add_index "events", ["location_id"], :name => "index_events_on_location_id"
 
-  create_table "events_users", :force => true do |t|
-    t.integer  "event_id"
-    t.integer  "user_id"
-    t.integer  "state",      :default => 0
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+  create_table "guest_profiles", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
-
-  add_index "events_users", ["event_id"], :name => "index_events_users_on_event_id"
-  add_index "events_users", ["user_id"], :name => "index_events_users_on_user_id"
 
   create_table "locations", :force => true do |t|
     t.string   "address"
@@ -62,6 +67,23 @@ ActiveRecord::Schema.define(:version => 20130117210849) do
   end
 
   add_index "locations", ["latitude", "longitude"], :name => "index_locations_on_latitude_and_longitude"
+
+  create_table "member_profiles", :force => true do |t|
+    t.string   "name"
+    t.string   "avatar"
+    t.string   "email"
+    t.string   "password_digest"
+    t.string   "auth_token"
+    t.string   "password_reset_token"
+    t.datetime "password_reset_sent_at"
+    t.string   "confirmation_token"
+    t.datetime "confirmation_sent_at"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
+  end
+
+  add_index "member_profiles", ["auth_token"], :name => "index_member_profiles_on_auth_token"
+  add_index "member_profiles", ["email"], :name => "index_member_profiles_on_email"
 
   create_table "oauth_access_grants", :force => true do |t|
     t.integer  "resource_owner_id", :null => false
@@ -135,16 +157,23 @@ ActiveRecord::Schema.define(:version => 20130117210849) do
   add_index "tickets", ["order_id"], :name => "index_tickets_on_order_id"
 
   create_table "users", :force => true do |t|
-    t.string   "email"
-    t.string   "password_digest"
+    t.integer  "profile_id"
+    t.string   "profile_type"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
     t.string   "auth_token"
-    t.string   "password_reset_token"
-    t.datetime "password_reset_sent_at"
-    t.datetime "created_at",             :null => false
-    t.datetime "updated_at",             :null => false
+    t.string   "encrypted_api_key"
+    t.string   "encrypted_customer_id"
+    t.string   "card_type"
+    t.string   "exp_year"
+    t.string   "exp_month"
+    t.string   "last4"
+    t.string   "cvc_check"
+    t.string   "country"
   end
 
   add_index "users", ["auth_token"], :name => "index_users_on_auth_token"
-  add_index "users", ["email"], :name => "index_users_on_email"
+  add_index "users", ["profile_id"], :name => "index_users_on_profile_id"
+  add_index "users", ["profile_type"], :name => "index_users_on_profile_type"
 
 end
