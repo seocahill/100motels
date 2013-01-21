@@ -38,20 +38,19 @@ OneHundredMotels::Application.configure do
   config.assets.debug = true
 
   # Set the mailer to localhost
-  config.action_mailer.default_url_options = { :host => 'localhost:5000' }
+  config.action_mailer.default_url_options = { :host => 'localhost', :port => 5000 }
 
   # Gapps for development
-
   config.action_mailer.delivery_method = :letter_opener #:smtp
 
-  config.action_mailer.smtp_settings = {
-    :address => "smtp.gmail.com",
-    :port => 587,
-    :domain => "creteboom.com",
-    :authentication => "plain",
-    :user_name => "creteboo@creteboom.com",
-    :password => ENV["GMAIL_PASSWORD"],
-    :enable_starttls_auto => true
-  }
+  # config.action_mailer.smtp_settings = {
+  #   :address => "smtp.gmail.com",
+  #   :port => 587,
+  #   :domain => "creteboom.com",
+  #   :authentication => "plain",
+  #   :user_name => "creteboo@creteboom.com",
+  #   :password => ENV["GMAIL_PASSWORD"],
+  #   :enable_starttls_auto => true
+  # }
 
 end

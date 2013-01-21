@@ -22,7 +22,7 @@ class Notifier < ActionMailer::Base
   def transaction_summary(orders, organizer)
     @orders = orders
     @organizer = organizer
-    mail to: @organizer.email, subject: "Transaction Summary"
+    mail to: @organizer.your_account_or_email, subject: "Transaction Summary"
   end
 
   def charge_failed(order)

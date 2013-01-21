@@ -1,6 +1,8 @@
-<%=  @organizer.name %> we processed <%= @orders.count %> transactions in total
+<%=  @organizer.your_account_or_email %> we processed <%= pluralize(@orders.count, 'transaction') %> in total
 
 Dated: <%= @orders.last.updated_at %>
+
+Need to fix this to only show orders that were processed
 
 <%= @orders.select {|o| o.stripe_event == :paid }.count %> paid
 <%= @orders.select {|o| o.stripe_event == :refunded }.count %> refunded
