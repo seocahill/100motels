@@ -30,7 +30,6 @@ has_scope :refunded, type: :boolean
         send_data pdf.render, filename: "#{@event.artist}_#{@event.date}.pdf",
                               type: "application/pdf",
                               disposition: "inline"
-
       end
     end
   end
@@ -51,17 +50,17 @@ has_scope :refunded, type: :boolean
     end
   end
 
-  def cancel_event
+  def cancel
     @event = Event.find(params[:id])
-    orders = event.orders.all
-    if orders.each { |order| CancelEventOrders.new(@event, order).cancel_or_refund_order }
+    orders = @event.orders.all
+    if orders.each { |order| CancelEventOrders.new(@event, order, current_user).cancel_or_refund_order }
       @event.state = :cancelled
       @event.save!
       flash[:notice] = "Event has been cancelled"
-      render [organizer: @event]
+      redirect_to [:organizer, @event]
     else
       flash[:error] = "Event could not be cancelled at this time"
-      redirect_to :back
+      redirect_to [:organizer, @event]
     end
   end
 

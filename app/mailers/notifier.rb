@@ -34,4 +34,9 @@ class Notifier < ActionMailer::Base
     @order = order
     mail to: order.email, subject: "You have been refunded"
   end
+
+  def event_cancelled(order)
+    @order = order
+    mail to: order.email, subject: "Your event has been cancelled"
+  end
 end

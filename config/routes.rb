@@ -32,7 +32,7 @@ OneHundredMotels::Application.routes.draw do
     root :to => 'events#index'
     resources :events do
       member do
-        put :cancel
+        get :cancel
       end
       resources :tickets, only: [:index, :update]
     end

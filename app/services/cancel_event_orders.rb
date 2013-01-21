@@ -1,14 +1,14 @@
 class CancelEventOrders
 
-  def initialize(event, order)
+  def initialize(event, order, current_user)
     @event = event
     @order = order
-    @organizer = User.find(@event.promoter_id)
+    @organizer = current_user
   end
 
   def cancel_or_refund_order
     @order.stripe_event == :paid ? refund_order : cancel_order
-    Notifier.event_cancelled.deliver(@order)
+    Notifier.event_cancelled(@order).deliver
   end
 
   def cancel_order

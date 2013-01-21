@@ -4,6 +4,15 @@ class Organizer::TicketsController < Organizer::BaseController
     @events = current_user.events
     @event = Event.find(params[:event_id])
     @tickets = @event.tickets.text_search(params[:query]).joins(:order).order('name, updated_at')
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = TicketPdf.new(@event, @tickets, view_context)
+        send_data pdf.render, filename: "#{@event.artist}_#{@event.date}_tickets.pdf",
+                              type: "application/pdf",
+                              disposition: "inline"
+      end
+    end
   end
 
   def update
