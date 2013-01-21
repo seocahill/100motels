@@ -12,9 +12,10 @@ $ ->
 # Order Total for stripe button
 orderTotal = ->
   quantity = $('#order_quantity').val()
-  price = $('#ticket-price').data('url')
+  price = $('#ticket-price').data('price')
   total = quantity * price
   $('.stripe-button').attr('data-amount', total)
+  $('.stripe-button').attr('data-description', total)
   $('.order-total').html(total / 100)
 
 # toggle checkboxes

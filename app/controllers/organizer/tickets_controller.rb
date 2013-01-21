@@ -1,7 +1,7 @@
 class Organizer::TicketsController < Organizer::BaseController
 
   def index
-    @events = Event.where(promoter_id: current_user.id)
+    @events = current_user.events
     @event = Event.find(params[:event_id])
     @tickets = @event.tickets.text_search(params[:query]).joins(:order).order('name, updated_at')
   end

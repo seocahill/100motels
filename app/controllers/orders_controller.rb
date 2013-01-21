@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = current_or_guest_user.orders.new(params[:order])
+    @order = current_user.orders.new(params[:order])
     customer = CustomerOrder.new(@order, params[:stripeToken])
     if customer.add_customer_to_order
       Notifier.order_processed(@order).deliver
@@ -36,7 +36,7 @@ class OrdersController < ApplicationController
 private
 
   def find_order
-    @order = current_or_guest_user.orders.find(params[:id])
+    @order = current_user.orders.find(params[:id])
     rescue ActiveRecord::RecordNotFound
     redirect_to root_path
   end

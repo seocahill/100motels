@@ -1,5 +1,5 @@
 <%= simple_form_for @order, :validate => true do |f| %>
-    <div id="ticket-price" data-url="<%= @event.ticket_price * 100 %>"></div>
+    <div id="ticket-price" data-price="<%= @event.ticket_price.to_i * 100 %>"></div>
     <%= f.input :event_id, as: :hidden, input_html: { value: @event.id } %>
     <%= f.input :quantity, collection: 1..4, input_html: { class: "input-mini"} %>
     <% unless current_user && current_user.your_account_or_email != "your account" %>
@@ -26,7 +26,7 @@
     <% else %>
       <div class="stripe-controls" align="center">
         <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
-            data-key="<%= ENV['STRIPE_PUBLIC_KEY'] %>" data-amount="">
+            data-key="<%= ENV['STRIPE_PUBLIC_KEY'] %> " data-description="" data-amount="">
         </script>
       </div>
     <% end %>

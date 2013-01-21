@@ -1,5 +1,4 @@
 class StripeEventsController < ApplicationController
-
   def listen
     data = JSON.parse(request.body.read)
     Stripe.api_key = ENV['STRIPE_API_KEY']

@@ -1,4 +1,4 @@
-class UpdateCard
+caclass UpdateCard
 
   def initialize(user, card)
     @user = user
@@ -18,7 +18,7 @@ class UpdateCard
   def update_user_record
     customer = update_card
     @user.livemode = customer.livemode
-    @user.type = customer.active_card["type"]
+    @user.card_type = customer.active_card["type"]
     @user.exp_year = customer.active_card["exp_year"]
     @user.exp_month = customer.active_card["exp_month"]
     @user.country = customer.active_card["country"]

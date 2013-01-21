@@ -51,7 +51,8 @@ CREATE TABLE event_users (
     event_id integer,
     user_id integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    state integer DEFAULT 0
 );
 
 
@@ -430,7 +431,14 @@ CREATE TABLE users (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     auth_token character varying(255),
-    encrypted_api_key character varying(255)
+    encrypted_api_key character varying(255),
+    encrypted_customer_id character varying(255),
+    card_type character varying(255),
+    exp_year character varying(255),
+    exp_month character varying(255),
+    last4 character varying(255),
+    cvc_check character varying(255),
+    country character varying(255)
 );
 
 
@@ -856,3 +864,7 @@ INSERT INTO schema_migrations (version) VALUES ('20130118184821');
 INSERT INTO schema_migrations (version) VALUES ('20130119003428');
 
 INSERT INTO schema_migrations (version) VALUES ('20130120161359');
+
+INSERT INTO schema_migrations (version) VALUES ('20130121145924');
+
+INSERT INTO schema_migrations (version) VALUES ('20130121153601');

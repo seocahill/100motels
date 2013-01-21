@@ -10,7 +10,7 @@ class GuestProfilesController < ApplicationController
 private
   def create_starter_event(user)
     event = Event.new
-    event.event_users.build(user_id: user.id)
+    event.event_users.build(user_id: user.id, state: :organizer)
     event.artist = "Title for your Event"
     event.venue = "A Dungeon or Speak hopefully"
     event.date = 1.month.from_now

@@ -14,15 +14,16 @@ class EventsController < ApplicationController
 
   def show
     @order = Order.new
-    @organizer = @event.users.first #ok for nowgit s
+    @organizer = @event.users.first #ok for now
   end
 
   def new
-    @event = current_user.events.new
+    @event = Event.new
   end
 
   def create
-    @event = current_user.events.new(params[:event])
+    @event = Event.new(params[:event])
+    @event.event_users.build(user_id: current_user.id, state: :organizer)
     respond_to do |format|
       if @event.save
         flash[:notice] = 'Event was successfully created.'

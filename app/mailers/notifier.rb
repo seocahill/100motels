@@ -1,7 +1,7 @@
 require 'google-qr'
 
 class Notifier < ActionMailer::Base
-  default css: [:email, :mail_bootstrap], from: "sales@100motels.com"
+  default css: [:email, :mail_bootstrap], from: "seo@100motels.com"
 
   def order_processed(order)
     @order = order

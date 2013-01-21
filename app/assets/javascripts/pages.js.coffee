@@ -2,21 +2,3 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
-# initialize mercury onload
-jQuery(parent).trigger('initialize:frame');
-
-# scrollspy nav with animation
-$ ->
-  $("#welcome-nav a").click ->
-    goToByScroll $(this).attr("href")
-    false
-
-goToByScroll = (id) ->
-  $('html,body').animate({scrollTop: $(id).offset().top}, 2600)
-
-
-# Event Carousel
-$ ->
-  $('#events-carousel .item:first').addClass('active')
-  $('#events-carousel').carousel
-    interval: false
