@@ -1,0 +1,6 @@
+<%= simple_form_for @member_profile do |f| %>
+    <%= f.input :name %>
+    <%= f.input :email %>
+    <%= f.filepicker_field :avatar %>
+    <%= f.submit "Save Changes" %>
+<% end %>

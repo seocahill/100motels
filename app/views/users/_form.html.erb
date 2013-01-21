@@ -1,0 +1,7 @@
+<%= simple_form_for @user do |f| %>
+  <%= f.simple_fields_for @member_profile do |ff| %>
+    <%= f.input :name %>
+    <%= f.input :email %>
+    <%= f.filepicker_field :avatar %>
+  <% end %>
+<% end %>
