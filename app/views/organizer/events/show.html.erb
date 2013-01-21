@@ -18,9 +18,8 @@
       <% if current_user.api_key %>
         <%= submit_tag "Charge Selected", name: 'charge', class: "btn" %>
         <%= submit_tag "Refund Selected", name: 'refund', class: "btn" %>
-      <% elsif current_user %>
-        <%= link_to image_tag('blue.png'), '/auth/stripe_connect', class: "" %>
       <% end %>
+      <%= link_to image_tag('blue.png'), '/auth/stripe_connect', class: "" %>
     </div>
   </div>
   <div class="span2 offset2">

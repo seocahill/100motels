@@ -12,4 +12,22 @@ class MemberProfilesController < ApplicationController
       render "new"
     end
   end
+
+  def edit
+    @member_profile = current_user.profile
+  end
+
+  def update
+    @member_profile = current_user.profile
+    @member_profile.update_attributes(params[:member_profile])
+    respond_to do |format|
+      if @member_profile.update_attributes(params[:member_profile])
+        format.html { redirect_to(current_user, :notice => 'Your Account was successfully updated.') }
+        format.json { respond_with_bip(@member_profile) }
+      else
+        format.html { render :action => "edit" }
+        format.json { respond_with_bip(@member_profile) }
+      end
+    end
+  end
 end

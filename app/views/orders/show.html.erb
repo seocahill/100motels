@@ -10,16 +10,12 @@
 						An email has been sent to <%= @order.email %> with your ticket. </p>
 					</p>
 				</header>
-				<% unless current_user %>
-						<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: {class: ""}) do |f| %>
-						  <%= f.error_notification %>
-						  	<%= f.input :guest_id, as: :hidden, input_html: { value: @guest.id } %>
-						    <%= f.input :email, as: :hidden, input_html: { value: @order.email } %>
-					      <%= f.input :password, wrapper: :prepend, required: true, label: false, html: { class: ""} do %>
-						      <%= f.input_field :password, placeholder: "enter a password" %>
-						      	<%= f.button :submit, "Save my account" %>
-				      	<% end %>
-						<% end %>
+				<% unless current_user.guest? == false %>
+					<%= simple_form_for @member_profile do |f| %>
+						<%= f.input :email, as: :hidden, input_html: { value: @order.email } %>
+						<%= f.input :password %>
+						<%= f.submit "Save" %>
+					<% end %>
 				<% end %>
 			</div>
 		</div>

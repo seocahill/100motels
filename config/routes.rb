@@ -12,7 +12,7 @@ OneHundredMotels::Application.routes.draw do
   get '/home' => 'pages#home'
 
   resources :sessions
-  resources :member_profiles, only: [:new, :create]
+  resources :member_profiles, only: [:new, :create, :edit, :update]
   resources :guest_profiles, only: [:create]
   resources :password_resets
   resources :events

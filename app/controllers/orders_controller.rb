@@ -1,8 +1,12 @@
 class OrdersController < ApplicationController
   before_filter :find_order, only: [:show]
   before_filter :find_orders, only: [:charge_or_refund]
+  before_filter :create_order_guest_user, only: [:create]
+
+  layout 'landing', only: [:show]
 
   def show
+    @member_profile = MemberProfile.new
   end
 
   def create
@@ -45,5 +49,12 @@ private
     @orders = Order.find(params[:order_ids])
     rescue ActiveRecord::RecordNotFound
     redirect_to organizer_root_path, notice: "Some records weren't found?"
+  end
+
+  def create_order_guest_user
+    unless current_user
+      user = User.create! { |u| u.profile = GuestProfile.create! }
+      cookies[:auth_token] = user.auth_token
+    end
   end
 end

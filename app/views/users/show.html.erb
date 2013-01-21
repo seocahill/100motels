@@ -4,10 +4,10 @@
 		<div class="row">
 			<div class="label-box">User Info</div>
 			<div id="organizer-pic" class="span2" align="center">
-				<!-- user image -->
+				<%= filepicker_image_tag @user.profile.avatar, width: 300, height: 300, fit: 'crop' if @user.profile.avatar %>
 				<h4>
 				</h4>
-				<p><%= link_to "Edit Account Settings", class: "btn btn-block" %></p>
+				<p><%= link_to "Edit Account Settings", edit_member_profile_path(@user.profile.id), class: "btn btn-block" %></p>
 			</div>
       <div class="span9">
         <div class="row-fluid">
@@ -16,18 +16,15 @@
               <dt>Email</dt>
               <dd><%= @user.your_account_or_email %></dd>
               <dt>Username</dt>
-              <dd><%#= @user.name || "none provided" %></dd>
+              <dd><%= @user.username %></dd>
             </dl>
           </div>
           <div class="span4">
             <dl>
+              <% if @user.customer_id %>
               <dt>Current Card</dt>
               <dd>
-                <%# if @user.customer_id %>
-                  <%#= @user.type %> <%#= @user.last4 %>, Expires: <%#= @user.exp_month %>/<%#= @user.exp_year %>
-                <%# else %>
-                  none provided
-                <%# end %>
+                  <%= @user.type %> <%= @user.last4 %>, Expires: <%= @user.exp_month %>/<%= @user.exp_year %>
               </dd>
               <dt>Change or Add card</dt>
               <dd>
@@ -36,43 +33,11 @@
                   </script>
                 <% end %>
               </dd>
-            </dl>
-          </div>
-          <div class="span4">
-            <dl>
-              <dt>Artist Media</dt>
-
-              <dt>Preview (opens in new window)</dt>
-              <dd>
-                <a href="#preview-modal" data-toggle="modal" class="btn">Preview Media</a>
-              </dd>
-
-              <dd><p>You can add a Vimeo, Youtube or Soundcloud playlist here.</p></dd>
-              <!-- <dd class="user-account-spacer"></dd> -->
-              <dd>
-
-              </dd>
-
-              </dd>
+              <% end %>
             </dl>
           </div>
         </div>
       </div>
 		</div>
 	</section>
-
-  <div class="modal large hide fade" id="preview-modal">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-      <h3></h3>
-    </div>
-    <div class="modal-body">
-      <div id="media-frame"></div>
-
-    </div>
-    <div class="modal-footer">
-      <a href="#" class="btn" data-dismiss="modal">Close</a>
-    </div>
-  </div>
-
 </div>

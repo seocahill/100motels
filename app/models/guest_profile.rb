@@ -1,6 +1,10 @@
 class GuestProfile < ActiveRecord::Base
   has_one :user, as: :profile, dependent: :destroy
 
+  def username
+    "Guest User"
+  end
+
   def guest?
     true
   end

@@ -6,18 +6,18 @@ class User < ActiveRecord::Base
   has_many :event_users
   has_many :events, through: :event_users
   belongs_to :profile, polymorphic: true
-  # belongs_to :location
 
-  before_create { generate_token(:auth_token) }
+
+  before_create :generate_token
 
   scope :total_events
 
-  delegate :guest?, :customer_id?, :your_account_or_email, :send_password_reset, :become_member,
+  delegate :guest?, :customer_id?, :your_account_or_email, :send_password_reset, :become_member, :username,
     to: :profile
 
-  def generate_token(column)
+  def generate_token
     begin
-      self[column] = SecureRandom.urlsafe_base64
-    end while User.exists?(column => self[column])
+      self.auth_token = SecureRandom.urlsafe_base64
+    end while User.exists?(auth_token: auth_token)
   end
 end

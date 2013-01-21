@@ -39,5 +39,4 @@ class CustomerOrder
     event = Event.find(@order.event_id)
     total = @order.quantity * event.ticket_price
   end
-
 end

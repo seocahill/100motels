@@ -1,5 +1,6 @@
 class MemberProfile < ActiveRecord::Base
   has_one :user, as: :profile, dependent: :destroy
+  accepts_nested_attributes_for :user
 
   attr_accessible :auth_token, :avatar, :confirmation_sent_at, :confirmation_token,
    :email, :name, :password, :password_reset_sent_at, :password_reset_token
@@ -8,6 +9,10 @@ class MemberProfile < ActiveRecord::Base
   validates_format_of :email, with: /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
 
   has_secure_password
+
+  def username
+    name
+  end
 
   def guest?
     false
