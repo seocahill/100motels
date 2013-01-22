@@ -10,6 +10,7 @@ OneHundredMotels::Application.routes.draw do
   get 'logout', to: 'sessions#destroy', as: 'logout'
   get '/info' => 'pages#info'
   get '/home' => 'pages#home'
+  get '/favicon.ico', to: redirect('/')
 
   resources :sessions
   resources :member_profiles, only: [:new, :create, :edit, :update]
