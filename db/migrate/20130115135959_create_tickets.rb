@@ -4,6 +4,8 @@ class CreateTickets < ActiveRecord::Migration
       t.string :number
       t.references :order
       t.references :event
+      t.datetime :admitted
+      t.integer :quantity_counter
 
       t.timestamps
     end

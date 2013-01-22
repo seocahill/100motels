@@ -3,6 +3,7 @@ class CreateEventUsers < ActiveRecord::Migration
     create_table :event_users do |t|
       t.references :event
       t.references :user
+      t.integer :state, default: 0, limit: 3
 
       t.timestamps
     end

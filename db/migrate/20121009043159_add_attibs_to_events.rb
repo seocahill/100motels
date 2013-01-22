@@ -1,6 +1,6 @@
 class AddAttibsToEvents < ActiveRecord::Migration
   def change
-    add_column :events, :venue_capacity, :integer
+    add_column :events, :capacity, :integer
     add_column :events, :target, :integer
     add_column :events, :about, :text
     add_column :events, :about_html, :text
