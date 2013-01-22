@@ -5,7 +5,7 @@ require 'fileutils'
 
 desc "Deploy app to Heroku after precompiling assets"
 task :deploy do
-  deploy_branch   = 'heroku'
+  deploy_branch   = 'staging'
   remote          = 'staging'
   deploy_repo_dir = "tmp/heroku_staging"
 
