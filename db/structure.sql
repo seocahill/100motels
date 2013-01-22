@@ -22,20 +22,6 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 
---
--- Name: hstore; Type: EXTENSION; Schema: -; Owner: -
---
-
-CREATE EXTENSION IF NOT EXISTS hstore WITH SCHEMA public;
-
-
---
--- Name: EXTENSION hstore; Type: COMMENT; Schema: -; Owner: -
---
-
-COMMENT ON EXTENSION hstore IS 'data type for storing sets of (key, value) pairs';
-
-
 SET search_path = public, pg_catalog;
 
 SET default_tablespace = '';
@@ -50,9 +36,9 @@ CREATE TABLE event_users (
     id integer NOT NULL,
     event_id integer,
     user_id integer,
+    state integer DEFAULT 0,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    state integer DEFAULT 0
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -85,11 +71,12 @@ CREATE TABLE events (
     venue character varying(255),
     date date,
     doors time without time zone,
+    ticket_price numeric(8,2),
+    state bigint DEFAULT 0,
+    visible boolean DEFAULT false,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    ticket_price numeric(8,2),
-    promoter_id integer,
-    venue_capacity integer,
+    capacity integer,
     target integer,
     about text,
     about_html text,
@@ -99,9 +86,7 @@ CREATE TABLE events (
     music_html character varying(255),
     image character varying(255),
     image_html character varying(255),
-    location_id integer,
-    state bigint DEFAULT 0,
-    visible boolean DEFAULT false
+    location_id integer
 );
 
 
@@ -343,17 +328,16 @@ CREATE TABLE orders (
     id integer NOT NULL,
     name character varying(255),
     email character varying(255),
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
     total numeric,
     stripe_customer_token character varying(255),
-    plan character varying(255),
     user_id integer,
     event_id integer,
     quantity integer DEFAULT 1,
     stripe_event bigint DEFAULT 0,
     stripe_charge_id character varying(255),
-    last4 character varying(255)
+    last4 character varying(255),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -394,10 +378,10 @@ CREATE TABLE tickets (
     number character varying(255),
     order_id integer,
     event_id integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
     admitted timestamp without time zone,
-    quantity_counter integer
+    quantity_counter integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -428,18 +412,17 @@ CREATE TABLE users (
     id integer NOT NULL,
     profile_id integer,
     profile_type character varying(255),
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
     auth_token character varying(255),
     encrypted_api_key character varying(255),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
     encrypted_customer_id character varying(255),
     card_type character varying(255),
     exp_year character varying(255),
     exp_month character varying(255),
     last4 character varying(255),
     cvc_check character varying(255),
-    country character varying(255),
-    confirmed timestamp without time zone
+    country character varying(255)
 );
 
 
@@ -766,93 +749,17 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 
 INSERT INTO schema_migrations (version) VALUES ('20120801234059');
 
-INSERT INTO schema_migrations (version) VALUES ('20120807181108');
-
-INSERT INTO schema_migrations (version) VALUES ('20120810225834');
-
-INSERT INTO schema_migrations (version) VALUES ('20120813191857');
-
-INSERT INTO schema_migrations (version) VALUES ('20120813192848');
-
-INSERT INTO schema_migrations (version) VALUES ('20120814005933');
-
 INSERT INTO schema_migrations (version) VALUES ('20120814041600');
-
-INSERT INTO schema_migrations (version) VALUES ('20120814042323');
-
-INSERT INTO schema_migrations (version) VALUES ('20120816200336');
-
-INSERT INTO schema_migrations (version) VALUES ('20120831014218');
 
 INSERT INTO schema_migrations (version) VALUES ('20120904021017');
 
-INSERT INTO schema_migrations (version) VALUES ('20121002225612');
-
-INSERT INTO schema_migrations (version) VALUES ('20121003171417');
-
-INSERT INTO schema_migrations (version) VALUES ('20121005042913');
-
-INSERT INTO schema_migrations (version) VALUES ('20121005051040');
-
-INSERT INTO schema_migrations (version) VALUES ('20121005191503');
-
-INSERT INTO schema_migrations (version) VALUES ('20121008044748');
-
 INSERT INTO schema_migrations (version) VALUES ('20121009043159');
-
-INSERT INTO schema_migrations (version) VALUES ('20121010000250');
-
-INSERT INTO schema_migrations (version) VALUES ('20121010000421');
-
-INSERT INTO schema_migrations (version) VALUES ('20121010173734');
 
 INSERT INTO schema_migrations (version) VALUES ('20121013010859');
 
-INSERT INTO schema_migrations (version) VALUES ('20121013021307');
-
-INSERT INTO schema_migrations (version) VALUES ('20121017033912');
-
-INSERT INTO schema_migrations (version) VALUES ('20121018024522');
-
-INSERT INTO schema_migrations (version) VALUES ('20121019233411');
-
-INSERT INTO schema_migrations (version) VALUES ('20121022232158');
-
-INSERT INTO schema_migrations (version) VALUES ('20121024013539');
-
-INSERT INTO schema_migrations (version) VALUES ('20121025044444');
-
 INSERT INTO schema_migrations (version) VALUES ('20121029043014');
 
-INSERT INTO schema_migrations (version) VALUES ('20121030003405');
-
-INSERT INTO schema_migrations (version) VALUES ('20121030190249');
-
-INSERT INTO schema_migrations (version) VALUES ('20121030203325');
-
-INSERT INTO schema_migrations (version) VALUES ('20121030231437');
-
-INSERT INTO schema_migrations (version) VALUES ('20121103014107');
-
-INSERT INTO schema_migrations (version) VALUES ('20121103014633');
-
-INSERT INTO schema_migrations (version) VALUES ('20121123020503');
-
-INSERT INTO schema_migrations (version) VALUES ('20121210113239');
-
-INSERT INTO schema_migrations (version) VALUES ('20121210113254');
-
-INSERT INTO schema_migrations (version) VALUES ('20121210113309');
-
-INSERT INTO schema_migrations (version) VALUES ('20130114130412');
-
 INSERT INTO schema_migrations (version) VALUES ('20130115135959');
-
-INSERT INTO schema_migrations (version) VALUES ('20130115203408');
-
-INSERT INTO schema_migrations (version) VALUES ('20130116124613');
-
-INSERT INTO schema_migrations (version) VALUES ('20130116173928');
 
 INSERT INTO schema_migrations (version) VALUES ('20130117210849');
 
@@ -862,12 +769,4 @@ INSERT INTO schema_migrations (version) VALUES ('20130118163050');
 
 INSERT INTO schema_migrations (version) VALUES ('20130118184821');
 
-INSERT INTO schema_migrations (version) VALUES ('20130119003428');
-
-INSERT INTO schema_migrations (version) VALUES ('20130120161359');
-
-INSERT INTO schema_migrations (version) VALUES ('20130121145924');
-
 INSERT INTO schema_migrations (version) VALUES ('20130121153601');
-
-INSERT INTO schema_migrations (version) VALUES ('20130121163826');

@@ -16,9 +16,9 @@ ActiveRecord::Schema.define(:version => 20130121153601) do
   create_table "event_users", :force => true do |t|
     t.integer  "event_id"
     t.integer  "user_id"
+    t.integer  "state",      :default => 0
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
-    t.integer  "state",      :default => 0
   end
 
   add_index "event_users", ["event_id"], :name => "index_event_users_on_event_id"
@@ -29,11 +29,12 @@ ActiveRecord::Schema.define(:version => 20130121153601) do
     t.string   "venue"
     t.date     "date"
     t.time     "doors"
-    t.datetime "created_at",                                                                   :null => false
-    t.datetime "updated_at",                                                                   :null => false
-    t.decimal  "ticket_price",                :precision => 8, :scale => 2
-    t.integer  "promoter_id"
-    t.integer  "venue_capacity"
+    t.decimal  "ticket_price",              :precision => 8, :scale => 2
+    t.integer  "state",        :limit => 8,                               :default => 0
+    t.boolean  "visible",                                                 :default => false
+    t.datetime "created_at",                                                                 :null => false
+    t.datetime "updated_at",                                                                 :null => false
+    t.integer  "capacity"
     t.integer  "target"
     t.text     "about"
     t.text     "about_html"
@@ -44,8 +45,6 @@ ActiveRecord::Schema.define(:version => 20130121153601) do
     t.string   "image"
     t.string   "image_html"
     t.integer  "location_id"
-    t.integer  "state",          :limit => 8,                               :default => 0
-    t.boolean  "visible",                                                   :default => false
   end
 
   add_index "events", ["location_id"], :name => "index_events_on_location_id"
@@ -127,17 +126,16 @@ ActiveRecord::Schema.define(:version => 20130121153601) do
   create_table "orders", :force => true do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at",                                        :null => false
-    t.datetime "updated_at",                                        :null => false
     t.decimal  "total"
     t.string   "stripe_customer_token"
-    t.string   "plan"
     t.integer  "user_id"
     t.integer  "event_id"
     t.integer  "quantity",                           :default => 1
     t.integer  "stripe_event",          :limit => 8, :default => 0
     t.string   "stripe_charge_id"
     t.string   "last4"
+    t.datetime "created_at",                                        :null => false
+    t.datetime "updated_at",                                        :null => false
   end
 
   add_index "orders", ["event_id"], :name => "index_orders_on_event_id"
@@ -147,10 +145,10 @@ ActiveRecord::Schema.define(:version => 20130121153601) do
     t.string   "number"
     t.integer  "order_id"
     t.integer  "event_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
     t.datetime "admitted"
     t.integer  "quantity_counter"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   add_index "tickets", ["event_id"], :name => "index_tickets_on_event_id"
@@ -159,10 +157,10 @@ ActiveRecord::Schema.define(:version => 20130121153601) do
   create_table "users", :force => true do |t|
     t.integer  "profile_id"
     t.string   "profile_type"
-    t.datetime "created_at",            :null => false
-    t.datetime "updated_at",            :null => false
     t.string   "auth_token"
     t.string   "encrypted_api_key"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
     t.string   "encrypted_customer_id"
     t.string   "card_type"
     t.string   "exp_year"
