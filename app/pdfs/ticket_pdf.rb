@@ -26,7 +26,7 @@ class TicketPdf < Prawn::Document
   end
 
   def line_item_rows
-    [["Name", "Email", "Ticket Number", "Ticket Count", "Admitted?" ]] +
+    [["Name", "Email", "Ticket Number", "\#", "Admitted?" ]] +
     @tickets.all.map do |t|
       [t.order.name, t.order.email, t.number, t.quantity_counter, ""]
     end
