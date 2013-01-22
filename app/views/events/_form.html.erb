@@ -1,25 +1,28 @@
 <%= simple_form_for @event, :html => { class: 'form-horizontal' } do |f| %>
 
-	<fieldset>
-		<legend><%= controller.action_name.capitalize %> Event</legend>
 
-		<%= f.input :artist %>
-		<%= f.input :venue %>
-		<%= f.input :new_location, hint: "#{request.location}" %>
-		<%= f.input :date %>
-		<%= f.input :doors %>
-		<%= f.input :ticket_price %>
-		<%= f.input :video, hint: "a youtube, vimeo or link" %>
-		<%= f.input :music, hint: "a soundcloud link" %>
-		<%= f.input :about %>
-		<%= f.input :image, hint: "upload or select images from twitter, facebook and other services" do %>
-      <%= f.filepicker_field :image, button_class: "btn btn-primary btn-medium"  %>
+  <fieldset>
+    <legend><%= controller.action_name.capitalize %> Event</legend>
+
+    <%= f.input :visible, :label => "Visible to Public?" %>
+    <%= f.input :artist, label: "Artist / Event Name", placeholder: "Crete Boom" %>
+    <%= f.input :venue, label: "Name of Venue", placeholder: "The Rickshaw" %>
+    <%= f.input :new_location, label: "Location of Venue", hint: "#{request.location.address}" %>
+    <%= f.input :capacity, placeholder: "100" %>
+    <%= f.input :date, label: "Date of Event" %>
+    <%= f.input :doors, label: "Event start time" %>
+    <%= f.input :ticket_price, placeholder: "10.50" %>
+    <%= f.input :target, label: "Target Attendence", placeholder: "100" %>
+    <%= f.input :video, label: "Youtube/Vimeo url", placeholder: "http://youtu.be/x953GwKEwI8", hint: "Showcase the Artists playing at your event" %>
+    <%= f.input :music, label: "Soundcloud url", placeholder: "http://snd.sc/ZmJJnw", hint: "A playlist featuring your Artists, that users can download and share" %>
+    <%= f.input :image, label: "Upload Artist Images" do %>
+        <%= f.filepicker_field :image, button_class: "btn btn-primary btn-medium", hint: "Upload an image or connect to other service providers to pick one instead" %>
     <% end %>
 
-		<div class="form-actions">
-				<%= f.submit nil, class: "btn btn-primary" %>
-				<%= link_to "Back", :back, class: 'btn' %>
-		</div>
-	</fieldset>
+    <div class="form-actions">
+        <%= f.submit nil, class: "btn btn-primary" %>
+        <%= link_to "Back", :back, class: 'btn' %>
+    </div>
+  </fieldset>
 
 <% end %>
