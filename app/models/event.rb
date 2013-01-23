@@ -2,7 +2,7 @@ class Event < ActiveRecord::Base
   attr_accessible :artist, :date, :doors, :venue, :venue_capacity, :ticket_price,
                   :music, :video, :about, :image, :target, :location_id, :new_location, :visible, :state
   attr_accessor :new_location
-  enum_accessor :state, [ :hidden, :visible, :rescheduled, :archived, :cancelled ]
+  enum_accessor :state, [ :guest, :member, :rescheduled, :archived, :cancelled ]
   validates :artist, :venue, :date, :ticket_price, presence: true
 
   before_save :create_location

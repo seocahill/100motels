@@ -18,6 +18,8 @@ class GuestProfile < ActiveRecord::Base
   end
 
   def become_member(member_profile)
+    user.events.each {|e| e.state = :member }
+    user.events.each(&:save)
     user.profile = member_profile
     user.save!
   end
