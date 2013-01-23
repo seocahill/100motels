@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
 
   def show
-    @user = User.find(params[:id])
-    @orders = @user.orders
+    @user = User.find(params[:id]).decorate
   end
 
   def new

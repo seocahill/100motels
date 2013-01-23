@@ -7,12 +7,11 @@ class User < ActiveRecord::Base
   has_many :events, through: :event_users
   belongs_to :profile, polymorphic: true
 
-
   before_create :generate_token
 
   scope :total_events
 
-  delegate :guest?, :customer_id?, :your_account_or_email, :send_password_reset, :become_member, :username,
+  delegate :guest?, :customer_id?, :send_password_reset, :become_member,
     to: :profile
 
   def generate_token

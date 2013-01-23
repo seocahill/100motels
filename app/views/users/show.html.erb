@@ -1,41 +1,25 @@
 <div class="container">
 	<div class="row">
 		<div id="organizer-pic" class="span2" align="center">
-			<%= filepicker_image_tag @user.profile.avatar, width: 300, height: 300, fit: 'crop' if @user.profile.avatar %>
-			<p><%= link_to "Edit Account Settings", edit_member_profile_path(@user.profile.id), class: "btn btn-block" %></p>
+      <p><%= @user.avatar %></p>
+			<p><%= @user.edit %></p>
 		</div>
     <div class="span9">
       <div class="row-fluid">
         <div class="span4">
           <dl>
             <dt>Email</dt>
-            <dd><%= @user.your_account_or_email %></dd>
+            <dd><%= @user.email %></dd>
             <dt>Username</dt>
-            <dd><%= @user.username %></dd>
+            <dd><%= @user.name %></dd>
           </dl>
         </div>
         <div class="span4">
-          <% if @user.customer_id %>
-          <dl>
-            <dt>Card Type</dt>
-            <dd><%= @user.type %>
-            <dt>Last 4 Digits</dt>
-            <dd><%= @user.last4 %></dd>
-            <dt>Expires</dt>
-            <dd><%= @user.exp_month %>/<%= @user.exp_year %></dd>
-          </dl>
+          <%= @user.card %>
         </div>
         <div class="span4">
-          <dl
-            <dt>Change or Add card</dt>
-            <dd>
-              <%= form_tag  change_card_user_path, method: :put do %>
-                <script src="https://button.stripe.com/v1/button.js" class="stripe-button" data-panel-label="Save" data-label="Add Card" data-key="<%= ENV['STRIPE_PUBLIC_KEY'] %>" >
-                </script>
-              <% end %>
-            </dd>
-          </dl>
-          <% end %>
+          <h4>Update Card</h4>
+          <p><%= @user.update_card %></p>
         </div>
       </div>
     </div>

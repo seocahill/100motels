@@ -10,16 +10,8 @@ class MemberProfile < ActiveRecord::Base
 
   has_secure_password
 
-  def username
-    name
-  end
-
   def guest?
     false
-  end
-
-  def your_account_or_email
-    email
   end
 
   def generate_token(column)
