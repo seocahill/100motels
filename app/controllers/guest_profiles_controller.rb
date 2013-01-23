@@ -9,13 +9,17 @@ class GuestProfilesController < ApplicationController
 
 private
   def create_starter_event(user)
+    location = request.location.present? ? request.location.address : "Dublin, Ireland."
     event = Event.new
     event.event_users.build(user_id: user.id, state: :organizer)
+    event.build_location(address: location)
     event.artist = "Title for your Event"
     event.venue = "A Dungeon or Speak hopefully"
     event.date = 1.month.from_now
     event.doors = Time.now.midnight
     event.ticket_price = 15.0
+    event.target = 100
+    event.capacity = 300
     event.save!
     event
   end

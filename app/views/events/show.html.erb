@@ -1,55 +1,35 @@
+<% @event.header %>
+
 <div class="container">
-	<header>
-		<% title(@event.artist, @event.venue, @event.date) %>
-	</header>
+
 	<div class="row">
 		<div class="span2">
-			<% if current_user  %>
-				<strong>Event Visible?:
-					<span class="badge"><%= best_in_place_if current_user, @event, :visible, :type => :checkbox %></span>
-				</strong>
-				<p><%= link_to "Edit in form", edit_event_path(@event) %> </p>
-			<% end %>
+			Visible ? <%= @event.visible %>
 		</div>
-	</div>
+		<div class="span2">
+			<%= @event.edit %>
+		</div>
+	</div> <!-- /row -->
+
 	<section id="event-info" class="section-box">
 		<div class="row-fluid">
 			<div class="label-box">Ticket Info</div>
-				<div class="span3">
-					<%= form_for @event do |f| f.filepicker_field(:image, onchange: "this.form.submit();") end %>
-					<% if @event.image? %>
-						<%= filepicker_image_tag @event.image, width: 300, height: 300, fit: 'crop' %>
-					<% else %>
-						<img src="//quickimage.it/300&text=Artist">
-					<% end %>
+			<div class="span3">
+				<%= @event.image %>
+				<%= @event.filepicker %>
+			</div>
+			<div class="span5" align="center">
+				<h2><small><%= @organizer.name %> presents...</small><br><div id="artist"><%= @event.title %></div></h2>
+				<h4><%= @event.date %><br><%= @event.venue %> <br></h4>
+				<h4>Doors<br>at<br><%= @event.doors %></h4>
+				<h2><small>sold / target</small><br><%= @event.sales %></h2>
+			</div>
+			<div class="span3">
+				<div class="section-box centered-box">
+					<h1><%= @event.price %><br><small>per ticket</small></h1>
+					<%= render 'form' %>
 				</div>
-				<div class="span5" align="center">
-					<h2>
-						<small>Promoter presents...</small> <br>
-						<div id="artist"><%= best_in_place_if current_user, @event, :artist %></div>
-					</h2>
-					<h4>
-						<%#= @event.date.strftime("%a, %d %b %Y") %> <br>
-						<%= best_in_place_if current_user, @event, :date, type: :date, display_with: lambda { |v| v.strftime("%a, %d %b %Y") } %>
-						 <br>
-						<%= best_in_place @event, :venue %> <br>
-					</h4>
-					<h1>~</h1>
-					<h4>
-						Doors  <br>
-						at <br>
-						<%= best_in_place @event, :doors, display_with: lambda { |v| v.strftime("%l:%M %p")} %>
-					</h4>
-				</div>
-				<div class="span3">
-					<div class="section-box centered-box">
-						<h1>
-							<%= best_in_place_if current_user, @event, :ticket_price, display_with: :number_to_currency %> <br>
-							<small>per ticket</small>
-						</h1>
-						<%= render 'add_to_cart_form' %>
-					</div>
-				</div>
+			</div>
 		</div>
 	</section>
 
@@ -57,56 +37,14 @@
 		<div class="label-box">Event Info</div>
 		<div class="row">
 			<div class="span4">
-				<div class="row">
-					<div class="span4">
-						<h3>Promoter says...</h3>
-						<div id="about">
-							<%= best_in_place @event, :about, :type => :textarea, :ok_button => 'Save', :cancel_button => 'Cancel', :nil => "Click me to add content!", :display_with => :simple_format  %>
-						</div>
-					</div>
-				</div>
+        <h3>About...</h3><%= @event.about %>
+  			<h3>Location...</h3><%= @event.location %>
 			</div>
 			<div class="span6">
-				<h3>
-					Watch.... <br>
-					<small><%= best_in_place_if current_user, @event, :video %></small>
-					<% if @event.video_html? %>
-						<%= @event.video_html  %>
-					<% else %>
-						<img src="//quickimage.it/630x430&text=Vimeo" class="align_center">
-					<% end %>
-				</h3>
-				<h3>
-					Listen.... <br>
-					<small><%= best_in_place_if current_user, @event, :music %></small>
-					<% if @event.music_html? %>
-						<%= @event.music_html  %>
-					<% else %>
-						<img src="//quickimage.it/565x170&text=Soundcloud+playlist" class="align_left">
-					<% end %>
-				</h3>
+				<h3>Watch....<br><small><%= @event.video %></small><%= @event.video_iframe %></h3>
+				<h3>Listen....<br><small><%= @event.music %></small><%= @event.music_iframe %></h3>
 			</div>
 	</section>
-</div>
+</div> <!-- /container -->
 <!-- Modal -->
-<div id="gettingStarted" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-guest="<%= @organizer.guest? %>">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Wecome to your first event!</h3>
-  </div>
-  <div class="modal-body">
-    <p>Hi there  here's some basic instructions to get you going...</p>
-    <ul>
-    	<li>Order a ticket for your event</li>
-    	<li>Click on 'your account' and go to 'my events'</li>
-    	<li>Click on 'Connect to Stripe' and 'skip this form' this gives you a test account to play around with.</li>
-    	<li>Charge your order (in test mode your credit card will not be charged).</li>
-    	<li>Go to 'Check In View' and admit yourself to your event!</li>
-    	<li>You can also create another order and test out the refund/cancel options</li>
-    	<li>When your done don't forget to save your account. You will need to reconnect to Stripe to proccess real payments.</li>
-    </ul>
-  </div>
-  <div class="modal-footer">
-    <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true" >Got it!</button>
-  </div>
-</div>
+<%= render 'modal' %>

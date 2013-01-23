@@ -9,13 +9,17 @@ has_scope :refunded, type: :boolean
   end
 
   def create
-    @event = current_user.events.new(params[:event])
-    if @event.save
-      flash[:notice] = "Event Created Successfully"
-      redirect_to @event
-    else
-      flash[:alert] = "Event has not been created"
-      render :action => "new"
+    @event = Event.new(params[:event])
+    @event.event_users.build(user_id: current_user.id, state: :organizer)
+    respond_to do |format|
+      if @event.save
+        flash[:notice] = 'Event was successfully created.'
+        format.html { redirect_to(@event) }
+        format.xml { render xml: @event, status: :created, location: @event }
+      else
+        format.html { render action: "new" }
+        format.xml { render xml: @event.errors, status: :unprocessable_entity }
+      end
     end
   end
 

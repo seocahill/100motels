@@ -16,7 +16,7 @@ OneHundredMotels::Application.routes.draw do
   resources :member_profiles, only: [:new, :create, :edit, :update]
   resources :guest_profiles, only: [:create]
   resources :password_resets
-  resources :events
+  resources :events, only: [:show, :index]
   resources :locations
 
   resources :users do

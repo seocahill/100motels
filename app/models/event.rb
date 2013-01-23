@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-  attr_accessible :artist, :date, :doors, :venue, :venue_capacity, :ticket_price,
+  attr_accessible :artist, :date, :doors, :venue, :capacity, :ticket_price,
                   :music, :video, :about, :image, :target, :location_id, :new_location, :visible, :state
   attr_accessor :new_location
   enum_accessor :state, [ :guest, :member, :rescheduled, :archived, :cancelled ]

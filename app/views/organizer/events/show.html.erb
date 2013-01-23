@@ -15,11 +15,9 @@
   </div>
   <div class="span2">
     <div class="btn-group">
-      <% if current_user.api_key %>
-        <%= submit_tag "Charge Selected", name: 'charge', class: "btn" %>
-        <%= submit_tag "Refund Selected", name: 'refund', class: "btn" %>
-      <% end %>
-      <%= link_to image_tag('blue.png'), '/auth/stripe_connect', class: "" %>
+      <%= submit_tag "Charge Selected", name: 'charge', class: "btn" if current_user.api_key %>
+      <%= submit_tag "Refund Selected", name: 'refund', class: "btn" if current_user.api_key %>
+      <%= link_to image_tag('blue.png'), '/auth/stripe_connect' unless current_user.api_key %>
     </div>
   </div>
   <div class="span2 offset2">
@@ -28,7 +26,6 @@
       <%= link_to "Cancel Event", cancel_organizer_event_path(@event), class: "btn", data: { confirm: "Are you sure?" } %>
     </div>
   </div>
-
   <div class="span3 offset1">
     <div class="btn-group">
       <%= link_to "Generate PDF", organizer_event_path(@event, format: "pdf"), class: "btn" %>
@@ -43,6 +40,7 @@
       <li><%= link_to "All", organizer_event_path(@event) %></li>
       <li><%= link_to "Pending", request.path + '?pending=true' %></li>
       <li><%= link_to "Paid", request.path + '?paid=true' %></li>
+      <li><%= link_to "Tickets Sent", request.path + '?tickets_sent=true' %></li>
       <li><%= link_to "Failed", request.path + '?failed=true' %></li>
       <li><%= link_to "Refunded", request.path + '?refunded=true' %></li>
     </ul>

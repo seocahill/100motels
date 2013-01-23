@@ -1,18 +1,14 @@
 <div class="container">
 	<div class="row">
 		<div class="span12">
-			<header>
-				<h3 class="page-header">Upcoming Events<div class="pull-left"></div></h3>
-			</header>
+			<header><h3 class="page-header">Upcoming Events</h3></header>
 		</div>
 	</div>
 	<div class="row">
 		<div class="span3">
 			<aside>
-				<div class="well">
-					<header>
-						<h4>Search Controls</h4>
-					</header>
+				<form class="city-select" method="get">
+					<div class="well">
 						<ul class="nav nav-list">
 							<li class="nav-header" id="index-filter">Date of Event</li>
 							<li class=""><%= link_to "Today", request.path + '?tonight=true' %></li>
@@ -20,14 +16,13 @@
 							<li class=""><%= link_to "This Month", request.path + '?month_end=true' %></li>
 							<li class="divider"></li>
 							<li class="nav-header">Location</li>
-							<form class="city-select" method="get">
-								<%= select_tag "event_city", options_for_select(@options), prompt: "Filter by City"  %>
-								<li class="divider"></li>
-								<button class="btn btn-block" value="Reset Form">Clear Filters</button>
-							</form>
+							<%= select_tag "event_city", options_for_select(@options), prompt: "Filter by City", class: "controls"  %>
+							<li class="divider"></li>
+							<button class="btn btn-block" value="Reset Form">Clear Filters</button>
 							<li class="divider"></li>
 						</ul>
-				</div>
+					</div>
+				</form>
 			</aside>
 		</div>
 		<div class="span9">
@@ -36,11 +31,7 @@
 					<% @events.each do |event| %>
 						<li class="span3 pull-left">
 							<a class="thumbnail" href="<%= event_path(event) %>">
-								<% if event.image? %>
-                  <%= filepicker_image_tag event.image, width: 240, height: 140, fit: 'crop' %>
-                <% else %>
-                  <img src="http://placehold.it/240" alt="">
-                <% end %>
+                 <%= filepicker_image_tag event.image, width: 240, height: 140, fit: 'crop' if event.image.present? %>
 							</a>
 							<h3><%= event.artist %></h3>
 						</li>

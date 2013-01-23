@@ -1,28 +1,23 @@
-<%= simple_form_for @event, :html => { class: 'form-horizontal' } do |f| %>
+<%= simple_form_for @order, :validate => true do |f| %>
+  <%= f.input :quantity, collection: 1..4, input_html: { class: "input-mini"} %>
 
+  <%# Optional Email field  %>
+  <% unless current_user && current_user.guest? == false %>
+    <%= f.input :email, label: false, placeholder: "  your email address", input_html: { class: "input-medium" }, required: :true %>
+  <% else %>
+    <%= f.input :email, as: :hidden, input_html: { value: current_user.email } %>
+  <% end %>
 
-  <fieldset>
-    <legend><%= controller.action_name.capitalize %> Event</legend>
-
-    <%= f.input :visible, :label => "Visible to Public?" %>
-    <%= f.input :artist, label: "Artist / Event Name", placeholder: "Crete Boom" %>
-    <%= f.input :venue, label: "Name of Venue", placeholder: "The Rickshaw" %>
-    <%= f.input :new_location, label: "Location of Venue", hint: "#{request.location.address}" %>
-    <%= f.input :capacity, placeholder: "100" %>
-    <%= f.input :date, label: "Date of Event" %>
-    <%= f.input :doors, label: "Event start time" %>
-    <%= f.input :ticket_price, placeholder: "10.50" %>
-    <%= f.input :target, label: "Target Attendence", placeholder: "100" %>
-    <%= f.input :video, label: "Youtube/Vimeo url", placeholder: "http://youtu.be/x953GwKEwI8", hint: "Showcase the Artists playing at your event" %>
-    <%= f.input :music, label: "Soundcloud url", placeholder: "http://snd.sc/ZmJJnw", hint: "A playlist featuring your Artists, that users can download and share" %>
-    <%= f.input :image, label: "Upload Artist Images" do %>
-        <%= f.filepicker_field :image, button_class: "btn btn-primary btn-medium", hint: "Upload an image or connect to other service providers to pick one instead" %>
-    <% end %>
-
-    <div class="form-actions">
-        <%= f.submit nil, class: "btn btn-primary" %>
-        <%= link_to "Back", :back, class: 'btn' %>
+  <%# Optional Buy Now / Stripe button %>
+  <% if current_user && current_user.customer_id? %>
+    <%= f.submit "Buy Now", html: {class: "btn btn-success btn-large"}, id: "buy-now" %>
+  <% else %>
+    <div class="stripe-controls" align="center">
+      <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
+        data-key="<%= ENV['STRIPE_PUBLIC_KEY'] %>" data-description="<%= @event.artist %>"
+        data-amount="<%= @event.ticket_price.to_i * 100 %>">
+      </script>
     </div>
-  </fieldset>
-
+  <% end %>
 <% end %>
+

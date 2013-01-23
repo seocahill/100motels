@@ -9,6 +9,4 @@ module ApplicationHelper
       "100 Motels"
 		end
 	end
-
-
 end

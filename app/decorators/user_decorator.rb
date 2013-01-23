@@ -1,4 +1,4 @@
-class UserDecorator < Draper::Decorator
+class UserDecorator < ApplicationDecorator
   delegate_all
 
   def avatar
@@ -28,5 +28,9 @@ class UserDecorator < Draper::Decorator
            h.raw %Q{<script src="https://button.stripe.com/v1/button.js"
             class="stripe-button" data-panel-label="Save" data-label="Add Card" data-key="<%= ENV['STRIPE_PUBLIC_KEY'] %>" > </script>}
     end
+  end
+
+  def current_user
+
   end
 end

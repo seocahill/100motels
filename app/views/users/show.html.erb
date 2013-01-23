@@ -6,7 +6,7 @@
 		</div>
     <div class="span9">
       <div class="row-fluid">
-        <div class="span4">
+        <div class="span3">
           <dl>
             <dt>Email</dt>
             <dd><%= @user.email %></dd>
@@ -14,12 +14,16 @@
             <dd><%= @user.name %></dd>
           </dl>
         </div>
-        <div class="span4">
+        <div class="span3">
           <%= @user.card %>
         </div>
-        <div class="span4">
+        <div class="span3">
           <h4>Update Card</h4>
           <p><%= @user.update_card %></p>
+        </div>
+        <div class="span3">
+          <h4>Refresh you Stripe API token</h4>
+          <%= link_to image_tag('blue.png'), '/auth/stripe_connect' %>
         </div>
       </div>
     </div>
