@@ -13,8 +13,8 @@ class EventsController < ApplicationController
   end
 
   def show
-    @order = @event.orders.new.decorate
-    @organizer = @event.users.first #ok for now
+    @order = @event.orders.new
+    @organizer = UserDecorator.decorate(@event.users.first) #ok for now
   end
 
 private
