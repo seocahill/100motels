@@ -21,15 +21,14 @@ class OrdersController < ApplicationController
   end
 
   def charge_or_refund
-    @organizer = current_user
     if params[:charge]
-      @orders.each { |order| ChargeCustomer.new(order, @organizer).process_charge if [:pending, :failed].include? order.stripe_event }
+      @orders.each { |order| ChargeCustomer.new(order, current_user).process_charge if [:pending, :failed].include? order.stripe_event }
       @orders.each { |order| order.quantity.times {order.tickets.create(event_id: order.event_id)} if order.stripe_event == :paid }
-      Notifier.transaction_summary(@orders, @organizer).deliver
+      Notifier.transaction_summary(@orders, current_user.email).deliver
       flash[:notice] = "Finished processing #{@orders.count} Customers, check your email for details."
     elsif params[:refund]
-      @orders.each { |order| RefundCustomer.new(order, @organizer).refund_charge if [:paid, :tickets_sent].include? order.stripe_event }
-      Notifier.transaction_summary(@orders, @organizer).deliver
+      @orders.each { |order| RefundCustomer.new(order, current_user).refund_charge if [:paid, :tickets_sent].include? order.stripe_event }
+      Notifier.transaction_summary(@orders, current_user).deliver
       flash[:notice] = "Finished processing #{@orders.count} Customers, check your email for details."
     else
       flash[:error] = "Something went wrong."

@@ -19,10 +19,10 @@ class Notifier < ActionMailer::Base
     mail to: order.email, subject: "Your Tickets 100 Motels"
   end
 
-  def transaction_summary(orders, organizer)
+  def transaction_summary(orders, email)
     @orders = orders
-    @organizer = organizer
-    mail to: @organizer.your_account_or_email, subject: "Transaction Summary"
+    @email = email
+    mail to: @email, subject: "Transaction Summary"
   end
 
   def charge_failed(order)

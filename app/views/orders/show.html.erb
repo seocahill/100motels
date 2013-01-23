@@ -3,13 +3,10 @@
 		<div class="span12">
 			<div class="well">
 				<header>
-					<h2>Thanks <%= @order.name %>!... <br>
-						<small>Your order <%= number_to_currency(@order.total) %> was successful.</small>
-					</h2>
-					<p class="lead">
-						An email has been sent to <%= @order.email %> with your ticket. </p>
-					</p>
+					<h2>Thanks <%= @order.name %>!... <br><small>Your order <%= number_to_currency(@order.total) %> was successful.</small></h2>
+					<p class="lead">An email has been sent to <%= @order.email %> with your ticket. </p></p>
 				</header>
+				<%= link_to "Browse all events", events_path, class: "btn btn-primary" %>
 				<% unless current_user.guest? == false %>
 					<%= simple_form_for @member_profile do |f| %>
 						<%= f.input :email, as: :hidden, input_html: { value: @order.email } %>

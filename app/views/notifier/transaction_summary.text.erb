@@ -1,4 +1,4 @@
-<%=  @organizer.your_account_or_email %> we processed <%= pluralize(@orders.count, 'transaction') %> in total
+<%=  @email %> we processed <%= pluralize(@orders.count, 'transaction') %> in total
 
 Dated: <%= @orders.last.updated_at %>
 
