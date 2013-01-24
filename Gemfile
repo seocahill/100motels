@@ -15,7 +15,7 @@ end
 
 group :development do
   gem "mail_view", "~> 1.0.3"
-  gem "letter_opener", :group => :development
+  gem 'letter_opener_web'
   gem 'quiet_assets'
 end
 
@@ -63,3 +63,5 @@ gem 'has_scope'
 gem 'newrelic_rpm', group: [:production]
 gem 'draper'
 gem 'sidekiq'
+gem 'sinatra', require: false
+gem 'slim'

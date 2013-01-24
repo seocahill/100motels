@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 OneHundredMotels::Application.routes.draw do
 
   root :to => 'pages#index'
@@ -44,5 +46,11 @@ OneHundredMotels::Application.routes.draw do
     namespace :v1 do
       resources :events
     end
+  end
+
+  mount Sidekiq::Web, at: '/sidekiq'
+
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
 end
