@@ -46,5 +46,14 @@ test: &test
   username: postgres
   password:
 
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: one_hundred_motels_test
+  pool: 5
+  username: postgres
+  password:
+
 cucumber:
   <<: *test

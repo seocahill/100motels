@@ -10,6 +10,7 @@ group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'meta_request', '0.2.1'
+  gem 'sextant'
 end
 
 group :development do
@@ -61,3 +62,4 @@ gem 'google-qr'
 gem 'has_scope'
 gem 'newrelic_rpm', group: [:production]
 gem 'draper'
+gem 'sidekiq'

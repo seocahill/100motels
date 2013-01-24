@@ -6,7 +6,12 @@ class MemberProfilesController < ApplicationController
   def create
     @member_profile = MemberProfile.new(params[:member_profile])
     if @member_profile.save
-      current_user.become_member(@member_profile)
+      if current_user
+        current_user.become_member(@member_profile)
+      else
+        user = User.create! { |u| u.profile = @member_profile }
+        cookies[:auth_token] = user.auth_token
+      end
       redirect_to root_url, notice: "Thank you for signing up!"
     else
       render "new"
