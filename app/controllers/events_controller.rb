@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
 
-  before_filter :find_event, :only => [:show]
+  before_filter :find_event, :only => [:show, :update]
 
   has_scope :tonight , type: :boolean
   has_scope :week_end , type: :boolean
@@ -15,6 +15,18 @@ class EventsController < ApplicationController
   def show
     @order = Order.new
     @organizer = UserDecorator.decorate(@event.users.first) #ok for now
+  end
+
+  def update
+    respond_to do |format|
+      if @event.update_attributes(params[:event])
+        format.html { redirect_to(@event, :notice => 'event was successfully updated.') }
+        format.json { respond_with_bip(@event) }
+      else
+        format.html { render :action => "edit" }
+        format.json { respond_with_bip(@event) }
+      end
+    end
   end
 
 private
