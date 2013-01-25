@@ -13,6 +13,7 @@ OneHundredMotels::Application.routes.draw do
   get '/info' => 'pages#info'
   get '/home' => 'pages#home'
   get '/favicon.ico', to: redirect('/')
+  get '/organizer', to: redirect('/')
 
   resources :sessions
   resources :member_profiles, only: [:new, :create, :edit, :update]
@@ -32,7 +33,6 @@ OneHundredMotels::Application.routes.draw do
   end
 
   namespace :organizer do
-    root :to => 'events#index'
     resources :events do
       member do
         get :cancel
