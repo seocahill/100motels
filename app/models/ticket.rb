@@ -33,12 +33,6 @@ private
   end
 
   def mail_ticket
-    Notifier.delay.ticket(order_id, self.id)
-    update_order_state(order)
-  end
-
-  def update_order_state(order)
-    order.stripe_event = :tickets_sent
-    order.save!
+    Notifier.ticket(order_id, self.id).deliver
   end
 end

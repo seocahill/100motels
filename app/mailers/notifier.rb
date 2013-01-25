@@ -11,7 +11,7 @@ class Notifier < ActionMailer::Base
   def ticket(order_id, ticket_id)
     @ticket = Ticket.find(ticket_id)
     @order = Order.find(order_id)
-    @qr = ticket.number.to_qr_image(:size => "170x170")
+    @qr = @ticket.number.to_qr_image(:size => "170x170")
     @event = Event.find(@order.event_id)
     @greeting = "Thanks #{@order.name}!"
     mail to: @order.email, subject: "Your Tickets 100 Motels"

@@ -6,12 +6,8 @@ class ChargeCustomer
     @event = Event.find(order.event_id)
   end
 
-  # def order_tickets
-  #   @order.quantity.times {@order.tickets.create(event_id: @order.event_id)}
-  # end
-
   def charge
-    process_charge if [:pending, :failed].include? @order.stripe_event
+    delay.process_charge if [:pending, :failed].include? @order.stripe_event
   end
 
   def process_charge
@@ -20,6 +16,9 @@ class ChargeCustomer
       @order.stripe_charge_id = charge[:id]
       if charge[:paid] == true
         @order.stripe_event = :paid
+        if @order.quantity.times {@order.tickets.create(event_id: @order.event_id)}
+          @order.stripe_event = :tickets_sent
+        end
       else
         @order.stripe_event = :failed
       end
