@@ -1,6 +1,5 @@
 class OrdersController < ApplicationController
   before_filter :find_order, only: [:show]
-  before_filter :find_orders, only: [:charge_or_refund]
   before_filter :create_order_guest_user, only: [:create]
 
   layout 'landing', only: [:show]
@@ -21,11 +20,12 @@ class OrdersController < ApplicationController
   end
 
   def charge_or_refund
+    order_ids = params[:order_ids]
+    user_id = current_user.id
     if params[:charge]
-      @orders.each { |order| ChargeCustomer.new(order, current_user).process_charge if [:pending, :failed].include? order.stripe_event }
-      @orders.each { |order| order.quantity.times {order.tickets.create(event_id: order.event_id)} if order.stripe_event == :paid }
-      Notifier.transaction_summary(@orders, current_user.email).deliver
-      flash[:notice] = "Finished processing #{@orders.count} Customers, check your email for details."
+      order_ids.each { |order_id| ProcessOrdersWorker.perform_async(order_id, user_id) }
+      # Notifier.transaction_summary(@orders, current_user.email).deliver
+      flash[:notice] = "Processing #{@orders.count} orders, this could take a while. We'll email you when we're done."
     elsif params[:refund]
       @orders.each { |order| RefundCustomer.new(order, current_user).refund_charge if [:paid, :tickets_sent].include? order.stripe_event }
       Notifier.transaction_summary(@orders, current_user).deliver
@@ -42,12 +42,6 @@ private
     @order = current_user.orders.find(params[:id])
     rescue ActiveRecord::RecordNotFound
     redirect_to root_path
-  end
-
-  def find_orders
-    @orders = Order.find(params[:order_ids])
-    rescue ActiveRecord::RecordNotFound
-    redirect_to organizer_root_path, notice: "Some records weren't found?"
   end
 
   def create_order_guest_user
