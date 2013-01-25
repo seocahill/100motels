@@ -33,7 +33,7 @@ private
   end
 
   def mail_ticket
-    Notifier.ticket(order, self).deliver
+    Notifier.delay.ticket(order_id, self.id)
     update_order_state(order)
   end
 

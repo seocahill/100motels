@@ -6,7 +6,6 @@ gem 'thin'
 
 group :development, :test do
 	gem 'rspec-rails'
-  gem 'debugger'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'meta_request', '0.2.1'
