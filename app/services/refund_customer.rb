@@ -1,19 +1,12 @@
 class RefundCustomer
 
-  def initialize(order, organizer)
-    @order = order
-    @organizer = organizer
+  def initialize(orders)
+    @orders = orders
+    @api_key = User.find(@orders.first.event.users.first).api_key
   end
 
   def refund_charge
-    Stripe.api_key = @organizer.api_key
-    charge = Stripe::Charge.retrieve(@order.stripe_charge_id)
-    refund = charge.refund
-    @order.stripe_event = :refunded if refund[:refunded] == true
-    @order.save!
-    Notifier.refund_customer_order(@order).deliver
-  rescue Stripe::InvalidRequestError => e
-    Rails.logger.error "Stripe error while processing refund: #{e.message}"
+    @orders.each { |order| RefundsWorker.perform_async(order.id, @api_key) if [:paid, :tickets_sent].include? order.stripe_event }
   end
 
   def part_refund_charge
