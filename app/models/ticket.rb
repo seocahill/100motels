@@ -5,7 +5,7 @@ class Ticket < ActiveRecord::Base
 
   before_create :generate_ticket_number
   before_create :calculate_cumulative_quantity_by_email
-  after_create :mail_ticket
+  after_commit :mail_ticket, on: :create
 
   scope :event_tickets, proc { |event| joins(:event).where("event_id = ?", event.id) }
 

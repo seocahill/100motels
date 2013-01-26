@@ -22,7 +22,7 @@ class OrdersController < ApplicationController
 
   def charge_or_refund
     if params[:charge]
-      @orders.each { |order| ChargeOrderWorker.perform_async(order.id) }
+      @orders.each { |order| ChargesWorker.perform_async(order.id) }
       flash[:notice] = "Processing #{@orders.count} orders, we'll email you when we're done."
     elsif params[:refund]
       @orders.each { |order| RefundCustomer.new(order, current_user).refund_charge if [:paid, :tickets_sent].include? order.stripe_event }
