@@ -25,7 +25,6 @@ class OrdersController < ApplicationController
       flash[:notice] = "Processing #{@orders.count} orders, we'll email you when we're done."
     elsif params[:refund]
       RefundCustomer.new(@orders).refund_charge
-      # Notifier.transaction_summary(@orders, current_user).deliver
       flash[:notice] = "Processing #{@orders.count} Customers, check your email for details."
     else
       flash[:error] = "Something went wrong."
@@ -34,7 +33,6 @@ class OrdersController < ApplicationController
   end
 
 private
-
   def find_order
     @order = current_user.orders.find(params[:id])
     rescue ActiveRecord::RecordNotFound
