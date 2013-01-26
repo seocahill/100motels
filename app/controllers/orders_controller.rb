@@ -11,8 +11,7 @@ class OrdersController < ApplicationController
 
   def create
     @order = current_user.orders.new(params[:order])
-    customer = CustomerOrder.new(@order, params[:stripeToken])
-    if customer.add_customer_to_order
+    if CustomerOrder.new(@order, params[:stripeToken]).process_order
       Notifier.delay.order_created(@order.id)
       redirect_to @order, notice: "Thanks! We sent you an email with a receipt for your order."
     else

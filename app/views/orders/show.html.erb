@@ -3,7 +3,7 @@
 		<div class="span12">
 			<div class="well">
 				<header>
-					<h2>Thanks <%= current_user.name %>!... <br><small>Your order <%= number_to_currency(@order.total) %> was successful.</small></h2>
+					<h2>Thanks <%= @order.email %>!... <br><small>Your order <%= number_to_currency(@order.total) %> was successful.</small></h2>
 					<p class="lead">An email has been sent to <%= @order.email %> with your ticket. </p></p>
 				</header>
 				<%= link_to "Browse all events", events_path, class: "btn btn-primary" %>

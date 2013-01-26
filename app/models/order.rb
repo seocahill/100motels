@@ -1,5 +1,5 @@
 class Order < ActiveRecord::Base
-  attr_accessible :email, :name, :quantity, :event_id, :user_id
+  attr_accessible :email, :name, :quantity, :event_id, :user_id, :last4, :stripe_customer_token
   enum_accessor :stripe_event, [ :pending, :paid, :failed, :refunded, :cancelled, :tickets_sent ]
 
   has_many :tickets, dependent: :destroy
