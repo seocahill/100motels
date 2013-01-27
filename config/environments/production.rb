@@ -31,7 +31,7 @@ OneHundredMotels::Application.configure do
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  # config.force_ssl = true
+  config.force_ssl = true
 
   # See everything in the log (default is :info)
   # config.log_level = :debug
@@ -49,7 +49,7 @@ OneHundredMotels::Application.configure do
   # config.action_controller.asset_host = "http://assets.example.com"
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  config.assets.precompile += %w( jquery-1.7.js )
+  # config.assets.precompile += %w( jquery-1.7.js )
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
@@ -69,7 +69,7 @@ OneHundredMotels::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
   # Set the mailer to localhost
-  config.action_mailer.default_url_options = { :host => 'onehundredmotels.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => '100motels.com' }
 
   # Sendgrid email
 
