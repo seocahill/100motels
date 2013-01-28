@@ -88,6 +88,10 @@ class EventDecorator < ApplicationDecorator
 
 private
   def event_owner?
-    current_user.id == model.users.first.id
+    if current_user.present?
+      current_user.id == model.users.first.id
+    else
+      false
+    end
   end
 end
