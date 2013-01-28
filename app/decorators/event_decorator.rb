@@ -5,7 +5,7 @@ class EventDecorator < ApplicationDecorator
     content_tag :header, h.title(model.artist, model.venue, model.date)
   end
 
-  def visible
+  def active
     best_in_place_if event_owner?, model, :visible, :type => :checkbox
   end
 
@@ -86,7 +86,6 @@ class EventDecorator < ApplicationDecorator
     end
   end
 
-private
   def event_owner?
     if current_user.present?
       current_user.id == model.users.first.id

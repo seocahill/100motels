@@ -1,50 +1,53 @@
-<% @event.header %>
+<% if @event.visible || @event.event_owner? %>
+	<% @event.header %>
+	<div class="container">
 
-<div class="container">
-
-	<div class="row">
-		<div class="span2">
-			Visible ? <%= @event.visible %>
-		</div>
-		<div class="span2">
-			<%= @event.edit %>
-		</div>
-	</div> <!-- /row -->
-
-	<section id="event-info" class="section-box">
-		<div class="row-fluid">
-			<div class="label-box">Ticket Info</div>
-			<div class="span3">
-				<%= @event.image %>
-				<%= @event.filepicker %>
+		<div class="row">
+			<div class="span2">
+				Visible ? <%= @event.active %>
 			</div>
-			<div class="span5" align="center">
-				<h2><small><%= @organizer.name %> presents...</small><br><div id="artist"><%= @event.title %></div></h2>
-				<h4><%= @event.date %><br><%= @event.venue %> <br></h4>
-				<h4>Doors<br>at<br><%= @event.doors %></h4>
-				<h2><small>sold / target</small><br><%= @event.sales %></h2>
+			<div class="span2">
+				<%= @event.edit %>
 			</div>
-			<div class="span3">
-				<div class="section-box centered-box">
-					<h1><%= @event.price %><br><small>per ticket</small></h1>
-					<%= render 'form' %>
+		</div> <!-- /row -->
+
+		<section id="event-info" class="section-box">
+			<div class="row-fluid">
+				<div class="label-box">Ticket Info</div>
+				<div class="span3">
+					<%= @event.image %>
+					<%= @event.filepicker %>
+				</div>
+				<div class="span5" align="center">
+					<h2><small><%= @organizer.name %> presents...</small><br><div id="artist"><%= @event.title %></div></h2>
+					<h4><%= @event.date %><br><%= @event.venue %> <br></h4>
+					<h4>Doors<br>at<br><%= @event.doors %></h4>
+					<h2><small>sold / target</small><br><%= @event.sales %></h2>
+				</div>
+				<div class="span3">
+					<div class="section-box centered-box">
+						<h1><%= @event.price %><br><small>per ticket</small></h1>
+						<%= render 'form' %>
+					</div>
 				</div>
 			</div>
-		</div>
-	</section>
+		</section>
 
-	<section id="about-artist" class="section-box">
-		<div class="label-box">Event Info</div>
-		<div class="row">
-			<div class="span4">
-        <h3>About...</h3><%= @event.about %>
-  			<h3>Location...</h3><%= @event.location %>
-			</div>
-			<div class="span6">
-				<h3>Watch....<br><small><%= @event.video %></small><%= @event.video_iframe %></h3>
-				<h3>Listen....<br><small><%= @event.music %></small><%= @event.music_iframe %></h3>
-			</div>
-	</section>
-</div> <!-- /container -->
-<!-- Modal -->
-<%= render 'modal' %>
+		<section id="about-artist" class="section-box">
+			<div class="label-box">Event Info</div>
+			<div class="row">
+				<div class="span4">
+	        <h3>About...</h3><%= @event.about %>
+	  			<h3>Location...</h3><%= @event.location %>
+				</div>
+				<div class="span6">
+					<h3>Watch....<br><small><%= @event.video %></small><%= @event.video_iframe %></h3>
+					<h3>Listen....<br><small><%= @event.music %></small><%= @event.music_iframe %></h3>
+				</div>
+		</section>
+	</div> <!-- /container -->
+	<!-- Modal -->
+	<%= render 'modal' %>
+<% else %>
+<h1>Sorry Event is not available right now</h1>
+<% end %>

@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
 
-  before_filter :find_event, :only => [:show, :update]
+  before_filter :find_event, only: [:show, :update]
+
 
   has_scope :tonight , type: :boolean
   has_scope :week_end , type: :boolean
@@ -39,4 +40,3 @@ private
     redirect_to events_path
   end
 end
-
