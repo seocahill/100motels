@@ -63,5 +63,6 @@ gem 'has_scope'
 gem 'newrelic_rpm', group: [:production]
 gem 'draper'
 gem 'sidekiq'
+gem 'sidekiq-failures'
 gem 'sinatra', require: false
 gem 'slim'

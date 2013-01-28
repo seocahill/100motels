@@ -19,7 +19,7 @@ test: &test
 staging:
   adapter: postgresql
   encoding: unicode
-  database: one_hundred_motels_production
+  database: one_hundred_motels_development
   pool: 5
   username: postgres
   password:
