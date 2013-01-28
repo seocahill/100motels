@@ -25,3 +25,4 @@ bundler_stubs/
 /.env
 /.vagrant
 /*.box
+/*.dev
