@@ -21,7 +21,7 @@ class Event < ActiveRecord::Base
 
 
   def create_location
-    self.location = Location.create(address: new_location) if new_location.present?
+    self.location = Location.where(address: new_location).first_or_create if new_location.present?
   end
 
   def self.text_search(query)
