@@ -6,7 +6,7 @@ class EventDecorator < ApplicationDecorator
   end
 
   def active
-    best_in_place_if event_owner?, model, :visible, :type => :checkbox
+    switch = best_in_place model, :visible, :type => :checkbox if event_owner?
   end
 
   def edit
@@ -59,7 +59,7 @@ class EventDecorator < ApplicationDecorator
   end
 
   def location
-    best_in_place_if event_owner?, model, :new_location
+    image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{model.location.latitude}%2C#{model.location.longitude}"
   end
 
   def video
