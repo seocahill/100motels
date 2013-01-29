@@ -56,7 +56,7 @@ class EventDecorator < ApplicationDecorator
 
   def about
     best_in_place_if event_owner?, model, :about, :type => :textarea, :ok_button => 'Save', :cancel_button => 'Cancel',
-                          :nil => "Click me to add content!", :display_with => :simple_format, display_with: :truncate, helper_options: {:length => 700, :omission => '... (continued)'}
+                          :nil => "Click me to add content!", :display_with => :simple_format
   end
 
   def location
@@ -64,7 +64,7 @@ class EventDecorator < ApplicationDecorator
   end
 
   def video
-    best_in_place_if model, :video, :nil => "Click me to add a Youtube or Vimeo url, e.g. http://youtu.be/TZLwfyVYJJw" if event_owner?
+    best_in_place model, :video, :nil => "Click me to add a Youtube or Vimeo url, e.g. http://youtu.be/TZLwfyVYJJw" if event_owner?
   end
 
   def video_iframe
