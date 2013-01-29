@@ -32,8 +32,7 @@
 					</dl>
 				</div>
 				<div class="span4 event-ticket-orders">
-					<h1><%= @event.sales %></h1>
-					<p>tickets left</p>
+					<h1><%= @event.sales %><small> tickets left</small></h1>
 					<h3><%= @event.price %><small> each</small></h3>
 					<%= render 'form' %>
 				</div>
