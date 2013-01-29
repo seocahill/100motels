@@ -14,37 +14,41 @@
 		<section id="event-information" class="event">
 			<div class="row-fluid">
 				<div class="span4 event-poster">
-					<%= @event.image %>
+					<p><%= @event.image %></p>
 					<%= @event.filepicker %>
 				</div>
 				<div class="span4 event-details">
-					<%= @organizer.name %>
-					<%= @event.title %>
-					<%= @event.date %>
-					<%= @event.venue %>
-					<%= @event.doors %>
-					<%= @event.sales %>
-					<%= @event.price %>
+					<h1><%= @event.title %></h1>
+					<hr>
+					<dl class="">
+						<dt>Organized by:</dt>
+						<dd><%= @organizer.name || "no name" %></dd>
+						<dt>Date</dt>
+						<dd><%= @event.date %></dd>
+						<dt>Venue</dt>
+						<dd><%= @event.venue %></dd>
+						<dt>Begins</dt>
+						<dd><%= @event.doors %></dd>
+					</dl>
 				</div>
 				<div class="span4 event-ticket-orders">
-					<div class="">
-						<%= render 'form' %>
-					</div>
+					<h1><%= @event.sales %></h1>
+					<p>tickets left</p>
+					<h3><%= @event.price %><small> each</small></h3>
+					<%= render 'form' %>
 				</div>
 			</div>
 		</section>
+		<hr>
 		<section id="event-media" class="event">
 			<div class="row">
-				<div class="span4">
-	        <h3>About...</h3><%= @event.about %>
-	  			<h3>Location...</h3><%= @event.location %>
-				</div>
-				<div class="span6">
-					Watch....<%= @event.video %><div class="flex-video"><%= @event.video_iframe %></div>
-					Listen....<%= @event.music %><%= @event.music_iframe %>
-				</div>
+				<div class="span4"><p><%= @event.about %></p></div>
+				<div class="span6"><%= @event.video %><div class="flex-video"><%= @event.video_iframe %></div></div>
+			<div class="row">
+				<div class="span4"><%= @event.location %></div>
+				<div class="span6"><%= @event.music %><%= @event.music_iframe %></div>
+			</div>
 		</section>
-
 	</div> <!-- /container -->
 	<!-- Modal -->
 	<%= render 'modal' %>

@@ -46,7 +46,8 @@ class EventDecorator < ApplicationDecorator
   end
 
   def sales
-    "#{model.tickets.count} / #{model.target}"
+    sales = model.orders.sum(:quantity)
+    model.target - sales
   end
 
   def price
@@ -55,7 +56,7 @@ class EventDecorator < ApplicationDecorator
 
   def about
     best_in_place_if event_owner?, model, :about, :type => :textarea, :ok_button => 'Save', :cancel_button => 'Cancel',
-                          :nil => "Click me to add content!", :display_with => :simple_format
+                          :nil => "Click me to add content!", :display_with => :simple_format, display_with: :truncate, helper_options: {:length => 700, :omission => '... (continued)'}
   end
 
   def location
@@ -63,7 +64,7 @@ class EventDecorator < ApplicationDecorator
   end
 
   def video
-    best_in_place_if event_owner?, model, :video, :nil => "Click me to add a Youtube or Vimeo url, e.g. http://youtu.be/TZLwfyVYJJw"
+    best_in_place_if model, :video, :nil => "Click me to add a Youtube or Vimeo url, e.g. http://youtu.be/TZLwfyVYJJw" if event_owner?
   end
 
   def video_iframe
@@ -75,7 +76,7 @@ class EventDecorator < ApplicationDecorator
   end
 
   def music
-    best_in_place_if event_owner?, model, :music, :nil => "Click me to add a Soundcloud url, e.g. http://youtu.be/TZLwfyVYJJw"
+    best_in_place model, :music, :nil => "Click me to add a Soundcloud url, e.g. http://youtu.be/TZLwfyVYJJw" if event_owner?
   end
 
   def music_iframe

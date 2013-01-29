@@ -1,15 +1,11 @@
- <%= simple_form_for @order, :validate => true do |f| %>
-  <%= f.input :quantity, collection: 1..4, input_html: { class: "input-mini"} %>
-
+ <%= simple_form_for @order, :validate => true, :html => { :class => '' } do |f| %>
   <%= f.input :event_id, as: :hidden, input_html: { value: @event.id } %>
-  <%# Optional Email field  %>
+  <%= f.input :quantity, collection: 1..4, input_html: { class: "input-mini"}, label: false %>
   <% unless current_user && current_user.guest? == false %>
     <%= f.input :email, label: false, placeholder: "  your email address", input_html: { class: "input-medium" }, required: :true %>
   <% else %>
     <%= f.input :email, as: :hidden, input_html: { value: current_user.email } %>
   <% end %>
-
-  <%# Optional Buy Now / Stripe button %>
   <% if current_user && current_user.customer_id? %>
     <%= f.submit "Buy Now", html: {class: "btn btn-success btn-large"}, id: "buy-now" %>
   <% else %>
