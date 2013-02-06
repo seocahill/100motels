@@ -1,7 +1,7 @@
 module Api
   module V1
     class EventsController < ApiController
-      doorkeeper_for :all
+      # doorkeeper_for :all
 
 
       def index
