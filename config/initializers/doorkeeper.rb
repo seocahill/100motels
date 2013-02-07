@@ -27,7 +27,7 @@ Doorkeeper.configure do
   # access_token_expires_in 2.hours
 
   # Issue access tokens with refresh token (disabled by default)
-  use_refresh_token
+  # use_refresh_token
 
   # Define access token scopes for your provider
   # For more information go to https://github.com/applicake/doorkeeper/wiki/Using-Scopes
@@ -39,7 +39,7 @@ Doorkeeper.configure do
   # fallsback to `:client_id` and `:client_secret` from `params` object
   # Check out the wiki for mor information on customization
   # client_credentials :from_basic, :from_params
-  skip_authorization do
-    true
-  end
+  # skip_authorization do
+  #   true
+  # end
 end

@@ -17,3 +17,29 @@ Sidekiq::Web.use(Rack::Auth::Basic) do |user, password|
   [user, password] == ["sidekiqadmin", ENV["SIDEKIQ_PASSWORD"]]
 end
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

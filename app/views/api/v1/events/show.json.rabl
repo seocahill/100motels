@@ -1,5 +1,5 @@
 object @event
 attributes :artist, :venue, :date
-child :orders do
-  attributes :quantity, :stripe_charge_id
+child :tickets do
+  attributes :number, :admitted
 end
