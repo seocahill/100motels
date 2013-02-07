@@ -1,4 +1,5 @@
 class EventPdf < Prawn::Document
+
   def initialize(event, orders, view)
     super(top_margin: 70)
     @event = event
@@ -26,21 +27,13 @@ class EventPdf < Prawn::Document
   end
 
   def line_item_rows
-    [["Name", "Email", "Admit"]] +
+    [["Name", "Email", "Admit", "State"]] +
     @orders.all.map do |item|
-      [item.name, item.email, item.quantity]
+      [item.name, item.email, item.quantity, item.stripe_event]
     end
   end
 
   def price(num)
     @view.number_to_currency(num)
   end
-
-  # def organizer
-  # move_down 20
-  #   t = Time.now
-  #   text "Organizer: #{@event.profile.user.email}", size: 16
-  #   text "printed on: #{t.strftime("%m/%d/%Y")}"
-  #   text "at: #{t.strftime("%I:%M%p")}"
-  # end
 end
