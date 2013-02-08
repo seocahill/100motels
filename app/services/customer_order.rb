@@ -14,7 +14,7 @@ class CustomerOrder
 
   def add_total_to_order
     event = Event.find(@order.event_id)
-    @order.total = @order.quantity * event.ticket_price
+    @order.total = (@order.quantity * (event.ticket_price / 0.961) + 0.30).round(2)
     @order.save!
   end
 end

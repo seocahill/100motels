@@ -11,18 +11,11 @@ $ ->
 orderTotal = ->
   quantity = $('#order_quantity').val()
   price = $('.ticket-price').data('original-content')
-  total = quantity * price
-  stripe_fees = (total * 0.029) + 0.3
-  motel_fees = total * 0.01
-  gross = total + stripe_fees + motel_fees
+  net_price = quantity * price
+  gross = (net_price / .961) + 0.30
   number = parseFloat(gross).toFixed(2)
   $('.order-total').html(number)
-  $('.stripe-button').attr('data-amount', total)
-
-# $ ->
-#   price = $('.ticket-price').data('original-content')
-#   number = parseInt( price, 10 )
-#   $('.order-total').html(number)
+  $('.stripe-button').attr('data-amount', number)
 
 # Toggle checkboxes
 $ ->

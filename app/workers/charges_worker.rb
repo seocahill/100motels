@@ -25,11 +25,11 @@ class ChargesWorker
   end
 
   def charge_customer(order)
+    event = Event.find(order.event_id)
     organizer = User.find(order.event.users.first)
     total = (order.total * 100).to_i
-    fee = order.total.round
+    fee = (order.quantity * event.ticket_price).to_i
     token = create_charge_token(order, organizer)
-    event = Event.find(order.event_id)
     charge = Stripe::Charge.create(
       {
         amount: total,
