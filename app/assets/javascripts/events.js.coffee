@@ -4,31 +4,32 @@
 
 # Sum Order
 $ ->
-  $('#order_quantity').click ->
-    orderTotal()
-  $('.stripe-button').click(orderTotal())
-  $('#buy-now').click(orderTotal())
+  $('#order_quantity').on "change", orderTotal
 
-# Order Total for stripe button
+# Order Total method
 orderTotal = ->
   quantity = $('#order_quantity').val()
-  price = $('#ticket-price').data('price')
+  price = $('.ticket-price').data('original-content')
   total = quantity * price
+  $('.order-total').html(total)
   $('.stripe-button').attr('data-amount', total)
-  $('.stripe-button').attr('data-description', total)
-  $('.order-total').html(total / 100)
 
-# toggle checkboxes
+$ ->
+  price = $('.ticket-price').data('original-content')
+  number = parseInt( price, 10 )
+  $('.order-total').html(number)
+
+# Toggle checkboxes
 $ ->
   $('#check_all').click () ->
     $('input[type="checkbox"]').click()
 
-#filter form
+# Filter form for index page
 $ ->
   $('#event_city').change ->
     $(this).closest('form').trigger('submit')
 
-# BIP
+# Best in place functions
 jQuery ->
   $('.best_in_place').best_in_place()
 
@@ -40,8 +41,7 @@ $ ->
 jQuery ->
   $.datepicker.setDefaults()
 
-# Getting Started Modal
-# $ ->
-#   window.onload = ->
-#     $('#gettingStarted').modal() if $('#gettingStarted').data('guest') == true
-    # fire if current_user.events is true or only if new event
+# Tooltips and popovers
+$ ->
+  $("body").popover selector: "[data-toggle=\"popover\"]"
+  $("body").tooltip selector: "a[rel=\"tooltip\"], [data-toggle=\"tooltip\"]"
