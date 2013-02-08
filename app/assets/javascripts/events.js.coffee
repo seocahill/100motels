@@ -4,6 +4,7 @@
 
 # Sum Order
 $ ->
+  orderTotal()
   $('#order_quantity').on "change", orderTotal
 
 # Order Total method
@@ -11,13 +12,17 @@ orderTotal = ->
   quantity = $('#order_quantity').val()
   price = $('.ticket-price').data('original-content')
   total = quantity * price
-  $('.order-total').html(total)
+  stripe_fees = (total * 0.029) + 0.3
+  motel_fees = total * 0.01
+  gross = total + stripe_fees + motel_fees
+  number = parseFloat(gross).toFixed(2)
+  $('.order-total').html(number)
   $('.stripe-button').attr('data-amount', total)
 
-$ ->
-  price = $('.ticket-price').data('original-content')
-  number = parseInt( price, 10 )
-  $('.order-total').html(number)
+# $ ->
+#   price = $('.ticket-price').data('original-content')
+#   number = parseInt( price, 10 )
+#   $('.order-total').html(number)
 
 # Toggle checkboxes
 $ ->
