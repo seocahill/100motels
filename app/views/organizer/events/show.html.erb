@@ -3,7 +3,7 @@
     <%= form_tag  charge_or_refund_orders_path, method: :post  do %>
       <div class="btn-group">
         <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-          Change Event
+          <%= @event.artist %>
           <span class="caret"></span>
         </a>
         <ul class="dropdown-menu">
@@ -36,8 +36,6 @@
       </ul>
     </div>
   </div> <!-- /button menu -->
-  <div class="span3 offset1"><h2>$2999 <small>(inc. orders, net fees)</small></h2></div>
-  <hr>
 </div> <!-- /row -->
 <div class="row">
   <aside class="span2">
@@ -52,12 +50,8 @@
   </aside>
   <div class="span9">
     <ul class="inline">
-  <li><h2>Sample</h2></li>
-  <li><h2>Sample</h2></li>
-  <li><h2>Sample</h2></li>
-  <li><h2>Sample</h2></li>
-  <li><h2>Sample</h2></li>
-  <li><h2>Sample</h2></li>
+  <li><h3>Funding: $2999 <small>(inc. ordered, paid, net of fees)</small></h3></li>
+  <li class="pull-right"><h3>Capacity: 300 <small> (45 tickets remaining)</small></h3></li>
 </ul>
   </div>
   <div class="span9">

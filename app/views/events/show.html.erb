@@ -35,12 +35,10 @@
 					<hr>
 				</div>
 				<div class="span4 event-ticket-orders">
-					<h1><%= @event.sales %><small> tickets left</small></h1>
+					<h1><%= @event.sales %><small> left to target</small></h1>
 					<h3><%= @event.price %><small> each</small></h3>
+					<h3>Total $15.89 <small><%= link_to "inc charges" %></small></h3>
 					<%= render 'form' %>
-					<div class="progress progress-success span6 offset3">
-					  <div class="bar" style="width: 60%;">$500 raised </div>
-					</div>
 				</div>
 			</div>
 		</section>
