@@ -49,8 +49,8 @@
   </aside>
   <div class="span9">
     <ul class="inline">
-  <li><h3>Funding: <%= number_to_currency(@event.orders.sum(:quantity) * @event.ticket_price) %> <small>(inc. ordered, paid, net of fees)</small></h3></li>
-  <li class="pull-right"><h3>Capacity: <%= @event.capacity %> <small> (45 tickets remaining)</small></h3></li>
+  <li><h3>Funding: <%= number_to_currency(@event.orders.funding.sum(:quantity) * @event.ticket_price) %> <small>(inc. ordered, paid, net of fees)</small></h3></li>
+  <li class="pull-right"><h3>Capacity: <%= @event.capacity %> <small> (<%= @event.capacity - @event.orders.funding.sum(:quantity) %> tickets remaining)</small></h3></li>
 </ul>
   </div>
   <div class="span9">
