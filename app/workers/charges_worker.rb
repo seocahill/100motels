@@ -19,7 +19,7 @@ class ChargesWorker
         order.stripe_event = :failed
       end
     else
-      order.stripe_event = :failed
+    order.stripe_event = :failed
     end
     order.save!
   end
