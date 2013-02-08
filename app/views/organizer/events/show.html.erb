@@ -40,18 +40,17 @@
 <div class="row">
   <aside class="span2">
     <ul class="nav nav-tabs nav-stacked">
-      <li><%= link_to raw('All <span class="badge badge-info pull-right">8</span>'), organizer_event_path(@event) %></li>
-      <li><%= link_to raw('Ordered <span class="badge badge-warning pull-right">4</span>'), request.path + '?pending=true' %></li>
-      <li><%= link_to "Paid", request.path + '?paid=true' %></li>
-      <li><%= link_to raw('Ticketed <span class="badge badge-success pull-right">2</span>'), request.path + '?tickets_sent=true' %></li>
-      <li><%= link_to raw('Failed <span class="badge badge-important pull-right">6</span>'), request.path + '?failed=true' %></li>
-      <li><%= link_to raw('Refunded <span class="badge badge-inverse pull-right">10</span>'), request.path + '?refunded=true' %></li>
+      <li><a href="<%= organizer_event_path(@event) %>">All<span class="badge badge-info pull-right"><%= @event.orders.sum(:quantity) %></span></a></li>
+      <li><a href="<%= request.path + '?pending=true' %>">Ordered<span class="badge badge-warning pull-right"><%= @event.orders.pending.sum(:quantity) %></span></a></li>
+      <li><a href="<%= request.path + '?tickets_sent=true' %>">Paid<span class="badge badge-success pull-right"><%= @event.orders.tickets_sent.sum(:quantity) %></span></a></li>
+      <li><a href="<%= request.path + '?failed=true' %>">Failed<span class="badge badge-important pull-right"><%= @event.orders.failed.sum(:quantity) %></span></a></li>
+      <li><a href="<%= request.path + '?refunded=true' %>">Refunded<span class="badge badge-inverse pull-right"><%= @event.orders.refunded.sum(:quantity) %></span></a></li>
     </ul>
   </aside>
   <div class="span9">
     <ul class="inline">
-  <li><h3>Funding: $2999 <small>(inc. ordered, paid, net of fees)</small></h3></li>
-  <li class="pull-right"><h3>Capacity: 300 <small> (45 tickets remaining)</small></h3></li>
+  <li><h3>Funding: <%= number_to_currency(@event.orders.sum(:quantity) * @event.ticket_price) %> <small>(inc. ordered, paid, net of fees)</small></h3></li>
+  <li class="pull-right"><h3>Capacity: <%= @event.capacity %> <small> (45 tickets remaining)</small></h3></li>
 </ul>
   </div>
   <div class="span9">
