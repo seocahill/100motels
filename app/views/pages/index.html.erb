@@ -5,20 +5,7 @@
           <li><%= link_to "Search Events", events_path %></li>
           <li><%= link_to "Help & Information", info_path %></li>
           <% if current_user %>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.email %> <i class="icon-user"></i></b></a>
-              <ul class="dropdown-menu">
-                <li><%= link_to "Save your Account", signup_path if current_user.guest? %></li>
-                <li><%= link_to "User Account", user_path(current_user) %></li>
-                <% if current_user.events.empty? %>
-                  <li><%= link_to "New Event", new_organizer_event_path %></li>
-                <% else %>
-                  <li> <%= link_to "Your Events", organizer_event_path(current_user.events.first) %>  </li>
-                <% end %>
-                <li class="divider"></li>
-                <li><%= link_to "Sign out", logout_path %></li>
-              </ul>
-            </li>
+            <%= render "current_user_menu" %>
           <% else %>
             <li><%= link_to "Sign in", login_path %></li>
           <% end %>
@@ -29,11 +16,11 @@
       <hr>
 
       <div class="jumbotron">
-        <h1>Did you ever want to put on an event...<br>
+        <h1>did you ever want to put on an event...<br>
           <small>but you weren't sure if it was worth it?</small>
         </h1> <br>
-        <p class="lead">100 Motels lets you try out an event, tweak it, and then decide. <br><br> Go ahead, try it out.  </p>
-        <%= link_to "Create a Free Event", guest_profiles_path, method: :post, class: 'btn btn-large btn-success' %>
+        <p class="lead">100 Motels lets you try out an event, tweak it, fix it or toss it without costing you a penny. <br><br> Click the big green button to see how it works.  </p>
+        <%= link_to "Absolutely Free :)", guest_profiles_path, method: :post, class: 'btn btn-large btn-success' %>
       </div>
 
       <hr>

@@ -21,6 +21,8 @@
 					<h1><%= @event.title %></h1>
 					<hr>
 					<dl class="">
+						<dt>Featuring:</dt>
+						<dd>The Crete Boom, The Porn Trauma and more!</dd>
 						<dt>Organized by:</dt>
 						<dd><%= @organizer.name || "no name" %></dd>
 						<dt>Date</dt>
@@ -30,11 +32,15 @@
 						<dt>Begins</dt>
 						<dd><%= @event.doors %></dd>
 					</dl>
+					<hr>
 				</div>
 				<div class="span4 event-ticket-orders">
 					<h1><%= @event.sales %><small> tickets left</small></h1>
 					<h3><%= @event.price %><small> each</small></h3>
 					<%= render 'form' %>
+					<div class="progress progress-success span6 offset3">
+					  <div class="bar" style="width: 60%;">$500 raised </div>
+					</div>
 				</div>
 			</div>
 		</section>

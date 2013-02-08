@@ -6,11 +6,11 @@ class EventDecorator < ApplicationDecorator
   end
 
   def active
-    switch = best_in_place model, :visible, :type => :checkbox if event_owner?
+    switch = best_in_place model, :visible, :type => :checkbox, collection: ["Click to Publish Event", "Click to Hide Event"] if event_owner?
   end
 
   def edit
-    link_to "Edit in form", edit_organizer_event_path(model), class: "btn" if event_owner?
+    link_to "Edit in form", edit_organizer_event_path(model), class: "" if event_owner?
   end
 
   def filepicker

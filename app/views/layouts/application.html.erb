@@ -21,32 +21,19 @@
             <span class="icon-bar"></span>
           </a>
           <%= link_to "100 Motels", root_path, class: "brand" %>
-          <div class="nav-collapse">
-            <ul class="nav topbar" id="">
+          <div class="nav-collapse collapse">
+            <ul class="nav">
               <li><%= link_to "Events", events_path %></li>
               <li><%= link_to "Info", info_path %></li>
             </ul>
-            <ul class="nav pull-right topbar">
+            <ul class="nav pull-right">
               <% unless current_user %>
                 <li><%= link_to "Sign up", signup_path %></li>
                 <li><%= link_to "Sign in", login_path %></li>
               <% end %>
               <li class="divider-vertical"></li>
               <% if current_user %>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.email %> <i class="icon-user"></i></b></a>
-                  <ul class="dropdown-menu">
-                    <li><%= link_to "Save your Account", signup_path if current_user.guest? %></li>
-                    <li><%= link_to "User Account", user_path(current_user) unless current_user.guest? %></li>
-                    <% if current_user.events.empty? %>
-                      <li><%= link_to "New Event", new_organizer_event_path %></li>
-                    <% else %>
-                      <li> <%= link_to "Your Events", organizer_event_path(current_user.events.first) %>  </li>
-                    <% end %>
-                    <li class="divider"></li>
-                    <li><%= link_to "Sign out", logout_path %></li>
-                  </ul>
-                </li>
+                <%= render "current_user_menu" %>
               <% end %>
             </ul>
           </div><!-- /.nav-collapse -->
@@ -65,7 +52,6 @@
       </div> <!-- /content container -->
       <div id="push"></div>
     </div> <!-- /wrap -->
-
     <div id="footer">
       <div class="container">
         <a href="//github.com/seocahill">&copy; Seo Cahill 2012</a>

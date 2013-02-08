@@ -14,7 +14,7 @@ class Organizer::TicketsController < Organizer::BaseController
         flash.now[:error] = "Already Admitted at #{@ticket.admitted}"
       end
     else
-      flash.now[:error] = "Ticket not found!"
+      flash.now[:error] = "Ticket not found!" unless params[:query].nil?
     end
     respond_to do |format|
       format.html
