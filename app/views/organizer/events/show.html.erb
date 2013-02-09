@@ -15,15 +15,21 @@
   </div>
   <div class="span2">
     <div class="btn-group">
-      <%= submit_tag "Charge Selected", name: 'charge', class: "btn" if current_user.api_key %>
-      <%= submit_tag "Refund Selected", name: 'refund', class: "btn" if current_user.api_key %>
-      <%= link_to image_tag('blue.png'), '/auth/stripe_connect' unless current_user.api_key %>
+      <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+          Charge
+          <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu">
+        <li><%= submit_tag "Charge Selected", name: 'charge', class: "link-button" if current_user.api_key %></li>
+        <li><%= submit_tag "Refund Selected", name: 'refund', class: "link-button" if current_user.api_key %></li>
+        <li><%= link_to image_tag('blue.png'), '/auth/stripe_connect' unless current_user.api_key %></li>
+      </ul>
     </div>
   </div>
   <div class="span2 offset2">
     <div class="btn-group">
       <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-          Actions
+          Options
           <span class="caret"></span>
       </a>
       <ul class="dropdown-menu">
