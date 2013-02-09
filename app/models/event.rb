@@ -2,7 +2,7 @@ class Event < ActiveRecord::Base
   attr_accessible :artist, :date, :doors, :venue, :capacity, :ticket_price,
                   :music, :video, :about, :image, :target, :location_id, :new_location, :visible, :state
   attr_accessor :new_location
-  enum_accessor :state, [ :guest, :member, :rescheduled, :archived, :cancelled ]
+  enum_accessor :state, [ :guest, :member, :rescheduled, :archived, :cancelled, :suspended ]
   validates :artist, :venue, :date, :ticket_price, presence: true
 
   before_save :create_location
@@ -17,7 +17,7 @@ class Event < ActiveRecord::Base
   scope :week_end, lambda { where("date <= ? and date >= ?", Time.now.end_of_week, Time.now) }
   scope :month_end, lambda { where("date <= ? and date >= ?", Time.now.end_of_month, Time.now) }
   scope :event_city, proc { |city| joins(:location).where("city = ?", city) }
-  scope :visible, where("state > 0 and state < 3").where(visible: :true)
+  scope :active, where("state > 0 and state < 3").where(visible: :true)
 
 
   def create_location

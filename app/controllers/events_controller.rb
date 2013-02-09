@@ -10,7 +10,7 @@ class EventsController < ApplicationController
 
   def index
     @options = Location.joins(:event).where("events.state > 0 and events.state < 3").where('events.visible is true').map(&:city).uniq
-    @events = apply_scopes(Event.visible.text_search(params[:query]).page(params[:page]).per_page(9))
+    @events = apply_scopes(Event.active.text_search(params[:query]).page(params[:page]).per_page(9))
   end
 
   def show
