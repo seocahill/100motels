@@ -15,7 +15,7 @@ orderTotal = ->
   gross = (net_price / .961) + 0.30
   number = parseFloat(gross).toFixed(2)
   $('.order-total').html(number)
-  $('.stripe-button').attr('data-amount', number)
+  $('.stripe-button').attr('data-amount', number * 100)
 
 # Toggle checkboxes
 $ ->
