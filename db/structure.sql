@@ -422,7 +422,8 @@ CREATE TABLE users (
     exp_month character varying(255),
     last4 character varying(255),
     cvc_check character varying(255),
-    country character varying(255)
+    country character varying(255),
+    state integer DEFAULT 0
 );
 
 
@@ -770,3 +771,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130118163050');
 INSERT INTO schema_migrations (version) VALUES ('20130118184821');
 
 INSERT INTO schema_migrations (version) VALUES ('20130121153601');
+
+INSERT INTO schema_migrations (version) VALUES ('20130210201532');
