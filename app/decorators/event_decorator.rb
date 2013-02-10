@@ -87,6 +87,32 @@ class EventDecorator < ApplicationDecorator
     end
   end
 
+  def ticket_form
+    render 'form' if on_sale?
+  end
+
+  def order_total
+    if on_sale?
+      number_to_currency raw(
+        '<span class="order-total"></span>
+        <small><a href="#" class="" data-toggle="popover"
+        title="" data-content="Card Processing is 2.9% +
+        30c, our fee is only 1%!" data-original-title=
+        "Processing Fees" data-placement="bottom">inc.
+        charges</a></small>'
+        )
+    else
+      "The Shows Over!"
+    end
+  end
+
+  def on_sale?
+    d = model.date
+    t = model.doors
+    dt = DateTime.new(d.year, d.month, d.day, t.hour, t.min, t.sec)
+    dt >= Time.now
+  end
+
   def event_owner?
     if current_user.present?
       current_user.id == model.users.first.id

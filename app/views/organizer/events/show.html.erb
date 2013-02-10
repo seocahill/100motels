@@ -20,9 +20,13 @@
           <span class="caret"></span>
       </a>
       <ul class="dropdown-menu">
+        <li><%= link_to image_tag('blue.png'), '/auth/stripe_connect' unless current_user.api_key %></li>
+        <li><%= link_to "Charge All (inc.failed)" %></li>
         <li><%= submit_tag "Charge Selected", name: 'charge', class: "link-button" if current_user.api_key %></li>
         <li><%= submit_tag "Refund Selected", name: 'refund', class: "link-button" if current_user.api_key %></li>
-        <li><%= link_to image_tag('blue.png'), '/auth/stripe_connect' unless current_user.api_key %></li>
+        <li><%= submit_tag "Cancel Selected", name: 'cancel', class: "link-button" if current_user.api_key %></li>
+        <li class="divider"></li>
+        <li><%= link_to "Cancel Event", cancel_organizer_event_path(@event), data: { confirm: "Are you sure you want to cancel the current event?" } %></li>
       </ul>
     </div>
   </div>
@@ -35,7 +39,7 @@
       <ul class="dropdown-menu">
         <li><%= link_to "View Event", event_path(@event) %></li>
         <li><%= link_to "New Event", new_organizer_event_path(@event) %></li>
-        <li><%= link_to "Cancel Event", cancel_organizer_event_path(@event), data: { confirm: "Are you sure you want to cancel the current event?" } %></li>
+
         <li><%= link_to "Orders PDF", organizer_event_path(@event, format: "pdf") %></li>
         <li><%= link_to "Tickets PDF", organizer_event_tickets_path(@event, format: "pdf") %></li>
         <li><%= link_to "Check-in", organizer_event_tickets_path(@event) %></li>

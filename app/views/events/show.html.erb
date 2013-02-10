@@ -37,9 +37,9 @@
 				<div class="span4 event-ticket-orders">
 					<h1><%= @event.sales %><small> left to target</small></h1>
 					<h3><%= @event.price %><small> each</small></h3>
-					<%= render 'form' %>
+					<%= @event.ticket_form %>
 					<hr>
-					<h3>Total <%= number_to_currency raw('<span class="order-total"></span>') %> <small><a href="#" class="" data-toggle="popover" title="" data-content="Card Processing is 2.9% + 30c, our fee is only 1%!" data-original-title="Processing Fees" data-placement="bottom">inc. charges</a></small></h3>
+					<h3><%= @event.order_total %> </h3>
 				</div>
 			</div>
 		</section>
