@@ -4,6 +4,7 @@ class Event < ActiveRecord::Base
   attr_accessor :new_location
   enum_accessor :state, [ :guest, :member, :rescheduled, :archived, :cancelled, :suspended ]
   validates :artist, :venue, :date, :ticket_price, presence: true
+  validate :forbid_date_change, on: :update
 
   before_save :create_location
 
@@ -22,6 +23,12 @@ class Event < ActiveRecord::Base
 
   def create_location
     self.location = Location.where(address: new_location).first_or_create if new_location.present?
+  end
+
+  def forbid_date_change
+    if self.orders.length
+      errors.add(:date, "can't change the date of an active event!") if self.state_member?
+    end
   end
 
   def self.text_search(query)
