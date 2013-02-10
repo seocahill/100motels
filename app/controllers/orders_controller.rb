@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   before_filter :find_orders, only: [:charge_or_refund]
   before_filter :create_order_guest_user, only: [:create]
 
-  layout 'landing', only: [:show]
+  # layout 'landing', only: [:show]
 
   def show
     @member_profile = MemberProfile.new

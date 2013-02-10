@@ -51,7 +51,9 @@ class EventDecorator < ApplicationDecorator
   end
 
   def price
-    best_in_place_if event_owner?, model, :ticket_price, classes: "ticket-price", display_with: :number_to_currency
+    if on_sale?
+      best_in_place_if event_owner?, model, :ticket_price, classes: "ticket-price", display_with: :number_to_currency
+    end
   end
 
   def about

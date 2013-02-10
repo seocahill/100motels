@@ -4,16 +4,10 @@
 			<div class="well">
 				<header>
 					<h2>Thanks <%= @order.email %>!... <br><small>Your order <%= number_to_currency(@order.total) %> was successful.</small></h2>
-					<p class="lead">An email has been sent to <%= @order.email %> with your ticket. </p></p>
+					<p class="lead">An email has been sent to <%= @order.email %> with your ticket. </p>
 				</header>
-				<%= link_to "Browse all events", events_path, class: "btn btn-primary" %>
-				<% unless current_user.guest? == false %>
-					<%= simple_form_for @member_profile do |f| %>
-						<%= f.input :email, as: :hidden, input_html: { value: @order.email } %>
-						<%= f.input :password %>
-						<%= f.submit "Save" %>
-					<% end %>
-				<% end %>
+				<%= link_to "Back", event_path(@order.event), class: "btn btn-primary" %>
+				<%= link_to "Save your Account", signup_path if current_user.guest?  %>
 			</div>
 		</div>
 	</div>
