@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   private
     def authorize_admin!
-      redirect_to login_url, alert: "Not authorized" if current_user.nil?
+      redirect_to login_url, alert: "Not authorized" if current_user.nil? || current_user.state_suspended?
     end
 
     def current_user
