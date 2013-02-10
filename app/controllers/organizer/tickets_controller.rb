@@ -3,15 +3,14 @@ class Organizer::TicketsController < Organizer::BaseController
   def index
     @events = current_user.events
     @event = Event.find(params[:event_id])
-    @tickets = @event.tickets.joins(:order).where("stripe_event = ?", 5).order('name, updated_at')
-    @ticket = Ticket.find_by_number(params[:query])
+    @ticket = Ticket.find_by_number(params[:query]).where("stripe_event = 2 OR stripe_event = 4").order('name, updated_at')
     if @ticket
-      if@ticket.order.stripe_event == :tickets_sent && @ticket.admitted.nil?
-        @ticket.admitted = Time.now
-        @ticket.save!
-        flash.now[:notice] = "Ok! Let them in"
+      if @ticket.order.stripe_event == :tickets_sent && @ticket.admitted.nil?
+         @ticket.admitted = Time.now
+         @ticket.save!
+         flash.now[:notice] = "Ok! Let them in"
       else
-        flash.now[:error] = "Already Admitted at #{@ticket.admitted}"
+         flash.now[:error] = "Already Admitted at #{@ticket.admitted}"
       end
     else
       flash.now[:error] = "Ticket not found!" unless params[:query].nil?

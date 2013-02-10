@@ -29,6 +29,7 @@ OneHundredMotels::Application.routes.draw do
   resources :orders do
     collection do
       post :charge_or_refund
+      post :charge_all
     end
   end
 

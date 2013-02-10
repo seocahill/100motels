@@ -17,12 +17,6 @@ class Notifier < ActionMailer::Base
     mail to: @order.email, subject: "Your Tickets 100 Motels"
   end
 
-  def transaction_summary(orders, email)
-    @orders = orders
-    @email = email
-    mail to: @email, subject: "Transaction Summary"
-  end
-
   def charge_failed(order_id)
     @order = Order.find(order_id)
     mail to: @order.email, subject: "We could not complete your order"
@@ -36,5 +30,10 @@ class Notifier < ActionMailer::Base
   def event_cancelled(order_id)
     @order = Order.find(order_id)
     mail to: @order.email, subject: "Your event has been cancelled"
+  end
+
+  def order_cancelled(order_id)
+    @order = Order.find(order_id)
+    mail to: @order.email, subject: "Your order has been cancelled"
   end
 end

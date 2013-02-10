@@ -22,10 +22,24 @@ class OrdersController < ApplicationController
   def charge_or_refund
     if params[:charge]
       ChargeCustomer.new(@orders).process_charges
-      flash[:notice] = "Processing #{@orders.count} orders, we'll email you when we're done."
+      flash[:notice] = "Processing #{@orders.count} orders."
     elsif params[:refund]
       RefundCustomer.new(@orders).refund_charge
-      flash[:notice] = "Processing #{@orders.count} Customers, check your email for details."
+      flash[:notice] = "Refunding #{@orders.count} Customers."
+    elsif params[:cancel]
+      CancelEventOrders.new(@orders).cancel_orders
+      flash[:notice] = "Cancelling #{@orders.count} Orders."
+    else
+      flash[:error] = "Something went wrong."
+    end
+    redirect_to :back
+  end
+
+  def charge_all
+    event = Event.find(params[:event_id])
+    @orders = event.orders.where("stripe_event = 0 OR stripe_event = 3")
+    if ChargeCustomer.new(@orders).process_charges
+      flash[:notice] = "Processing #{@orders.count} orders, we'll email you when we're done."
     else
       flash[:error] = "Something went wrong."
     end
