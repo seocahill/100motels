@@ -3,12 +3,12 @@ class Authentication
     @params = params
   end
 
-  def user
-    @user ||= user_with_password
+  def authenticated?
+    user.present? && user.state_normal?
   end
 
-  def authenticated?
-    user.present?
+  def user
+    @user ||= user_with_password
   end
 
 private

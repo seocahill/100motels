@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   attr_encrypted :api_key, key: ENV['ATTR_ENCRYPTED_KEY']
   attr_encrypted :customer_id, key: ENV['ATTR_ENCRYPTED_KEY']
+  enum_accessor :state, [ :normal, :suspended ]
+
 
   has_many :orders
   has_many :event_users
