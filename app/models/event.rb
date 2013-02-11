@@ -24,7 +24,8 @@ class Event < ActiveRecord::Base
   include PgSearch
   pg_search_scope :search, against: [:artist, :venue],
     using: {tsearch: {dictionary: "english"}},
-    associated_against: {location: :address}
+    associated_against: {location: :address},
+    # ignoring: :accents need pg extension
 
   def self.text_search(query)
     if query.present?
