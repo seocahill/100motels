@@ -17,7 +17,6 @@ class Event < ActiveRecord::Base
   scope :tonight, lambda { where("date <= ? and date >= ?", Time.now.end_of_day, Time.now) }
   scope :week_end, lambda { where("date <= ? and date >= ?", Time.now.end_of_week, Time.now) }
   scope :month_end, lambda { where("date <= ? and date >= ?", Time.now.end_of_month, Time.now) }
-  scope :event_city, proc { |city| joins(:location).where("city = ?", city) }
   scope :published, where("state > 0 and state < 3").where(visible: :true)
   scope :active, where("state < 3")
 

@@ -6,10 +6,8 @@ class EventsController < ApplicationController
   has_scope :tonight , type: :boolean
   has_scope :week_end , type: :boolean
   has_scope :month_end , type: :boolean
-  has_scope :event_city
 
   def index
-    @options = Location.joins(:event).where("events.state > 0 and events.state < 3").where('events.visible is true').map(&:city).uniq
     @events = apply_scopes(Event.published.text_search(params[:query]).page(params[:page]).per_page(9))
   end
 
