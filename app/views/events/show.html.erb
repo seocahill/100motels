@@ -1,4 +1,4 @@
-<% if @event.toggle_visible || @event.event_owner? %>
+<% if @event.visible?|| @event.event_owner? %>
 	<% @event.header %>
 	<div class="container">
 		<nav id="organizer-tools", class="event">

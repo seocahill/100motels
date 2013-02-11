@@ -15,21 +15,25 @@
   <div class="span4"><%= render 'search' %></div>
   <div class="span2">
     <%= form_tag  charge_or_refund_orders_path, method: :post  do %>
-    <div class="btn-group">
-      <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-          Charge
-          <span class="caret"></span>
-      </a>
-      <ul class="dropdown-menu">
-        <li><%= link_to image_tag('blue.png'), '/auth/stripe_connect' unless current_user.api_key %></li>
-        <li><%= link_to "Charge All (inc.failed)", charge_all_orders_path(event_id: @event.id), method: :post %></li>
-        <li><%= submit_tag "Charge Selected", name: 'charge', class: "link-button" if current_user.api_key %></li>
-        <li><%= submit_tag "Refund Selected", name: 'refund', class: "link-button" if current_user.api_key %></li>
-        <li><%= submit_tag "Cancel Selected", name: 'cancel', class: "link-button" if current_user.api_key %></li>
-        <li class="divider"></li>
-        <li><%= link_to "Cancel Event", cancel_organizer_event_path(@event), data: { confirm: "Are you sure you want to cancel the current event?" } %></li>
-      </ul>
-    </div>
+    <%= link_to image_tag('blue.png'), '/auth/stripe_connect', class: "" unless current_user.api_key %>
+      <% unless @event.state_cancelled? || current_user.api_key.nil? %>
+        <div class="btn-group">
+
+          <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+              Charge
+              <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li></li>
+              <li><%= link_to "Charge All (inc.failed)", charge_all_orders_path(event_id: @event.id), method: :post %></li>
+              <li><%= submit_tag "Charge Selected", name: 'charge', class: "link-button" if current_user.api_key %></li>
+              <li><%= submit_tag "Refund Selected", name: 'refund', class: "link-button" if current_user.api_key %></li>
+              <li><%= submit_tag "Cancel Selected", name: 'cancel', class: "link-button" if current_user.api_key %></li>
+              <li class="divider"></li>
+              <li><%= link_to "Cancel Event", cancel_organizer_event_path(@event), data: { confirm: "Are you sure you want to cancel the current event?" } %></li>
+          </ul>
+        </div>
+      <% end %>
   </div>
   <div class="span2">
     <div class="btn-group">
@@ -38,12 +42,12 @@
           <span class="caret"></span>
       </a>
       <ul class="dropdown-menu">
-        <li><%= link_to "View Event", event_path(@event) %></li>
+        <li><%= link_to "View Event", event_path(@event) unless @event.state_cancelled? %></li>
         <li><%= link_to "New Event", new_organizer_event_path(@event) %></li>
-        <li><%= link_to "Edit Event", edit_organizer_event_path(@event) %></li>
+        <li><%= link_to "Edit Event", edit_organizer_event_path(@event) unless @event.state_cancelled? %></li>
         <li><%= link_to "Orders PDF", organizer_event_path(@event, format: "pdf") %></li>
         <li><%= link_to "Tickets PDF", organizer_event_tickets_path(@event, format: "pdf") %></li>
-        <li><%= link_to "Check-in View", organizer_event_tickets_path(@event) %></li>
+        <li><%= link_to "Check-in View", organizer_event_tickets_path(@event) unless @event.state_cancelled? %></li>
       </ul>
     </div>
   </div> <!-- /button menu -->

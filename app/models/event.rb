@@ -19,7 +19,7 @@ class Event < ActiveRecord::Base
   scope :month_end, lambda { where("date <= ? and date >= ?", Time.now.end_of_month, Time.now) }
   scope :event_city, proc { |city| joins(:location).where("city = ?", city) }
   scope :published, where("state > 0 and state < 3").where(visible: :true)
-  scope :active, where("state > 0 and state < 3")
+  scope :active, where("state < 3")
 
   include PgSearch
   pg_search_scope :search, against: [:artist, :venue],
