@@ -22,13 +22,13 @@ class OrdersController < ApplicationController
   def charge_or_refund
     if params[:charge]
       ChargeCustomer.new(@orders).process_charges
-      flash[:notice] = "Processing #{@orders.count} orders."
+      flash[:notice] = "Processing orders."
     elsif params[:refund]
       RefundCustomer.new(@orders).refund_charge
-      flash[:notice] = "Refunding #{@orders.count} Customers."
+      flash[:notice] = "Refunding orders."
     elsif params[:cancel]
       CancelEventOrders.new(@orders).cancel_orders
-      flash[:notice] = "Cancelling #{@orders.count} Orders."
+      flash[:notice] = "Cancelling orders."
     else
       flash[:error] = "Something went wrong."
     end

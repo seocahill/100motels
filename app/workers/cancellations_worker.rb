@@ -8,12 +8,12 @@ class CancellationsWorker
   end
 
   def cancel_order(order, key)
-    if [:paid, :tickets_sent].include? order.stripe_event
-      refund_order(order,key)
+    refund_order(order,key) if [:paid, :tickets_sent].include? order.stripe_event
+    unless order.stripe_event_cancelled?
+      Notifier.order_cancelled(order.id).deliver
+      order.stripe_event = :cancelled
+      order.save!
     end
-    order.stripe_event = :cancelled
-    order.save!
-    Notifier.order_cancelled(order.id).deliver
   end
 
   def refund_order(order, key)

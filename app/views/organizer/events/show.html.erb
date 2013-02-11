@@ -55,6 +55,7 @@
       <li><a href="<%= request.path + '?tickets_sent=true' %>">Paid<span class="badge badge-success pull-right"><%= @event.orders.tickets_sent.sum(:quantity) %></span></a></li>
       <li><a href="<%= request.path + '?failed=true' %>">Failed<span class="badge badge-important pull-right"><%= @event.orders.failed.sum(:quantity) %></span></a></li>
       <li><a href="<%= request.path + '?refunded=true' %>">Refunded<span class="badge badge-inverse pull-right"><%= @event.orders.refunded.sum(:quantity) %></span></a></li>
+      <li><a href="<%= request.path + '?refunded=true' %>">Cancelled<span class="badge pull-right"><%= @event.orders.cancelled.sum(:quantity) %></span></a></li>
     </ul>
   </aside>
   <div class="span9">

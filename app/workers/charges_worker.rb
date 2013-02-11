@@ -35,7 +35,7 @@ class ChargesWorker
         amount: total,
         currency: "usd",
         card: token["id"],
-        description: "test",
+        description: "Tickets for #{event.artist} in #{event.venue}, #{event.date.strftime('%A, %b %d')}",
         application_fee: fee
       }, organizer.api_key
     )

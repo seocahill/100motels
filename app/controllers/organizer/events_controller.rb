@@ -55,18 +55,17 @@ has_scope :refunded, type: :boolean
   end
 
   def cancel
-    @event = Event.find(params[:id])
-    orders = @event.orders.all
-    if CancelEventOrders.new(@event, order, current_user).cancel_orders
-      @event.state = :cancelled
-      @event.save!
-      @orders.each { |order| Notifier.delay_for(30.minutes).event_cancelled(order.id) }
+    event = Event.find(params[:id])
+    orders = event.orders.all
+    if CancelEventOrders.new(orders).cancel_orders
+      event.state = :cancelled
+      event.save!
+      orders.each { |order| Notifier.delay_for(30.minutes).event_cancelled(order.id) }
       flash[:notice] = "Event has been cancelled"
-      redirect_to [:organizer, @event]
     else
       flash[:error] = "Event could not be cancelled at this time"
-      redirect_to [:organizer, @event]
     end
+    redirect_to [:organizer, event]
   end
 
 end
