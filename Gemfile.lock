@@ -175,6 +175,9 @@ GEM
       ruby-rc4
       ttfunk
     pg (0.14.1)
+    pg_search (0.5.7)
+      activerecord (>= 3)
+      activesupport (>= 3)
     polyglot (0.3.3)
     prawn (0.12.0)
       pdf-reader (>= 0.9.0)
@@ -278,8 +281,6 @@ GEM
       multi_json (>= 1.0.4, < 2)
       rest-client (~> 1.4)
     temple (0.5.5)
-    texticle (2.1.1)
-      activerecord (~> 3.0)
     thin (1.5.0)
       daemons (>= 1.0.9)
       eventmachine (>= 0.12.6)
@@ -341,6 +342,7 @@ DEPENDENCIES
   newrelic_rpm
   omniauth-stripe-connect
   pg
+  pg_search
   prawn
   quiet_assets
   rabl
@@ -354,7 +356,6 @@ DEPENDENCIES
   sinatra
   slim
   stripe
-  texticle
   thin
   turbo-sprockets-rails3
   uglifier (>= 1.0.3)

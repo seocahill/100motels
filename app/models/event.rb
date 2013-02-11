@@ -21,6 +21,18 @@ class Event < ActiveRecord::Base
   scope :published, where("state > 0 and state < 3").where(visible: :true)
   scope :active, where("state > 0 and state < 3")
 
+  include PgSearch
+  pg_search_scope :search, against: [:artist, :venue],
+    using: {tsearch: {dictionary: "english"}},
+    associated_against: {location: :address}
+
+  def self.text_search(query)
+    if query.present?
+      search(query)
+    else
+      scoped
+    end
+  end
 
   def create_location
     self.location = Location.where(address: new_location).first_or_create if new_location.present?
@@ -29,14 +41,6 @@ class Event < ActiveRecord::Base
   def forbid_date_change
     if self.orders.length && self.state_member?
       errors.add(:date, "can't change the date of an active event!") if self.date_changed?
-    end
-  end
-
-  def self.text_search(query)
-    if query.present?
-      search(query)
-    else
-      scoped
     end
   end
 
