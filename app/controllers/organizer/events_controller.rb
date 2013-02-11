@@ -26,7 +26,7 @@ has_scope :refunded, type: :boolean
   def show
     @events = current_user.events
     @event = Event.find_by_id(params[:id])
-    @orders = apply_scopes(Order).where(event_id: @event.id)
+    @orders = apply_scopes(Order.text_search(params[:query]).page(params[:page]).per_page(10)).where(event_id: @event.id)
     respond_to do |format|
       format.html
       format.pdf do

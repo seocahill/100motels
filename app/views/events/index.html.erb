@@ -1,35 +1,27 @@
 <div class="container">
 	<div class="row">
 		<div class="span12">
-			<header><h3 class="page-header">Upcoming Events</h3><span><%= render 'search' %></span></header>
+			<header><h3 class="page-header">Upcoming Events</h3><span></span></header>
 		</div>
 	</div>
 	<div class="row">
-		<div class="span3">
-			<aside>
-				<form class="city-select" method="get">
-					<div class="well">
-						<ul class="nav nav-list">
-							<li class="nav-header" id="index-filter">Date of Event</li>
-							<li class=""><%= link_to "Today", request.path + '?tonight=true' %></li>
-							<li class=""><%= link_to "This Week", request.path + '?week_end=true' %></li>
-							<li class=""><%= link_to "This Month", request.path + '?month_end=true' %></li>
-							<li class="divider"></li>
-							<li class="nav-header">Location</li>
-							<%= select_tag "event_city", options_for_select(@options), prompt: "Filter by City", class: "controls"  %>
-							<li class="divider"></li>
-							<button class="btn btn-block" value="Reset Form">Clear Filters</button>
-							<li class="divider"></li>
-						</ul>
-					</div>
-				</form>
-			</aside>
+		<div class="span6"><%= render 'search' %></div>
+		<div class="span6">
+			<div class="btn-group">
+				<%= link_to "All", events_path, class: "btn" %>
+				<%= link_to "Today", request.path + '?tonight=true', class: "btn" %>
+				<%= link_to "This Week", request.path + '?week_end=true', class: "btn" %>
+				<%= link_to "This Month", request.path + '?month_end=true', class: "btn" %>
+			</div>
 		</div>
-		<div class="span9">
+	</div>
+	<hr>
+	<div class="row-fluid">
+		<div class="span12">
 			<section id="events-index-grid" class="events">
 				<ul class="thumbnails">
 					<% @events.each do |event| %>
-						<li class="span3 pull-left">
+						<li class="span3">
 							<a class="thumbnail" href="<%= event_path(event) %>">
                  <%= filepicker_image_tag event.image, width: 240, height: 140, fit: 'crop' if event.image.present? %>
 							</a>

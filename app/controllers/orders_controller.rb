@@ -38,10 +38,11 @@ class OrdersController < ApplicationController
   def charge_all
     event = Event.find(params[:event_id])
     @orders = event.orders.where("stripe_event = 0 OR stripe_event = 3")
-    if ChargeCustomer.new(@orders).process_charges
+    if @orders.length > 0
+      ChargeCustomer.new(@orders).process_charges
       flash[:notice] = "Processing #{@orders.count} orders, we'll email you when we're done."
     else
-      flash[:error] = "Something went wrong."
+      flash[:error] = "Couldn't Charge All."
     end
     redirect_to :back
   end

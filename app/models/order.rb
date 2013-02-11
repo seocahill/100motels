@@ -17,4 +17,17 @@ class Order < ActiveRecord::Base
   scope :failed, where("stripe_event = ?", 3)
   scope :refunded, where("stripe_event = ?", 4)
   scope :cancelled, where("stripe_event = ?", 5)
+
+  include PgSearch
+  pg_search_scope :search, against: [:name, :email],
+    using: {tsearch: {dictionary: "english"}},
+    associated_against: {event: [:artist, :venue], tickets: :number }
+
+  def self.text_search(query)
+    if query.present?
+      search(query)
+    else
+      scoped
+    end
+  end
 end
