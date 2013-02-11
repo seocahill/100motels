@@ -5,7 +5,7 @@ class EventDecorator < ApplicationDecorator
     content_tag :header, h.title(model.artist, model.venue, model.date)
   end
 
-  def active
+  def toggle_visible
     switch = best_in_place model, :visible, :type => :checkbox, collection: ["Click to Publish Event", "Click to Hide Event"] if event_owner?
   end
 

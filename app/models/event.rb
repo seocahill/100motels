@@ -18,7 +18,8 @@ class Event < ActiveRecord::Base
   scope :week_end, lambda { where("date <= ? and date >= ?", Time.now.end_of_week, Time.now) }
   scope :month_end, lambda { where("date <= ? and date >= ?", Time.now.end_of_month, Time.now) }
   scope :event_city, proc { |city| joins(:location).where("city = ?", city) }
-  scope :active, where("state > 0 and state < 3").where(visible: :true)
+  scope :published, where("state > 0 and state < 3").where(visible: :true)
+  scope :active, where("state > 0 and state < 3")
 
 
   def create_location
@@ -26,8 +27,8 @@ class Event < ActiveRecord::Base
   end
 
   def forbid_date_change
-    if self.orders.length
-      errors.add(:date, "can't change the date of an active event!") if self.state_member?
+    if self.orders.length && self.state_member?
+      errors.add(:date, "can't change the date of an active event!") if self.date_changed?
     end
   end
 

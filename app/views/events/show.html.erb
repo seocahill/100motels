@@ -1,10 +1,10 @@
-<% if @event.visible || @event.event_owner? %>
+<% if @event.toggle_visible || @event.event_owner? %>
 	<% @event.header %>
 	<div class="container">
 		<nav id="organizer-tools", class="event">
 			<div class="row">
 				<div class="span2">
-					<%= @event.active %>
+					<%= @event.toggle_visible %>
 				</div>
 				<div class="span2">
 					<%= @event.edit %>
@@ -57,5 +57,5 @@
 	<!-- Modal -->
 	<%= render 'modal' %>
 <% else %>
-Sorry Event is not available right now</h1>
+<h1>Sorry Event is not available right now</h1>
 <% end %>
