@@ -38,7 +38,7 @@ class Event < ActiveRecord::Base
   end
 
   def forbid_date_change
-    if self.orders.length && self.state_member?
+    if self.orders.present? && self.state_member?
       errors.add(:date, "can't change the date of an active event!") if self.date_changed?
     end
   end
