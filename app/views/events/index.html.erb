@@ -8,7 +8,7 @@
 		<div class="span6"><%= render 'search' %></div>
 		<div class="span6">
 			<div class="btn-group">
-				<%= link_to "All", events_path, class: "btn" %>
+				<%= link_to "Reset ", events_path, class: "btn" %>
 				<%= link_to "Today", request.path + '?tonight=true', class: "btn" %>
 				<%= link_to "This Week", request.path + '?week_end=true', class: "btn" %>
 				<%= link_to "This Month", request.path + '?month_end=true', class: "btn" %>

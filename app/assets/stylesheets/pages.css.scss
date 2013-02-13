@@ -24,13 +24,10 @@ $xlarge: 1200;
   @media (min-width: $min) and (max-width: $max) { @content; }
 }
 
-.container-narrow {
-margin: 0 auto;
-max-width: 850px;
-}
-
 #pages_controller {
+  .search {max-width: 80%;}
   .jumbotron {
+    background-image: transparent;
     margin: 40px 0;
     h1 {
       font-size: 41px;
@@ -40,9 +37,15 @@ max-width: 850px;
         line-height: 40px;
       }
     }
+    p {
+      @include media-below($handheld-max){
+      font-size: 110%;
+      line-height: 110%
+      }
+    }
   }
 
-  .big-search,
+.big-search,
   input[type="text"],
   button {
      height: 60px;
@@ -51,7 +54,8 @@ max-width: 850px;
 
 // Sticky Footer
 html, body  {
-    height: 100%
+    height: 100%;
+    background-image: url(image_path('tex2res5.png'));
 }
 
 .wrapper {
@@ -67,4 +71,5 @@ html, body  {
 
 footer {
   padding: 20px;
+  text-align: center;
 }

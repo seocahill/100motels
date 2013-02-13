@@ -19,12 +19,19 @@
   </head>
   <body id="<%= params[:controller].parameterize %>_controller">
     <div class="wrapper">
-      <%= yield %>
+      <div class="container">
+        <%= yield %>
+      </div>
       <div class="push"><!--//--></div>
     </div>
     <footer>
       <div class="container">
-        <p>© seocahill 2012</p>
+        <ul class="inline">
+          <li>© 100 Motels 2013</li>
+          <li><%= link_to "Terms of Service" %></li>
+          <li><%= link_to "Legal and Privacy" %></li>
+          <li><%= link_to "Info and Help" %></li>
+        </ul>
       </div>
     </footer>
   </body>

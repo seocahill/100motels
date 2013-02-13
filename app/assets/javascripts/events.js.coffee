@@ -43,3 +43,7 @@ jQuery ->
 $ ->
   $("body").popover selector: "[data-toggle=\"popover\"]"
   $("body").tooltip selector: "a[rel=\"tooltip\"], [data-toggle=\"tooltip\"]"
+
+#  slimScroll for about piece in event show
+$ ->
+  $(".about-event").slimScroll height: '250px'

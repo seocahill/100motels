@@ -6,9 +6,9 @@ class EventDecorator < ApplicationDecorator
   end
 
   def toggle_visible
-    if current_user.profile == "MemberProfile"
-      switch = best_in_place_if event_owner?, model, :visible, :type => :checkbox, collection: ["Click to Publish Event", "Click to Hide Event"]
-    else
+    if event_owner? && current_user.profile == "MemberProfile"
+      switch = best_in_place model, :visible, :type => :checkbox, collection: ["Click to Publish Event", "Click to Hide Event"]
+    elsif current_user
       "Sign up to Publish"
     end
   end
@@ -27,7 +27,8 @@ class EventDecorator < ApplicationDecorator
 
   def image
     if model.image?
-      filepicker_image_tag model.image, width: 300, height: 300, fit: 'crop'
+      filepicker_image_tag model.image, width: 460, height: 300, fit: 'crop'
+      # fit option are clip crop scale max
     else
       image_tag "//quickimage.it/300&text=Artist"
     end
@@ -61,7 +62,7 @@ class EventDecorator < ApplicationDecorator
   end
 
   def about
-    best_in_place_if event_owner?, model, :about, :type => :textarea, :ok_button => 'Save', :cancel_button => 'Cancel',
+    best_in_place_if event_owner?, model, :about, :type => :textarea,
                           :nil => "Click me to add content!", :display_with => :simple_format
   end
 

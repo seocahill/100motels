@@ -1,23 +1,23 @@
-<div class="container-narrow">
-  <div class="row">
-    <div class="">
+<div class="row-fluid">
+  <div class="span12">
+    <div class="nav">
       <ul class="nav nav-pills">
         <li><%= link_to "100 Motels", root_path, class: "" %></li>
         <li class="pull-right"><%= link_to "Sign in", login_path, class: "" %></li>
-        <li class="pull-right"><%= link_to "Join 100 Motels", signup_path, class: "" %></li>
+        <li class="pull-right"><%= link_to "Join", signup_path, class: "" %></li>
       </ul>
     </div>
-  </div>
-  <div class="row">
     <div class="jumbotron">
       <h1>
         Did you ever want to organize a gig but you weren't sure if it was worth it?
       </h1> <br>
-      <p class="lead">Try it out on 100 Motels! Change the date, drop the ticket price, keep ticket orders or refund them, trash the whole thing and start again. 100 Motels won't cost you a penny until you get the show you want. </p>
+      <p class="lead">Life on the Road eh? Fuck that - be sure. This is 2013 not 1973. Change the date, drop the ticket price, keep ticket orders or refund them, trash the whole thing and start again. 100 Motels won't cost you a penny until you get the show you want. </p>
       <%= link_to "Try it!", guest_profiles_path, method: :post, class: 'btn btn-large btn-success' %>
     </div>
   </div>
-  <div class="row">
+</div>
+<div class="row-fluid">
+  <div="span12">
     <div class="search"><%= render 'search' %></div>
   </div>
 </div>
