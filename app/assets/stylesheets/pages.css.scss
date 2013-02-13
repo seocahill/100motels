@@ -3,32 +3,68 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 // index
-.jumbotron {
-  margin: 60px 0;
-  text-align: center;
-  .btn  {
-    padding: 20px;
-    // color: #FFFFFF;
-    font-size: 19px;
-    margin: 40px;
-  }
-}
+/* Responsive dimensions */
+$handheld-max: 479px;
+$small-min: $handheld-max + 1;
+$small-max: 767px;
+$medium-min: $small-max + 1;
+$medium-max: 979px;
+$large-min: $medium-max + 1;
+$large-max: 1199px;
+$xlarge: 1200;
 
-.jumbotron h1 {
-  font-size: 72px;
-  line-height: 1;
+/*Responsive query mixins */
+@mixin media-above($min) {
+  @media (min-width: $min) { @content; }
+}
+@mixin media-below($max) {
+  @media (max-width: $max) { @content; }
+}
+@mixin media-between($min, $max) {
+  @media (min-width: $min) and (max-width: $max) { @content; }
 }
 
 .container-narrow {
 margin: 0 auto;
-max-width: 700px;
+max-width: 850px;
 }
 
-.container-very-narrow {
-margin: 0 auto;
-max-width: 400px;
+#pages_controller {
+  .jumbotron {
+    margin: 40px 0;
+    h1 {
+      font-size: 41px;
+      line-height: 52px;
+      @include media-below($handheld-max){
+        font-size: 30px;
+        line-height: 40px;
+      }
+    }
+  }
+
+  .big-search,
+  input[type="text"],
+  button {
+     height: 60px;
+  }
 }
 
-.search {
-  margin-top: 30px;
+// Sticky Footer
+html, body  {
+    height: 100%
+}
+
+.wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -60px;
+}
+
+.push {
+  height: 60px;
+}
+
+footer {
+  padding: 20px;
 }

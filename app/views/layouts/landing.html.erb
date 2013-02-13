@@ -17,11 +17,15 @@
     <![endif-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
-  <body>
-    <div id="wrap">
-      <div class="container">
-        <%= yield %>
-      </div> <!-- /content container -->
+  <body id="<%= params[:controller].parameterize %>_controller">
+    <div class="wrapper">
+      <%= yield %>
+      <div class="push"><!--//--></div>
     </div>
+    <footer>
+      <div class="container">
+        <p>© seocahill 2012</p>
+      </div>
+    </footer>
   </body>
 </html>

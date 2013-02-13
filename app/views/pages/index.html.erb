@@ -1,36 +1,24 @@
 <div class="container-narrow">
-
-      <div class="masthead">
-        <ul class="nav nav-pills pull-right">
-          <li><%= link_to "Search Events", events_path %></li>
-          <li><%= link_to "Help & Information", info_path %></li>
-          <% if current_user %>
-            <%= render "current_user_menu" %>
-          <% else %>
-            <li><%= link_to "Sign in", login_path %></li>
-          <% end %>
-        </ul>
-        <h3 class="muted">100 Motels</h3>
-      </div>
-      <hr>
-      <div class="row">
-        <div class="search offset1"><%= render 'search' %></div>
-      </div>
-      <div class="row">
-      <div class="jumbotron">
-        <h1>Did you ever want to organize a Gig...<br>
-          <small>but you weren't sure if it was worth it?</small>
-        </h1> <br>
-        <p class="lead">100 Motels lets you try out an event, tweak it, fix it or toss it without costing you a penny. <br><br> Click the big green button to see how it works.  </p>
-        <%= link_to "Absolutely Free :)", guest_profiles_path, method: :post, class: 'btn btn-large btn-success' %>
-      </div>
-      </div>
-
-      <hr>
-
-      <div class="footer">
-        <p>© seocahill 2012</p>
-      </div>
-
+  <div class="row">
+    <div class="">
+      <ul class="nav nav-pills">
+        <li><%= link_to "100 Motels", root_path, class: "" %></li>
+        <li class="pull-right"><%= link_to "Sign in", login_path, class: "" %></li>
+        <li class="pull-right"><%= link_to "Join 100 Motels", signup_path, class: "" %></li>
+      </ul>
     </div>
+  </div>
+  <div class="row">
+    <div class="jumbotron">
+      <h1>
+        Did you ever want to organize a gig but you weren't sure if it was worth it?
+      </h1> <br>
+      <p class="lead">Try it out on 100 Motels! Change the date, drop the ticket price, keep ticket orders or refund them, trash the whole thing and start again. 100 Motels won't cost you a penny until you get the show you want. </p>
+      <%= link_to "Try it!", guest_profiles_path, method: :post, class: 'btn btn-large btn-success' %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="search"><%= render 'search' %></div>
+  </div>
+</div>
 
