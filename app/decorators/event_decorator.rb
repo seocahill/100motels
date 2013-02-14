@@ -67,8 +67,8 @@ class EventDecorator < ApplicationDecorator
                           :nil => "Click me to add content!", :display_with => :simple_format
   end
 
-  def location
-    image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{model.location.latitude}%2C#{model.location.longitude}"
+  def map
+    image_tag "http://maps.google.com/maps/api/staticmap?size=250x250&sensor=false&zoom=16&markers=#{model.location.latitude}%2C#{model.location.longitude}"
   end
 
   def video

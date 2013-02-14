@@ -73,3 +73,9 @@
   background-image: url(image_path('tex2res5.png'));
 }
 
+.event-ticket-orders, .event-poster {
+  h1, h3, small, a, dt, dd {
+    color: white;
+    text-shadow: 3px 4px 5px #000;
+  }
+}

@@ -1,45 +1,42 @@
 <% if @event.visible?|| @event.event_owner? %>
 	<% @event.header %>
-	<div class="container">
-		<nav id="organizer-tools", class="event">
-			<div class="row-fluid">
-				<div class="span2">
-					<%= @event.toggle_visible %>
-				</div>
-				<div class="span2">
-					<%= @event.edit %>
-				</div>
-			<div class="span2">
-					<%= @event.filepicker %>
-				</div>
-			</div> <!-- /row -->
-		</nav>
+	<div class="container" id="event-background">
+		<% if  @event.event_owner? %>
+			<nav>
+				<div class="row-fluid">
+					<div class="span2">
+						<%= @event.toggle_visible %>
+					</div>
+					<div class="span2">
+						<%= @event.edit %>
+					</div>
+					<div class="span2">
+						<%= @event.filepicker %>
+					</div>
+				</div> <!-- /row -->
+			</nav>
+		<% end %>
 		<section id="event-information" class="event">
 			<div class="row-fluid event-header">
 				<div class="span12">
 					<hr>
 					<h2>
 						<small><%= @organizer.name || "no name" %> presents</small><br>
-						<%= @event.title %>
+						<%= @event.title %><br>
+						<small><%= @event.date %></small>
 					</h2>
 					<hr>
 				</div>
 			</div>
 			<div class="row-fluid">
 				<div class="span6 event-poster" data-url="<%= @event.image %>">
-					<dl class="">
-						<dt>Featuring:</dt>
-						<dd>The Crete Boom, The Porn Trauma and more!</dd>
-						<dt>Date</dt>
-						<dd><%= @event.date %></dd>
-						<dt>Venue</dt>
-						<dd><%= @event.venue %></dd>
-						<dt>Begins</dt>
-						<dd><%= @event.doors %></dd>
-					</dl>
+					<h3>
+						<small>Featuring:</small>
+						The Crete Boom, The Porn Trauma and more!
+					</h3>
+					<h3><small>We need </small><%= @event.sales %><small> more patrons to pay for this show please help!</small></h3>
 				</div>
 				<div class="span6 event-ticket-orders">
-					<h1><%= @event.sales %><small> left to target</small></h1>
 					<h3><%= @event.price %><small> each</small></h3>
 					<%= @event.ticket_form %>
 					<h3><%= @event.order_total %> </h3>
@@ -50,9 +47,22 @@
 		<section id="event-media" class="event">
 			<div class="row-fluid">
 				<div class="span6"><div class="about-event"><%= @event.about %></div></div>
-				<div class="span6 pagination-centered"><%= @event.video %><div class="flex-video"><%= @event.video_iframe %></div></div>
+				<div class="span6">
+					<div class="row-fluid">
+						<div class="span6"><%= @event.map %></div>
+						<div class="span6">
+							<address>
+							  <strong><%= @event.venue %></strong><br><br>
+							  <%= @event.location.address %><br><br>
+							  Doors open at: <%= @event.doors %>
+							</address>
+						</div>
+					</div>
+				</div>
+			</div>
+			<hr>
 			<div class="row-fluid pagination-centered">
-				<div class="span6"><%= @event.location %></div>
+				<div class="span6"><%= @event.video %><div class="flex-video"><%= @event.video_iframe %></div></div>
 				<div class="span6"><%= @event.music %><%= @event.music_iframe %></div>
 			</div>
 		</section>
