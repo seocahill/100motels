@@ -21,7 +21,7 @@ class Event < ActiveRecord::Base
   scope :active, where("state < 3")
 
   include PgSearch
-  pg_search_scope :search, against: [:artist, :venue],
+  pg_search_scope :search, against: [:artist, :venue, :about],
     using: {tsearch: {dictionary: "english"}},
     associated_against: {location: :address}
 

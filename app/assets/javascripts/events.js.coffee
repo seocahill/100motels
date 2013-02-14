@@ -47,3 +47,7 @@ $ ->
 #  slimScroll for about piece in event show
 $ ->
   $(".about-event").slimScroll height: '250px'
+
+# backSretch
+$ ->
+  $("#event-information").backstretch($(".event-poster").data('url'));

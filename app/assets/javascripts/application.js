@@ -19,6 +19,7 @@
 //= require rails.validations
 //= require rails.validations.simple_form
 //= require jquery.slimscroll.js
+//= require jquery.backstretch.js
 //= require pages
 //= require events
 //= require organizer/events

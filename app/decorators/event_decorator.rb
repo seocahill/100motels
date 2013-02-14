@@ -27,7 +27,8 @@ class EventDecorator < ApplicationDecorator
 
   def image
     if model.image?
-      filepicker_image_tag model.image, width: 460, height: 300, fit: 'crop'
+      model.image
+      # filepicker_image_tag model.image, width: 460, height: 300, fit: 'crop'
       # fit option are clip crop scale max
     else
       image_tag "//quickimage.it/300&text=Artist"
