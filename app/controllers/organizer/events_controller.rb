@@ -11,13 +11,14 @@ has_scope :refunded, type: :boolean
   def create
     state = current_user.guest? ? :guest : :member
     @event = Event.new(params[:event])
-    @event.event_users.build(user_id: current_user.id, state: state)
+    @event.event_users.build(user_id: current_user.id)
     respond_to do |format|
       if @event.save
         flash[:notice] = 'Event was successfully created.'
         format.html { redirect_to(@event) }
         format.xml { render xml: @event, status: :created, location: @event }
       else
+        flash[:error] = "Event couldn't be created."
         format.html { render action: "new" }
         format.xml { render xml: @event.errors, status: :unprocessable_entity }
       end

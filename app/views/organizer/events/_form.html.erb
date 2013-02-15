@@ -2,8 +2,6 @@
 
 
   <fieldset>
-    <legend><%= controller.action_name.capitalize %> Event</legend>
-
     <%= f.input :visible, :label => "Visible to Public?" %>
     <%= f.input :artist, label: "Artist / Event Name", placeholder: "Crete Boom" %>
     <%= f.input :venue, label: "Name of Venue", placeholder: "The Rickshaw" %>
@@ -16,7 +14,7 @@
     <%= f.input :video, label: "Youtube/Vimeo url", placeholder: "http://youtu.be/x953GwKEwI8", hint: "Showcase the Artists playing at your event" %>
     <%= f.input :music, label: "Soundcloud url", placeholder: "http://snd.sc/ZmJJnw", hint: "A playlist featuring your Artists, that users can download and share" %>
     <%= f.input :image, label: "Upload Artist Images" do %>
-        <%= f.filepicker_field :image, button_class: "btn btn-primary btn-medium", hint: "Upload an image or connect to other service providers to pick one instead" %>
+        <%= f.filepicker_field(:image, button_class: "btn btn-primary btn-medium", hint: "Upload an image or connect to other service providers to pick one instead")%>
     <% end %>
 
     <div class="form-actions">
