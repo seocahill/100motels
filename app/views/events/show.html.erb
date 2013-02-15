@@ -21,7 +21,7 @@
 				<div class="span12">
 					<hr>
 					<h2>
-						<small><%= @organizer.name || "no name" %> presents</small><br>
+						<small><%= @organizer.name || "no name" %> presents </small><br>
 						<%= @event.title %><br>
 						<small>
 							<%= @event.date %> | <i class="icon-shopping-cart"></i> <i class="icon-map-marker"></i>
@@ -35,9 +35,10 @@
 				<div class="span6 event-poster" data-url="<%= @event.image %>">
 					<h3><small>Featuring:</small> The Crete Boom, The Porn Trauma and more!</h3>
 					<h3><small>We need </small><%= @event.sales %><small> more patrons to pay for this show please help!</small></h3>
+					<h3><i class="icon-twitter-sign"></i> <i class="icon-facebook-sign"></i></h3>
 				</div>
 				<div class="span6 event-ticket-orders">
-					<h3><%= @event.price %><small> each</small></h3>
+					<h3></i>  <%= @event.price %><small> each</small></h3>
 					<%= @event.ticket_form %>
 					<h3><%= @event.order_total %> </h3>
 				</div>
@@ -46,8 +47,9 @@
 		<hr>
 		<section id="event-media" class="event">
 			<div class="row-fluid">
-				<div class="span6"><div class="about-event"><%= @event.about %></div></div>
+				<div class="span6"><h1><i class="icon-info-sign muted"></i></h1><div class="about-event"><%= @event.about %></div></div>
 				<div class="span6">
+					<h1><i class="icon-map-marker muted"></i></h1>
 					<div class="row-fluid">
 						<div class="span6"><%= @event.map %></div>
 						<div class="span6">
@@ -56,11 +58,13 @@
 							  <%= @event.location.address %><br><br>
 							  Doors open at: <%= @event.doors %>
 							</address>
+							<p class="">contact organizer <i class="icon-envelope"></i></p>
 						</div>
 					</div>
 				</div>
 			</div>
 			<hr>
+			<h1><i class="icon-headphones muted"></i></h1>
 			<div class="row-fluid pagination-centered">
 				<div class="span6"><%= @event.video %><div class="flex-video"><%= @event.video_iframe %></div></div>
 				<div class="span6"><%= @event.music %><%= @event.music_iframe %></div>
