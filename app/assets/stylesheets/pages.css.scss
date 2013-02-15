@@ -25,32 +25,34 @@ $xlarge: 1200;
 }
 
 #pages_controller {
-  .search {max-width: 80%;}
-  .jumbotron {
-    background-image: transparent;
-    margin: 40px 0;
-    h1 {
-      font-size: 41px;
-      line-height: 52px;
-      @include media-below($handheld-max){
-        font-size: 30px;
-        line-height: 40px;
-      }
+  .big-search,
+    input[type="text"],
+    button {
+       height: 60px;
     }
-    p {
-      @include media-below($handheld-max){
-      font-size: 110%;
-      line-height: 110%
-      }
+}
+
+.search {max-width: 80%;}
+.jumbotron {
+  background-image: transparent;
+  margin: 40px 0;
+  h1 {
+    font-size: 41px;
+    line-height: 52px;
+    @include media-below($handheld-max){
+      font-size: 30px;
+      line-height: 40px;
     }
   }
-
-.big-search,
-  input[type="text"],
-  button {
-     height: 60px;
+  p {
+    @include media-below($handheld-max){
+    font-size: 110%;
+    line-height: 110%
+    }
   }
 }
+
+
 
 // Sticky Footer
 html, body  {

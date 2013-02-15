@@ -1,36 +1,35 @@
 <div class="container">
-	<div class="row">
-		<div class="span12">
-			<header><h3 class="page-header">Upcoming Events</h3><span></span></header>
-		</div>
-	</div>
-	<div class="row">
+	<div class="row-fluid">
 		<div class="span6"><%= render 'search' %></div>
-		<div class="span6">
+		<div class="span5 offset1 big-search">
 			<div class="btn-group">
-				<%= link_to "Reset ", events_path, class: "btn" %>
-				<%= link_to "Today", request.path + '?tonight=true', class: "btn" %>
-				<%= link_to "This Week", request.path + '?week_end=true', class: "btn" %>
-				<%= link_to "This Month", request.path + '?month_end=true', class: "btn" %>
+        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+          Filter by Date
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+					<li><%= link_to "Anytime ", events_path(query: params[:query]) %></li>
+					<li><%= link_to "Today", events_path(query: params[:query], tonight: "true") %></li>
+					<li><%= link_to "This Week", events_path(query: params[:query], week_end: "true") %></li>
+					<li><%= link_to "This Month", events_path(query: params[:query], month_end: "true") %></li>
+				</ul>
 			</div>
 		</div>
 	</div>
 	<hr>
 	<div class="row-fluid">
 		<div class="span12">
-			<section id="events-index-grid" class="events">
 				<ul class="thumbnails">
 					<% @events.each do |event| %>
-						<li class="span3">
-							<a class="thumbnail" href="<%= event_path(event) %>">
-                 <%= filepicker_image_tag event.image, width: 240, height: 140, fit: 'crop' if event.image.present? %>
+						<li class="span4 pagination-centered">
+							<a class="thumbnail" href='<%= event_path(event) %>'>
+                <%= filepicker_image_tag event.image, width: 200, height: 200, fit: 'crop' if event.image.present? %>
+								<h3><%= event.artist %></h3>
 							</a>
-							<h3><%= event.artist %></h3>
 						</li>
 					<% end %>
 				</ul>
 				<%= will_paginate @events %>
-			</section>
 		</div>
 	</div>
 </div>
