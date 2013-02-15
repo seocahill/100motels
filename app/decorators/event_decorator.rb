@@ -6,7 +6,7 @@ class EventDecorator < ApplicationDecorator
   end
 
   def toggle_visible
-    if event_owner? && current_user.profile == "MemberProfile"
+    if event_owner? && current_user.profile_type == "MemberProfile"
       switch = best_in_place model, :visible, :type => :checkbox, collection: ["Click to Publish Event", "Click to Hide Event"]
     elsif current_user
       "Sign up to Publish"

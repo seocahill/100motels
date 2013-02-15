@@ -24,7 +24,10 @@
 						<li class="span4 pagination-centered">
 							<a class="thumbnail" href='<%= event_path(event) %>'>
                 <%= filepicker_image_tag event.image, width: 200, height: 200, fit: 'crop' if event.image.present? %>
-								<h3><%= event.artist %></h3>
+                <div class="event-index-artists">
+									<h3><%= event.artist %><br><small>crete boom, porn trauma and more</small></h3>
+									<h6><%= event.location.city %> - <%= event.date.strftime('%d/%m/%Y') %></h6>
+								</div>
 							</a>
 						</li>
 					<% end %>
