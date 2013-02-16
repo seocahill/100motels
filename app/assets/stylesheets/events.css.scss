@@ -80,7 +80,13 @@
   }
 }
 
+.venue-info {
+  padding-left: 10px;
+  padding-top: 10px;
+}
+
 #events_controller {
+  .event-map,
   .thumbnails li {
     @include media-between($small-min, $small-max) {
       width: 49%;

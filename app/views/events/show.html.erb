@@ -37,7 +37,7 @@
 					<h3><small>We need </small><%= @event.sales %><small> more patrons to pay for this show please help!</small></h3>
 					<h3><i class="icon-twitter-sign"></i> <i class="icon-facebook-sign"></i></h3>
 				</div>
-				<div class="span6 event-ticket-orders">
+				<div class="span6 event-ticket-orders" data-price='<%= @event.ticket_price %>'>
 					<h3></i>  <%= @event.price %><small> each</small></h3>
 					<%= @event.ticket_form %>
 					<h3><%= @event.order_total %> </h3>
@@ -51,8 +51,8 @@
 				<div class="span6">
 					<h1><i class="icon-map-marker muted"></i></h1>
 					<div class="row-fluid">
-						<div class="span6"><%= @event.map %></div>
-						<div class="span6">
+						<div class="span6 event-map"><%= @event.map %></div>
+						<div class="span6 event-map venue-info">
 							<address>
 							  <strong><%= @event.venue %></strong><br><br>
 							  <%= @event.location.address %><br><br>

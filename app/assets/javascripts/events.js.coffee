@@ -10,7 +10,7 @@ $ ->
 # Order Total method
 orderTotal = ->
   quantity = $('#order_quantity').val()
-  price = $('.ticket-price').data('original-content')
+  price = $('.event-ticket-orders').data('price')
   net_price = quantity * price
   gross = (net_price / .961) + 0.30
   number = parseFloat(gross).toFixed(2)
