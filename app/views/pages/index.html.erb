@@ -1,17 +1,24 @@
-<div class="row-fluid">
-  <div class="span12">
-    <div class="jumbotron">
-      <h1>
-        Did you ever want to organize a gig but you weren't sure if it was worth it?
-      </h1> <br>
-      <p class="lead">Be sure. Change the date, drop the ticket price, keep ticket orders or refund them, trash the whole thing and start again. 100 Motels won't cost you a penny until you get the show you want. </p>
+<div class="container narrow-container">
+  <div class="big-logo">
+    <h2>100 Motels | <small><%= link_to "sign-in", login_path, class: "" %></small></h2>
+  </div>
+  <div class="row-fluid">
+    <div class="span12 headline paper-folds">
+      <h2>
+        <span>Making Risky Events Happen</span>
+      </h2> <br>
+      <h4> <article>As Artists we want to perform but sometimes it just isn't worth it. <br>
+       Will you get paid?<br>
+       Will anyone show up? <br>
+       Don't waste your time and money - next time you hit the road join us at 100 Motels.</h4></article><br>
       <%= link_to "Try it!", guest_profiles_path, method: :post, class: 'btn btn-large btn-success' %>
+    </div>
+  </div>
+  <div class="row-fluid">
+    <div class="span12">
     </div>
   </div>
 </div>
 <div class="row-fluid">
-  <div="span12">
-    <div class="search"><%= render 'search' %></div>
+      <div class="search"><%#= render 'search' %></div>
   </div>
-</div>
-

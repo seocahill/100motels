@@ -3,45 +3,68 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 // index
-/* Responsive dimensions */
-$handheld-max: 479px;
-$small-min: $handheld-max + 1;
-$small-max: 767px;
-$medium-min: $small-max + 1;
-$medium-max: 979px;
-$large-min: $medium-max + 1;
-$large-max: 1199px;
-$xlarge: 1200;
+.narrow-container {
+  max-width: 940px;
+  margin: 20px auto;
+}
 
-/*Responsive query mixins */
-@mixin media-above($min) {
-  @media (min-width: $min) { @content; }
+.headline {
+  font-family: 'Cabin', serif;
+  background-image: url(http://www.essedidesign.com/wp-content/uploads/2012/09/preview.jpg);
+  color: $white;
+  span, article  {
+    letter-spacing: -1px;
+    background: rgb(0, 0, 0); /* fallback color */
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+  }
+  // box-shadow: 3px 3px 10px 5px #000;
+  // padding: 20px;
+  // background-color: #565656;
+  // color: transparent;
+  // text-shadow: 0px 2px 3px rgba(255,255,255,0.3);
+  // -webkit-background-clip: text;
+  //  -moz-background-clip: text;
+  // background-clip: text;
 }
-@mixin media-below($max) {
-  @media (max-width: $max) { @content; }
-}
-@mixin media-between($min, $max) {
-  @media (min-width: $min) and (max-width: $max) { @content; }
-}
+
 
 #pages_controller {
-  .big-search,
-    input[type="text"],
-    button {
-       height: 60px;
-    }
+  // font-family: 'Cabin', sans-serif;
 }
 
-.search {max-width: 80%;}
+.big-logo {
+  h2, a {
+    padding-top: 20px;
+    font-family: 'Lobster', cursive;
+    color: $grayLight;
+    font-weight: 400;
+    margin-bottom: 20px;
+  }
+  .signin {height: auto;}
+}
+
+.search {
+  max-width: 940px;
+  margin: 20px auto;
+  input[type="text"] {
+    @include media-between($small-min, $small-max) {
+      min-width: 500px;
+    }
+    min-width: 320px;
+    height: 60px;
+  }
+  button {
+     height: 60px;
+     margin: 0;
+  }
+}
+
 .jumbotron {
-  background-image: transparent;
-  margin: 40px 0;
   h1 {
-    font-size: 41px;
-    line-height: 52px;
     @include media-below($handheld-max){
-      font-size: 30px;
-      line-height: 40px;
+      font-size: 110%;
+      line-height: 110%;
     }
   }
   p {
@@ -52,30 +75,44 @@ $xlarge: 1200;
   }
 }
 
-
-
-// Sticky Footer
-html, body  {
-    height: 100%;
-    background-image: url(image_path('tex2res5.png'));
+.paper-folds
+{
+  position: relative;
+  width: 500px;
+  padding: 50px;
+  margin: 0 auto;
+  background-color: #fff;
+  -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
 }
 
-.wrapper {
-  min-height: 100%;
-  height: auto !important;
-  height: 100%;
-  margin: 0 auto -60px;
+.paper-folds:before, .paper-folds:after
+{
+  position: absolute;
+  width: 40%;
+  height: 10px;
+  content: ' ';
+  left: 12px;
+  bottom: 12px;
+  background: transparent;
+  -webkit-transform: skew(-5deg) rotate(-5deg);
+  -moz-transform: skew(-5deg) rotate(-5deg);
+  -ms-transform: skew(-5deg) rotate(-5deg);
+  -o-transform: skew(-5deg) rotate(-5deg);
+  transform: skew(-5deg) rotate(-5deg);
+  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  z-index: -1;
 }
-
-.push {
-  height: 60px;
-}
-
-footer {
-  padding: 20px;
-  text-align: center;
-}
-
-.event-index-artists  {
-  text-overflow: ellipsis;
+.paper-folds:after
+{
+  left: auto;
+  right: 12px;
+  -webkit-transform: skew(5deg) rotate(5deg);
+  -moz-transform: skew(5deg) rotate(5deg);
+  -ms-transform: skew(5deg) rotate(5deg);
+  -o-transform: skew(5deg) rotate(5deg);
+  transform: skew(5deg) rotate(5deg);
 }

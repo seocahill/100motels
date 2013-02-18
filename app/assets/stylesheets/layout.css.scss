@@ -1,6 +1,59 @@
 // customize brand color test
-// .navbar {
-//   .brand  {
-//     color: #ED5D1D
-//   }
-// }
+.navbar {
+  .brand  {
+    font-family: 'Lobster', cursive;
+  }
+}
+
+// Fonts
+@import url(http://fonts.googleapis.com/css?family=Cabin|Lobster|Merriweather|Open+Sans);
+
+
+/* Responsive dimensions */
+$handheld-max: 479px;
+$small-min: $handheld-max + 1;
+$small-max: 767px;
+$medium-min: $small-max + 1;
+$medium-max: 979px;
+$large-min: $medium-max + 1;
+$large-max: 1199px;
+$xlarge: 1200;
+
+/*Responsive query mixins */
+@mixin media-above($min) {
+  @media (min-width: $min) { @content; }
+}
+@mixin media-below($max) {
+  @media (max-width: $max) { @content; }
+}
+@mixin media-between($min, $max) {
+  @media (min-width: $min) and (max-width: $max) { @content; }
+}
+
+// Sticky Footer
+html, body  {
+    height: 100%;
+    background-image: url(image_path('tex2res5.png'));
+}
+
+.wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -60px;
+}
+
+.push {
+  height: 60px;
+}
+
+footer {
+  padding: 20px;
+  text-align: center;
+}
+
+// input prepend fix
+.input-prepend, .input-append {
+    white-space: nowrap;
+    -webkit-padding-end: 27px;
+}

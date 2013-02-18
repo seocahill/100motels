@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  # layout 'landing', only: [:index]
+  layout 'landing', only: [:index]
 
   def home
   end
