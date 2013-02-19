@@ -31,7 +31,7 @@ class EventDecorator < ApplicationDecorator
       # filepicker_image_tag model.image, width: 460, height: 300, fit: 'crop'
       # fit option are clip crop scale max
     else
-      image_tag "//quickimage.it/300&text=Artist"
+      "http://www.zappa.com/stufftoget/wallpaper/images/downloads/200_Motels_1024.jpg"
     end
   end
 

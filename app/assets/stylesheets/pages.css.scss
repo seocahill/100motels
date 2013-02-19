@@ -10,7 +10,7 @@
 
 .headline {
   font-family: 'Cabin', serif;
-  background-image: url(http://www.essedidesign.com/wp-content/uploads/2012/09/preview.jpg);
+  // background-image: url(http://www.essedidesign.com/wp-content/uploads/2012/09/preview.jpg);
   color: $white;
   span, article  {
     letter-spacing: -1px;
@@ -30,7 +30,36 @@
 
 
 #pages_controller {
-  // font-family: 'Cabin', sans-serif;
+  hr
+  {
+    margin:20px 0 0 0;
+    padding:0;
+    border:0;
+    outline:0;
+
+    overflow:hidden;
+
+    height:20px;
+  }
+
+  hr:after
+  {
+    content:"";
+
+    margin:0 auto;
+
+    position:relative;
+    top:-35px;
+    display:block;
+    width:95%;
+    height:16px;
+
+    box-shadow:0px 25px 10px #888;
+
+    -webkit-border-radius:50%;
+    -moz-border-radius:50%;
+    border-radius:50%;
+  }
 }
 
 .big-logo {
