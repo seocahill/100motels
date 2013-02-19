@@ -2,7 +2,7 @@
   <div class="big-logo">
     <div class="row-fluid">
       <div class="span11">
-        <h2>100 Motels | <small><%= link_to "sign-in", login_path, class: "" %></small></h2>
+        <h2>100 Motels | <small><%= link_to "sign-in", login_path, class: "" %> &middot; <%= link_to "events", events_path %> </small></h2>
       </div>
     </div>
   </div>
@@ -25,18 +25,20 @@
     <div class="span6">
       <h3 class="h4"><i class="icon-lightbulb"></i> What's the idea?</h3>
       <p class="">
-        Web-age Performing Artists have never had is so good in terms of inpiration, instruction, creation and distribution. But we haven't as yet figured out how to replicate the performing opportunites that are afforded to commerically backed acts. As an artist myself I really want that to change.</p>
-       <p>100 Motels comprises <strong>risk-free Web Ticketing and Crowdfunding</strong> in one, the foundation I hope for a service that will
-        achieve that goal.
+        Artists have never had is so good in many ways - from creative aides to global channels of distribution, we can produce our work and expose it to a large audience without giving a second thought to pre-Web Age commercial roadblocks.</p>
+        <p>
+        But we are still living in the past when it comes the performance of our work, there isn't an obviously better solution to the traditional ways of organizing events and tours - that's what I'm trying to change .</p>
+       <p>100 Motels comprises <strong>a Web Ticketing and Crowdfunding</strong> platform in one, engineered above all else to provide a risk-free funding environment for its Users.
       </p>
-      <a href="/pricing" class="">more <i class="icon-double-angle-right"></i></a>
+      <a href="/pricing" class="">more </a>
     </div>
     <div class="span6">
       <h3 class="h4"><i class="icon-money"></i> Low fees</h3>
       <p class="">
-        <p>First off you can take as many orders as you like <strong>without incurring fees</strong> - that only happens when you draw funds into your bank account.</p>
+        <p>Firstly, you can take as many orders as you like <strong>without incurring fees</strong> - that only happens when you draw funds into your bank account.</p>
         If you're an Artist performing CC licensed work 100 Motel's fee is discounted to only 1% of the ticket price, othewise it's 2.5%.</p>
         <p>Credit card processing is handled by Stripe who currently charge 2.9% plus 30c per transaction.</p>
+        <p>Fees are added-on. Whatever you set your ticket price to, the full amount gets deposited into your bank account. </p>
       </p>
       <a href="/pricing" class="link-icon link-icon--more">more</a>
     </div>
@@ -45,18 +47,19 @@
     <div class="span6">
       <h3 class="h4"><i class="icon-magic"></i> Any 'magical' features?</h3>
       <p class="">
-        How about free refunds? Not magical perhaps but pretty cool all the same. When I said risk-free I really meant it!
+        How about free refunds? Not magical perhaps but pretty important all the same. When I said risk-free I really meant it! Also there are no time-limits on how long you can hold an order before charging it.
       </p>
-      <p>Other stuff I'm currently working on include the ability to split, copy and reschedule events so that customer orders aren't wasted if a event doesn't go ahead as orginally planned, and also a cross-platform mobile app with some native features like barcode scanning.</p>
+      <p>One cool feature that I'm currently working on is the ability to split, copy and reschedule events so that customer orders aren't wasted if a event doesn't go ahead as orginally planned.  </p>
+      <p> I'm also coding a cross-platform mobile app with some native features like barcode scanning, handy for keeping track of admissions on the night.</p>
       <a href="/pricing" class="link-icon link-icon--more">more</a>
     </div>
     <div class="span6">
       <h3 class="h4"><i class="icon-beaker"></i> Experiment with your Events</h3>
       <p class="">
-        One of the main ideas behind 100 Motels is to ecourage Artists and Organizers, to try risky or uncertain event opportunities where previously t
-        failure may have discounted out of hand.</p>
+        100 Motels allows for the trying of Events where the viability level is completely unknown beforehand. </p>
+        <p>The aim is to put event organizers and their customers in a position where they have literally nothing to lose and everything to gain from attempting an Event.</p>
 
-        <p>To that end, 100 Motels allows you to test and alter your events without any financial consequences for you or your customers. You can change the date, discount the ticket price, run events against each other or do whatever it takes to hit funding or attendence targets.</p>
+        <p>To that end, 100 Motels allows you to test and alter your events without any financial consequences. You can, for example, change the date, discount the ticket price, or run competing events against each other, to mention just a few possible use cases. </p>
 
       <a href="/pricing" class="link-icon link-icon--more">more</a>
     </div>
@@ -65,5 +68,6 @@
 <div class="container">
   <div class="row-fluid-fluid">
       <div class="search"><%= render 'search' %></div>
+      <p></p>
   </div>
 </div>

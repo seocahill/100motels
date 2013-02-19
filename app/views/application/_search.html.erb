@@ -1,6 +1,7 @@
 <%= form_tag events_path, method: :get do %>
   <div class="input-append">
     <%= text_field_tag :query, params[:query], class: "input-block-level big-search", placeholder: "Looking for an Event? Search name, venue or location", id: "appendedInputButton" %>
-    <button type="submit" class="btn" ><i class="icon-search"></i>Go!</button>
+    <button type="submit" class="btn" ><i class="icon-search"></i> Go</button>
+    <%= link_to "All Events" %>
   </div>
 <% end %>
