@@ -21,7 +21,6 @@ group :development do
 end
 
 group :test do
-  gem "cucumber-rails", "~> 1.0", require: false
   gem 'capybara'
   gem 'factory_girl_rails'
   gem 'faker'
