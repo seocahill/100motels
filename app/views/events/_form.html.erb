@@ -11,7 +11,7 @@
   <% else %>
     <div class="stripe-controls" align="center">
       <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
-        data-key="<%= ENV['STRIPE_PUBLIC_KEY'] %>" data-description="<%= @event.artist %>"
+        data-key="<%= ENV['STRIPE_PUBLIC_KEY'] %>"
         data-amount="">
       </script>
     </div>

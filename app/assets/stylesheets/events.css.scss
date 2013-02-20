@@ -26,10 +26,9 @@
     position: fixed;
     top: 30px;
     right: 100px;
-    width: 250px;
-    padding: 20px;
-    background-color: #FCC;
-    border: solid 2px #666;
+    width: auto;
+    @extend .alert;
+    @extend .alert-error;
     &:first-letter { text-transform: uppercase };
   }
 }
