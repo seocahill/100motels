@@ -50,4 +50,6 @@ $ ->
 
 # backSretch
 $ ->
-  $("#event-information").backstretch($(".event-poster").data('url'));
+  if $("#event-information").length
+    $("#event-information").backstretch($(".event-poster").data('url'))
+

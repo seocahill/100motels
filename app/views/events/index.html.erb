@@ -1,14 +1,14 @@
 <div class="container">
 	<div class="row-fluid">
 		<div class="span6 search"><%= render 'search' %></div>
-		<div class="span2 offset1 pull-right">
-			<div class="btn-group">
-        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-          Filter by Date
+		<div class="span2 pull-right">
+			<div class="btn-group" id="time-filter">
+        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#" >
+          <span class="selected-action">Filter by Date</span>
           <span class="caret"></span>
         </a>
         <ul class="dropdown-menu">
-					<li><%= link_to "Anytime ", events_path(query: params[:query]) %></li>
+					<li class="selected"><%= link_to "Anytime ", events_path(query: params[:query]) %></li>
 					<li><%= link_to "Today", events_path(query: params[:query], tonight: "true") %></li>
 					<li><%= link_to "This Week", events_path(query: params[:query], week_end: "true") %></li>
 					<li><%= link_to "This Month", events_path(query: params[:query], month_end: "true") %></li>

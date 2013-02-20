@@ -10,7 +10,15 @@
   }
 
   .search {
-
+    input[type="text"] {
+      @include media-between($small-min, $small-max) {
+        min-width: 500px;
+      }
+      @include media-between($handheld-min, $handheld-max) {
+        min-width: 300px;
+      }
+    }
+      // min-width: 200px;
   }
 }
 
