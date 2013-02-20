@@ -13,7 +13,8 @@ private
     event = Event.new
     event.event_users.build(user_id: user.id, state: :organizer)
     event.build_location(address: location)
-    event.artist = "Title for your Event"
+    event.title = "The Big Show"
+    event.artist = "First Artist, Second Artist and more!"
     event.venue = "A Dungeon or Speak hopefully"
     event.date = 1.month.from_now
     event.doors = Time.now.midnight

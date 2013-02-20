@@ -5,6 +5,7 @@ class Event < ActiveRecord::Base
   enum_accessor :state, [ :guest, :member, :rescheduled, :archived, :cancelled, :suspended ]
   validates :artist, length: {maximum: 75}
   validates :title, length: {maximum: 30}
+  validates :title, :artist, :ticket_price, :venue, :date, :capacity, :doors, :target, presence: :true
   validate :forbid_date_change, on: :update
 
   before_save :create_location

@@ -39,7 +39,6 @@ class Notifier < ActionMailer::Base
 
   def private_message(message)
     @message = message
-    organizer = Event.find(message.event_id).users.first
-    mail to: organizer.profile.email, subject: message.subject, from: message.email
+    mail to: message.organizer_email, subject: message.subject, from: message.email
   end
 end

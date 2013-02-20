@@ -24,8 +24,8 @@
 						<small><%= @organizer.name || "no name" %> presents </small><br>
 						<%= @event.title %><br>
 						<small>
-							<%= @event.date %> | <i class="icon-shopping-cart"></i> <i class="icon-map-marker"></i>
-							<i class="icon-headphones"></i> <i class="icon-info-sign"></i>
+							<%= @event.date %> | <a href="#tickets"><i class="icon-shopping-cart"></i></a> <a href="#location"><i class="icon-map-marker"></i></a>
+							<a href="#music"><i class="icon-headphones"></i></a> <a href="#about"><i class="icon-info-sign"></i></a>
 						</small>
 					</h2>
 					<hr>
@@ -37,20 +37,20 @@
 					<h3><small>We need </small><%= @event.sales %><small> more patrons to pay for this show please help!</small></h3>
 					<h3><i class="icon-twitter-sign"></i> <i class="icon-facebook-sign"></i></h3>
 				</div>
-				<div class="span6 event-ticket-orders" data-price='<%= @event.ticket_price %>'>
-					<h3></i>  <%= @event.price %><small> each</small></h3>
+				<div class="span6 event-ticket-orders" data-price='<%= @event.ticket_price %>' id="tickets">
+					<h3><%= @event.price %><small> each</small></h3>
 					<%= @event.ticket_form %>
-					<h3><%= @event.order_total %> </h3>
+					<h3><%= @event.order_total %></h3>
 				</div>
 			</div>
 		</section>
 		<hr>
 		<section id="event-media" class="event">
 			<div class="row-fluid">
-				<div class="span6"><h1><i class="icon-info-sign muted"></i></h1><div class="about-event"><%= @event.about %></div></div>
+				<div class="span6"><h1><i class="icon-info-sign muted" id="about"></i></h1><div class="about-event" ><%= @event.about %></div></div>
 				<div class="span6">
-					<h1><i class="icon-map-marker muted"></i></h1>
-					<div class="row-fluid">
+					<h1><i class="icon-map-marker muted" id="location"></i></h1>
+					<div class="row-fluid" >
 						<div class="span6 event-map"><%= @event.map %></div>
 						<div class="span6 event-map venue-info">
 							<dl>
@@ -64,7 +64,7 @@
 								</dd>
 								<dt>Event begins at:</dt>
 								<dd><%= @event.doors %></dd>
-							<hr>
+							</dl>
 							<a href="#privateMessage" data-toggle="modal">Contact Organizer <i class="icon-envelope"></i></a>
 							<%= render 'private_messages/contact_form' %>
 						</div>
@@ -72,15 +72,13 @@
 				</div>
 			</div>
 			<hr>
-			<h1><i class="icon-headphones muted"></i></h1>
+			<h1><i class="icon-headphones muted" id="music"></i></h1>
 			<div class="row-fluid pagination-centered">
 				<div class="span6"><%= @event.video %><div class="flex-video"><%= @event.video_iframe %></div></div>
 				<div class="span6"><%= @event.music %><%= @event.music_iframe %></div>
 			</div>
 		</section>
 	</div> <!-- /container -->
-	<!-- Modal -->
-	<%= render 'modal' %>
 <% else %>
 <h1>Sorry Event is not available right now</h1>
 <% end %>
