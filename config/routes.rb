@@ -21,6 +21,7 @@ OneHundredMotels::Application.routes.draw do
   resources :password_resets
   resources :events, only: [:show, :index, :update]
   resources :locations
+  resources :private_messages, only: [:create]
 
   resources :users do
     member { put :change_card }

@@ -36,4 +36,10 @@ class Notifier < ActionMailer::Base
     @order = Order.find(order_id)
     mail to: @order.email, subject: "Your order has been cancelled"
   end
+
+  def private_message(message)
+    @message = message
+    organizer = Event.find(message.event_id).users.first
+    mail to: organizer.profile.email, subject: message.subject, from: message.email
+  end
 end

@@ -66,3 +66,4 @@ gem 'sidekiq-failures'
 gem 'sinatra', require: false
 gem 'slim'
 gem 'pg_search'
+gem 'active_attr'

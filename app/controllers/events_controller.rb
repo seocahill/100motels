@@ -13,6 +13,7 @@ class EventsController < ApplicationController
 
   def show
     @order = Order.new
+    @private_message = PrivateMessage.new
     @organizer = UserDecorator.decorate(@event.users.first) #ok for now
   end
 

@@ -22,11 +22,13 @@
       // min-width: 200px;
   }
 
+  // validation notices for best in place
   .purr {
     position: fixed;
     top: 30px;
     right: 100px;
     width: auto;
+    padding: 20px;
     @extend .alert;
     @extend .alert-error;
     &:first-letter { text-transform: uppercase };

@@ -53,12 +53,20 @@
 					<div class="row-fluid">
 						<div class="span6 event-map"><%= @event.map %></div>
 						<div class="span6 event-map venue-info">
-							<address>
-							  <strong><%= @event.venue %></strong><br><br>
-							  <%= @event.location.address %><br><br>
-							  Doors open at: <%= @event.doors %>
-							</address>
-							<p class="">contact organizer <i class="icon-envelope"></i></p>
+							<dl>
+								<dt>Venue:</dt>
+								<dd><strong><%= @event.venue %></strong></dd><br>
+								<dt>Address:</dt>
+								<dd>
+									<address>
+									  <%= @event.location.address %>
+									</address>
+								</dd>
+								<dt>Event begins at:</dt>
+								<dd><%= @event.doors %></dd>
+							<hr>
+							<a href="#privateMessage" data-toggle="modal">Contact Organizer <i class="icon-envelope"></i></a>
+							<%= render 'private_messages/contact_form' %>
 						</div>
 					</div>
 				</div>
