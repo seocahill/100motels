@@ -1,8 +1,20 @@
+// events index
+// scoped to events controller
+#events_controller {
+  .event-map,
+  .thumbnails li {
+    @include media-between($small-min, $small-max) {
+      width: 49%;
+      float: left;
+    }
+  }
+
+  .search {
+
+  }
+}
+
 //event show
-// make sure video iframs are responsive
-
-// @import "event-image";
-
 .flex-video {
   position: relative;
   padding-top: 25px;
@@ -40,7 +52,7 @@
   text-align: center;
 }
 
-// org/event/show charge buttons
+// organizer/event/show charge buttons
 // were being styled automagically as buttons
 
 .link-button {
@@ -85,12 +97,3 @@
   padding-top: 10px;
 }
 
-#events_controller {
-  .event-map,
-  .thumbnails li {
-    @include media-between($small-min, $small-max) {
-      width: 49%;
-      float: left;
-    }
-  }
-}

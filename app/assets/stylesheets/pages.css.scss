@@ -2,11 +2,87 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-// index
+// everything in here is scoped to the pages resource only
+#pages_controller {
+  .fancy-hr
+  {
+    margin:20px 0 0 0;
+    padding:0;
+    border:0;
+    outline:0;
+
+    overflow:hidden;
+
+    height:20px;
+  }
+
+  .fancy-hr:after
+  {
+    content:"";
+
+    margin:0 auto;
+
+    position:relative;
+    top:-35px;
+    display:block;
+    width:95%;
+    height:16px;
+
+    box-shadow:0px 25px 10px #888;
+
+    -webkit-border-radius:50%;
+    -moz-border-radius:50%;
+    border-radius:50%;
+  }
+
+  .search {
+    max-width: 940px;
+    margin: 20px 0;
+    input[type="text"] {
+      @include media-between($small-min, $small-max) {
+        min-width: 500px;
+      }
+      @include media-between($handheld-min, $handheld-max) {
+        min-width: 300px;
+      }
+      min-width: 200px;
+      height: 60px;
+    }
+    button {
+       height: 60px;
+       margin: 0;
+    }
+  }
+}
+//
 .narrow-container {
   max-width: 940px;
   margin: 20px auto;
 }
+
+.big-logo {
+  h2, a {
+    padding-top: 20px;
+    font-family: 'Lobster', cursive;
+    color: $grayLight;
+    font-weight: 400;
+    margin-bottom: 20px;
+  }
+  h2 {
+    @include media-below($handheld-max) {
+      font-size: 28px;
+      line-height: 28px;
+    }
+  }
+  a {
+    @include media-below($handheld-max) {
+      font-size: 90%;
+      line-height: 90%;
+    }
+  }
+  .signin {height: auto;}
+}
+
 
 .headline {
   font-family: 'Cabin', serif;
@@ -32,79 +108,7 @@
   }
 }
 
-
-#pages_controller {
-  hr
-  {
-    margin:20px 0 0 0;
-    padding:0;
-    border:0;
-    outline:0;
-
-    overflow:hidden;
-
-    height:20px;
-  }
-
-  hr:after
-  {
-    content:"";
-
-    margin:0 auto;
-
-    position:relative;
-    top:-35px;
-    display:block;
-    width:95%;
-    height:16px;
-
-    box-shadow:0px 25px 10px #888;
-
-    -webkit-border-radius:50%;
-    -moz-border-radius:50%;
-    border-radius:50%;
-  }
-}
-
-.big-logo {
-  h2, a {
-    padding-top: 20px;
-    font-family: 'Lobster', cursive;
-    color: $grayLight;
-    font-weight: 400;
-    margin-bottom: 20px;
-  }
-  .signin {height: auto;}
-}
-
-.search {
-  max-width: 940px;
-  margin: 20px 0;
-  input[type="text"] {
-    @include media-between($small-min, $small-max) {
-      min-width: 500px;
-      margin: 0 auto;
-    }
-    min-width: 300px;
-    height: 60px;
-  }
-  button {
-     height: 60px;
-     margin: 0;
-  }
-}
-
-.landing-info {
-   max-width: 940px;
-  padding-bottom: 10px;
-  p, h3 {
-    @include media-below($handheld-max){
-    font-size: 110%;
-    line-height: 110%;
-    }
-  }
-}
-
+// paper folds effect not really working, remove class to remove
 .paper-folds
 {
   position: relative;
@@ -146,3 +150,21 @@
   -o-transform: skew(5deg) rotate(5deg);
   transform: skew(5deg) rotate(5deg);
 }
+
+.landing-info {
+   max-width: 940px;
+  padding-bottom: 10px;
+  p, h3 {
+    @include media-below($handheld-max){
+    font-size: 110%;
+    line-height: 110%;
+    }
+  }
+}
+
+
+
+
+
+
+
