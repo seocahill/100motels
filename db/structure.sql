@@ -86,7 +86,8 @@ CREATE TABLE events (
     music_html character varying(255),
     image character varying(255),
     image_html character varying(255),
-    location_id integer
+    location_id integer,
+    title character varying(255)
 );
 
 
@@ -773,3 +774,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130118184821');
 INSERT INTO schema_migrations (version) VALUES ('20130121153601');
 
 INSERT INTO schema_migrations (version) VALUES ('20130210201532');
+
+INSERT INTO schema_migrations (version) VALUES ('20130220160958');
