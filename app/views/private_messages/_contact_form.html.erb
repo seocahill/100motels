@@ -1,0 +1,18 @@
+<div id="privateMessage" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Organizer Contact</h3>
+  </div>
+  <div class="modal-body">
+    <%= simple_form_for @private_message do |f| %>
+      <%= f.input :organizer_email, as: :hidden, input_html: { value: @organizer.email } %>
+      <%= f.input :subject %>
+      <%= f.input :email, input_html: { value: current_user.try(:email)} %>
+      <%= f.input :content, as: :text, :input_html => {:rows => 5, :placeholder => "Enter some text.", :class => "span12"} %>
+      <div class="modal-footer">
+        <%= f.submit 'Submit' %>
+         <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+      </div>
+    <% end %>
+  </div>
+</div>

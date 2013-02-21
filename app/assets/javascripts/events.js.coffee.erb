@@ -1,0 +1,71 @@
+# Place all the behaviors and hooks related to the matching controller here.
+# All this logic will automatically be available in application.js.
+# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+
+# Sum Order
+$ ->
+  orderTotal()
+  $('#order_quantity').on "change", orderTotal
+
+# Order Total method
+orderTotal = ->
+  quantity = $('#order_quantity').val()
+  price = $('.event-ticket-orders').data('price')
+  net_price = quantity * price
+  gross = (net_price / .961) + 0.30
+  number = parseFloat(gross).toFixed(2)
+  $('.order-total').html(number)
+  $('.stripe-button').attr('data-amount', number * 100)
+
+# Toggle checkboxes
+$ ->
+  $('#check_all').click () ->
+    $('input[type="checkbox"]').click()
+
+# Filter form for index page
+$ ->
+  $('#event_city').change ->
+    $(this).closest('form').trigger('submit')
+
+# Best in place functions
+jQuery ->
+  $('.best_in_place').best_in_place()
+
+$ ->
+  $(".best_in_place").bind "ajax:success", ->
+    $(this).closest('tr').effect('highlight')
+
+# Jquery Ui Datepicker
+jQuery ->
+  $.datepicker.setDefaults()
+
+# Tooltips and popovers
+$ ->
+  $("body").popover selector: "[data-toggle=\"popover\"]"
+  $("body").tooltip selector: "a[rel=\"tooltip\"], [data-toggle=\"tooltip\"]"
+
+#  slimScroll for about piece in event show
+$ ->
+  $(".about-event").slimScroll height: '250px'
+
+# backSretch
+$ ->
+  if $("#event-information").length
+    $("#event-information").backstretch($(".event-poster").data('url'))
+
+# Disable stripe-button if email field is blank
+# $ ->
+#   $("#checkout-button").attr "disabled", true  if $("#order_email").val() is ""
+#   $("#order_email").keyup ->
+#     unless $("#customer-email").val() is ""
+#       $("#checkout-button").attr("disabled", false).click ->
+#         token = (res) ->
+#           console.log "Got token ID:", res.id
+#           $("#new_order").append($('<input type="hidden" name="token" />').val(res.id)).submit()
+#         StripeCheckout.open
+#           key: "<%= ENV['STRIPE_PUBLIC_KEY'] %>"
+#           panelLabel: "Checkout"
+#           token: token
+#         false
+#     else
+#       $("#checkout-button").attr "disabled", true
