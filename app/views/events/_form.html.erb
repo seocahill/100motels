@@ -7,16 +7,14 @@
     <%= f.input :email, as: :hidden, input_html: { value: current_user.email } %>
   <% end %>
   <% if current_user && current_user.customer_id? %>
-    <%= f.submit "Buy Now", html: {class: "btn btn-med btn-success"}, id: "buy-now" %>
+    <%= f.submit "Buy Now", html: {class: "btn btn-success btn-large"}, id: "buy-now" %>
   <% else %>
-    <button class="btn btn-medium btn-success" id="checkout-button">Place Order</button>
-    <!-- <div class="stripe-controls" align="center">
-      <script src="https://checkout.stripe.com/v2/checkout.js"
-        class="stripe-button"
+    <div class="stripe-controls" align="center">
+      <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
         data-key="<%= ENV['STRIPE_PUBLIC_KEY'] %>"
         data-amount="">
       </script>
-    </div> -->
+    </div>
   <% end %>
 <% end %>
-<script src="https://checkout.stripe.com/v2/checkout.js"></script>
+
