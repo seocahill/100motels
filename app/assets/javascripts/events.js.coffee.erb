@@ -54,18 +54,11 @@ $ ->
     $("#event-information").backstretch($(".event-poster").data('url'))
 
 # Disable stripe-button if email field is blank
-# $ ->
-#   $("#checkout-button").attr "disabled", true  if $("#order_email").val() is ""
-#   $("#order_email").keyup ->
-#     unless $("#customer-email").val() is ""
-#       $("#checkout-button").attr("disabled", false).click ->
-#         token = (res) ->
-#           console.log "Got token ID:", res.id
-#           $("#new_order").append($('<input type="hidden" name="token" />').val(res.id)).submit()
-#         StripeCheckout.open
-#           key: "<%= ENV['STRIPE_PUBLIC_KEY'] %>"
-#           panelLabel: "Checkout"
-#           token: token
-#         false
-#     else
-#       $("#checkout-button").attr "disabled", true
+$ ->
+  if $("#order_email").val() is ""
+    $(".stripe-button-el").attr "disabled", true
+  $("#order_email").keyup ->
+    unless $("#customer-email").val() is ""
+      $(".stripe-button-el").attr "disabled", false
+    else
+      $(".stripe-button-el").attr "disabled", true

@@ -7,20 +7,20 @@ class EventDecorator < ApplicationDecorator
 
   def toggle_visible
     if event_owner? && current_user.profile_type == "MemberProfile"
-      switch = best_in_place model, :visible, :type => :checkbox, collection: ["Click to Publish Event", "Click to Hide Event"]
+      switch = best_in_place model, :visible, :type => :checkbox, collection: ["Publish Event", "Hide Event"]
     elsif current_user
       "Sign up to Publish"
     end
   end
 
   def edit
-    link_to "Edit in form", edit_organizer_event_path(model), class: "" if event_owner?
+    link_to "Edit in Form", edit_organizer_event_path(model), class: "" if event_owner?
   end
 
   def filepicker
     if event_owner?
       form_for model do |f|
-        f.filepicker_field(:image, onchange: "this.form.submit();")
+        f.filepicker_field(:image, onchange: "this.form.submit();", button_text: "Change Image", button_class: "link-button")
       end
     end
   end
@@ -61,9 +61,7 @@ class EventDecorator < ApplicationDecorator
   end
 
   def price
-    if on_sale?
       best_in_place_if event_owner?, model, :ticket_price, classes: "ticket-price", display_with: :number_to_currency
-    end
   end
 
   def about
@@ -100,11 +98,10 @@ class EventDecorator < ApplicationDecorator
   end
 
   def ticket_form
-    render 'form' if on_sale?
+    render 'form'
   end
 
   def order_total
-    if on_sale?
       number_to_currency raw(
         '<span class="order-total"></span>
         <small><a href="#" class="" data-toggle="popover"
@@ -113,9 +110,6 @@ class EventDecorator < ApplicationDecorator
         "Processing Fees" data-placement="bottom">inc.
         charges</a></small>'
         )
-    else
-      "The Shows Over!"
-    end
   end
 
   def on_sale?

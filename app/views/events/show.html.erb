@@ -1,21 +1,6 @@
 <% if @event.visible?|| @event.event_owner? %>
 	<% @event.header %>
 	<div class="container" id="event-background">
-		<% if  @event.event_owner? %>
-			<nav>
-				<div class="row-fluid">
-					<div class="span2">
-						<%= @event.toggle_visible %>
-					</div>
-					<div class="span2">
-						<%= @event.edit %>
-					</div>
-					<div class="span2">
-						<%= @event.filepicker %>
-					</div>
-				</div> <!-- /row -->
-			</nav>
-		<% end %>
 		<section id="event-information" class="event">
 			<div class="row-fluid event-header">
 				<div class="span12">
@@ -28,19 +13,38 @@
 							<a href="#music"><i class="icon-headphones"></i></a> <a href="#about"><i class="icon-info-sign"></i></a>
 						</small>
 					</h2>
+					<% if @event.event_owner? %>
+						<div class="dropdown">
+			        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+			          <h4><i class="icon-cog"></i>event settings</h4>
+			        </a>
+			        <ul class="dropdown-menu">
+								<li><%= @event.edit %></li>
+								<li><%= link_to "Event Admin", organizer_event_path(@event) %>
+								<li><a href="#"><%= @event.toggle_visible %></a></li>
+								<li><%= @event.filepicker %></li>
+			        </ul>
+			      </div>
+			    <% end %>
 					<hr>
 				</div>
 			</div>
-			<div class="row-fluid">
+			<div class="row-fluid poster-information">
 				<div class="span6 event-poster" data-url='<%= @event.image %>'>
 					<h3><small>Featuring:</small> <%= @event.artist %></h3>
-					<h3><small>We need </small><%= @event.sales %><small> more patrons to pay for this show please help!</small></h3>
+					<% if @event.on_sale? %>
+						<h3><small>We need </small><%= @event.sales %><small> more patrons to pay for this show please help!</small></h3>
+					<% else %>
+						<h3> <small>Ticket sales for this event have now finished. Thanks for your support!</small></h3>
+					<% end %>
 					<h3><i class="icon-twitter-sign"></i> <i class="icon-facebook-sign"></i></h3>
 				</div>
 				<div class="span6 event-ticket-orders" data-price='<%= @event.ticket_price %>' id="tickets">
-					<h3><%= @event.price %><small> each</small></h3>
-					<%= @event.ticket_form %>
-					<h3><%= @event.order_total %></h3>
+					<% if @event.on_sale? %>
+						<h3><%= @event.price %><small> each</small></h3>
+						<%= @event.ticket_form %>
+						<h3><%= @event.order_total %></h3>
+					<% end %>
 				</div>
 			</div>
 		</section>
@@ -80,5 +84,5 @@
 		</section>
 	</div> <!-- /container -->
 <% else %>
-<h1>Sorry Event is not available right now</h1>
+<h3>This Event has not been published.</h3>
 <% end %>

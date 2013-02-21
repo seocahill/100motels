@@ -1,36 +1,42 @@
-<div class="container-very-narrow">
+<div class="container very-narrow well">
   <div class="row-fluid">
     <div class="span12">
-      <div class="btn-group pull-right">
+      <div class="btn-group">
         <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-          Change Event
+          <%= @event.title %> | <%= @event.date.strftime('%d %b') %>
           <span class="caret"></span>
         </a>
         <ul class="dropdown-menu">
           <% @events.each do |e| %>
-          <li><%= link_to "#{e.artist} | #{e.venue} | #{e.date.strftime('%d %b')}", organizer_event_tickets_path(e) %></li>
+          <li><%= link_to "#{e.title} | #{e.date.strftime('%d %b')}", organizer_event_tickets_path(e) %></li>
           <% end %>
           <li class="divider"></li>
-          <li><%= link_to "Back", organizer_event_path(@event) %></li>
+          <li><%= link_to "Back to Event Admin", organizer_event_path(@event) %></li>
         </ul>
       </div>
     </div>
   </div>
+  <hr>
   <div class="row-fluid">
     <div class="span12">
-      <p class="lead"><%= @tickets.where('admitted is not null').count %> out of <%= @tickets.count %> Admitted </p>
+      <h5><%= @tickets.where('admitted is not null').count %> of <%= @tickets.count %> Admitted </h5>
+    </div>
+  </div>
+  <div class="row-fluid">
+    <div class="span12">
       <%= form_tag organizer_event_tickets_path, method: :get, class: "form-search", autocomplete: :off do %>
           <%= number_field_tag :query, params[:query], class: "input-medium search-query", placeholder: "Enter Ticket Number" %>
           <button type="submit" class="btn">Check</button>
       <% end %>
-      <p class="lead">Ticket Number: <%= @ticket.number if @ticket.present?%></p>
     </div>
   </div>
+  <hr>
   <div class="row-fluid">
     <div class="span12">
       <table class="table table-striped">
         <tbody>
           <% if @ticket.present? %>
+            <tr><td>Number <%= @ticket.number %></td></tr>
             <tr><td>Name <%= @ticket.order.name %></td></tr>
             <tr><td>Email <%= @ticket.order.email %></td></tr>
             <tr><td>Card #<%= @ticket.order.last4 %></td></tr>
