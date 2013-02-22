@@ -16,6 +16,7 @@
     </ul>
   </div>
 </div>
+<%= form_tag charge_or_refund_orders_path, method: :post  do %>
 <div class="row-fluid">
   <aside class="span3">
     <hr>
@@ -51,7 +52,6 @@
         </div>
         <div id="collapseOne" class="accordion-body collapse">
           <div class="accordion-inner">
-            <%= form_tag  charge_or_refund_orders_path, method: :post  do %>
             <ul class="nav nav-tabs nav-stacked">
               <li><%= link_to "Charge All", charge_all_orders_path(event_id: @event.id), method: :post, class: "" %></li>
               <li><%= submit_tag "Charge Selected", name: 'charge', class: "link-button" if current_user.api_key %></li>
@@ -128,11 +128,11 @@
             <td> <%= order.quantity %></td>
             <td> <%= number_to_currency(order.total) %></td>
             <td> <span class="label"><%= order.stripe_event  %></span> </td>
-            <% end %>
           </tr>
+          <% end %>
         </tbody>
       </table>
-    <% end %>
     <%= will_paginate @orders %>
   </div> <!-- /table form -->
 </div> <!-- /row -->
+<% end %>

@@ -12,9 +12,9 @@
         <div class="span6">
           <dl>
             <dt>Name</dt>
-            <dd><%= current_user.name %></dd>
+            <dd><%= current_user.user_name %></dd>
             <dt>Email</dt>
-            <dd><%= current_user.email %></dd>
+            <dd><%= current_user.user_email %></dd>
           </dl>
           <%= form_for current_user.profile do |f| %>
             <%= f.filepicker_field(:avatar, onchange: "this.form.submit();", button_text: "Change Avatar", button_class: "btn") %>

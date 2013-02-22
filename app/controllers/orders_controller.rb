@@ -3,7 +3,6 @@ class OrdersController < ApplicationController
   before_filter :find_orders, only: [:charge_or_refund]
   before_filter :create_order_guest_user, only: [:create]
 
-  # layout 'landing', only: [:show]
 
   def show
     @member_profile = MemberProfile.new
@@ -57,7 +56,7 @@ private
   def find_orders
     @orders = Order.find(params[:order_ids])
     rescue ActiveRecord::RecordNotFound
-    redirect_to organizer_root_path, notice: "Some records weren't found?"
+    redirect_to :back, notice: "Some records weren't found"
   end
 
   def create_order_guest_user
