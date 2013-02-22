@@ -41,4 +41,10 @@ class Notifier < ActionMailer::Base
     @message = message
     mail to: message.organizer_email, subject: message.subject, from: message.email
   end
+
+  def job_completed(orders, organizer)
+    @orders = orders
+    organizer = User.find(@orders.first.event.users.first)
+    mail to: organizer.email, subject: "your job has been completed"
+  end
 end

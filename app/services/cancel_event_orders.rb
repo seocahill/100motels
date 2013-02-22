@@ -6,6 +6,8 @@ class CancelEventOrders
   end
 
   def cancel_orders
+    time = Time.now
     @orders.each { |order| CancellationsWorker.perform_async(order.id, @api_key) }
+    JobStatusWorker.perform_async(@orders.map(&:id), time)
   end
 end
