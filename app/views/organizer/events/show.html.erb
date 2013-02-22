@@ -1,23 +1,18 @@
-
-
-
-
-      <% unless @event.state_cancelled? || current_user.api_key.nil? %>
-      <% end %>
-<div class="fow-fluid">
+<div class="row-fluid">
   <div class="span12">
     <ul class="inline">
       <div class="btn-group">
         <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-          Choose Event
+          <%= @event.title %>
           <span class="caret"></span>
         </a>
         <ul class="dropdown-menu">
           <% @events.each do |e| %>
-          <li><%= link_to "#{e.title} | #{e.venue} | #{e.date.strftime('%d %b')}", organizer_event_path(e) %></li>
+          <li><%= link_to "#{e.title} | #{e.date.strftime('%d %b')}", organizer_event_path(e) %></li>
           <% end %>
         </ul>
       </div>
+      <div class="pull-right"><%= render 'search' %></div>
     </ul>
   </div>
 </div>
@@ -26,6 +21,27 @@
     <hr>
     <%= link_to image_tag('blue.png'), '/auth/stripe_connect', class: "" unless current_user.api_key %>
     <div class="accordion" id="accordion2">
+      <div class="accordion-group">
+        <div class="accordion-heading">
+          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFour">
+            Event Stats <i class="icon-plus"></i>
+          </a>
+        </div>
+        <div id="collapseFour" class="accordion-body collapse">
+          <div class="accordion-inner">
+            <dl class="well">
+              <dt>time left</dt>
+              <dd><%= @event.date > DateTime.now ? distance_of_time_in_words(Time.now, @event.date, include_seconds = false) : "Time's up!"  %></dd>
+              <dt>funding:</dt>
+              <dd><%= number_to_currency(@event.orders.funding.sum(:quantity) * @event.ticket_price) %></dd>
+              <dt>capacity:</dt>
+              <dd><%= @event.capacity %></dd>
+              <dt>tickets-left: </dt>
+              <dd><%= @event.capacity - @event.orders.funding.sum(:quantity) %></dd>
+            </dl>
+          </div>
+        </div>
+      </div>
     <% unless @event.state_cancelled? || current_user.api_key.nil? %>
       <div class="accordion-group">
         <div class="accordion-heading">
