@@ -11,7 +11,7 @@ class TicketPdf < Prawn::Document
   end
 
   def event_number
-    text "#{@event.artist}, #{@event.venue}, #{@event.date.strftime("%b %d %Y")}. ", size: 30, style: :bold
+    text "#{@event.title}, #{@event.venue}, #{@event.date.strftime("%b %d %Y")}. ", size: 30, style: :bold
     text "Total Attending: #{@tickets.count}"
   end
 
@@ -33,7 +33,7 @@ class TicketPdf < Prawn::Document
   end
 
   def organizer_email
-    @view.current_user.email
+    @view.current_user.profile.email
   end
 
   def organizer

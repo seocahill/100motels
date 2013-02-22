@@ -12,7 +12,7 @@ class EventPdf < Prawn::Document
   end
 
   def event_number
-    text "#{@event.artist}, #{@event.venue}, #{@event.date.strftime("%b %d %Y")}. ", size: 30, style: :bold
+    text "#{@event.title}, #{@event.venue}, #{@event.date.strftime("%b %d %Y")}. ", size: 30, style: :bold
     text "Total Attending: #{@orders.to_a.sum { |order| order.quantity}}"
   end
 

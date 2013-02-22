@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  layout 'landing', only: [:index]
+  layout :determine_layout, only: [:index]
 
   def home
   end
@@ -9,5 +9,10 @@ class PagesController < ApplicationController
 
   def index
     @event = Event.new
+  end
+
+private
+  def determine_layout
+    current_user ? "application" : "landing"
   end
 end

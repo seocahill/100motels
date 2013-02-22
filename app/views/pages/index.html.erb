@@ -1,8 +1,10 @@
 <div class="container narrow-container">
   <div class="big-logo">
     <div class="row-fluid">
-      <div class="span11">
-        <h2>100 Motels | <small><%= link_to raw("sign-in &middot; "), login_path unless current_user %>  <%= link_to "events", events_path %> </small></h2>
+      <div class="span12">
+       <% unless current_user %>
+         <h2>100 Motels | <small><%= link_to "sign-in", login_path %> &middot; <%= link_to "events", events_path %> </small></h2>
+        <% end %>
       </div>
     </div>
   </div>
