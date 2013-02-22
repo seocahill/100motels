@@ -2,7 +2,7 @@
   <div class="big-logo">
     <div class="row-fluid">
       <div class="span11">
-        <h2>100 Motels | <small><%= link_to "sign-in", login_path, class: "" %> &middot; <%= link_to "events", events_path %> </small></h2>
+        <h2>100 Motels | <small><%= link_to raw("sign-in &middot; "), login_path unless current_user %>  <%= link_to "events", events_path %> </small></h2>
       </div>
     </div>
   </div>
@@ -31,7 +31,7 @@
         But we are still living in the past when it comes the <strong>performance of our work</strong>. There isn't an obviously better solution to the traditional ways of organizing events and tours and that's what I'm trying to change.</p>
        <p>100 Motels comprises <strong>a Web Ticketing and Crowdfunding</strong> platform in one, engineered above all else to provide a <strong>risk-free</strong> funding environment for its users.
       </p>
-      <a href="/info" class="">more </a>
+      <!-- <a href="/info" class="">more </a> -->
     </div>
     <div class="span6">
       <h3 class=""><i class="icon-money"></i> Low fees</h3>
@@ -41,7 +41,7 @@
         <p>Credit card processing is handled by Stripe who currently charge 2.9% plus 30c per transaction.</p>
         <p>Fees are added-on. Whatever you set your ticket price to, the full amount gets deposited into your bank account. </p>
       </p>
-      <a href="/info" class="link-icon link-icon--more">more</a>
+      <!-- <a href="/info" class="link-icon link-icon--more">more</a> -->
     </div>
   </div>
   <div class="row-fluid">
@@ -52,7 +52,7 @@
       </p>
       <p>Upcoming features include the ability to split, copy and reschedule events so that customer orders aren't wasted if demand for tickets exceed or fall short of anticipated sales.  </p>
       <p> I'm also working on a cross-platform mobile app with some native features like barcode scanning, handy for keeping track of admissions on the night.</p>
-      <a href="/info" class="link-icon link-icon--more">more</a>
+      <!-- <a href="/info" class="link-icon link-icon--more">more</a> -->
     </div>
     <div class="span6">
       <h3 class=""><i class="icon-beaker"></i> Experiment with your Events</h3>
@@ -62,12 +62,12 @@
 
         <p>To that end, 100 Motels allows you to test and alter your events without any financial consequences. You can, for example, change the date, discount the ticket price, or run competing events against each other, to mention just a few possible use cases. </p>
 
-      <a href="/info" class="link-icon link-icon--more">more</a>
+      <!-- <a href="/info" class="link-icon link-icon--more">more</a> -->
     </div>
 </div>
 <hr class="fancy-hr">
-<div class="container">
+<!-- div class="container">
   <div class="row-fluid-fluid">
       <div class="span12 search"><%= render 'search' %></div>
   </div>
-</div>
+</div> -->

@@ -10,6 +10,8 @@ class Order < ActiveRecord::Base
   validates_format_of :email, :with => /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
   validates :quantity, numericality: :true
 
+  before_create :generate_uuid
+
   scope :funding, where("stripe_event < ?", 3)
   scope :pending, where("stripe_event = ?", 0)
   scope :paid, where("stripe_event = ?", 1)
@@ -29,5 +31,11 @@ class Order < ActiveRecord::Base
     else
       scoped
     end
+  end
+
+  def generate_uuid
+    begin
+      self.uuid = SecureRandom.hex
+    end while self.class.exists?(uuid: uuid)
   end
 end

@@ -338,7 +338,8 @@ CREATE TABLE orders (
     stripe_charge_id character varying(255),
     last4 character varying(255),
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    uuid character varying(255)
 );
 
 
@@ -704,6 +705,13 @@ CREATE INDEX index_orders_on_user_id ON orders USING btree (user_id);
 
 
 --
+-- Name: index_orders_on_uuid; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_orders_on_uuid ON orders USING btree (uuid);
+
+
+--
 -- Name: index_tickets_on_event_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -776,3 +784,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130121153601');
 INSERT INTO schema_migrations (version) VALUES ('20130210201532');
 
 INSERT INTO schema_migrations (version) VALUES ('20130220160958');
+
+INSERT INTO schema_migrations (version) VALUES ('20130221235244');

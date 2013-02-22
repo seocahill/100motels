@@ -24,14 +24,16 @@
 <div class="row-fluid">
   <aside class="span2">
     <hr>
+    <%= link_to image_tag('blue.png'), '/auth/stripe_connect', class: "" unless current_user.api_key %>
     <div class="accordion" id="accordion2">
+    <% unless @event.state_cancelled? || current_user.api_key.nil? %>
       <div class="accordion-group">
         <div class="accordion-heading">
           <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-            Charge Options
+            Charge Options <i class="icon-plus"></i>
           </a>
         </div>
-        <div id="collapseOne" class="accordion-body collapse in">
+        <div id="collapseOne" class="accordion-body collapse">
           <div class="accordion-inner">
             <%= form_tag  charge_or_refund_orders_path, method: :post  do %>
             <ul class="nav nav-tabs nav-stacked">
@@ -44,10 +46,11 @@
           </div>
         </div>
       </div>
+    <% end %>
       <div class="accordion-group">
         <div class="accordion-heading">
           <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-            Event Options
+            Event Options <i class="icon-plus"></i>
           </a>
         </div>
         <div id="collapseTwo" class="accordion-body collapse">
@@ -63,10 +66,10 @@
           </div>
         </div>
       </div>
-      <div class="accordion-group">
+      <div class="accordion-group" is="event-accordian">
         <div class="accordion-heading">
           <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
-            Filter Orders
+            Filter Orders <i class="icon-plus"></i>
           </a>
         </div>
         <div id="collapseThree" class="accordion-body collapse">

@@ -62,3 +62,12 @@ $ ->
       $(".stripe-button-el").attr "disabled", false
     else
       $(".stripe-button-el").attr "disabled", true
+
+# Toggle icon for accordians
+$ ->
+
+  $(".collapse").on "show", ->
+    $(this).parent().find("i").removeClass("icon-plus").addClass "icon-minus"
+
+  $(".collapse").on "hide", ->
+    $(this).parent().find("i").removeClass("icon-minus").addClass "icon-plus"
