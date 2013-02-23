@@ -6,7 +6,7 @@ class JobStatusWorker
     if orders.any? {|order| order.updated_at < time}
       raise "error"
     else
-      Notifier.delay_for(1.minutes).job_completed(orders)
+      Notifier.delay.job_completed(orders)
     end
   end
 end
