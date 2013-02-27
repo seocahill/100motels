@@ -29,8 +29,8 @@ production:
   encoding: unicode
   database: one_hundred_motels_production
   pool: 5
-  username: postgres
-  password:
+  username: <%= ENV['PG_ADMIN'] %>
+  password: <%= ENV['PG_PASSWORD'] %>
 
 cucumber:
   <<: *test
