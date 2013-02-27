@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
-ruby "1.9.3"
+
+# ruby "1.9.3"
 
 gem 'rails'
 gem 'pg'
@@ -33,10 +34,10 @@ end
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
-  gem 'dynamic_form'
+  # gem 'dynamic_form'
   gem 'uglifier', '>= 1.0.3'
   gem 'bootstrap-sass'
-  gem 'turbo-sprockets-rails3'
+  # gem 'turbo-sprockets-rails3'
   gem "font-awesome-rails"
 end
 
