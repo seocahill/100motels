@@ -7,7 +7,7 @@
     <div class="modal-body">
       <div class="container">
         <div class="row-fluid">
-          <div class="span6">
+          <div class="span6" id="member-avatar">
             <%= current_user.avatar %>
           </div>
           <div class="span6">
@@ -17,7 +17,7 @@
               <dt>Email</dt>
               <dd><%= current_user.user_email %></dd>
             </dl>
-            <%= form_for current_user.profile do |f| %>
+            <%= form_for current_user.profile, remote: true do |f| %>
               <%= f.filepicker_field(:avatar, onchange: "this.form.submit();", button_text: "Change Avatar", button_class: "btn") %>
             <% end %>
             <%= current_user.password_reset %>

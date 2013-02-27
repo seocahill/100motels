@@ -27,11 +27,13 @@ class MemberProfilesController < ApplicationController
     @member_profile.update_attributes(params[:member_profile])
     respond_to do |format|
       if @member_profile.update_attributes(params[:member_profile])
-        format.html { redirect_to(current_user, :notice => 'Your Account was successfully updated.') }
+        format.html { redirect_to(events_path, :notice => 'Your Account was successfully updated.') }
         format.json { respond_with_bip(@member_profile) }
+        format.js
       else
         format.html { render :action => "edit" }
         format.json { respond_with_bip(@member_profile) }
+        format.js
       end
     end
   end
