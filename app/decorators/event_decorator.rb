@@ -58,12 +58,16 @@ class EventDecorator < ApplicationDecorator
     model.target - sales
   end
 
+  def edit_icon
+    raw('<i class="icon-edit"></i>') if event_owner?
+  end
+
   def price
       best_in_place_if event_owner?, model, :ticket_price, classes: "ticket-price", display_with: :number_to_currency
   end
 
   def about_section
-    best_in_place_if event_owner?, model, :about, :type => :textarea, :display_with => :simple_format, nil: "Click me to edit"
+    best_in_place_if event_owner?, model, :about, :type => :textarea, :display_with => :simple_format, nil: " Click me to edit"
   end
 
   def venue_address
