@@ -50,7 +50,7 @@ class EventDecorator < ApplicationDecorator
   end
 
   def doors
-    best_in_place_if event_owner?, model, :doors, display_with: lambda { |v| v.strftime("%l:%M %p")}
+    best_in_place_if event_owner?, model, :doors, inner_class: "timepicker", display_with: lambda { |v| v.strftime("%l:%M %p")}
   end
 
   def sales
