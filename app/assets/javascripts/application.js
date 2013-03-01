@@ -12,10 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap
 //= require jquery-ui
 //= require best_in_place.purr
-//= require best_in_place
-//= require bootstrap
 //= require rails.validations
 //= require rails.validations.simple_form
 //= require jquery.slimscroll.js
@@ -24,5 +23,7 @@
 //= require events
 //= require organizer/events
 //= require organizer/tickets
+//= require best_in_place
+
 
 

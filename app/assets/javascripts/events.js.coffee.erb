@@ -2,6 +2,14 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
+# Best in place functions
+$ ->
+  $('.best_in_place').best_in_place()
+
+$ ->
+  $('.best_in_place').bind "ajax:success", () ->
+    alert "queer"
+
 # Sum Order
 $ ->
   orderTotal()
@@ -26,14 +34,6 @@ $ ->
 $ ->
   $('#event_city').change ->
     $(this).closest('form').trigger('submit')
-
-# Best in place functions
-$ ->
-  $('.best_in_place').best_in_place()
-
-$ ->
-  $(".best_in_place").bind "ajax:success", ->
-    $(this).closest('tr').effect('highlight')
 
 # Jquery Ui Datepicker
 $ ->

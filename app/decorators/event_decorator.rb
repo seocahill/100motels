@@ -46,7 +46,7 @@ class EventDecorator < ApplicationDecorator
   end
 
   def venue
-    best_in_place_if event_owner?, model, :venue, :html_attrs => {:class => 'icon-edit'}
+    best_in_place_if event_owner?, model, :venue, :data => {:venue => "fuck"}
   end
 
   def doors
