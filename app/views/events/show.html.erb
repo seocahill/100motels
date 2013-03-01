@@ -7,9 +7,9 @@
 					<hr>
 					<h2>
 						<small><%= @organizer.name || "no name" %> presents </small><br>
-						<%= @event.title %><br>
+						<%= @event.edit_icon %> <%= @event.title %><br>
 						<small>
-							<%= @event.date %> | <a href="#tickets"><i class="icon-shopping-cart"></i></a> <a href="#location"><i class="icon-map-marker"></i></a>
+							<%= @event.edit_icon %> <%= @event.date %> | <a href="#tickets"><i class="icon-shopping-cart"></i></a> <a href="#location"><i class="icon-map-marker"></i></a>
 							<a href="#music"><i class="icon-headphones"></i></a> <a href="#about"><i class="icon-info-sign"></i></a>
 						</small>
 					</h2>
@@ -31,7 +31,7 @@
 			</div>
 			<div class="row-fluid poster-information" id="inlay">
 				<div class="span6 event-poster" data-url='<%= @event.image %>'>
-					<h3><small>Featuring:</small> <%= @event.artist %></h3>
+					<h3><small>Featuring:</small> <%= @event.edit_icon %> <%= @event.artist %></h3>
 					<% if @event.on_sale? %>
 						<h3><small>We need </small><%= @event.sales %><small> more patrons to pay for this show please help!</small></h3>
 					<% else %>
@@ -41,7 +41,7 @@
 				</div>
 				<div class="span6 event-ticket-orders" data-price='<%= @event.ticket_price %>' id="tickets">
 					<% if @event.on_sale? %>
-						<h3><%= @event.price %><small> each</small></h3>
+						<h3><%= @event.edit_icon %> <%= @event.price %><small> each</small></h3>
 						<%= @event.ticket_form %>
 						<h3><%= @event.order_total %></h3>
 					<% end %>
@@ -53,7 +53,7 @@
 			<div class="row-fluid">
 				<div class="span6">
 					<h1><i class="icon-info-sign muted" id="about"></i></h1>
-					<div class="about-event" ><%= @event.edit_icon %><%= @event.about_section %><%= render 'instructions' if @event.about.empty? %></div>
+					<div class="about-event" ><%= @event.edit_icon %><%= @event.about_section %><%= render 'instructions' unless @event.about? %></div>
 				</div>
 				<div class="span6">
 					<h1><i class="icon-map-marker muted" id="location"></i></h1>
@@ -62,15 +62,15 @@
 						<div class="span6 event-map venue-info">
 							<dl>
 								<dt>Venue:</dt>
-								<dd><strong><%= @event.venue %></strong></dd><br>
+								<dd><strong><%= @event.edit_icon %> <%= @event.venue %></strong></dd><br>
 								<dt>Address:</dt>
 								<dd>
 									<address>
-									  <%= @event.venue_address %>
+									  <%= @event.edit_icon %> <%= @event.venue_address %>
 									</address>
 								</dd>
 								<dt>Event begins at:</dt>
-								<dd><%= @event.doors %></dd>
+								<dd><%= @event.edit_icon %> <%= @event.doors %></dd>
 							</dl>
 							<% unless @organizer.guest? %>
 								<a href="#privateMessage" data-toggle="modal">Contact Organizer <i class="icon-envelope"></i></a>
@@ -81,10 +81,15 @@
 				</div>
 			</div>
 			<hr>
-			<h1><i class="icon-headphones muted" id="music"></i></h1>
-			<div class="row-fluid pagination-centered">
-				<div class="span6"><%= @event.video %><div class="flex-video"><%= @event.video_iframe %></div></div>
-				<div class="span6"><%= @event.music %><%= @event.music_iframe %></div>
+			<div class="row-fluid">
+				<div class="span6">
+					<h1><i class="icon-film muted" id="music"></i></h1>
+						<%= @event.edit_icon %> <%= @event.video %><div class="flex-video"><%= @event.video_iframe %></div>
+				</div>
+				<div class="span6">
+					<h1><i class="icon-headphones muted" id="music"></i></h1>
+						<%= @event.edit_icon %> <%= @event.music %><%= @event.music_iframe %>
+				</div>
 			</div>
 		</section>
 	</div> <!-- /container -->

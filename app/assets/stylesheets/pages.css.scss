@@ -90,6 +90,7 @@
 .headline {
   font-family: 'Cabin', serif;
   color: $white;
+  min-height: 400px;
   span, article  {
     letter-spacing: -1px;
     background: rgb(0, 0, 0); /* fallback color */
