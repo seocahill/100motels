@@ -31,11 +31,11 @@ class MemberProfile < ActiveRecord::Base
     false
   end
 
-  def confirm
+  def confirm!
     generate_token(:email_confirm_token)
     self.email_confirm_sent_at = Time.zone.now
     save!
-    UserMailer.email_confirmation(self).delay
+    UserMailer.delay.email_confirmation(self)
   end
 
 end

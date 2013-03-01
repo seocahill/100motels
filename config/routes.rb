@@ -22,7 +22,10 @@ OneHundredMotels::Application.routes.draw do
   resources :events, only: [:show, :index, :update]
   resources :locations, only: [:new, :create, :update]
   resources :private_messages, only: [:create]
-  resources :email_confirmations, only: [:update]
+
+  resources :email_confirmations, only: [:create] do
+    member { get :confirm }
+  end
 
   resources :users do
     member { put :change_card }
