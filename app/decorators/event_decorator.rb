@@ -20,7 +20,7 @@ class EventDecorator < ApplicationDecorator
   def filepicker
     if event_owner?
       form_for model do |f|
-        f.filepicker_field(:image, onchange: "this.form.submit();", button_text: "Change Image", button_class: "link-button")
+        f.filepicker_field(:image, onchange: "this.form.submit();", button_text: "Change Image", button_class: "link-button-show")
       end
     end
   end

@@ -4,7 +4,7 @@ class Authentication
   end
 
   def authenticated?
-    user.present? && user.state_normal?
+    user.present? && !user.state_suspended?
   end
 
   def user

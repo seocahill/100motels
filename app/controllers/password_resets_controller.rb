@@ -6,7 +6,7 @@ class PasswordResetsController < ApplicationController
   def create
     member = MemberProfile.find_by_email(params[:email])
     member.send_password_reset if member
-    redirect_to root_url, :notice => "Email sent with password reset instructions."
+    redirect_to events_path, :notice => "Email sent with password reset instructions."
   end
 
   def edit
@@ -18,7 +18,8 @@ class PasswordResetsController < ApplicationController
     if @member_profile.password_reset_sent_at < 2.hours.ago
       redirect_to new_password_reset_path, :alert => "Password reset has expired."
     elsif @member_profile.update_attributes(params[:member_profile])
-      redirect_to root_url, :notice => "Password has been reset."
+
+      redirect_to events_path, :notice => "Password has been reset."
     else
       render :edit
     end
