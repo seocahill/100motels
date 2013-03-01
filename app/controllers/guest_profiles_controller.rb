@@ -13,9 +13,9 @@ private
     event = Event.new
     event.event_users.build(user_id: user.id, state: :organizer)
     event.build_location(address: location)
-    event.title = "The Big Show"
-    event.artist = "First Artist, Second Artist and more!"
-    event.venue = "A Dungeon or Speak hopefully"
+    event.title = "A Title for your show"
+    event.artist = "Tell me who's performing..."
+    event.venue = "The Nightclub"
     event.date = 1.month.from_now
     event.doors = Time.now.midnight
     event.ticket_price = 15.0

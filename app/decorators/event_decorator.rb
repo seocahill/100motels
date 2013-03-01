@@ -28,10 +28,8 @@ class EventDecorator < ApplicationDecorator
   def image
     if model.image?
       model.image
-      # filepicker_image_tag model.image, width: 460, height: 300, fit: 'crop'
-      # fit option are clip crop scale max
     else
-      "http://www.zappa.com/stufftoget/wallpaper/images/downloads/200_Motels_1024.jpg"
+      "http://route66motorcycletour.com/images/BlueSwallow.jpg"
     end
   end
 
@@ -64,9 +62,8 @@ class EventDecorator < ApplicationDecorator
       best_in_place_if event_owner?, model, :ticket_price, classes: "ticket-price", display_with: :number_to_currency
   end
 
-  def about
-    best_in_place_if event_owner?, model, :about, :type => :textarea,
-                          :nil => "Click me to add content!", :display_with => :simple_format
+  def about_section
+    best_in_place_if event_owner?, model, :about, :type => :textarea, :display_with => :simple_format, nil: "Click me to edit"
   end
 
   def venue_address
@@ -86,7 +83,8 @@ class EventDecorator < ApplicationDecorator
     if model.video_html.present?
       model.video_html
     else
-      image_tag "//quickimage.it/630x430&text=Vimeo", class: "align_center"
+      # image_tag "//quickimage.it/630x430&text=Vimeo", class: "align_center"
+      raw('<iframe width="420" height="315" src="https://www.youtube.com/embed/2H_SsrNE8eI" frameborder="0" allowfullscreen></iframe>')
     end
   end
 
@@ -98,7 +96,8 @@ class EventDecorator < ApplicationDecorator
     if model.music_html.present?
       model.music_html
     else
-      image_tag "//quickimage.it/565x170&text=Soundcloud+playlist", class: "align_left"
+      # image_tag "//quickimage.it/565x170&text=Soundcloud+playlist", class: "align_left"
+      raw('<iframe width="100%" height="450" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Fplaylists%2F745034&amp;color=0050ff&amp;auto_play=false&amp;show_artwork=true"></iframe>')
     end
   end
 

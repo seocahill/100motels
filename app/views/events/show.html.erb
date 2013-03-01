@@ -51,7 +51,10 @@
 		<hr>
 		<section id="event-media" class="event">
 			<div class="row-fluid">
-				<div class="span6"><h1><i class="icon-info-sign muted" id="about"></i></h1><div class="about-event" ><%= @event.about %></div></div>
+				<div class="span6">
+					<h1><i class="icon-info-sign muted" id="about"></i></h1>
+					<div class="about-event" ><%= @event.about_section %><%= render 'instructions' if @event.about.empty? %></div>
+				</div>
 				<div class="span6">
 					<h1><i class="icon-map-marker muted" id="location"></i></h1>
 					<div class="row-fluid" >

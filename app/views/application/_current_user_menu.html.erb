@@ -2,7 +2,7 @@
   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.email %> <i class="icon-user"></i></b></a>
   <ul class="dropdown-menu">
     <% if current_user.guest? %>
-      <li><%= link_to "Save your Account", signup_path  %></li>
+      <li><%= link_to "Save Account", signup_path  %></li>
     <% else %>
       <li><a href="#user-profile" data-toggle="modal">Your Account</a></li>
     <% end %>
