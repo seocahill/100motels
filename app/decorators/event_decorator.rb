@@ -48,7 +48,7 @@ class EventDecorator < ApplicationDecorator
   end
 
   def venue
-    best_in_place_if event_owner?, model, :venue
+    best_in_place_if event_owner?, model, :venue, :html_attrs => {:class => 'icon-edit'}
   end
 
   def doors
@@ -67,6 +67,11 @@ class EventDecorator < ApplicationDecorator
   def about
     best_in_place_if event_owner?, model, :about, :type => :textarea,
                           :nil => "Click me to add content!", :display_with => :simple_format
+  end
+
+  def venue_address
+    location = model.location
+    best_in_place_if event_owner?, location, :address
   end
 
   def map

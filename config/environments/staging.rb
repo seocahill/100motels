@@ -79,7 +79,7 @@ OneHundredMotels::Application.configure do
     :port => 587,
     :domain => "creteboom.com",
     :authentication => "plain",
-    :user_name => "creteboo@creteboom.com",
+    :user_name => ENV["GMAIL_USER"],
     :password => ENV["GMAIL_PASSWORD"],
     :enable_starttls_auto => true
   }

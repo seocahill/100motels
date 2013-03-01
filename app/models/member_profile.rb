@@ -30,4 +30,12 @@ class MemberProfile < ActiveRecord::Base
   def customer_id?
     false
   end
+
+  def confirm
+    generate_token(:email_confirm_token)
+    self.email_confirm_sent_at = Time.zone.now
+    save!
+    UserMailer.email_confirmation(self).delay
+  end
+
 end

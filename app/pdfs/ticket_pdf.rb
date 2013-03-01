@@ -33,7 +33,11 @@ class TicketPdf < Prawn::Document
   end
 
   def organizer_email
-    @view.current_user.profile.email
+    if @view.current_user.guest?
+      "Guest"
+    else
+      @view.current_user.profile.email
+    end
   end
 
   def organizer

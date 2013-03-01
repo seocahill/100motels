@@ -192,7 +192,9 @@ CREATE TABLE member_profiles (
     confirmation_token character varying(255),
     confirmation_sent_at timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    email_confirm_token character varying(255),
+    email_confirm_sent_at timestamp without time zone
 );
 
 
@@ -656,6 +658,13 @@ CREATE INDEX index_member_profiles_on_email ON member_profiles USING btree (emai
 
 
 --
+-- Name: index_member_profiles_on_email_confirm_token; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_member_profiles_on_email_confirm_token ON member_profiles USING btree (email_confirm_token);
+
+
+--
 -- Name: index_oauth_access_grants_on_token; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -786,3 +795,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130210201532');
 INSERT INTO schema_migrations (version) VALUES ('20130220160958');
 
 INSERT INTO schema_migrations (version) VALUES ('20130221235244');
+
+INSERT INTO schema_migrations (version) VALUES ('20130301115603');

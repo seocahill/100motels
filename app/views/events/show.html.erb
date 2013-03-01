@@ -29,7 +29,7 @@
 					<hr>
 				</div>
 			</div>
-			<div class="row-fluid poster-information">
+			<div class="row-fluid poster-information" id="inlay">
 				<div class="span6 event-poster" data-url='<%= @event.image %>'>
 					<h3><small>Featuring:</small> <%= @event.artist %></h3>
 					<% if @event.on_sale? %>
@@ -45,7 +45,7 @@
 						<%= @event.ticket_form %>
 						<h3><%= @event.order_total %></h3>
 					<% end %>
-				</div>
+				</div >
 			</div>
 		</section>
 		<hr>
@@ -63,14 +63,16 @@
 								<dt>Address:</dt>
 								<dd>
 									<address>
-									  <%= @event.location.address %>
+									  <%= @event.venue_address %>
 									</address>
 								</dd>
 								<dt>Event begins at:</dt>
 								<dd><%= @event.doors %></dd>
 							</dl>
-							<a href="#privateMessage" data-toggle="modal">Contact Organizer <i class="icon-envelope"></i></a>
-							<%= render 'private_messages/contact_form' %>
+							<% unless @organizer.guest? %>
+								<a href="#privateMessage" data-toggle="modal">Contact Organizer <i class="icon-envelope"></i></a>
+								<%= render 'private_messages/contact_form' %>
+							<% end %>
 						</div>
 					</div>
 				</div>

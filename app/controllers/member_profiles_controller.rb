@@ -12,7 +12,8 @@ class MemberProfilesController < ApplicationController
         user = User.create! { |u| u.profile = @member_profile }
         cookies[:auth_token] = user.auth_token
       end
-      redirect_to root_url, notice: "Thank you for signing up!"
+      @member_profile.confirm!
+      redirect_to root_url, notice: "Thanks nearly there! We've sent you a link to confirm your email address."
     else
       render "new"
     end

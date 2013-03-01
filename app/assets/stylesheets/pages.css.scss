@@ -4,6 +4,27 @@
 
 // everything in here is scoped to the pages resource only
 #pages_controller {
+
+// buttons styled to look like dropdown menu links
+
+  .link-button {
+    text-decoration: none;
+    border: none;
+    background-color: transparent;
+    font-weight: normal;
+    padding: 8px 12px;
+    line-height: 20px;
+    color: #08C;
+    border: 1px solid #DDD;
+
+    &:hover,
+    &:focus {
+      z-index: 2;
+      border-color: #ddd;
+      background-color: #eeeeee;
+    }
+  }
+
   .fancy-hr
   {
     margin:20px 0 0 0;
@@ -86,7 +107,6 @@
 
 .headline {
   font-family: 'Cabin', serif;
-  // background-image: url(http://www.essedidesign.com/wp-content/uploads/2012/09/preview.jpg);
   color: $white;
   span, article  {
     letter-spacing: -1px;
@@ -94,7 +114,7 @@
     background: rgba(0, 0, 0, 0.7);
     padding: 10px;
   }
-  article {
+  span, article {
     @include media-below($handheld-max){
       font-size: 80%;
       line-height: 80%;

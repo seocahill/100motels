@@ -15,4 +15,17 @@ class LocationsController < ApplicationController
     end
   end
 
+  def update
+    @location = Location.find(params[:id])
+    @location.update_attributes(params[:location])
+    respond_to do |format|
+      if @location.update_attributes(params[:location])
+        format.html { redirect_to(events_path, :notice => 'Your Account was successfully updated.') }
+        format.json { respond_with_bip(@location) }
+      else
+        format.html { render :action => "edit" }
+        format.json { respond_with_bip(@location) }
+      end
+    end
+  end
 end

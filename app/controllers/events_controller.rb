@@ -2,7 +2,6 @@ class EventsController < ApplicationController
 
   before_filter :find_event, only: [:show, :update]
 
-
   has_scope :tonight , type: :boolean
   has_scope :week_end , type: :boolean
   has_scope :month_end , type: :boolean

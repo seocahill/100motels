@@ -20,8 +20,9 @@ OneHundredMotels::Application.routes.draw do
   resources :guest_profiles, only: [:create]
   resources :password_resets
   resources :events, only: [:show, :index, :update]
-  resources :locations
+  resources :locations, only: [:new, :create, :update]
   resources :private_messages, only: [:create]
+  resources :email_confirmations, only: [:update]
 
   resources :users do
     member { put :change_card }
