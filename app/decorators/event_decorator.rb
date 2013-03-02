@@ -63,11 +63,11 @@ class EventDecorator < ApplicationDecorator
   end
 
   def price
-      best_in_place_if event_owner?, model, :ticket_price, classes: "ticket_price", display_with: :number_to_currency
+    best_in_place_if event_owner?, model, :ticket_price, classes: "ticket_price", display_with: :number_to_currency
   end
 
   def about_section
-    best_in_place_if event_owner?, model, :about, :type => :textarea, :display_with => :simple_format, nil: " Click me to edit"
+    best_in_place_if event_owner?, model, :about, :type => :textarea, :display_with => :simple_format, nil: "#{render 'instructions'}"
   end
 
   def venue_address
@@ -76,7 +76,7 @@ class EventDecorator < ApplicationDecorator
   end
 
   def map
-    image_tag "https://maps.google.com/maps/api/staticmap?size=250x250&sensor=false&zoom=16&markers=#{model.location.latitude}%2C#{model.location.longitude}"
+    h.link_to(image_tag("https://maps.google.com/maps/api/staticmap?size=250x250&sensor=false&zoom=16&markers=#{model.location.latitude}%2C#{model.location.longitude}"), "https://maps.google.com/?ll=#{model.location.latitude},#{model.location.longitude}")
   end
 
   def video
