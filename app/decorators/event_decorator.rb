@@ -50,7 +50,7 @@ class EventDecorator < ApplicationDecorator
   end
 
   def doors
-    best_in_place_if event_owner?, model, :doors, display_with: lambda { |v| v.strftime("%l:%M %p")}
+    best_in_place_if event_owner?, model, :doors, display_with: lambda { |v| v.strftime("%l:%M %p")}, classes: "doors"
   end
 
   def sales
@@ -63,7 +63,7 @@ class EventDecorator < ApplicationDecorator
   end
 
   def price
-      best_in_place_if event_owner?, model, :ticket_price, classes: "ticket-price", display_with: :number_to_currency
+      best_in_place_if event_owner?, model, :ticket_price, classes: "ticket_price", display_with: :number_to_currency
   end
 
   def about_section
@@ -72,7 +72,7 @@ class EventDecorator < ApplicationDecorator
 
   def venue_address
     location = model.location
-    best_in_place_if event_owner?, location, :address
+    best_in_place_if event_owner?, location, :address, classes: "address"
   end
 
   def map
@@ -92,7 +92,7 @@ class EventDecorator < ApplicationDecorator
   end
 
   def music
-    best_in_place model, :music, :nil => "Click me to add a Soundcloud url, e.g. http://youtu.be/TZLwfyVYJJw" if event_owner?
+    best_in_place model, :music, :nil => "Click me to add a Soundcloud url, e.g. https://soundcloud.com/creteboom/sets/them-bones-need-oxygen" if event_owner?
   end
 
   def music_iframe

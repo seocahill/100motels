@@ -6,16 +6,18 @@
 $ ->
   $('.best_in_place').best_in_place()
 
-# $ ->
+$ ->
   $('.best_in_place').bind "ajax:success", (event, data) ->
    $.ajax $(this).data('url'),
     type: 'GET'
     dataType: 'html'
     error: (jqXHR, textStatus, errorThrown) ->
         $('body').append "AJAX Error: #{textStatus}"
-    success: (data, textStatus, jqXHR) ->
-      iframe = $(data).find(".flex-video").html()
-      $('.flex-video').html iframe
+    success: (data, textStatus, jqXHR) =>
+      target = $(this).data('attribute')
+      content = $(data).find(".#{target}").html()
+      $(".#{target}").html content
+      # alert target
 
 # Sum Order
 $ ->

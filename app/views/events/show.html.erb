@@ -83,12 +83,12 @@
 			<hr>
 			<div class="row-fluid">
 				<div class="span6" id="event-vimeo">
-					<h1><i class="icon-film muted" id="music"></i></h1>
-						<%= @event.edit_icon %> <%= @event.video %><div class="flex-video"><%= @event.video_iframe %></div>
+					<h1><i class="icon-film muted"></i></h1>
+						<%= @event.edit_icon %> <%= @event.video %><div class="flex-video video"><%= @event.video_iframe %></div>
 				</div>
 				<div class="span6" id="event-playlist">
-					<h1><i class="icon-headphones muted" id="music"></i></h1>
-						<%= @event.edit_icon %> <%= @event.music %><%= @event.music_iframe %>
+					<h1><i class="icon-headphones muted"></i></h1>
+						<%= @event.edit_icon %> <%= @event.music %><div class="music"><%= @event.music_iframe %></div>
 				</div>
 			</div>
 		</section>
