@@ -46,11 +46,11 @@ class EventDecorator < ApplicationDecorator
   end
 
   def venue
-    best_in_place_if event_owner?, model, :venue, :data => {:venue => "fuck"}
+    best_in_place_if event_owner?, model, :venue
   end
 
   def doors
-    best_in_place_if event_owner?, model, :doors, inner_class: "timepicker", display_with: lambda { |v| v.strftime("%l:%M %p")}
+    best_in_place_if event_owner?, model, :doors, display_with: lambda { |v| v.strftime("%l:%M %p")}
   end
 
   def sales
@@ -87,8 +87,7 @@ class EventDecorator < ApplicationDecorator
     if model.video_html.present?
       model.video_html
     else
-      # image_tag "//quickimage.it/630x430&text=Vimeo", class: "align_center"
-      raw('<iframe width="420" height="315" src="https://www.youtube.com/embed/2H_SsrNE8eI" frameborder="0" allowfullscreen></iframe>')
+      # raw('<iframe width="420" height="315" src="https://www.youtube.com/embed/2H_SsrNE8eI" frameborder="0" allowfullscreen></iframe>')
     end
   end
 
@@ -100,8 +99,7 @@ class EventDecorator < ApplicationDecorator
     if model.music_html.present?
       model.music_html
     else
-      # image_tag "//quickimage.it/565x170&text=Soundcloud+playlist", class: "align_left"
-      raw('<iframe width="100%" height="450" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Fplaylists%2F745034&amp;color=0050ff&amp;auto_play=false&amp;show_artwork=true"></iframe>')
+      # raw('<iframe width="100%" height="450" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Fplaylists%2F745034&amp;color=0050ff&amp;auto_play=false&amp;show_artwork=true"></iframe>')
     end
   end
 

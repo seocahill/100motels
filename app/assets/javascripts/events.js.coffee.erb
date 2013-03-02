@@ -6,9 +6,16 @@
 $ ->
   $('.best_in_place').best_in_place()
 
-$ ->
-  $('.best_in_place').bind "ajax:success", () ->
-    alert "queer"
+# $ ->
+  $('.best_in_place').bind "ajax:success", (event, data) ->
+   $.ajax $(this).data('url'),
+    type: 'GET'
+    dataType: 'html'
+    error: (jqXHR, textStatus, errorThrown) ->
+        $('body').append "AJAX Error: #{textStatus}"
+    success: (data, textStatus, jqXHR) ->
+      iframe = $(data).find(".flex-video").html()
+      $('.flex-video').html iframe
 
 # Sum Order
 $ ->
@@ -71,8 +78,3 @@ $ ->
 
   $(".collapse").on "hide", ->
     $(this).parent().find("i").removeClass("icon-minus").addClass "icon-plus"
-
-# Timepicker
-
-$ ->
-  $('.timepicker').timepicker();
