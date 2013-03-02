@@ -20,7 +20,7 @@ OneHundredMotels::Application.routes.draw do
   resources :guest_profiles, only: [:create]
   resources :password_resets
   resources :events, only: [:show, :index, :update]
-  resources :locations, only: [:new, :create, :update]
+  resources :locations, only: [:new, :show, :create, :update]
   resources :private_messages, only: [:create]
 
   resources :email_confirmations, only: [:create] do

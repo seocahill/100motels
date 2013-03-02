@@ -72,7 +72,7 @@ class EventDecorator < ApplicationDecorator
 
   def venue_address
     location = model.location
-    best_in_place_if event_owner?, location, :address, classes: "address"
+    best_in_place_if event_owner?, location, :address
   end
 
   def map
@@ -87,7 +87,7 @@ class EventDecorator < ApplicationDecorator
     if model.video_html.present?
       model.video_html
     else
-      # raw('<iframe width="420" height="315" src="https://www.youtube.com/embed/2H_SsrNE8eI" frameborder="0" allowfullscreen></iframe>')
+      raw('<iframe width="420" height="315" src="https://www.youtube.com/embed/2H_SsrNE8eI" frameborder="0" allowfullscreen></iframe>')
     end
   end
 
@@ -99,7 +99,7 @@ class EventDecorator < ApplicationDecorator
     if model.music_html.present?
       model.music_html
     else
-      # raw('<iframe width="100%" height="450" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Fplaylists%2F745034&amp;color=0050ff&amp;auto_play=false&amp;show_artwork=true"></iframe>')
+      raw('<iframe width="100%" height="450" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Fplaylists%2F745034&amp;color=0050ff&amp;auto_play=false&amp;show_artwork=true"></iframe>')
     end
   end
 
