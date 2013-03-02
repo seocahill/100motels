@@ -42,7 +42,7 @@ class EventDecorator < ApplicationDecorator
   end
 
   def date
-    best_in_place_if event_owner?, model, :date, type: :date, display_with: lambda { |v| v.strftime("%a, %d %b %Y") }
+    best_in_place_if event_owner?, model, :date, type: :date, classes: "datepicker" , display_with: :time_tag, classes: ""
   end
 
   def venue
