@@ -32,7 +32,7 @@
 			<div class="row-fluid poster-information=" id="inlay">
 				<div class="span6 event-poster" data-url='<%= @event.image %>'>
 					<h1><i class="icon-info-sign muted" id="location"></i></h1>
-					<div class="">
+					<div class="event-funding">
 						<h3> <%= @event.edit_icon %> <%= @event.artist %></h3>
 						<h3>
 							<i class="icon-twitter-sign"></i>
@@ -42,7 +42,7 @@
 						</h3>
 					</div>
 						<% if @event.on_sale? %>
-							<h3><small>Funding: </small><br><%= @event.sales %> left to go!</h3>
+							<h4>3 hours left to sell <%= @event.sales %> tickets! <i class="icon-question-sign"></i></h4>
 							<div class="progress muted">
 							  <div class="bar" style="width: 60%;"></div>
 							</div>
