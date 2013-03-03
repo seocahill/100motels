@@ -67,9 +67,12 @@ $ ->
 $ ->
   if $("#order_email").val() is ""
     $(".stripe-button-el").attr "disabled", true
+    $('.warning-pop').popover
+      trigger: 'hover'
   $("#order_email").keyup ->
     unless $("#customer-email").val() is ""
       $(".stripe-button-el").attr "disabled", false
+      $(".warning-pop").popover('disable').popover("hide");
     else
       $(".stripe-button-el").attr "disabled", true
 

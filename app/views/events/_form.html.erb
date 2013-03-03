@@ -9,12 +9,12 @@
   <% if current_user && current_user.customer_id? %>
     <%= f.submit "Buy Now", html: {class: "btn btn-success btn-large"}, id: "buy-now" %>
   <% else %>
-    <div class="stripe-controls" align="center">
+    <span class="stripe-controls warning-pop" data-toggle="popover" data-content="You have to enter a valid email address before you can place an order">
       <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
         data-key="<%= ENV['STRIPE_PUBLIC_KEY'] %>"
         data-amount="">
       </script>
-    </div>
+    </span>
   <% end %>
 <% end %>
 
