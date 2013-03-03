@@ -109,12 +109,7 @@ class EventDecorator < ApplicationDecorator
 
   def order_total
       number_to_currency raw(
-        '<span class="order-total"></span>
-        <small><a href="#" class="" data-toggle="popover"
-        title="" data-content="Card Processing is 2.9% +
-        30c, our fee is only 1%!" data-original-title=
-        "Processing Fees" data-placement="bottom">inc.
-        charges</a></small>'
+        '<span class="order-total"></span>'
         )
   end
 

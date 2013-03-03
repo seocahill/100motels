@@ -43,7 +43,12 @@
 					<% if @event.on_sale? %>
 						<h3><%= @event.edit_icon %> <%= @event.price %><small> each</small></h3>
 						<%= @event.ticket_form %>
-						<h3><%= @event.order_total %></h3>
+						<h3><%= @event.order_total %>
+							<small><span class="charge-info" data-toggle="popover" title="" data-content="Card Processing is 2.9% + 30c + our fee (1% - 2.5% dependant on the type of event)" data-original-title="Processing Fees" data-placement="bottom">
+								inc.charges
+							  </span>
+      				</small>
+      		</h3>
 					<% end %>
 				</div >
 			</div>

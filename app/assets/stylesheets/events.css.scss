@@ -161,3 +161,9 @@
   padding-top: 10px;
 }
 
+small {
+  .popover-content, .popover-title {
+   color: $grayDark;
+   text-shadow: none;
+  }
+}

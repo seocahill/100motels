@@ -49,11 +49,6 @@ $ ->
   $.datepicker.setDefaults
     dateFormat: 'MM dd, yy'
 
-# Tooltips and popovers
-$ ->
-  $("body").popover selector: "[data-toggle=\"popover\"]"
-  $("body").tooltip selector: "a[rel=\"tooltip\"], [data-toggle=\"tooltip\"]"
-
 #  slimScroll for about piece in event show
 $ ->
   $(".about-event").slimScroll height: '250px'
@@ -83,3 +78,8 @@ $ ->
 
   $(".collapse").on "hide", ->
     $(this).parent().find(".itoggle").removeClass("icon-minus").addClass "icon-plus"
+
+# Charges popover
+$ ->
+  $('.charge-info').popover
+      trigger: 'hover'
