@@ -41,15 +41,16 @@
 							<i class="icon-link"></i>
 						</h3>
 						<% if @event.on_sale? %>
-							<h4>3 hours left to sell <%= @event.sales %> tickets! <i class="icon-question-sign"></i></h4>
-							<div class="progress muted">
-							  <div class="bar" style="width: 60%;"></div>
+							<h4><%= @event.left_to_go %> left to sell <%= @event.sales %> tickets! <i class="icon-question-sign" data-toggle="popover" title="" data-content="More about Crowdfunding"></i></h4>
+							<div class="progress">
+							  <div class="bar" style="width: 100%;" data-funded="<%= @event.per_cent_funded %>"><%= @event.per_cent_funded %>% funded</div>
 							</div>
 						<% else %>
 							<h3> <small>Ticket sales for this event have now finished. Thanks for your support!</small></h3>
 						<% end %>
 					</div>
 				</div>
+				<hr>
 				<div class="span6 event-ticket-orders" data-price='<%= @event.ticket_price %>' id="tickets">
 					<h1><i class="icon-shopping-cart muted" id="location"></i></h1>
 					<div class="pagination-centered">

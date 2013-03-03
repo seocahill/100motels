@@ -82,9 +82,11 @@
 
 
 //event show
-.poster-information {
-  #inlay {
-    background: rgba(0, 0, 0, 0.7);
+#inlay {
+  hr {
+    @include media-above($medium-min) {
+        display: none;
+      }
   }
 }
 
@@ -115,6 +117,7 @@
 
 .event-poster {
   border-radius: 5px;
+  padding-bottom: 15px;
 }
 
 .event-ticket-orders  {
@@ -172,6 +175,6 @@ small {
   }
   .progress {
     max-width: 75%;
-    margin: auto;
+    margin: 0 auto;
   }
 }

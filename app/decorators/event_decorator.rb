@@ -113,6 +113,19 @@ class EventDecorator < ApplicationDecorator
         )
   end
 
+  def per_cent_funded
+    sales = model.orders.sum(:quantity)
+    if sales > 0
+      ((sales.to_d / model.target.to_d)*100.0).to_i
+    else
+      0
+    end
+  end
+
+  def left_to_go
+     model.date > DateTime.now ? distance_of_time_in_words(Time.now, model.date, include_seconds = false) : "No time"
+  end
+
   def on_sale?
     d = model.date
     t = model.doors

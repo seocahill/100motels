@@ -62,8 +62,8 @@ $ ->
 $ ->
   if $("#order_email").val() is ""
     $(".stripe-button-el").attr "disabled", true
-    $('.warning-pop').popover
-      trigger: 'hover'
+    $('.warning-pop').popover()
+      # trigger: 'hover'
   $("#order_email").keyup ->
     unless $("#customer-email").val() is ""
       $(".stripe-button-el").attr "disabled", false
@@ -83,3 +83,11 @@ $ ->
 $ ->
   $('.charge-info').popover
       trigger: 'hover'
+
+$ ->
+  $('.icon-question-sign').popover
+      trigger: 'hover'
+
+$ ->
+  width = $('.bar').data('funded')
+  $('.bar').css("width", "#{width}%")
