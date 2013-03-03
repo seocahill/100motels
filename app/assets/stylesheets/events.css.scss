@@ -114,15 +114,10 @@
 }
 
 .event-poster {
-  text-align: center;
-}
-
-.event-details {
-  text-align: center;
+  border-radius: 5px;
 }
 
 .event-ticket-orders  {
-  text-align: center;
 }
 
 // organizer/event/show
@@ -149,11 +144,13 @@
   background-image: url(image_path('tex2res5.png'));
 }
 
-.event-ticket-orders, .event-poster {
-  h1, h3, small, a, dt, dd {
+.event-header {
+  h1, h2, h3, small, a, dt, dd {
     color: white;
     text-shadow: 3px 4px 5px #000;
   }
+  .dropdown-menu a {text-shadow: none;}
+  padding: 20px;
 }
 
 .venue-info {
@@ -167,3 +164,4 @@ small {
    text-shadow: none;
   }
 }
+

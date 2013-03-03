@@ -4,7 +4,7 @@
   <% unless current_user && current_user.guest? == false %>
     <%= f.input :email, label: false, placeholder: "  your email address", input_html: { class: "input-medium" }, required: :true %>
   <% else %>
-    <%= f.input :email, as: :hidden, input_html: { value: current_user.email } %>
+    <%= f.input :email, label: false, input_html: { value: current_user.email } %>
   <% end %>
   <% if current_user && current_user.customer_id? %>
     <%= f.submit "Buy Now", html: {class: "btn btn-success btn-large"}, id: "buy-now" %>
