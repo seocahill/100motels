@@ -75,9 +75,8 @@ $ ->
 
 # Toggle icon for accordians
 $ ->
-
   $(".collapse").on "show", ->
-    $(this).parent().find("i").removeClass("icon-plus").addClass "icon-minus"
+    $(this).parent().find(".itoggle").removeClass("icon-plus").addClass "icon-minus"
 
   $(".collapse").on "hide", ->
-    $(this).parent().find("i").removeClass("icon-minus").addClass "icon-plus"
+    $(this).parent().find(".itoggle").removeClass("icon-minus").addClass "icon-plus"
