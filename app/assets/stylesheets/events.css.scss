@@ -166,5 +166,12 @@ small {
 }
 
 .event-funding {
-  padding: 10px 0;
+  text-align: center;
+  h4 {
+    padding: 20px 0;
+  }
+  .progress {
+    max-width: 75%;
+    margin: auto;
+  }
 }
