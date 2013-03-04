@@ -23,6 +23,7 @@
 								<li><%= link_to "Event Admin", organizer_event_path(@event) %>
 								<li><a href="#"><%= @event.toggle_visible %></a></li>
 								<li><%= @event.filepicker %></li>
+								<li><%= link_to "Delete Event", organizer_event_path(@event), method: :delete, data: { confirm: "Are you sure you want to cancel the current event?" } %></li>
 			        </ul>
 			      </div>
 			    <% end %>

@@ -12,7 +12,7 @@
       <li> <%= link_to "Your Events", organizer_event_path(current_user.events.first) %>  </li>
       <li> <%= link_to "Check-in", organizer_event_tickets_path(current_user.events.first) %>  </li>
     <% end %>
-    <li><%= link_to "Most Recent Event", event_path(current_user.events.order("updated_at").last) if current_user.events %></li>
+    <li><%= link_to "Most Recent Event", event_path(current_user.events.order("updated_at").last) unless current_user.events.empty? %></li>
     <li class="divider"></li>
     <% if !current_user.guest? && current_user.state == :unconfirmed %>
       <li><%= link_to "Confirm your email", email_confirmations_path, method: :post %></li>
