@@ -75,4 +75,12 @@ has_scope :refunded, type: :boolean
     end
   end
 
+  def duplicate
+    original = Event.find(params[:id])
+    @event = original.dup
+    @event.title = "Copy of #{original.title}"
+    @event.save!
+    redirect_to @event, notice: "A copy of your event was created successfully"
+  end
+
 end
