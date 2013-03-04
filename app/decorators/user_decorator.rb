@@ -3,7 +3,7 @@ class UserDecorator < ApplicationDecorator
 
   def avatar
     if model.profile.avatar
-      filepicker_image_tag model.profile.avatar, width: 200, height: 200, fit: 'crop'
+      filepicker_image_tag model.profile.avatar, width: 200, height: 200, fit: 'clip'
     else
       raw '<img src="//placehold.it/200&text=Your+Avatar" alt="">'
     end

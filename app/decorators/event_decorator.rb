@@ -67,7 +67,7 @@ class EventDecorator < ApplicationDecorator
   end
 
   def about_section
-    best_in_place_if event_owner?, model, :about, :type => :textarea, :display_with => :simple_format, nil: "#{render 'instructions'}"
+    best_in_place_if event_owner?, model, :about, :type => :textarea, :display_with => :simple_format, nil: "#{render 'instructions'}", classes: ["span11", "about"]
   end
 
   def venue_address

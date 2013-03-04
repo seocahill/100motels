@@ -17,16 +17,19 @@
               <dt>Email</dt>
               <dd><%= current_user.user_email %></dd>
             </dl>
-            <%= form_for current_user.profile, remote: true do |f| %>
-              <%= f.filepicker_field(:avatar, onchange: "this.form.submit();", button_text: "Change Avatar", button_class: "btn") %>
-            <% end %>
+            <%= form_for current_user.profile do |f| %>
+              <%= f.filepicker_field(:avatar,
+               onchange: "$('#member-avatar img').attr('src', event.fpfile.url).attr('fit', 'clip').attr('height', '200').attr('width', '200');", button_text: "Change Avatar", button_class: "btn") %>
+
             <%= current_user.password_reset %>
           </div>
         </div>
       </div>
     </div>
     <div class="modal-footer">
-      <button class="btn" data-dismiss="modal" aria-hidden="true">Done</button>
+        <%= f.submit "Save", class: "btn btn-primary" %>
+       <button class="btn" data-dismiss="modal">Exit</button>
     </div>
   </div>
+  <% end %>
 <% end %>

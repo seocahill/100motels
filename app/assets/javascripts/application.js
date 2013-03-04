@@ -21,6 +21,7 @@
 //= require jquery.backstretch.js
 //= require pages
 //= require events
+//= require users
 //= require organizer/events
 //= require organizer/tickets
 //= require bootstrap-timepicker.js
