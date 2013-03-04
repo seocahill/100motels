@@ -85,10 +85,10 @@
       <div class="accordion-group" is="event-accordian">
         <div class="accordion-heading">
           <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
-            Filter Orders <i class="icon-plus itoggle"></i>
+            Filter Orders <i class="icon-minus itoggle"></i>
           </a>
         </div>
-        <div id="collapseThree" class="accordion-body collapse">
+        <div id="collapseThree" class="accordion-body collapse in">
           <div class="accordion-inner">
             <ul class="nav nav-tabs nav-stacked">
               <li><a href="<%= organizer_event_path(@event) %>">All<span class="badge badge-info pull-right"><%= @event.orders.sum(:quantity) %></span></a></li>

@@ -79,6 +79,8 @@ has_scope :refunded, type: :boolean
     original = Event.find(params[:id])
     @event = original.dup
     @event.title = "Copy of #{original.title}"
+    @event.state = current_user.guest? ? :guest : :member
+    @event.event_users.build(user_id: current_user.id)
     @event.save!
     redirect_to @event, notice: "A copy of your event was created successfully"
   end
