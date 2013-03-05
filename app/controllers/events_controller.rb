@@ -12,7 +12,8 @@ class EventsController < ApplicationController
   def show
     @order = Order.new
     @private_message = PrivateMessage.new
-    @organizer = UserDecorator.decorate(@event.users.first) #ok for now
+    @organizer = UserDecorator.decorate(User.includes(:event_users).where("event_users.event_id = ? AND event_users.state = 3", @event.id).first
+)
   end
 
   def update

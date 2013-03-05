@@ -2,32 +2,34 @@
 	<% @event.header %>
 	<div class="container" id="event-background">
 		<% if @event.event_owner? %>
-		<ul class="inline pull-right">
-		  <li><i class="icon-credit-card"></i><span class="label label-warning">Payments in test mode</span></li>
-		  <li><i class="icon-eye-close"></i><span class="label label-warning">Event is private</span></li>
-		  <li>
-		  	<div class="dropdown">
-	        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-	          <h4><i class="icon-cog"></i>event settings</h4>
-	        </a>
-	        <ul class="dropdown-menu">
-						<li><%= @event.edit %></li>
-						<li><%= link_to "Event Admin", organizer_event_path(@event) %>
-						<li><a href="#"><%= @event.toggle_visible %></a></li>
-						<li><%= @event.filepicker %></li>
-						<li><%= link_to "Copy Event", duplicate_organizer_event_path(@event) %></li>
-						<li><%= link_to "Delete Event", organizer_event_path(@event), method: :delete, data: { confirm: "Are you sure you want to cancel the current event?" } %></li>
-	        </ul>
-	      </div>
-		   </li>
-		</ul>
+		<div class="admin-bar">
+			<ul class="inline pull-right">
+			  <li><i class="icon-credit-card"></i><span class="label label-important">Payments not activated</span></li>
+			  <li><i class="icon-eye-close"></i><span class="label label-warning">Event is private</span></li>
+			  <li>
+			  	<div class="dropdown">
+		        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+		          <h4><i class="icon-cog"></i>event settings</h4>
+		        </a>
+		        <ul class="dropdown-menu">
+							<li><%= @event.edit %></li>
+							<li><%= link_to "Event Admin", organizer_event_path(@event) %>
+							<li><a href="#"><%= @event.toggle_visible %></a></li>
+							<li><%= @event.filepicker %></li>
+							<li><%= link_to "Copy Event", duplicate_organizer_event_path(@event) %></li>
+							<li><%= link_to "Delete Event", organizer_event_path(@event), method: :delete, data: { confirm: "Are you sure you want to cancel the current event?" } %></li>
+		        </ul>
+		      </div>
+			   </li>
+			</ul>
+		</div>
 		<% end %>
 		<section id="event-information">
 			<!-- <hr> -->
 			<div class="row-fluid">
 				<div class="span12 event-header">
 					<h2>
-						<small><%= @organizer.name || "no name" %> presents </small><br>
+						<small><%= @organizer.name || "organizer's business name" %> presents </small><br>
 						<%= @event.edit_icon %> <%= @event.title %><br>
 						<small>
 							<%= @event.edit_icon %> <%= @event.date %> | <a href="#tickets"><i class="icon-shopping-cart"></i></a> <a href="#location"><i class="icon-map-marker"></i></a>

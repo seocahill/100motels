@@ -2,7 +2,8 @@ class CancelEventOrders
 
   def initialize(orders)
     @orders = orders
-    @api_key = User.find(@orders.first.event.users.first).api_key
+    event = @orders.first.event
+    @api_key = User.includes(:event_users).where("event_users.event_id = ? AND event_users.state = 3", event.id).first.api_key
   end
 
   def cancel_orders

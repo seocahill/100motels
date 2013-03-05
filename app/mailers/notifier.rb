@@ -44,7 +44,8 @@ class Notifier < ActionMailer::Base
 
   def job_completed(orders)
     @orders = orders
-    organizer = User.find(@orders.first.event.users.first)
+    event = @orders.first.event
+    organizer = User.includes(:event_users).where("event_users.event_id = ? AND event_users.state = 3", event.id).first
     mail to: organizer.profile.email, subject: "your job has been completed"
   end
 end
