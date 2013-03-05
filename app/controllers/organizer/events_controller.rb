@@ -11,7 +11,7 @@ has_scope :refunded, type: :boolean
   def create
     state = current_user.guest? ? :guest : :member
     @event = Event.new(params[:event].merge(state: state))
-    @event.event_users.build(user_id: current_user.id)
+    @event.event_users.build(user_id: current_user.id, state: :organizer)
     respond_to do |format|
       if @event.save
         flash[:notice] = 'Event was successfully created.'
