@@ -2,26 +2,32 @@
   <div id="user-profile" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      <h3 id="myModalLabel">Your Profile</h3>
+      <h3 id="myModalLabel">User Profile</h3>
     </div>
     <div class="modal-body">
       <div class="container">
         <div class="row-fluid">
-          <div class="span6" id="member-avatar">
+          <div class="span6 pagination-centered" id="member-avatar">
             <%= current_user.avatar %>
+            <%= form_for current_user.profile do |f| %>
+              <%= f.filepicker_field(:avatar,
+               onchange: "$('#member-avatar img').attr('src', event.fpfile.url).attr('fit', 'clip').attr('height', '200').attr('width', '200');", button_text: "Change Avatar", button_class: "btn") %>
           </div>
-          <div class="span6">
+          <div class="span6 user-account">
             <dl>
               <dt>Name</dt>
               <dd><%= current_user.user_name %></dd>
               <dt>Email</dt>
               <dd><%= current_user.user_email %></dd>
+              <dt>Password</dt>
+              <dd><%= current_user.password_reset %></dd>
+              <dt>Payments</dt>
+              <% if current_user.api_key %>
+                <dd><a href="#" class="stripe-connect light-blue dark"><span>Connected to Stripe <i class="icon-ok"></i></span></a></dd>
+              <% else %>
+                <dd><a href="/auth/stripe_connect" class="stripe-connect dark"><span>Connect with Stripe</span></a></dd>
+              <% end %>
             </dl>
-            <%= form_for current_user.profile do |f| %>
-              <%= f.filepicker_field(:avatar,
-               onchange: "$('#member-avatar img').attr('src', event.fpfile.url).attr('fit', 'clip').attr('height', '200').attr('width', '200');", button_text: "Change Avatar", button_class: "btn") %>
-
-            <%= current_user.password_reset %>
           </div>
         </div>
       </div>
