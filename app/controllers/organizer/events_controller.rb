@@ -77,10 +77,12 @@ has_scope :refunded, type: :boolean
 
   def duplicate
     original = Event.find(params[:id])
+    location = request.location.present? ? request.location.address : original.location.address
     @event = original.dup
     @event.title = "Copy of #{original.title}"
     @event.state = current_user.guest? ? :guest : :member
     @event.event_users.build(user_id: current_user.id)
+    @event.build_location(address: location)
     @event.save!
     redirect_to @event, notice: "A copy of your event was created successfully"
   end
