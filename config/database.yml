@@ -32,5 +32,3 @@ production:
   username: #<%= ENV['PG_ADMIN'] %>
   password: #<%= ENV['PG_PASSWORD'] %>
 
-cucumber:
-  <<: *test
