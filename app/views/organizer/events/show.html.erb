@@ -31,7 +31,7 @@
           <div class="accordion-inner">
             <dl class="well">
               <dt>time left</dt>
-              <dd><%= @event.date > DateTime.now ? distance_of_time_in_words(Time.now, @event.date, include_seconds = false) : "Time's up!"  %></dd>
+              <dd><%= @event.date > DateTime.now + 2.hour ? distance_of_time_in_words(Time.now, @event.date, include_seconds = false) : "Time's up!"  %></dd>
               <dt>funding:</dt>
               <dd><%= number_to_currency(@event.orders.funding.sum(:quantity) * @event.ticket_price) %></dd>
               <dt>capacity:</dt>
