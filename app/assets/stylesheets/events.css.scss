@@ -9,12 +9,6 @@
     }
   }
 
-  .admin-bar {
-    .label, i {
-      font-size: 14px;
-    }
-  }
-
   .search {
     input[type="text"] {
 
@@ -182,5 +176,11 @@ small {
   .progress {
     max-width: 75%;
     margin: 0 auto;
+  }
+}
+
+.admin-bar {
+    .label, i {
+      font-size: 14px;
   }
 }

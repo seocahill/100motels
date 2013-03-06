@@ -4,7 +4,7 @@
       <li>
         <div class="btn-group">
           <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-            <%= @event.title %>
+            Change Event
             <span class="caret"></span>
           </a>
           <ul class="dropdown-menu">
@@ -14,15 +14,39 @@
           </ul>
         </div>
       </li>
+      <li class="admin-bar"><span class='label'><%= "#{@event.title} | #{@event.location.city} | #{@event.date.strftime('%d %b')}" %></span></li>
+      <li><i class="icon-ok-circle"></i><span class="label label-success">Payments activated</span></li>
+      <li><i class="icon-eye-close"></i><span class="label label-warning">Event is private</span></li>
        <li class="pull-right"><%= render 'search' %></li>
     </ul>
   </div>
 </div>
+<hr>
 <%= form_tag charge_or_refund_orders_path, method: :post  do %>
 <div class="row-fluid">
   <aside class="span3">
-    <hr>
     <div class="accordion" id="accordion2">
+      <% unless current_user.guest? %>
+        <div class="accordion-group">
+          <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFive">
+              Authorized Users <i class="icon-plus itoggle"></i>
+            </a>
+          </div>
+          <div id="collapseFive" class="accordion-body collapse">
+            <div class="accordion-inner">
+              <ul class="nav nav-tabs nav-stacked">
+              <% @event.event_users.each do |eu| %>
+                <li><%= eu.user.profile.email %> | <span class="label"><%= eu.state %></span> <i class="icon-credit-card"></i></li>
+                <li><hr></li>
+                <li><span><%= link_to "Add or edit Authorized Users" %> <i class="icon-external-link"></i></span></li>
+              <% end %>
+              <%= render 'authorized_users' %>
+              </ul>
+            </div>
+          </div>
+        </div>
+      <% end %>
       <div class="accordion-group">
         <div class="accordion-heading">
           <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFour">
@@ -31,7 +55,7 @@
         </div>
         <div id="collapseFour" class="accordion-body collapse">
           <div class="accordion-inner">
-            <dl class="well">
+            <dl class="dl">
               <dt>time left</dt>
               <dd><%= @event.date > DateTime.now + 2.hour ? distance_of_time_in_words(Time.now, @event.date, include_seconds = false) : "Time's up!"  %></dd>
               <dt>funding:</dt>
@@ -44,6 +68,7 @@
           </div>
         </div>
       </div>
+
     <% unless @event.state_cancelled? || current_user.api_key.nil? %>
       <div class="accordion-group">
         <div class="accordion-heading">
