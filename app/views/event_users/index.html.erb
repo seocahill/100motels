@@ -9,6 +9,8 @@
 
 <% @event_users.each do |event_user| %>
   <tr>
+    <td><%= event_user.user.profile.email %></td>
+    <td><%= event_user.state %></td>
     <td><%= link_to 'Show', event_user %></td>
     <td><%= link_to 'Edit', edit_event_user_path(event_user) %></td>
     <td><%= link_to 'Destroy', event_user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
