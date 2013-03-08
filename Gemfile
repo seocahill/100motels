@@ -59,7 +59,7 @@ gem 'enum_accessor'
 gem 'google-qr'
 gem 'has_scope'
 gem 'draper'
-gem 'sidekiq', '2.6.5'
+gem 'sidekiq'
 gem 'sidekiq-failures'
 gem 'sinatra', require: false
 gem 'slim'
