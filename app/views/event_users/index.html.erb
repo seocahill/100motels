@@ -1,23 +1,12 @@
-<h1>Listing event_users</h1>
+<h1>Authorized Users for this event</h1>
 
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<%= link_to 'New Event user', new_organizer_event_event_user_path, remote: true, class: "new-auth-user" %>
+<hr>
+
 
 <% @event_users.each do |event_user| %>
-  <tr>
-    <td><%= event_user.user.profile.email %></td>
-    <td><%= event_user.state %></td>
-    <td><%= link_to 'Show', event_user %></td>
-    <td><%= link_to 'Edit', edit_event_user_path(event_user) %></td>
-    <td><%= link_to 'Destroy', event_user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+  <ul>
+    <li><%= event_user.user.profile.email %></li>
+    <li><%= event_user.state %></li>
+  </ul>
 <% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Event user', new_event_user_path %>
