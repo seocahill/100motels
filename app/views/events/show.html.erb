@@ -25,25 +25,28 @@
 		</div>
 		<% end %>
 		<section id="event-information">
-			<!-- <hr> -->
 			<div class="row-fluid">
 				<div class="span12 event-header">
 					<h2>
-						<small><%= @organizer.name || "organizer's business name" %> presents </small><br>
+						<small><%= @event.edit_icon %> <%= @organizer.user_name || "organizer's business name" %> presents </small><br>
 						<%= @event.edit_icon %> <%= @event.title %><br>
 						<small>
-							<%= @event.edit_icon %> <%= @event.date %> | <a href="#tickets"><i class="icon-shopping-cart"></i></a> <a href="#location"><i class="icon-map-marker"></i></a>
-							<a href="#music"><i class="icon-headphones"></i></a> <a href="#about"><i class="icon-info-sign"></i></a><br>
+							<%= @event.edit_icon %> <%= @event.date %> |
+							<a href="#tickets"><i class="icon-shopping-cart"></i></a>
+							<a href="#location"><i class="icon-map-marker"></i></a>
+							<a href="#event-playlist"><i class="icon-headphones"></i></a>
+							<a href="#event-vimeo"><i class="icon-film"></i></a>
+							<a href="#about"><i class="icon-info-sign"></i></a><br>
+							<a href="#bio"><i class="icon-quote-left"></i></a><br>
 							<%= @event.location.city %>
 						</small>
-
 					</h2>
 				</div>
 			</div>
 			<hr>
 			<div class="row-fluid poster-information=" id="inlay">
 				<div class="span6 event-poster" data-url='<%= @event.image %>'>
-					<h1><i class="icon-info-sign muted" id="location"></i></h1>
+					<h1><i class="icon-info-sign muted" id="about"></i></h1>
 					<div class="event-funding">
 						<h3> <%= @event.edit_icon %> <%= @event.artist %></h3>
 						<h3>
@@ -64,7 +67,7 @@
 				</div>
 				<hr>
 				<div class="span6 event-ticket-orders" data-price='<%= @event.ticket_price %>' id="tickets">
-					<h1><i class="icon-shopping-cart muted" id="location"></i></h1>
+					<h1><i class="icon-shopping-cart muted"></i></h1>
 					<div class="pagination-centered">
 						<% if @event.on_sale? %>
 							<h3><%= @event.edit_icon %> <%= @event.price %><small> each</small></h3>
@@ -84,7 +87,7 @@
 		<section id="event-media" class="event">
 			<div class="row-fluid">
 				<div class="span6">
-					<h1><i class="icon-quote-left muted" id="about"></i></h1>
+					<h1><i class="icon-quote-left muted" id="bio"></i></h1>
 					<div class="about about-event"><%= @event.edit_icon %> <%= @event.about_section %></div>
 				</div>
 				<div class="span6">
