@@ -24,7 +24,7 @@
 //= require users
 //= require organizer/events
 //= require organizer/tickets
-//= require bootstrap-timepicker.js
+//= require jquery.zclip.js
 //= require best_in_place
 
 
