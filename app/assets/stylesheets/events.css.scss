@@ -184,3 +184,9 @@ small {
       font-size: 14px;
   }
 }
+
+.addthis_toolbox {
+  &:hover {
+    text-decoration: none;
+  }
+}

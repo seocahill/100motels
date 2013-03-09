@@ -50,7 +50,13 @@
 					<div class="event-funding">
 						<h3> <%= @event.edit_icon %> <%= @event.artist %></h3>
 						<h3>
-							<i class="icon-link"></i>
+							<div class="addthis_toolbox">
+								<div class="custom_images">
+									<a class="addthis_button_facebook" addthis:url="<%= request.url %>"><i class="icon-facebook"></i></a>
+									<a class="addthis_button_twitter"><i class="icon-twitter"></i></a>
+									<a class="addthis_button_more"><i class="icon-share"></i></a>
+								</div>
+							</div>
 						</h3>
 						<% if @event.on_sale? %>
 							<h4><%= @event.left_to_go %> left to sell <%= @event.sales %> tickets! <i class="icon-question-sign" data-toggle="popover" title="" data-content="More about Crowdfunding"></i></h4>
@@ -128,3 +134,4 @@
 <% else %>
 <h3>This Event has not been published.</h3>
 <% end %>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-513ba15373992907"></script>
