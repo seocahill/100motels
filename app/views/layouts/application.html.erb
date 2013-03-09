@@ -6,6 +6,7 @@
     <%= javascript_include_tag "application" %>
     <%= filepicker_js_include_tag %>
     <%= csrf_meta_tags %>
+    <%= yield :head %>
     <!--if [lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif-->

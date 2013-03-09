@@ -1,3 +1,11 @@
+<% content_for :head do %>
+  <%#= tag :meta, property: "fb:app_id", content: ENV["FACEBOOK_APP_ID"] %>
+  <%= tag :meta, property: "og:site_name", content: "100 Motels" %>
+  <%#= tag :meta, property: "og:type", content: "cinematron:movie" %>
+  <%= tag :meta, property: "og:title", content: @event.title %>
+  <%= tag :meta, property: "og:url", content: event_url(@event) %>
+  <%#= tag :meta, property: "og:image", content: request.protocol + request.host_with_port + image_path(@movie.image) %>
+<% end %>
 <% if @event.visible?|| @event.event_owner? %>
 	<% @event.header %>
 	<div class="container" id="event-background">
@@ -52,7 +60,7 @@
 						<h3>
 							<div class="addthis_toolbox">
 								<div class="custom_images">
-									<a class="addthis_button_facebook" addthis:url="<%= request.url %>"><i class="icon-facebook"></i></a>
+									<a class="addthis_button_facebook"><i class="icon-facebook"></i></a>
 									<a class="addthis_button_twitter"><i class="icon-twitter"></i></a>
 									<a class="addthis_button_more"><i class="icon-share"></i></a>
 								</div>
@@ -134,4 +142,9 @@
 <% else %>
 <h3>This Event has not been published.</h3>
 <% end %>
+<script type="text/javascript">
+var addthis_config = {
+     data_track_clickback: false
+}
+</script>
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-513ba15373992907"></script>

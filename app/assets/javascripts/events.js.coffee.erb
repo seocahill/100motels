@@ -92,10 +92,3 @@ $ ->
 $ ->
   width = $('.bar').data('funded')
   $('.bar').css("width", "#{width}%")
-
-# zcip
-
-$ ->
-  $('#copy-event-info').zclip
-    path: "<%= asset_path 'ZeroClipboard.swf' %>"
-    copy: $('.event-funding').text()
