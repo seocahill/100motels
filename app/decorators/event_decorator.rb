@@ -1,8 +1,12 @@
 class EventDecorator < ApplicationDecorator
   delegate_all
 
-  def header
-    content_tag :header, h.title(model.artist, model.venue, model.date)
+  def private_or_public
+    if model.visible
+      raw('<i class="icon-eye-open"></i><span class="label label-success">Event is published</span>')
+    else
+      raw('<i class="icon-eye-close"></i><span class="label label-warning">Event is private</span>')
+    end
   end
 
   def toggle_visible
@@ -41,7 +45,7 @@ class EventDecorator < ApplicationDecorator
     best_in_place_if event_owner?, model, :artist
   end
 
-  def date
+  def formatted_date
     best_in_place_if event_owner?, model, :date, type: :date, classes: "datepicker" , display_with: :time_tag, classes: ""
   end
 

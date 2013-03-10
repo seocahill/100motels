@@ -8,6 +8,8 @@ class Event < ActiveRecord::Base
   # vadidates :ticket_price, numericality: :true
   validates :title, :artist, :ticket_price, :venue, :date, :capacity, :doors, :target, presence: :true
   validates :ticket_price, numericality: :true
+  validates :capacity, inclusion: { in: 1..200, message: "Max capacity is 200 during beta" }
+  validates :ticket_price, inclusion: { in: 5.0..20.0, message: "Price must be in the range $10-$20 during beta" }
   validate :forbid_date_change, on: :update
   validate :forbid_publish, on: :update
 

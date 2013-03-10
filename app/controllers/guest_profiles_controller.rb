@@ -11,7 +11,7 @@ private
   def create_starter_event(user)
     location = request.location.present? ? request.location.address : "Dublin, Ireland."
     event = Event.new
-    event.event_users.build(user_id: user.id, state: :organizer)
+    event.event_users.build(user_id: user.id, state: :event_admin)
     event.build_location(address: location)
     event.title = "A Title for your show"
     event.artist = "Tell me who's performing..."

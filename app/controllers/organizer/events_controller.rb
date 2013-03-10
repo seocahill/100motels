@@ -11,7 +11,7 @@ has_scope :refunded, type: :boolean
   def create
     state = current_user.guest? ? :guest : :member
     @event = Event.new(params[:event].merge(state: state))
-    @event.event_users.build(user_id: current_user.id, state: :organizer)
+    @event.event_users.build(user_id: current_user.id, state: :event_admin)
     respond_to do |format|
       if @event.save
         flash[:notice] = 'Event was successfully created.'
@@ -26,8 +26,9 @@ has_scope :refunded, type: :boolean
   end
 
   def show
-    @events = current_user.events
+    @events = current_user.events.where("events.state < 4")
     @event = Event.find_by_id(params[:id])
+    @organizer = User.includes(:event_users).where("event_users.event_id = ? AND event_users.state = 3", @event.id).first
     @orders = apply_scopes(Order.text_search(params[:query]).page(params[:page]).per_page(10)).where(event_id: @event.id)
     respond_to do |format|
       format.html

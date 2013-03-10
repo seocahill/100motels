@@ -68,7 +68,7 @@
         </div>
       </div>
 
-    <% unless @event.state_cancelled? || current_user.api_key.nil? %>
+    <% unless @organizer && @organizer.api_key.nil?  %>
       <div class="accordion-group">
         <div class="accordion-heading">
           <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">

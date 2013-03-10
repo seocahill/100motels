@@ -1,9 +1,9 @@
 module ApplicationHelper
 
-	def title(artist, venue, date)
+	def title(event)
 		if content_for :title
 			content_for :title do
-				"100 Motels - " + artist + " plays " + venue + ", " + date.strftime("%d/%m/%Y")
+				"Get Tickets for " + event.artist + " in " + event.location.city + ", " + event.date.strftime("%d/%m/%Y")
 			end
     else
       "100 Motels"
