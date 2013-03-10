@@ -35,13 +35,13 @@
 <hr>
 <%= form_tag charge_or_refund_orders_path, method: :post  do %>
 <div class="row-fluid">
-  <aside class="span3">
+  <aside class="span3 well well-small">
     <div class="accordion" id="accordion2">
       <% unless current_user.guest? %>
         <div class="accordion-group">
           <div class="accordion-heading">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFive">
-              Authorized Users <i class="icon-plus itoggle"></i>
+              <i class="icon-user"></i> Authorized Users
             </a>
           </div>
           <div id="collapseFive" class="accordion-body collapse">
@@ -62,7 +62,7 @@
       <div class="accordion-group">
         <div class="accordion-heading">
           <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-            Charge Options <i class="icon-plus itoggle"></i>
+            <i class="icon-credit-card"></i> Charge Options <i class="icon-plus itoggle"></i>
           </a>
         </div>
         <div id="collapseOne" class="accordion-body collapse">
@@ -81,7 +81,7 @@
       <div class="accordion-group">
         <div class="accordion-heading">
           <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-            Event Options <i class="icon-plus itoggle"></i>
+            <i class="icon-tasks"></i> Event Options <i class="icon-plus itoggle"></i>
           </a>
         </div>
         <div id="collapseTwo" class="accordion-body collapse">
@@ -100,7 +100,7 @@
       <div class="accordion-group" is="event-accordian">
         <div class="accordion-heading">
           <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
-            Filter Orders <i class="icon-minus itoggle"></i>
+            <i class="icon-filter"></i> Filter Orders <i class="icon-minus itoggle"></i>
           </a>
         </div>
         <div id="collapseThree" class="accordion-body collapse in">
