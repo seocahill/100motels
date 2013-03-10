@@ -38,7 +38,7 @@ OneHundredMotels::Application.configure do
   config.assets.debug = true
 
   # Set the mailer to localhost
-  config.action_mailer.default_url_options = { :host => 'localhost', :port => 5000 }
+  config.action_mailer.default_url_options = { :host => 'localhost', :port => 4567 }
 
   # Gapps for development
   config.action_mailer.delivery_method = :letter_opener_web

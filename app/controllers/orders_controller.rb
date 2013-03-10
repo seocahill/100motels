@@ -3,7 +3,6 @@ class OrdersController < ApplicationController
   before_filter :find_orders, only: [:charge_or_refund]
   before_filter :create_order_guest_user, only: [:create]
 
-
   def show
     @member_profile = MemberProfile.new
   end
@@ -11,8 +10,6 @@ class OrdersController < ApplicationController
   def create
     @order = current_user.orders.new(params[:order])
     if CustomerOrder.new(@order, params[:stripeToken]).process_order
-      Notifier.delay.order_created(@order.id)
-      Notifier.delay.notify_admin_order_created(@order.id)
       redirect_to @order, notice: "Thanks! Please check your email."
     else
       redirect_to :back, flash: { error: "Did you fill in the email field and select a quantity?" }

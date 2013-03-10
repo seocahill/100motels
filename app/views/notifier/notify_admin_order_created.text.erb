@@ -4,9 +4,9 @@ Ticket Order Alert
 
 -----------------------------------------------------------------------
 
-Purchaser <%= @order.name %>, <%= @order.email %>
+Purchaser <%= @order.email %>
 
-Order <%= pluralize(@order.quantity, 'ticket') %> for <%= @event.title %> on <%= time_tag(@event.date) %> in <%= @event.location.city %> with card ending #<%= @order.last4 %>.
+Order <%= pluralize(@order.quantity, 'ticket') %> for <%= @event.title %> on <%= @event.date.strftime("%A, %b %d") %> in <%= @event.location.city %>.
 
 Order reference is <%= @order.uuid %>.
 

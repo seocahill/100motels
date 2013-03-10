@@ -12,7 +12,7 @@ class Notifier < ActionMailer::Base
   def notify_admin_order_created(order_id)
     @order = Order.find(order_id)
     @event = Event.find(@order.event_id)
-    mail to: @order.email, subject: "Your Order from 100 Motels"
+    mail to: "ocathais@gmail.com", subject: "Your Order from 100 Motels"
   end
 
   def ticket(order_id, ticket_id)

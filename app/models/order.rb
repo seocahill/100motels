@@ -11,6 +11,7 @@ class Order < ActiveRecord::Base
   validates :quantity, numericality: :true
 
   before_create :generate_uuid
+  after_commit :mail_order_notifiers, on: :create
 
   scope :funding, where("stripe_event < ?", 3)
   scope :pending, where("stripe_event = ?", 0)
@@ -37,5 +38,10 @@ class Order < ActiveRecord::Base
     begin
       self.uuid = SecureRandom.hex
     end while self.class.exists?(uuid: uuid)
+  end
+
+  def mail_order_notifiers
+    Notifier.delay.order_created(self.id)
+    Notifier.delay.notify_admin_order_created(self.id)
   end
 end
