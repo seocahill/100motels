@@ -12,6 +12,7 @@ class OrdersController < ApplicationController
     @order = current_user.orders.new(params[:order])
     if CustomerOrder.new(@order, params[:stripeToken]).process_order
       Notifier.delay.order_created(@order.id)
+      Notifier.delay.notify_admin_order_created(@order.id)
       redirect_to @order, notice: "Thanks! We sent you an email with a receipt for your order."
     else
       redirect_to :back, flash: { error: "Did you fill in the email field and select a quantity?" }
