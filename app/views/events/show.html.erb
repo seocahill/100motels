@@ -55,9 +55,10 @@
 			<div class="row-fluid poster-information=" id="inlay">
 				<div class="span6 event-poster" data-url='<%= @event.image %>'>
 					<h1><i class="icon-info-sign muted" id="about"></i></h1>
-					<div class="event-funding">
+					<div class="event-funding well well-small">
 						<h3> <%= @event.edit_icon %> <%= @event.artist %></h3>
 						<h3>
+							<small>share</small>
 							<div class="addthis_toolbox">
 								<div class="custom_images">
 									<a class="addthis_button_facebook"><i class="icon-facebook"></i></a>
@@ -67,7 +68,7 @@
 							</div>
 						</h3>
 						<% if @event.on_sale? %>
-							<h4><%= @event.left_to_go %> left to sell <%= @event.sales %> tickets! <i class="icon-question-sign" data-toggle="popover" title="" data-content="More about Crowdfunding"></i></h4>
+							<h4><%= @event.left_to_go %> left to sell <%= @event.sales %> tickets <i class="icon-question-sign" data-toggle="popover" title="" data-content="More about Crowdfunding"></i></h4>
 							<div class="progress">
 							  <div class="bar" style="width: 100%;" data-funded="<%= @event.per_cent_funded %>"><%= @event.per_cent_funded %>% funded</div>
 							</div>
@@ -79,7 +80,7 @@
 				<hr>
 				<div class="span6 event-ticket-orders" data-price='<%= @event.ticket_price %>' id="tickets">
 					<h1><i class="icon-shopping-cart muted"></i></h1>
-					<div class="pagination-centered">
+					<div class="pagination-centered well well-small">
 						<% if @event.on_sale? %>
 							<h3><%= @event.edit_icon %> <%= @event.price %><small> each</small></h3>
 							<%= @event.ticket_form %>

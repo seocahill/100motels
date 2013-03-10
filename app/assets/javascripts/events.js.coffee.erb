@@ -92,3 +92,11 @@ $ ->
 $ ->
   width = $('.bar').data('funded')
   $('.bar').css("width", "#{width}%")
+
+#Equal height for boxes
+$ ->
+  boxes = $(".well")
+  maxHeight = Math.max.apply(Math, boxes.map(->
+    $(this).height()
+  ).get())
+  boxes.height maxHeight
