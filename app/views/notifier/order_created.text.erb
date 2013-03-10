@@ -6,7 +6,7 @@ Your Ticket Order
 
 Thanks <%= @order.name %>
 
-Your ordered <%= pluralize(@order.quantity, 'ticket') %> for <%= @event.title %> on <%= @event.date %> with card ending #<%= @order.last4 %>.
+Your ordered <%= pluralize(@order.quantity, 'ticket') %> for <%= @event.title %> on <%= time_tag(@event.date) %> with card ending #<%= @order.last4 %>.
 
 Your unique order reference is <%= @order.uuid %>.
 

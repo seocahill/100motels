@@ -138,8 +138,6 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    mail_view (1.0.3)
-      tilt
     meta_request (0.2.1)
       rack-contrib
       rails
@@ -327,7 +325,6 @@ DEPENDENCIES
   json
   launchy
   letter_opener_web
-  mail_view (~> 1.0.3)
   meta_request (= 0.2.1)
   omniauth-stripe-connect
   pg

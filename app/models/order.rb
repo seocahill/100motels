@@ -21,7 +21,7 @@ class Order < ActiveRecord::Base
   scope :cancelled, where("stripe_event = ?", 5)
 
   include PgSearch
-  pg_search_scope :search, against: [:name, :email],
+  pg_search_scope :search, against: [:name, :email, :uuid],
     using: {tsearch: {dictionary: "english"}},
     associated_against: {event: [:artist, :venue], tickets: :number }
 
