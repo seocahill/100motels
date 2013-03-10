@@ -27,9 +27,10 @@ has_scope :refunded, type: :boolean
 
   def show
     @events = current_user.events.where("events.state < 4")
-    @event = Event.find_by_id(params[:id])
+    @event = Event.find(params[:id])
+    @decorated_event = Event.find(params[:id]).decorate
     @organizer = User.includes(:event_users).where("event_users.event_id = ? AND event_users.state = 3", @event.id).first
-    @orders = apply_scopes(Order.text_search(params[:query]).page(params[:page]).per_page(10)).where(event_id: @event.id)
+    @orders = apply_scopes(Order.text_search(params[:query]).page(params[:page]).per_page(15)).where(event_id: @event.id)
     respond_to do |format|
       format.html
       format.pdf do

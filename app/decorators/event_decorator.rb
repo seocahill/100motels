@@ -3,9 +3,9 @@ class EventDecorator < ApplicationDecorator
 
   def private_or_public
     if model.visible
-      raw('<i class="icon-eye-open"></i><span class="label label-success">Event is published</span>')
+      raw('<span class="label label-success"><i class="icon-eye-open"></i> Event is published</span>')
     else
-      raw('<i class="icon-eye-close"></i><span class="label label-warning">Event is private</span>')
+      raw('<span class="label label-warning"><i class="icon-eye-close"></i> Event is private</span>')
     end
   end
 

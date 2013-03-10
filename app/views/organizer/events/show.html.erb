@@ -25,10 +25,10 @@
     <ul class="inline">
       <li><h3><i class="icon-dashboard"></i></h3></li>
       <li><span class="label label-info">Time left <i class="icon-time"></i><%= @event.date > DateTime.now + 2.hour ? distance_of_time_in_words(Time.now, @event.date, include_seconds = false) : "Time's up!"  %></span></li>
-      <li><span class="label label-info">Funding <i class="icon-money"></i> <%= number_to_currency(@event.orders.funding.sum(:quantity) * @event.ticket_price) %></span></li>
+      <li><span class="label label-info">Funding <i class="icon-money"></i> <%= number_to_currency(@event.orders.funding.sum(:total)) %></span></li>
       <li><span class="label label-info">unsold tickets: <%= @event.capacity - @event.orders.funding.sum(:quantity) %></span></li>
       <li><span class="label label-success"><i class="icon-ok-circle"></i> Payments activated</span></li>
-      <li><span class="label label-warning"><i class="icon-eye-close"></i> Event is private</span></li>
+      <li><%= @decorated_event.private_or_public %></li>
     </ul>
   </div>
 </div>
@@ -48,7 +48,7 @@
             <div class="accordion-inner">
               <ul class="nav nav-tabs nav-stacked">
               <% @event.event_users.each do |eu| %>
-                <li><%= eu.user.profile.email %> | <span class="label"><%= eu.state %></span> <i class="icon-credit-card"></i></li>
+                <li><%= eu.user.profile.email %> | <span class="label"><%= eu.state %></span></li>
                 <li><hr></li>
                 <li><span><%= link_to "Add or edit Authorized Users", organizer_event_event_users_path(@event) %> <i class="icon-external-link"></i></span></li>
               <% end %>
