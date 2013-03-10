@@ -68,7 +68,7 @@
         </div>
       </div>
 
-    <% unless @organizer && @organizer.api_key.nil?  %>
+    <% if current_user.event_users.where(event_id: @event.id).first.state_organizer?  %>
       <div class="accordion-group">
         <div class="accordion-heading">
           <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">

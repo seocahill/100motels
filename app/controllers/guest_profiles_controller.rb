@@ -20,7 +20,7 @@ private
     event.doors = Time.now.midnight
     event.ticket_price = 15.0
     event.target = 100
-    event.capacity = 300
+    event.capacity = 200
     event.save!
     event
   end
