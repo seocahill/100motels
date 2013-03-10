@@ -1,6 +1,9 @@
 // events index
 // scoped to events controller
 #events_controller {
+  .well {
+     background-color: rgba(255, 255, 255, 0.4);
+  }
   .event-map,
   .thumbnails li {
     @include media-between($small-min, $small-max) {
