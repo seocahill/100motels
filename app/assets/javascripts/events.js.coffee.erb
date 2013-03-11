@@ -93,10 +93,23 @@ $ ->
   width = $('.bar').data('funded')
   $('.bar').css("width", "#{width}%")
 
-#Equal height for boxes
+# Equal height for payment and info boxes
 $ ->
   boxes = $(".well")
   maxHeight = Math.max.apply(Math, boxes.map(->
     $(this).height()
   ).get())
   boxes.height maxHeight
+
+
+(($) ->
+  $.fn.uniformHeight = ->
+    maxHeight = 0
+    max = Math.max
+    @each(->
+      maxHeight = max(maxHeight, $(this).height())
+    ).height maxHeight
+) jQuery
+
+$(window).load ->
+  $("ul.thumbnails").find("a.thumbnail").uniformHeight()
