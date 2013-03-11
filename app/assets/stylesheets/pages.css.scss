@@ -4,6 +4,13 @@
 
 // everything in here is scoped to the pages resource only
 #pages_controller {
+  .well {
+    background-image: url(image_path('tex2res5.png'));
+    // color: #E9E6E6;
+    background-color: none;
+    // box-shadow: 3px 3px 5px 6px #ccc;
+
+  }
 
 // buttons styled to look like dropdown menu links
 
@@ -39,15 +46,8 @@
   }
 
   .search {
-    max-width: 120px;
+    max-width: 100px;
     input[type="text"] {
-      // @include media-between($small-min, $small-max) {
-      //   min-width: 500px;
-      // }
-      // @include media-between($handheld-min, $handheld-max) {
-      //   min-width: 300px;
-      // }
-      // min-width: 200px;
       height: 45px;
     }
     button {
