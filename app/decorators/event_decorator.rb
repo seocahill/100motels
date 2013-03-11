@@ -37,11 +37,11 @@ class EventDecorator < ApplicationDecorator
     end
   end
 
-  def title
+  def bip_title
     best_in_place_if event_owner?, model, :title, :nil => "A Title for Your Event"
   end
 
-  def artist
+  def bip_artist
     best_in_place_if event_owner?, model, :artist
   end
 

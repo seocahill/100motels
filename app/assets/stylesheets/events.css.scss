@@ -21,6 +21,9 @@
       @include media-between($handheld-min, $handheld-max) {
         min-width: 250px;
       }
+      @include media-above($medium-min) {
+        min-width: 500px;
+      }
     }
       // min-width: 200px;
   }
