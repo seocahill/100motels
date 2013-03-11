@@ -71,10 +71,10 @@ class EventUsersController < ApplicationController
     respond_to do |format|
       if @event_user.update_attributes(params[:event_user])
         format.html { redirect_to @event_user, notice: 'Event user was successfully updated.' }
-        format.json { head :no_content }
+        format.json { respond_with_bip(@event_user) }
       else
         format.html { render action: "edit" }
-        format.json { render json: @event_user.errors, status: :unprocessable_entity }
+        format.json { respond_with_bip(@event_user) }
       end
     end
   end

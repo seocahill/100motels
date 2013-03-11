@@ -12,7 +12,7 @@ $ ->
     type: 'GET'
     dataType: 'html'
     error: (jqXHR, textStatus, errorThrown) ->
-        $('body').append "AJAX Error: #{textStatus}"
+        console.log "AJAX Error: #{textStatus}"
     success: (data, textStatus, jqXHR) =>
       target = $(this).data('attribute')
       content = $(data).find(".#{target}").html()

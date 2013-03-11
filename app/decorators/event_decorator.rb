@@ -17,6 +17,20 @@ class EventDecorator < ApplicationDecorator
     end
   end
 
+  def payments_locked?
+    admins = EventUser.where("event_id = ? AND state > 1", model.id)
+    if admins.any? {|admin| admin.payment_lock }
+      raw('<span class="label label-important"><i class="icon-lock"></i> Payments are locked!</span>')
+    else
+      raw('<span class="label label-success"><i class="icon-unlock"></i> Payments unlocked!</span>')
+    end
+  end
+
+  def lock
+    event_user = model.event_users.where(user_id: current_user.id).first
+    h.best_in_place event_user, :payment_lock, type: :checkbox, collection: ["Lock", "Unlock"], path: organizer_event_event_user_path(model)
+  end
+
   def edit
     link_to "Edit in Form", edit_organizer_event_path(model), class: "" if event_owner?
   end

@@ -27,7 +27,7 @@
       <li><span class="label label-info">Time left <i class="icon-time"></i><%= @event.date > DateTime.now + 2.hour ? distance_of_time_in_words(Time.now, @event.date, include_seconds = false) : "Time's up!"  %></span></li>
       <li><span class="label label-info">Funding <i class="icon-money"></i> <%= number_to_currency(@event.orders.funding.sum(:total)) %></span></li>
       <li><span class="label label-info">unsold tickets: <%= @event.capacity - @event.orders.funding.sum(:quantity) %></span></li>
-      <li><span class="label label-important"><i class="icon-lock"></i> Payments are locked!</span></li>
+      <li><%= @decorated_event.payments_locked? %></li>
       <li><%= @decorated_event.private_or_public %></li>
     </ul>
   </div>
@@ -68,6 +68,7 @@
         <div id="collapseOne" class="accordion-body collapse">
           <div class="accordion-inner">
             <ul class="nav nav-tabs nav-stacked">
+              <li><a><%= @decorated_event.lock %></a></li>
               <li><%= link_to "Charge All", charge_all_orders_path(event_id: @event.id), method: :post, class: "" %></li>
               <li><%= submit_tag "Charge Selected", name: 'charge', class: "link-button span12" if current_user.api_key %></li>
               <li><%= submit_tag "Refund Selected", name: 'refund', class: "link-button span12" if current_user.api_key %></li>
