@@ -1,6 +1,7 @@
 class Authentication
-  def initialize(params)
+  def initialize(params="")
     @params = params
+    @request = request
   end
 
   def authenticated?

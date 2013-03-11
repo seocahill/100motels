@@ -48,7 +48,7 @@ class EventDecorator < ApplicationDecorator
     if model.image?
       model.image
     else
-      "http://route66motorcycletour.com/images/BlueSwallow.jpg"
+      "https://www.filepicker.io/api/file/l2nNjJqBQv2uJywDlyuE"
     end
   end
 

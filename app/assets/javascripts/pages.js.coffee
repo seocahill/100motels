@@ -3,4 +3,4 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $ ->
-  $('.paper-folds').backstretch("http://www.essedidesign.com/wp-content/uploads/2012/09/preview.jpg")
+  $('.paper-folds').backstretch("https://www.filepicker.io/api/file/l2nNjJqBQv2uJywDlyuE")
