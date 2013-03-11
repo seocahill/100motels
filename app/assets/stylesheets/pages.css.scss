@@ -4,11 +4,13 @@
 
 // everything in here is scoped to the pages resource only
 #pages_controller {
+
   .well {
-    background-image: url(image_path('tex2res5.png'));
+    background-image: url(image_path('weave.png'));
     // color: #E9E6E6;
     background-color: none;
-    // box-shadow: 3px 3px 5px 6px #ccc;
+    box-shadow: none;
+    border: none;
 
   }
 
@@ -124,13 +126,20 @@
     line-height: 110%;
     }
   }
+  background-image: url(image_path('weave.png'));
 }
 
 .landing-image {
   width: 100%;
 }
 
-
-
+.try-it-now {
+  display: block;
+  // width: 100%;
+  padding: 20px;
+  // margin-bottom: 20px;
+  background-image: url(image_path('weave.png'));
+  // color: #E9E6E6;
+}
 
 
