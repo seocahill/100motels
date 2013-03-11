@@ -9,12 +9,12 @@
           </a>
           <ul class="dropdown-menu">
             <% @events.each do |e| %>
-            <li><%= link_to "#{e.title} | #{e.location.city} | #{e.date.strftime('%d %b')}", organizer_event_path(e) %></li>
+            <li><%= link_to "#{truncate(e.title, length: 10)} | #{e.location.city} | #{e.date.strftime('%d %b')}", organizer_event_path(e) %></li>
             <% end %>
           </ul>
         </div>
       </li>
-      <li class="muted"><span class="well well-small"><%= "#{@event.title} | #{@event.location.city} | #{@event.date.strftime('%d %b')}" %></span></li>
+      <li class="muted"><span class="well well-small"><%= "#{truncate(@event.title)} | #{@event.location.city} | #{@event.date.strftime('%d %b')}" %></span></li>
 
        <li class="pull-right"><%= render 'search' %></li>
     </ul>
@@ -69,9 +69,9 @@
           <div class="accordion-inner">
             <ul class="nav nav-tabs nav-stacked">
               <li><%= link_to "Charge All", charge_all_orders_path(event_id: @event.id), method: :post, class: "" %></li>
-              <li><%= submit_tag "Charge Selected", name: 'charge', class: "link-button" if current_user.api_key %></li>
-              <li><%= submit_tag "Refund Selected", name: 'refund', class: "link-button" if current_user.api_key %></li>
-              <li><%= submit_tag "Cancel Selected", name: 'cancel', class: "link-button" if current_user.api_key %></li>
+              <li><%= submit_tag "Charge Selected", name: 'charge', class: "link-button span12" if current_user.api_key %></li>
+              <li><%= submit_tag "Refund Selected", name: 'refund', class: "link-button span12" if current_user.api_key %></li>
+              <li><%= submit_tag "Cancel Selected", name: 'cancel', class: "link-button span12" if current_user.api_key %></li>
               <li><%= link_to "Cancel Event", organizer_event_path(@event), data: { confirm: "Are you sure you want to cancel the current event?" }, method: :delete %></li>
             </ul>
           </div>

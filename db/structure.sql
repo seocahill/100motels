@@ -38,7 +38,8 @@ CREATE TABLE event_users (
     user_id integer,
     state integer DEFAULT 0,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    payment_lock boolean DEFAULT true
 );
 
 
@@ -797,3 +798,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130220160958');
 INSERT INTO schema_migrations (version) VALUES ('20130221235244');
 
 INSERT INTO schema_migrations (version) VALUES ('20130301115603');
+
+INSERT INTO schema_migrations (version) VALUES ('20130311141754');
