@@ -31,6 +31,7 @@ class EventDecorator < ApplicationDecorator
     h.best_in_place event_user, :payment_lock, type: :checkbox, collection: ["Lock", "Unlock"], path: organizer_event_event_user_path(model)
   end
 
+
   def edit
     link_to "Edit in Form", edit_organizer_event_path(model), class: "" if event_owner?
   end
