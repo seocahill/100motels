@@ -56,8 +56,16 @@
 					<h1><i class="icon-info-sign muted" id="about"></i></h1>
 					<div class="event-funding well well-small">
 						<h3> <%= @event.edit_icon %> <%= @event.artist %></h3>
-						<h3>
-							<small>share</small>
+						<h3 class="hidden-desktop">
+							<small>please share!</small>
+							<div class="disabled-shares" data-toggle="popover" title="" data-content="Share" data-placement="bottom">
+								<i class="icon-facebook"></i>
+								<i class="icon-twitter"></i>
+								<i class="icon-share"></i>
+							</div>
+						</h3>
+						<h3 class="visible-desktop">
+							<small>please share!</small>
 							<div class="addthis_toolbox">
 								<div class="custom_images">
 									<a class="addthis_button_facebook"><i class="icon-facebook"></i></a>
@@ -66,8 +74,9 @@
 								</div>
 							</div>
 						</h3>
+
 						<% if @event.on_sale? %>
-							<h4><%= @event.left_to_go %> left to sell <%= @event.sales %> tickets <i class="icon-question-sign" data-toggle="popover" title="" data-content="More about Crowdfunding"></i></h4>
+							<h4><%= @event.left_to_go %> left to sell <%= @event.sales %> tickets <i class="icon-question-sign" data-toggle="popover" title="" data-content="Go to 'Info' for more on how event funding works"></i></h4>
 							<div class="progress">
 							  <div class="bar" style="width: 100%;" data-funded="<%= @event.per_cent_funded %>"><%= @event.per_cent_funded %>% funded</div>
 							</div>

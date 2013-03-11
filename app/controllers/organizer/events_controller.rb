@@ -1,6 +1,7 @@
 class Organizer::EventsController < Organizer::BaseController
 has_scope :pending, type: :boolean
 has_scope :paid, type: :boolean
+has_scope :tickets_sent, type: :boolean
 has_scope :failed, type: :boolean
 has_scope :refunded, type: :boolean
 
