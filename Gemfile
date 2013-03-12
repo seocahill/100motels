@@ -16,6 +16,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'foreman'
   gem "mail_view", "~> 1.0.3"
   gem 'letter_opener_web'
   gem 'quiet_assets'
