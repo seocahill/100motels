@@ -1,26 +1,9 @@
 <div class="container">
-  <h1>Save your Account</h1>
+  <h3>Sign up</h3>
 
-  <%= form_for @member_profile do |f| %>
-    <% if @member_profile.errors.any? %>
-      <div class="error_messages">
-        <h2>Form is invalid</h2>
-        <ul>
-          <% @member_profile.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-
-    <div class="field">
-      <%= f.label :email %><br />
-      <%= f.text_field :email %>
-    </div>
-    <div class="field">
-      <%= f.label :password %><br />
-      <%= f.password_field :password %>
-    </div>
-    <div class="actions"><%= f.submit "Sign up" %></div>
+  <%= simple_form_for @member_profile do |f| %>
+    <%= f.input :email %>
+    <%= f.input :password %>
+    <%= f.button :submit, "Sign up" %>
   <% end %>
 </div>

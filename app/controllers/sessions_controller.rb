@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     auth = Authentication.new(params)
     # if user status is normal or admin
     if auth.authenticated?
-      if params[:remember_me]
+      if params[:signin][:remember_me]
         cookies.permanent[:auth_token] = auth.user.auth_token
       else
         cookies[:auth_token] = auth.user.auth_token
