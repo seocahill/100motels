@@ -1,7 +1,7 @@
 class GuestProfilesController < ApplicationController
   def create
     user = (current_user.present? && current_user) || User.create! { |u| u.profile = GuestProfile.create! }
-    cookies[:auth_token] = user.auth_token
+    cookies[:auth_token] = user.auth_token if cookies[:auth_token] == nil
     @event = create_starter_event(user)
     redirect_to event_path(@event.id), notice: "Welcome to your event, you can save this account at any time,
      click on 'save account' in the top menu"
