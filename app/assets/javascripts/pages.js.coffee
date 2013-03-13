@@ -3,4 +3,4 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $ ->
-  $('.landing-image').backstretch("https://fbcdn-sphotos-f-a.akamaihd.net/hphotos-ak-snc6/230767_156305431101915_6284001_n.jpg")
+  $('.landing-image').backstretch("https://s3-us-west-2.amazonaws.com/onehundredmotels/motels_landing_splash.jpg")
