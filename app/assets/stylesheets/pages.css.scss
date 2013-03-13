@@ -16,35 +16,9 @@
 
 // buttons styled to look like dropdown menu links
 
-  .fancy-hr
-  {
-    margin:20px 0 0 0;
-    padding:0;
-    border:0;
-    outline:0;
-
-    overflow:hidden;
-
-    height:20px;
-  }
-
-  .fancy-hr:after
-  {
-    content:"";
-
-    margin:0 auto;
-
-    position:relative;
-    top:-35px;
-    display:block;
-    width:95%;
-    height:16px;
-
-    box-shadow:0px 25px 10px #888;
-
-    -webkit-border-radius:50%;
-    -moz-border-radius:50%;
-    border-radius:50%;
+  .fancy-hr  {
+    margin-top: 50px;
+    border-bottom: 1px solid rgb(214, 214, 214);
   }
 
   .search {
@@ -139,10 +113,24 @@
 .try-it-now {
   display: block;
   // width: 100%;
-  padding: 20px;
+  padding: 50px;
   // margin-bottom: 20px;
   background-image: url(image_path('weave.png'));
   // color: #E9E6E6;
 }
 
+#side-menu  {
+  padding: 20px;
+  background: $white;
+  box-shadow: 0 8px 50px rgba(0, 0, 0, 0.2);
+}
 
+#info-page-content  {
+  padding: 40px;
+  background: $white;
+  box-shadow: 0 8px 50px rgba(0, 0, 0, 0.2);
+}
+
+#founder-speaks {
+  margin-bottom: 20px;
+}
