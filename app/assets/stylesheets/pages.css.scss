@@ -48,7 +48,6 @@
   }
 
   .search {
-    // max-width: 100px;
     input[type="text"] {
       height: 45px;
     }
@@ -116,6 +115,9 @@
       line-height: 90%;
     }
   }
+  #try-it-button {
+    margin-bottom: 20px;
+  }
 }
 
 .landing-info {
@@ -143,6 +145,4 @@
   // color: #E9E6E6;
 }
 
-#try-it-button {
-  margin-bottom: 10px;
-}
+
