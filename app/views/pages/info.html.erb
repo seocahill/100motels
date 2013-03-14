@@ -18,16 +18,16 @@
           <li class="nav-header">Documentation</li>
           <li><a href="#getting-started">Beta Restrictions</a></li>
           <li><a href="#getting-started">Getting Started</a></li>
-          <li><a href="#how">How it Works</a></li>
+          <li><a href="#how">Accepting Ticket Orders</a></li>
         </ul>
     </div> <!-- /span3 -->
     <div class="span9" id="info-page-content">
-      <h3>
-        <i class="icon-beaker"></i>Beta Restrictions <br>
-        <small>Anyone can try out 100 Motels and have a look around but if you intend to use it during beta for your tour, read this first... </small>
-      </h3>
       <div class="row-fluid">
         <div class="span12">
+          <h3>
+            <i class="icon-beaker"></i>Beta Restrictions <br>
+            <small>Anyone can try out 100 Motels and have a look around but if you intend to use it during beta for your tour, read this first... </small>
+          </h3>
           <p><a href="https://stripe.com" class="stripe-connect light-blue dark"><span>stripe payments</span></a></p>
           <p>
             <strong>100 Motels is a 'Stripe App'</strong> meaning there is only a full service in the countries Stripe service, currently the US and Canada.
@@ -43,9 +43,9 @@
             <li><i class=" icon-exclamation-sign"></i> While you can create as many events as you want, payments can only be active for one of your events at a time.</li>
           </ul>
           <p>These are temporary constraints while I continue to develop and test the app.</p>
-          <hr class="fancy-hr">
         </div>
       </div>
+      <hr class="fancy-hr">
       <div class="row-fluid">
         <div class="span12">
           <h3>
@@ -98,7 +98,58 @@
           <p>Can be set via the edit form or <a href=""><i class="icon-cog"></i>event settings</a>. Take a picture, upload an image or choose from a third party service of your choosing.</p>
           <span class="label">Event Visibility</span>
           <br>
-          <p>By default your event is private <i class="icon-eye-close"> </i> meaning only the signed-in owner or other authorized users can view it. You can change the event to published <i class="icon-eye-open"> </i> in <a href=""><i class="icon-cog"></i>event settings</a>, the edit form or your Admin area.</p>
+          <p>By default your event is private <i class="icon-eye-close"> </i> meaning only the signed-in owner or other authorized users can view it. You can change the event to published <i class="icon-eye-open"> </i> in <a href=""><i class="icon-cog"></i>event settings</a>, the edit form or in the Event Admin area.</p>
+          <p> Please note that you cannot publish your event unless you have saved your user account and confirmed your email address.</p>
+        </div>
+      </div>
+      <hr class="fancy-hr">
+      <div class="row-fluid">
+        <div class="span12">
+          <h3>
+            <i class=""></i> Accepting Ticket Orders <br>
+            <small>You can start accepting orders as soon as your event is created. </small>
+          </h3>
+            <p> Orders are processed <strong>free of charge</strong> and may be canceled at any time. An order gives you the right to charge a customer's card at any future date for the amount specified. </p>
+
+          <h4>The order form</h4>
+          <p>Visa and Mastercard credit and debit cards from all countries are supported, as are other US-only credit-cards. For a full list consult <a href="https://stripe.com/us/help/faq#card-types">Stripe's faq</a>.</p>
+          <p>When an order is created both you and your customer receive an email receipt which includes a unique order reference.</p>
+          <h4>Managing orders</h4>
+          <p>To view and manage your orders, go to your Event Admin area which is accessible via the <a href=""><i class="icon-cog"></i>event settings</a> menu. </p>
+          <p><small><i class="icon-camera-retro"></i><em> event admin</em></small></p>
+          <p><img src="https://s3-us-west-2.amazonaws.com/onehundredmotels/Motels+dash+screengrab.png" alt=""></p><br>
+          <p> Your event dashboard gives you up-to-date stats on how your event is doing, order filtering and search, a listing of authorized users and other useful options.</p>
+          <span class="label"><i class="icon-dashboard"></i> dashboard</span>
+          <p>A quick overview of useful information such as the current funding situation and event visibility.</p>
+          <span class="label"><i class="icon-user"></i> authorized users</span>
+          <p>
+            A listing of people with various degrees of access to administrator functions:
+            <ul>
+              <li>Organizer - read and write access, receives payments.</li>
+              <li>Event Admin - read and write access.</li>
+              <li>Editor - can edit but with restrictions (cannot access payments)</li>
+              <li>Reader - read only access to admin area.</li>
+            </ul>
+          </p>
+          <span class="label"><i class="icon-search"></i>order search</span>
+          <p>Search by event details (e.g. artist or venue), order name, email, order reference or ticket number.</p>
+          <span class="label"><i class="icon-list"></i> event options</span>
+          <ul>
+            <li>View, publish, edit your event or create a new one.</li>
+            <li>Create pdfs for orders or tickets.</li>
+            <li>The check in view can be used to manage admissions to the event.</li>
+          </ul>
+          <span class="label"><i class="icon-filter"></i> filter orders</span>
+          <p>By default the window view lists all orders, you can filter the list by order state using the provided controls. This becomes more useful when you're working with payments. </p>
+        </div>
+      </div>
+      <hr class="fancy-hr">
+      <div class="row-fluid">
+        <div class="span12">
+          <h3>
+            <i class=""></i> Payments <br>
+            <small>If you need help or have a question at any time, <%= link_to "don't hesitate to ask" %>. </small>
+          </h3><br>
         </div>
       </div>
     </div><!--/span-->
