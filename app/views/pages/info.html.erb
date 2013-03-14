@@ -7,7 +7,7 @@
       <blockquote>
         <h2>
           Hi, I'm Seosamh. <span class="muted">I developed 100 Motels. </span>
-          <small><cite>100 Motels has just launched, more extensive documentation is coming - thanks for your patience!</cite></small>
+          <small><cite>100 Motels has just launched, more extensive documentation on the way!</cite></small>
         </h2>
       </blockquote>
     </div>
@@ -23,8 +23,8 @@
     </div> <!-- /span3 -->
     <div class="span9" id="info-page-content">
       <h3>
-        <i class="icon-beaker"></i> Restrictions <br>
-        <small>Most of 100 Motels is free to try out for everyone but if you intend to use it during beta for your tour, read this first... </small>
+        <i class="icon-beaker"></i>Beta Restrictions <br>
+        <small>Anyone can try out 100 Motels and have a look around but if you intend to use it during beta for your tour, read this first... </small>
       </h3>
       <div class="row-fluid">
         <div class="span12">
@@ -32,7 +32,7 @@
           <p>
             <strong>100 Motels is a 'Stripe App'</strong> meaning there is only a full service in the countries Stripe service, currently the US and Canada.
           </p>
-          <p> You can run events and charge credit cards in any country but in order to receive money you need a US or CAD bank account.</p>
+          <p> You can run events and charge credit cards in any country but in order to receive money you need a USD or CAD bank account.</p>
           <p>
             The good news is Stripe recently started a UK beta with Europe to follow.
           </p>
@@ -42,7 +42,7 @@
             <li><i class=" icon-exclamation-sign"></i> Ticket Price must be in the $10 to $20 dollar range.</li>
             <li><i class=" icon-exclamation-sign"></i> While you can create as many events as you want, payments can only be active for one of your events at a time.</li>
           </ul>
-          <p>These are temporary measures in the main, again, thanks for your patience.</p>
+          <p>These are temporary constraints while I continue to develop and test the app.</p>
           <hr class="fancy-hr">
         </div>
       </div>
@@ -50,8 +50,55 @@
         <div class="span12">
           <h3>
             <i class=""></i> Getting Started with 100 Motels <br>
-            <small>Most of 100 Motels is free to try out for everyone but if you intend to use it during beta for your tour, read this first... </small>
-          </h3>
+            <small>If you need help or have a question at any time, <%= link_to "don't hesitate to ask" %>. </small>
+          </h3><br>
+          <h4>Try it Free</h4>
+          <p> If you click on <a href class="btn btn-small btn-success">Try it free</a> an event and an account are created for you which can be optionally saved. If you browse away from 100 Motels they are automatically discarded.</p><br>
+          <h4>Your Event</h4>
+          <p> Your first event is automatically populated with placeholder information. You can easily change it by editing your event on the page or in a form. </p>
+          <p>
+            Clicking on or near an <i class="icon-edit"></i> edit icon activates the edit input which you'll see surrounded by a blue highlight. To save your changes just click anywhere outside the input, the page should update automatically. To cancel your edit press the escape button.
+          </p>
+          <p>Alternatively you can edit all fields in a form. You can access the edit form via the <a href=""><i class="icon-cog"></i>event settings</a> menu at the top right of the page.</p><br>
+          <h4><i class="icon-edit"> </i> Editable fields</h4>
+          <span class="label">On the Page</span>
+          <dl class="">
+            <dt>Username presents</dt>
+            <dd>This can also be set from your user profile - a family or business-name to describe yourself.</dd>
+            <dt>A Title... </dt>
+            <dd> The main headline for your show, max 30 words.</dd>
+            <dt>Date</dt>
+            <dd>The date of your show. Note you can't change the date of an event if it has orders. To change the date of an active event, either cancel the orders or choose the <strong>reschedule option</strong>, available in your Event Admin area.</dd>
+            <dt>Who's performing...</dt>
+            <dd>You can list the artists here, max 70 words.</dd>
+            <dt>Ticket price</dt>
+            <dd>Must be between $10 and $20 dollars.</dd>
+            <dt>Read this...</dt>
+            <dd>A text area for biographical or other information regarding your event, html is escaped.</dd>
+            <dt>Venue</dt>
+            <dd>The name of the venue, e.g. "The Mounto Club</dd>
+            <dt>Address</dt>
+            <dd>The exact street address, e.g "Mount St Lwr, Dublin 2.</dd>
+            <dt>Doors</dt>
+            <dd>Input the time in 24 hour format.</dd>
+            <dt>Video field</dt>
+            <dd>Input a link (not the embed code) to a youtube or vimeo video. </dd>
+            <dt>Music</dt>
+            <dd>Input the link (not the embed code) to a soundcloud track or playlist.</dd>
+          </dl>
+          <span class="label">Edit form</span>
+          <dl>
+            <dt>Capacity</dt>
+            <dd>Sets the upper limit on how many tickets can be issued (you can take as many orders as you like)</dd>
+            <dt>Target</dt>
+            <dd>Sets the progress-bar indicator on the information section of your event.</dd>
+          </dl>
+          <span class="label">Background Image</span>
+          <br>
+          <p>Can be set via the edit form or <a href=""><i class="icon-cog"></i>event settings</a>. Take a picture, upload an image or choose from a third party service of your choosing.</p>
+          <span class="label">Event Visibility</span>
+          <br>
+          <p>By default your event is private <i class="icon-eye-close"> </i> meaning only the signed-in owner or other authorized users can view it. You can change the event to published <i class="icon-eye-open"> </i> in <a href=""><i class="icon-cog"></i>event settings</a>, the edit form or your Admin area.</p>
         </div>
       </div>
     </div><!--/span-->

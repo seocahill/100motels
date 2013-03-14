@@ -1,10 +1,8 @@
 <% content_for :head do %>
-  <%#= tag :meta, property: "fb:app_id", content: ENV["FACEBOOK_APP_ID"] %>
   <%= tag :meta, property: "og:site_name", content: "100 Motels" %>
-  <%#= tag :meta, property: "og:type", content: "cinematron:movie" %>
   <%= tag :meta, property: "og:title", content: @event.title %>
   <%= tag :meta, property: "og:url", content: event_url(@event) %>
-  <%#= tag :meta, property: "og:image", content: request.protocol + request.host_with_port + image_path(@movie.image) %>
+  <%= tag :meta, property: "og:image", content: @event.image %>
 <% end %>
 <% content_tag :header, title(@event) %>
 <% if @event.visible?|| @event.event_owner? %>
