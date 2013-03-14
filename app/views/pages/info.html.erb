@@ -16,9 +16,10 @@
     <div class="span3" id="side-menu">
         <ul class="nav nav-list" >
           <li class="nav-header">Documentation</li>
-          <li><a href="#getting-started">Beta Restrictions</a></li>
+          <li><a href="#beta">Beta Restrictions</a></li>
           <li><a href="#getting-started">Getting Started</a></li>
-          <li><a href="#how">Accepting Ticket Orders</a></li>
+          <li><a href="#orders">Accepting Orders</a></li>
+          <li><a href="#payments">Payments</a></li>
         </ul>
     </div> <!-- /span3 -->
     <div class="span9" id="info-page-content">
@@ -106,11 +107,10 @@
       <div class="row-fluid">
         <div class="span12">
           <h3>
-            <i class=""></i> Accepting Ticket Orders <br>
+            <i class=""></i> Accepting Orders <br>
             <small>You can start accepting orders as soon as your event is created. </small>
           </h3>
-            <p> Orders are processed <strong>free of charge</strong> and may be canceled at any time. An order gives you the right to charge a customer's card at any future date for the amount specified. </p>
-
+          <p> Orders are processed <strong>free of charge</strong> and may be canceled at any time. An order gives you the right to charge a customer's card at any future date for the amount specified. </p>
           <h4>The order form</h4>
           <p>Visa and Mastercard credit and debit cards from all countries are supported, as are other US-only credit-cards. For a full list consult <a href="https://stripe.com/us/help/faq#card-types">Stripe's faq</a>.</p>
           <p>When an order is created both you and your customer receive an email receipt which includes a unique order reference.</p>
@@ -148,8 +148,63 @@
         <div class="span12">
           <h3>
             <i class=""></i> Payments <br>
-            <small>If you need help or have a question at any time, <%= link_to "don't hesitate to ask" %>. </small>
+            <small>To accept payments for events on 100 Motels you must register with <a href="https://stripe.com">Stripe</a>. </small>
           </h3><br>
+          <h4>Stripe Connect</h4>
+          <p>The first step to setting up payments for your event is connecting your 100 Motels account to a Stripe account. </p>
+          <p>In the <i class="icon-user"></i> user menu click on 'your account' and then <a href="/auth/stripe_connect" class="stripe-connect dark"><span>Connect with Stripe</span></a> </p>
+          <p>The browser will open a Stripe sign-up or sign-in form. Once you've successfully connected you'll notice your user profile has changed to show <a href="#" class="stripe-connect light-blue dark"><span>Connected to Stripe <i class="icon-ok"></i></span></a></p><br>
+          <h4>Activate Payments</h4>
+          <div class="alert">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong><i class="icon-asterisk"></i> Contact support to activate payments!</strong> This is only a temporary control measure. Again, thanks for your patience.
+          </div>
+          <p><small><i class="icon-camera-retro"></i><em> charge options</em></small></p>
+          <p><img src="https://s3-us-west-2.amazonaws.com/onehundredmotels/Motels+Organizer+Admin.png" alt=""></p><br>
+          <h4>Charge Options</h4>
+          <p>When you next access your Event Admin, you'll notice a new options pane has appeared- 'Charge Options' <i class="icon-asterisk"></i> - this means you have successfully activated payments for your event.</p>
+          <dl>
+            <dt>Unlock</dt>
+            <dd>To ensure all the event stakeholders (e.g. Artists, Organizers) are on the same page each authorized admin user has a payment lock which is on by default. Payments will only be processed if <strong>all the locks are off</strong> with <span class="label label-success"><i class="icon-unlock"></i> Payments unlocked!</span> showing on the dashboard. </dd><br>
+            <dd>
+              <p><small><i class="icon-camera-retro"></i><em> the user list shows a locked or unlocked icon for each admin.</em></small></p>
+              <p><img src="https://s3-us-west-2.amazonaws.com/onehundredmotels/userlocked.png" alt=""></p><br>
+            </dd>
+            <dt><em>Please note all the following operations are processed in the background, you will be notified by email upon completion.</em></dt><br>
+            <dt>Charge All</dt>
+            <dd>By clicking charge all you will attempt to process all outstanding orders (marked as 'pending'), as well as any previously failed orders ('failed'). Customers receive an email with their ticket and details of the charge. </dd>
+            <dt>Charge Selected</dt>
+            <dd>As above but only for a selection. Note if you accidentally select 'paid' or 'refunded' orders, they <strong>won't be charged twice</strong> but will be silently ignored.</dd>
+            <dt>Refund Selected</dt>
+            <dd>Refund selected 'paid' items only. Note that tickets associated with the refunded orders will still be valid, you need to cancel the order if you want to invalidate the tickets. Customers are notified by email.</dd>
+            <dt>Cancel Selected</dt>
+            <dd>Refunds payments if applicable and then cancels the order, invalidating the tickets also. Customers are notified by email.</dd>
+            <dt>Cancel Event</dt>
+            <dd>Cancels all orders, refunds all payments, invalidates all tickets. Customers are notified by email.</dd>
+          </dl><br>
+          <h4>Failed Payments</h4>
+          <p>Although an order gives you the right to charge a customers card sometime in the future, it doesn't guarantee funds will be available at that time.</p>
+          <p>Therefore in the event that a customer doesn't have sufficient funds to pay for their order, the charge will be marked as failed. When a charge fails both the customer and event organizer receive email notifications.</p>
+          <p>Another reason for failure is credit card expiry. If a customer's card has expired they will be notified by email with a link to update their card. Once the card has been updated the charge will be processed and tickets issued.</p><br>
+          <h4>Receiving Money</h4>
+          <p> The event organizer is paid into his or her account seven days after each successful charge. This is in accordance with Stripe's rules on paying out.</p>
+          <p> 100 Motels never actually holds or processes the proceeds from ticket sales. For the convenience and security of our customers the payments processing is handled entirely by Stripe. </p><br>
+          <h4>Fees</h4>
+          <p>Stripes processing fee is 2.9% + 30c per transaction.</p>
+          <p>100 Motel's fee is 1% per transaction while in beta.</p>
+          <p>We gross up the order total to account for fees, meaning the event organizer receives the full value of the ticket price into his / her bank account. </p><br>
+          <h4>Refunds</h4>
+          <p>Your customer will be credited with the full price of their refunded order, i.e. the ticket price + fees.</p>
+          <p>There is no extra charge to the organizer for processing refunds. The cost of refunded fees is born by Stripe and 100 Motels.</p>
+        </div>
+      </div>
+      <hr class="fancy-hr">
+      <div class="row-fluid">
+        <div class="span12">
+          <h3>
+            <i class=""></i> Tickets and Admissions <br>
+            <small> </small>
+          </h3>
         </div>
       </div>
     </div><!--/span-->
