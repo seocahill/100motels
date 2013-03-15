@@ -3,12 +3,12 @@
     <div class="span12">
       <div class="btn-group">
         <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-          <%= @event.title %> | <%= @event.date.strftime('%d %b') %>
+          <%= "#{truncate(@event.title, length: 15)} | #{truncate(@event.venue, length: 15)} | #{@event.date.strftime('%d %b')}" %>
           <span class="caret"></span>
         </a>
         <ul class="dropdown-menu">
           <% @events.each do |e| %>
-          <li><%= link_to "#{e.title} | #{e.date.strftime('%d %b')}", organizer_event_tickets_path(e) %></li>
+          <li><%= link_to "#{e.title} | #{e.venue} | #{e.date.strftime('%d %b')}", organizer_event_tickets_path(e) %></li>
           <% end %>
           <li class="divider"></li>
           <li><%= link_to "Back to Event Admin", organizer_event_path(@event) %></li>
@@ -19,13 +19,13 @@
   <hr>
   <div class="row-fluid">
     <div class="span12">
-      <h5><%= @tickets.where('admitted is not null').count %> of <%= @tickets.count %> Admitted </h5>
+      <h5><span class="badge large-badge badge-info"><%= @tickets.where('admitted is not null').count %> of <%= @tickets.count %> Admitted </span></h5>
     </div>
-  </div>
+  </div><br>
   <div class="row-fluid">
     <div class="span12">
       <%= form_tag organizer_event_tickets_path, method: :get, class: "form-search", autocomplete: :off do %>
-          <%= number_field_tag :query, params[:query], class: "input-medium search-query", placeholder: "Enter Ticket Number" %>
+          <%= number_field_tag :query, params[:query], class: "input-medium", placeholder: "Enter Ticket Number" %>
           <button type="submit" class="btn">Check</button>
       <% end %>
     </div>
