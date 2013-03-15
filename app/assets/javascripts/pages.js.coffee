@@ -7,6 +7,6 @@ $ ->
   $('.landing-image').backstretch("https://s3-us-west-2.amazonaws.com/onehundredmotels/motels_landing_splash.jpg")
 
 # Affix
-$ ->
-	$('.side-menu').affix
-
+# $ ->
+# 	$('#side-menu').affix
+#     offset: $('#side-menu').position()

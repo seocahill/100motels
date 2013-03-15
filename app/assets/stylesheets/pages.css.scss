@@ -120,9 +120,21 @@
 }
 
 #side-menu  {
-  padding: 20px;
+  padding: 20px 50px;
   background: $white;
   box-shadow: 0 8px 50px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+  @include media-below($medium-max){
+    padding: 20px, 5px;
+  }
+}
+
+.affix {
+  @include media-below($medium-min){
+    position: static;
+    width: auto;
+    top: 0;
+  }
 }
 
 #info-page-content  {
