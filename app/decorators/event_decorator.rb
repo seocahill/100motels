@@ -154,7 +154,15 @@ class EventDecorator < ApplicationDecorator
 
   def event_owner?
     if current_user.present?
-      current_user.id == model.users.first.id
+      model.event_users.where(user_id: current_user.id).where("event_users.state > 2").present?
+    else
+      false
+    end
+  end
+
+  def event_admin?
+    if current_user.present?
+      model.event_users.where(user_id: current_user.id).where("event_users.state > 2").present?
     else
       false
     end

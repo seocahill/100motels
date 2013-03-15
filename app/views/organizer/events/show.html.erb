@@ -48,10 +48,10 @@
             <div class="accordion-inner">
               <ul class="nav nav-tabs nav-stacked">
               <% @event.event_users.each do |eu| %>
-                <li><%= truncate(eu.user.profile.email, length: 15) %> | <span class="label"><%= eu.state %> <%= eu.payment_lock ? raw('<i class="icon-lock"></i>') : raw('<i class="icon-unlock"></i>') %></span></li>
-                <li><hr></li>
-                <li><span><%= link_to "Add or edit Authorized Users", organizer_event_event_users_path(@event) %> <i class="icon-external-link"></i></span></li>
+                <li><%= truncate(eu.user.profile.email, length: 14) %>  <span class="label pull-right"><%= eu.state %> <%= eu.payment_lock ? raw('<i class="icon-lock"></i>') : raw('<i class="icon-unlock"></i>') %></span></li>
               <% end %>
+                <li><hr></li>
+                <li><span><%= link_to raw('Add or edit Authorized Users <i class="icon-external-link"></i>'), organizer_event_event_users_path(@event), target: '_blank' if @decorated_event.event_admin? %> </span></li>
               </ul>
             </div>
           </div>

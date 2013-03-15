@@ -20,17 +20,4 @@ class UsersController < ApplicationController
       end
     end
   end
-
-  # def update
-  #   @user.update_attributes(params[:user])
-  #   respond_to do |format|
-  #     if @user.update_attributes(params[:user])
-  #       format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
-  #       format.json { respond_with_bip(@user) }
-  #     else
-  #       format.html { render :action => "edit" }
-  #       format.json { respond_with_bip(@user) }
-  #     end
-  #   end
-  # end
 end
