@@ -1,5 +1,5 @@
-<p id="notice"><%= notice %></p>
-
-
-<%= link_to 'Edit', edit_event_user_path(@event_user) %> |
-<%= link_to 'Back', event_users_path %>
+<tr>
+  <td><%= @event_user.user.profile.email %></td>
+  <td><i class="icon-edit"> </i><%= best_in_place @event_user, :state, :type => :select, :collection => [[:reader, 'read'], [:editor, 'edit'], [:event_admin, 'admin'], [:organizer, 'organizer']], path: organizer_event_event_user_path(@event, @event_user) %></td>
+  <td><i class="icon-remove"> </i>remove</td>
+</tr>
