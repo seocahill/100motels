@@ -1,0 +1,5 @@
+<h4>100 Motels <small>tour the world without a record label</small></h4><br>
+<h5>Hi <%= @member_profile.email %></h5>
+<p><%= @inviter.profile.name || @inviter.profile.email  %> has invited you to become an administrator for <%= "#{@event.title} in #{@event.venue}, a 100 Motels event that they are organizing" %></p>
+<p>You can check out the event here: <%= event_url(@event) %></p>
+<

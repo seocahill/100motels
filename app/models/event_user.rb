@@ -6,11 +6,11 @@ class EventUser < ActiveRecord::Base
   enum_accessor :state, [ :reader, :editor, :event_admin, :organizer ]
   validate :forbid_two_organizers, on: :save
   validate :forbid_existing_user, on: :create
+  validates :email, presence: :true
 
   def forbid_two_organizers
-    event = self.event
-    if event.event_users.any? {|eu| eu.state_organizer?}
-      errors.add(:date, "can only be one organizer!") if self.state_organizer?
+    if self.event.event_users.any? {|eu| eu.state_organizer?}
+      errors.add(:state, "can only be one organizer!") if self.state_changed?
     end
   end
 

@@ -48,9 +48,11 @@ class EventUsersController < ApplicationController
     profile = MemberProfile.find_by_email(params[:event_user][:email])
     if profile.present?
       @event_user = EventUser.new(params[:event_user].merge(user_id: profile.user.id))
+      UserMailer.delay.event_admin_notification(profile, current_user.id, @event.id)
     else
       password = (('a'..'z').to_a+(0..9).to_a+('A'..'Z').to_a).shuffle[0,8].join
       new_user = User.create! { |u| u.profile = MemberProfile.create!(email: params[:event_user][:email], password: password) }
+      new_user.profile.send_admin_invitation(current_user.id, @event.id)
       @event_user = EventUser.new(params[:event_user].merge(user_id: new_user.id))
     end
     respond_to do |format|
@@ -69,7 +71,6 @@ class EventUsersController < ApplicationController
   def update
     @event = Event.find(params[:event_id])
     @event_user = EventUser.find(params[:id])
-
     respond_to do |format|
       if @event_user.update_attributes(params[:event_user])
         format.html { redirect_to @event_user, notice: 'Event user was successfully updated.' }

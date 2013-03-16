@@ -18,7 +18,9 @@ class PasswordResetsController < ApplicationController
     if @member_profile.password_reset_sent_at < 2.hours.ago
       redirect_to new_password_reset_path, :alert => "Password reset has expired."
     elsif @member_profile.update_attributes(params[:member_profile])
-
+      @member_profile.user.state = :normal if @member_profile.user.state_unconfirmed?
+      @member_profile.user.save!
+      cookies[:auth_token] = @member_profile.user.auth_token
       redirect_to events_path, :notice => "Password has been reset."
     else
       render :edit
