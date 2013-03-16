@@ -1,4 +1,4 @@
-class EventUsersController < ApplicationController
+class Organizer::EventUsersController < ApplicationController
 
   def index
     @event = Event.find(params[:event_id])
