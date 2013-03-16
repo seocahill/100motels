@@ -10,4 +10,18 @@ class UserMailer < ActionMailer::Base
     @member_profile = member
     mail :to => member.email, :subject => "Please confirm your email address"
   end
+
+  def event_admin_invite(member, inviter_id, event_id)
+    @member_profile = member
+    @event = Event.find(event_id)
+    @inviter = User.find(inviter_id)
+    mail :to => member.email, :subject => "100 Motels - You have been added as an Event Administrator"
+  end
+
+  def event_admin_notification(profile, inviter_id, event_id)
+    @member_profile = profile
+    @event = Event.find(event_id)
+    @inviter = User.find(inviter_id)
+    mail :to => profile.email, :subject => "100 Motels - You have been added as an Event Administrator"
+  end
 end

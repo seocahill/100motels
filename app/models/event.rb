@@ -5,9 +5,12 @@ class Event < ActiveRecord::Base
   enum_accessor :state, [ :guest, :member, :rescheduled, :archived, :cancelled, :suspended ]
   validates :artist, length: {maximum: 75}
   validates :title, length: {maximum: 30}
-  # vadidates :ticket_price, numericality: :true
+  validates :capacity, numericality: :true
+  validates :target, numericality: { less_than_or_equal_to: :capacity }
   validates :title, :artist, :ticket_price, :venue, :date, :capacity, :doors, :target, presence: :true
   validates :ticket_price, numericality: :true
+  validates :capacity, inclusion: { in: 1..200, message: "Max capacity is 200 during beta" }
+  validates :ticket_price, inclusion: { in: 5.0..20.0, message: "Price must be in the range $10-$20 during beta" }
   validate :forbid_date_change, on: :update
   validate :forbid_publish, on: :update
 
@@ -50,7 +53,7 @@ class Event < ActiveRecord::Base
 
   def forbid_publish
     if self.users.first.state_unconfirmed?
-      errors.add(:visible, "Before you can publish an event you need to sign up and confirm you account") if self.visible_changed?
+      errors.add(:visible, "Before you can publish an event you need to sign up and confirm your account") if self.visible_changed?
     end
   end
 

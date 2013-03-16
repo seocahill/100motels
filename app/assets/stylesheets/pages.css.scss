@@ -5,54 +5,28 @@
 // everything in here is scoped to the pages resource only
 #pages_controller {
 
-// buttons styled to look like dropdown menu links
+  .well {
+    background-image: url(image_path('weave.png'));
+    // color: #E9E6E6;
+    background-color: none;
+    box-shadow: none;
+    border: none;
 
-  .fancy-hr
-  {
-    margin:20px 0 0 0;
-    padding:0;
-    border:0;
-    outline:0;
-
-    overflow:hidden;
-
-    height:20px;
   }
 
-  .fancy-hr:after
-  {
-    content:"";
+// buttons styled to look like dropdown menu links
 
-    margin:0 auto;
-
-    position:relative;
-    top:-35px;
-    display:block;
-    width:95%;
-    height:16px;
-
-    box-shadow:0px 25px 10px #888;
-
-    -webkit-border-radius:50%;
-    -moz-border-radius:50%;
-    border-radius:50%;
+  .fancy-hr  {
+    margin-top: 40px;
+    border-bottom: 1px solid rgb(214, 214, 214);
   }
 
   .search {
-    max-width: 940px;
-    margin: 20px 0;
     input[type="text"] {
-      @include media-between($small-min, $small-max) {
-        min-width: 500px;
-      }
-      @include media-between($handheld-min, $handheld-max) {
-        min-width: 300px;
-      }
-      min-width: 200px;
-      height: 60px;
+      height: 45px;
     }
     button {
-       height: 60px;
+       height: 45px;
        margin: 0;
     }
   }
@@ -63,11 +37,17 @@
   margin: 20px auto;
 }
 
+.small-container {
+  max-width: 600px;
+  margin: 100px auto 0;
+}
+
 .big-logo {
+  padding: 5px;
   h2, a {
     // padding-top: 20px;
     font-family: 'Lobster', cursive;
-    color: $grayLight;
+    color: $white;
     font-weight: 400;
     margin-bottom: 20px;
   }
@@ -91,7 +71,7 @@
   font-family: 'Cabin', serif;
   color: $white;
   min-height: 400px;
-  span, article  {
+  .black-back  {
     letter-spacing: -1px;
     background: rgb(0, 0, 0); /* fallback color */
     background: rgba(0, 0, 0, 0.7);
@@ -109,65 +89,60 @@
       line-height: 90%;
     }
   }
-}
-
-// paper folds effect not really working, remove class to remove
-.paper-folds
-{
-  position: relative;
-  width: 500px;
-  padding: 50px;
-  margin: 0 auto;
-  background-color: #fff;
-  -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
-  -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
-}
-
-.paper-folds:before, .paper-folds:after
-{
-  position: absolute;
-  width: 40%;
-  height: 10px;
-  content: ' ';
-  left: 12px;
-  bottom: 12px;
-  background: transparent;
-  -webkit-transform: skew(-5deg) rotate(-5deg);
-  -moz-transform: skew(-5deg) rotate(-5deg);
-  -ms-transform: skew(-5deg) rotate(-5deg);
-  -o-transform: skew(-5deg) rotate(-5deg);
-  transform: skew(-5deg) rotate(-5deg);
-  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-  z-index: -1;
-}
-.paper-folds:after
-{
-  left: auto;
-  right: 12px;
-  -webkit-transform: skew(5deg) rotate(5deg);
-  -moz-transform: skew(5deg) rotate(5deg);
-  -ms-transform: skew(5deg) rotate(5deg);
-  -o-transform: skew(5deg) rotate(5deg);
-  transform: skew(5deg) rotate(5deg);
+  #try-it-button {
+    margin-bottom: 20px;
+  }
 }
 
 .landing-info {
-   max-width: 940px;
-  padding-bottom: 10px;
+  padding: 20px;
   p, h3 {
     @include media-below($handheld-max){
     font-size: 110%;
     line-height: 110%;
     }
   }
+  background-image: url(image_path('weave.png'));
 }
 
+.landing-image {
+  // width: 100%;
+  padding: 10px;
+}
 
+.try-it-now {
+  display: block;
+  // width: 100%;
+  padding: 50px;
+  // margin-bottom: 20px;
+  background-image: url(image_path('weave.png'));
+  // color: #E9E6E6;
+}
 
+#side-menu  {
+  padding: 20px;
+  @include media-above($ipad-landscape){
+    padding: 20px 50px;
+  }
+  background: $white;
+  box-shadow: 0 8px 50px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+}
 
+.affix {
+  @include media-below($medium-max){
+    position: static;
+    width: auto;
+    top: 0;
+  }
+}
 
+#info-page-content  {
+  padding: 40px;
+  background: $white;
+  box-shadow: 0 8px 50px rgba(0, 0, 0, 0.2);
+}
 
-
+#founder-speaks {
+  margin-bottom: 20px;
+}

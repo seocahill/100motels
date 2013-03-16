@@ -27,6 +27,13 @@ class MemberProfile < ActiveRecord::Base
     UserMailer.delay.password_reset(self)
   end
 
+  def send_admin_invitation(inviter_id, event_id)
+    generate_token(:password_reset_token)
+    self.password_reset_sent_at = Time.zone.now
+    save!
+    UserMailer.delay.event_admin_invite(self, inviter_id, event_id)
+  end
+
   def customer_id?
     false
   end
@@ -37,5 +44,4 @@ class MemberProfile < ActiveRecord::Base
     save!
     UserMailer.delay.email_confirmation(self)
   end
-
 end

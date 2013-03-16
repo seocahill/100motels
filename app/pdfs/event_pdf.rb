@@ -27,9 +27,9 @@ class EventPdf < Prawn::Document
   end
 
   def line_item_rows
-    [["Name", "Email", "Admit"]] +
+    [["Name", "Email", "Admit", "Status"]] +
     @orders.all.map do |item|
-      [item.name, item.email, item.quantity]
+      [item.name, item.email, item.quantity, item.stripe_event.to_s]
     end
   end
 

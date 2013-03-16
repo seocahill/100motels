@@ -1,11 +1,16 @@
+<% content_for :head do %>
+  <%= tag :meta, property: "og:site_name", content: "100 Motels" %>
+  <%= tag :meta, property: "og:title", content: @event.title %>
+  <%= tag :meta, property: "og:url", content: event_url(@event) %>
+  <%= tag :meta, property: "og:image", content: @event.image %>
+<% end %>
+<% content_tag :header, title(@event) %>
 <% if @event.visible?|| @event.event_owner? %>
-	<% @event.header %>
 	<div class="container" id="event-background">
 		<% if @event.event_owner? %>
 		<div class="admin-bar">
 			<ul class="inline pull-right">
-			  <li><i class="icon-credit-card"></i><span class="label label-important">Payments not activated</span></li>
-			  <li><i class="icon-eye-close"></i><span class="label label-warning">Event is private</span></li>
+			  <li><%= @event.private_or_public %></li>
 			  <li>
 			  	<div class="dropdown">
 		        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -25,35 +30,51 @@
 		</div>
 		<% end %>
 		<section id="event-information">
-			<!-- <hr> -->
 			<div class="row-fluid">
 				<div class="span12 event-header">
 					<h2>
-						<small><%= @organizer.name || "organizer's business name" %> presents </small><br>
-						<%= @event.edit_icon %> <%= @event.title %><br>
+						<small><%= @event.edit_icon %> <%= @organizer.user_name || "organizer's business name" %> presents </small><br>
+						<%= @event.edit_icon %> <%= @event.bip_title %><br>
 						<small>
-							<%= @event.edit_icon %> <%= @event.date %> | <a href="#tickets"><i class="icon-shopping-cart"></i></a> <a href="#location"><i class="icon-map-marker"></i></a>
-							<a href="#music"><i class="icon-headphones"></i></a> <a href="#about"><i class="icon-info-sign"></i></a><br>
+							<%= @event.edit_icon %> <%= @event.formatted_date %> |
+							<a href="#tickets"><i class="icon-shopping-cart"></i></a>
+							<a href="#location"><i class="icon-map-marker"></i></a>
+							<a href="#event-playlist"><i class="icon-headphones"></i></a>
+							<a href="#event-vimeo"><i class="icon-film"></i></a>
+							<a href="#about"><i class="icon-info-sign"></i></a>
+							<a href="#bio"><i class="icon-quote-left"></i></a><br>
 							<%= @event.location.city %>
 						</small>
-
 					</h2>
 				</div>
 			</div>
 			<hr>
 			<div class="row-fluid poster-information=" id="inlay">
 				<div class="span6 event-poster" data-url='<%= @event.image %>'>
-					<h1><i class="icon-info-sign muted" id="location"></i></h1>
-					<div class="event-funding">
-						<h3> <%= @event.edit_icon %> <%= @event.artist %></h3>
-						<h3>
-							<i class="icon-twitter-sign"></i>
-							<i class="icon-facebook-sign"></i>
-							<i class="icon-google-plus-sign"></i>
-							<i class="icon-link"></i>
+					<h1><i class="icon-info-sign muted" id="about"></i></h1>
+					<div class="event-funding well well-small">
+						<h3> <%= @event.edit_icon %> <%= @event.bip_artist %></h3>
+						<h3 class="hidden-desktop">
+							<small>share</small>
+							<div class="disabled-shares" data-toggle="popover" title="" data-content="Share" data-placement="bottom">
+								<i class="icon-facebook"></i>
+								<i class="icon-twitter"></i>
+								<i class="icon-share"></i>
+							</div>
 						</h3>
+						<h3 class="visible-desktop">
+							<small>please share!</small>
+							<div class="addthis_toolbox">
+								<div class="custom_images">
+									<a class="addthis_button_facebook"><i class="icon-facebook"></i></a>
+									<a class="addthis_button_twitter"><i class="icon-twitter"></i></a>
+									<a class="addthis_button_more"><i class="icon-share"></i></a>
+								</div>
+							</div>
+						</h3>
+
 						<% if @event.on_sale? %>
-							<h4><%= @event.left_to_go %> left to sell <%= @event.sales %> tickets! <i class="icon-question-sign" data-toggle="popover" title="" data-content="More about Crowdfunding"></i></h4>
+							<h4><%= @event.left_to_go %> left to sell <%= @event.sales %> tickets <i class="icon-question-sign" data-toggle="popover" title="" data-content="Go to the 'Info' page for more on how event funding works"></i></h4>
 							<div class="progress">
 							  <div class="bar" style="width: 100%;" data-funded="<%= @event.per_cent_funded %>"><%= @event.per_cent_funded %>% funded</div>
 							</div>
@@ -64,8 +85,8 @@
 				</div>
 				<hr>
 				<div class="span6 event-ticket-orders" data-price='<%= @event.ticket_price %>' id="tickets">
-					<h1><i class="icon-shopping-cart muted" id="location"></i></h1>
-					<div class="pagination-centered">
+					<h1><i class="icon-shopping-cart muted"></i></h1>
+					<div class="pagination-centered well well-small">
 						<% if @event.on_sale? %>
 							<h3><%= @event.edit_icon %> <%= @event.price %><small> each</small></h3>
 							<%= @event.ticket_form %>
@@ -84,7 +105,7 @@
 		<section id="event-media" class="event">
 			<div class="row-fluid">
 				<div class="span6">
-					<h1><i class="icon-quote-left muted" id="about"></i></h1>
+					<h1><i class="icon-quote-left muted" id="bio"></i></h1>
 					<div class="about about-event"><%= @event.edit_icon %> <%= @event.about_section %></div>
 				</div>
 				<div class="span6">
@@ -128,3 +149,19 @@
 <% else %>
 <h3>This Event has not been published.</h3>
 <% end %>
+
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-513ba15373992907">
+	var addthis_share = {
+     url_transforms : {
+          shorten: {
+               twitter: 'bitly'
+          }
+     },
+     shorteners : {
+          bitly : {}
+     }
+	}
+	var addthis_config = {
+     data_track_clickback: false
+	}
+</script>

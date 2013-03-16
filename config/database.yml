@@ -8,7 +8,7 @@ development:
   username: postgres
   password:
 
-test: &test
+test:
   adapter: postgresql
   encoding: unicode
   database: one_hundred_motels_test
@@ -16,21 +16,19 @@ test: &test
   username: postgres
   password:
 
-# staging:
-#   adapter: postgresql
-#   encoding: unicode
-#   database: one_hundred_motels_development
-#   pool: 5
-#   username: postgres
-#   password:
+staging:
+  adapter: postgresql
+  encoding: unicode
+  database: one_hundred_motels_development
+  pool: 5
+  username:
+  password:
 
-# production:
-#   adapter: postgresql
-#   encoding: unicode
-#   database: one_hundred_motels_production
-#   pool: 5
-#   username: <%= ENV['PG_ADMIN'] %>
-#   password: <%= ENV['PG_PASSWORD'] %>
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: one_hundred_motels_production
+  pool: 5
+  username:
+  password:
 
-cucumber:
-  <<: *test

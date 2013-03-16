@@ -9,80 +9,70 @@
           </a>
           <ul class="dropdown-menu">
             <% @events.each do |e| %>
-            <li><%= link_to "#{e.title} | #{e.location.city} | #{e.date.strftime('%d %b')}", organizer_event_path(e) %></li>
+            <li><%= link_to "#{truncate(e.title, length: 10)} | #{e.location.city} | #{e.date.strftime('%d %b')}", organizer_event_path(e) %></li>
             <% end %>
           </ul>
         </div>
       </li>
-      <li class="admin-bar"><span class='label'><%= "#{@event.title} | #{@event.location.city} | #{@event.date.strftime('%d %b')}" %></span></li>
-      <li><i class="icon-ok-circle"></i><span class="label label-success">Payments activated</span></li>
-      <li><i class="icon-eye-close"></i><span class="label label-warning">Event is private</span></li>
+      <li class="muted"><span class="well well-small"><%= "#{truncate(@event.title)} | #{@event.location.city} | #{@event.date.strftime('%d %b')}" %></span></li>
+
        <li class="pull-right"><%= render 'search' %></li>
+    </ul>
+  </div>
+</div>
+<div class="row-fluid">
+  <div class="span12">
+    <ul class="inline">
+      <li><h3><i class="icon-dashboard"></i></h3></li>
+      <li><span class="label label-info">Time left <i class="icon-time"></i><%= @event.date > DateTime.now + 2.hour ? distance_of_time_in_words(Time.now, @event.date, include_seconds = false) : "Time's up!"  %></span></li>
+      <li><span class="label label-info">Funding <i class="icon-money"></i> <%= number_to_currency(@event.orders.funding.sum(:total)) %></span></li>
+      <li><span class="label label-info">unsold tickets: <%= @event.capacity - @event.orders.funding.sum(:quantity) %></span></li>
+      <li><%= @decorated_event.payments_locked? %></li>
+      <li><%= @decorated_event.private_or_public %></li>
     </ul>
   </div>
 </div>
 <hr>
 <%= form_tag charge_or_refund_orders_path, method: :post  do %>
 <div class="row-fluid">
-  <aside class="span3">
+  <aside class="span3 well well-small">
     <div class="accordion" id="accordion2">
       <% unless current_user.guest? %>
         <div class="accordion-group">
           <div class="accordion-heading">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFive">
-              Authorized Users <i class="icon-plus itoggle"></i>
+              <i class="icon-user"></i> Authorized Users <i class="icon-plus itoggle"></i>
             </a>
           </div>
           <div id="collapseFive" class="accordion-body collapse">
             <div class="accordion-inner">
               <ul class="nav nav-tabs nav-stacked">
               <% @event.event_users.each do |eu| %>
-                <li><%= eu.user.profile.email %> | <span class="label"><%= eu.state %></span> <i class="icon-credit-card"></i></li>
-                <li><hr></li>
-                <li><span><%= link_to "Add or edit Authorized Users" %> <i class="icon-external-link"></i></span></li>
+                <li><%= truncate(eu.user.profile.email, length: 14) %>  <span class="label pull-right"><%= eu.state %> <%= eu.payment_lock ? raw('<i class="icon-lock"></i>') : raw('<i class="icon-unlock"></i>') %></span></li>
               <% end %>
-              <%= render 'authorized_users' %>
+                <li><hr></li>
+                <li><span><%= link_to raw('Add or edit Authorized Users <i class="icon-external-link"></i>'), organizer_event_event_users_path(@event), target: '_blank' if @decorated_event.event_admin? %> </span></li>
               </ul>
             </div>
           </div>
         </div>
       <% end %>
-      <div class="accordion-group">
-        <div class="accordion-heading">
-          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFour">
-            Event Stats <i class="icon-plus itoggle"></i>
-          </a>
-        </div>
-        <div id="collapseFour" class="accordion-body collapse">
-          <div class="accordion-inner">
-            <dl class="dl">
-              <dt>time left</dt>
-              <dd><%= @event.date > DateTime.now + 2.hour ? distance_of_time_in_words(Time.now, @event.date, include_seconds = false) : "Time's up!"  %></dd>
-              <dt>funding:</dt>
-              <dd><%= number_to_currency(@event.orders.funding.sum(:quantity) * @event.ticket_price) %></dd>
-              <dt>capacity:</dt>
-              <dd><%= @event.capacity %></dd>
-              <dt>tickets-left: </dt>
-              <dd><%= @event.capacity - @event.orders.funding.sum(:quantity) %></dd>
-            </dl>
-          </div>
-        </div>
-      </div>
 
-    <% unless @event.state_cancelled? || current_user.api_key.nil? %>
+    <% if current_user.event_users.where(event_id: @event.id).first.state_organizer?  %>
       <div class="accordion-group">
         <div class="accordion-heading">
           <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-            Charge Options <i class="icon-plus itoggle"></i>
+            <i class="icon-credit-card"></i> Charge Options <i class="icon-plus itoggle"></i>
           </a>
         </div>
         <div id="collapseOne" class="accordion-body collapse">
           <div class="accordion-inner">
             <ul class="nav nav-tabs nav-stacked">
+              <li><a><%= @decorated_event.lock %></a></li>
               <li><%= link_to "Charge All", charge_all_orders_path(event_id: @event.id), method: :post, class: "" %></li>
-              <li><%= submit_tag "Charge Selected", name: 'charge', class: "link-button" if current_user.api_key %></li>
-              <li><%= submit_tag "Refund Selected", name: 'refund', class: "link-button" if current_user.api_key %></li>
-              <li><%= submit_tag "Cancel Selected", name: 'cancel', class: "link-button" if current_user.api_key %></li>
+              <li><%= submit_tag "Charge Selected", name: 'charge', class: "link-button span12" if current_user.api_key %></li>
+              <li><%= submit_tag "Refund Selected", name: 'refund', class: "link-button span12" if current_user.api_key %></li>
+              <li><%= submit_tag "Cancel Selected", name: 'cancel', class: "link-button span12" if current_user.api_key %></li>
               <li><%= link_to "Cancel Event", organizer_event_path(@event), data: { confirm: "Are you sure you want to cancel the current event?" }, method: :delete %></li>
             </ul>
           </div>
@@ -92,13 +82,14 @@
       <div class="accordion-group">
         <div class="accordion-heading">
           <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-            Event Options <i class="icon-plus itoggle"></i>
+            <i class="icon-tasks"></i> Event Options <i class="icon-plus itoggle"></i>
           </a>
         </div>
         <div id="collapseTwo" class="accordion-body collapse">
           <div class="accordion-inner">
             <ul class="nav nav-tabs nav-stacked">
               <li><%= link_to "View Event", event_path(@event), class: "" unless @event.state_cancelled? %></li>
+              <li><a><%= @decorated_event.toggle_visible %></a></li>
               <li><%= link_to "New Event", new_organizer_event_path(@event), class: "" %></li>
               <li><%= link_to "Edit Event", edit_organizer_event_path(@event), class: "" unless @event.state_cancelled? %></li>
               <li><%= link_to "Orders PDF", organizer_event_path(@event, format: "pdf"), class: "" %></li>
@@ -111,7 +102,7 @@
       <div class="accordion-group" is="event-accordian">
         <div class="accordion-heading">
           <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
-            Filter Orders <i class="icon-minus itoggle"></i>
+            <i class="icon-filter"></i> Filter Orders <i class="icon-minus itoggle"></i>
           </a>
         </div>
         <div id="collapseThree" class="accordion-body collapse in">

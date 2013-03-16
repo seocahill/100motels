@@ -1,24 +1,337 @@
 <div class="container">
-  <div class="row">
-    <div class="span10 offset2" id="">
-          <h1 class="">Hi, I'm Seosamh. <span class="muted">I developed 100 Motels. </span><a href="//seocahill.com"><img src="//www.gravatar.com/avatar/fd4e9587dd4e9696fecfa8b47f5d6c77.png" class="img-circle"></a></h1>
+  <div class="row-fluid" id="founder-speaks">
+    <div class="span3 pagination-centered">
+      <a href="//seocahill.com"><img src="//www.gravatar.com/avatar/fd4e9587dd4e9696fecfa8b47f5d6c77.png" class="img-circle"></a>
+    </div>
+    <div class="span9">
+      <blockquote>
+        <h2>
+          Hi, I'm Seosamh. <span class="muted">I developed 100 Motels. </span>
+          <small><cite>100 Motels has just launched, more extensive documentation on the way!</cite></small>
+        </h2>
+      </blockquote>
     </div>
   </div>
   <div class="row-fluid">
-    <div class="span3" id="side-menu">
-        <ul class="nav nav-list well" >
-          <li class="nav-header">About the Founder</li>
-
-          <li><a href="//github.com/seocahill">Github</a></li>
-          <li><a href="//seocahill.com">Blog</a></li>
-          <li class="nav-header">About 100 Motels</li>
-
-          <li><a href="#how">How it Works</a></li>
-        </ul>
+    <div class="span3" >
+      <div class="row-fluid">
+        <div id="side-menu" data-spy="affix" data-offset-top="0">
+          <ul class="nav nav-list" >
+            <li class="nav-header">Documentation</li>
+            <li><a href="#beta">Beta Restrictions</a></li>
+            <li><a href="#getting-started">Getting Started</a></li>
+            <li><a href="#orders">Accepting Orders</a></li>
+            <li><a href="#payments">Payments</a></li>
+            <li><a href="#tickets">Tickets & Admission</a></li>
+            <li class="divider"></li>
+            <li class="nav-header">Information </li>
+            <li><a href="#tos">Terms of Service</a></li>
+            <li><a href="#privacy">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
     </div> <!-- /span3 -->
-    <div class="span9">
-      <p class="lead">Docs coming soon!</p>
+    <div class="span9" id="info-page-content">
+      <div class="row-fluid">
+        <div class="span12">
+          <h3 id="beta">
+            <i class="icon-beaker"></i>Beta Restrictions <br>
+            <small>Anyone can try out 100 Motels and have a look around but if you intend to use it during beta for your tour, read this first... </small>
+          </h3>
+          <p><a href="https://stripe.com" class="stripe-connect light-blue dark"><span>stripe payments</span></a></p>
+          <p>
+            <strong>100 Motels is a 'Stripe App'</strong> meaning there is only a full service in the countries Stripe service, currently the US and Canada.
+          </p>
+          <p> You can run events and charge credit cards in any country but in order to receive money you need a USD or CAD bank account.</p>
+          <p>
+            The good news is Stripe recently started a UK beta with Europe to follow.
+          </p>
+          <h4><span class="label label-info">Event Limits</span></h4>
+          <ul class="icons">
+            <li><i class=" icon-exclamation-sign"></i> Max Capacity is 200 persons per event.</li>
+            <li><i class=" icon-exclamation-sign"></i> Ticket Price must be in the $10 to $20 dollar range.</li>
+            <li><i class=" icon-exclamation-sign"></i> While you can create as many events as you want, payments can only be active for one of your events at a time.</li>
+          </ul>
+          <p>These are temporary constraints while I continue to develop and test the app.</p>
+        </div>
+      </div>
+      <hr class="fancy-hr">
+      <div class="row-fluid">
+        <div class="span12">
+          <h3 id="getting-started">
+            <i class=""></i> Getting Started with 100 Motels <br>
+            <small>If you need help or have a question at any time, <%= link_to "don't hesitate to ask" %>. </small>
+          </h3><br>
+          <h4>Try it Free</h4>
+          <p> If you click on <a href class="btn btn-small btn-success">Try it free</a> an event and an account are created for you which can be optionally saved. If you browse away from 100 Motels they are automatically discarded.</p><br>
+          <h4>Your Event</h4>
+          <p> Your first event is automatically populated with placeholder information. You can easily change it by editing your event on the page or in a form. </p>
+          <p>
+            Clicking on or near an <i class="icon-edit"></i> edit icon activates the edit input which you'll see surrounded by a blue highlight. To save your changes just click anywhere outside the input, the page should update automatically. To cancel your edit press the escape button.
+          </p>
+          <p>Alternatively you can edit all fields in a form. You can access the edit form via the <a href=""><i class="icon-cog"></i>event settings</a> menu at the top right of the page.</p><br>
+          <h4><i class="icon-edit"> </i> Editable fields</h4>
+          <span class="label">On the Page</span>
+          <dl class="">
+            <dt>Username presents</dt>
+            <dd>This can also be set from your user profile - a family or business-name to describe yourself.</dd>
+            <dt>A Title... </dt>
+            <dd> The main headline for your show, max 30 words.</dd>
+            <dt>Date</dt>
+            <dd>The date of your show. Note you can't change the date of an event if it has orders. To change the date of an active event, either cancel the orders or choose the <strong>reschedule option</strong>, available in your Event Admin area.</dd>
+            <dt>Who's performing...</dt>
+            <dd>You can list the artists here, max 70 words.</dd>
+            <dt>Ticket price</dt>
+            <dd>Must be between $10 and $20 dollars.</dd>
+            <dt>Read this...</dt>
+            <dd>A text area for biographical or other information regarding your event, html is escaped.</dd>
+            <dt>Venue</dt>
+            <dd>The name of the venue, e.g. "The Mounto Club</dd>
+            <dt>Address</dt>
+            <dd>The exact street address, e.g "Mount St Lwr, Dublin 2.</dd>
+            <dt>Doors</dt>
+            <dd>Input the time in 24 hour format.</dd>
+            <dt>Video field</dt>
+            <dd>Input a link (not the embed code) to a youtube or vimeo video. </dd>
+            <dt>Music</dt>
+            <dd>Input the link (not the embed code) to a soundcloud track or playlist.</dd>
+          </dl>
+          <span class="label">Edit form</span>
+          <dl>
+            <dt>Capacity</dt>
+            <dd>Sets the upper limit on how many tickets can be issued (you can take as many orders as you like)</dd>
+            <dt>Target</dt>
+            <dd>Sets the progress-bar indicator on the information section of your event.</dd>
+          </dl>
+          <span class="label">Background Image</span>
+          <br>
+          <p>Can be set via the edit form or <a href=""><i class="icon-cog"></i>event settings</a>. Take a picture, upload an image or choose from a third party service of your choosing.</p>
+          <span class="label">Event Visibility</span>
+          <br>
+          <p>By default your event is private <i class="icon-eye-close"> </i> meaning only the signed-in owner or other authorized users can view it. You can change the event to published <i class="icon-eye-open"> </i> in <a href=""><i class="icon-cog"></i>event settings</a>, the edit form or in the Event Admin area.</p>
+          <p> Please note that you cannot publish your event unless you have saved your user account and confirmed your email address.</p>
+        </div>
+      </div>
+      <hr class="fancy-hr">
+      <div class="row-fluid">
+        <div class="span12">
+          <h3 id="orders">
+            <i class=""></i> Accepting Orders <br>
+            <small>You can start accepting orders as soon as your event is created. </small>
+          </h3>
+          <p> Orders are processed <strong>free of charge</strong> and may be canceled at any time. An order gives you the right to charge a customer's card at any future date for the amount specified. </p>
+          <h4>The order form</h4>
+          <p>Visa and Mastercard credit and debit cards from all countries are supported, as are other US-only credit-cards. For a full list consult <a href="https://stripe.com/us/help/faq#card-types">Stripe's faq</a>.</p>
+          <p>When an order is created both you and your customer receive an email receipt which includes a unique order reference.</p>
+          <h4>Managing orders</h4>
+          <p>To view and manage your orders, go to your Event Admin area which is accessible via the <a href=""><i class="icon-cog"></i>event settings</a> menu. </p>
+          <p><small><i class="icon-camera-retro"></i><em> event admin</em></small></p>
+          <p><img src="https://s3-us-west-2.amazonaws.com/onehundredmotels/Motels+dash+screengrab.png" alt=""></p><br>
+          <p> Your event dashboard gives you up-to-date stats on how your event is doing, order filtering and search, a listing of authorized users and other useful options.</p>
+          <span class="label"><i class="icon-dashboard"></i> dashboard</span>
+          <p>A quick overview of useful information such as the current funding situation and event visibility.</p>
+          <span class="label"><i class="icon-user"></i> authorized users</span>
+          <p>
+            A listing of people with various degrees of access to administrator functions:
+            <ul>
+              <li>Organizer - read and write access, receives payments.</li>
+              <li>Event Admin - read and write access.</li>
+              <li>Editor - can edit but with restrictions (cannot access payments)</li>
+              <li>Reader - read only access to admin area.</li>
+            </ul>
+          </p>
+          <span class="label"><i class="icon-search"></i>order search</span>
+          <p>Search by event details (e.g. artist or venue), order name, email, order reference or ticket number.</p>
+          <span class="label"><i class="icon-list"></i> event options</span>
+          <ul>
+            <li>View, publish, edit your event or create a new one.</li>
+            <li>Create pdfs for orders or tickets.</li>
+            <li>The check in view can be used to manage admissions to the event.</li>
+          </ul>
+          <span class="label"><i class="icon-filter"></i> filter orders</span>
+          <p>By default the window view lists all orders, you can filter the list by order state using the provided controls. This becomes more useful when you're working with payments. </p>
+        </div>
+      </div>
+      <hr class="fancy-hr">
+      <div class="row-fluid">
+        <div class="span12">
+          <h3 id="payments">
+            <i class=""></i> Payments <br>
+            <small>To accept payments for events on 100 Motels you must register with <a href="https://stripe.com">Stripe</a>. </small>
+          </h3><br>
+          <h4>Stripe Connect</h4>
+          <p>The first step to setting up payments for your event is connecting your 100 Motels account to a Stripe account. </p>
+          <p>In the <i class="icon-user"></i> user menu click on 'your account' and then <a href="/auth/stripe_connect" class="stripe-connect dark"><span>Connect with Stripe</span></a> </p>
+          <p>The browser will open a Stripe sign-up or sign-in form. Once you've successfully connected you'll notice your user profile has changed to show <a href="#" class="stripe-connect light-blue dark"><span>Connected to Stripe <i class="icon-ok"></i></span></a></p><br>
+          <h4>Activate Payments</h4>
+          <div class="alert">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong><small><i class="icon-asterisk"></i></small> Contact support to activate payments!</strong> This is only a temporary control measure. Again, thanks for your patience.
+          </div>
+          <p><small><i class="icon-camera-retro"></i><em> charge options</em></small></p>
+          <p><img src="https://s3-us-west-2.amazonaws.com/onehundredmotels/Motels+Organizer+Admin.png" alt=""></p><br>
+          <h4>Charge Options</h4>
+          <p>When you next access your Event Admin, you'll notice a new options pane has appeared- 'Charge Options' <i class="icon-asterisk"></i> - this means you have successfully activated payments for your event.</p>
+          <dl>
+            <dt>Unlock</dt>
+            <dd>To ensure all the event stakeholders (e.g. Artists, Organizers) are in agreement, each authorized admin user has a payment lock which is on by default. Payments will only be processed if <strong>all the locks are off</strong>. If this is the case you'll see <span class="label label-success"><i class="icon-unlock"></i> Payments unlocked!</span> showing on the dashboard. </dd><br>
+            <dd>
+              <p><small><i class="icon-camera-retro"></i><em> the user list shows a locked or unlocked icon for each admin.</em></small></p>
+              <p><img src="https://s3-us-west-2.amazonaws.com/onehundredmotels/foo%40bar.png" alt=""></p><br>
+            </dd>
+            <dt><em>Please note all the following operations are processed in the background, you will be notified by email upon completion.</em></dt><br>
+            <dt>Charge All</dt>
+            <dd>By clicking charge all you will attempt to process all outstanding orders (marked as 'pending'), as well as any previously failed orders ('failed'). Customers receive an email with their ticket and details of the charge. </dd>
+            <dt>Charge Selected</dt>
+            <dd>As above but only for a selection. Note if you accidentally select 'paid' or 'refunded' orders, they <strong>won't be charged twice</strong> but will be silently ignored.</dd>
+            <dt>Refund Selected</dt>
+            <dd>Refund selected 'paid' items only. Note that tickets associated with the refunded orders will still be valid, you need to cancel the order if you want to invalidate the tickets. Customers are notified by email.</dd>
+            <dt>Cancel Selected</dt>
+            <dd>Refunds payments if applicable and then cancels the order, invalidating the tickets also. Customers are notified by email.</dd>
+            <dt>Cancel Event</dt>
+            <dd>Cancels all orders, refunds all payments, invalidates all tickets. Customers are notified by email.</dd>
+          </dl><br>
+          <h4>Failed Payments</h4>
+          <p>Although an order gives you the right to charge a customer's card at some time in the future, it doesn't guarantee funds will be available at that time.</p>
+          <p>Therefore in the event that a customer doesn't have sufficient funds to pay for their order, the charge will be marked as failed. When a charge fails both the customer and event organizer receive email notifications.</p>
+          <p>Another reason for failure is credit card expiry. If a customer's card has expired they will be notified by email with a link to update their card. Once the card has been updated the charge will be processed and tickets issued.</p><br>
+          <h4>Receiving Money</h4>
+          <p> The event organizer is paid into his or her account seven days after each successful charge. This is in accordance with Stripe's rules on paying out.</p>
+          <p> 100 Motels never actually holds or processes the proceeds from ticket sales. All payments processing is handled directly by Stripe, all payments transfers to directly to the organizer's Stripe account. </p><br>
+          <h4>Fees</h4>
+          <p>Stripe's processing fee is 2.9% + 30c per transaction.</p>
+          <p>100 Motel's fee is 1% per transaction while in beta.</p>
+          <br>
+          <h4>Refunds</h4>
+          <p>Your customer will be credited with the full price of their refunded order, i.e. the ticket price + fees.</p>
+          <p>There is no extra charge to the organizer for processing refunds. The cost of refunded fees is borne by Stripe and 100 Motels.</p>
+        </div>
+      </div>
+      <hr class="fancy-hr">
+      <div class="row-fluid">
+        <div class="span12">
+          <h3 id="tickets">
+            <i class=""></i> Tickets and Admissions <br>
+            <small> </small>
+          </h3><br>
+          <h4>Tickets</h4>
+          <p>Tickets are emailed to your customers when payment is confirmed</p>
+          <p><i class="icon-qrcode"></i> A ticket comprises of a QR code, and a ticket number unique to each event. </p><br>
+          <h4>Admissions</h4>
+          <p>You can download a pdf listing of Tickets or use the check-in view to handle admissions at your event.</p>
+          <p>Using the check-in view, input the six-digit ticket number. This will return a response to admit or deny entry with details of the original order displayed to verify the admission.</p>
+          <p><i class="icon-mobile-phone"></i> <i class="icon-tablet"></i> QR code reading applications for Iphone and Ipad are currently in development, with other platforms to follow.</p>
+        </div>
+      </div>
+      <hr class="fancy-hr">
+      <div class="row-fluid">
+        <div class="span12">
+          <h3 id="tos">
+            <i class=""></i> Terms of Service <br>
+            <small> </small>
+          </h3><br>
+          <h4>100 Motels</h4>
+          <p>100 Motels (IT) Ltd is an Irish Limited Company trading as '100 Motels'.</p>
+          <h4>Payments services</h4>
+          <p>As 100 Motels operates as a Stripe Application, you are bound by Stripe's Terms of Service relating to both payments and their authorizing third-party applications.
+          </p>
+          <p><a target="_blank" href="https://stripe.com/us/terms">Stripe Terms of Service <i class="icon-external-link"></i></a></p><br>
+          <h4>100 Motels services</h4>
+          <h5>1. Acceptance of the Terms of Service</h5>
+          <p>Welcome to <strong>100 Motels</strong> (a.k.a. "<strong>we</strong>" or "<strong>us</strong>" or the "<strong>Company</strong>"). We are excited to have you as user and member of the community. The following terms and conditions (collectively, these "<strong>Terms of Service</strong>") apply to your use of www.100 Motels.com, including any content, functionality and services offered on or via 100 Motels.com (the "<strong>Website</strong>"). The Terms of Service also include our <strong>Privacy Policy</strong></p>
+          <p>We want to keep our relationship with you as lean and informal as possible, but please read the Terms of Service carefully before you start using 100 Motels, because <strong>by using the Website you accept and agree to be bound and abide by these Terms of Service</strong>.</p>
+          <p>Should you disagree with some of the provisions herein, you can either leave the Website, or contact us at by clicking the 'support' link on the site's navigation bar. <strong>>, and we'll be happy to hear your comments and suggestions</strong>.</p>
+          <h5>2. Changes to the Terms of Service and the Website</h5>
+          <p>100 Motels is a work in progress, meaning that a lot will change in the near future. We reserve the right to update the Website and these Terms of Service from time to time, at our discretion. We will make sure to announce any major change in a prominent way. <strong>Your continued use of the Website following the publishing of updated Terms of Service means that you accept and agree to the changes.</strong></p>
+          <h5>3. Accessing the Website,Security and Privacy</h5>
+          <p>We are working hard on improving 100 Motels, but we can't guarantee that the Website will be up and running 24/7. We also reserve the right to suspend or restrict access to some features to users. In any case, we will not be liable if for any reason all or any part of the Website is unavailable at any time or for any period, nor for any data loss (see also section 7 below).</p>
+          <p>To access certain features of the Website you have to register by entering your email and choosing a password as part of our security procedures. You must treat such information as confidential, not disclosing it to any third party and only using 100 Motels in person. There is a password reset procedure in case you forget your password, but please notify us of any breach of security. We highly recommend to choose a strong password (e.g. "<a href="http://xkcd.com/936/" target="_blank">correcthorsebatterystaple</a>") or use a password manager and that you log out from your account at the end of every session.</p>
+          <p>It is a condition of your use of the Website that all the information you provide on the Website is correct, current and complete. In the future, you may be asked to provide certain registration details or other information. As custom for internet websites, we reserve the right to disable any user account, at any time in our sole discretion for any or no reason, including, if in our opinion you have failed to comply with any provision of these Terms of Service. </p>
+          <p>We use SSL encrypted browsing for all logged-in users, but we cannot guarantee that all use will be secure. We also do not guarantee that the Website or any content provided on the Website is error free. We manage your personal data according to our <strong><a href="http://www.100 Motels.com/65/privacy-policy-of-100 Motels-com" target="_blank">Privacy Policy</a></strong>.</p>
+          <h5>4. Intellectual Property Rights and Use Guidelines.</h5>
+          <p>The Website and its original content, features and functionality (including look!), are owned by 100 Motels and are protected by Irish and international copyright, trademark, patent, trade secret and other intellectual property or proprietary rights laws. 100 Motels is about helping artists perform, not Website, design or code. So you agree to not copy, modify, create derivative works of, publicly display, publicly perform, republish, any of our copyrighted material, except to the extent permitted by the Website itself. If you have doubts about whether and how to use of material on the Website, please contact support.</p>
+          <p>For purposes of these Terms of Service, the term “<strong>Content</strong>” includes, without limitation, information, data, text, photographs, videos, audio clips, written posts and comments, software, scripts, graphics, and interactive features generated, provided, or otherwise made accessible on or through the Website. For the purposes of these Terms of Service, “Content” also includes all User Content (as defined below).</p>
+          <p>All Content added, created, uploaded, submitted, distributed, or posted to the Website by users (collectively “<strong>User Content</strong>”), whether publicly posted or privately transmitted, is the sole responsibility of the person who originated such User Content. You represent that all User Content provided by you is accurate, complete, up-to-date, and in compliance with all applicable laws, rules and regulations. You acknowledge that all Content, including User Content, accessed by you using the Website is at your own risk and you will be solely responsible for any damage or loss to you or any other party resulting therefrom. We do not guarantee that any Content you access on or through the Website is or will continue to be accurate.</p>
+          <p>By submitting <strong style="">public</strong> User Content through the Website, you hereby do and shall grant us a worldwide, non-exclusive, perpetual, royalty-free, fully paid, sublicensable and transferable license to use, edit, modify, reproduce, distribute, prepare derivative works of, display, perform, and otherwise fully exploit the User Content in connection with the Website and our (and our successors’ and assigns’) businesses, including without limitation for promoting and redistributing part or all of the Website (and derivative works thereof) in any media formats and through any media channels (including, without limitation, third party websites and feeds). You also hereby do and shall grant each user of the Website a non-exclusive, perpetual license to access your User Content through the Website, and to use, edit, modify, reproduce, distribute, prepare derivative works of, display and perform such User Content. For clarity, <strong style="">the foregoing license grants to us and our users does not affect your other ownership or license rights in your User Content</strong>, including the right to grant additional licenses to your User Content, unless otherwise agreed in writing. You represent and warrant that you have all rights to grant such licenses to us without infringement or violation of any third party rights, including without limitation, any privacy rights, publicity rights, copyrights, trademarks, contract rights, or any other intellectual property or proprietary rights.</p>
+          <p>We do not guarantee that any Content will be made available on the Website. We reserve the right to, but do not have any obligation to, (i) remove, edit or modify any Content in our sole discretion, at any time, without notice to you and for any reason (including, but not limited to, upon receipt of claims or allegations from third parties or authorities relating to such Content or if we are concerned that you may have violated these Terms of Service), or for no reason at all and (ii) to remove or block any Content from the Website.</p>
+          <p>You are permitted to use the Website for your personal, non-commercial use, or legitimate business purposes, provided that your activities are lawful and in accordance with these Terms of Service. Prohibited uses include violation of laws and regulations, hacking the Website in any manner, or violating the <strong>Content Standards</strong> set below. No right, title or interest in or to the Website or any content on the site is transferred to you, and all rights not expressly granted are reserved. Any use of the Website not expressly permitted by these Terms of Service is a breach of these Terms of Service and can lead to account termination. </p>
+          <p>We ecourage your feedback, in the form of reviews, comments, and suggestions or recommendations for modifications, improvements or changes to the Services or the Site that you may choose in your sole discretion to provide us from time to time (“<strong>Feedback</strong>”). When you provide Feedback, you grant us, under all right, title and interest in and to the Feedback, a non-exclusive, royalty-free, worldwide, transferable, sub-licensable, irrevocable, perpetual license to use that Feedback or to incorporate it into the Website or other products or services. </p>
+          <p>The Website may contain Content specifically provided by us, our partners or our users and such Content is protected by copyrights, trademarks, service marks, patents, trade secrets or other proprietary rights and laws. You shall abide by and maintain all copyright notices, information, and restrictions contained in any Content accessed through the Website.</p>
+          <h5>5. User Contributions and Content Standards. Special Disclaimer for legal content.</h5>
+          <p>100 Motels contains user generated content, and also may contain message boards, personal web pages, forums or other interactive features that allow you to upload, post, submit, publish, display or transmit to other Users Content on or through the Website. All User Content must be lawful, not spammy, and clear of virus or other malware. More specifically, but without limiting the foregoing, it must comply with the following <strong>Content Standards</strong>:</p>
+          <ul>
+           <li>Not contain any material which is defamatory, obscene, indecent, abusive, offensive, harassing, violent, hateful, inflammatory or otherwise objectionable.</li>
+           <li>Not promote sexually explicit or pornographic material, violence, or discrimination based on race, sex, religion, nationality, disability, sexual orientation or age.</li>
+           <li>Not infringe any patent, trademark, trade secret, copyright or other intellectual property rights of any other person.</li>
+           <li>Not violate the legal rights (including the rights of publicity and privacy) of others or contain any material that could give rise to any civil or criminal liability under applicable laws or regulations or that otherwise may be in conflict with these Terms of Service.</li>
+           <li>Not be likely to deceive any person.</li>
+           <li>Not promote any illegal activity, or advocate, promote or assist any unlawful act.</li>
+           <li>Not cause annoyance, inconvenience or needless anxiety or be likely to upset, embarrass, alarm or annoy any other person.</li>
+           <li>Not be used to impersonate any person, or to misrepresent your identity or affiliation with any person or organization.</li>
+           <li>Not involve commercial activities or sales excepting the promotion of your event/s, such as contests, sweepstakes and other sales promotions, barter or advertising.</li>
+           <li>Not give the impression that they emanate from us or any other person or entity, if this is not the case.</li>
+          </ul>
+          <p><span class="annotation">As stated above, all the user generated legal documents are in the public domain, unless otherwise specified by the author. The rest of the content (e.g. private documents, comments, description, guides, etc) is creative work, therefore covered by copyright. We claim no intellectual property rights over the User Content. Your content remain yours. However, by setting your documents to be viewed publicly, or commenting in public, you agree to allow others to view, comment, edit and branch your content, and you grant us the right to use, copy, distribute and disclose to third parties the content for any purpose.</span></p>
+          <p><strong>User Content is not intended to be legal advice nor form an attorney-client relationship, nor among the users, nor between the users and 100 Motels</strong>.<strong>Use of the Website should never be understood to be replacing use of a qualified attorney, and 100 Motel's relationship to all documents and transactions completed using the Website is that of a trusted, disinterested third party. </strong></p>
+          <h5>6. Law and Copyright Infringment</h5>
+          <p>We do not undertake to review all material before it is posted on the Website, and cannot ensure prompt removal of objectionable material after it has been posted. Accordingly, we assume no liability for any action or inaction regarding transmissions, communications or content provided by any user or third party. In the unlikely event we receive a disclosure request from an authorized party, we reserve the right to disclose user identities when required to do so by the law, including in response to a law enforcement request supported by a valid court order. You waive and hold harmless the Company from any claims resulting from any action taken by the Company during or as a result of its investigations and from any actions taken as a consequence of investigations by either the Company or law enforcement authorities.</p>
+          <p>If you believe that any User Content violate your copyright, please follow the procedure set forth by article 512(c) of the DMCA and provide us a written takedown notice including the following information: </p>
+          <ol>
+           <li>A physical or electronic signature of a person authorized to act on behalf of the owner of an exclusive right that is allegedly infringed.</li>
+           <li>Identification of the copyrighted work claimed to have been infringed, or, if multiple copyrighted works at a single online site are covered by a single notification, a representative list of such works at that site.</li>
+           <li>Identification of the material that is claimed to be infringing or to be the subject of infringing activity and that is to be removed or access to which is to be disabled, and information reasonably sufficient to permit us to locate the material.</li>
+           <li>Information reasonably sufficient for us to contact you, such as email, address, telephone number.</li>
+           <li>A statement that you a good faith belief that use of the material in the manner complained of is not authorized by the copyright owner, its agent, or the law.</li>
+           <li>A statement that the information in the notification is accurate, and under penalty of perjury, that you is authorized to act on behalf of the owner of an exclusive right that is allegedly infringed.</li>
+          </ol>
+          <h5>7. Disclaimer of Warranties, Limitations of Liability and Indemnification.</h5>
+          <p><strong>Your use of 100 Motels is at your sole risk. The service is provided "as is" and "as available".</strong> We disclaim all warranties of any kind, express or implied, including, without limitation, the warranties of merchantability, fitness for a particular purpose and non-infringement. We are not liable for damages, direct or consequential, resulting from your use of the Website, and you agree to defend, indemnify and hold us harmless from any claims, losses, liability costs and expenses (including but not limited to attorney's fees) arising from your violation of any third-party's rights. You acknowledge that you have only a limited, non-exclusive, non-transferable license to use the Website. Because the Website is not error or bug free, you agree that you will use it carefully and avoid using it ways which might result in
+          <h5>9. Governing Law and Jurisdiction</h5>
+          <p>These Terms of Service and any dispute or claim arising out of, or related to them, shall be governed by and construed in accordance with the internal laws of Ireland without giving effect to any choice or conflict of law provision or rule. </p>
+          <p>Any legal suit, action or proceeding arising out of, or related to, these Terms of Service or the Website shall be instituted exclusively in the courts of Ireland. </p>
+          <h5>10. Waiver and Severability</h5>
+          <p>Our failure to exercise or enforce any right or provision of the Terms of Service shall not constitute a waiver of such right or provision. The Terms of Service constitutes the entire agreement between you and 100 Motels and govern your use of the service, superseding any prior agreements (including, but not limited to, any prior versions of the Terms of Service). If any provision of these Terms of Service is held by a court of competent jurisdiction to be invalid, illegal or unenforceable for any reason, such provision shall be eliminated or limited to the minimum extent such that the remaining provisions of the Terms of Service will continue in full force and effect.</p>
+          <h5>11. Feedback</h5>
+          <p>We welcome any comment, question and communication - contact us via <a href="">support</a> </p>
+        </div>
+      </div>
+      <hr class="fancy-hr">
+      <div class="row-fluid">
+        <div class="span12">
+          <h3 id="privacy">
+            <i class=""></i> Privacy Policy <br>
+            <small> </small>
+          </h3><br>
+           <p>At 100 Motels, we collect and manage user data according to the following Privacy Policy, with the goal of incorporating our company values: transparency, accessibility, sanity, usability. This document is part of 100 Motels' Terms of Service, and by using 100Motels.com (the “Website”), you agree to the terms of this Privacy Policy and the Terms of Service. Please read the Terms of Service in their entirety, and refer to those for definitions and contacts.</p>
+            <p>At 100 Motels, we don't ask for information we don't need, and we protect the information we have. We take pride in treating our users' privacy the way we'd like to be treated by a website like 100 Motels, as individuals.</p>
+            <p><strong>Data Collected</strong></p>
+            <p>We collect anonymous data from every visitor of the Website to monitor traffic and fix bugs. For example, we collect information like web requests, the data sent in response to such requests, the Internet Protocol address, the browser type, the browser language, and a timestamp for the request.</p>
+            <p>We ask you to log in and provide certain personal information (such as your email address) in order to be able to save your profile and the events associated with it. In order to enable these or any other login based features, we use cookies to store session information for your convenience. You can block or delete cookies and still be able to use 100 Motels, although if you do you will then be asked for your email and password every time you log in to the Website. In order to take advantage of certain features of the Website, you may also choose to provide us with other personal information, such as your picture or personal website, but your decision to utilize these features and provide such data will always be voluntary.</p>
+            <p>You are able to view, change and remove your data associated with your profile. Should you choose to delete your account, please contact us via support and we will follow up with such request as soon as possible.</p>
+            <p>Minors and children should not use 100 Motels. By using the Website, you represent that you have the legal capacity to enter into a binding agreement.</p>
+            <p><strong>Use of the Data</strong></p>
+            <p>We only use your personal information to provide you the 100 Motels services or to communicate with you about the services or the Website.</p>
+            <p>With respect to financial transactions carried out on the 100Motels.com we do not store any credit card information on our servers, all processing and storage of sensitive financial information is carried out by Stripe inc.</p>
+            <p>We employ industry standard techniques to protect against unauthorized access of data about you that we store, including personal information.</p>
+            <p><strong>We do not share personal information you have provided to us without your consent</strong>, unless:</p>
+            <ul>
+             <li>doing so is appropriate to carry out your own request;</li>
+             <li>we believe it's needed to enforce our Terms of Service, or that is legally required;</li>
+             <li>we believe it's needed to detect, prevent or address fraud, security or technical issues;</li>
+             <li>otherwise protect our property, legal rights, or that of others.</li>
+            </ul>
+            <p>100 Motels is operated from Ireland. If you are visiting the Website from outside Ireland, you agree to any processing of any personal information you provide us according to this policy.</p>
+            <p>100 Motels may contact you, by email or other means. For example, 100 Motels may send you emails relating to 100 Motels or other third parties, or communicate with you about your use of the 100 Motels website. 100 Motels may also use technology to alert you via a confirmation email when you open an email from us. If you do not want to receive email from 100 Motels, please contact support.</p>
+            <p><strong>Sharing of Data</strong></p>
+            <p>We don't share your personal information with third parties. Only aggregated, anonymized data is periodically transmitted to external services to help us improve the 100 Motels Website and service. We currently use Google Analytics (traffic analysis, SEO optimization), Stripe (payments), Filepicker.io (image processing) and Intercom (customer support). </p>
+            <p>We also use social buttons provided by services like Twitter and Facebook. Your use of these third party services is entirely optional. We are not responsible for the privacy policies and/or practices of these third party services, and you are responsible for reading and understanding those third party services’ privacy policies.</p>
+            <p>We employ and contract with people and other entities that perform certain tasks on our behalf and who are under our control (our “Agents”). We may need to share personal information with our Agents in order to provide products or services to you. Unless we tell you differently, our Agents do not have any right to use Personal Information or other information we share with them beyond what is necessary to assist us. You hereby consent to our sharing of Personal Information with our Agents.</p>
+            <p>We may choose to buy or sell assets. In these types of transactions, user information is typically one of the transferred business assets. Moreover, if we, or substantially all of our assets, were acquired, or if we go out of business or enter bankruptcy, user information would be one of the assets that is transferred or acquired by a third party. You acknowledge that such transfers may occur, and that any acquirer of us or our assets may continue to use your personal information as set forth in this policy.</p>
+            <p><strong>Changes to the Privacy Policy</strong></p>
+            <p>We may amend this Privacy Policy from time to time. Use of information we collect now is subject to the Privacy Policy in effect at the time such information is used. If we make major changes in the way we collect or use information, we will notify you by posting an announcement on the Website or sending you an email. In any case, you can track all changes via the TOS Tracker. A user is bound by any changes to the Privacy Policy when he or she uses the Services after such changes have been first posted.</p>
+            <p>Should you have any question or concern, please contact us via <a href="">support</a>.</p>
+        </div>
+      </div>
     </div><!--/span-->
   </div><!--/row-->
-  <hr>
 </div> <!-- /container​ -->

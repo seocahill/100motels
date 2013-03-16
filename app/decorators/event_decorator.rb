@@ -1,8 +1,12 @@
 class EventDecorator < ApplicationDecorator
   delegate_all
 
-  def header
-    content_tag :header, h.title(model.artist, model.venue, model.date)
+  def private_or_public
+    if model.visible
+      raw('<span class="label label-success"><i class="icon-eye-open"></i> Event is published</span>')
+    else
+      raw('<span class="label label-warning"><i class="icon-eye-close"></i> Event is private</span>')
+    end
   end
 
   def toggle_visible
@@ -12,6 +16,21 @@ class EventDecorator < ApplicationDecorator
       "Sign up to Publish"
     end
   end
+
+  def payments_locked?
+    admins = EventUser.where("event_id = ? AND state > 1", model.id)
+    if admins.any? {|admin| admin.payment_lock }
+      raw('<span class="label label-important"><i class="icon-lock"></i> Payments are locked!</span>')
+    else
+      raw('<span class="label label-success"><i class="icon-unlock"></i> Payments unlocked!</span>')
+    end
+  end
+
+  def lock
+    event_user = model.event_users.where(user_id: current_user.id).first
+    h.best_in_place event_user, :payment_lock, type: :checkbox, collection: ["Lock", "Unlock"], path: organizer_event_event_user_path(model)
+  end
+
 
   def edit
     link_to "Edit in Form", edit_organizer_event_path(model), class: "" if event_owner?
@@ -29,19 +48,19 @@ class EventDecorator < ApplicationDecorator
     if model.image?
       model.image
     else
-      "http://route66motorcycletour.com/images/BlueSwallow.jpg"
+      "https://www.filepicker.io/api/file/l2nNjJqBQv2uJywDlyuE"
     end
   end
 
-  def title
+  def bip_title
     best_in_place_if event_owner?, model, :title, :nil => "A Title for Your Event"
   end
 
-  def artist
+  def bip_artist
     best_in_place_if event_owner?, model, :artist
   end
 
-  def date
+  def formatted_date
     best_in_place_if event_owner?, model, :date, type: :date, classes: "datepicker" , display_with: :time_tag, classes: ""
   end
 
@@ -135,7 +154,15 @@ class EventDecorator < ApplicationDecorator
 
   def event_owner?
     if current_user.present?
-      current_user.id == model.users.first.id
+      model.event_users.where(user_id: current_user.id).where("event_users.state > 2").present?
+    else
+      false
+    end
+  end
+
+  def event_admin?
+    if current_user.present?
+      model.event_users.where(user_id: current_user.id).where("event_users.state > 1").present?
     else
       false
     end

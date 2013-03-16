@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   before_filter :find_order, only: [:show]
   before_filter :find_orders, only: [:charge_or_refund]
   before_filter :create_order_guest_user, only: [:create]
-
+  before_filter :payment_lock_off, only: [:charge_or_refund, :charge_all]
 
   def show
     @member_profile = MemberProfile.new
@@ -11,8 +11,7 @@ class OrdersController < ApplicationController
   def create
     @order = current_user.orders.new(params[:order])
     if CustomerOrder.new(@order, params[:stripeToken]).process_order
-      Notifier.delay.order_created(@order.id)
-      redirect_to @order, notice: "Thanks! We sent you an email with a receipt for your order."
+      redirect_to @order, notice: "Thanks! Please check your email."
     else
       redirect_to :back, flash: { error: "Did you fill in the email field and select a quantity?" }
     end
@@ -63,6 +62,13 @@ private
     unless current_user
       user = User.create! { |u| u.profile = GuestProfile.create! }
       cookies[:auth_token] = user.auth_token
+    end
+  end
+
+  def payment_lock_off
+    admins = EventUser.where("event_id = ? AND state > 1", @orders.first.event.id)
+    if admins.any? {|admin| admin.payment_lock }
+      redirect_to :back, notice: "One or more Admins has locked payments"
     end
   end
 end

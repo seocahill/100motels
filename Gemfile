@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 
 gem 'rails'
 gem 'pg'
-gem 'thin'
+gem 'thin', group: :development
 gem 'json'
 
 group :development, :test do
@@ -17,7 +17,6 @@ end
 
 group :development do
   gem 'foreman'
-  gem "mail_view", "~> 1.0.3"
   gem 'letter_opener_web'
   gem 'quiet_assets'
 end
@@ -35,10 +34,8 @@ end
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
-  # gem 'dynamic_form'
   gem 'uglifier', '>= 1.0.3'
   gem 'bootstrap-sass'
-  # gem 'turbo-sprockets-rails3'
   gem "font-awesome-rails"
 end
 
@@ -62,9 +59,10 @@ gem 'enum_accessor'
 gem 'google-qr'
 gem 'has_scope'
 gem 'draper'
-gem 'sidekiq', '2.6.5'
+gem 'sidekiq'
 gem 'sidekiq-failures'
 gem 'sinatra', require: false
 gem 'slim'
 gem 'pg_search'
 gem 'active_attr'
+gem 'intercom-rails', '~> 0.2.14'

@@ -1,6 +1,9 @@
 // events index
 // scoped to events controller
 #events_controller {
+  .well {
+     background-color: rgba(255, 255, 255, 0.4);
+  }
   .event-map,
   .thumbnails li {
     @include media-between($small-min, $small-max) {
@@ -17,6 +20,9 @@
       }
       @include media-between($handheld-min, $handheld-max) {
         min-width: 250px;
+      }
+      @include media-above($medium-min) {
+        min-width: 500px;
       }
     }
       // min-width: 200px;
@@ -64,6 +70,7 @@
 
 .link-button {
     text-decoration: none;
+    text-align: left;
     border: none;
     background-color: transparent;
     font-weight: normal;
@@ -182,5 +189,11 @@ small {
 .admin-bar {
     .label, i {
       font-size: 14px;
+  }
+}
+
+.addthis_toolbox {
+  &:hover {
+    text-decoration: none;
   }
 }

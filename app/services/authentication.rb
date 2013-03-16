@@ -1,5 +1,5 @@
 class Authentication
-  def initialize(params)
+  def initialize(params="")
     @params = params
   end
 
@@ -14,8 +14,8 @@ class Authentication
 private
 
   def user_with_password
-    member = MemberProfile.find_by_email(@params[:email])
-    if member && member.authenticate(@params[:password])
+    member = MemberProfile.find_by_email(@params[:signin][:email])
+    if member && member.authenticate(@params[:signin][:password])
       member.user
     end
   end

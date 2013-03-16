@@ -1,5 +1,19 @@
-Thanks <%= @order.name %>
+100 Motels - Tour the World Without a Record Label
 
-Your order reference is <%= @order.uuid %>
+Your Ticket Order
+
+-----------------------------------------------------------------------
+
+Thanks <%= @order.email %>
+
+You ordered <%= pluralize(@order.quantity, 'ticket') %> for <%= @event.title %> on <%= @event.date.strftime("%A, %b %d") %> in <%= @event.location.city %>.
+
+Your unique order reference is <%= @order.uuid %>.
 
 Tickets will be dispatched when your card has been successfully charged.
+
+For more information on how event funding works go to www.100motels.com/info
+
+Thanks and see you at the show!
+
+-----------------------------------------------------------------------
