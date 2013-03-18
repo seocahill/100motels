@@ -41,22 +41,11 @@ class Organizer::EventUsersController < ApplicationController
     @event_user = EventUser.find(params[:id])
   end
 
-  # POST /event_users
-  # POST /event_users.json
   def create
     @event = Event.find(params[:event_id])
-    profile = MemberProfile.find_by_email(params[:event_user][:email])
-    if profile.present?
-      @event_user = EventUser.new(params[:event_user].merge(user_id: profile.user.id))
-      UserMailer.delay.event_admin_notification(profile, current_user.id, @event.id)
-    else
-      password = (('a'..'z').to_a+(0..9).to_a+('A'..'Z').to_a).shuffle[0,8].join
-      new_user = User.create! { |u| u.profile = MemberProfile.create!(email: params[:event_user][:email], password: password) }
-      new_user.profile.send_admin_invitation(current_user.id, @event.id)
-      @event_user = EventUser.new(params[:event_user].merge(user_id: new_user.id))
-    end
+    invite = Invitation.new(params, current_user.id)
     respond_to do |format|
-      if @event_user.save
+      if invite.exiting_user?
         format.html { redirect_to organizer_event_event_users_path(@event), notice: 'Event user was successfully created.' }
         format.js
       else

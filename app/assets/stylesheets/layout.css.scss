@@ -60,3 +60,14 @@ footer {
     -webkit-padding-end: 27px;
 }
 
+// purr error messages
+.purr {
+    position: fixed;
+    top: 30px;
+    right: 100px;
+    width: auto;
+    padding: 20px;
+    @extend .alert;
+    @extend .alert-error;
+    &:first-letter { text-transform: uppercase };
+  }

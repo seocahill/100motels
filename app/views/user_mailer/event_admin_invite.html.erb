@@ -1,6 +1,6 @@
 <h4>100 Motels <small>tour the world without a record label</small></h4><br>
 <h5>Hi <%= @member_profile.email %></h5>
-<p><%= @inviter.profile.name || @inviter.profile.email  %> has invited you to become an administrator for: <%= "<strong>#{@event.title} in #{@event.venue}</strong>, a 100 Motels event that they are organizing" %>.</p><br>
+<p><%= @inviter.profile.email  %> has invited you to become an administrator for: <strong><%= @event.title %> in <%= @event.venue %> </strong> , a 100 Motels event that <%= @inviter.profile.email %> is organizing. </p><br>
 <p>Since you don't have an account with us already we've created a temporary one for you.</p>
 <p>You can save it by clicking on the link and entering a password, otherwise it'll be deleted in three days.</p>
 <p><%= edit_password_reset_url(@member_profile.password_reset_token) %></p>
