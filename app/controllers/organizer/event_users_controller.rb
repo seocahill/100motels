@@ -59,7 +59,7 @@ class Organizer::EventUsersController < ApplicationController
         format.js
       else
         format.html { redirect_to :back, notice: 'Something went wrong' }
-        format.js
+        format.js { render "flash" }
       end
     end
   end
