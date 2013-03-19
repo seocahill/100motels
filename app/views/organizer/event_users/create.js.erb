@@ -1,6 +1,6 @@
 $('#new_event_user').remove();
 $('.new-auth-user').show();
 $('#authorized-users').append('<%= j render(@event_user) %>')
-<% event_user.errors.full_messages.each do |error| %>
+<% @event_user.errors.full_messages.each do |error| %>
   $('#authorized-users').prepend("<div class='alert alert-error'><%= error %></div>");
 <% end %>
