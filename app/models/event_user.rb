@@ -4,19 +4,27 @@ class EventUser < ActiveRecord::Base
   attr_accessible :user_id, :state, :event_id, :payment_lock, :email
   attr_accessor :email
   enum_accessor :state, [ :reader, :editor, :event_admin, :organizer ]
-  validate :forbid_two_organizers, on: :save
+  # validate :forbid_two_organizers, on: :save
   validate :forbid_existing_user, on: :create
-  validates :email, presence: :true
+  validate :forbid_organizer, on: :update
 
   def forbid_two_organizers
-    if self.event.event_users.any? {|eu| eu.state_organizer?}
-      errors.add(:state, "can only be one organizer!") if self.state_changed?
+    event = Event.find(self.event_id)
+    if event.event_users.exists?(state: :organizer)
+      errors.add(:state, "can't be set to organizer this way, please contact support!") if self.state_organizer?
     end
   end
 
   def forbid_existing_user
-    if self.user.event_users.include? self
-      errors.add(:date, "can't add a user twice!")
+    user = User.find(self.user_id)
+    if user.event_users.exists?(event_id: self.event_id)
+      errors.add(:event_id, "can't add the same user twice!")
+    end
+  end
+
+  def forbid_organizer
+    if self.state_organizer?
+      errors.add(:state, "can't be set to organizer this way, please contact support!")
     end
   end
 end

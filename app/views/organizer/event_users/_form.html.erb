@@ -5,7 +5,7 @@
     <%= f.input :event_id, as: :hidden, input_html: {value: @event.id} %>
     <%= f.input :email %>
     <%= f.input :state, label: "User Permissions" do %>
-      <%= f.select :state, [['read', :reader], ['edit', :editor], ['admin', :event_admin], ['organizer', :organizer]] %>
+      <%= f.select :state, [['read', :reader], ['edit', :editor], ['admin', :event_admin]] %>
     <% end %>
   </div>
 

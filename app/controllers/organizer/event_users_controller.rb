@@ -1,4 +1,4 @@
-class EventUsersController < ApplicationController
+class Organizer::EventUsersController < ApplicationController
 
   def index
     @event = Event.find(params[:event_id])
@@ -41,19 +41,17 @@ class EventUsersController < ApplicationController
     @event_user = EventUser.find(params[:id])
   end
 
-  # POST /event_users
-  # POST /event_users.json
   def create
     @event = Event.find(params[:event_id])
     profile = MemberProfile.find_by_email(params[:event_user][:email])
     if profile.present?
       @event_user = EventUser.new(params[:event_user].merge(user_id: profile.user.id))
-      UserMailer.delay.event_admin_notification(profile, current_user.id, @event.id)
+      UserMailer.delay.event_admin_notification(profile.id, current_user.id, @event.id) if @event_user.save
     else
       password = (('a'..'z').to_a+(0..9).to_a+('A'..'Z').to_a).shuffle[0,8].join
       new_user = User.create! { |u| u.profile = MemberProfile.create!(email: params[:event_user][:email], password: password) }
-      new_user.profile.send_admin_invitation(current_user.id, @event.id)
       @event_user = EventUser.new(params[:event_user].merge(user_id: new_user.id))
+      new_user.profile.send_admin_invitation(current_user.id, @event.id) if @event_user.save
     end
     respond_to do |format|
       if @event_user.save
@@ -61,7 +59,7 @@ class EventUsersController < ApplicationController
         format.js
       else
         format.html { redirect_to :back, notice: 'Something went wrong' }
-        format.js
+        format.js { render "flash" }
       end
     end
   end

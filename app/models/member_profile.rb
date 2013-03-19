@@ -24,14 +24,14 @@ class MemberProfile < ActiveRecord::Base
     generate_token(:password_reset_token)
     self.password_reset_sent_at = Time.zone.now
     save!
-    UserMailer.delay.password_reset(self)
+    UserMailer.delay.password_reset(self.id)
   end
 
   def send_admin_invitation(inviter_id, event_id)
     generate_token(:password_reset_token)
     self.password_reset_sent_at = Time.zone.now
     save!
-    UserMailer.delay.event_admin_invite(self, inviter_id, event_id)
+    UserMailer.delay.event_admin_invite(self.id, inviter_id, event_id)
   end
 
   def customer_id?
@@ -42,6 +42,6 @@ class MemberProfile < ActiveRecord::Base
     generate_token(:email_confirm_token)
     self.email_confirm_sent_at = Time.zone.now
     save!
-    UserMailer.delay.email_confirmation(self)
+    UserMailer.delay.email_confirmation(self.id)
   end
 end
