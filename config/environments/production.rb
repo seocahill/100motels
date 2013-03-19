@@ -69,7 +69,7 @@ OneHundredMotels::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
   # Set the mailer to localhost
-  config.action_mailer.default_url_options = { :host => '100motels.com' }
+  config.action_mailer.default_url_options = { :host => 'www.100motels.com', :protocol => 'https' }
 
   config.action_mailer.delivery_method = :smtp
 
