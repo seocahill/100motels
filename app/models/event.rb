@@ -53,7 +53,7 @@ class Event < ActiveRecord::Base
 
   def forbid_publish
     if self.users.first.state_unconfirmed?
-      errors.add(:visible, "Before you can publish an event you need to sign up and confirm your account") if self.visible_changed?
+      errors.add(:base, "Before you can publish an event you need to sign up and confirm your account") if self.visible_changed?
     end
   end
 

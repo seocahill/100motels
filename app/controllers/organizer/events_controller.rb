@@ -84,7 +84,7 @@ has_scope :refunded, type: :boolean
     @event = original.dup
     @event.title = "Copy of #{original.title}"
     @event.state = current_user.guest? ? :guest : :member
-    @event.event_users.build(user_id: current_user.id)
+    @event.event_users.build(user_id: current_user.id, state: :event_admin)
     @event.build_location(address: location)
     @event.save!
     redirect_to @event, notice: "A copy of your event was created successfully"
