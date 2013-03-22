@@ -28,14 +28,16 @@
                 <li><%= link_to "Events", events_path %></li>
                 <li><%= link_to "Info", info_path %></li>
                 <li><a id="Intercom">Support</a></li>
-                <li><a href="http://www.hipchat.com/g0s1iGFVm" target="_blank">Live Chat</a></li>
+                <% if current_user %>
+                  <li class=""><a href="http://www.hipchat.com/g0s1iGFVm" target="_blank">Live Chat</a></li>
+                <% end %>
               </ul>
               <ul class="nav pull-right">
                 <% unless current_user %>
                   <li><%= link_to "Sign up", signup_path %></li>
                   <li><%= link_to "Sign in", login_path %></li>
                 <% end %>
-                <li class="divider-vertical"></li>
+                <!-- <li class="divider-vertical"></li> -->
                 <% if current_user %>
                   <%= render "current_user_menu" %>
                 <% end %>
