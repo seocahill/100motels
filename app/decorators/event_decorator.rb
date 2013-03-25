@@ -45,10 +45,10 @@ class EventDecorator < ApplicationDecorator
   end
 
   def image
-    if model.image?
+    if model.image.present?
       model.image
     else
-      "https://www.filepicker.io/api/file/l2nNjJqBQv2uJywDlyuE"
+      "https://s3-us-west-2.amazonaws.com/onehundredmotels/247915_156305404435251_2616225_n.jpg"
     end
   end
 
