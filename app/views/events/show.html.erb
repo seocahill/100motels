@@ -74,7 +74,7 @@
 						</h3>
 
 						<% if @event.on_sale? %>
-							<h4><%= @event.left_to_go %> left to sell <%= @event.sales %> tickets <i class="icon-question-sign" data-toggle="popover" title="" data-content="Go to the Inof page for more on how event funding works"></i></h4>
+							<h4><%= @event.left_to_go %> left to sell <%= @event.sales %> tickets <i class="icon-question-sign" data-toggle="popover" title="" data-content="Go to the Info page for more on how event funding works"></i></h4>
 							<div class="progress">
 							  <div class="bar" style="width: 100%;" data-funded="<%= @event.per_cent_funded %>"><%= @event.per_cent_funded %>% funded</div>
 							</div>
