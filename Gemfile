@@ -4,7 +4,6 @@ source 'https://rubygems.org'
 
 gem 'rails'
 gem 'pg'
-gem 'thin', group: :development
 gem 'json'
 
 group :development, :test do
@@ -13,22 +12,28 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'meta_request', '0.2.1'
   gem 'sextant'
+  gem 'rb-fsevent'
+  gem 'capybara'
+  gem 'factory_girl_rails'
+  gem "shoulda-matchers"
+  gem 'faker'
+  # gem 'vcr'
+  # gem 'fakeweb'
+  gem 'database_cleaner'
+  gem 'launchy'
+  gem 'poltergeist'
+  gem 'listen', '0.4.7'
+  gem 'guard-rspec'
 end
 
 group :development do
+  gem 'thin'
   gem 'foreman'
   gem 'letter_opener_web'
   gem 'quiet_assets'
 end
 
 group :test do
-  gem 'capybara'
-  gem 'factory_girl_rails'
-  gem 'faker'
-  gem 'vcr'
-  gem 'fakeweb'
-  gem 'database_cleaner'
-  gem 'launchy'
 end
 
 group :assets do
