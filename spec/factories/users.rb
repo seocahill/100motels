@@ -14,10 +14,10 @@ FactoryGirl.define do
     name "Foo Bar"
     email "foo@bar.com"
     password "secret"
-    # factory :confirmed do
+    factory :confirmed do
       confirmation_token { SecureRandom.urlsafe_base64 }
       confirmation_sent_at { Date.today }
-    # end
+    end
   end
 
   factory :guest_profile do

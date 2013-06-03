@@ -15,11 +15,17 @@ feature 'Authentication' do
     expect(page).to have_content("Logged in!")
   end
 
-  scenario 'Signed In' do
-    signed_in(@member)
-    first(:link, 'View Events').click
-    expect(current_path).to eq events_path
-    expect(page).to have_content(@member.profile.email)
+  scenario 'Save Account' do
+    guest_session
+    click_link 'save your account'
+    click_link 'Save Account'
+    fill_in 'Email', with: 'bar@foo.com'
+    fill_in 'Password', with: "secret"
+    click_button 'Sign up'
+    expect(page).to have_content("Thanks nearly there! We've sent you a link to confirm your email address.")
+    last_email.to.should include('bar@foo.com')
+    last_email.body.encoded.should match(confirm_email_confirmation_url(MemberProfile.last.email_confirm_token))
+    visit confirm_email_confirmation_url(MemberProfile.last.email_confirm_token)
+    expect(page).to have_content("Email has been confirmed.")
   end
-
 end

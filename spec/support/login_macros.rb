@@ -8,4 +8,9 @@ module LoginMacros
     visit root_path
   end
 
+  def guest_session
+    visit root_path
+    first(:link, 'Try it free').click
+  end
+
 end

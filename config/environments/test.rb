@@ -36,5 +36,5 @@ OneHundredMotels::Application.configure do
   config.active_support.deprecation = :stderr
 
   # Mailer config for test env
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.default_url_options = { :host => 'www.example.com' }
 end

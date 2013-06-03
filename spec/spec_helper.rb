@@ -6,6 +6,7 @@ require 'capybara/rspec'
 require 'factory_girl'
 require 'factory_girl_rails'
 require 'capybara/poltergeist'
+require 'sidekiq/testing/inline'
 Capybara.javascript_driver = :poltergeist
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
@@ -20,5 +21,7 @@ RSpec.configure do |config|
   config.include Capybara::DSL
   config.include FactoryGirl::Syntax::Methods
   config.include LoginMacros
+  config.include MailerMacros
+  config.before(:each) { reset_email }
 end
 
