@@ -1,9 +1,9 @@
 module LoginMacros
 
-  def signed_in(user)
+  def signed_in(profile)
     click_link 'sign-in'
-    fill_in 'Email', with: user.profile.email
-    fill_in 'Password', with: user.profile.password
+    fill_in 'Email', with: profile.email
+    fill_in 'Password', with: profile.password
     click_button 'Sign In'
     visit root_path
   end

@@ -11,6 +11,8 @@ class PasswordResetsController < ApplicationController
 
   def edit
     @member_profile = MemberProfile.find_by_password_reset_token!(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to root_path
   end
 
   def update

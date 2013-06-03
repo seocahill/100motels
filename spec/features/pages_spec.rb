@@ -1,12 +1,11 @@
 require 'spec_helper'
 
-feature '#Index' do
+feature 'Pages' do
 
   background do
     visit root_path
     @member = create :member_user
     @event = create :event, :visible
-    # signed_in(@member)
     # save_screenshot('tmp/screengrabs/grab.png')
   end
 
@@ -24,7 +23,7 @@ feature '#Index' do
     expect(page).to have_content "save your account"
   end
 
-  scenario 'Search for Event' do
+  scenario 'Search for an Event' do
     new_event = create :event, :visible
     fill_in 'query', with: new_event.venue
     click_button 'Go'
@@ -43,4 +42,10 @@ feature '#Index' do
     expect(current_path).to eq info_path
   end
 
+  scenario 'Signed in Changes the Menu Context' do
+    signed_in(@member.profile)
+    expect(page).to have_content @member.profile.email
+    expect(page).to_not have_content("Sign Up")
+    expect(page).to_not have_content("sign-in")
+  end
 end

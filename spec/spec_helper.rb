@@ -11,7 +11,6 @@ Capybara.javascript_driver = :poltergeist
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
-# FakeWeb.allow_net_connect = false
 
 RSpec.configure do |config|
   config.mock_with :rspec
@@ -20,6 +19,7 @@ RSpec.configure do |config|
   config.order = "random"
   config.include Capybara::DSL
   config.include FactoryGirl::Syntax::Methods
+  config.include BestInPlace::TestHelpers
   config.include LoginMacros
   config.include MailerMacros
   config.before(:each) { reset_email }
