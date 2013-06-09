@@ -1,7 +1,7 @@
 class UserDecorator < ApplicationDecorator
   delegate_all
 
-  def avatar
+  def user_avatar
     if model.profile.avatar
       filepicker_image_tag model.profile.avatar, width: 200, height: 200, fit: 'clip'
     else
@@ -37,11 +37,5 @@ class UserDecorator < ApplicationDecorator
 
   def password_reset
     link_to "Reset Password", password_resets_path(email: model.profile.email), method: :post if model.profile_type == "MemberProfile"
-  end
-
-  def current_user?
-    if current_user
-      model.id == current_user.id?
-    end
   end
 end

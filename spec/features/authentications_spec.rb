@@ -52,17 +52,16 @@ feature 'Authentication' do
     expect(page).to have_content("Email has been confirmed.")
   end
 
-  scenario 'Change User Email', js: true do
-    user = create(:member_user)
-    signed_in(user.profile)
-    click_link user.profile.email
-    click_link 'Your Account'
-    # sleep 5
-    # bip_text MemberProfile.last, :email, "new@foobar.com"
-    # save_screenshot('tmp/screengrabs/grab.png')
-    # # click_button "Done"
-    expect(page).to have_content "User Profile"
-  end
+   scenario 'Change User Email' #, js: true do
+  #   user = create(:member_user)
+  #   signed_in(user.profile)
+  #   click_link user.profile.email
+  #   click_link 'Your Account'
+  #   bip_text user, :email, "new@foobar.com"
+  #   click_button "Done"
+  #   visit root_path
+  #   expect(page).to have_content "new@foobar.com"
+  # end
 
   scenario 'Delete Account' #do
   #   user = create(:member_user)

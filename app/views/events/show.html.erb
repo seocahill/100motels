@@ -5,7 +5,7 @@
   <%= tag :meta, property: "og:image", content: @event.image %>
 <% end %>
 <% content_tag :header, title(@event) %>
-<% if @event.visible?|| @event.event_owner? %>
+<% if @event.visible? || @event.event_owner? %>
 	<div class="container" id="event-background">
 		<% if @event.event_owner? %>
 		<div class="admin-bar">

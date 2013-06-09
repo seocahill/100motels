@@ -6,13 +6,15 @@ FactoryGirl.define do
     date { rand(11).months.from_now }
     doors { rand(11).hours.from_now }
     venue { Faker::Address.city }
-    capacity 200
-    title "The Three Ring Circus"
-    ticket_price { 10.0 + rand(9) }
+    title "A Title for your show"
     about { Faker::Lorem.paragraphs(3)}
-    target 150
-    image "https://s3-us-west-2.amazonaws.com/onehundredmotels/247915_156305404435251_2616225_n.jpg"
+    target 100
+    capacity 200
+    ticket_price 15.0
     association :location
+    after(:build) do |event|
+      event.stub(:forbid_publish).and_return true
+    end
     trait :visible do
       state :member
       visible true
