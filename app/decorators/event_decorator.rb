@@ -28,9 +28,8 @@ class EventDecorator < ApplicationDecorator
 
   def lock
     event_user = model.event_users.where(user_id: current_user.id).first
-    h.best_in_place event_user, :payment_lock, type: :checkbox, collection: ["Lock", "Unlock"], path: organizer_event_event_user_path(model)
+    switch = best_in_place event_user, :payment_lock, type: :checkbox, collection: ["Lock", "Unlock"], path: organizer_event_event_user_path(model, event_user)
   end
-
 
   def edit
     link_to "Edit in Form", edit_organizer_event_path(model), class: "" if event_owner?

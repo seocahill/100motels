@@ -66,8 +66,10 @@ private
   end
 
   def payment_lock_off
-    admins = EventUser.where("event_id = ? AND state > 1", @orders.first.event.id)
-    if admins.any? {|admin| admin.payment_lock }
+    admins = @orders ? EventUser.where("event_id = ? AND state > 1", @orders.first.event.id) : nil
+    if admins.nil?
+      redirect_to :back, notice: "No Orders to Process"
+    elsif admins.any? {|admin| admin.payment_lock }
       redirect_to :back, notice: "One or more Admins has locked payments"
     end
   end

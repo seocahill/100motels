@@ -14,14 +14,15 @@
           <tr>
             <th>Email</th>
             <th>Permissions</th>
+            <th>Payment Lock</th>
             <th></th>
           </tr>
           <% @event_users.each do |event_user| %>
             <tr id="event_user_<%= event_user.id %>">
               <td><%= event_user.user.profile.email %></td>
               <td><i class="icon-edit"> </i><%= best_in_place event_user, :state, :type => :select, :collection => [[:reader, 'read'], [:editor, 'edit'], [:event_admin, 'admin'], [:organizer, 'organizer']], path: organizer_event_event_user_path(@event, event_user) %></td>
+              <td><%= event_user.payment_lock ? raw('<i class="icon-lock"></i>') : raw('<i class="icon-unlock"></i>') %></td>
               <td><%= link_to raw('<i class="icon-remove"> </i>remove'), organizer_event_event_user_path(@event, event_user), method: :delete, data: {confirm: "Are you sure?"}, remote: true unless event_user.user == current_user %></td>
-              <td></td>
             </tr>
           <% end %>
         </table>

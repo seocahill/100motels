@@ -7,4 +7,8 @@ describe EventDecorator do
   it "uses a test view context from ApplicationController" do
     expect(Draper::ViewContext.current.controller).to be_an ApplicationController
   end
+
+  context "lock" do
+    pending
+  end
 end

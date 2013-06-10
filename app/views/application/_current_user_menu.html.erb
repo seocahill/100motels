@@ -9,7 +9,7 @@
     <% if current_user.events.empty? %>
       <li><%= link_to "New Event", new_organizer_event_path %></li>
     <% else %>
-      <li> <%= link_to "Your Events", organizer_event_path(current_user.events.first) %>  </li>
+      <li> <%= link_to "Your Events", organizer_event_path(current_user.events.last) %>  </li>
       <li> <%= link_to "Check-in", organizer_event_tickets_path(current_user.events.first) %>  </li>
     <% end %>
     <li><%= link_to "Most Recent Event", event_path(current_user.events.order("updated_at").last) unless current_user.events.empty? %></li>

@@ -3,8 +3,8 @@ require 'spec_helper'
 feature 'Event#show' do
 
   background do
-    @event = create :event, :visible
-    visit event_path(@event)
+    # @event = create :event, :visible
+    # visit event_path(@event)
   end
 
   context 'signed out' do

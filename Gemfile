@@ -35,9 +35,9 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
   gem 'bootstrap-sass'
   gem "font-awesome-rails"
+  gem "jquery-rails", "2.3.0"
 end
 
-gem 'jquery-rails'
 gem 'bcrypt-ruby'
 gem 'best_in_place'
 gem 'simple_form'
@@ -61,6 +61,6 @@ gem 'sidekiq'
 gem 'sidekiq-failures'
 gem 'sinatra', require: false
 gem 'slim'
-gem 'pg_search'
+gem 'pg_search', "0.5.7"
 gem 'active_attr'
 gem 'intercom-rails', '~> 0.2.14'

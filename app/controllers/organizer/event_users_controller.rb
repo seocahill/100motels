@@ -1,4 +1,5 @@
 class Organizer::EventUsersController < ApplicationController
+  # before_filter :forbid_non_organizer
 
   def index
     @event = Event.find(params[:event_id])
@@ -10,8 +11,6 @@ class Organizer::EventUsersController < ApplicationController
     end
   end
 
-  # GET /event_users/1
-  # GET /event_users/1.json
   def show
     @event = Event.find(params[:event_id])
     @event_user = EventUser.find(params[:id])
@@ -22,8 +21,6 @@ class Organizer::EventUsersController < ApplicationController
     end
   end
 
-  # GET /event_users/new
-  # GET /event_users/new.json
   def new
     @event = Event.find(params[:event_id])
     @event_user = EventUser.new
@@ -90,6 +87,17 @@ class Organizer::EventUsersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to event_users_url }
       format.js
+    end
+  end
+
+  private
+
+  def forbid_non_organizer
+    event = Event.find(params[:event_id])
+    event_user = event.event_users.where(user_id: current_user.id).first
+    unless event_user.state_organizer? or event_user.state_event_admin?
+      flash[:error] = 'You do not have sufficient permissions'
+      redirect_to organizer_event_path(event)
     end
   end
 end

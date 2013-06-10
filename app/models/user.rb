@@ -21,4 +21,10 @@ class User < ActiveRecord::Base
       self.auth_token = SecureRandom.urlsafe_base64
     end while User.exists?(auth_token: auth_token)
   end
+
+  def self.connect(request)
+    auth = request.env["omniauth.auth"]
+    self.api_key = auth.credentials["token"]
+    save!
+  end
 end
