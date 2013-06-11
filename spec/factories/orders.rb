@@ -7,6 +7,14 @@ FactoryGirl.define do
     quantity { rand(4) }
     last4 4242
     stripe_event :pending
-  # end 
+    trait :paid do
+      stripe_event :paid
+    end
+    trait :cancelled do
+      stripe_event :cancelled
+    end
+    trait :refunded do
+      stripe_event :refunded
+    end
 end
 end
