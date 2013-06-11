@@ -18,7 +18,7 @@ RSpec.configure do |config|
   config.infer_base_class_for_anonymous_controllers = false
   config.color_enabled = true
   config.order = "random"
-  config.formatter = 'NyanCatWideFormatter'
+  # config.formatter = 'NyanCatWideFormatter'
   config.include Capybara::DSL
   config.include FactoryGirl::Syntax::Methods
   config.include BestInPlace::TestHelpers

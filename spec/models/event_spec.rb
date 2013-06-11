@@ -5,7 +5,7 @@ describe Event do
   subject(:event) { FactoryGirl.create(:event) }
 
   it "has a valid factory" do
-    FactoryGirl.create(:event).should be_valid
+    create(:event).should be_valid
   end
 
   it { should respond_to(:artist) }
@@ -16,7 +16,14 @@ describe Event do
   it { should be_valid }
 
   it "is invalid without an artist" do
-    FactoryGirl.build(:event, artist: nil).should_not be_valid
+    build(:event, artist: nil).should_not be_valid
   end
 
+  it "should have an orgnaizer" do
+   expect(event.event_users.first.state_organizer?).to be_true
+  end
+
+  it "should be owned by a user" do
+    expect(event.event_users.first.user.profile).to eq MemberProfile.last
+  end
 end

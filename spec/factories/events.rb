@@ -13,7 +13,7 @@ FactoryGirl.define do
     ticket_price 15.0
     association :location
     after(:create) do |event|
-      event.users << create(:member_user)
+      event.event_users << create(:event_user)
     end
     after(:build) do |event|
       event.stub(:forbid_publish).and_return true
@@ -26,5 +26,12 @@ FactoryGirl.define do
 
   factory :location do
     address { Faker::Address.street_address }
+  end
+
+  factory :event_user do
+    email { Faker::Internet.email }
+    state :organizer
+    payment_lock false
+    association :user, factory: :member_user
   end
 end

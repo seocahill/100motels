@@ -12,4 +12,8 @@ describe User do
     new_user = User.create
     expect(new_user.auth_token).to eq "second try"
   end
+
+  it "assigns the stripe api_key" do
+    pending
+  end
 end

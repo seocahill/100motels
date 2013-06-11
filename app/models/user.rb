@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
     end while User.exists?(auth_token: auth_token)
   end
 
-  def self.connect(request)
+  def connect(request)
     auth = request.env["omniauth.auth"]
     self.api_key = auth.credentials["token"]
     save!

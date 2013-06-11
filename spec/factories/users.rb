@@ -15,8 +15,8 @@ FactoryGirl.define do
     email { Faker::Internet.email }
     password "secret"
     # factory :confirmed do
-    #   confirmation_token { SecureRandom.urlsafe_base64 }
-    #   confirmation_sent_at { Date.today }
+      confirmation_token "a token"
+      confirmation_sent_at { Date.today }
     # end
   end
 
