@@ -1,3 +1,3 @@
 class Organizer::BaseController < ApplicationController
-  before_filter :authorize_admin!
+  before_filter :user_suspended
 end

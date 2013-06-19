@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   private
-    def authorize_admin!
+    def user_suspended
       redirect_to login_url, alert: "Not authorized" if current_user.nil? || current_user.state_suspended?
     end
 
