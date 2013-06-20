@@ -1,14 +1,7 @@
 class OrderMailer < ActionMailer::Base
   default from: "from@example.com"
 
-  # Subject can be set in your I18n file at config/locales/en.yml
-  # with the following lookup:
-  #
-  #   en.order_mailer.event_deferred.subject
-  #
-  def event_deferred
-    @greeting = "Hi"
-
-    mail to: "to@example.org"
+  def event_deferred(order)
+    mail to: order.email
   end
 end

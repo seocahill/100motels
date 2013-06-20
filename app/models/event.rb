@@ -9,7 +9,7 @@ class Event < ActiveRecord::Base
   validates :ticket_price, numericality: { greater_than_or_equal_to: 5.0, less_than_or_equal_to: 20.0, message: "^Price must be in the range $10-$20 during beta"}
   validates :target, numericality: { less_than_or_equal_to: :capacity }
   validates :title, :artist, :ticket_price, :venue, :date, :capacity, :doors, :target, presence: :true
-  validate :forbid_date_change, on: :update
+  # validate :forbid_date_change, on: :update
 
   before_save :create_location
 
@@ -60,8 +60,8 @@ class Event < ActiveRecord::Base
   end
 
   def defer_event(params)
-    self.date = params[:event][:date]
-    orders.each { |order| OrderMailer.delay.defer_event(self.id)}
+    # self.date = params["event"]["date"]
+    self.orders.each { |order| OrderMailer.event_deferred(order).deliver}
     save!
   end
 

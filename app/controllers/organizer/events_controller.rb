@@ -79,6 +79,8 @@ has_scope :refunded, type: :boolean
   end
 
   def defer
+    event = Event.find(params[:id])
+    event.defer_event(params)
     flash[:notice] = "Your Event will be Deferred"
     redirect_to :back
   end
