@@ -119,4 +119,18 @@ describe Event do
       end
     end
   end
+
+  describe '#defer_event' do
+    subject(:event) { create(:event, date: Date.today)}
+    let(:params) { { :event => { :date => 1.year.from_now, "reason" => "Drummer Died"}} }
+    it 'should change the date' do
+      expect(event.date).to be_within(5.minutes).of(Date.today)
+      event.defer_event(params)
+      expect(event.date).to be_within(5.minutes).of(1.year.from_now)
+    end
+    it 'should notify the customers' do
+
+    end
+  end
+
 end

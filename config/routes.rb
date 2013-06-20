@@ -44,6 +44,7 @@ OneHundredMotels::Application.routes.draw do
       member do
         get :cancel
         get :duplicate
+        post :defer
       end
       resources :tickets, only: [:index, :update]
       resources :event_users

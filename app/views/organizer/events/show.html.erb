@@ -92,6 +92,7 @@
             <div class="accordion-inner">
               <ul class="nav nav-tabs nav-stacked">
                 <li><%= link_to "View Event", event_path(@event), class: "" unless @event.state_cancelled? %></li>
+                <li><a href="#defer-event" data-toggle="modal" id="defer-modal">Defer Event</a></li>
                 <li><a><%= @decorated_event.toggle_visible %></a></li>
                 <li><%= link_to "New Event", new_organizer_event_path(@event), class: "" %></li>
                 <li><%= link_to "Edit Event", edit_organizer_event_path(@event), class: "" unless @event.state_cancelled? %></li>
@@ -157,3 +158,4 @@
   </div> <!-- /row -->
   <% end %>
 <% end %>
+<%= render 'defer' unless current_user.guest? %>

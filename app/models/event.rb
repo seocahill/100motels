@@ -58,5 +58,12 @@ class Event < ActiveRecord::Base
     html_escape
     soundcloud(:width => 630, :height => 200)
   end
+
+  def defer_event(params)
+    self.date = params[:event][:date]
+    orders.each { |order| OrderMailer.delay.defer_event(self.id)}
+    save!
+  end
+
 end
 

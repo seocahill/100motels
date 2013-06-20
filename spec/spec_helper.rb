@@ -8,7 +8,9 @@ require 'factory_girl_rails'
 require 'capybara/poltergeist'
 require 'sidekiq/testing/inline'
 Capybara.javascript_driver = :poltergeist
-
+# Capybara.register_driver :poltergeist do |app|
+#   Capybara::Poltergeist::Driver.new(app, js_errors: false)
+# end
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
 
@@ -18,7 +20,6 @@ RSpec.configure do |config|
   config.infer_base_class_for_anonymous_controllers = false
   config.color_enabled = true
   config.order = "random"
-  # config.formatter = 'NyanCatWideFormatter'
   config.include Capybara::DSL
   config.include FactoryGirl::Syntax::Methods
   config.include BestInPlace::TestHelpers

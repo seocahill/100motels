@@ -78,6 +78,11 @@ has_scope :refunded, type: :boolean
     end
   end
 
+  def defer
+    flash[:notice] = "Your Event will be Deferred"
+    redirect_to :back
+  end
+
   def duplicate
     original = Event.find(params[:id])
     location = request.location.present? ? request.location.address : original.location.address
