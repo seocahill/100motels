@@ -26,7 +26,7 @@ feature 'View Events' do
   end
 
   scenario 'Filter Events on tonight' do
-    tonight = create :event, :visible, date: (1).hour.from_now
+    tonight = create :event, :visible, date: (Time.now.end_of_day - 1.hour)
     click_link 'Filter by Date'
     click_link 'Today'
     expect(page).to have_content(tonight.artist)
@@ -34,7 +34,7 @@ feature 'View Events' do
   end
 
   scenario 'Filter Events on this week' do
-    this_week = create :event, :visible, date: (2).days.from_now
+    this_week = create :event, :visible, date: (Time.now.end_of_week - 1.hour)
     click_link 'Filter by Date'
     click_link 'This Week'
     expect(page).to have_content(this_week.artist)
@@ -42,7 +42,7 @@ feature 'View Events' do
   end
 
   scenario 'Filter Events on this month' do
-    this_month = create :event, :visible, date: (2).weeks.from_now
+    this_month = create :event, :visible, date: (Time.now.end_of_month - 1.hour)
     click_link 'Filter by Date'
     click_link 'This Month'
     expect(page).to have_content(this_month.artist)

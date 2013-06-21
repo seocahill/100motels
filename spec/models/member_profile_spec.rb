@@ -38,9 +38,9 @@ describe MemberProfile do
   end
 
   describe "#send_admin_invitation" do
-    let(:invitee) { create(:member_user )}
+    let(:invitee) { create(:member_user)}
     let(:event) { create(:event) }
-    let(:inviter) {event.users.first }
+    let(:inviter) { event.users.first }
 
     it "delivers an email to the invitee" do
       inviter.profile.send_admin_invitation(invitee.profile.id, event.id)
