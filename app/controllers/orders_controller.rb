@@ -1,6 +1,5 @@
 class OrdersController < ApplicationController
   before_filter :find_order, only: [:show]
-  before_filter :find_orders, only: [:charge_or_refund]
   before_filter :create_order_guest_user, only: [:create]
   before_filter :payment_lock_off, only: [:charge_or_refund, :charge_all]
 
@@ -17,22 +16,6 @@ class OrdersController < ApplicationController
     end
   end
 
-  def charge_or_refund
-    if params[:charge]
-      ChargeCustomer.new(@orders).process_charges
-      flash[:notice] = "Processing orders."
-    elsif params[:refund]
-      RefundCustomer.new(@orders).refund_charge
-      flash[:notice] = "Refunding orders."
-    elsif params[:cancel]
-      CancelEventOrders.new(@orders).cancel_orders
-      flash[:notice] = "Cancelling orders."
-    else
-      flash[:error] = "Something went wrong."
-    end
-    redirect_to :back
-  end
-
   def charge_all
     event = Event.find(params[:event_id])
     @orders = event.orders.where("stripe_event = 0 OR stripe_event = 3")
@@ -42,7 +25,7 @@ class OrdersController < ApplicationController
     else
       flash[:error] = "Couldn't Charge All."
     end
-    redirect_to :back
+    redirect_to organizer_event_path(event)
   end
 
 private
@@ -50,12 +33,6 @@ private
     @order = current_user.orders.find(params[:id])
     rescue ActiveRecord::RecordNotFound
     redirect_to root_path
-  end
-
-  def find_orders
-    @orders = Order.find(params[:order_ids])
-    rescue ActiveRecord::RecordNotFound
-    redirect_to :back, notice: "Some records weren't found"
   end
 
   def create_order_guest_user

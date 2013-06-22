@@ -60,7 +60,7 @@ class Event < ActiveRecord::Base
   end
 
   def defer_event(params)
-    self.date = params[:event][:date]
+    self.date = params[:defer_event][:date]
     self.orders.each { |order| OrderMailer.event_deferred(order).deliver}
     save!
   end

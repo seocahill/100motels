@@ -31,7 +31,8 @@ has_scope :refunded, type: :boolean
     @event = Event.find(params[:id])
     @decorated_event = Event.find(params[:id]).decorate
     @organizer = User.includes(:event_users).where("event_users.event_id = ? AND event_users.state = 3", @event.id).first
-    @orders = apply_scopes(Order.text_search(params[:query]).page(params[:page]).per_page(15)).where(event_id: @event.id)
+    @orders = Order.text_search(params[:query]).page(params[:page]).per_page(15).where(event_id: @event.id)
+    @tickets = @event.tickets.order('quantity_counter, updated_at').joins(:order).where("stripe_event = 2 OR stripe_event = 4")
     respond_to do |format|
       format.html
       format.pdf do
