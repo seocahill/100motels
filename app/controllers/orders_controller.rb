@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_filter :find_order, only: [:show]
   before_filter :create_order_guest_user, only: [:create]
-  before_filter :payment_lock_off, only: [:charge_or_refund, :charge_all]
+  # before_filter :payment_lock_off, only: [:charge_or_refund, :charge_all]
 
   def show
     @member_profile = MemberProfile.new

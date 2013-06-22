@@ -19,7 +19,7 @@ class Organizer::TicketsController < Organizer::BaseController
       flash.now[:error] = "Ticket not found!" unless params[:query].nil?
     end
     respond_to do |format|
-      format.html
+      format.html { redirect_to :back }
       format.pdf do
         pdf = TicketPdf.new(@event, @tickets, view_context)
         send_data pdf.render, filename: "#{@event.artist}_#{@event.date}_tickets.pdf",
