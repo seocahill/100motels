@@ -17,9 +17,7 @@
             </ul>
           </div>
         </li>
-        <li class="muted"><span class="well well-small"><%= link_to "#{truncate(@event.title)} | #{@event.location.city} | #{@event.date.strftime('%d %b')}", event_path(@event) %></span></li>
-
-         <li class="pull-right"><%= render 'search' %></li>
+        <li class="muted"><span class="well well-small"><%= link_to "#{truncate(@event.title)} | #{@event.location.city} | #{@event.date.strftime('%d %b')}", event_path(@event), target: "_blank" %></span></li>
       </ul>
     </div>
   </div>
@@ -30,7 +28,7 @@
         <li><span class="label label-info">Time left <i class="icon-time"></i><%= @event.date > DateTime.now + 2.hour ? distance_of_time_in_words(Time.now, @event.date, include_seconds = false) : "Time's up!"  %></span></li>
         <li><span class="label label-info">Funding <i class="icon-money"></i> <%= number_to_currency(@event.orders.funding.sum(:total)) %></span></li>
         <li><span class="label label-info">unsold tickets: <%= @event.capacity - @event.orders.funding.sum(:quantity) %></span></li>
-        <li><%= @decorated_event.private_or_public %></li>
+        <li><%= @event.private_or_public %></li>
       </ul>
     </div>
   </div>
@@ -47,33 +45,45 @@
         </ul>
         <div class="tab-content">
           <div class="tab-pane active" id="event-tab">
-            <%= simple_form_for :defer_event, url: defer_organizer_event_path, method: :post, html: {class: 'form-horizontal'} do |f| %>
-            <legend>Defer Event</legend>
-              <%= f.input :date, as: :datepicker, label: "Select a new date for your event", placeholder: "Current Date is #{@event.date.strftime('%d %b %Y')}" %>
-              <%= f.input :message, as: :text, :input_html => { :cols => 5, :rows => 3 }, label: "Add an explanation for the deferral", placeholder: "Why should your customers keep supporting your event?" %>
-              <%= f.submit "Proceed", data: { confirm: "Are you sure?"}, class: "btn" %>
-            <% end %>
+            <div class="row-fluid">
+              <div class="span6">
+                <%= simple_form_for :defer_event, url: defer_organizer_event_path, method: :post, html: {class: 'form-horizontal'} do |f| %>
+                <legend>Defer or Cancel Event</legend>
+                  <%= f.input :date, as: :datepicker, label: "New date for event if deferring", placeholder: "  Currently #{@event.date.strftime('%d %b %Y')}" %>
+                  <%= f.input :message, as: :text, :input_html => { :cols => 5, :rows => 3 }, label: "Add an explanation for your action", placeholder: "We have been forced to cancel because...." %>
+                  <%= f.submit "Defer", name: "defer", data: { confirm: "Defer?"}, class: "btn btn-warning" %>
+                  <%= f.submit "Cancel", name: "cancel", data: { confirm: "Cancel (cannont be undone)?"}, class: "btn btn-danger" %>
+                <% end %>
+              </div>
+              <div class ="span6">
+                <form class="form-horizontal">
+                <legend>Settings</legend>
+                <div class="control-group">
+                  <label class="control-label" for="inputEmail">Toggle Visibility</label>
+                  <div class="controls">
+                    <button class="btn"><%= @event.toggle_visible %></button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="tab-pane" id="sales-tab">
             <div class="row-fluid">
               <div class="span12">
-                <legend>Sales</legend>
+                <legend>Sales <span class="pull-right"><%= render 'search' %></span></legend>
               </div>
             </div>
             <div class="row-fluid">
               <div class="span3">
-                <h5>
-                  <% if @orders.any?(&:stripe_event_tickets_sent?) %>
-                    <a href="#" class="btn btn-success">Orders Processed <i class="icon-ok"></i></a>
-                  <% else %>
-                    <%= link_to "Cash Orders", charge_all_orders_path(event_id: @event.id), method: :post, class: "btn btn-success", data: {confirm: 'Sure?'} %>
-                  <% end %>
-                </h5>
-                <h5>
-                  <%= link_to "Orders PDF", organizer_event_path(@event, format: "pdf"), class: "btn" %>
-                </h5>
+                <% if @orders.any?(&:stripe_event_tickets_sent?) %>
+                  <button class="btn-success btn-block">Orders Processed <i class="icon-ok"></i></button>
+                <% else %>
+                  <%= link_to "Cash Orders", charge_all_orders_path(event_id: @event.id), method: :post, class: "btn btn-success btn-block", data: {confirm: 'Sure?'} %>
+                <% end %>
+                <%= link_to "Orders PDF", organizer_event_path(@event, format: "pdf"), class: "btn btn-block" %>
               </div>
               <div class="span9">
+
                 <table class="table table-striped table-bordered" id="organizer-customers">
                   <thead>
                     <tr>
@@ -105,47 +115,67 @@
           <div class="tab-pane" id="tickets-tab">
             <div class="row-fluid">
               <div class="span12">
-                <legend>Tickets</legend>
+                <legend>
+                  Tickets
+                  <span class="pull-right">
+                    <%= form_tag organizer_event_tickets_path(@event), method: :get, class: "form-search", autocomplete: :off do %>
+                        <%= number_field_tag :query, params[:query], class: "input-medium", placeholder: "Enter Ticket Number" %>
+                        <button type="submit" class="btn">Check</button>
+                    <% end %>
+                  </span>
+                </legend>
               </div>
             </div>
             <div class="row-fluid">
-                <div class="span6">
-                  <h5><span class="badge large-badge badge-info"><%= @tickets.where('admitted is not null').count %> of <%= @tickets.count %> Admitted </span></h5><br>
-                  <%= form_tag organizer_event_tickets_path(@event), method: :get, class: "form-search", autocomplete: :off do %>
-                      <%= number_field_tag :query, params[:query], class: "input-medium", placeholder: "Enter Ticket Number" %>
-                      <button type="submit" class="btn">Check</button>
-                  <% end %>
-                  <h5>
-                    <%= link_to "Tickets PDF", organizer_event_tickets_path(@event, format: "pdf"), class: "btn" %>
-                    </ul>
-                  </h5>
-                </div>
-                <div class="span6">
-                  <table class="table table-striped">
-                    <tbody>
-                        <tr>
-                          <th>Number</th>
-                          <th>Name</th>
-                          <th>Email</th>
-                          <th>Card</th>
-                          <th>Admitted?</th>
-                        </tr>
-                      <% @tickets.each do |ticket| %>
-                        <tr>
-                          <td><%= ticket.number %></td>
-                          <td><%= ticket.order.name %></td>
-                          <td><%= ticket.order.email %></td>
-                          <td><%= ticket.order.last4 %></td>
-                          <td><%= ticket.admitted ? ticket.admitted.strftime("%e-%m-%y %H:%M") : "no" %> </td>
-                        </tr>
-                      <% end %>
-                    </tbody>
-                  </table>
-                </div>
+              <div class="span3">
+                <button class="btn-info btn-block"><%= @tickets.where('admitted is not null').count %> of <%= @tickets.count %> Admitted </button>
+                <%= link_to "Tickets PDF", organizer_event_tickets_path(@event, format: "pdf"), class: "btn btn-block" %>
               </div>
+              <div class="span9">
+                <table class="table table-striped table-bordered">
+                  <tbody>
+                      <tr>
+                        <th>Number</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Card</th>
+                        <th>Admitted?</th>
+                      </tr>
+                    <% @tickets.each do |ticket| %>
+                      <tr>
+                        <td><%= ticket.number %></td>
+                        <td><%= ticket.order.name %></td>
+                        <td><%= ticket.order.email %></td>
+                        <td><%= ticket.order.last4 %></td>
+                        <td><%= ticket.admitted ? ticket.admitted.strftime("%e-%m-%y %H:%M") : "no" %> </td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
           <div class="tab-pane" id="promotion-tab">
-            <p>social sharing etc here</p>
+            <div class="row-fluid">
+              <div class="span6">
+                <%= simple_form_for :announcement, url: defer_organizer_event_path, method: :post, html: {class: 'form-horizontal'} do |f| %>
+                <legend>Contact Your Customers</legend>
+                  <%= f.input :subject, as: :string, label: "Email Subject", placeholder: "Fundraising Update" %>
+                  <%= f.input :message, as: :text, :input_html => { :cols => 5, :rows => 3 }, label: "A message for you Customers", placeholder: "We need more sales, can you help, time is running out!" %>
+                  <%= f.submit "Send", data: { confirm: "Send Group Email?"}, class: "btn" %>
+                <% end %>
+              </div>
+              <div class="span6">
+                <legend>Share Buttons</legend>
+                <div class="row-fluid">
+                  <div class="span9 pagination-centered">
+                    <button class="btn btn-facebook btn-block"><i class="icon-facebook"></i> | Share with Facebook</button>
+                    <button class="btn btn-twitter btn-block"><i class="icon-twitter"></i> | Share with Twitter</button>
+                    <button class="btn btn-tumblr btn-block"><i class="icon-tumblr-sign"></i> | Share with Tumblr</button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="tab-pane" id="account-tab">
             <%= render 'user_profile' %>

@@ -1,16 +1,13 @@
 <% unless current_user.guest? %>
-    <dl class="dl-horizontal">
-      <dt>Name</dt>
-      <dd><i class="icon-edit"></i><%= current_user.user_name %></dd>
-      <dt>Email</dt>
-      <dd><i class="icon-edit"></i><%= current_user.user_email %></dd>
-      <dt>Password</dt>
-      <dd><%= current_user.password_reset %></dd>
-      <dt>Payments</dt>
+    <legend>Account</legend>
+    <div>
+      <p><i class="icon-edit"></i><%= current_user.user_name %></p>
+      <p><i class="icon-edit"></i><%= current_user.user_email %></p>
+      <p><%= current_user.password_reset %></p>
       <% if current_user.api_key %>
-        <dd><a href="#" class="stripe-connect light-blue dark"><span>Connected to Stripe <i class="icon-ok"></i></span></a></dd>
+        <p><a href="#" class="stripe-connect light-blue dark"><span>Connected to Stripe <i class="icon-ok"></i></span></a></p>
       <% else %>
-        <dd><a href="/auth/stripe_connect" class="stripe-connect dark"><span>Connect with Stripe</span></a></dd>
+        <p><a href="/auth/stripe_connect" class="stripe-connect dark"><span>Connect with Stripe</span></a></p>
       <% end %>
-    </dl>
+    </div>
 <% end %>
