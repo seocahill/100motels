@@ -35,6 +35,7 @@ class Organizer::EventsController < Organizer::BaseController
     @tickets = @event.tickets.order('quantity_counter, updated_at').joins(:order).where("stripe_event = 2 OR stripe_event = 4")
     @organizer = User.includes(:event_users).where("event_users.event_id = ? AND event_users.state = 3", @event.id).first
     @orders = Order.text_search(params[:query]).page(params[:page]).per_page(15).where(event_id: @event.id)
+    @message = Message.new
     respond_to do |format|
       format.html
       format.pdf do

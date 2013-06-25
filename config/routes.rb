@@ -22,9 +22,7 @@ OneHundredMotels::Application.routes.draw do
   resources :password_resets
   resources :events, only: [:show, :index, :update]
   resources :locations, only: [:new, :show, :create, :update]
-  resources :messages, only: [:create] do
-    member { post :customers }
-  end
+  resources :messages, only: [:create]
 
 
   resources :email_confirmations, only: [:create] do

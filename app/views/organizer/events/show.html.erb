@@ -25,7 +25,7 @@
     <div class="span12">
       <legend>
         <ul class="inline">
-          <li><h3><i class="icon-dashboard"></i></h3></li>
+          <li><h3><i class="icon-dashboard"></i> Dashboard </h3></li>
           <li><span class="label label-info">Time left <i class="icon-time"></i> <%= @event.date > DateTime.now + 2.hour ? distance_of_time_in_words(Time.now, @event.date, include_seconds = false) : "Time's up!"  %></span></li>
           <li><span class="label label-info">Funding <i class="icon-money"></i> <%= number_to_currency(@event.orders.funding.sum(:total)) %></span></li>
           <li><span class="label label-info">unsold tickets: <%= @event.capacity - @event.orders.funding.sum(:quantity) %></span></li>
@@ -175,12 +175,13 @@
           <div class="tab-pane" id="promotion-tab">
             <div class="row-fluid">
               <div class="span6">
-                <%= simple_form_for :message, url: customers_message_path, method: :post, html: {class: 'form-horizontal'} do |f| %>
+                <%= simple_form_for @message, html: {class: 'form-horizontal'} do |f| %>
                 <legend>Contact Your Customers</legend>
+                  <%= f.input :event_id, as: :hidden, input_html: { value: @event.id } %>
                   <%= f.input :subject, as: :string, label: "Email Subject", placeholder: "Fundraising Update" %>
                   <%= f.input :email, as: :hidden, input_html: { value: current_user.email } %>
                   <%= f.input :content, as: :text, :input_html => { :cols => 5, :rows => 3 }, label: "A message for you Customers", placeholder: "We need more sales, can you help, time is running out!" %>
-                  <%= f.submit "Send Group Email", data: { confirm: "Send Group Email?"}, class: "btn" %>
+                  <%= f.submit "Send Group Email", name: "group", data: { confirm: "Send Group Email?"}, class: "btn" %>
                 <% end %>
               </div>
               <div class="span6">
