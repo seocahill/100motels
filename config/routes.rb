@@ -2,7 +2,8 @@ require 'sidekiq/web'
 
 OneHundredMotels::Application.routes.draw do
 
-  root :to => 'pages#index'
+  root :to => "events#index", :constraints => Authentication.new
+  root :to => "pages#index"
 
   get 'auth/:provider/callback', to: 'omniauth_callbacks#all'
   get 'auth/failure', to: redirect('/')
@@ -66,4 +67,5 @@ OneHundredMotels::Application.routes.draw do
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
+
 end
