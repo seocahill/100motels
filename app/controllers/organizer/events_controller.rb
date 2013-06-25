@@ -2,7 +2,7 @@ class Organizer::EventsController < Organizer::BaseController
 
   def index
     if current_user.events.present?
-      redirect_to organizer_event_path(current_user.events.last)
+      redirect_to organizer_event_path(current_user.events.where('events.state < 3').last)
     else
       redirect_to new_organizer_event_path, notice: "You need to create an Event to get started! (don't worry you can change everything later)"
     end
@@ -76,8 +76,8 @@ class Organizer::EventsController < Organizer::BaseController
 
   def defer_or_cancel
     event = Event.find(params[:id])
-    if params[:name] == "cancel"
-      CancelEventOrders.new(event.orders, params).cancel_orders
+    if params[:cancel].present?
+      CancelEventOrders.new(event, params).cancel_orders
       flash[:notice] = "Your Event has been Cancelled"
     else
       event.defer_event(params)
@@ -88,8 +88,8 @@ class Organizer::EventsController < Organizer::BaseController
 
   def duplicate
     event = Event.find(params[:id])
-    event.duplicate(current_user)
-    redirect_to @event, notice: "A copy of your event was created successfully"
+    new_event = event.duplicate(current_user, request)
+    redirect_to root_path, notice: "A copy of your event was created successfully"
   end
 
   def admit

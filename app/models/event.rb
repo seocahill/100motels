@@ -65,33 +65,14 @@ class Event < ActiveRecord::Base
     save!
   end
 
-  def duplicate(current_user)
+  def duplicate(current_user, request)
     location = request.location.present? ? request.location.address : self.location.address
     copy = self.dup
-    copy.title = "Copy of #{original.title}"
+    copy.title = "Copy of #{self.title}"
     copy.state = current_user.guest? ? :guest : :member
     copy.event_users.build(user_id: current_user.id, state: :event_admin)
     copy.build_location(address: location)
     copy.save!
-  end
-
-  def create_starter_event(user)
-    state = user.guest? ? :guest : :member
-    location = request.location.present? ? request.location.address : "Dublin, Ireland."
-    event = Event.new
-    event.event_users.build(user_id: user.id, state: :event_admin)
-    event.build_location(address: location)
-    event.state = state
-    event.title = "A Title for your show"
-    event.artist = "Tell me who's performing..."
-    event.venue = "The Nightclub"
-    event.date = 1.month.from_now
-    event.doors = Time.now.midnight
-    event.ticket_price = 15.0
-    event.target = 100
-    event.capacity = 200
-    event.save!
-    event
   end
 end
 
