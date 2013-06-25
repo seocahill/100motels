@@ -33,11 +33,6 @@ orderTotal = ->
   $('.order-total').html(number)
   $('.stripe-button').attr('data-amount', number * 100)
 
-# Toggle checkboxes
-$ ->
-  $('#check_all').click () ->
-    $('input[type="checkbox"]').click()
-
 # Filter form for index page
 $ ->
   $('#event_city').change ->
@@ -71,14 +66,6 @@ $ ->
       $(".warning-pop").popover('disable').popover("hide");
     else
       $(".stripe-button-el").attr "disabled", true
-
-# Toggle icon for accordians
-$ ->
-  $(".collapse").on "show", ->
-    $(this).parent().find(".itoggle").removeClass("icon-plus").addClass "icon-minus"
-
-  $(".collapse").on "hide", ->
-    $(this).parent().find(".itoggle").removeClass("icon-minus").addClass "icon-plus"
 
 # Charges popover
 $ ->

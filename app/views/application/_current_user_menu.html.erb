@@ -3,16 +3,12 @@
   <ul class="dropdown-menu">
     <% if current_user.guest? %>
       <li><%= link_to "Save Account", signup_path  %></li>
-    <% else %>
-      <li><a href="#user-profile" data-toggle="modal">Your Account</a></li>
     <% end %>
     <% if current_user.events.empty? %>
       <li><%= link_to "New Event", new_organizer_event_path %></li>
     <% else %>
-      <li> <%= link_to "Your Events", organizer_event_path(current_user.events.last) %>  </li>
-      <li> <%= link_to "Check-in", organizer_event_tickets_path(current_user.events.first) %>  </li>
+      <li> <%= link_to "Admin", organizer_event_path(current_user.events.last) %>  </li>
     <% end %>
-    <li><%= link_to "Most Recent Event", event_path(current_user.events.order("updated_at").last) unless current_user.events.empty? %></li>
     <li class="divider"></li>
     <% if !current_user.guest? && current_user.state == :unconfirmed %>
       <li><%= link_to "Confirm your email", email_confirmations_path, method: :post %></li>

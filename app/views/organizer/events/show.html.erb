@@ -17,22 +17,23 @@
             </ul>
           </div>
         </li>
-        <li class="muted"><span class="well well-small"><%= link_to "#{truncate(@event.title)} | #{@event.location.city} | #{@event.date.strftime('%d %b')}", event_path(@event), target: "_blank" %></span></li>
+        <li class="muted"><span class="well well-small"><%= link_to "#{truncate(@event.title)} | #{@event.location.city} | #{@event.date.strftime('%d %b')}", event_path(@event), target: "_blank" %> <i class="icon-external-link"></i></span></li>
       </ul>
     </div>
   </div>
   <div class="row-fluid">
     <div class="span12">
-      <ul class="inline">
-        <li><h3><i class="icon-dashboard"></i></h3></li>
-        <li><span class="label label-info">Time left <i class="icon-time"></i><%= @event.date > DateTime.now + 2.hour ? distance_of_time_in_words(Time.now, @event.date, include_seconds = false) : "Time's up!"  %></span></li>
-        <li><span class="label label-info">Funding <i class="icon-money"></i> <%= number_to_currency(@event.orders.funding.sum(:total)) %></span></li>
-        <li><span class="label label-info">unsold tickets: <%= @event.capacity - @event.orders.funding.sum(:quantity) %></span></li>
-        <li><%= @event.private_or_public %></li>
-      </ul>
+      <legend>
+        <ul class="inline">
+          <li><h3><i class="icon-dashboard"></i></h3></li>
+          <li><span class="label label-info">Time left <i class="icon-time"></i> <%= @event.date > DateTime.now + 2.hour ? distance_of_time_in_words(Time.now, @event.date, include_seconds = false) : "Time's up!"  %></span></li>
+          <li><span class="label label-info">Funding <i class="icon-money"></i> <%= number_to_currency(@event.orders.funding.sum(:total)) %></span></li>
+          <li><span class="label label-info">unsold tickets: <%= @event.capacity - @event.orders.funding.sum(:quantity) %></span></li>
+          <li><%= @event.private_or_public %></li>
+        </ul>
+      </legend>
     </div>
   </div>
-  <hr>
   <div class="row-fluid">
     <div class="span12 well well-large">
       <div class="tabbable tabs-left"> <!-- Only required for left/right tabs -->
@@ -40,16 +41,16 @@
           <li class="active"><a href="#event-tab" data-toggle="tab">Event</a></li>
           <li><a href="#sales-tab" data-toggle="tab">Sales</a></li>
           <li><a href="#tickets-tab" data-toggle="tab">Tickets</a></li>
-          <li><a href="#promotion-tab" data-toggle="tab">Promotion</a></li>
+          <li><a href="#promotion-tab" data-toggle="tab">Promote</a></li>
           <li><a href="#account-tab" data-toggle="tab">Account</a></li>
         </ul>
         <div class="tab-content">
           <div class="tab-pane active" id="event-tab">
             <div class="row-fluid">
               <div class="span6">
-                <%= simple_form_for :defer_event, url: defer_organizer_event_path, method: :post, html: {class: 'form-horizontal'} do |f| %>
+                <%= simple_form_for :alter_event, url: defer_or_cancel_organizer_event_path, method: :post, html: {class: 'form-horizontal'} do |f| %>
                 <legend>Defer or Cancel Event</legend>
-                  <%= f.input :date, as: :datepicker, label: "New date for event if deferring", placeholder: "  Currently #{@event.date.strftime('%d %b %Y')}" %>
+                  <%= f.input :date, as: :datepicker, label: "New date for event if deferring", placeholder: "  Currently #{@event.date.strftime('%d %b %Y')}", required: false %>
                   <%= f.input :message, as: :text, :input_html => { :cols => 5, :rows => 3 }, label: "Add an explanation for your action", placeholder: "We have been forced to cancel because...." %>
                   <%= f.submit "Defer", name: "defer", data: { confirm: "Defer?"}, class: "btn btn-warning" %>
                   <%= f.submit "Cancel", name: "cancel", data: { confirm: "Cancel (cannont be undone)?"}, class: "btn btn-danger" %>
@@ -59,9 +60,15 @@
                 <form class="form-horizontal">
                 <legend>Settings</legend>
                 <div class="control-group">
-                  <label class="control-label" for="inputEmail">Toggle Visibility</label>
+                  <label class="control-label" for="">Toggle Visibility</label>
                   <div class="controls">
                     <button class="btn"><%= @event.toggle_visible %></button>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label" for="">Copy this Event</label>
+                  <div class="controls">
+                    <%= link_to "Create", duplicate_organizer_event_path(@event), class: 'btn' %>
                   </div>
                 </div>
               </div>
@@ -70,7 +77,17 @@
           <div class="tab-pane" id="sales-tab">
             <div class="row-fluid">
               <div class="span12">
-                <legend>Sales <span class="pull-right"><%= render 'search' %></span></legend>
+                <legend>
+                  Sales
+                  <span class="pull-right">
+                    <%= form_tag organizer_event_path(@event), method: :get, class: "form-search" do %>
+                        <div class="input-append">
+                          <%= text_field_tag :query, params[:query], class: "input-medium input-append", placeholder: "Search Orders" %>
+                          <button type="submit" class="btn">Search</button>
+                        </div>
+                    <% end %>
+                  </span>
+               </legend>
               </div>
             </div>
             <div class="row-fluid">
@@ -103,7 +120,7 @@
                       <td><%= order.uuid %> </td>
                       <td><%= order.quantity %></td>
                       <td><%= number_to_currency(order.total) %></td>
-                      <td><%= order.stripe_event %></td>
+                      <td><span class="label"><%= order.stripe_event %></span></td>
                     </tr>
                     <% end %>
                   </tbody>
@@ -118,7 +135,7 @@
                 <legend>
                   Tickets
                   <span class="pull-right">
-                    <%= form_tag organizer_event_tickets_path(@event), method: :get, class: "form-search", autocomplete: :off do %>
+                    <%= form_tag admit_organizer_event_path(@event), method: :get, class: "form-search", autocomplete: :off, remote: true do %>
                         <%= number_field_tag :query, params[:query], class: "input-medium", placeholder: "Enter Ticket Number" %>
                         <button type="submit" class="btn">Check</button>
                     <% end %>
@@ -158,17 +175,19 @@
           <div class="tab-pane" id="promotion-tab">
             <div class="row-fluid">
               <div class="span6">
-                <%= simple_form_for :announcement, url: defer_organizer_event_path, method: :post, html: {class: 'form-horizontal'} do |f| %>
+                <%= simple_form_for :message, url: customers_message_path, method: :post, html: {class: 'form-horizontal'} do |f| %>
                 <legend>Contact Your Customers</legend>
                   <%= f.input :subject, as: :string, label: "Email Subject", placeholder: "Fundraising Update" %>
-                  <%= f.input :message, as: :text, :input_html => { :cols => 5, :rows => 3 }, label: "A message for you Customers", placeholder: "We need more sales, can you help, time is running out!" %>
-                  <%= f.submit "Send", data: { confirm: "Send Group Email?"}, class: "btn" %>
+                  <%= f.input :email, as: :hidden, input_html: { value: current_user.email } %>
+                  <%= f.input :content, as: :text, :input_html => { :cols => 5, :rows => 3 }, label: "A message for you Customers", placeholder: "We need more sales, can you help, time is running out!" %>
+                  <%= f.submit "Send Group Email", data: { confirm: "Send Group Email?"}, class: "btn" %>
                 <% end %>
               </div>
               <div class="span6">
                 <legend>Share Buttons</legend>
                 <div class="row-fluid">
                   <div class="span9 pagination-centered">
+                    <button class="btn btn-block"><i class="icon-link"></i> | Short-Url Copy to Clipboard</button>
                     <button class="btn btn-facebook btn-block"><i class="icon-facebook"></i> | Share with Facebook</button>
                     <button class="btn btn-twitter btn-block"><i class="icon-twitter"></i> | Share with Twitter</button>
                     <button class="btn btn-tumblr btn-block"><i class="icon-tumblr-sign"></i> | Share with Tumblr</button>
@@ -178,7 +197,42 @@
             </div>
           </div>
           <div class="tab-pane" id="account-tab">
-            <%= render 'user_profile' %>
+            <div class="row-fluid">
+              <div class="span6">
+                <legend>Account Settings</legend>
+                <% if current_user.guest? %>
+                  <%= link_to "Save Account", signup_path %>
+                <% else %>
+                  <form class="form">
+                    <div class="control-group">
+                      <label class="control-label" for="inputEmail">Name</label>
+                      <div class="controls">
+                        <i class="icon-edit"></i> <%= best_in_place current_user.profile, :name, type: :input %>
+                      </div>
+                    </div>
+                    <div class="control-group">
+                      <label class="control-label" for="inputPassword">Email</label>
+                      <div class="controls">
+                        <i class="icon-edit"></i>  <%= best_in_place current_user.profile, :email, type: :input %>
+                      </div>
+                    </div>
+                  </form>
+                  <%= link_to "Reset Password", password_resets_path(email: current_user.profile.email), method: :post, class: "btn btn-info" %>
+                <% end %>
+              </div>
+              <div class="span6">
+                <% unless current_user.guest? %>
+                  <legend>Payment Settings</legend>
+                  <div>
+                    <% if current_user.api_key %>
+                      <a href="#" class="stripe-connect light-blue dark"><span>Connected to Stripe <i class="icon-ok"></i></span></a>
+                    <% else %>
+                      <a href="/auth/stripe_connect" class="stripe-connect dark btn-block"><span>Connect with Stripe</span></a>
+                    <% end %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
           </div>
         </div>
       </div>

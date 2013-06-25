@@ -21,7 +21,9 @@ OneHundredMotels::Application.routes.draw do
   resources :password_resets
   resources :events, only: [:show, :index, :update]
   resources :locations, only: [:new, :show, :create, :update]
-  resources :private_messages, only: [:create]
+  resources :messages, only: [:create] do
+    member { post :customers }
+  end
 
 
   resources :email_confirmations, only: [:create] do
@@ -44,7 +46,8 @@ OneHundredMotels::Application.routes.draw do
       member do
         get :cancel
         get :duplicate
-        post :defer
+        post :defer_or_cancel
+        get :admit
       end
       resources :tickets, only: [:index, :update]
       resources :event_users

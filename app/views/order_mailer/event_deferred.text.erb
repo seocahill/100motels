@@ -1,9 +1,15 @@
-Your Event has been Deferred
+Hi <%= @order.email %>
 
-The new date is xx-xx-xx
+Your Event has been deferred until <%= @new_date %>
 
-Your promoter gave the following reason for the delay
+The Organizer of the Event gave the following reason:
 
-Click the link to cancel your order.
+<%= @message %>
+
+If you wish, you can cancel your order now by visiting this link:
+
+https:/www.100motels.com/cancel_order
 
 Thanks!
+
+100 Motels.

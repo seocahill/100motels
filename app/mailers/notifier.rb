@@ -34,8 +34,9 @@ class Notifier < ActionMailer::Base
     mail to: @order.email, subject: "You have been refunded"
   end
 
-  def event_cancelled(order_id)
+  def event_cancelled(order_id, message)
     @order = Order.find(order_id)
+    @message = message
     mail to: @order.email, subject: "Your event has been cancelled"
   end
 
@@ -47,6 +48,12 @@ class Notifier < ActionMailer::Base
   def private_message(message)
     @message = message
     mail to: message.organizer_email, subject: message.subject, from: message.email
+  end
+
+  def group_message(message, order)
+    @message = message
+    @order = order
+    mail to: order.email, subject: message.subject, from: message.email
   end
 
   def job_completed(orders)

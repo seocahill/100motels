@@ -1,9 +1,4 @@
 class Organizer::EventsController < Organizer::BaseController
-has_scope :pending, type: :boolean
-has_scope :paid, type: :boolean
-has_scope :tickets_sent, type: :boolean
-has_scope :failed, type: :boolean
-has_scope :refunded, type: :boolean
 
   def new
     @event = Event.new
@@ -27,11 +22,11 @@ has_scope :refunded, type: :boolean
   end
 
   def show
-    @events = current_user.events.where("events.state < 4")
     @event = Event.find(params[:id]).decorate
+    @events = current_user.events.where("events.state < 4")
+    @tickets = @event.tickets.order('quantity_counter, updated_at').joins(:order).where("stripe_event = 2 OR stripe_event = 4")
     @organizer = User.includes(:event_users).where("event_users.event_id = ? AND event_users.state = 3", @event.id).first
     @orders = Order.text_search(params[:query]).page(params[:page]).per_page(15).where(event_id: @event.id)
-    @tickets = @event.tickets.order('quantity_counter, updated_at').joins(:order).where("stripe_event = 2 OR stripe_event = 4")
     respond_to do |format|
       format.html
       format.pdf do
@@ -61,40 +56,51 @@ has_scope :refunded, type: :boolean
 
   def destroy
     event = Event.find(params[:id])
-    orders = event.orders.all
-    if orders.empty?
-      event.destroy
-      redirect_to root_path, notice: "Event deleted"
+    if event.orders.empty?
+      event.state = :cancelled
     else
-      if CancelEventOrders.new(orders).cancel_orders
-        event.state = :cancelled
-        event.save!
-        orders.each { |order| Notifier.delay_for(30.minutes).event_cancelled(order.id) }
-        flash[:notice] = "Event has been cancelled"
-      else
-        flash[:error] = "Event could not be cancelled at this time"
-      end
-      redirect_to [:organizer, event]
+      CancelEventOrders.new(event.orders).cancel_orders
     end
+    event.save!
+    redirect_to [:organizer, event], notice: "Your Event has been Cancelled"
   end
 
-  def defer
+  def defer_or_cancel
     event = Event.find(params[:id])
-    event.defer_event(params)
-    flash[:notice] = "Your Event will be Deferred"
-    redirect_to :back
+    if params[:name] == "cancel"
+      CancelEventOrders.new(event.orders, params).cancel_orders
+      flash[:notice] = "Your Event has been Cancelled"
+    else
+      event.defer_event(params)
+      flash[:notice] = "Your Event will be Deferred"
+    end
+    redirect_to [:organizer, :event]
   end
 
   def duplicate
-    original = Event.find(params[:id])
-    location = request.location.present? ? request.location.address : original.location.address
-    @event = original.dup
-    @event.title = "Copy of #{original.title}"
-    @event.state = current_user.guest? ? :guest : :member
-    @event.event_users.build(user_id: current_user.id, state: :event_admin)
-    @event.build_location(address: location)
-    @event.save!
+    event = Event.find(params[:id])
+    event.duplicate(current_user)
     redirect_to @event, notice: "A copy of your event was created successfully"
+  end
+
+  def admit
+    event = Event.find(params[:id])
+    ticket = Ticket.find_by_number(params[:query])
+    if ticket.present? and [:paid, :tickets_sent, :refunded].include? ticket.order.stripe_event
+      if ticket.admitted.nil?
+         ticket.admitted = Time.now
+         ticket.save!
+         flash[:notice] = "Ok! Let them in"
+      else
+         flash[:error] = "Already Admitted at #{ticket.admitted}"
+      end
+    else
+      flash[:error] = "Ticket not found!" unless params[:query].nil?
+    end
+    respond_to do |format|
+      format.html { redirect_to [:organizer, event] }
+      format.js
+    end
   end
 
 end
