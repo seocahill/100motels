@@ -41,7 +41,7 @@ class Order < ActiveRecord::Base
   end
 
   def mail_order_notifiers
-    Notifier.delay.order_created(self.id)
-    Notifier.delay.notify_admin_order_created(self.id)
+    OrderMailer.delay.order_created(self.id)
+    OrderMailer.delay.notify_admin_order_created(self.id)
   end
 end

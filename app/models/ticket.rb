@@ -26,6 +26,6 @@ private
   end
 
   def mail_ticket
-    Notifier.ticket(order_id, self.id).deliver
+    TicketMailer.ticket(order_id, self.id).deliver
   end
 end

@@ -1,10 +1,10 @@
 class Organizer::EventsController < Organizer::BaseController
 
   def index
-    if current_user.events
+    if current_user.events.present?
       redirect_to organizer_event_path(current_user.events.last)
     else
-      redirect_to new_organizer_event_path, notice: "You need to create an Event to get started!"
+      redirect_to new_organizer_event_path, notice: "You need to create an Event to get started! (don't worry you can change everything later)"
     end
   end
 

@@ -1,8 +1,5 @@
 class PagesController < ApplicationController
-  layout :determine_layout, only: [:index]
-
-  def home
-  end
+  layout 'landing', only: [:index]
 
   def info
   end
