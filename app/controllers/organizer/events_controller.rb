@@ -1,5 +1,13 @@
 class Organizer::EventsController < Organizer::BaseController
 
+  def index
+    if current_user.events
+      redirect_to organizer_event_path(current_user.events.last)
+    else
+      redirect_to new_organizer_event_path, notice: "You need to create an Event to get started!"
+    end
+  end
+
   def new
     @event = Event.new
   end

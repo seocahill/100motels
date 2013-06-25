@@ -2,7 +2,7 @@ require 'sidekiq/web'
 
 OneHundredMotels::Application.routes.draw do
 
-  root :to => "events#index", :constraints => Authentication.new
+  root :to => "organizer/events#index", :constraints => Authentication.new
   root :to => "pages#index"
 
   get 'auth/:provider/callback', to: 'omniauth_callbacks#all'
