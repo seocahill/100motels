@@ -37,6 +37,7 @@ OneHundredMotels::Application.routes.draw do
     collection do
       post :charge_or_refund
       post :charge_all
+      put :cancel
     end
   end
 

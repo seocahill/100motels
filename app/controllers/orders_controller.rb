@@ -1,7 +1,6 @@
 class OrdersController < ApplicationController
   before_filter :find_order, only: [:show]
-  # before_filter :create_order_guest_user, only: [:create]
-  before_filter :check_ownership, except: [:new, :create]
+  before_filter :check_ownership, except: [:new, :create, :cancel]
 
   def show
     @member_profile = MemberProfile.new
@@ -29,18 +28,29 @@ class OrdersController < ApplicationController
     redirect_to organizer_event_path(event)
   end
 
+  def cancel
+    @order = Order.find_by_uuid(params[:id])
+    if @order.stripe_event_pending?
+      @order.state = :cancelled
+      OrderMailer.delay.order_cancelled(@order.id, current_user)
+      redirect_to root_path, notice: "Your order has been cancelled"
+    else
+      redirect_to root_path, notice: "This order can't be cancelled, please contact support"
+    end
+  end
+
+  def destroy
+    order = Order.find(params[:id])
+    order.state = :cancelled
+    redirect_to root_path, notice: "Your Order has been Cancelled"
+    session[:current_order_id] = nil
+  end
+
 private
   def find_order
     @order = Order.find(params[:id])
     rescue ActiveRecord::RecordNotFound
     redirect_to root_path
-  end
-
-  def create_order_guest_user
-    unless current_user
-      user = User.create! { |u| u.profile = GuestProfile.create! }
-      cookies[:auth_token] = user.auth_token
-    end
   end
 
   def check_ownership

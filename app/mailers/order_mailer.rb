@@ -30,8 +30,8 @@ class OrderMailer < ActionMailer::Base
     mail to: @order.email, subject: "You have been refunded"
   end
 
-  def order_cancelled(order_id)
+  def order_cancelled(order_id, organizer)
     @order = Order.find(order_id)
-    mail to: @order.email, subject: "Your order has been cancelled"
+    mail to: @order.email, bcc: organizer.email subject: "Order Cancellation Notice"
   end
 end
