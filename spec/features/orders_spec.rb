@@ -7,6 +7,6 @@ feature "Manage Orders" do
 
   scenario 'Customer cancels order after Event deferral' do
     visit cancel_order_url(@order.uuid)
-    expect(page).to have_content "Your order has been cancelled"
+    expect(current_path).to eq root_path
   end
 end

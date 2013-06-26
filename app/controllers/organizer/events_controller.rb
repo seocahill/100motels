@@ -2,6 +2,7 @@ class Organizer::EventsController < Organizer::BaseController
 
   def index
     if current_user.events.present?
+      flash.keep(:notice)
       redirect_to organizer_event_path(current_user.events.where('events.state < 3').last)
     else
       redirect_to new_organizer_event_path, notice: "You need to create an Event to get started! (don't worry you can change everything later)"

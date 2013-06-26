@@ -15,9 +15,9 @@ class EmailConfirmationsController < ApplicationController
       @member_profile.user.state = :normal
       @member_profile.save!
       cookies[:auth_token] = @member_profile.user.auth_token
-      redirect_to events_path, :notice => "Email has been confirmed."
+      redirect_to root_path, :notice => "Email has been confirmed."
     else
-      redirect_to events_path, :notice => "Email could not be confirmed."
+      redirect_to root_path, :notice => "Email could not be confirmed."
     end
   end
 end

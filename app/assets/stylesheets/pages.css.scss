@@ -4,22 +4,7 @@
 
 // everything in here is scoped to the pages resource only
 #pages_controller {
-
-  .well {
-    background-image: url(image_path('weave.png'));
-    // color: #E9E6E6;
-    background-color: none;
-    box-shadow: none;
-    border: none;
-
-  }
-
 // buttons styled to look like dropdown menu links
-
-  .fancy-hr  {
-    margin-top: 40px;
-    border-bottom: 1px solid rgb(214, 214, 214);
-  }
 
   .search {
     input[type="text"] {
@@ -32,6 +17,11 @@
   }
 }
 //
+
+.splash-image {
+  height: 100%;
+}
+
 .narrow-container {
   max-width: 940px;
   margin: 20px auto;
@@ -70,7 +60,7 @@
 .headline {
   font-family: 'Cabin', serif;
   color: $white;
-  min-height: 400px;
+  min-height: 500px;
   .black-back  {
     letter-spacing: -1px;
     background: rgb(0, 0, 0); /* fallback color */
@@ -96,13 +86,14 @@
 
 .landing-info {
   padding: 20px;
+  color: $white;
   p, h3 {
     @include media-below($handheld-max){
     font-size: 110%;
     line-height: 110%;
     }
   }
-  background-image: url(image_path('weave.png'));
+  // background-image: url(image_path('weave.png'));
 }
 
 .landing-image {
@@ -115,8 +106,8 @@
   // width: 100%;
   padding: 50px;
   // margin-bottom: 20px;
-  background-image: url(image_path('weave.png'));
-  // color: #E9E6E6;
+  // background-image: url(image_path('weave.png'));
+  color: #E9E6E6;
 }
 
 #side-menu  {
