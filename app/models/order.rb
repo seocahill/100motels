@@ -44,4 +44,8 @@ class Order < ActiveRecord::Base
     OrderMailer.delay.order_created(self.id)
     OrderMailer.delay.notify_admin_order_created(self.id)
   end
+
+  def total_price
+    quantity * event.ticket_price
+  end
 end
