@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_filter :find_order, only: [:show]
-  before_filter :check_ownership, except: [:new, :create, :cancel]
+  # before_filter :check_ownership, except: [:new, :create, :cancel]
 
   def show
     @member_profile = MemberProfile.new
@@ -29,10 +29,9 @@ class OrdersController < ApplicationController
   end
 
   def cancel
-    @order = Order.find_by_uuid(params[:id])
-    if @order.stripe_event_pending?
-      @order.state = :cancelled
-      OrderMailer.delay.order_cancelled(@order.id, current_user)
+    order = Order.find_by_uuid(params[:id])
+    order.cancel_order
+    if order.stripe_event_cancelled?
       redirect_to root_path, notice: "Your order has been cancelled"
     else
       redirect_to root_path, notice: "This order can't be cancelled, please contact support"

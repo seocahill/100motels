@@ -48,4 +48,12 @@ class Order < ActiveRecord::Base
   def total_price
     quantity * event.ticket_price
   end
+
+  def cancel_order
+    if stripe_event_pending?
+      self.stripe_event = :cancelled
+      OrderMailer.delay.order_cancelled(self.id)
+      save!
+    end
+  end
 end

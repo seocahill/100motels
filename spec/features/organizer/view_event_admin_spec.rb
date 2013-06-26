@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature "Event Options" do
+feature "Event Admin Actions" do
 
   background do
     @event = create(:event, :visible)
@@ -22,4 +22,15 @@ feature "Event Options" do
     last_email.to.should include(@event.orders.first.email)
   end
 
+  scenario "delay event" do
+    click_link "Event"
+    # find("input.datepicker[type=text]").click
+    # page.execute_script %Q{ $('a.ui-datepicker-next').trigger("click") }
+    # page.execute_script %Q{ $("a.ui-state-default:contains('15')").trigger("click")}
+    fill_in "alter_event[date]", with: "31-12-2015"
+    fill_in "alter_event[message]", with: "Hello World"
+    click_button "Defer"
+    expect(page).to have_content "Your Event will be Deferred"
+    last_email.body.encoded.should match(cancel_order_url(@event.orders.first.uuid))
+  end
 end

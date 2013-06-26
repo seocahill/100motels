@@ -34,10 +34,10 @@ OneHundredMotels::Application.routes.draw do
   end
 
   resources :orders do
+    member { get :cancel }
     collection do
       post :charge_or_refund
       post :charge_all
-      put :cancel
     end
   end
 
