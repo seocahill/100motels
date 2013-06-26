@@ -12,6 +12,7 @@ class SessionsController < ApplicationController
       else
         cookies[:auth_token] = auth.user.auth_token
       end
+      session[:current_order_id] = nil
       redirect_to root_path, notice: "Logged in!"
     else
       flash.now.alert = "Email or password is invalid."

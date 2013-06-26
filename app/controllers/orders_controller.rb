@@ -1,15 +1,16 @@
 class OrdersController < ApplicationController
   before_filter :find_order, only: [:show]
-  before_filter :create_order_guest_user, only: [:create]
-  # before_filter :payment_lock_off, only: [:charge_or_refund, :charge_all]
+  # before_filter :create_order_guest_user, only: [:create]
+  before_filter :check_ownership, except: [:new, :create]
 
   def show
     @member_profile = MemberProfile.new
   end
 
   def create
-    @order = current_user.orders.new(params[:order])
+    @order = Order.new(params[:order])
     if CustomerOrder.new(@order, params[:stripeToken]).process_order
+      session[:current_order_id] = @order.id.to_s
       redirect_to @order, notice: "Thanks! Please check your email."
     else
       redirect_to :back, flash: { error: "Did you fill in the email field and select a quantity?" }
@@ -30,7 +31,7 @@ class OrdersController < ApplicationController
 
 private
   def find_order
-    @order = current_user.orders.find(params[:id])
+    @order = Order.find(params[:id])
     rescue ActiveRecord::RecordNotFound
     redirect_to root_path
   end
@@ -42,12 +43,7 @@ private
     end
   end
 
-  def payment_lock_off
-    admins = @orders ? EventUser.where("event_id = ? AND state > 1", @orders.first.event.id) : nil
-    if admins.nil?
-      redirect_to :back, notice: "No Orders to Process"
-    elsif admins.any? {|admin| admin.payment_lock }
-      redirect_to :back, notice: "One or more Admins has locked payments"
-    end
+  def check_ownership
+    redirect_to root_path unless params[:id] == session[:current_order_id]
   end
 end
