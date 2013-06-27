@@ -24,7 +24,7 @@
 							<a href="#event-vimeo"><i class="icon-film"></i></a>
 							<a href="#about"><i class="icon-info-sign"></i></a>
 							<a href="#bio"><i class="icon-quote-left"></i></a><br>
-							<a href="#location"><i class="icon-edit"></i> <%= @event.location.city %></a>
+							<a href="#location"><%= @event.edit_icon %> <%= @event.location.city %></a>
 						</small>
 					</h2>
 				</div>
@@ -34,7 +34,7 @@
 				<div class="span6 event-poster" data-url='<%= @event.image %>'>
 					<h1><i class="icon-info-sign muted" id="about"></i></h1>
 					<div class="event-funding well well-small">
-						<h3> <%= @event.edit_icon %> <%= @event.bip_artist %></h3>
+						<h3> <%= @event.bip_artist %></h3>
 						<h3 class="hidden-desktop">
 							<small>share</small>
 							<div class="disabled-shares" data-toggle="popover" title="" data-content="Share" data-placement="bottom">
