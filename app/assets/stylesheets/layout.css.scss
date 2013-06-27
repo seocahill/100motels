@@ -35,7 +35,10 @@ $xlarge: 1200;
 // Sticky Footer
 html, body  {
     height: 100%;
-    background-image: url(image_path('tex2res5.png'));
+    .not-landing {
+      // background-image: url(image_path('tex2res5.png'));
+      background-image: url(image_path('weave.png'));
+    }
 }
 
 .wrapper {
@@ -52,6 +55,9 @@ html, body  {
 footer {
   padding: 20px;
   text-align: center;
+  .landing {
+    color: $white;
+  }
 }
 
 // input prepend fix

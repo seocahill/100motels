@@ -139,7 +139,7 @@
                 <legend>
                   Tickets
                   <span class="pull-right">
-                    <%= form_tag admit_organizer_event_path(@event), method: :get, class: "form-search", autocomplete: :off, remote: true do %>
+                    <%= form_tag admit_organizer_event_path(@event), method: :get, class: "form-search", autocomplete: :off do %>
                         <%= number_field_tag :query, params[:query], class: "input-medium", placeholder: "Enter Ticket Number" %>
                         <button type="submit" class="btn">Check</button>
                     <% end %>

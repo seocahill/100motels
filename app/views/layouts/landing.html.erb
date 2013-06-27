@@ -17,17 +17,17 @@
     <![endif-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
-  <body id="<%= params[:controller].parameterize %>_controller">
+  <body id="<%= params[:controller].parameterize %>_controller" class="splash-image">
     <div class="wrapper">
-      <div class="splash-image">
+      <div class="">
         <%= yield %>
       </div>
       <div class="push"><!--//--></div>
     </div>
     <footer>
-      <div class="container">
+      <div class="container landing">
         <ul class="inline">
-          <li>© 100 Motels Ltd 2013</li>
+          <li><%= link_to "© 100 Motels Ltd 2013", info_path %></li>
           <li><%= link_to "Terms of Service", info_path %></li>
           <li><%= link_to "Legal and Privacy", info_path %></li>
           <li><%= link_to "Info and Help", info_path %></li>

@@ -23,7 +23,11 @@
 					<% @events.each do |event| %>
 						<li class="span3">
 							<a class="thumbnail" href='<%= event_path(event) %>'>
-                <%= filepicker_image_tag event.image, width: 200, height: 200, fit: 'crop' if event.image.present? %>
+								<% if event.image.present?  %>
+	                <%= filepicker_image_tag event.image, width: 200, height: 200, fit: 'crop' %>
+                <% else %>
+	                <%= image_tag "https://s3-us-west-2.amazonaws.com/onehundredmotels/247915_156305404435251_2616225_n.jpg" %>
+                <% end %>
                 <div class="event-index-artists">
 									<h3><%= truncate(event.title) %><br><small><%= truncate(event.artist) %></small></h3>
 									<h6><%= truncate(event.location.city, length: 15) %> - <%= event.date.strftime('%d/%m/%Y') %></h6>
