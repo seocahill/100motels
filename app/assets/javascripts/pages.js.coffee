@@ -8,4 +8,11 @@ $ ->
 
 # Learn More Scroll
 $ ->
-  # $('#learn-more-scroll').slimScroll height: '250px'
+  $("a[href^=\"#\"]").on "click", (e) ->
+    e.preventDefault()
+    target = @hash
+    $target = $(target)
+    $("html, body").stop().animate
+      scrollTop: $target.offset().top
+    , 900, "swing", ->
+      window.location.hash = target

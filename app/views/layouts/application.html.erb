@@ -64,7 +64,8 @@
           <li><%= link_to "Terms of Service", info_path %></li>
           <li><%= link_to "Legal and Privacy", info_path %></li>
           <li><%= link_to "Info and Help", info_path %></li>
-          <li><a href="blog.100motels.com">Blog</a></li>
+          <li><%= link_to "Sign Up", signup_path unless current_user %></li>
+          <li><a href="http://blog.100motels.com">Blog</a></li>
         </ul>
       </div>
     </footer>
