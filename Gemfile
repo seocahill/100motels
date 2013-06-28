@@ -64,3 +64,4 @@ gem 'slim'
 gem 'pg_search', "0.5.7"
 gem 'active_attr'
 gem 'intercom-rails', '~> 0.2.14'
+gem 'turnout'
