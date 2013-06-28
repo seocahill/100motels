@@ -1,9 +1,7 @@
 <% if @event.state_cancelled? %>
   <h3>This event was cancelled, contact support to request reactivation. </h3>
-
   <%= link_to "new event", new_organizer_event_path, class: 'btn' %>
   <%= link_to "admin", root_path, class: 'btn' %>
-
 <% else %>
   <div class="row-fluid">
     <div class="span12">

@@ -64,14 +64,21 @@
     margin: 100px auto 0;
   }
   .learn-more {
-    margin-top: 400px;
-    @include media-between($handheld-max, $medium-min) {
-      margin-top: 200px;
+    @include media-above($small-min) {
+      margin-top: 230px;
       @media (orientation: landscape) {
         margin-top: 20px;
       }
     }
-
+    @include media-above($medium-min) {
+      margin-top: 300px;
+      @media (orientation: landscape) {
+        margin-top: 300px;
+      }
+    }
+    @include media-above($large-min) {
+      margin-top: 400px;
+    }
   }
   .search {
     input[type="text"] {
