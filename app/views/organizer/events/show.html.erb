@@ -99,7 +99,7 @@
                 <% else %>
                   <%= link_to "Cash Orders", charge_all_orders_path(event_id: @event.id), method: :post, class: "btn btn-success btn-block", data: {confirm: 'Sure?'} %>
                 <% end %>
-                <%= link_to "Orders PDF", organizer_event_path(@event, format: "pdf"), class: "btn btn-block" %>
+                <%= link_to "Orders PDF", organizer_event_path(@event, format: "pdf"), class: "btn btn-block", target: "_blank" %>
               </div>
               <div class="span9">
 
@@ -148,7 +148,7 @@
             <div class="row-fluid">
               <div class="span3">
                 <button class="btn-info btn-block"><%= @tickets.where('admitted is not null').count %> of <%= @tickets.count %> Admitted </button>
-                <%= link_to "Tickets PDF", organizer_event_tickets_path(@event, format: "pdf"), class: "btn btn-block" %>
+                <%= link_to "Tickets PDF", organizer_event_tickets_path(@event, format: "pdf"), class: "btn btn-block", target: "_blank" %>
               </div>
               <div class="span9">
                 <table class="table table-striped table-bordered">
@@ -166,7 +166,7 @@
                         <td><%= ticket.order.name %></td>
                         <td><%= ticket.order.email %></td>
                         <td><%= ticket.order.last4 %></td>
-                        <td><%= ticket.admitted ? ticket.admitted.strftime("%e-%m-%y %H:%M") : "no" %> </td>
+                        <td><%= ticket.admitted ? distance_of_time_in_words(Time.now, ticket.admitted) + " ago" : "no" %> </td>
                       </tr>
                     <% end %>
                   </tbody>
