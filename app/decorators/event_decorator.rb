@@ -11,9 +11,9 @@ class EventDecorator < ApplicationDecorator
 
   def toggle_visible
     if event_owner? && current_user.profile_type == "MemberProfile"
-      switch = best_in_place model, :visible, :type => :checkbox, collection: ["Publish Event", "Hide Event"]
+      switch = best_in_place model, :visible, :type => :checkbox, collection: ["Publish Event", "Hide Event"], data: {current_url: request.path}, classes: "btn"
     elsif current_user
-      "Sign up to Publish"
+      link_to "Sign up to Publish", signup_path, class: 'btn'
     end
   end
 
@@ -38,7 +38,7 @@ class EventDecorator < ApplicationDecorator
   def filepicker
     if event_owner?
       form_for model do |f|
-        f.filepicker_field(:image, onchange: "this.form.submit();", button_text: "Change Image", button_class: "link-button-show")
+        f.filepicker_field(:image, onchange: "this.form.submit();", button_text: "Change Image", button_class: "btn btn-inverse", services: "COMPUTER, IMAGE_SEARCH, WEBCAM, INSTAGRAM, URL, FLICKR, FACEBOOK")
       end
     end
   end

@@ -13,8 +13,10 @@ Sidekiq.configure_server do |config|
   config.redis = { :size => 9 }
 end
 
-Sidekiq::Web.use(Rack::Auth::Basic) do |user, password|
-  [user, password] == ["sidekiqadmin", ENV["SIDEKIQ_PASSWORD"]]
+unless Rails.env.development?
+  Sidekiq::Web.use(Rack::Auth::Basic) do |user, password|
+    [user, password] == ["sidekiqadmin", ENV["SIDEKIQ_PASSWORD"]]
+  end
 end
 
 

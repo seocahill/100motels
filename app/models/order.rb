@@ -41,7 +41,19 @@ class Order < ActiveRecord::Base
   end
 
   def mail_order_notifiers
-    Notifier.delay.order_created(self.id)
-    Notifier.delay.notify_admin_order_created(self.id)
+    OrderMailer.delay.order_created(self.id)
+    OrderMailer.delay.notify_admin_order_created(self.id)
+  end
+
+  def total_price
+    quantity * event.ticket_price
+  end
+
+  def cancel_order
+    if stripe_event_pending?
+      self.stripe_event = :cancelled
+      OrderMailer.delay.order_cancelled(self.id)
+      save!
+    end
   end
 end

@@ -4,7 +4,7 @@
     <h3>Organizer Contact</h3>
   </div>
   <div class="modal-body">
-    <%= simple_form_for @private_message, :validate => true do |f| %>
+    <%= simple_form_for @message, :validate => true do |f| %>
       <%= f.input :organizer_email, as: :hidden, input_html: { value: @organizer.email } %>
       <%= f.input :subject %>
       <%= f.input :email, input_html: { value: current_user.try(:email)} %>

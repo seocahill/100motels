@@ -2,7 +2,8 @@ require 'sidekiq/web'
 
 OneHundredMotels::Application.routes.draw do
 
-  root :to => 'pages#index'
+  root :to => "organizer/events#index", :constraints => Authentication.new
+  root :to => "pages#index"
 
   get 'auth/:provider/callback', to: 'omniauth_callbacks#all'
   get 'auth/failure', to: redirect('/')
@@ -21,7 +22,7 @@ OneHundredMotels::Application.routes.draw do
   resources :password_resets
   resources :events, only: [:show, :index, :update]
   resources :locations, only: [:new, :show, :create, :update]
-  resources :private_messages, only: [:create]
+  resources :messages, only: [:create]
 
 
   resources :email_confirmations, only: [:create] do
@@ -29,10 +30,14 @@ OneHundredMotels::Application.routes.draw do
   end
 
   resources :users do
-    member { put :change_card }
+    member do
+      put :change_card
+      get :stripe_disconnect
+    end
   end
 
   resources :orders do
+    member { get :cancel }
     collection do
       post :charge_or_refund
       post :charge_all
@@ -44,7 +49,8 @@ OneHundredMotels::Application.routes.draw do
       member do
         get :cancel
         get :duplicate
-        post :defer
+        post :defer_or_cancel
+        get :admit
       end
       resources :tickets, only: [:index, :update]
       resources :event_users
@@ -63,4 +69,5 @@ OneHundredMotels::Application.routes.draw do
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
+
 end

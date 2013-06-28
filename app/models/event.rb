@@ -9,7 +9,7 @@ class Event < ActiveRecord::Base
   validates :ticket_price, numericality: { greater_than_or_equal_to: 5.0, less_than_or_equal_to: 20.0, message: "^Price must be in the range $10-$20 during beta"}
   validates :target, numericality: { less_than_or_equal_to: :capacity }
   validates :title, :artist, :ticket_price, :venue, :date, :capacity, :doors, :target, presence: :true
-  validate :forbid_date_change, on: :update
+  # validate :forbid_date_change, on: :update
 
   before_save :create_location
 
@@ -60,10 +60,19 @@ class Event < ActiveRecord::Base
   end
 
   def defer_event(params)
-    self.date = params[:event][:date]
-    self.orders.each { |order| OrderMailer.event_deferred(order).deliver}
+    self.date = params[:alter_event][:date]
+    self.orders.each { |order| OrderMailer.event_deferred(order, params).deliver}
     save!
   end
 
+  def duplicate(current_user, request)
+    location = request.location.present? ? request.location.address : self.location.address
+    copy = self.dup
+    copy.title = "Copy of #{self.title}"
+    copy.state = current_user.guest? ? :guest : :member
+    copy.event_users.build(user_id: current_user.id, state: :event_admin)
+    copy.build_location(address: location)
+    copy.save!
+  end
 end
 

@@ -2,25 +2,84 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-// everything in here is scoped to the pages resource only
+// Landing page(index)
 #pages_controller {
-
-  .well {
-    background-image: url(image_path('weave.png'));
-    // color: #E9E6E6;
-    background-color: none;
-    box-shadow: none;
-    border: none;
-
+  .landing-top {
+    padding: 10px;
+    a {color:$white;}
   }
-
-// buttons styled to look like dropdown menu links
-
-  .fancy-hr  {
-    margin-top: 40px;
-    border-bottom: 1px solid rgb(214, 214, 214);
+  .logo-nav {
+    padding: 5px;
+    h2, a {
+      // padding-top: 20px;
+      font-family: 'Lobster', cursive;
+      color: $white;
+      font-weight: 400;
+      margin-bottom: 20px;
+    }
+    h2 {
+      @include media-below($handheld-max) {
+        font-size: 28px;
+        line-height: 28px;
+      }
+    }
+    a {
+      @include media-below($handheld-max) {
+        font-size: 90%;
+        line-height: 90%;
+      }
+    }
+    .signin {height: auto;}
   }
-
+  .headline {
+    // min-height: 450px;
+    font-family: 'Cabin', serif;
+    color: $white;
+    span, article {
+      @include media-below($handheld-max){
+        min-height: 20px;
+        font-size: 80%;
+        line-height: 80%;
+      }
+    }
+    a {
+      color: $white;
+      @include media-below($handheld-max){
+        font-size: 90%;
+        line-height: 90%;
+      }
+    }
+    #try-it-button {
+      margin-bottom: 20px;
+    }
+  }
+  .black-background  {
+    letter-spacing: -1px;
+    background: rgb(0, 0, 0); /* fallback color */
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+  }
+  .small-container {
+    max-width: 600px;
+    margin: 100px auto 0;
+  }
+  .learn-more {
+    @include media-above($small-min) {
+      margin-top: 230px;
+      @media (orientation: landscape) {
+        margin-top: 20px;
+      }
+    }
+    @include media-above($medium-min) {
+      margin-top: 300px;
+      @media (orientation: landscape) {
+        margin-top: 300px;
+      }
+    }
+    @include media-above($large-min) {
+      margin-top: 400px;
+    }
+  }
   .search {
     input[type="text"] {
       height: 45px;
@@ -29,120 +88,52 @@
        height: 45px;
        margin: 0;
     }
+    a {
+      color: $white;
+    }
   }
-}
-//
-.narrow-container {
-  max-width: 940px;
-  margin: 20px auto;
-}
-
-.small-container {
-  max-width: 600px;
-  margin: 100px auto 0;
-}
-
-.big-logo {
-  padding: 5px;
-  h2, a {
-    // padding-top: 20px;
-    font-family: 'Lobster', cursive;
+  .landing-bottom {
+    padding: 20px;
     color: $white;
-    font-weight: 400;
+    p, h3 {
+      @include media-below($handheld-max){
+      font-size: 110%;
+      line-height: 110%;
+      }
+    }
+  }
+  .try-it-now {
+    display: block;
+    padding: 50px;
+    color: #E9E6E6;
+    a {
+      color: $white;
+    }
+  }
+
+  //Info Page
+  #side-menu  {
+    padding: 20px;
+    @include media-above($ipad-landscape){
+      padding: 20px 50px;
+    }
+    background: $white;
+    box-shadow: 0 8px 50px rgba(0, 0, 0, 0.2);
     margin-bottom: 20px;
   }
-  h2 {
-    @include media-below($handheld-max) {
-      font-size: 28px;
-      line-height: 28px;
+  .affix {
+    @include media-below($medium-max){
+      position: static;
+      width: auto;
+      top: 0;
     }
   }
-  a {
-    @include media-below($handheld-max) {
-      font-size: 90%;
-      line-height: 90%;
-    }
+  #info-page-content  {
+    padding: 40px;
+    background: $white;
+    box-shadow: 0 8px 50px rgba(0, 0, 0, 0.2);
   }
-  .signin {height: auto;}
-}
-
-
-.headline {
-  font-family: 'Cabin', serif;
-  color: $white;
-  min-height: 400px;
-  .black-back  {
-    letter-spacing: -1px;
-    background: rgb(0, 0, 0); /* fallback color */
-    background: rgba(0, 0, 0, 0.7);
-    padding: 10px;
-  }
-  span, article {
-    @include media-below($handheld-max){
-      font-size: 80%;
-      line-height: 80%;
-    }
-  }
-  a {
-    @include media-below($handheld-max){
-      font-size: 90%;
-      line-height: 90%;
-    }
-  }
-  #try-it-button {
+  #founder-speaks {
     margin-bottom: 20px;
   }
-}
-
-.landing-info {
-  padding: 20px;
-  p, h3 {
-    @include media-below($handheld-max){
-    font-size: 110%;
-    line-height: 110%;
-    }
-  }
-  background-image: url(image_path('weave.png'));
-}
-
-.landing-image {
-  // width: 100%;
-  padding: 10px;
-}
-
-.try-it-now {
-  display: block;
-  // width: 100%;
-  padding: 50px;
-  // margin-bottom: 20px;
-  background-image: url(image_path('weave.png'));
-  // color: #E9E6E6;
-}
-
-#side-menu  {
-  padding: 20px;
-  @include media-above($ipad-landscape){
-    padding: 20px 50px;
-  }
-  background: $white;
-  box-shadow: 0 8px 50px rgba(0, 0, 0, 0.2);
-  margin-bottom: 20px;
-}
-
-.affix {
-  @include media-below($medium-max){
-    position: static;
-    width: auto;
-    top: 0;
-  }
-}
-
-#info-page-content  {
-  padding: 40px;
-  background: $white;
-  box-shadow: 0 8px 50px rgba(0, 0, 0, 0.2);
-}
-
-#founder-speaks {
-  margin-bottom: 20px;
 }

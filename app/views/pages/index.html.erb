@@ -1,51 +1,52 @@
-<div class="landing-image">
-  <div class="big-logo">
+<div class="landing-top">
+  <div class="logo-nav">
     <% unless current_user %>
       <h2>100 Motels | <small><%= link_to "sign-in", login_path %> &middot; <%= link_to "events", events_path %> </small></h2>
     <% end %>
   </div>
-  <div class="headline container small-container pagination-centered">
+  <div class="headline small-container text-center container">
     <h2>
-      <span class="black-back">Tour the world without a record label.</span>
+      <span class="black-background">Tour the world without a record label.</span>
     </h2> <br>
     <div class="row-fluid">
       <div class="span3 offset1"><%= new_or_view_event %></div>
       <div class="span6 search"><%= render 'search' %></div>
     </div>
+    <div class="row-fluid">
+      <div class="span6 offset6 learn-more">
+        <a href="#info-section"> learn more <i class="icon-chevron-sign-down"></i></a>
+      </div>
   </div>
 </div>
-<div class="landing-info">
+<div class="landing-bottom small-container container" id="info-section">
   <div class="row-fluid">
-    <div class="span6 well">
-      <h3 class=""><i class="icon-magic"></i> Features</h3>
-      <hr>
+    <div class="span6 offset6">
+      <h3>Features</h3>
       <p class="lead">A Funding & Ticketing platform designed to be flexible and reusable. No time-limits, take as long as you need.</p>
-      <%= link_to "More", info_path(anchor: "getting-started"), class: "btn btn-large" %>
-    </div>
-    <div class="span6 well">
-      <h3 class=""><i class="icon-money"></i> Fees</h3>
-      <hr>
-      <p class="lead">Total is equal to 3.9% + 30c per transaction added-on (you keep the full ticket price), full refunds including fees.</p>
-      <%= link_to "More", info_path(anchor: "payments"), class: "btn btn-large" %>
     </div>
   </div>
   <div class="row-fluid">
-    <div class="span6 well">
-      <h3 class=""><i class="icon-beaker"></i> Beta</h3>
-      <hr>
+    <div class="span6 offset6">
+      <h3 class="">Fees</h3>
+      <p class="lead">Total is equal to 3.9% + 30c per transaction added-on (you keep the full ticket price), full refunds including fees.</p>
+    </div>
+  </div>
+  <div class="row-fluid">
+    <div class="span6 offset6">
+      <h3 class="">Beta</h3>
       <p class="lead">If you want to participate (please do!) be aware that some restrictions apply.</p>
-      <%= link_to "More", info_path(anchor: "beta"), class: "btn btn-large" %>
     </div>
-    <div class="span6 well">
-      <h3 class=""><i class="icon-music"></i> For Artists</h3>
-      <hr>
+  </div>
+  <div class="row-fluid">
+    <div class="span6 offset6">
+      <h3 class="">For Artists</h3>
       <p class="lead">Built by independent Artists for the love of good music, late nights and adventure.</p>
-      <%= link_to "More", info_path(anchor: ""), class: "btn btn-large" %>
     </div>
+  </div>
   </div>
   <div class="row-fluid">
     <div class="try-it-now pagination-centered span12">
-      <p class="lead">Read more about <%= link_to "how it works", info_path %> or</p> <%= new_or_view_event %>
+      <p class="lead"><%= link_to "Read more about how it works or", info_path %></p> <%= new_or_view_event %>
     </div>
   </div>
 </div>

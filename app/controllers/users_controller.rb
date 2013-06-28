@@ -20,4 +20,10 @@ class UsersController < ApplicationController
       end
     end
   end
+
+  def stripe_disconnect
+    current_user.api_key = nil
+    current_user.save!
+    redirect_to root_path, notice: "Stipe API key reset"
+  end
 end
