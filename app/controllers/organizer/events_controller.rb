@@ -3,6 +3,7 @@ class Organizer::EventsController < Organizer::BaseController
   def index
     if current_user.events.present?
       flash.keep(:notice)
+      flash.keep(:error)
       redirect_to organizer_event_path(current_user.events.where('events.state < 3').last)
     else
       redirect_to new_organizer_event_path, notice: "You need to create an Event to get started! (don't worry you can change everything later)"
@@ -22,7 +23,7 @@ class Organizer::EventsController < Organizer::BaseController
         flash[:notice] = 'Event was successfully created.'
         format.html { redirect_to(@event) }
         format.xml { render xml: @event, status: :created, location: @event }
-      else
+    else
         flash[:error] = "Event couldn't be created."
         format.html { render action: "new" }
         format.xml { render xml: @event.errors, status: :unprocessable_entity }

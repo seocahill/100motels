@@ -64,7 +64,7 @@
                 <div class="control-group">
                   <label class="control-label" for="">Toggle Visibility</label>
                   <div class="controls">
-                    <button class="btn"><%= @event.toggle_visible %></button>
+                    <%= @event.toggle_visible %>
                   </div>
                 </div>
                 <div class="control-group">
@@ -232,6 +232,9 @@
                     <% else %>
                       <a href="/auth/stripe_connect" class="stripe-connect dark btn-medium"><span>Connect with Stripe</span></a>
                     <% end %>
+                  </div><br>
+                  <div class="text-centered">
+                    <%= link_to "Reset Stripe", stripe_disconnect_user_path if current_user.api_key.present? %>
                   </div>
                 <% end %>
               </div>

@@ -30,7 +30,10 @@ OneHundredMotels::Application.routes.draw do
   end
 
   resources :users do
-    member { put :change_card }
+    member do
+      put :change_card
+      get :stripe_disconnect
+    end
   end
 
   resources :orders do

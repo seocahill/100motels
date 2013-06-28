@@ -1,11 +1,12 @@
 class OmniauthCallbacksController < ApplicationController
 
   def all
-    current_user.connect(request)
+    current_user.connect(request) if current_user.state_beta?
     if current_user.api_key.present?
-      redirect_to events_path, notice: "Connected to Stripe successfully"
+      redirect_to root_path, notice: "Connected to Stripe successfully"
     else
-      redirect_to :back, error: "Couldn't connect to Stripe"
+      redirect_to root_path
+      flash[:error] = "Contact support to be added to beta user list"
     end
   end
   alias_method :stripe_connect, :all
