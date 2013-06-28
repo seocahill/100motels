@@ -8,7 +8,7 @@ $ ->
 
 $ ->
   $('.best_in_place').bind "ajax:success", (event, data) ->
-   $.ajax $(this).data('url'),
+   $.ajax $(this).data(window.location.pathname),
     type: 'GET'
     dataType: 'html'
     error: (jqXHR, textStatus, errorThrown) ->

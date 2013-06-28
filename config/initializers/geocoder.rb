@@ -1,4 +1,7 @@
-Geocoder.configure(:lookup => :test)
+Geocoder.configure(
+  :lookup => :test,
+  :cache => Redis.new
+  )
 
 Geocoder::Lookup::Test.set_default_stub(
   [
