@@ -7,7 +7,7 @@
   <%= tag :meta, name: "twitter:site", content: "@100Motels" %>
   <%= tag :meta, name: "twitter:title", content: @event.title %>
   <%= tag :meta, name: "twitter:description", content: @event.about %>
-  <%= tag :meta, name: "twitter:image", content: proc { filepicker_image_tag @event.image, w: 200, h: 200, fit: 'crop' } %>
+  <%= tag :meta, name: "twitter:image", content: @event.image %>
 <% end %>
 <% content_tag :header, title(@event) %>
 <% if @event.visible? || @event.event_owner? %>
