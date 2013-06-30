@@ -190,10 +190,9 @@
                 <legend>Share Buttons</legend>
                 <div class="row-fluid">
                   <div class="span9 pagination-centered">
-                    <button class="btn btn-block"><i class="icon-link"></i> | Short-Url Copy to Clipboard</button>
-                    <button class="btn btn-facebook btn-block"><i class="icon-facebook"></i> | Share with Facebook</button>
-                    <button class="btn btn-twitter btn-block"><i class="icon-twitter"></i> | Share with Twitter</button>
-                    <button class="btn btn-google-plus btn-block"><i class="icon-google-plus"></i> | Share with Google</button>
+                    <a href="http://www.facebook.com/sharer.php?u=<%= event_url(@event) %>"class="btn btn-facebook btn-block"><i class="icon-facebook"></i> | Share with Facebook</a>
+                    <a href="https://twitter.com/share?text=<%= @event.title %>&url=<%= event_url(@event) %>&via=100Motels" class="btn btn-twitter btn-block" target="_blank"><i class="icon-twitter"></i> | Share with Twitter</a>
+                    <a href="https://plus.google.com/share?url=<%= event_url(@event) %>" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="btn btn-google-plus btn-block"><i class="icon-google-plus"></i> | Share with Google</a>
                   </div>
                 </div>
               </div>
