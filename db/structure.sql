@@ -88,7 +88,10 @@ CREATE TABLE events (
     image character varying(255),
     image_html character varying(255),
     location_id integer,
-    title character varying(255)
+    title character varying(255),
+    first_support character varying(255),
+    second_support character varying(255),
+    third_support character varying(255)
 );
 
 
@@ -800,3 +803,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130221235244');
 INSERT INTO schema_migrations (version) VALUES ('20130301115603');
 
 INSERT INTO schema_migrations (version) VALUES ('20130311141754');
+
+INSERT INTO schema_migrations (version) VALUES ('20130630171703');

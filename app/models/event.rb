@@ -1,6 +1,7 @@
 class Event < ActiveRecord::Base
   attr_accessible :artist, :date, :doors, :venue, :capacity, :ticket_price, :title,
-                  :music, :video, :about, :image, :target, :location_id, :new_location, :visible, :state
+                  :music, :video, :about, :image, :target, :location_id, :new_location,
+                  :visible, :state, :first_support, :second_support, :third_support
   attr_accessor :new_location
   enum_accessor :state, [ :guest, :member, :rescheduled, :archived, :cancelled, :suspended ]
   validates :artist, length: {maximum: 75}

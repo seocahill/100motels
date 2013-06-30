@@ -40,9 +40,11 @@
 				<div class="span6 event-poster" data-url='<%= @event.image %>'>
 					<h1><i class="icon-info-sign muted" id="about"></i></h1>
 					<div class="event-funding well well-small">
-						<h3> <%= @event.bip_artist %></h3>
+						<h3>
+							<%= @event.bip_artist %> <br>
+						<small> <%= @event.first_support %> <%= @event.second_support %> <%= @event.third_support %> </small>
+						</h3>
 						<h3 class="hidden-desktop">
-							<small>share</small>
 							<div class="disabled-shares" data-toggle="popover" title="" data-content="Share" data-placement="bottom">
 								<i class="icon-facebook"></i>
 								<i class="icon-twitter"></i>
@@ -51,7 +53,6 @@
 							</div>
 						</h3>
 						<h3 class="visible-desktop">
-							<small>share</small>
 							<div class="addthis_toolbox">
 								<div class="custom_images">
 									<a href="http://www.facebook.com/sharer.php?u=<%= event_url(@event) %>"class="" target="_blank"><i class="icon-facebook"></i></a>
@@ -63,7 +64,7 @@
 						</h3>
 
 						<% if @event.on_sale? %>
-							<h4><%= @event.left_to_go %> left to sell <%= @event.sales %> tickets <i class="icon-question-sign" data-toggle="popover" title="" data-content="Go to the Info page for more on how event funding works"></i></h4>
+							<h4><%= @event.left_to_go %> left to sell <%= @event.sales %> tickets</h4>
 							<div class="progress">
 							  <div class="bar" style="width: 100%;" data-funded="<%= @event.per_cent_funded %>"><%= @event.per_cent_funded %>% funded</div>
 							</div>
