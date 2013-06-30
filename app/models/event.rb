@@ -6,11 +6,13 @@ class Event < ActiveRecord::Base
   enum_accessor :state, [ :guest, :member, :rescheduled, :archived, :cancelled, :suspended ]
   validates :artist, :first_support, :second_support, :third_support, length: {maximum: 30}
   validates :title, length: {maximum: 50}
-  validates :capacity, numericality: { less_than_or_equal_to: 200 , message: "^Max capacity is 200 during beta" }
-  validates :ticket_price, numericality: { greater_than_or_equal_to: 5.0, less_than_or_equal_to: 20.0, message: "^Price must be in the range $10-$20 during beta"}
+  validates :capacity, numericality: { less_than_or_equal_to: 200 , message: "Max capacity is 200 during beta" }
   validates :target, numericality: { less_than_or_equal_to: :capacity }
-  validates :title, :artist, :ticket_price, :venue, :date, :capacity, :doors, :target, presence: :true
-  # validate :forbid_date_change, on: :update
+  validates :title, :artist, :venue, :date, :capacity, :doors, :target, presence: :true
+  validates_numericality_of :ticket_price, :allow_nil => true,
+      :greater_than_or_equal_to => 5.0,
+      :less_than_or_equal_to => 30.0,
+      :message => "leave blank for free events or between 5 and 30 dollars for paid events."
 
   before_save :create_location
 

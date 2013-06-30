@@ -46,7 +46,7 @@ class Order < ActiveRecord::Base
   end
 
   def total_price
-    quantity * event.ticket_price
+    event.ticket_price.nil? ? 0.0 : (quantity * event.ticket_price)
   end
 
   def cancel_order

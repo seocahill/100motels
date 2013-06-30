@@ -56,20 +56,24 @@ class EventDecorator < ApplicationDecorator
   end
 
   def bip_artist
-    best_in_place_if event_owner?, model, :artist
+    best_in_place_if event_owner?, model, :artist, nil: "Headline Artist"
   end
   def bip_first_support
-    best_in_place_if event_owner?, model, :first_support
+    best_in_place_if event_owner?, model, :first_support, nil: "Support Artist"
   end
   def bip_second_support
-    best_in_place_if event_owner?, model, :second_support
+    best_in_place_if event_owner?, model, :second_support, nil: "Support Artist"
   end
   def bip_third_support
-    best_in_place_if event_owner?, model, :third_support
+    best_in_place_if event_owner?, model, :third_support, nil: "Support Artist"
   end
 
   def formatted_date
-    best_in_place_if event_owner?, model, :date, type: :date, classes: "datepicker" , display_with: :time_tag, classes: ""
+    if model.orders.nil?
+      best_in_place_if event_owner?, model, :date, type: :date, classes: "datepicker" , display_with: :time_tag, classes: ""
+    else
+      time_tag(model.date, class: "defer-date", data: { toggle: "popover", content: "Can't change the date when you have orders! Use Defer Event controls in your admin area instead.", placement: "right" })
+    end
   end
 
   def venue
@@ -90,7 +94,7 @@ class EventDecorator < ApplicationDecorator
   end
 
   def price
-    best_in_place_if event_owner?, model, :ticket_price, classes: "price", display_with: :number_to_currency
+    best_in_place_if event_owner?, model, :ticket_price, classes: "price", display_with: :number_to_currency, nil: "free event"
   end
 
   def about_section
