@@ -17,21 +17,24 @@ $ ->
       target = $(this).data('attribute')
       content = $(data).find(".#{target}").html()
       $(".#{target}").html content
-
+      if target is 'address' then $(".location-city").html $(data).find(".location-city").html()
+      orderTotal()
+      $('#order_quantity').on "change", orderTotal
 # Sum Order
 $ ->
   orderTotal()
   $('#order_quantity').on "change", orderTotal
 
+
 # Order Total method
-orderTotal = ->
+orderTotal = (quantity, price) ->
   quantity = $('#order_quantity').val()
-  price = $('.event-ticket-orders').data('price')
+  price = $('.price').data('original-content')
   net_price = quantity * price
   gross = (net_price / .961) + 0.30
-  number = parseFloat(gross).toFixed(2)
-  $('.order-total').html(number)
-  $('.stripe-button').attr('data-amount', number * 100)
+  order_price = if price > 0 then gross else 0.0
+  $('.order-total').html(order_price.toFixed(2))
+  # $('.stripe-button').attr('data-amount', number * 100)
 
 # Filter form for index page
 $ ->

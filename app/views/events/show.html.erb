@@ -30,7 +30,7 @@
 							<a href="#event-vimeo"><i class="icon-film"></i></a>
 							<a href="#about"><i class="icon-info-sign"></i></a>
 							<a href="#bio"><i class="icon-quote-left"></i></a><br>
-							<a href="#location"><%= @event.edit_icon %> <%= @event.location.city %></a>
+							<a href="#location" class="location-city"><%= @event.edit_icon %> <%= @event.location.city %></a>
 						</small>
 					</h2>
 				</div>
@@ -75,7 +75,7 @@
 				<hr>
 				<div class="span6 event-ticket-orders" data-price='<%= @event.ticket_price %>' id="tickets">
 					<h1><i class="icon-shopping-cart muted"></i></h1>
-					<div class="pagination-centered well well-small">
+					<div class="pagination-centered well well-small ticket_price">
 						<% if @event.on_sale? %>
 							<h3><%= @event.edit_icon %> <%= @event.price %><small> each</small></h3>
 							<%= @event.ticket_form %>

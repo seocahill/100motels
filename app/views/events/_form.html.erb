@@ -1,6 +1,6 @@
  <%= simple_form_for @order, :validate => true, :html => { :class => '' } do |f| %>
   <%= f.input :event_id, as: :hidden, input_html: { value: @event.id } %>
-  <%= f.input :quantity, collection: 1..4, input_html: { class: "input-mini"}, label: false %>
+  <%= f.input :quantity, collection: 1..4, input_html: { class: "input-mini"}, label: false, include_blank: false %>
   <% unless current_user && current_user.guest? == false %>
     <%= f.input :email, label: false, placeholder: "  enter email address", input_html: { class: "input-medium" }, required: :true %>
   <% else %>
