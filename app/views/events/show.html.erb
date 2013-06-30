@@ -3,6 +3,11 @@
   <%= tag :meta, property: "og:title", content: @event.title %>
   <%= tag :meta, property: "og:url", content: event_url(@event) %>
   <%= tag :meta, property: "og:image", content: @event.image %>
+  <%= tag :meta, property: "twitter:card", content: "summary_large_image" %>
+  <%= tag :meta, property: "twitter:site", content: "@100Motels" %>
+  <%= tag :meta, property: "twitter:title", content: @event.title %>
+  <%= tag :meta, property: "twitter:description", content: @event.about %>
+  <%= tag :meta, property: "twitter:image", content: proc { filepicker_image_tag @event.image, w: 200, h: 200, fit: 'crop' } %>
 <% end %>
 <% content_tag :header, title(@event) %>
 <% if @event.visible? || @event.event_owner? %>

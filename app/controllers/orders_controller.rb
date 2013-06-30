@@ -19,7 +19,7 @@ class OrdersController < ApplicationController
   def charge_all
     event = Event.find(params[:event_id])
     @orders = event.orders.where("stripe_event = 0 OR stripe_event = 3")
-    if @orders.length > 0 and current_user.api_key.present?
+    if @orders.length > 0 and !current_user.api_key.present?
       ChargeCustomer.new(@orders).process_charges
       flash[:notice] = "Processing #{@orders.count} orders, we'll email you when we're done."
     else
