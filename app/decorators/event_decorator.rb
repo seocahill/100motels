@@ -58,6 +58,15 @@ class EventDecorator < ApplicationDecorator
   def bip_artist
     best_in_place_if event_owner?, model, :artist
   end
+  def bip_first_support
+    best_in_place_if event_owner?, model, :first_support
+  end
+  def bip_second_support
+    best_in_place_if event_owner?, model, :second_support
+  end
+  def bip_third_support
+    best_in_place_if event_owner?, model, :third_support
+  end
 
   def formatted_date
     best_in_place_if event_owner?, model, :date, type: :date, classes: "datepicker" , display_with: :time_tag, classes: ""
@@ -85,7 +94,7 @@ class EventDecorator < ApplicationDecorator
   end
 
   def about_section
-    best_in_place_if event_owner?, model, :about, :type => :textarea, :display_with => :simple_format, nil: "#{render 'instructions'}", classes: ["span11", "about"]
+    best_in_place_if event_owner?, model, :about, :type => :textarea, nil: "#{render 'instructions'}", classes: ["span11", "about"], display_as: :about_html
   end
 
   def venue_address

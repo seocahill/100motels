@@ -4,8 +4,8 @@ class Event < ActiveRecord::Base
                   :visible, :state, :first_support, :second_support, :third_support
   attr_accessor :new_location
   enum_accessor :state, [ :guest, :member, :rescheduled, :archived, :cancelled, :suspended ]
-  validates :artist, length: {maximum: 75}
-  validates :title, length: {maximum: 30}
+  validates :artist, :first_support, :second_support, :third_support, length: {maximum: 30}
+  validates :title, length: {maximum: 50}
   validates :capacity, numericality: { less_than_or_equal_to: 200 , message: "^Max capacity is 200 during beta" }
   validates :ticket_price, numericality: { greater_than_or_equal_to: 5.0, less_than_or_equal_to: 20.0, message: "^Price must be in the range $10-$20 during beta"}
   validates :target, numericality: { less_than_or_equal_to: :capacity }
@@ -58,6 +58,12 @@ class Event < ActiveRecord::Base
   auto_html_for :music do
     html_escape
     soundcloud(:width => 630, :height => 200)
+  end
+
+  auto_html_for :about do
+    html_escape
+    link target: "_blank", rel: "nofollow"
+    simple_format
   end
 
   def defer_event(params)

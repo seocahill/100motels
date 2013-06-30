@@ -41,8 +41,8 @@
 					<h1><i class="icon-info-sign muted" id="about"></i></h1>
 					<div class="event-funding well well-small">
 						<h3>
-							<%= @event.bip_artist %> <br>
-						<small> <%= @event.first_support %> <%= @event.second_support %> <%= @event.third_support %> </small>
+							<%= @event.edit_icon %> <%= @event.bip_artist %> <br>
+						<small><%= @event.edit_icon %> <%= @event.bip_first_support %> ● <%= @event.bip_second_support %> ● <%= @event.bip_third_support %> </small>
 						</h3>
 						<h3 class="hidden-desktop">
 							<div class="disabled-shares" data-toggle="popover" title="" data-content="Share" data-placement="bottom">
