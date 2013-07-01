@@ -345,7 +345,8 @@ CREATE TABLE orders (
     last4 character varying(255),
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    uuid character varying(255)
+    uuid character varying(255),
+    price numeric
 );
 
 
@@ -805,3 +806,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130301115603');
 INSERT INTO schema_migrations (version) VALUES ('20130311141754');
 
 INSERT INTO schema_migrations (version) VALUES ('20130630171703');
+
+INSERT INTO schema_migrations (version) VALUES ('20130701020622');

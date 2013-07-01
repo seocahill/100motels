@@ -3,9 +3,9 @@ class EventDecorator < ApplicationDecorator
 
   def private_or_public
     if model.visible
-      raw('<span class="label label-success"><i class="icon-eye-open"></i> Event is published</span>')
+      raw('<span class=""><i class="icon-eye-open"></i> Visibility: published</span>')
     else
-      raw('<span class="label label-warning"><i class="icon-eye-close"></i> Event is private</span>')
+      raw('<span class=""><i class="icon-eye-close"></i> Visibility: private</span>')
     end
   end
 
@@ -71,8 +71,10 @@ class EventDecorator < ApplicationDecorator
   def formatted_date
     if model.orders.nil?
       best_in_place_if event_owner?, model, :date, type: :date, classes: "datepicker" , display_with: :time_tag, classes: ""
-    else
+    elsif event_owner?
       time_tag(model.date, class: "defer-date", data: { toggle: "popover", content: "Can't change the date when you have orders! Use Defer Event controls in your admin area instead.", placement: "right" })
+    else
+      time_tag(model.date)
     end
   end
 

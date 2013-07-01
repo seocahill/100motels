@@ -1,5 +1,5 @@
 class Order < ActiveRecord::Base
-  attr_accessible :email, :name, :quantity, :event_id, :user_id, :last4, :stripe_customer_token
+  attr_accessible :email, :name, :quantity, :event_id, :user_id, :last4, :stripe_customer_token, :price
   enum_accessor :stripe_event, [ :pending, :paid, :tickets_sent, :failed, :refunded, :cancelled, ]
 
   has_many :tickets, dependent: :destroy
@@ -46,7 +46,7 @@ class Order < ActiveRecord::Base
   end
 
   def total_price
-    event.ticket_price.nil? ? 0.0 : (quantity * event.ticket_price)
+    price.nil? ? 0.0 : (quantity * price)
   end
 
   def cancel_order

@@ -11,7 +11,7 @@
     <%= f.input :venue, label: "Name of Venue", placeholder: "The Rickshaw" %>
     <%= f.input :new_location, label: "Location of Venue", hint: "Dublin, Ireland" %>
     <%= f.input :capacity, placeholder: "100" %>
-    <%= f.input :date, as: :datepicker, label: "Date of Event" %>
+    <%= f.input :date, as: :datepicker, label: "Date of Event", disabled: @event.orders.present? ? true : false %>
     <%= f.input :doors, label: "Event start time" %>
     <%= f.input :ticket_price, placeholder: "10.50" %>
     <%= f.input :target, label: "Target Attendence", placeholder: "100" %>

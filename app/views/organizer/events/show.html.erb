@@ -19,21 +19,12 @@
             </ul>
           </div>
         </li>
-        <li class="muted"><span class="well well-small"><%= link_to "#{truncate(@event.title)} | #{@event.location.city} | #{@event.date.strftime('%d %b')}", event_path(@event), target: "_blank" %> <i class="icon-external-link"></i></span></li>
+        <li><span class="well well-small">Viewing: <%= link_to "#{truncate(@event.title)} | #{@event.location.city} | #{@event.date.strftime('%d %b')}", event_path(@event), target: "_blank" %> <i class="icon-external-link"></i></span></li>
+        <li><span class="well well-small"><i class="icon-time"></i> Time: <%= @event.left_to_go  %> left</span></li>
+        <li><span class="well well-small"><i class="icon-money"></i> Sales: <%= number_to_currency(@event.orders.sum(&:total_price)) %></span></li>
+        <li><span class="well well-small"><i class="icon-ticket"></i> Tickets: <%= @event.capacity - @event.orders.funding.sum(:quantity) %> left</span></li>
+        <li class="visible"><span class="well well-small"><%= @event.private_or_public %></span></li>
       </ul>
-    </div>
-  </div>
-  <div class="row-fluid">
-    <div class="span12">
-      <legend>
-        <ul class="inline">
-          <li><h3><i class="icon-dashboard"></i> Dashboard </h3></li>
-          <li><span class="label label-info">Time left <i class="icon-time"></i> <%= @event.date > DateTime.now + 2.hour ? distance_of_time_in_words(Time.now, @event.date, include_seconds = false) : "Time's up!"  %></span></li>
-          <li><span class="label label-info">Funding <i class="icon-money"></i> <%= number_to_currency(@event.orders.sum(&:total_price)) %></span></li>
-          <li><span class="label label-info">unsold tickets: <%= @event.capacity - @event.orders.funding.sum(:quantity) %></span></li>
-          <li class="visible"><%= @event.private_or_public %></li>
-        </ul>
-      </legend>
     </div>
   </div>
   <div class="row-fluid">
@@ -68,9 +59,15 @@
                   </div>
                 </div>
                 <div class="control-group">
-                  <label class="control-label" for="">Copy this Event</label>
+                  <label class="control-label" for="">Duplicate Event</label>
                   <div class="controls">
-                    <%= link_to "Create", duplicate_organizer_event_path(@event), class: 'btn' %>
+                    <%= link_to "Create Copy", duplicate_organizer_event_path(@event), class: 'btn' %>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label" for="">Edit in Form</label>
+                  <div class="controls">
+                    <%= link_to "Edit Event", edit_organizer_event_path(@event), class: 'btn' %>
                   </div>
                 </div>
               </div>
