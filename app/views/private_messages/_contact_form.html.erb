@@ -10,7 +10,7 @@
       <%= f.input :email, input_html: { value: current_user.try(:email)} %>
       <%= f.input :content, as: :text, :input_html => {:rows => 5, :placeholder => "Enter some text.", :class => "span12"} %>
       <div class="modal-footer">
-        <%= f.submit 'Submit' %>
+        <%= f.button :submit, 'Send' %>
          <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
       </div>
     <% end %>

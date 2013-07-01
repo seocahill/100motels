@@ -4,11 +4,14 @@
   <fieldset>
     <%= f.input(:visible, :label => "Publish Event?") unless current_user.state_unconfirmed? %>
     <%= f.input :title, label: "Event Title", placeholder: "A Headline for your Event" %>
-    <%= f.input :artist, label: "Artists", placeholder: "List the Performers / Attractions" %>
+    <%= f.input :artist, label: "Headliner", placeholder: "The Main Artist" %>
+    <%= f.input :first_support, required: false %>
+    <%= f.input :second_support, required: false %>
+    <%= f.input :third_support, required: false %>
     <%= f.input :venue, label: "Name of Venue", placeholder: "The Rickshaw" %>
     <%= f.input :new_location, label: "Location of Venue", hint: "Dublin, Ireland" %>
     <%= f.input :capacity, placeholder: "100" %>
-    <%= f.input :date, as: :datepicker, label: "Date of Event" %>
+    <%= f.input :date, as: :datepicker, label: "Date of Event", disabled: @event.orders.present? ? true : false %>
     <%= f.input :doors, label: "Event start time" %>
     <%= f.input :ticket_price, placeholder: "10.50" %>
     <%= f.input :target, label: "Target Attendence", placeholder: "100" %>

@@ -3,9 +3,9 @@ class EventDecorator < ApplicationDecorator
 
   def private_or_public
     if model.visible
-      raw('<span class="label label-success"><i class="icon-eye-open"></i> Event is published</span>')
+      raw('<span class=""><i class="icon-eye-open"></i> Visibility: published</span>')
     else
-      raw('<span class="label label-warning"><i class="icon-eye-close"></i> Event is private</span>')
+      raw('<span class=""><i class="icon-eye-close"></i> Visibility: private</span>')
     end
   end
 
@@ -56,11 +56,26 @@ class EventDecorator < ApplicationDecorator
   end
 
   def bip_artist
-    best_in_place_if event_owner?, model, :artist
+    best_in_place_if event_owner?, model, :artist, nil: "Headline Artist"
+  end
+  def bip_first_support
+    best_in_place_if event_owner?, model, :first_support, nil: "Support Artist"
+  end
+  def bip_second_support
+    best_in_place_if event_owner?, model, :second_support, nil: "Support Artist"
+  end
+  def bip_third_support
+    best_in_place_if event_owner?, model, :third_support, nil: "Support Artist"
   end
 
   def formatted_date
-    best_in_place_if event_owner?, model, :date, type: :date, classes: "datepicker" , display_with: :time_tag, classes: ""
+    if model.orders.nil?
+      best_in_place_if event_owner?, model, :date, type: :date, classes: "datepicker" , display_with: :time_tag, classes: ""
+    elsif event_owner?
+      time_tag(model.date, class: "defer-date", data: { toggle: "popover", content: "Can't change the date when you have orders! Use Defer Event controls in your admin area instead.", placement: "right" })
+    else
+      time_tag(model.date)
+    end
   end
 
   def venue
@@ -81,11 +96,11 @@ class EventDecorator < ApplicationDecorator
   end
 
   def price
-    best_in_place_if event_owner?, model, :ticket_price, classes: "ticket_price", display_with: :number_to_currency
+    best_in_place_if event_owner?, model, :ticket_price, classes: "price", display_with: :number_to_currency, nil: "free event"
   end
 
   def about_section
-    best_in_place_if event_owner?, model, :about, :type => :textarea, :display_with => :simple_format, nil: "#{render 'instructions'}", classes: ["span11", "about"]
+    best_in_place_if event_owner?, model, :about, :type => :textarea, nil: "#{render 'instructions'}", classes: ["span11", "about"], display_as: :about_html
   end
 
   def venue_address

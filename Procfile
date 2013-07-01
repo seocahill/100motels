@@ -1,3 +1,3 @@
-web: bundle exec rails server -p 4567
+web: bundle exec rails server -p $PORT
 worker: bundle exec sidekiq
 # guard:  bundle exec guard

@@ -1,13 +1,13 @@
  <%= simple_form_for @order, :validate => true, :html => { :class => '' } do |f| %>
   <%= f.input :event_id, as: :hidden, input_html: { value: @event.id } %>
-  <%= f.input :quantity, collection: 1..4, input_html: { class: "input-mini"}, label: false %>
+  <%= f.input :quantity, collection: 1..4, input_html: { class: "input-mini"}, label: false, include_blank: false %>
   <% unless current_user && current_user.guest? == false %>
     <%= f.input :email, label: false, placeholder: "  enter email address", input_html: { class: "input-medium" }, required: :true %>
   <% else %>
     <%= f.input :email, label: false, input_html: { value: current_user.email } %>
   <% end %>
-  <% if current_user && current_user.customer_id? %>
-    <%= f.submit "Buy Now", html: {class: "btn btn-success btn-large"}, id: "buy-now" %>
+  <% if @event.ticket_price.blank? %>
+    <%= f.button :submit,  "Place Order", class: "btn btn-info" %>
   <% else %>
     <span class="stripe-controls warning-pop" data-toggle="popover" data-content="You have to enter a valid email address before you can place an order">
       <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
