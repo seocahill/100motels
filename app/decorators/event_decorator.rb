@@ -69,9 +69,9 @@ class EventDecorator < ApplicationDecorator
   end
 
   def formatted_date
-    if model.orders.nil?
+    if model.orders.empty?
       best_in_place_if event_owner?, model, :date, type: :date, classes: "datepicker" , display_with: :time_tag, classes: ""
-    elsif event_owner?
+    elsif model.orders.present? and event_owner?
       time_tag(model.date, class: "defer-date", data: { toggle: "popover", content: "Can't change the date when you have orders! Use Defer Event controls in your admin area instead.", placement: "right" })
     else
       time_tag(model.date)
