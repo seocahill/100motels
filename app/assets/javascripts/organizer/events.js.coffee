@@ -18,3 +18,8 @@ $ ->
     $("a[href=" + lastTab + "]").tab "show"
   else
     $("a[data-toggle=\"tab\"]:first").tab "show"
+
+# Toggle checkboxes
+$ ->
+  $('#check_all').click () ->
+    $('input[type="checkbox"]').click()
