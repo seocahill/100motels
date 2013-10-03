@@ -7,6 +7,7 @@ gem 'pg'
 gem 'json'
 
 group :development, :test do
+  gem 'rails-erd'
 	gem 'rspec-rails'
   gem 'better_errors'
   gem 'binding_of_caller'
@@ -65,3 +66,4 @@ gem 'pg_search', "0.5.7"
 gem 'active_attr'
 gem 'intercom-rails', '~> 0.2.14'
 gem 'turnout'
+gem 'newrelic_rpm'
