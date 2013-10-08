@@ -1,7 +1,7 @@
 class Event < ActiveRecord::Base
-  # attr_accessible :date, :ticket_price, :title, :about, :image, :visible, :state
-  validates :title, length: {maximum: 50}
-  validates :title, :date, :capacity, presence: :true
+  # attr_accessible :date, :ticket_price, :name, :about, :image, :visible, :state
+  validates :name, length: {maximum: 50}
+  validates :name, :date, presence: :true
   validates_numericality_of :ticket_price, :allow_nil => true,
       :greater_than_or_equal_to => 5.0,
       :less_than_or_equal_to => 30.0,
@@ -12,7 +12,7 @@ class Event < ActiveRecord::Base
   has_one :user, through: :event_users
 
   include PgSearch
-  pg_search_scope :search, against: [:venue, :about, :title, :artist],
+  pg_search_scope :search, against: [:venue, :about, :name, :artist],
     using: {tsearch: {dictionary: "english"}},
     associated_against: {location: :address}
 
@@ -45,7 +45,7 @@ class Event < ActiveRecord::Base
   def duplicate(current_user, request)
     location = request.location.present? ? request.location.address : self.location.address
     copy = self.dup
-    copy.title = "Copy of #{self.title}"
+    copy.name = "Copy of #{self.name}"
     copy.state = current_user.guest? ? :guest : :member
     copy.event_users.build(user_id: current_user.id, state: :event_admin)
     copy.build_location(address: location)

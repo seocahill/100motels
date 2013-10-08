@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-6">
-      <h1>User no. <%= @user.id %></h1>
+      <h1>User no. <%= @user.name %></h1>
       <% @user.events.each do |e| %>
         <img class="img-responsive" src="<%= e.image %>">
-        <h4><%= e.title %></h4>
+        <h4><%= e.name %></h4>
         <span>Cash Cancel Defer Message Checkin</span>
       <% end %>
     </div>
