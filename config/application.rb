@@ -10,7 +10,6 @@ module OneHundredMotels
     config.filter_parameters += [:password]
     config.active_support.escape_html_entities_in_json = true
     # config.active_record.schema_format = :sql
-    config.active_record.whitelist_attributes = false
     config.assets.enabled = true
     config.assets.version = '1.0'
     config.assets.initialize_on_precompile = false

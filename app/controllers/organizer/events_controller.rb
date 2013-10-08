@@ -1,4 +1,4 @@
-class Organizer::EventsController < Organizer::BaseController
+class Organizer::Events
 
   def index
     if current_user.events.present?

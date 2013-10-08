@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-  attr_accessible :date, :ticket_price, :title, :about, :image, :visible, :state
+  # attr_accessible :date, :ticket_price, :title, :about, :image, :visible, :state
   validates :title, length: {maximum: 50}
   validates :title, :date, :capacity, presence: :true
   validates_numericality_of :ticket_price, :allow_nil => true,

@@ -1,12 +1,8 @@
 class EventsController < ApplicationController
   before_filter :find_event, only: [:show, :update]
 
-  has_scope :tonight , type: :boolean
-  has_scope :week_end , type: :boolean
-  has_scope :month_end , type: :boolean
-
   def index
-    @events = apply_scopes(Event.published.text_search(params[:query]).page(params[:page]).per_page(9))
+    @events = Event.published.text_search(params[:query]).page(params[:page]).per_page(9)
   end
 
   def show

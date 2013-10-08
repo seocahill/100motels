@@ -29,7 +29,7 @@ end
 
 gem 'bootstrap-sass'
 gem "font-awesome-rails"
-gem 'bcrypt-ruby'
+gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'best_in_place', git: 'git://github.com/bernat/best_in_place.git', branch: 'rails-4'
 gem 'simple_form', '~> 3.0.0'
 gem 'stripe'
