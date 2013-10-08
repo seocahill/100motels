@@ -1,6 +1,13 @@
-<h1>User no. <%= @user.id %></h1>
-<% @user.events.each do |e| %>
-  <img src="<%= e.image %>"
-  <h4><%= e.title %></h4>
-  <span>Cash Cancel Defer Message Checkin</span>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6">
+      <h1>User no. <%= @user.id %></h1>
+      <% @user.events.each do |e| %>
+        <img class="img-responsive" src="<%= e.image %>">
+        <h4><%= e.title %></h4>
+        <span>Cash Cancel Defer Message Checkin</span>
+      <% end %>
+    </div>
+  </div>
+</div>
+

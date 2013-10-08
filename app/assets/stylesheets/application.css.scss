@@ -1,7 +1,5 @@
-@import "jquery-ui-1.9.2.custom";
-@import "bootstrap_and_overrides";
 @import "bootstrap";
-@import "bootstrap-responsive";
+@import "bootstrap/theme";
 @import "layout";
 @import "pages";
 @import "events";
@@ -9,6 +7,4 @@
 @import "orders";
 @import "users";
 @import "font-awesome";
-@import "tickets";
-@import "timepicker";
 @import "social_buttons";

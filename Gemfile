@@ -27,7 +27,7 @@ group :development, :test do
   gem 'letter_opener_web'
 end
 
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', git: 'git://github.com/thomas-mcdonald/bootstrap-sass', branch: '3'
 gem "font-awesome-rails"
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'best_in_place', git: 'git://github.com/bernat/best_in_place.git', branch: 'rails-4'

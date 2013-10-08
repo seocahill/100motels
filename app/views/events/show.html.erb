@@ -16,7 +16,7 @@
 		<% if @event.event_owner? %>
 		<% end %>
 		<section id="event-information">
-			<div class="row-fluid">
+			<div class="row">
 				<div class="span12 event-header">
 					<div class="pull-right"><%= @event.filepicker %></div>
 					<h2>
@@ -36,7 +36,7 @@
 				</div>
 			</div>
 			<hr>
-			<div class="row-fluid poster-information=" id="inlay">
+			<div class="row poster-information=" id="inlay">
 				<div class="span6 event-poster" data-url='<%= @event.image %>'>
 					<h1><i class="icon-info-sign muted" id="about"></i></h1>
 					<div class="event-funding well well-small">
@@ -93,14 +93,14 @@
 		</section>
 		<hr>
 		<section id="event-media" class="event">
-			<div class="row-fluid">
+			<div class="row">
 				<div class="span6">
 					<h1><i class="icon-quote-left muted" id="bio"></i></h1>
 					<div class="about about-event"><%= @event.edit_icon %> <%= @event.about_section %></div>
 				</div>
 				<div class="span6">
 					<h1><i class="icon-map-marker muted" id="location"></i></h1>
-					<div class="row-fluid" >
+					<div class="row" >
 						<div class="span6 event-map address"><%= @event.map %></div>
 						<div class="span6 event-map venue-info">
 							<dl>
@@ -124,7 +124,7 @@
 				</div>
 			</div>
 			<hr>
-			<div class="row-fluid">
+			<div class="row">
 				<div class="span6" id="event-vimeo">
 					<h1><i class="icon-film muted"></i></h1>
 						<%= @event.edit_icon %> <%= @event.video %><div class="flex-video video"><%= @event.video_iframe %></div>
