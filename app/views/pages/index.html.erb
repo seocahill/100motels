@@ -9,30 +9,30 @@
       <span class="black-background">Tour the world without a record label.</span>
     </h2> <br>
     <div class="row">
-      <div class="span3 offset1"><%= new_or_view_event %></div>
-      <div class="span6 search"><%= render 'search' %></div>
+      <div class="col-lg-3 col-lg-offset-1"><%= new_or_view_event %></div>
+      <div class="col-lg-6 search"><%= render 'search' %></div>
     </div>
     <div class="row">
-      <div class="span6 offset6 learn-more">
+      <div class="col-lg-6 col-lg-offset-6 learn-more">
         <a href="#info-section"> learn more <i class="icon-chevron-sign-down"></i></a>
       </div>
   </div>
 </div>
 <div class="landing-bottom small-container container" id="info-section">
   <div class="row">
-    <div class="span6 offset6">
+    <div class="col-lg-6 col-lg-offset-6">
       <h3>What is it?</h3>
       <p class="lead">A Funding & Ticketing platform for organizing viable tour dates. No time-limits, no cancellation fees, no risk.</p>
     </div>
   </div>
   <div class="row">
-    <div class="span6 offset6">
+    <div class="col-lg-6 col-lg-offset-6">
       <h3 class="">Who is it for?</h3>
       <p class="lead">Anyone who is concerned about reaching a cash or attendance target before commiting to a live event.</p>
     </div>
   </div>
   <div class="row">
-    <div class="span6 offset6">
+    <div class="col-lg-6 col-lg-offset-6">
       <h3 class="">Why?</h3>
       <p class="lead">Because no one enjoys empty venues. <br>
       Because independent music isn't being toured. <br>
@@ -41,8 +41,8 @@
   </div>
   </div>
   <div class="row">
-    <div class="try-it-now pagination-centered span12">
-      <p class="lead"><%= link_to "Read more about how it works", info_path %></p> <%= new_or_view_event %>
+    <div class="try-it-now pagination-centered col-lg-12">
+   -   <p class="lead"><%= link_to "Read more about how it works", info_path %></p> <%= new_or_view_event %>
     </div>
   </div>
 </div>

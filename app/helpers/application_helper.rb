@@ -16,7 +16,7 @@ module ApplicationHelper
 		elsif current_user
 			link_to "View Events", events_path, class: 'btn btn-large btn-success', id: 'try-it-button'
 		else
-			link_to "Try it free", guest_profiles_path, method: :post, class: 'btn btn-large btn-success', id: 'try-it-button'
+			link_to "Try it free", events_path, method: :post, class: 'btn btn-large btn-success', id: 'try-it-button'
 		end
 	end
 end
