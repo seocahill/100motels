@@ -8,7 +8,7 @@ gem 'json'
 gem 'sass-rails',   '~> 4.0.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
-gem "jquery-rails", "2.3.0"
+gem "jquery-rails"
 
 group :development, :test do
 	gem 'rspec-rails'
@@ -31,22 +31,22 @@ gem 'bootstrap-sass'
 gem "font-awesome-rails"
 gem 'bcrypt-ruby'
 gem 'best_in_place'
-gem 'simple_form'
+# gem 'simple_form'
 gem 'stripe'
 gem 'omniauth-stripe-connect'
 gem 'bootstrap-will_paginate'
 gem 'prawn'
 gem "auto_html"
 gem 'filepicker-rails'
-gem 'client_side_validations'
-gem 'client_side_validations-simple_form'
+# gem 'client_side_validations'
+# gem 'client_side_validations-simple_form'
 gem 'enum_accessor'
 gem 'draper'
 gem 'sidekiq'
 gem 'sidekiq-failures'
 gem 'sinatra', require: false
 gem 'slim'
-gem 'pg_search', "0.5.7"
+gem 'pg_search'
 gem 'active_attr'
-gem 'intercom-rails', '~> 0.2.14'
+gem 'intercom-rails'
 gem 'turnout'
