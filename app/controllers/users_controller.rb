@@ -21,6 +21,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    @user = User.find(params[:id])
+  end
+
   def stripe_disconnect
     current_user.api_key = nil
     current_user.save!

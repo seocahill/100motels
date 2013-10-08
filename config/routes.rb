@@ -2,7 +2,7 @@ require 'sidekiq/web'
 
 OneHundredMotels::Application.routes.draw do
 
-  root :to => "organizer/events#index", :constraints => Authentication.new
+  root :to => "users#show", :constraints => Authentication.new
   root :to => "pages#index"
 
   get 'auth/:provider/callback', to: 'omniauth_callbacks#all'
@@ -14,14 +14,10 @@ OneHundredMotels::Application.routes.draw do
   get '/info' => 'pages#info'
   get '/home' => 'pages#home'
   get '/favicon.ico', to: redirect('/')
-  get '/organizer', to: redirect('/')
 
   resources :sessions
-  resources :member_profiles, only: [:new, :create, :edit, :update]
-  resources :guest_profiles, only: [:create]
   resources :password_resets
   resources :events, only: [:show, :index, :update]
-  resources :locations, only: [:new, :show, :create, :update]
   resources :messages, only: [:create]
 
 
@@ -41,26 +37,6 @@ OneHundredMotels::Application.routes.draw do
     collection do
       post :charge_or_refund
       post :charge_all
-    end
-  end
-
-  namespace :organizer do
-    resources :events do
-      member do
-        get :cancel
-        get :duplicate
-        post :defer_or_cancel
-        get :admit
-      end
-      resources :tickets, only: [:index, :update]
-      resources :event_users
-    end
-  end
-
-  use_doorkeeper
-  namespace :api, defaults: {format: 'json'} do
-    namespace :v1 do
-      resources :events
     end
   end
 
