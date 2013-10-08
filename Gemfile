@@ -30,8 +30,8 @@ end
 gem 'bootstrap-sass'
 gem "font-awesome-rails"
 gem 'bcrypt-ruby'
-gem 'best_in_place'
-# gem 'simple_form'
+gem 'best_in_place', git: 'git://github.com/bernat/best_in_place.git', branch: 'rails-4'
+gem 'simple_form', '~> 3.0.0'
 gem 'stripe'
 gem 'omniauth-stripe-connect'
 gem 'bootstrap-will_paginate'
