@@ -8,8 +8,7 @@ class EventsController < ApplicationController
   def show
     @order = Order.new
     @message = Message.new
-    @organizer = UserDecorator.decorate(User.includes(:event_users).where("event_users.event_id = ? AND event_users.state > 1", @event.id).first
-)
+    @organizer = UserDecorator.decorate(@event.user)
   end
 
   def update
@@ -27,7 +26,7 @@ class EventsController < ApplicationController
 private
 
   def find_event
-    @event = Event.active.find(params[:id]).decorate
+    @event = Event.find(params[:id]).decorate
     rescue ActiveRecord::RecordNotFound
     flash[:alert] = "The event you were looking for" +
     " could not be found"

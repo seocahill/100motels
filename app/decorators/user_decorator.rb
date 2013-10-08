@@ -10,29 +10,19 @@ class UserDecorator < ApplicationDecorator
   end
 
   def email
-    model.profile_type == "MemberProfile" ? model.profile.email : "save your account"
+    model.email
   end
 
   def name
-    model.profile_type == "MemberProfile" ? model.profile.name : "guest"
+    model.name
   end
 
   def user_email
-    if model.profile_type == "MemberProfile"
-      profile = model.profile
-      best_in_place profile, :email
-    else
-      "Save your account"
-    end
+    model.email
   end
 
   def user_name
-    if model.profile_type == "MemberProfile"
-      profile = model.profile
-      best_in_place profile, :name, nil: "choose a username"
-    else
-      "Guest User"
-    end
+    model.name
   end
 
   def password_reset

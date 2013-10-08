@@ -8,8 +8,8 @@ class Event < ActiveRecord::Base
       :message => "leave blank for free events or between 5 and 30 dollars for paid events."
 
   has_many :orders
-  has_many :event_users
-  has_one :user, through: :event_users
+  has_one :event_user
+  has_one :user, through: :event_user
 
   include PgSearch
   pg_search_scope :search, against: [:venue, :about, :name, :artist],

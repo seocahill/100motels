@@ -18,21 +18,15 @@ class EventDecorator < ApplicationDecorator
   end
 
   def payments_locked?
-    admins = EventUser.where("event_id = ? AND state > 1", model.id)
-    if admins.any? {|admin| admin.payment_lock }
-      raw('<span class="label label-important"><i class="icon-lock"></i> Payments are locked!</span>')
-    else
-      raw('<span class="label label-success"><i class="icon-unlock"></i> Payments unlocked!</span>')
-    end
+    false
   end
 
   def lock
-    event_user = model.event_users.where(user_id: current_user.id).first
-    switch = best_in_place event_user, :payment_lock, type: :checkbox, collection: ["Lock", "Unlock"], path: organizer_event_event_user_path(model, event_user)
+    "not used"
   end
 
   def edit
-    link_to "Edit in Form", edit_organizer_event_path(model), class: "" if event_owner?
+    "fixme"
   end
 
   def filepicker
@@ -52,20 +46,20 @@ class EventDecorator < ApplicationDecorator
   end
 
   def bip_title
-    best_in_place_if event_owner?, model, :title, :nil => "A Title for Your Event"
+    best_in_place_if event_owner?, model, :name, :nil => "A Title for Your Event"
   end
 
   def bip_artist
-    best_in_place_if event_owner?, model, :artist, nil: "Headline Artist"
+    "not used"
   end
   def bip_first_support
-    best_in_place_if event_owner?, model, :first_support, nil: "Support Artist"
+    "not used"
   end
   def bip_second_support
-    best_in_place_if event_owner?, model, :second_support, nil: "Support Artist"
+    "not used"
   end
   def bip_third_support
-    best_in_place_if event_owner?, model, :third_support, nil: "Support Artist"
+    "not used"
   end
 
   def formatted_date
@@ -79,11 +73,11 @@ class EventDecorator < ApplicationDecorator
   end
 
   def venue
-    best_in_place_if event_owner?, model, :venue
+    "not used"
   end
 
   def doors
-    best_in_place_if event_owner?, model, :doors, display_with: lambda { |v| v.strftime("%l:%M %p")}, classes: "doors"
+    "not used"
   end
 
   def sales
@@ -104,36 +98,27 @@ class EventDecorator < ApplicationDecorator
   end
 
   def venue_address
-    location = model.location
-    best_in_place_if event_owner?, location, :address
+    "not used"
   end
 
   def map
-    h.link_to(image_tag("https://maps.google.com/maps/api/staticmap?size=250x250&sensor=false&zoom=16&markers=#{model.location.latitude}%2C#{model.location.longitude}"), "https://maps.google.com/?ll=#{model.location.latitude},#{model.location.longitude}")
+    "not used"
   end
 
   def video
-    best_in_place model, :video, :nil => "Click me to add a Youtube or Vimeo url, e.g. http://youtu.be/TZLwfyVYJJw" if event_owner?
+    "not used"
   end
 
   def video_iframe
-    if model.video_html.present?
-      model.video_html
-    else
-      raw('<iframe width="420" height="315" src="https://www.youtube.com/embed/2H_SsrNE8eI" frameborder="0" allowfullscreen></iframe>')
-    end
+    "not used"
   end
 
   def music
-    best_in_place model, :music, :nil => "Click me to add a Soundcloud url, e.g. https://soundcloud.com/creteboom/sets/them-bones-need-oxygen" if event_owner?
+    "not used"
   end
 
   def music_iframe
-    if model.music_html.present?
-      model.music_html
-    else
-      raw('<iframe width="100%" height="450" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Fplaylists%2F745034&amp;color=0050ff&amp;auto_play=false&amp;show_artwork=true"></iframe>')
-    end
+    "not user"
   end
 
   def ticket_form
@@ -148,11 +133,6 @@ class EventDecorator < ApplicationDecorator
 
   def per_cent_funded
     sales = model.orders.sum(:quantity)
-    if sales > 0
-      ((sales.to_d / model.target.to_d)*100.0).to_i
-    else
-      0
-    end
   end
 
   def left_to_go
@@ -161,9 +141,7 @@ class EventDecorator < ApplicationDecorator
 
   def on_sale?
     d = model.date
-    t = model.doors
-    dt = DateTime.new(d.year, d.month, d.day, t.hour, t.min, t.sec)
-    dt >= Time.now
+    d >= Time.now
   end
 
   def event_owner?

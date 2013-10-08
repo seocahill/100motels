@@ -12,11 +12,11 @@ module ApplicationHelper
 
 	def new_or_view_event
 		if current_user && current_user.guest? && current_user.events.present?
-			link_to "View Event", event_path(current_user.events.first), class: 'btn btn-large btn-success', id: 'try-it-button'
+			link_to "View Event", event_path(current_user.events.first), class: 'btn btn-lg btn-success', id: 'try-it-button'
 		elsif current_user
-			link_to "View Events", events_path, class: 'btn btn-large btn-success', id: 'try-it-button'
+			link_to "View Events", events_path, class: 'btn btn-lg btn-success', id: 'try-it-button'
 		else
-			link_to "Try it free", events_path, method: :post, class: 'btn btn-large btn-success', id: 'try-it-button'
+			link_to "Try it free", events_path, method: :post, class: 'btn btn-lg btn-success', id: 'try-it-button'
 		end
 	end
 end
