@@ -13,7 +13,7 @@ class EventsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @event.update_attributes(params[:event])
+      if @event.update_attributes(event_params)
         format.html { redirect_to(@event, :notice => 'event was successfully updated.') }
         format.json { respond_with_bip(@event) }
       else
@@ -24,6 +24,11 @@ class EventsController < ApplicationController
   end
 
 private
+
+  def event_params
+    params.require(:event).permit(:image, :date, :location, :name, :ticket_price, :about)
+  end
+
 
   def find_event
     @event = Event.find(params[:id]).decorate

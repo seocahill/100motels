@@ -1,32 +1,31 @@
 // events index
 // scoped to events controller
-#events_controller {
-  .well {
-     background-color: rgba(255, 255, 255, 0.4);
+.well {
+   background-color: rgba(255, 255, 255, 0.4);
+}
+.event-map,
+.thumbnails li {
+  @include media-between($small-min, $small-max) {
+    width: 49%;
+    float: left;
   }
-  .event-map,
-  .thumbnails li {
+}
+
+.search {
+  input[type="text"] {
+
     @include media-between($small-min, $small-max) {
-      width: 49%;
-      float: left;
+      min-width: 400px;
+    }
+    @include media-between($handheld-min, $handheld-max) {
+      min-width: 250px;
+    }
+    @include media-above($medium-min) {
+      min-width: 500px;
     }
   }
-
-  .search {
-    input[type="text"] {
-
-      @include media-between($small-min, $small-max) {
-        min-width: 400px;
-      }
-      @include media-between($handheld-min, $handheld-max) {
-        min-width: 250px;
-      }
-      @include media-above($medium-min) {
-        min-width: 500px;
-      }
-    }
-      // min-width: 200px;
-  }
+    // min-width: 200px;
+}
 
   // validation notices for best in place
   .purr {
@@ -66,7 +65,7 @@
     }
   }
 
-}
+
 
 .link-button {
     text-decoration: none;

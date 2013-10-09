@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require best_in_place.purr
+//= require best_in_place
 //= require jquery.slimscroll.js
 //= require jquery.backstretch.js
 //= require jquery.cookie.js
@@ -21,8 +22,6 @@
 //= require events
 //= require users
 //= require organizer/events
-//= require organizer/tickets
-//= require best_in_place
 
 
 

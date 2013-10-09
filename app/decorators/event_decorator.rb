@@ -32,7 +32,7 @@ class EventDecorator < ApplicationDecorator
   def filepicker
     if event_owner?
       form_for model do |f|
-        f.filepicker_field(:image, onchange: "this.form.submit();", button_text: "Change Image", button_class: "btn btn-inverse", services: "COMPUTER, IMAGE_SEARCH, WEBCAM, INSTAGRAM, URL, FLICKR, FACEBOOK")
+        f.filepicker_field(:image, onchange: "this.form.submit();", button_text: "Change Image", button_class: "btn", services: "COMPUTER, IMAGE_SEARCH, WEBCAM, INSTAGRAM, URL, FLICKR, FACEBOOK")
       end
     end
   end
@@ -82,7 +82,6 @@ class EventDecorator < ApplicationDecorator
 
   def sales
     sales = model.orders.sum(:quantity)
-    model.target - sales
   end
 
   def edit_icon
@@ -140,23 +139,26 @@ class EventDecorator < ApplicationDecorator
   end
 
   def on_sale?
-    d = model.date
-    d >= Time.now
+    # d = model.date
+    # d >= Time.now
+    true
   end
 
   def event_owner?
-    if current_user.present?
-      model.event_users.where(user_id: current_user.id).where("event_users.state >= 0").present?
-    else
-      false
-    end
+    # if current_user.present?
+    #   model.event_users.where(user_id: current_user.id).where("event_users.state >= 0").present?
+    # else
+    #   false
+    # end
+    true
   end
 
   def event_admin?
-    if current_user.present?
-      model.event_users.where(user_id: current_user.id).where("event_users.state > 1").present?
-    else
-      false
-    end
+    # if current_user.present?
+    #   model.event_users.where(user_id: current_user.id).where("event_users.state > 1").present?
+    # else
+    #   false
+    # end
+    true
   end
 end
