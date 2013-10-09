@@ -33,6 +33,9 @@ class Event < ActiveRecord::Base
   auto_html_for :about do
     html_escape
     link target: "_blank", rel: "nofollow"
+    youtube
+    vimeo
+    soundcloud
     simple_format
   end
 

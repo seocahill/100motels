@@ -37,7 +37,7 @@ $ ->
 
 # backSretch
 $ ->
-  $(".event-header").backstretch($("#event-banner").data('url'))
+  $("#event-banner").backstretch($("#event-banner").data('url'))
 
 # Progress bar
 $ ->
@@ -48,3 +48,19 @@ $ ->
 $ ->
   $(".event-media-html").slimScroll
     height: '250px'
+
+$ ->
+  $("#checkout").click ->
+    token = (res) ->
+      $input = $("<input type=hidden name=stripeToken />").val(res.id)
+      $("form").append($input).submit()
+    StripeCheckout.open
+      key: "<%= ENV['STRIPE_PUBLIC_KEY'] %>"
+      address: false
+      amount: 5000
+      currency: "usd"
+      name: "100 Motels"
+      description: "Your Tickets"
+      panelLabel: "Checkout"
+      token: token
+    return false
