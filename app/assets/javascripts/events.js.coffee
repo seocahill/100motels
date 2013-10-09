@@ -13,19 +13,19 @@ orderTotal = (quantity, price) ->
   $('.stripe-button').attr('data-amount', gross.toFixed(2) * 100)
 
 
-$('.best_in_place').bind "ajax:success", (event, data) ->
- $.ajax $(this).data(window.location.pathname),
-  type: 'GET'
-  dataType: 'html'
-  error: (jqXHR, textStatus, errorThrown) ->
-      console.log "AJAX Error: #{textStatus}"
-  success: (data, textStatus, jqXHR) =>
-    target = $(this).data('attribute')
-    content = $(data).find(".#{target}").html()
-    $(".#{target}").html content
-    if target is 'address' then $(".location-city").html $(data).find(".location-city").html()
-    orderTotal()
-    $('#order_quantity').on "change", orderTotal
+# $('.best_in_place').bind "ajax:success", (event, data) ->
+#  $.ajax $(this).data(window.location.pathname),
+#   type: 'GET'
+#   dataType: 'html'
+#   error: (jqXHR, textStatus, errorThrown) ->
+#       console.log "AJAX Error: #{textStatus}"
+#   success: (data, textStatus, jqXHR) =>
+#     target = $(this).data('attribute')
+#     content = $(data).find(".#{target}").html()
+#     $(".#{target}").html content
+#     if target is 'address' then $(".location-city").html $(data).find(".location-city").html()
+#     orderTotal()
+#     $('#order_quantity').on "change", orderTotal
 
 $ ->
   $('.best_in_place').best_in_place()
@@ -35,10 +35,6 @@ $ ->
   orderTotal()
   $('#order_quantity').on "change", orderTotal()
 
-#  slimScroll for about piece in event show
-$ ->
-  $(".about-event").slimScroll height: '250px'
-
 # backSretch
 $ ->
   $(".event-header").backstretch($("#event-banner").data('url'))
@@ -47,3 +43,8 @@ $ ->
 $ ->
   width = $('.bar').data('funded')
   $('.bar').css("width", "#{width}%")
+
+#  slimScroll for about piece in event show
+$ ->
+  $(".about-event").slimScroll
+    height: '250px'
