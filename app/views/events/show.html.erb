@@ -27,8 +27,11 @@
 </section>
 <section id="event-information">
 	<div class="progress">
-	  <div class="progress-bar" role="progressbar" style="width: 100%;" data-funded="<%= @event.per_cent_funded %>">
-		  <%= @event.per_cent_funded %>% funded
+	  <div class="progress-bar progress-bar-success sold" role="progressbar" data-funded="<%= @event.per_cent_funded %>">
+		  <span><%= @event.per_cent_funded %>% funded</span>
+	  </div>
+	  <div class="progress-bar unsold">
+	    <span class="sr-only">20% Complete (warning)</span>
 	  </div>
 	</div>
 	<div class="container">

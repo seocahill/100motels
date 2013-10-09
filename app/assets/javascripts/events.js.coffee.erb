@@ -41,8 +41,11 @@ $ ->
 
 # Progress bar
 $ ->
-  width = $('.progress-bar').data('funded')
-  $('.progress-bar').css("width", "#{width}%")
+  widthSold = $('.progress-bar').data('funded')
+  widthUnsold = 100 - $('.progress-bar').data('funded')
+
+  $('.sold').css("width", "#{widthSold}%")
+  $('.unsold').css("width", "#{widthUnsold}%")
 
 #  slimScroll for about piece in event show
 $ ->
