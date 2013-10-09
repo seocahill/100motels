@@ -3,14 +3,13 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 # Order Total method
-orderTotal = (quantity, price) ->
+orderTotal = () ->
   quantity = $('#order_quantity').val()
-  price = $('.price').data('original-content')
+  price = $('.price').data('price')
   net_price = quantity * price
   gross = (net_price / .961) + 0.30
   order_price = if price > 0 then gross else 0.0
   $('.order-total').html(order_price.toFixed(2))
-  $('.stripe-button').attr('data-amount', gross.toFixed(2) * 100)
 
 
 # $('.best_in_place').bind "ajax:success", (event, data) ->
@@ -33,7 +32,8 @@ $ ->
 # Sum Order
 $ ->
   orderTotal()
-  $('#order_quantity').on "change", orderTotal()
+  $('#order_quantity').change ->
+    orderTotal()
 
 # backSretch
 $ ->
@@ -57,7 +57,7 @@ $ ->
     StripeCheckout.open
       key: "<%= ENV['STRIPE_PUBLIC_KEY'] %>"
       address: false
-      amount: 5000
+      amount: Number($('.order-total').text()) * 100
       currency: "usd"
       name: "100 Motels"
       description: "Your Tickets"

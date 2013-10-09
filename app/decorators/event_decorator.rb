@@ -81,10 +81,9 @@ class EventDecorator < ApplicationDecorator
   end
 
   def order_total
-      # number_to_currency raw(
-      #   '<span class="order-total"></span>'
-      #   )
-    "$15.00"
+      number_to_currency raw(
+        '<span class="order-total"></span>'
+        )
   end
 
   def per_cent_funded
