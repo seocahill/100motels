@@ -73,7 +73,7 @@ class EventDecorator < ApplicationDecorator
   end
 
   def about_section
-    best_in_place_if event_owner?, model, :about, :type => :textarea, nil: "#{render 'instructions'}", classes: ["span11", "about"], display_as: :about_html
+    best_in_place_if event_owner?, model, :about, :type => :textarea, nil: "#{render 'instructions'}", classes: ["flex-video", "about"], display_as: :about_html, activator: ".edit-about", html_attrs: {"rows" => 12, "cols" => 140}
   end
 
   def ticket_form
