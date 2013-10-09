@@ -41,10 +41,10 @@ $ ->
 
 # Progress bar
 $ ->
-  width = $('.bar').data('funded')
-  $('.bar').css("width", "#{width}%")
+  width = $('.progress-bar').data('funded')
+  $('.progress-bar').css("width", "#{width}%")
 
 #  slimScroll for about piece in event show
 $ ->
-  $(".about-event").slimScroll
+  $(".event-media-html").slimScroll
     height: '250px'

@@ -49,18 +49,6 @@ class EventDecorator < ApplicationDecorator
     best_in_place_if event_owner?, model, :name, :nil => "A Title for Your Event"
   end
 
-  def bip_artist
-    "not used"
-  end
-  def bip_first_support
-    "not used"
-  end
-  def bip_second_support
-    "not used"
-  end
-  def bip_third_support
-    "not used"
-  end
 
   def formatted_date
     if model.orders.nil?
@@ -70,14 +58,6 @@ class EventDecorator < ApplicationDecorator
     else
       time_tag(model.date)
     end
-  end
-
-  def venue
-    "not used"
-  end
-
-  def doors
-    "not used"
   end
 
   def sales
@@ -96,42 +76,20 @@ class EventDecorator < ApplicationDecorator
     best_in_place_if event_owner?, model, :about, :type => :textarea, nil: "#{render 'instructions'}", classes: ["span11", "about"], display_as: :about_html
   end
 
-  def venue_address
-    "not used"
-  end
-
-  def map
-    "not used"
-  end
-
-  def video
-    "not used"
-  end
-
-  def video_iframe
-    "not used"
-  end
-
-  def music
-    "not used"
-  end
-
-  def music_iframe
-    "not user"
-  end
-
   def ticket_form
     render 'form'
   end
 
   def order_total
-      number_to_currency raw(
-        '<span class="order-total"></span>'
-        )
+      # number_to_currency raw(
+      #   '<span class="order-total"></span>'
+      #   )
+    "$15.00"
   end
 
   def per_cent_funded
-    sales = model.orders.sum(:quantity)
+    # sales = model.orders.sum(:quantity)
+    25
   end
 
   def left_to_go
