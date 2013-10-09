@@ -18,6 +18,7 @@
 //= require jquery.slimscroll.js
 //= require jquery.backstretch.js
 //= require jquery.cookie.js
+//= require jquery.ui.draggable
 //= require pages
 //= require events
 //= require users

@@ -118,7 +118,12 @@ GEM
     jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
-    jquery-ui-rails (4.0.5)
+    jquery-ui-rails (4.0.3)
+      jquery-rails
+      railties (>= 3.1.0)
+    jquery-ui-sass-rails (4.0.3.0)
+      jquery-rails
+      jquery-ui-rails (= 4.0.3)
       railties (>= 3.1.0)
     json (1.8.0)
     jwt (0.1.8)
@@ -304,7 +309,7 @@ DEPENDENCIES
   foreman
   intercom-rails
   jquery-rails
-  jquery-ui-rails (~> 4.0.5)
+  jquery-ui-sass-rails
   json
   launchy
   letter_opener_web
