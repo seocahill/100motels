@@ -4,6 +4,45 @@
       <h1>Hey <%= @user.name %></h1>
     </div>
   </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <legend>Account Settings</legend>
+      <% if current_user.guest? %>
+        <%= link_to "Save Account", signup_path %>
+      <% else %>
+        <form class="form">
+          <div class="control-group">
+            <label class="control-label" for="inputEmail">Name</label>
+            <div class="controls">
+              <i class="icon-edit"></i> <%= current_user.name %>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="inputPassword">Email</label>
+            <div class="controls">
+              <i class="icon-edit"></i>  <%= current_user.email %>
+            </div>
+          </div>
+        </form>
+        <%= link_to "Reset Password", password_resets_path(email: current_user.email), method: :post, class: "btn btn-info" %>
+      <% end %>
+    </div>
+    <div class="col-lg-6">
+      <% unless current_user.guest? %>
+        <legend>Payment Settings</legend>
+        <div>
+          <% if current_user.api_key %>
+            <a href="#" class="stripe-connect light-blue dark"><span>Connected to Stripe <i class="icon-ok"></i></span></a>
+          <% else %>
+            <a href="/auth/stripe_connect" class="stripe-connect dark btn-medium"><span>Connect with Stripe</span></a>
+          <% end %>
+        </div><br>
+        <div class="text-centered">
+          <%= link_to "Reset Stripe", stripe_disconnect_user_path if current_user.api_key.present? %>
+        </div>
+      <% end %>
+    </div>
+  </div>
   <br>
   <div class="row">
     <div class="col-lg-12">

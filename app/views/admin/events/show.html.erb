@@ -1,9 +1,7 @@
-  <%= link_to "new event", new_admin_event_path, class: 'btn' %>
-  <%= link_to "admin", root_path, class: 'btn' %>
-
+<div class="container">
   <div class="row">
-    <div class="span12">
-      <ul class="inline visible-desktop">
+    <div class="col-lg-12">
+      <ul class="list-inline">
         <li>
           <div class="btn-group">
             <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -14,6 +12,8 @@
               <% @events.each do |e| %>
               <li><%= link_to "#{truncate(@event.name, length: 15)} | #{truncate(e.location, length: 10)} | #{e.date.strftime('%d %b')}", admin_event_path(e) %></li>
               <% end %>
+              <li class="divider"></li>
+              <li><%= link_to "New Event", new_admin_event_path, class: '' %></li>
             </ul>
           </div>
         </li>
@@ -21,240 +21,67 @@
         <li class="divider-vertical"></li>
         <li><span class="well well-small"><i class="icon-time"></i> Time: <%= @event.left_to_go  %> left</span></li>
         <li><span class="well well-small"><i class="icon-money"></i> Sales: <%= number_to_currency(@event.orders.sum(&:total_price)) %></span></li>
-        <li><span class="well well-small"><i class="icon-ticket"></i> Tickets: <%= @event.orders.funding.sum(:quantity) %> left</span></li>
         <li class="visible"><span class="well well-small"><%= @event.private_or_public %></span></li>
-      </ul>
-      <ul class="inline hidden-desktop">
-        <li>
-          <div class="btn-group">
-            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-              Change Event
-              <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <% @events.each do |e| %>
-              <li><%= link_to "#{truncate(@event.name, length: 30)} | #{truncate(e.location, length: 10)} | #{e.date.strftime('%d %b')}", admin_event_path(e) %></li>
-              <% end %>
-            </ul>
-          </div>
-        </li>
-        <li><%= link_to "#{truncate(@event.name)} | #{@event.location} | #{@event.date.strftime('%d %b')}", event_path(@event), target: "_blank" %></li>
       </ul>
     </div>
   </div>
   <div class="row">
-    <div class="span12 well well-large">
-      <div class="tabbable tabs-left"> <!-- Only required for left/right tabs -->
-        <ul class="nav nav-tabs">
-          <li class="active"><a href="#event-tab" data-toggle="tab">Event</a></li>
-          <li><a href="#sales-tab" data-toggle="tab">Sales</a></li>
-          <li><a href="#tickets-tab" data-toggle="tab">Tickets</a></li>
-          <li><a href="#promotion-tab" data-toggle="tab">Promote</a></li>
-          <li><a href="#account-tab" data-toggle="tab">Account</a></li>
-        </ul>
-        <div class="tab-content">
-          <div class="tab-pane active" id="event-tab">
-            <div class="row">
-              <div class="span6">
-                <%= simple_form_for :alter_event, url: defer_or_cancel_admin_event_path, method: :post, html: {class: 'form-horizontal'} do |f| %>
-                <legend>Defer or Cancel Event</legend>
-                <div class="hidden-desktop"><span class="label label-info"><i class="icon-time"></i> Time: <%= @event.left_to_go  %> left </span></div> <br>
-                  <%= f.input :date, label: "New date for event if deferring", placeholder: "  Currently #{@event.date.strftime('%d %b %Y')}", required: false %>
-                  <%= f.input :message, as: :text, :input_html => { :cols => 5, :rows => 3 }, label: "Add an explanation for your action", placeholder: "We have been forced to cancel because...." %>
-                  <%= f.submit "Defer", name: "defer", data: { confirm: "Defer?"}, class: "btn btn-warning" %>
-                  <%= f.submit "Cancel", name: "cancel", data: { confirm: "Cancel (cannont be undone)?"}, class: "btn btn-danger" %>
-                <% end %>
-              </div>
-              <div class ="span6">
-                <form class="form-horizontal">
-                <legend>Settings</legend>
-                <div class="hidden-desktop"><span class="label label-info"><%= @event.private_or_public %></span></div> <br>
-                <div class="control-group">
-                  <label class="control-label" for="">Toggle Visibility</label>
-                  <div class="controls">
-                    <%= @event.toggle_visible %>
+    <div class="col-lg-12 well well-large">
+      <div class="row">
+        <div class="col-lg-12">
+          <legend>
+            Sales
+            <span class="pull-right">
+              <%= form_tag admin_event_path(@event), method: :get, class: "form-search" do %>
+                  <div class="input-append">
+                    <%= text_field_tag :query, params[:query], class: "input-medium input-append", placeholder: "Search Orders" %>
+                    <button type="submit" class="btn">Search</button>
                   </div>
-                </div>
-                <div class="control-group">
-                  <label class="control-label" for="">Duplicate Event</label>
-                  <div class="controls">
-                    <%= link_to "Create Copy", duplicate_admin_event_path(@event), class: 'btn' %>
-                  </div>
-                </div>
-                <div class="control-group">
-                  <label class="control-label" for="">Edit in Form</label>
-                  <div class="controls">
-                    <%= link_to "Edit Event", edit_admin_event_path(@event), class: 'btn' %>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="tab-pane" id="sales-tab">
-            <div class="row">
-              <div class="span12">
-                <legend>
-                  Sales
-                  <span class="pull-right">
-                    <%= form_tag admin_event_path(@event), method: :get, class: "form-search" do %>
-                        <div class="input-append">
-                          <%= text_field_tag :query, params[:query], class: "input-medium input-append", placeholder: "Search Orders" %>
-                          <button type="submit" class="btn">Search</button>
-                        </div>
-                    <% end %>
-                  </span>
-               </legend>
-              </div>
-            </div>
-            <div class="row">
-              <div class="span3">
-                  <button class="btn btn-info btn-block hidden-desktop">Sales <%= number_to_currency(@event.orders.sum(&:total_price)) %></button>
-                <% if @orders.any?(&:stripe_event_tickets_sent?) %>
-                  <button class="btn-success btn-block">Orders Processed <i class="icon-ok"></i></button>
-                <% else %>
-                  <%= link_to "Cash Orders", charge_all_orders_path(event_id: @event.id), method: :post, class: "btn btn-success btn-block", data: {confirm: 'Sure?'} %>
-                <% end %>
-                <%= link_to "Orders PDF", admin_event_path(@event, format: "pdf"), class: "btn btn-block", target: "_blank" %>
-              </div>
-              <div class="span9">
-
-                <table class="table table-striped table-bordered" id="admin-customers">
-                  <thead>
-                    <tr>
-                      <th>Name</th>
-                      <th>Email</th>
-                      <th>UUID</th>
-                      <th>Quantity</th>
-                      <th>Order Total</th>
-                      <th>Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <% @orders.each do |order| %>
-                    <tr>
-                      <td><%= order.name %> </td>
-                      <td><%= order.email %> </td>
-                      <td><%= order.uuid %> </td>
-                      <td><%= order.quantity %></td>
-                      <td><%= number_to_currency(order.total) %></td>
-                      <td><span class="label"><%= order.stripe_event %></span></td>
-                    </tr>
-                    <% end %>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            <%= will_paginate @orders %>
-          </div>
-          <div class="tab-pane" id="tickets-tab">
-            <div class="row">
-              <div class="span12">
-                <legend>
-                  Tickets
-                  <span class="pull-right">
-                    <%= form_tag admit_admin_event_path(@event), method: :get, class: "form-search", autocomplete: :off do %>
-                        <%= number_field_tag :query, params[:query], class: "input-medium", placeholder: "Enter Ticket Number" %>
-                        <button type="submit" class="btn">Check</button>
-                    <% end %>
-                  </span>
-                </legend>
-              </div>
-            </div>
-            <div class="row">
-              <div class="span3">
-                <button class="btn-info btn-block">10 of 100 Admitted </button>
-                <button class="desktop-hidden btn-info btn-block"><%= @event.orders.funding.sum(:quantity) %> tickets left </button>
-                <%= link_to "Tickets PDF", admin_event_tickets_path(@event, format: "pdf"), class: "btn btn-block", target: "_blank" %>
-              </div>
-              <div class="span9">
-                <table class="table table-striped table-bordered">
-                  <tbody>
-                      <tr>
-                        <th>Number</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Card</th>
-                        <th>Admitted?</th>
-                      </tr>
-                    <% @orders.each do |ticket| %>
-                      <tr>
-                        <td><%= ticket.ticket_numbers %></td>
-                        <td><%= ticket.name %></td>
-                        <td><%= ticket.email %></td>
-                        <td><%= ticket.last4 %></td>
-                      </tr>
-                    <% end %>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-          <div class="tab-pane" id="promotion-tab">
-            <div class="row">
-              <div class="span6">
-                <%= simple_form_for @message, html: {class: 'form-horizontal'} do |f| %>
-                <legend>Contact Your Customers</legend>
-                  <%= f.input :event_id, as: :hidden, input_html: { value: @event.id } %>
-                  <%= f.input :subject, as: :string, label: "Email Subject", placeholder: "Fundraising Update" %>
-                  <%= f.input :email, as: :hidden, input_html: { value: current_user.email } %>
-                  <%= f.input :content, as: :text, :input_html => { :cols => 5, :rows => 3 }, label: "A message for you Customers", placeholder: "We need more sales, can you help, time is running out!" %>
-                  <%= f.submit "Send Group Email", name: "group", data: { confirm: "Send Group Email?"}, class: "btn" %>
-                <% end %>
-              </div>
-              <div class="span6">
-                <legend>Share Buttons</legend>
-                <div class="row">
-                  <div class="span9 pagination-centered">
-                    <a href="http://www.facebook.com/sharer.php?u=<%= event_url(@event) %>"class="btn btn-facebook btn-block" target="_blank"><i class="icon-facebook"></i> | Share with Facebook</a>
-                    <a href="https://twitter.com/share?text=<%= @event.name %>&url=<%= event_url(@event) %>&via=100Motels" class="btn btn-twitter btn-block" target="_blank"><i class="icon-twitter"></i> | Share with Twitter</a>
-                    <a href="https://plus.google.com/share?url=<%= event_url(@event) %>" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="btn btn-google-plus btn-block" target="_blank"><i class="icon-google-plus"></i> | Share with Google</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="tab-pane" id="account-tab">
-            <div class="row">
-              <div class="span6">
-                <legend>Account Settings</legend>
-                <% if current_user.guest? %>
-                  <%= link_to "Save Account", signup_path %>
-                <% else %>
-                  <form class="form">
-                    <div class="control-group">
-                      <label class="control-label" for="inputEmail">Name</label>
-                      <div class="controls">
-                        <i class="icon-edit"></i> <%= current_user.name %>
-                      </div>
-                    </div>
-                    <div class="control-group">
-                      <label class="control-label" for="inputPassword">Email</label>
-                      <div class="controls">
-                        <i class="icon-edit"></i>  <%= current_user.email %>
-                      </div>
-                    </div>
-                  </form>
-                  <%= link_to "Reset Password", password_resets_path(email: current_user.email), method: :post, class: "btn btn-info" %>
-                <% end %>
-              </div>
-              <div class="span6">
-                <% unless current_user.guest? %>
-                  <legend>Payment Settings</legend>
-                  <div>
-                    <% if current_user.api_key %>
-                      <a href="#" class="stripe-connect light-blue dark"><span>Connected to Stripe <i class="icon-ok"></i></span></a>
-                    <% else %>
-                      <a href="/auth/stripe_connect" class="stripe-connect dark btn-medium"><span>Connect with Stripe</span></a>
-                    <% end %>
-                  </div><br>
-                  <div class="text-centered">
-                    <%= link_to "Reset Stripe", stripe_disconnect_user_path if current_user.api_key.present? %>
-                  </div>
-                <% end %>
-              </div>
-            </div>
-          </div>
+              <% end %>
+            </span>
+         </legend>
         </div>
       </div>
-    </div> <!-- /table form -->
-  </div> <!-- /row -->
+      <div class="row">
+        <div class="col-lg-3">
+            <button class="btn btn-info btn-block hidden-desktop">Sales <%= number_to_currency(@event.orders.sum(&:total_price)) %></button>
+          <% if @orders.any?(&:stripe_event_tickets_sent?) %>
+            <button class="btn-success btn-block">Orders Processed <i class="icon-ok"></i></button>
+          <% else %>
+            <%= link_to "Cash Orders", charge_all_orders_path(event_id: @event.id), method: :post, class: "btn btn-success btn-block", data: {confirm: 'Sure?'} %>
+          <% end %>
+          <%= link_to "Orders PDF", admin_event_path(@event, format: "pdf"), class: "btn btn-block", target: "_blank" %>
+        </div>
+        <div class="col-lg-9">
+
+          <table class="table table-striped table-bordered" id="admin-customers">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>UUID</th>
+                <th>Quantity</th>
+                <th>Order Total</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @orders.each do |order| %>
+              <tr>
+                <td><%= order.name %> </td>
+                <td><%= order.email %> </td>
+                <td><%= order.uuid %> </td>
+                <td><%= order.quantity %></td>
+                <td><%= number_to_currency(order.total) %></td>
+                <td><span class="label"><%= order.stripe_event %></span></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <%= will_paginate @orders %>
+
+    </div>
+  </div>
+</div>
