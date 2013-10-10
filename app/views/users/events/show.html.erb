@@ -1,6 +1,6 @@
 <% if @event.state_cancelled? %>
   <h3>This event was cancelled, contact support to request reactivation. </h3>
-  <%= link_to "new event", new_organizer_event_path, class: 'btn' %>
+  <%= link_to "new event", new_admin_event_path, class: 'btn' %>
   <%= link_to "admin", root_path, class: 'btn' %>
 <% else %>
   <div class="row">
@@ -14,7 +14,7 @@
             </a>
             <ul class="dropdown-menu">
               <% @events.each do |e| %>
-              <li><%= link_to "#{truncate(@event.title, length: 15)} | #{truncate(e.venue, length: 10)} | #{e.date.strftime('%d %b')}", organizer_event_path(e) %></li>
+              <li><%= link_to "#{truncate(@event.title, length: 15)} | #{truncate(e.venue, length: 10)} | #{e.date.strftime('%d %b')}", admin_event_path(e) %></li>
               <% end %>
             </ul>
           </div>
@@ -35,7 +35,7 @@
             </a>
             <ul class="dropdown-menu">
               <% @events.each do |e| %>
-              <li><%= link_to "#{truncate(@event.title, length: 30)} | #{truncate(e.venue, length: 10)} | #{e.date.strftime('%d %b')}", organizer_event_path(e) %></li>
+              <li><%= link_to "#{truncate(@event.title, length: 30)} | #{truncate(e.venue, length: 10)} | #{e.date.strftime('%d %b')}", admin_event_path(e) %></li>
               <% end %>
             </ul>
           </div>
@@ -58,7 +58,7 @@
           <div class="tab-pane active" id="event-tab">
             <div class="row">
               <div class="span6">
-                <%= simple_form_for :alter_event, url: defer_or_cancel_organizer_event_path, method: :post, html: {class: 'form-horizontal'} do |f| %>
+                <%= simple_form_for :alter_event, url: defer_or_cancel_admin_event_path, method: :post, html: {class: 'form-horizontal'} do |f| %>
                 <legend>Defer or Cancel Event</legend>
                 <div class="hidden-desktop"><span class="label label-info"><i class="icon-time"></i> Time: <%= @event.left_to_go  %> left </span></div> <br>
                   <%= f.input :date, as: :datepicker, label: "New date for event if deferring", placeholder: "  Currently #{@event.date.strftime('%d %b %Y')}", required: false %>
@@ -80,13 +80,13 @@
                 <div class="control-group">
                   <label class="control-label" for="">Duplicate Event</label>
                   <div class="controls">
-                    <%= link_to "Create Copy", duplicate_organizer_event_path(@event), class: 'btn' %>
+                    <%= link_to "Create Copy", duplicate_admin_event_path(@event), class: 'btn' %>
                   </div>
                 </div>
                 <div class="control-group">
                   <label class="control-label" for="">Edit in Form</label>
                   <div class="controls">
-                    <%= link_to "Edit Event", edit_organizer_event_path(@event), class: 'btn' %>
+                    <%= link_to "Edit Event", edit_admin_event_path(@event), class: 'btn' %>
                   </div>
                 </div>
               </div>
@@ -98,7 +98,7 @@
                 <legend>
                   Sales
                   <span class="pull-right">
-                    <%= form_tag organizer_event_path(@event), method: :get, class: "form-search" do %>
+                    <%= form_tag admin_event_path(@event), method: :get, class: "form-search" do %>
                         <div class="input-append">
                           <%= text_field_tag :query, params[:query], class: "input-medium input-append", placeholder: "Search Orders" %>
                           <button type="submit" class="btn">Search</button>
@@ -116,11 +116,11 @@
                 <% else %>
                   <%= link_to "Cash Orders", charge_all_orders_path(event_id: @event.id), method: :post, class: "btn btn-success btn-block", data: {confirm: 'Sure?'} %>
                 <% end %>
-                <%= link_to "Orders PDF", organizer_event_path(@event, format: "pdf"), class: "btn btn-block", target: "_blank" %>
+                <%= link_to "Orders PDF", admin_event_path(@event, format: "pdf"), class: "btn btn-block", target: "_blank" %>
               </div>
               <div class="span9">
 
-                <table class="table table-striped table-bordered" id="organizer-customers">
+                <table class="table table-striped table-bordered" id="admin-customers">
                   <thead>
                     <tr>
                       <th>Name</th>
@@ -154,7 +154,7 @@
                 <legend>
                   Tickets
                   <span class="pull-right">
-                    <%= form_tag admit_organizer_event_path(@event), method: :get, class: "form-search", autocomplete: :off do %>
+                    <%= form_tag admit_admin_event_path(@event), method: :get, class: "form-search", autocomplete: :off do %>
                         <%= number_field_tag :query, params[:query], class: "input-medium", placeholder: "Enter Ticket Number" %>
                         <button type="submit" class="btn">Check</button>
                     <% end %>
@@ -166,7 +166,7 @@
               <div class="span3">
                 <button class="btn-info btn-block"><%= @tickets.where('admitted is not null').count %> of <%= @tickets.count %> Admitted </button>
                 <button class="desktop-hidden btn-info btn-block"><%= @event.capacity - @event.orders.funding.sum(:quantity) %> tickets left </button>
-                <%= link_to "Tickets PDF", organizer_event_tickets_path(@event, format: "pdf"), class: "btn btn-block", target: "_blank" %>
+                <%= link_to "Tickets PDF", admin_event_tickets_path(@event, format: "pdf"), class: "btn btn-block", target: "_blank" %>
               </div>
               <div class="span9">
                 <table class="table table-striped table-bordered">

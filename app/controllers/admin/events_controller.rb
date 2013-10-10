@@ -1,23 +1,13 @@
-class Organizer::Events
-
-  def index
-    if current_user.events.present?
-      flash.keep(:notice)
-      flash.keep(:error)
-      redirect_to organizer_event_path(current_user.events.where('events.state < 3').last)
-    else
-      redirect_to new_organizer_event_path, notice: "You need to create an Event to get started! (don't worry you can change everything later)"
-    end
-  end
+class Admin::EventsController < ApplicationController
 
   def new
     @event = Event.new
   end
 
   def create
-    state = current_user.guest? ? :guest : :member
+    state = current_user ? :guest : :member
     @event = Event.new(params[:event].merge(state: state))
-    @event.event_users.build(user_id: current_user.id, state: :event_admin)
+    @event.event_users.build(user_id: current_user.id)
     respond_to do |format|
       if @event.save
         flash[:notice] = 'Event was successfully created.'
@@ -33,10 +23,9 @@ class Organizer::Events
 
   def show
     @event = Event.find(params[:id]).decorate
-    @events = current_user.events.where("events.state < 4")
-    @tickets = @event.tickets.order('quantity_counter, updated_at').joins(:order).where("stripe_event = 2 OR stripe_event = 4")
-    @organizer = User.includes(:event_users).where("event_users.event_id = ? AND event_users.state = 3", @event.id).first
-    @orders = Order.text_search(params[:query]).page(params[:page]).per_page(15).where(event_id: @event.id)
+    @events = current_user.events
+    @admin = current_user
+    @orders = @event.orders.text_search(params[:query]).page(params[:page]).per_page(15)
     @message = Message.new
     respond_to do |format|
       format.html
@@ -73,7 +62,7 @@ class Organizer::Events
       CancelEventOrders.new(event.orders).cancel_orders
     end
     event.save!
-    redirect_to [:organizer, event], notice: "Your Event has been Cancelled"
+    redirect_to [:admin, event], notice: "Your Event has been Cancelled"
   end
 
   def defer_or_cancel
@@ -85,7 +74,7 @@ class Organizer::Events
       event.defer_event(params)
       flash[:notice] = "Your Event will be Deferred"
     end
-    redirect_to [:organizer, :event]
+    redirect_to [:admin, :event]
   end
 
   def duplicate
@@ -109,7 +98,7 @@ class Organizer::Events
       flash[:error] = "Ticket not found!" unless params[:query].nil?
     end
     respond_to do |format|
-      format.html { redirect_to [:organizer, event] }
+      format.html { redirect_to [:admin, event] }
       format.js
     end
   end

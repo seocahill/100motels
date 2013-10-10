@@ -30,7 +30,7 @@ FactoryGirl.define do
 
   factory :event_user do
     email { Faker::Internet.email }
-    state :organizer
+    state :admin
     payment_lock false
     association :user, factory: :member_user
   end

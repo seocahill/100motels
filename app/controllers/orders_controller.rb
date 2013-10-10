@@ -25,7 +25,7 @@ class OrdersController < ApplicationController
     else
       flash[:error] = "Can't charge unless there are valid orders and admin is connected to Stripe Account"
     end
-    redirect_to organizer_event_path(event)
+    redirect_to admin_event_path(event)
   end
 
   def cancel

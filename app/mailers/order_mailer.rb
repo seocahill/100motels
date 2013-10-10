@@ -32,7 +32,7 @@ class OrderMailer < ActionMailer::Base
 
   def order_cancelled(order_id)
     @order = Order.find(order_id)
-    organizer = @order.event.users.first
-    mail to: @order.email, bcc: organizer.email, subject: "Order Cancellation Notice"
+    admin = @order.event.users.first
+    mail to: @order.email, bcc: admin.email, subject: "Order Cancellation Notice"
   end
 end

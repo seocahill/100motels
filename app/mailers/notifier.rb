@@ -9,7 +9,7 @@ class Notifier < ActionMailer::Base
 
   def private_message(message)
     @message = message
-    mail to: message.organizer_email, subject: message.subject, from: message.email
+    mail to: message.admin_email, subject: message.subject, from: message.email
   end
 
   def group_message(message, order)
@@ -21,7 +21,7 @@ class Notifier < ActionMailer::Base
   def job_completed(orders)
     @orders = orders
     event = @orders.first.event
-    organizer = User.includes(:event_users).where("event_users.event_id = ? AND event_users.state = 3", event.id).first
-    mail to: organizer.profile.email, subject: "your job has been completed"
+    admin = User.includes(:event_users).where("event_users.event_id = ? AND event_users.state = 3", event.id).first
+    mail to: admin.profile.email, subject: "your job has been completed"
   end
 end

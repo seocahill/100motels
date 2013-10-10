@@ -6,7 +6,7 @@ feature "Event Admin Actions" do
     @event = create(:event, :visible)
     @event.orders << create(:order)
     ApplicationController.any_instance.stub(current_user: @event.users.first.decorate)
-    visit organizer_events_path
+    visit admin_events_path
   end
 
   scenario "naviage to Dash" do

@@ -5,7 +5,7 @@ feature 'Reschedule Event' do
   background do
     ApplicationController.any_instance.stub(current_user: event.event_users.first.user.decorate)
     event.orders << create(:order)
-    visit organizer_event_path(event)
+    visit admin_event_path(event)
   end
 
   scenario 'I can access the admin panel' do

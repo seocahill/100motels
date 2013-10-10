@@ -29,7 +29,7 @@ describe Notifier do
 
     it "renders the headers" do
       mail.subject.should eq(message.subject)
-      mail.to.should eq([message.organizer_email])
+      mail.to.should eq([message.admin_email])
       mail.from.should eq([message.email])
     end
 

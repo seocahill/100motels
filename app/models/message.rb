@@ -4,7 +4,7 @@ class Message
   attribute :subject
   attribute :email
   attribute :content
-  attribute :organizer_email
+  attribute :admin_email
   attribute :event_id
 
   validates :subject, presence: true

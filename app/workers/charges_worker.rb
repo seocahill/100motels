@@ -26,10 +26,10 @@ class ChargesWorker
 
   def charge_customer(order)
     event = Event.find(order.event_id)
-    organizer = User.includes(:event_users).where("event_users.event_id = ? AND event_users.state = 3", event.id).first
+    admin = User.includes(:event_users).where("event_users.event_id = ? AND event_users.state = 3", event.id).first
     total = (order.total * 100).to_i
     fee = (order.quantity * event.ticket_price).to_i
-    token = create_charge_token(order, organizer)
+    token = create_charge_token(order, admin)
     charge = Stripe::Charge.create(
       {
         amount: total,
@@ -37,17 +37,17 @@ class ChargesWorker
         card: token["id"],
         description: "Tickets for #{event.artist} in #{event.venue}, #{event.date.strftime('%A, %b %d')}",
         application_fee: fee
-      }, organizer.api_key
+      }, admin.api_key
     )
   rescue Stripe::CardError => e
     Rails.logger.error "Stripe error while creating customer: #{e.message}"
     return nil
   end
 
-  def create_charge_token(order, organizer)
+  def create_charge_token(order, admin)
     token = Stripe::Token.create(
       { customer: order.stripe_customer_token },
-      organizer.api_key
+      admin.api_key
     )
   rescue Stripe::InvalidRequestError => e
     Rails.logger.error "Stripe error while creating token: #{e.message}"

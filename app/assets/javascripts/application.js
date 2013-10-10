@@ -22,7 +22,7 @@
 //= require pages
 //= require events
 //= require users
-//= require organizer/events
+//= require admin/events
 
 
 

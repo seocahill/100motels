@@ -5,9 +5,9 @@
       <li><%= link_to "Save Account", signup_path  %></li>
     <% end %>
     <% if current_user.events.empty? %>
-      <li><%= link_to "New Event", new_organizer_event_path %></li>
+      <li><%= link_to "New Event", new_admin_event_path %></li>
     <% else %>
-      <li> <%= link_to "Admin", organizer_event_path(current_user.events.last) %>  </li>
+      <li> <%= link_to "Admin", admin_event_path(current_user.events.last) %>  </li>
     <% end %>
     <li class="divider"></li>
     <% if !current_user.guest? && current_user.state == :unconfirmed %>

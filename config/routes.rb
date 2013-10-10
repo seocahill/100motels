@@ -32,6 +32,19 @@ OneHundredMotels::Application.routes.draw do
     end
   end
 
+  namespace :admin do
+    resources :events do
+      member do
+        get :cancel
+        get :duplicate
+        post :defer_or_cancel
+        get :admit
+      end
+      resources :tickets, only: [:index, :update]
+      resources :event_users
+    end
+  end
+
   resources :orders do
     member { get :cancel }
     collection do

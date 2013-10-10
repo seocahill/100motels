@@ -11,8 +11,8 @@ describe Event do
     create(:event).should be_valid
   end
 
-  it "should have an organizer" do
-   expect(event.event_users.first.state_organizer?).to be_true
+  it "should have an admin" do
+   expect(event.event_users.first.state_admin?).to be_true
   end
 
   it "should be owned by a user" do

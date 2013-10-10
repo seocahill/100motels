@@ -6,7 +6,7 @@ class EventPdf < Prawn::Document
     @view = view
     @orders = orders
     event_number
-    # organizer
+    # admin
     items
 
   end

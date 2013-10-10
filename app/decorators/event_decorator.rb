@@ -10,7 +10,7 @@ class EventDecorator < ApplicationDecorator
   end
 
   def toggle_visible
-    if event_owner? && current_user.profile_type == "MemberProfile"
+    if event_owner?
       switch = best_in_place model, :visible, :type => :checkbox, collection: ["Publish Event", "Hide Event"], data: {current_url: request.path}, classes: "btn"
     elsif current_user
       link_to "Sign up to Publish", signup_path, class: 'btn'
@@ -73,7 +73,7 @@ class EventDecorator < ApplicationDecorator
   end
 
   def about_section
-    best_in_place_if event_owner?, model, :about, :type => :textarea, nil: "#{render 'instructions'}", classes: ["flex-video", "about"], display_as: :about_html, activator: ".edit-about", html_attrs: {"rows" => 12, "cols" => 140}
+    best_in_place_if event_owner?, model, :about, :type => :textarea, nil: "#{render 'instructions'}", classes: ["about"], display_as: :about_html, activator: ".edit-about", html_attrs: {"rows" => 12, "cols" => 140}
   end
 
   def ticket_form
