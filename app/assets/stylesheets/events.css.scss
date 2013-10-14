@@ -1,8 +1,5 @@
 // events index
 // scoped to events controller
-.well {
-   background-color: rgba(255, 255, 255, 0.4);
-}
 .event-map,
 .thumbnails li {
   @include media-between($small-min, $small-max) {
@@ -25,7 +22,7 @@
 
 //event show
 
-.flex-video {
+.flex-embed {
   position: relative;
   padding-top: 25px;
   padding-bottom: 67.5%;
@@ -34,12 +31,12 @@
   overflow: hidden;
 }
 
-.flex-video.widescreen { padding-bottom: 57.25%; }
-.flex-video.vimeo { padding-top: 0; }
+.flex-embed.widescreen { padding-bottom: 57.25%; }
+.flex-embed.vimeo { padding-top: 0; }
 
-.flex-video iframe,
-.flex-video object,
-.flex-video embed {
+.flex-embed iframe,
+.flex-embed object,
+.flex-embed embed {
   position: absolute;
   // top: 0;
   // left: 0;
@@ -47,7 +44,7 @@
   height: 100%;
 }
 @media only screen and (max-device-width: 800px), only screen and (device-width: 1024px) and (device-height: 600px), only screen and (width: 1280px) and (orientation: landscape), only screen and (device-width: 800px), only screen and (max-width: 767px) {
-  .flex-video { padding-top: 0; }
+  .flex-embed { padding-top: 0; }
 }
 
 .event-header {

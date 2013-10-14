@@ -55,4 +55,9 @@ private
   def check_ownership
     redirect_to root_path unless params[:id] == session[:current_order_id]
   end
+
+  def order_params
+    params.require(:order).permit(:name, :email)
+  end
+
 end

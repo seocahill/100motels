@@ -10,7 +10,7 @@ class Order < ActiveRecord::Base
   before_create :generate_uuid
   # before_create :generate_tickets
 
-  after_commit :mail_order_notifiers, on: :create
+  # after_commit :mail_order_notifiers, on: :create
 
   scope :funding, where("stripe_event < ?", 3)
   scope :pending, where("stripe_event = ?", 0)

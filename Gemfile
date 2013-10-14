@@ -37,7 +37,7 @@ gem 'stripe'
 gem 'omniauth-stripe-connect'
 gem 'bootstrap-will_paginate'
 gem 'prawn'
-gem "auto_html"
+gem "auto_html", git: 'git://github.com/seocahill/auto_html.git'
 gem 'filepicker-rails'
 # gem 'client_side_validations'
 # gem 'client_side_validations-simple_form'
