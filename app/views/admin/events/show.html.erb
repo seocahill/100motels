@@ -25,7 +25,7 @@
           <% else %>
             <%= link_to "Cash $100 in Orders", charge_all_orders_path(event_id: @event.id), method: :post, class: "btn btn-success btn-block", data: {confirm: 'Sure?'} %>
           <% end %>
-            <%= link_to "Print <p></p>Orders PDF", admin_event_path(@event, format: "pdf"), class: "btn btn-block btn-info", target: "_blank" %>
+            <%= link_to "Print Orders PDF", admin_event_path(@event, format: "pdf"), class: "btn btn-block btn-info", target: "_blank" %>
         </div>
         <div class="col-lg-9">
           <form class="form-inline" role="form">

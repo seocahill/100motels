@@ -17,7 +17,7 @@ OneHundredMotels::Application.routes.draw do
 
   resources :sessions
   resources :password_resets
-  resources :events, only: [:show, :index, :update]
+  resources :events, only: [:index, :update]
   resources :messages, only: [:create]
 
 
@@ -59,4 +59,5 @@ OneHundredMotels::Application.routes.draw do
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
 
+  resources :events, only: :show, path: ''
 end
