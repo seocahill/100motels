@@ -2,13 +2,13 @@ require 'sidekiq/web'
 require File.expand_path("../../lib/logged_in_constraint", __FILE__)
 OneHundredMotels::Application.routes.draw do
 
-  root :to => "users#index", as: :authenticated, constraints: LoggedInConstraint.new(false)
-  root :to => "pages#index", constraints: LoggedInConstraint.new(true)
+  root :to => "users#index", as: :authenticated, constraints: LoggedInConstraint.new(true)
+  root :to => "pages#index", constraints: LoggedInConstraint.new(false)
 
   get 'auth/:provider/callback', to: 'omniauth_callbacks#all'
   get 'auth/failure', to: redirect('/')
   post '/stripe' => 'stripe_events#listen'
-  get 'signup', to: 'member_profiles#new', as: 'signup'
+  get 'signup', to: 'users#new', as: 'signup'
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
   get '/info' => 'pages#info'

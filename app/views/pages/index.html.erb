@@ -9,7 +9,7 @@
       <span class="black-background">Tour the world without a record label.</span>
     </h2> <br>
     <div class="row">
-      <div class="col-lg-3 col-lg-offset-1"><%= new_or_view_event %></div>
+      <div class="col-lg-3 col-lg-offset-1"><%= link_to "Try it free", users_path, method: :post, class: 'btn btn-lg btn-success', id: 'try-it-button' %></div>
       <div class="col-lg-6 search"><%= render 'search' %></div>
     </div>
     <div class="row">

@@ -7,7 +7,6 @@ class EventsController < ApplicationController
 
   def show
     @order = Order.new
-    @message = Message.new
     @admin = UserDecorator.decorate(@event.user)
   end
 
