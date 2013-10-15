@@ -1,5 +1,16 @@
 class UsersController < ApplicationController
 
+
+  def index
+    if current_user
+      flash.keep(:notice)
+      flash.keep(:error)
+      redirect_to user_path(current_user)
+    else
+      redirect_to signup_path, notice: "Fucks sake"
+    end
+  end
+
   def new
     @user = User.new
   end
