@@ -63,12 +63,20 @@
   }
 }
 
-.progress {
-  height: 40px;
+#event-information  {
+  .progress  {
+    height: 40px;
+  }
+  .progress-bar {
+    font-size: 20px;
+    vertical-align: middle;
+  }
 }
 
-.progress-bar, .price, i {
+.price, i {
   font-size: 20px;
 }
+
+
 
 

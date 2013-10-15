@@ -16,7 +16,7 @@
 				<ul class="thumbnails pagination-centered">
 					<% @events.each do |event| %>
 						<li class="span3">
-							<a class="thumbnail" href='<%= event_path(event) %>'>
+							<a class="thumbnail" href='/<%= event.id %>'>
 								<% if event.image.present?  %>
 	                <%= filepicker_image_tag event.image, w: 200, h: 200, fit: 'crop' %>
                 <% else %>
