@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131009095532) do
+ActiveRecord::Schema.define(version: 20131015233354) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 20131009095532) do
     t.integer  "state",                  default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "guest"
   end
 
   add_index "users", ["auth_token"], name: "index_users_on_auth_token", using: :btree
