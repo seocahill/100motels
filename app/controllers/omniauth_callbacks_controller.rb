@@ -1,7 +1,7 @@
 class OmniauthCallbacksController < ApplicationController
 
   def all
-    current_user.connect(request) if current_user.state_beta?
+    current_user.connect(request)
     if current_user.api_key.present?
       redirect_to root_path, notice: "Connected to Stripe successfully"
     else
