@@ -10,12 +10,10 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
 gem "jquery-rails"
 gem 'jquery-ui-sass-rails'
+gem 'puma'
 
 group :development, :test do
 	gem 'rspec-rails'
-  gem 'better_errors'
-  gem 'binding_of_caller'
-  gem 'meta_request', '0.2.1'
   gem 'capybara'
   gem 'factory_girl_rails'
   gem "shoulda-matchers"
@@ -23,7 +21,6 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'launchy'
   gem 'poltergeist'
-  gem 'puma'
   gem 'foreman'
   gem 'letter_opener_web'
 end

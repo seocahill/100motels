@@ -50,7 +50,7 @@
       </nav>
       <div>
         <% flash.each do |key, value| %>
-          <div class="alert alert-<%= key == :notice ? "success" : "error" %>">
+          <div class="alert alert-<%= key == :notice ? "success" : "danger" %>">
             <a class="close" data-dismiss="alert">&#215;</a>
             <%= content_tag :div, value, :id => "flash_#{key}" if value.is_a?(String) %>
           </div> <!-- /flash -->

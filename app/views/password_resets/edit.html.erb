@@ -1,11 +1,11 @@
 <div class="container">
   <h1>Reset Password</h1>
-  <%= form_for @member_profile, url: password_reset_path(params[:id]) do |f| %>
-    <% if @member_profile.errors.any? %>
+  <%= form_for @user, url: password_reset_path(params[:id]) do |f| %>
+    <% if @user.errors.any? %>
       <div class="error_messages">
         <h2>Form is invalid</h2>
         <ul>
-          <% for message in @member_profile.errors.full_messages %>
+          <% for message in @user.errors.full_messages %>
             <li><%= message %></li>
           <% end %>
         </ul>
