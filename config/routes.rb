@@ -58,5 +58,6 @@ OneHundredMotels::Application.routes.draw do
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
 
-  resources :events, only: :show, path: ''
+  # resources :events, only: :show, path: '', as: 'event'
+  get '/:id', to: 'events#show', as: 'public_event'
 end

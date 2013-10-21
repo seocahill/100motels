@@ -49,7 +49,7 @@
           <tbody>
             <% @user.events.each do |e| %>
             <tr>
-              <td><%= link_to e.name, e %></td>
+              <td><%= link_to e.name, public_event_path(e.id) %></td>
               <td><%= e.location %></td>
               <td>
                  <div class="progress">
