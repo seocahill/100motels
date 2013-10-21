@@ -1,21 +1,11 @@
 require 'spec_helper'
 
 describe User do
-  it { should have_many :orders }
-  it { should have_many :event_users }
   it { should have_many :events }
-  it { should belong_to :profile }
-  it { should respond_to :guest? }
-  it { should respond_to :customer_id? }
   it { should respond_to :send_password_reset }
-  it { should respond_to :become_member }
 
-  it "has a valid guest factory" do
-    create(:guest_user).should be_valid
-  end
-
-  it "has a valid member factory" do
-    create(:member_user).should be_valid
+  it "has a valid user factory" do
+    create(:user).should be_valid
   end
 
   describe '#generate_token' do

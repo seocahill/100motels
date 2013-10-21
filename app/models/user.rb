@@ -8,14 +8,14 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email, allow_blank: true
   has_secure_password validations: false
 
-  # def generate_token(column)
-  #   begin
-  #     self[column] = SecureRandom.urlsafe_base64
-  #   end while self.class.exists?(column => self[column])
-  # end
+  def generate_token(column=:auth_token)
+    begin
+      self[column] = SecureRandom.urlsafe_base64
+    end while self.class.exists?(column => self[column])
+  end
 
   def send_password_reset
-    generate_token(:password_reset_token)
+    self.generate_token(:password_reset_token)
     self.password_reset_sent_at = Time.zone.now
     save!
     UserMailer.delay.password_reset(self.id)
@@ -35,11 +35,11 @@ class User < ActiveRecord::Base
     UserMailer.delay.email_confirmation(self.id)
   end
 
-  def generate_token
-    begin
-      self.auth_token = SecureRandom.urlsafe_base64
-    end while User.exists?(auth_token: auth_token)
-  end
+  # def generate_token
+  #   begin
+  #     self.auth_token = SecureRandom.urlsafe_base64
+  #   end while User.exists?(auth_token: auth_token)
+  # end
 
   def connect(request)
     auth = request.env["omniauth.auth"]
