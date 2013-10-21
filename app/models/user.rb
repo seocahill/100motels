@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   enum_accessor :state, [ :unconfirmed, :normal, :suspended, :god, :beta ]
   has_many :event_users
-  has_many :events, through: :event_users
+  has_many :events, through: :event_users, dependent: :destroy
   before_create :generate_token
   after_create :guest_user_event
   validates_presence_of :name, :email, unless: :guest?

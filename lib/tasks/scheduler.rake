@@ -1,7 +1,7 @@
 namespace :clean do
   task :guests => :environment do
-    guests = User.where(profile_type: "GuestProfile").where("updated_at < ?", 1.week.ago)
-    guests.delete_all
+    guests = User.where(guest: true).where("updated_at < ?", 1.week.ago)
+    guests.destroy_all
   end
 
   task :events => :environment do
