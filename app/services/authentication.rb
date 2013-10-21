@@ -19,9 +19,7 @@ class Authentication
 private
 
   def user_with_password
-    member = MemberProfile.find_by_email(@params[:signin][:email]) if @params.present?
-    if member && member.authenticate(@params[:signin][:password])
-      member.user
-    end
+    user = User.find_by(email: @params[:signin][:email]) if @params.present?
+    user if user && user.authenticate(@params[:signin][:password])
   end
 end
