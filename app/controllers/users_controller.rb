@@ -9,6 +9,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    @user = User.find(params[:id])
+  end
+
   def new
     @user = User.new
   end
@@ -28,8 +32,16 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
+  def update
     @user = User.find(params[:id])
+    if @user.authenticate(params[:confirm_password])
+      if @user.update_attributes(user_params)
+        redirect_to @user, notice: "Settings updated"
+      end
+    else
+      flash[:error] = "You must enter your password to confirm changes"
+      render :show
+    end
   end
 
   def stripe_disconnect
@@ -37,4 +49,9 @@ class UsersController < ApplicationController
     current_user.save!
     redirect_to root_path, notice: "Stipe API key reset"
   end
+
+  private
+    def user_params
+      params.require(:user).permit(:name, :email)
+    end
 end
