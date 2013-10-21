@@ -18,13 +18,9 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = params[:user] ? User.new(params[:user]) : User.new_guest
+    @user = params[:user] ? User.new(user_params) : User.new_guest
     if @user.save
-      if params[:remember_me]
-        cookies.permanent[:auth_token] = @user.auth_token
-      else
-        cookies[:auth_token] = @user.auth_token
-      end
+      cookies[:auth_token] = @user.auth_token
       flash[:notice] = @user.guest? ? 'Welcome Guest!' : 'Thank you for signing up!'
       redirect_to @user.events.first || @user
     else
@@ -52,6 +48,6 @@ class UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:name, :email)
+      params.require(:user).permit(:name, :email, :password)
     end
 end
