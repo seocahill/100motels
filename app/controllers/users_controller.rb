@@ -1,16 +1,7 @@
 class UsersController < ApplicationController
-  def index
-    if current_user
-      flash.keep(:notice)
-      flash.keep(:error)
-      redirect_to user_path(current_user)
-    else
-      redirect_to signup_path, notice: "Fucks sake"
-    end
-  end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.new
   end
 
   def new
@@ -20,9 +11,10 @@ class UsersController < ApplicationController
   def create
     @user = params[:user] ? User.new(user_params) : User.new_guest
     if @user.save
+      current_user.move_to(@user) if current_user && current_user.guest?
       cookies[:auth_token] = @user.auth_token
       flash[:notice] = @user.guest? ? 'Welcome Guest!' : 'Thank you for signing up!'
-      redirect_to @user.events.first || @user
+      redirect_to public_event_path(@user.events.first) || @user
     else
       render action: "new"
     end
@@ -38,12 +30,6 @@ class UsersController < ApplicationController
       flash[:error] = "You must enter your password to confirm changes"
       render :show
     end
-  end
-
-  def stripe_disconnect
-    current_user.api_key = nil
-    current_user.save!
-    redirect_to root_path, notice: "Stipe API key reset"
   end
 
   private
