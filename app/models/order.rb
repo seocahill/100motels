@@ -1,5 +1,5 @@
 class Order < ActiveRecord::Base
-  enum_accessor :state, [ :pending, :paid, :tickets_sent, :failed, :refunded, :cancelled, ]
+  enum_accessor :stripe_event, [ :pending, :paid, :tickets_sent, :failed, :refunded, :cancelled, ]
 
   belongs_to :event
 
@@ -11,13 +11,6 @@ class Order < ActiveRecord::Base
   # before_create :generate_tickets
 
   # after_commit :mail_order_notifiers, on: :create
-
-  scope :funding, where("stripe_event < ?", 3)
-  scope :pending, where("stripe_event = ?", 0)
-  scope :paid, where("stripe_event = ?", 1)
-  scope :failed, where("stripe_event = ?", 3)
-  scope :refunded, where("stripe_event = ?", 4)
-  scope :cancelled, where("stripe_event = ?", 5)
 
   include PgSearch
   pg_search_scope :search, against: [:name, :email, :uuid],

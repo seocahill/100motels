@@ -17,7 +17,7 @@ OneHundredMotels::Application.routes.draw do
 
   resources :sessions
   resources :password_resets
-  resources :events, only: [:index, :update]
+  resources :events, only: [:index, :update, :show]
   resources :messages, only: [:create]
 
 
@@ -25,11 +25,7 @@ OneHundredMotels::Application.routes.draw do
     member { get :confirm }
   end
 
-  resources :users do
-    member do
-      get :stripe_disconnect
-    end
-  end
+  resources :users
 
   namespace :admin do
     resources :events do
@@ -58,6 +54,5 @@ OneHundredMotels::Application.routes.draw do
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
 
-  # resources :events, only: :show, path: '', as: 'event'
-  get '/:id', to: 'events#show', as: 'public_event'
+  # get '/:id', to: 'events#show', as: 'public_event'
 end

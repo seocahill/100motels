@@ -7,15 +7,35 @@ class CustomerOrder
 
   def process_order
     if @order.valid?
-      add_total_to_order
-      CustomerOrderWorker.perform_async(@order.id, @token)
+      add_customer_details_to_order
     end
+    @order.save
   end
 
-  def add_total_to_order
-    event = Event.find(@order.event_id)
-    @order.price = event.ticket_price ? event.ticket_price : 0.0
-    @order.total = event.ticket_price.nil? ? 0.0 : (@order.quantity * (event.ticket_price / 0.961) + 0.30).round(2)
-    @order.save!
+  def add_customer_details_to_order
+    customer = create_customer
+    card = customer.cards.data
+    @order.update_attributes(
+        stripe_customer_token: customer.id,
+        name: card[0].name,
+        last4: card[0].last4,
+        ticket_price: @order.event.ticket_price,
+        total: total_inc_fees
+      )
   end
+
+  def create_customer
+    Stripe.api_key = ENV['STRIPE_API_KEY']
+      customer = Stripe::Customer.create(
+          email: @order.email,
+          card: @token
+      )
+  rescue Stripe::InvalidRequestError => e
+    Rails.logger.error "Stripe error while creating customer: #{e.message}"
+  end
+
+  def total_inc_fees
+    (@order.quantity * (@order.event.ticket_price / 0.961) + 0.30).round(2)
+  end
+
 end

@@ -26,7 +26,7 @@ class Admin::EventsController < ApplicationController
     @events = current_user.events
     @admin = current_user
     @orders = @event.orders.text_search(params[:query]).page(params[:page]).per_page(15)
-    @message = Message.new
+    # @message = Message.new
     respond_to do |format|
       format.html
       format.pdf do
