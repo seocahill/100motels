@@ -9,4 +9,8 @@ module ApplicationHelper
       "100 Motels"
 		end
 	end
+
+  def event_admin(event)
+    current_user.events.includes event
+  end
 end

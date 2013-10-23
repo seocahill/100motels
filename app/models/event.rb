@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-  # attr_accessible :date, :ticket_price, :name, :about, :image, :visible, :state
+  enum_accessor :state, [ :guest, :in_progress, :finished]
   validates :name, length: {maximum: 50}
   validates :name, :date, presence: :true
   validates_numericality_of :ticket_price, :allow_nil => true,
@@ -25,7 +25,7 @@ class Event < ActiveRecord::Base
   end
 
   def forbid_date_change
-    if self.orders.present? && self.state_member?
+    if self.orders.present?
       errors.add(:base, "can't change the date of an active event!") if self.date_changed?
     end
   end

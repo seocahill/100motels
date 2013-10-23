@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   before_filter :find_event, only: [:show, :update]
 
   def index
-    @events = Event.text_search(params[:query]).page(params[:page]).per_page(9)
+    @events = Event.text_search(params[:query]).page(params[:page]).per_page(9).where("state > 0 AND visible = true")
   end
 
   def show
