@@ -7,7 +7,6 @@ class EventsController < ApplicationController
 
   def show
     @order = Order.new
-    @admin = UserDecorator.decorate(@event.user)
   end
 
   def update
@@ -27,7 +26,6 @@ private
   def event_params
     params.require(:event).permit(:image, :date, :location, :name, :ticket_price, :about)
   end
-
 
   def find_event
     @event = Event.find(params[:id]).decorate

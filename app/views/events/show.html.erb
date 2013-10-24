@@ -17,7 +17,7 @@
 			<div class="container">
 				<div class="pull-right"><%= @event.filepicker %></div>
 				<h2>
-					<%= @admin.user_name || "admin's business name" %> presents<br>
+					<%= @event.user.name %> presents<br>
 					<%= @event.bip_title %><br>
 					<%= @event.formatted_date %> | <%= @event.location %>
 				</h2>

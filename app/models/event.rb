@@ -11,14 +11,13 @@ class Event < ActiveRecord::Base
   has_one :event_user
   has_one :user, through: :event_user
 
-  include PgSearch
-  pg_search_scope :search, against: [:venue, :about, :name, :artist],
-    using: {tsearch: {dictionary: "english"}},
-    associated_against: {location: :address}
+  def self.searchable_language
+  'english'
+  end
 
   def self.text_search(query)
     if query.present?
-      search(query)
+      Event.fuzzy_search(query)
     else
       scoped
     end

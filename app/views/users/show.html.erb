@@ -44,7 +44,7 @@
           <a href="/auth/stripe_connect" class="btn btn-block btn-default"><span>Connect with Stripe <i class="icon-credit-card"></i></span></a>
         <% end %><br>
         <%= link_to "Reset Password", password_resets_path(email: current_user.email), method: :post, class: "btn btn-block btn-info" %><br>
-        <%= link_to "New Event", admin_event_path(current_user.events.first), class: "btn btn-block btn-primary" %>
+        <%= link_to "New Event", new_admin_event_path, class: "btn btn-block btn-primary" %>
       <% end %>
     </div>
   </div>
@@ -62,7 +62,8 @@
               <tr>
                 <th>Event</th>
                 <th>State</th>
-                <th>Current Sales</th>
+                <th>Cash</th>
+                <th>Tickets</th>
                 <th>Time</th>
                 <th></th>
               </tr>
@@ -72,9 +73,11 @@
               <tr class="">
                 <td><%= link_to "#{event.name} in #{event.location}", event_path(event) %></td>
                 <td><span class="label label-success">visible</span></td>
-                <td><span class="badge"><%= number_to_currency(event.orders.sum(:total)) %></span> in cash | <span class="badge">15/100</span> tickets</td>
+                <td><span class="badge"><%= number_to_currency(event.orders.sum(:total)) %></span></td>
+                <td><span class="badge">15/100</span></td>
                 <td>3 weeks to go</td>
                 <td><%= link_to "admin", admin_event_path(event), class: "" %></td>
+                <td><%= link_to "edit", edit_admin_event_path(event) %></td>
               </tr>
             <% end %>
             </tbody>

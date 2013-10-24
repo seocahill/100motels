@@ -1,23 +1,28 @@
 class EmailConfirmationsController < ApplicationController
 
   def create
-    member = current_user.profile
-    member.confirm! if member
+    user.confirm! unless user.guest
     redirect_to :back, :notice => "Email confirmation sent."
   end
 
   def confirm
-    @member_profile = MemberProfile.find_by_email_confirm_token!(params[:id])
-    if @member_profile.email_confirm_sent_at < 2.hours.ago
+    @user = User.find_by(email_confirm_token: email_confirm_params[:id])
+    if @user.email_confirm_sent_at < 2.hours.ago
       redirect_to events_path, :alert => "Email confirmation has expired, we've sent you a new one."
-      @member_profile.confirm!
-    elsif @member_profile.update_attributes(params[:member_profile])
-      @member_profile.user.state = :normal
-      @member_profile.save!
-      cookies[:auth_token] = @member_profile.user.auth_token
+      @user.confirm!
+    elsif @user.update_attributes(params[:user])
+      @user.state = :normal
+      @user.save!
+      cookies[:auth_token] = @user.auth_token
       redirect_to root_path, :notice => "Email has been confirmed."
     else
       redirect_to root_path, :notice => "Email could not be confirmed."
     end
   end
+
+  private
+
+    def email_confirm_params
+      params.require(:user).permit(:id)
+    end
 end

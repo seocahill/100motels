@@ -12,10 +12,6 @@ class Order < ActiveRecord::Base
 
   # after_commit :mail_order_notifiers, on: :create
 
-  include PgSearch
-  pg_search_scope :search, against: [:name, :email, :uuid],
-    using: {tsearch: {dictionary: "english"}},
-    associated_against: {event: [:artist, :venue], tickets: :number }
 
   def self.text_search(query)
     if query.present?
