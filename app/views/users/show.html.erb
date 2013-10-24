@@ -44,7 +44,7 @@
           <a href="/auth/stripe_connect" class="btn btn-block btn-default"><span>Connect with Stripe <i class="icon-credit-card"></i></span></a>
         <% end %><br>
         <%= link_to "Reset Password", password_resets_path(email: current_user.email), method: :post, class: "btn btn-block btn-info" %><br>
-        <%= link_to "Events Admin", admin_event_path(current_user.events.first), class: "btn btn-block btn-primary" %>
+        <%= link_to "New Event", admin_event_path(current_user.events.first), class: "btn btn-block btn-primary" %>
       <% end %>
     </div>
   </div>

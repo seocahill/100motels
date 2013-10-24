@@ -1,35 +1,24 @@
 <div class="container">
 	<div class="row">
-		<div class="span6 search"><%= render 'search' %></div>
-		<div class="span2 pull-right">
-			<div class="btn-group" id="time-filter">
-        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#" >
-          <span class="selected-action">Filter by Date</span>
-          <span class="caret"></span>
-        </a>
-			</div>
-		</div>
-	</div>
+		<div class="span12">
+      <div class="input-group">
+        <input type="search" class="form-control">
+        <div class="input-group-btn">
+          <button type="button" class="btn btn-default" tabindex="-1">Search</button>
+          <button type="button" class="btn btn-default">Reset</button>
+        </div>
+      </div>
+    </div>
 	<hr>
 	<div class="row">
-		<div class="span12">
-				<ul class="thumbnails pagination-centered">
-					<% @events.each do |event| %>
-						<li class="span3">
-							<a class="thumbnail" href='<%= event_path(event) %>'>
-								<% if event.image.present?  %>
-	                <%= filepicker_image_tag event.image, w: 200, h: 200, fit: 'crop' %>
-                <% else %>
-	                <%= image_tag "ranelag.gif", height: "200", width: "200" %>
-                <% end %>
-                <div class="event-index-artists">
-									<h3><%= truncate(event.name) %></h3>
-								</div>
-							</a>
-						</li>
-					<% end %>
-				</ul>
-				<%= will_paginate @events %>
-		</div>
-	</div>
+  <% @events.each do |event| %>
+    <div class="col-md-4 portfolio-item">
+      <%= link_to event_path(event) do %>
+        <%= filepicker_image_tag event.image, w: 400, h: 250, fit: 'crop' %>
+        <h3><%= event.name %></h3>
+      <% end %>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+    </div>
+  <% end %>
+  </div>
 </div>
