@@ -32,7 +32,7 @@
         <li href="#" class="list-group-item">
           <h4 class="list-group-item-heading">Ticket Checking</h4>
           <p class="list-group-item-text">A Mobile first view for Checking the tickets of attendees.</p><br>
-          <button class="btn btn-block btn-default">Switch to Ticket Checking</button>
+          <%= link_to "Go to Ticket Checking", admin_event_tickets_path(@event), class: "btn btn-block btn-default" %>
         </li>
       </div>
     </div>

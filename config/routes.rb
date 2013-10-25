@@ -34,6 +34,7 @@ OneHundredMotels::Application.routes.draw do
         get :admit
       end
       resources :messages
+      resources :tickets
     end
   end
 

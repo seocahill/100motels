@@ -14,15 +14,15 @@
       <%= text_area_tag :message, nil, class: "form-control", placeholder: "", rows: "10" %>
     </div>
   </div>
-
+      <%= hidden_field_tag :event_id, @event.id %>
   <div class="form-group">
-  <div class="col-lg-offset-3 col-lg-6">
-    <div class="btn-group block-button-group">
-      <button type="submit" class="btn btn-primary">Message</button>
-      <button type="submit" class="btn btn-warning">Defer</button>
-      <button type="submit" class="btn btn-danger">Cancel</button>
+    <div class="col-lg-offset-3 col-lg-6">
+      <div class="btn-group block-button-group">
+        <%= submit_tag "Message", class: "btn btn-info" %>
+        <%= submit_tag "Defer", class: "btn btn-warning" %>
+        <%= submit_tag "Cancel", class: "btn btn-danger" %>
+      </div>
     </div>
-  </div>
   </div>
   <% end %>
   </div>

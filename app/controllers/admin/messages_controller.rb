@@ -5,12 +5,15 @@ class Admin::MessagesController < ApplicationController
   end
 
   def create
-    @event = current_user.events.new(event_params)
-    if @event.save
-      flash[:notice] = 'Event was successfully created.'
-      redirect_to(@event)
+    @event = Event.find(params[:event_id])
+    if params[:commit] == "Defer"
+      redirect_to [:admin, @event], notice: "Event has been deferred"
+    elsif params[:commit] == "Cancel"
+      redirect_to [:admin, @event], notice: "Event has been cancelled"
+    elsif params[:commit] == "Message"
+      redirect_to [:admin, @event], notice: "Message Sent to Customers"
     else
-      flash[:error] = "Event couldn't be created."
+      flash[:error] = "Message couldn't be sent."
       render action: "new"
     end
   end
