@@ -1,5 +1,4 @@
 class OrdersController < ApplicationController
-  before_filter :find_order, only: [:show]
   before_filter :check_ownership, except: [:new, :create, :cancel]
 
   def show
@@ -16,28 +15,6 @@ class OrdersController < ApplicationController
     end
   end
 
-  def charge_all
-    event = Event.find(params[:event_id])
-    @orders = event.orders.where("stripe_event = 0 OR stripe_event = 3")
-    if @orders.length > 0 and current_user.api_key.present?
-      ChargeCustomer.new(@orders).process_charges
-      flash[:notice] = "Processing #{@orders.count} orders, we'll email you when we're done."
-    else
-      flash[:error] = "Can't charge unless there are valid orders and admin is connected to Stripe Account"
-    end
-    redirect_to organizer_event_path(event)
-  end
-
-  def cancel
-    order = Order.find_by_uuid(params[:id])
-    order.cancel_order
-    if order.stripe_event_cancelled?
-      redirect_to root_path, notice: "Your order has been cancelled"
-    else
-      redirect_to root_path, notice: "This order can't be cancelled, please contact support"
-    end
-  end
-
   def destroy
     order = Order.find(params[:id])
     order.state = :cancelled
@@ -46,12 +23,6 @@ class OrdersController < ApplicationController
   end
 
 private
-  def find_order
-    @order = Order.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-    redirect_to root_path
-  end
-
   def order_params
     params.require(:order).permit(:email, :quantity, :event_id)
   end

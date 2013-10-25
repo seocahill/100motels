@@ -1,5 +1,5 @@
 class Order < ActiveRecord::Base
-  enum_accessor :stripe_event, [ :pending, :paid, :tickets_sent, :failed, :refunded, :cancelled, ]
+  enum_accessor :stripe_event, [:pending, :charged, :cancelled]
 
   belongs_to :event
 
@@ -8,14 +8,15 @@ class Order < ActiveRecord::Base
   validates :quantity, numericality: :true
 
   before_create :generate_uuid
-  # before_create :generate_tickets
+  # after_create :generate_tickets
 
-  # after_commit :mail_order_notifiers, on: :create
-
+  def self.searchable_language
+    'english'
+  end
 
   def self.text_search(query)
     if query.present?
-      search(query)
+      Order.search(query)
     else
       scoped
     end
@@ -27,27 +28,10 @@ class Order < ActiveRecord::Base
     end while self.class.exists?(uuid: uuid)
   end
 
-  def mail_order_notifiers
-    OrderMailer.delay.order_created(self.id)
-    OrderMailer.delay.notify_admin_order_created(self.id)
-  end
-
-  def total_price
-    price.nil? ? 0.0 : (quantity * price)
-  end
-
-  def cancel_order
-    if stripe_event_pending?
-      self.stripe_event = :cancelled
-      OrderMailer.delay.order_cancelled(self.id)
-      save!
-    end
-  end
-
-  def generate_ticket_number
-    event = Event.find(self.event_id)
-    begin
-      self.number = rand((9.to_s * 6).to_i).to_s.center(6, rand(9).to_s)
-    end while event.tickets.exists?(number: number)
-  end
+  # def generate_tickets
+  #   order.quantity.times do |ticket|
+  #   begin
+  #     self.tickets << rand((9.to_s * 6).to_i).to_s.center(6, rand(9).to_s)
+  #   end while event.tickets.exists?(number: number)
+  # end
 end

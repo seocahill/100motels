@@ -5,7 +5,7 @@
         <div class="input-group">
           <input type="search" name="query" class="form-control input-lg" placeholder="<%= params[:query] %>">
           <div class="input-group-btn">
-            <button type="submit" class="btn btn-default btn-lg" tabindex="-1" action='<%= events_path(query: params[:query]) %>'>Search</button>
+            <button type="submit" class="btn btn-default btn-lg" action='<%= events_path(query: params[:query]) %>'>Search</button>
             <button type="submit" class="btn btn-default btn-lg" action="/events">Reset</button>
           </div>
         </div>
