@@ -1,18 +1,17 @@
 class Event < ActiveRecord::Base
-  enum_accessor :state, [ :guest, :in_progress, :finished]
+  enum_accessor :state, [ :guest, :in_progress, :finished, :destroyed]
   validates :name, length: {maximum: 50}
   validates :name, :date, presence: :true
   validates_numericality_of :ticket_price, :allow_nil => true,
       :greater_than_or_equal_to => 5.0,
-      :less_than_or_equal_to => 30.0,
+      :less_than_or_equal_to => 50.0,
       :message => "leave blank for free events or between 5 and 30 dollars for paid events."
-
   has_many :orders
   has_one :event_user
   has_one :user, through: :event_user
 
   def self.searchable_language
-  'english'
+    'english'
   end
 
   def self.text_search(query)
@@ -44,16 +43,6 @@ class Event < ActiveRecord::Base
     self.date = params[:alter_event][:date]
     self.orders.each { |order| OrderMailer.event_deferred(order, params).deliver}
     save!
-  end
-
-  def duplicate(current_user, request)
-    location = request.location.present? ? request.location.address : self.location.address
-    copy = self.dup
-    copy.name = "Copy of #{self.name}"
-    copy.state = current_user.guest? ? :guest : :member
-    copy.event_users.build(user_id: current_user.id, state: :event_admin)
-    copy.build_location(address: location)
-    copy.save!
   end
 end
 

@@ -17,7 +17,7 @@
         <li href="#" class="list-group-item">
           <h4 class="list-group-item-heading">Time Left <span class="badge pull-right">3 months</span></h4>
           <p class="list-group-item-text">Send a group email to your customers optionally rescheduling or cancelling the event.</p><br>
-          <button class="btn btn-info btn-block">Notify Customers</button>
+          <%= link_to "Notify Customers", new_admin_event_message_path(@event), class: "btn btn-info btn-block" %>
         </li>
         <li href="#" class="list-group-item">
           <h4 class="list-group-item-heading">Sales Orders <span class="badge pull-right">$1000</h4>
@@ -27,7 +27,7 @@
         <li href="#" class="list-group-item">
           <h4 class="list-group-item-heading">Tickets <span class="badge pull-right">1000 tickets @ $10</span></h4>
           <p class="list-group-item-text">Change the ticket price or sales target. Price changes don't affect existing orders.</p><br>
-          <button class="btn btn-block btn-default">Change Price or Target</button>
+          <%= link_to "Change Ticket Price or Target", edit_admin_event_path(@event), class: "btn btn-block btn-default" %>
         </li>
         <li href="#" class="list-group-item">
           <h4 class="list-group-item-heading">Ticket Checking</h4>

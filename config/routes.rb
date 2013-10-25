@@ -8,24 +8,22 @@ OneHundredMotels::Application.routes.draw do
   get 'auth/:provider/callback', to: 'omniauth_callbacks#all'
   get 'auth/failure', to: redirect('/')
   post '/stripe' => 'stripe_events#listen'
-  get 'signup', to: 'users#new', as: 'signup'
-  get 'login', to: 'sessions#new', as: 'login'
-  get 'logout', to: 'sessions#destroy', as: 'logout'
+  get 'sign-up', to: 'users#new', as: 'signup'
+  get 'sign-in', to: 'sessions#new', as: 'login'
+  get 'sign-out', to: 'sessions#destroy', as: 'logout'
   get '/info' => 'pages#info'
   get '/home' => 'pages#home'
   # get '/favicon.ico', to: redirect('/')
 
+  resources :users
   resources :sessions
   resources :password_resets
   resources :events, only: [:index, :update, :show]
-  resources :messages, only: [:create]
-
 
   resources :email_confirmations, only: [:create] do
     member { get :confirm }
   end
 
-  resources :users
 
   namespace :admin do
     resources :events do
@@ -35,8 +33,7 @@ OneHundredMotels::Application.routes.draw do
         post :defer_or_cancel
         get :admit
       end
-      resources :tickets, only: [:index, :update]
-      resources :event_users
+      resources :messages
     end
   end
 
@@ -53,6 +50,5 @@ OneHundredMotels::Application.routes.draw do
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
-
   # get '/:id', to: 'events#show', as: 'public_event'
 end

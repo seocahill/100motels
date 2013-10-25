@@ -77,3 +77,10 @@ footer {
     @extend .alert-error;
     &:first-letter { text-transform: uppercase };
   }
+
+.block-button-group {
+  width: 100%;
+  .btn  {
+    width: 33%
+  }
+}

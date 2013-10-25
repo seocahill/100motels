@@ -5,33 +5,25 @@ class Admin::EventsController < ApplicationController
   end
 
   def create
-    state = current_user ? :guest : :member
-    @event = Event.new(params[:event].merge(state: state))
-    @event.event_users.build(user_id: current_user.id)
-    respond_to do |format|
-      if @event.save
-        flash[:notice] = 'Event was successfully created.'
-        format.html { redirect_to(@event) }
-        format.xml { render xml: @event, status: :created, location: @event }
+    @event = current_user.events.new(event_params)
+    if @event.save
+      flash[:notice] = 'Event was successfully created.'
+      redirect_to(@event)
     else
-        flash[:error] = "Event couldn't be created."
-        format.html { render action: "new" }
-        format.xml { render xml: @event.errors, status: :unprocessable_entity }
-      end
+      flash[:error] = "Event couldn't be created."
+      render action: "new"
     end
   end
 
   def show
     @event = Event.find(params[:id]).decorate
     @events = current_user.events
-    @admin = current_user
     @orders = @event.orders.text_search(params[:query]).page(params[:page]).per_page(15)
-    # @message = Message.new
     respond_to do |format|
       format.html
       format.pdf do
         pdf = EventPdf.new(@event, @orders, view_context)
-        send_data pdf.render, filename: "#{@event.artist}_#{@event.date}.pdf",
+        send_data pdf.render, filename: "#{@event.name}_#{@event.date}.pdf",
                               type: "application/pdf",
                               disposition: "inline"
       end
@@ -45,19 +37,19 @@ class Admin::EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
-    if @event.update_attributes(params[:event])
+    if @event.update_attributes(event_params)
       flash[:notice] = "Event has been updated"
-      redirect_to @event
+      redirect_to [:admin, @event]
     else
       flash[:alert] = "Event has not been updated"
-      render :action => "edit"
+      render action: "edit"
     end
   end
 
   def destroy
     event = Event.find(params[:id])
     if event.orders.empty?
-      event.state = :cancelled
+      event.state = :destroyed
     else
       CancelEventOrders.new(event.orders).cancel_orders
     end
@@ -77,30 +69,9 @@ class Admin::EventsController < ApplicationController
     redirect_to [:admin, :event]
   end
 
-  def duplicate
-    event = Event.find(params[:id])
-    new_event = event.duplicate(current_user, request)
-    redirect_to root_path, notice: "A copy of your event was created successfully"
-  end
+  private
 
-  def admit
-    event = Event.find(params[:id])
-    ticket = Ticket.find_by_number(params[:query])
-    if ticket.present? and [:paid, :tickets_sent, :refunded].include? ticket.order.stripe_event
-      if ticket.admitted.nil?
-         ticket.admitted = Time.now
-         ticket.save!
-         flash[:notice] = "Ok! Let them in"
-      else
-         flash[:error] = "Already Admitted at #{ticket.admitted}"
-      end
-    else
-      flash[:error] = "Ticket not found!" unless params[:query].nil?
-    end
-    respond_to do |format|
-      format.html { redirect_to [:admin, event] }
-      format.js
-    end
+  def event_params
+    params.require(:event).permit(:name, :location, :date, :ticket_price, :visible, :target)
   end
-
 end
