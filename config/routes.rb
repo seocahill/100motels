@@ -7,7 +7,6 @@ OneHundredMotels::Application.routes.draw do
 
   get 'auth/:provider/callback', to: 'omniauth_callbacks#all'
   get 'auth/failure', to: redirect('/')
-  post '/stripe' => 'stripe_events#listen'
 
   get 'sign-up', to: 'users#new', as: 'signup'
   get 'sign-in', to: 'sessions#new', as: 'login'
@@ -30,6 +29,9 @@ OneHundredMotels::Application.routes.draw do
     end
   end
   resources :orders
+  resources :charges, only: [:create] do
+    member { post :receive }
+  end
 
   mount Sidekiq::Web, at: '/sidekiq'
 

@@ -8,7 +8,7 @@ class Order < ActiveRecord::Base
   validates :quantity, numericality: :true
 
   before_create :generate_uuid
-  # after_create :generate_tickets
+  # before_create :generate_tickets
 
   def self.searchable_language
     'english'
