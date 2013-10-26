@@ -7,17 +7,11 @@ class Notifier < ActionMailer::Base
     mail to: @order.email, subject: "Your event has been cancelled"
   end
 
-  def group_message(event, message)
+  def group_message(event_id, message)
     @message = message
-    @orders = event.orders.not_cancelled.pluck(:email)
-    @event =
-    mail to: @orders, subject: "A message about your Event"
+    @event = Event.find(event_id)
+    @orders = @event.orders.not_cancelled
+    mail to: @orders.pluck(:email), subject: "A message about your Event"
   end
 
-  def job_completed(orders)
-    @orders = orders
-    event = @orders.first.event
-    admin = User.includes(:event_users).where("event_users.event_id = ? AND event_users.state = 3", event.id).first
-    mail to: admin.profile.email, subject: "your job has been completed"
-  end
 end

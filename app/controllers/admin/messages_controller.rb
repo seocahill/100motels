@@ -17,7 +17,7 @@ class Admin::MessagesController < ApplicationController
         CancelService.new(@event, @message).cancel_orders
         redirect_to [:admin, @event], notice: "Event has been cancelled"
       when "Message"
-        Notifier.delay.group_message(@event, @message)
+        Notifier.delay.group_message(@event.id, @message)
         redirect_to [:admin, @event], notice: "Message Sent to Customers"
       else
         flash[:error] = "Message couldn't be sent for some unknown reason."
