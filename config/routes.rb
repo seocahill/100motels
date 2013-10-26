@@ -28,9 +28,7 @@ OneHundredMotels::Application.routes.draw do
       resources :tickets
     end
   end
-  resources :orders do
-    collection { get :cancel }
-  end
+  resources :orders
   resources :charges, only: [:create] do
     member { post :receive }
   end
