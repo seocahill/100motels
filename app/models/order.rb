@@ -11,6 +11,7 @@ class Order < ActiveRecord::Base
   # before_create :generate_tickets
 
   scope :pending, -> { where('stripe_event < 1') }
+  scope :not_cancelled, -> { where('stripe_event < 2') }
 
   def self.searchable_language
     'english'

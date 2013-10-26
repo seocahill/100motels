@@ -8,10 +8,14 @@ class CancellationsWorker
   end
 
   def cancel_order(order, key)
-    refund_order(order, key) if [:paid, :tickets_sent].include? order.stripe_event
-    unless order.stripe_event_cancelled?
-      OrderMailer.order_cancelled(order.id).deliver
+    if order.stripe_event_charged?
+      if refund_order(order, key)?
+        order.stripe_event = :cancelled
+        OrderMailer.order_cancelled(order.id).deliver
+      end
+    else
       order.stripe_event = :cancelled
+      OrderMailer.order_cancelled(order.id).deliver
     end
     order.save!
   end
@@ -20,9 +24,9 @@ class CancellationsWorker
     Stripe.api_key = key
     charge = Stripe::Charge.retrieve(order.stripe_charge_id)
     refund = charge.refund
-    order.stripe_event = :refunded if refund[:refunded] == true
-    OrderMailer.refund_customer_order(order.id).deliver
+    refund[:refunded] == true
   rescue Stripe::InvalidRequestError => e
     Rails.logger.error "Stripe error while processing refund: #{e.message}"
+    false
   end
 end

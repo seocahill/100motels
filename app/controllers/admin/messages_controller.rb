@@ -14,7 +14,7 @@ class Admin::MessagesController < ApplicationController
         DeferService.new(@event, @message).process_deferral
         redirect_to [:admin, @event], notice: "Event has been deferred"
       when "Cancel"
-        # hit cancel service
+        CancelService.new(@event, @message).cancel_orders
         redirect_to [:admin, @event], notice: "Event has been cancelled"
       when "Message"
         # send email to customer group
