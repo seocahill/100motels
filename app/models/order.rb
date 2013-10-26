@@ -10,6 +10,8 @@ class Order < ActiveRecord::Base
   before_create :generate_uuid
   # before_create :generate_tickets
 
+  scope :pending, -> { where('stripe_event < 1') }
+
   def self.searchable_language
     'english'
   end

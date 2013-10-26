@@ -1,11 +1,12 @@
 class OrderMailer < ActionMailer::Base
   default from: "seo@100motels.com"
+          # ,return_path: "service@example.com"
 
-  def event_deferred(order, params)
-    @order = order
-    @message = params[:alter_event][:message]
-    @new_date = params[:alter_event][:date]
-    mail to: order.email, subject: "100 Motels - Event Deferred"
+  def event_deferred(event_id, message)
+    @message = message.message
+    @date = message.date
+    @event = Event.find(event_id)
+    mail bcc: @event.orders.pending.pluck(:email), subject: "100 Motels - Event Deferred"
   end
 
   def order_created(order_id)

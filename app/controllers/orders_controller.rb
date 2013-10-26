@@ -23,6 +23,9 @@ class OrdersController < ApplicationController
     session[:current_order_id] = nil
   end
 
+  def cancel
+  end
+
 private
   def order_params
     params.require(:order).permit(:email, :quantity, :event_id)

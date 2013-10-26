@@ -1,11 +1,11 @@
 class Message
   include ActiveModel::Model
 
-  attr_accessor :date, :message, :defer
+  attr_accessor :date, :message, :option
 
   validates :date, presence: true, if: :deferring?
 end
 
 def deferring?
-  defer.present?
+  option == "Defer"
 end

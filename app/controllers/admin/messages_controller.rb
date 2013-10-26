@@ -9,9 +9,9 @@ class Admin::MessagesController < ApplicationController
     @event = Event.find(params[:event_id])
     @message = Message.new(message_params)
     if @message.valid?
-      case params[:commit]
+      case @message.option
       when "Defer"
-        # hit defer service
+        DeferService.new(@event, @message).process_deferral
         redirect_to [:admin, @event], notice: "Event has been deferred"
       when "Cancel"
         # hit cancel service
@@ -31,6 +31,6 @@ class Admin::MessagesController < ApplicationController
 
   private
     def message_params
-      params.require(:message).permit(:date, :message, :defer)
+      params.require(:message).permit(:date, :message, :option)
     end
 end
