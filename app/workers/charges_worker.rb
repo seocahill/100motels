@@ -3,14 +3,10 @@ class ChargesWorker
 
   def perform(order_id, api_key)
     order = Order.find(order_id)
-    process_charge(order, api_key)
-  end
-
-  def process_charge(order, api_key)
     token = create_charge_token(order, api_key)
     charge = charge_customer(order, api_key, token)
-    update_order(order, charge)
-    order.save
+    complete_order(order, charge)
+    order.save!
   end
 
   def create_charge_token(order, api_key)
@@ -20,6 +16,7 @@ class ChargesWorker
     )
   rescue Stripe::InvalidRequestError => e
     Rails.logger.error "Stripe error while creating token: #{e.message}"
+    return nil
   end
 
   def charge_customer(order, api_key, token)
@@ -33,9 +30,10 @@ class ChargesWorker
     )
   rescue Stripe::CardError => e
     Rails.logger.error "Stripe error while creating customer: #{e.message}"
+    return nil
   end
 
-  def process_charge(order, charge)
+  def complete_order(order, charge)
     if charge.present?
       order.stripe_charge_id = charge[:id]
       order.stripe_event = charge[:paid] == true ? :charged : :failed
@@ -43,4 +41,5 @@ class ChargesWorker
       order.stripe_event = :failed
     end
   end
+
 end

@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
   before_filter :check_ownership, except: [:new, :create, :cancel]
 
   def show
+    @order = Order.find(params[:id])
   end
 
   def create

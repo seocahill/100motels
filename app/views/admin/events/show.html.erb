@@ -56,6 +56,7 @@
             <th>Quantity</th>
             <th>Order Total</th>
             <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -66,6 +67,7 @@
             <td><%= order.uuid.truncate(8) %> </td>
             <td><%= order.quantity %></td>
             <td><%= number_to_currency(order.total) %></td>
+            <td><span class="label label-info"><%= order.stripe_event %></span></td>
             <td><%= link_to "view", order_path(order) %></td>
           </tr>
           <% end %>
