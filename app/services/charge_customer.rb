@@ -1,16 +1,13 @@
 class ChargeCustomer
 
-  def initialize(orders)
-    @orders = orders
+  def initialize(event)
+    @orders = event.orders.where("stripe_event < 2")
+    @api_key = event.user.api_key
   end
 
-  def process_charges
-    event = @orders.first.event
-    capacity = event.capacity
-    sales = event.orders.sum(:quantity)
-    @orders.each_with_index do |order, index|
-      sales += index
-      ChargesWorker.perform_async(order.id) if sales <= capacity
+  def process
+    @orders.each do |order|
+      ChargesWorker.perform_async(order.id, @api_key)
     end
   end
 end
