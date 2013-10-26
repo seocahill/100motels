@@ -6,7 +6,7 @@ class ChargesWorker
     process_charge(order, api_key)
   end
 
-  def process_charge
+  def process_charge(order, api_key)
     token = create_charge_token(order, api_key)
     charge = charge_customer(order, api_key, token)
     update_order(order, charge)
@@ -28,7 +28,7 @@ class ChargesWorker
         currency: "usd",
         card: token["id"],
         description: order.uuid,
-        application_fee: 1
+        application_fee: 100
       }, api_key
     )
   rescue Stripe::CardError => e
@@ -38,7 +38,7 @@ class ChargesWorker
   def process_charge(order, charge)
     if charge.present?
       order.stripe_charge_id = charge[:id]
-      order.stripe_event = charge[:paid] == true ? :paid : :failed
+      order.stripe_event = charge[:paid] == true ? :charged : :failed
     else
       order.stripe_event = :failed
     end
