@@ -34,7 +34,7 @@ class Order < ActiveRecord::Base
   def generate_unique_ticket
     begin
       return rand((9.to_s * 6).to_i).to_s.center(6, rand(9).to_s)
-    end while self.event.orders.where("'#{@new_ticket}' = ANY (tickets)").present?
+    end while self.event.orders.exists?("'#{@new_ticket}' = ANY (tickets)")
   end
 
    def add_tickets_to_order
