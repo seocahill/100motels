@@ -12,7 +12,7 @@ class EventPdf < Prawn::Document
   end
 
   def event_number
-    text "#{@event.title}, #{@event.venue}, #{@event.date.strftime("%b %d %Y")}. ", size: 30, style: :bold
+    text "#{@event.name}, #{@event.location}, #{@event.date.strftime("%b %d %Y")}. ", size: 30, style: :bold
     text "Total Attending: #{@orders.to_a.sum { |order| order.quantity}}"
   end
 
@@ -28,8 +28,10 @@ class EventPdf < Prawn::Document
 
   def line_item_rows
     [["Name", "Email", "Admit", "Status"]] +
-    @orders.all.map do |item|
-      [item.name, item.email, item.quantity, item.stripe_event.to_s]
+    @orders.all.map do |order|
+      order.tickets.map do |ticket|
+        [ticket, item.name, item.email, item.quantity, item.stripe_event.to_s]
+      end
     end
   end
 

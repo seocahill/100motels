@@ -24,16 +24,6 @@
           <p class="list-group-item-text">Charge all unpaid sales orders.</p><br>
           <%= button_to "Charge Customers", charges_path(event_id: @event.id), class: "btn btn-success btn-block", method: :create %>
         </li>
-        <li href="#" class="list-group-item">
-          <h4 class="list-group-item-heading">Tickets <span class="badge pull-right">1000 tickets @ $10</span></h4>
-          <p class="list-group-item-text">Change the ticket price or sales target. Price changes don't affect existing orders.</p><br>
-          <%= link_to "Change Ticket Price or Target", edit_admin_event_path(@event), class: "btn btn-block btn-default" %>
-        </li>
-        <li href="#" class="list-group-item">
-          <h4 class="list-group-item-heading">Ticket Checking</h4>
-          <p class="list-group-item-text">A Mobile first view for Checking the tickets of attendees.</p><br>
-          <%= link_to "Go to Ticket Checking", admin_event_tickets_path(@event), class: "btn btn-block btn-default" %>
-        </li>
       </div>
     </div>
     <div class="col-lg-9">
@@ -41,8 +31,8 @@
         <div class="input-group">
           <input type="search" name="query" class="form-control input-lg" value="<%= params[:query] %>">
           <div class="input-group-btn">
-            <button type="submit" class="btn btn-default btn-lg" action='<%= admin_event_path(@event, query: params[:query]) %>'>Search Orders</button>
-            <button type="button" class="btn btn-default btn-lg" action="admin_event_path(@event)">Orders PDF</button>
+            <button type="submit" class="btn btn-default btn-lg" action='<%= admin_event_path(@event, query: params[:query]) %>'>Search</button>
+            <%= link_to "PDF", admin_event_path(@event, format: 'pdf'),  class: "btn btn-default btn-lg" %>
           </div>
         </div>
       </form>

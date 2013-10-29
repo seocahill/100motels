@@ -8,7 +8,7 @@ class Order < ActiveRecord::Base
   validates :quantity, numericality: :true
 
   before_create :generate_uuid
-  # before_create :generate_tickets
+  before_create :add_tickets_to_order
 
   scope :pending, -> { where('stripe_event < 1') }
   scope :not_cancelled, -> { where('stripe_event < 3') }
