@@ -18,7 +18,7 @@
 				<div class="pull-right"><%= @event.filepicker %></div>
 				<h2>
 					<%= @event.user.name %> presents<br>
-					<%= @event.bip_title %><br>
+					<%= @event.name %><br>
 					<%= @event.formatted_date %> | <%= @event.location %>
 				</h2>
 			</div>
@@ -62,7 +62,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-10 col-lg-offset-1">
-				<button class="btn edit-about">Edit</button>
+				<%= @event.edit_button %>
 				<div class="event-media-html"><%= @event.about_section %></div>
 			</div>
 		</div>

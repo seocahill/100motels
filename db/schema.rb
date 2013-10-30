@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131024184751) do
+ActiveRecord::Schema.define(version: 20131030155125) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "pg_trgm"
 
   create_table "event_users", force: true do |t|
     t.integer  "event_id"
@@ -62,6 +63,16 @@ ActiveRecord::Schema.define(version: 20131024184751) do
 
   add_index "orders", ["event_id"], name: "index_orders_on_event_id", using: :btree
   add_index "orders", ["uuid"], name: "index_orders_on_uuid", using: :btree
+
+  create_table "tickets", force: true do |t|
+    t.string   "number"
+    t.datetime "admitted"
+    t.integer  "order_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tickets", ["order_id"], name: "index_tickets_on_order_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name"
