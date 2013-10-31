@@ -11,7 +11,7 @@ class CreateOrders < ActiveRecord::Migration
       t.integer :stripe_event, default: 0, limit: 6
       t.string :stripe_charge_id
       t.string :last4
-      t.string :tickets, :string, array: true, default: '{}', using: 'gist'
+      t.string :uuid, :string
 
       t.timestamps
     end
