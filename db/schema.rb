@@ -11,11 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131030155125) do
+ActiveRecord::Schema.define(version: 20131030175257) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "pg_trgm"
+  enable_extension "uuid-ossp"
 
   create_table "event_users", force: true do |t|
     t.integer  "event_id"
@@ -43,36 +43,31 @@ ActiveRecord::Schema.define(version: 20131030155125) do
     t.integer  "target",                               default: 100,   null: false
   end
 
-  create_table "orders", force: true do |t|
-    t.string   "name",                                         null: false
-    t.string   "email",                                        null: false
-    t.decimal  "total",                                        null: false
-    t.decimal  "ticket_price",                                 null: false
-    t.string   "stripe_customer_token",                        null: false
-    t.integer  "event_id",                                     null: false
+  create_table "orders", id: false, force: true do |t|
+    t.uuid     "id",                                          null: false
+    t.string   "name",                                        null: false
+    t.string   "email",                                       null: false
+    t.decimal  "total",                                       null: false
+    t.decimal  "ticket_price",                                null: false
+    t.string   "stripe_customer_token",                       null: false
+    t.integer  "event_id",                                    null: false
     t.integer  "quantity",                        default: 1
     t.integer  "stripe_event",          limit: 8, default: 0
     t.string   "stripe_charge_id"
     t.string   "last4"
-    t.string   "tickets",                         default: [],              array: true
-    t.string   "string",                          default: [],              array: true
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "uuid"
   end
 
   add_index "orders", ["event_id"], name: "index_orders_on_event_id", using: :btree
-  add_index "orders", ["uuid"], name: "index_orders_on_uuid", using: :btree
 
   create_table "tickets", force: true do |t|
     t.string   "number"
     t.datetime "admitted"
-    t.integer  "order_id"
+    t.uuid     "order_id",   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "tickets", ["order_id"], name: "index_tickets_on_order_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name"

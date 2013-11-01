@@ -54,7 +54,7 @@
           <tr>
             <td><%= order.name %> </td>
             <td><%= order.email %> </td>
-            <td><%= order.uuid.truncate(8) %> </td>
+            <td><%= order.id.truncate(8) %> </td>
             <td><%= order.quantity %></td>
             <td><%= number_to_currency(order.total) %></td>
             <td><span class="label label-info"><%= order.stripe_event %></span></td>

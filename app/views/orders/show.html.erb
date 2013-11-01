@@ -7,7 +7,7 @@
 				</header>
 				<p class="lead">An email has been sent to <%= @order.email %> with your order receipt and details. </p>
 				<p class="lead">If you have any questions regarding your order, contact us and quote your unique order reference -</p><br>
-				<p><span class="well">order uuid: <%= @order.uuid %></span></p>
+				<p><span class="well">order uuid: <%= @order.id %></span></p>
 			</div>
 			<div class="span12 pagination-centered">
 				<%= link_to "Back", event_path(@order.event), class: "btn btn-primary btn-large" %>

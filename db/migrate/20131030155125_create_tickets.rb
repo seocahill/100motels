@@ -3,7 +3,7 @@ class CreateTickets < ActiveRecord::Migration
     create_table :tickets do |t|
       t.string :number
       t.datetime :admitted
-      t.references :order, index: true
+      t.uuid :order_id, null: false
 
       t.timestamps
     end

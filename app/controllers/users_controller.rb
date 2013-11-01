@@ -14,7 +14,7 @@ class UsersController < ApplicationController
       current_user.move_to(@user) if current_user && current_user.guest?
       cookies[:auth_token] = @user.auth_token
       flash[:notice] = @user.guest? ? 'Welcome Guest!' : 'Thank you for signing up!'
-      redirect_to public_event_path(@user.events.first) || @user
+      redirect_to event_path(@user.events.first) || @user
     else
       render action: "new"
     end

@@ -2,12 +2,12 @@ class Order < ActiveRecord::Base
   enum_accessor :stripe_event, [:pending, :failed, :charged, :cancelled]
 
   belongs_to :event
+  has_many :tickets, dependent: :destroy
 
   validates :email, presence: :true
   validates_format_of :email, :with => /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
   validates :quantity, numericality: :true
 
-  before_create :generate_uuid
   before_create :add_tickets_to_order
 
   scope :pending, -> { where('stripe_event < 1') }
@@ -25,24 +25,8 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def generate_uuid
-    begin
-      self.uuid = SecureRandom.hex
-    end while self.class.exists?(uuid: uuid)
-  end
-
-  def generate_unique_ticket
-    begin
-      return rand((9.to_s * 6).to_i).to_s.center(6, rand(9).to_s)
-    end while self.event.orders.exists?("'#{@new_ticket}' = ANY (tickets)")
-  end
-
-   def add_tickets_to_order
-    self.quantity.times do
-      self.tickets << self.generate_unique_ticket
-    end
-    self.tickets_will_change!
-    save!
+  def add_tickets_to_order
+    quantity.times { self.tickets.build }
   end
 end
 

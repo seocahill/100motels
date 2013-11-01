@@ -14,14 +14,18 @@ class CustomerOrder
 
   def add_customer_details_to_order
     customer = create_customer
-    card = customer.cards.data
-    @order.update_attributes(
-        stripe_customer_token: customer.id,
-        name: card[0].name,
-        last4: card[0].last4,
-        ticket_price: @order.event.ticket_price,
-        total: total_inc_fees
-      )
+    if customer
+      card = customer.cards.data
+      @order.update_attributes(
+          stripe_customer_token: customer.id,
+          name: card[0].name,
+          last4: card[0].last4,
+          ticket_price: @order.event.ticket_price,
+          total: total_inc_fees
+        )
+    else
+      raise error
+    end
   end
 
   def create_customer
@@ -30,8 +34,10 @@ class CustomerOrder
           email: @order.email,
           card: @token
       )
+      customer
   rescue Stripe::InvalidRequestError => e
     Rails.logger.error "Stripe error while creating customer: #{e.message}"
+    return nil
   end
 
   def total_inc_fees
