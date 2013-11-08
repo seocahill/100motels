@@ -10,8 +10,9 @@ class EmailConfirmationsController < ApplicationController
     if @user.email_confirm_sent_at < 2.hours.ago
       redirect_to events_path, :alert => "Email confirmation has expired, we've sent you a new one."
       @user.confirm!
-    elsif @user.update_attributes(params[:user])
+    elsif @user
       @user.state = :normal
+      @user.events.update_all(state: :in_progress)
       @user.save!
       cookies[:auth_token] = @user.auth_token
       redirect_to root_path, :notice => "Email has been confirmed."
@@ -19,10 +20,4 @@ class EmailConfirmationsController < ApplicationController
       redirect_to root_path, :notice => "Email could not be confirmed."
     end
   end
-
-  private
-
-    def email_confirm_params
-      params.require(:user).permit(:id)
-    end
 end
