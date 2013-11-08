@@ -33,8 +33,8 @@ class User < ActiveRecord::Base
   end
 
   def confirm!
-    generate_token(:email_confirm_token)
-    self.email_confirm_sent_at = Time.zone.now
+    generate_token(:confirmation_token)
+    self.confirmation_sent_at = Time.zone.now
     save!
     UserMailer.delay.email_confirmation(self.id)
   end
