@@ -11,34 +11,19 @@ orderTotal = () ->
   order_price = if price > 0 then gross else 0.0
   $('.order-total').html(order_price.toFixed(2))
 
+# Best in place stuff
+$ ->
+  $('.about').on 'ajax:success', () ->
+    $.get window.location.pathname, (data) ->
+      $('.about').html $(data).find(".about").html()
 
-$('.best_in_place').bind "ajax:success", (event, data) ->
-  alert "fuck year"
- # $.ajax $(this).data(window.location.pathname),
- #  type: 'GET'
- #  dataType: 'html'
- #  error: (jqXHR, textStatus, errorThrown) ->
- #      console.log "AJAX Error: #{textStatus}"
- #  success: (data, textStatus, jqXHR) =>
- #    target = $(this).data('attribute')
- #    content = $(data).find(".#{target}").html()
- #    $(".#{target}").html content
-
-# @info = $("#info")
-
-# $.ajax(
-#   url: "/echo/json/"
-#   data:
-#     json: JSON.stringify(name: "someValue")
-
-#   type: "POST"
-# ).then((response) ->
-#   $info.text response.name
-# , ->
-#   $info.text "bad things happen to good developers"
-# ).always ->
-#   $info.append "...finally"
-
+$ ->
+  $('.edit-about').click ->
+    $(this).text () ->
+      if $(this).is('.active') then "Edit" else "Save"
+$ ->
+  $(document).keyup (e) ->
+    if e.keyCode is 27 and $('.edit-about').is('.active') then $('.edit-about').removeClass('active').text("Edit")
 
 $ ->
   $('.best_in_place').best_in_place()

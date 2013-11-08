@@ -27,7 +27,7 @@ class EventDecorator < ApplicationDecorator
   end
 
   def edit_button
-    button_tag "Edit", type: "button", class: "btn btn-default edit-about" if event_owner?
+    button_tag "Edit", type: "button", class: "btn btn-default edit-about", data: { toggle: "button" } if event_owner?
   end
 
 
