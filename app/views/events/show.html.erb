@@ -27,11 +27,11 @@
 </section>
 <section id="event-information">
 	<div class="progress">
-	  <div class="progress-bar progress-bar-success sold" role="progressbar" data-funded="<%= @event.per_cent_funded %>">
-		  <span><%= @event.per_cent_funded %> sold</span>
+	  <div class="progress-bar progress-bar-success sold" role="progressbar" data-funded="<%= @event.per_cent_sold %>">
+		  <span><%= @event.tickets_sold %> sold</span>
 	  </div>
 	  <div class="progress-bar unsold">
-	    <span class="">75 left</span>
+	    <span class=""><%= @event.tickets_left %> left</span>
 	  </div>
 	</div>
 	<div class="container">

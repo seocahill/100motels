@@ -18,6 +18,14 @@ class EventDecorator < ApplicationDecorator
     end
   end
 
+  def index_image
+    if model.image.present?
+      filepicker_image_tag model.image, w: 380, h: 200, fit: 'crop'
+    else
+      image_tag "https://s3-us-west-2.amazonaws.com/onehundredmotels/247915_156305404435251_2616225_n.jpg", size: "380x200"
+    end
+  end
+
   def edit_button
     button_tag "Edit", type: "button", class: "btn btn-default edit-about" if event_owner?
   end
@@ -25,9 +33,7 @@ class EventDecorator < ApplicationDecorator
 
   def formatted_date
     if model.orders.nil?
-      best_in_place_if event_owner?, model, :date, type: :date, classes: "datepicker" , display_with: :time_tag, classes: ""
-    elsif event_owner?
-      time_tag(model.date, class: "defer-date", data: { toggle: "popover", content: "Can't change the date when you have orders! Use Defer Event controls in your admin area instead.", placement: "right" })
+      best_in_place_if event_owner?, model, :date, display_with: :time_tag
     else
       time_tag(model.date)
     end
@@ -53,9 +59,18 @@ class EventDecorator < ApplicationDecorator
         )
   end
 
-  def per_cent_funded
-    # sales = model.orders.sum(:quantity)
-    25
+  def per_cent_sold
+    per_cent = tickets_sold / model.target * 100
+    per_cent < 100 ? per_cent : 100
+  end
+
+  def tickets_sold
+    model.orders.sum(:quantity)
+  end
+
+  def tickets_left
+    left = model.target - tickets_sold
+    left > 0 ? left : "sold out"
   end
 
   def left_to_go

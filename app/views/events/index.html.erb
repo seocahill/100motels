@@ -17,10 +17,10 @@
   <% @events.each do |event| %>
     <div class="col-md-4 portfolio-item">
       <%= link_to event_path(event) do %>
-        <%= filepicker_image_tag event.image, w: 380, h: 200, fit: 'crop' %>
-        <h3><%= event.name %></h3>
+        <%= event.index_image %>
+        <h3><%= event.name %> <small><%= event.date.strftime('%d/%m') %> in <%= event.location %>.</small></h3>
       <% end %>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+        <p></p>
     </div>
   <% end %>
   </div>
