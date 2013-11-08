@@ -12,7 +12,7 @@ class EmailConfirmationsController < ApplicationController
       @user.confirm!
     else
       @user.state = :normal
-      @user.events.update_all(state: :in_progress)
+      @user.events.update_all(state: 1)
       @user.save!
       cookies[:auth_token] = @user.auth_token
       redirect_to root_path, :notice => "Email has been confirmed."
