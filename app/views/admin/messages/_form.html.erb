@@ -1,6 +1,14 @@
 <div class="row">
   <div class="col-lg-8 col-lg-offset-2 well">
-  <h3 class="page-header">Send Notification</h3>
+    <% if @message.errors.any? %>
+      <div class="alert alert-danger" >
+        <a class="close" data-dismiss="alert">&#215;</a>
+        <% @message.errors.full_messages.each do |msg| %>
+          <%= content_tag :div, msg %>
+        <% end %>
+      </div>
+    <% end %>
+  <h3 class="page-header">Send Notification</h3> <%= link_to "Back", admin_event_path(params[:event_id]) %>
   <%= form_for [:admin, @event, @message], html: {class: "form-horizontal"} do |f| %>
   <div class="form-group">
   <%= f.label :date, "New date if rescheduling", class: "col-lg-3 control-label" %>

@@ -77,6 +77,18 @@ class EventDecorator < ApplicationDecorator
      model.date > DateTime.now ? distance_of_time_in_words(Time.now, model.date, include_seconds = false) : "No time"
   end
 
+  def is_visible
+    if model.visible?
+      content_tag(:span, "visible", class: "label label-success")
+    else
+      content_tag(:span, "hidden", class: "label label-default")
+    end
+  end
+
+  def earnings
+    number_to_currency(model.orders.sum { |order| order.quantity * order.ticket_price})
+  end
+
   def on_sale?
     # d = model.date
     # d >= Time.now

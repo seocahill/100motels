@@ -24,7 +24,6 @@ class Admin::MessagesController < ApplicationController
         render action: "new"
       end
     else
-      flash[:error] = "Must include a new date"
       render :new
     end
   end

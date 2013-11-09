@@ -23,7 +23,7 @@
             </div>
           </div>
           <div class="form-group">
-            <%= label_tag :confirm_password, "Confirm password", class: "col-lg-2 control-label" %>
+            <%= label_tag :confirm_password, "Current password", class: "col-lg-2 control-label" %>
             <div class="col-lg-6">
               <%= password_field_tag :confirm_password, nil, class: "form-control", placeholder: @user.password %>
             </div>
@@ -69,13 +69,13 @@
               </tr>
             </thead>
             <tbody>
-            <% current_user.events.each do |event| %>
+            <% current_user.events.decorate.each do |event| %>
               <tr class="">
                 <td><%= link_to "#{event.name} in #{event.location}", event_path(event) %></td>
-                <td><span class="label label-success">visible</span></td>
-                <td><span class="badge"><%= number_to_currency(event.orders.sum(:total)) %></span></td>
-                <td><span class="badge">15/100</span></td>
-                <td>3 weeks to go</td>
+                <td><%= event.is_visible %></td>
+                <td><span class="badge"><%= event.earnings %></span></td>
+                <td><span class="badge"><%= event.tickets_sold %>/<%= event.tickets_left %></span></td>
+                <td><%= event.left_to_go %> to go</td>
                 <td><%= link_to "admin", admin_event_path(event), class: "" %></td>
                 <td><%= link_to "edit", edit_admin_event_path(event) %></td>
               </tr>

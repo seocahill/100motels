@@ -5,7 +5,7 @@
         <a class="dropdown-toggle" data-toggle="dropdown"><h3 class="page-header"><%= @event.name %> in <%= @event.location %> <b class="caret"></b></h3></a>
         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
           <% current_user.events.each do |event| %>
-            <li role="presentation"><%= link_to event.name, admin_event_path(event) %></li>
+            <li role="presentation"><%= link_to "#{event.name} in #{event.location}", admin_event_path(event) %></li>
           <% end %>
         </ul>
       </div>
@@ -15,12 +15,12 @@
     <div class="col-lg-3">
       <div class="list-group">
         <li href="#" class="list-group-item">
-          <h4 class="list-group-item-heading">Time Left <span class="badge pull-right">3 months</span></h4>
+          <h4 class="list-group-item-heading">Time Left <span class="badge pull-right"><%= @event.left_to_go %></span></h4>
           <p class="list-group-item-text">Send a group email to your customers optionally rescheduling or cancelling the event.</p><br>
           <%= link_to "Notify Customers", new_admin_event_message_path(@event), class: "btn btn-info btn-block" %>
         </li>
         <li href="#" class="list-group-item">
-          <h4 class="list-group-item-heading">Sales Orders <span class="badge pull-right">$1000</h4>
+          <h4 class="list-group-item-heading">Sales Orders <span class="badge pull-right"><%= @event.earnings %></h4>
           <p class="list-group-item-text">Charge all unpaid sales orders.</p><br>
           <%= button_to "Charge Customers", charges_path(event_id: @event.id), class: "btn btn-success btn-block", method: :create %>
         </li>
