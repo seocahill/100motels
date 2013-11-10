@@ -3,7 +3,7 @@ class Admin::TicketsController < ApplicationController
   def index
     @event = Event.find(params[:event_id])
     @ticket = Ticket.find(params[:ticket]).id unless params[:ticket].blank?
-    @tickets = Ticket.includes(:order).where("orders.event_id = ?", @event.id).order("orders.name ASC")
+    @tickets = Ticket.includes(:order).where("orders.event_id = ?", @event.id).order("orders.name ASC").page(params[:page]).per_page(15)
     respond_to do |format|
       format.html
       format.pdf do
