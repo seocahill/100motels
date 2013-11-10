@@ -32,7 +32,7 @@ OneHundredMotels::Application.routes.draw do
   end
   resources :orders
   resources :charges, only: [:create] do
-    member { post :receive }
+    collection { post :receive }
   end
 
   mount Sidekiq::Web, at: '/sidekiq'

@@ -7,6 +7,13 @@ class ChargesController < ApplicationController
   end
 
   def receive
-    # handle stripe webhooks
+    # data = JSON.parse(request.body.read)
+    # Stripe.api_key = ENV['STRIPE_API_KEY']
+    # event = Stripe::Event.retrieve(data["id"])
+    if request.body
+      render text: '', head: :ok
+    else
+      render text: '', head: :bad_request
+    end
   end
 end

@@ -32,7 +32,7 @@
           <% @tickets.each do |ticket| %>
           <tr>
             <td><%= ticket.number %></td>
-            <td><span class="label label-info"><%= ticket.admitted ? ticket.admitted.strftime("%b %e, %l:%M %p") : "no" %></span></td>
+            <td><span class="label label-<%=ticket.admitted? ? 'success' : 'info' %>"><%= ticket.admitted ? ticket.admitted.strftime("%b %e, %l:%M %p") : "no" %></span></td>
             <td><%= ticket.order.name %> </td>
             <td><%= ticket.order.email %> </td>
             <td><%= ticket.order.last4 %> </td>
