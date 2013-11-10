@@ -1,4 +1,4 @@
-<%= form_for @order, url: order_path(@order), method: :post, html: { class: 'form-inline', role: "form"} do |f| %>
+<%= form_for @order, method: :post, html: { class: 'form-inline', role: "form"} do |f| %>
   <div class="form-group">
     <label class="sr-only" for="exampleInputEmail2">Email address</label>
     <%= f.email_field :email, class: 'form-control', placeholder: "Enter email" %>
