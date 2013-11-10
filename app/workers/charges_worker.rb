@@ -24,7 +24,7 @@ class ChargesWorker
         amount: (order.total * 100).to_i,
         currency: "usd",
         card: token["id"],
-        description: order.uuid,
+        description: order.id,
         application_fee: 100
       }, api_key
     )

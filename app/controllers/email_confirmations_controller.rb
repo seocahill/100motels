@@ -12,9 +12,8 @@ class EmailConfirmationsController < ApplicationController
       @user.confirm!
     else
       @user.state = :normal
-      @user.events.update_all(state: 1)
       @user.save!
-      cookies[:auth_token] = @user.auth_token
+      cookies[:auth_token] = @user.auth_token unless current_user
       redirect_to root_path, :notice => "Email has been confirmed."
     end
   rescue ActiveRecord::RecordNotFound
