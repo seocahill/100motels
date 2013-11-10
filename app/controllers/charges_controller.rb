@@ -1,4 +1,6 @@
 class ChargesController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: :receive
+  require 'json'
 
   def create
     event = Event.find(params[:event_id])
@@ -7,14 +9,13 @@ class ChargesController < ApplicationController
   end
 
   def receive
-    # Stripe.api_key = ENV['STRIPE_API_KEY']
-    # data = JSON.parse(request.body.read)
-    # stripe_event_id = data["id"]
-    # if request
-    #   render text: '', head: :ok
-    # else
-    #   render text: '', head: :bad_request
-    # end
-    render text: '', head: :ok
+    Stripe.api_key = ENV['STRIPE_API_KEY']
+    raw_body = request.body.read
+    json = JSON.parse raw_body
+    if json
+      render text: '', head: :ok
+    else
+      render text: '', head: :bad_request
+    end
   end
 end

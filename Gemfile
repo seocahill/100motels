@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 # ruby "2.0.0"
 
-gem 'rails', '4.0.0'
+gem 'rails', '~>4.0.0'
 gem 'pg'
 gem 'json'
 gem 'sass-rails',   '~> 4.0.0'
@@ -27,7 +27,7 @@ end
 
 gem 'bootstrap-sass', git: 'git://github.com/thomas-mcdonald/bootstrap-sass', branch: '3'
 gem "font-awesome-rails"
-gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby'
 gem 'best_in_place', git: 'git://github.com/straydogstudio/best_in_place.git' #, branch: 'rails-4'
 gem 'stripe'
 gem 'omniauth-stripe-connect'
