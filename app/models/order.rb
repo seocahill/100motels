@@ -13,13 +13,14 @@ class Order < ActiveRecord::Base
   scope :pending, -> { where('stripe_event < 1') }
   scope :not_cancelled, -> { where('stripe_event < 3') }
 
-  def self.searchable_language
-    'english'
-  end
+  include PgSearch
+  pg_search_scope :search, against: [:name, :email, :id],
+  using: {tsearch: {dictionary: "english"}},
+  associated_against: {event: [:name, :location], tickets: :number }
 
   def self.text_search(query)
     if query.present?
-      Order.search(query)
+      search(query)
     else
       scoped
     end

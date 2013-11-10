@@ -59,11 +59,6 @@ class EventDecorator < ApplicationDecorator
         )
   end
 
-  def per_cent_sold
-    per_cent = tickets_sold / model.target * 100
-    per_cent < 100 ? per_cent : 100
-  end
-
   def tickets_sold
     model.orders.sum(:quantity)
   end
@@ -71,6 +66,11 @@ class EventDecorator < ApplicationDecorator
   def tickets_left
     left = model.target - tickets_sold
     left > 0 ? left : "sold out"
+  end
+
+  def per_cent_sold
+    percent = tickets_sold * model.target / 100
+    percent < 100 ? percent : 100
   end
 
   def left_to_go

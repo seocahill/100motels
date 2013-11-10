@@ -41,7 +41,7 @@ gem 'sidekiq'
 gem 'sidekiq-failures'
 gem 'sinatra', require: false
 gem 'slim'
-gem 'textacular', '~> 3.0'
+gem 'pg_search'
 gem 'active_attr'
 gem 'intercom-rails'
 gem 'turnout'

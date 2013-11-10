@@ -25,7 +25,9 @@ OneHundredMotels::Application.routes.draw do
   namespace :admin do
     resources :events do
       resources :messages
-      resources :tickets
+      resources :tickets do
+        collection { get :check }
+      end
     end
   end
   resources :orders

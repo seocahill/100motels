@@ -1,10 +1,10 @@
-class EventPdf < Prawn::Document
+class TicketsPdf < Prawn::Document
 
-  def initialize(event, orders, view)
+  def initialize(event, tickets, view)
     super(top_margin: 70)
     @event = event
     @view = view
-    @orders = orders
+    @tickets = tickets
     event_number
     items
     line_item_rows
@@ -14,7 +14,7 @@ class EventPdf < Prawn::Document
   def event_number
     text "#{@event.name}", size: 30, style: :bold
     text "#{@event.date.strftime("%b %d %Y")} in #{@event.location}", size: 20, style: :bold
-    text "Total Orders: #{@orders.count}"
+    text "Total Tickets: #{@tickets.count}"
   end
 
   def items
@@ -27,10 +27,15 @@ class EventPdf < Prawn::Document
     end
   end
 
+  def admitted(ticket)
+
+  end
+
   def line_item_rows
-    [[ "Name", "Email", "Quantity", "Card", "Status", "Net", "Gross"]] +
-    @orders.all.map do |order|
-      [order.name, order.email, order.quantity, order.last4, order.stripe_event.to_s, order.quantity * order.ticket_price, order.total]
+    [["Number", "Name", "Email", "Card last 4", "Admitted"]] +
+    @tickets.all.map do |ticket|
+      checked = ticket.admitted? ? ticket.admitted.strftime("%b %e, %l:%M %p") : ""
+      [ticket.number, ticket.order.name, ticket.order.email, ticket.order.last4, checked]
     end
   end
 end

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container well">
   <div class="row">
     <div class="col-lg-12">
       <div class="dropdown">
@@ -23,6 +23,11 @@
           <h4 class="list-group-item-heading">Sales Orders <span class="badge pull-right"><%= @event.earnings %></h4>
           <p class="list-group-item-text">Charge all unpaid sales orders.</p><br>
           <%= button_to "Charge Customers", charges_path(event_id: @event.id), class: "btn btn-success btn-block", method: :create %>
+        </li>
+        <li href="#" class="list-group-item">
+          <h4 class="list-group-item-heading">Tickets</h4>
+          <p class="list-group-item-text">Search, Print and Check tickets for this event.</p><br>
+          <%= link_to "Ticket Checking", admin_event_tickets_path(@event), class: "btn btn-primary btn-block" %>
         </li>
       </div>
     </div>
