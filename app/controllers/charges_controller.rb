@@ -9,10 +9,9 @@ class ChargesController < ApplicationController
   end
 
   def receive
-    Stripe.api_key = ENV['STRIPE_API_KEY']
     raw_body = request.body.read
-    json = JSON.parse raw_body
-    if json
+    event = JSON.parse raw_body
+    if WebhookHandlerService.new(event).cancel_orders
       render text: '', head: :ok
     else
       render text: '', head: :bad_request

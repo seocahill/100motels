@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131030175257) do
+ActiveRecord::Schema.define(version: 20131111142336) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,8 +43,7 @@ ActiveRecord::Schema.define(version: 20131030175257) do
     t.integer  "target",                               default: 100,   null: false
   end
 
-  create_table "orders", id: false, force: true do |t|
-    t.uuid     "id",                                          null: false
+  create_table "orders", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string   "name",                                        null: false
     t.string   "email",                                       null: false
     t.decimal  "total",                                       null: false
@@ -83,6 +82,7 @@ ActiveRecord::Schema.define(version: 20131030175257) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "guest"
+    t.string   "stripe_uid"
   end
 
   add_index "users", ["auth_token"], name: "index_users_on_auth_token", using: :btree

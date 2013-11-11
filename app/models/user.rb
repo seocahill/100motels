@@ -41,6 +41,7 @@ class User < ActiveRecord::Base
 
   def connect(request)
     auth = request.env["omniauth.auth"]
+    stripe_uid = auth.credentials["uid"]
     self.api_key = auth.credentials["token"]
     save!
   end
