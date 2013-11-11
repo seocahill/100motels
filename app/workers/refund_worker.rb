@@ -1,12 +1,13 @@
 class RefundWorker
   include Sidekiq::Worker
 
-  def perform(stripe_event_id)
-    process_stripe_event(stripe_event_id)
+  def perform(stripe_event_id, user_id)
+    user = User.find_by(stripe_uid: user_id)
+    process_stripe_event(stripe_event_id, user.api_key)
   end
 
-  def process_stripe_event(stripe_event_id)
-    Stripe.api_key = user.api_key
+  def process_stripe_event(stripe_event_id, api_key)
+    Stripe.api_key = api_key
     event = Stripe::Event.retrieve(stripe_event_id)
     if event.present?
       refund_order(event)
