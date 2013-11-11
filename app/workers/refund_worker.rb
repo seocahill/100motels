@@ -20,9 +20,11 @@ class RefundWorker
     order = Order.find(event.data.object.description)
     if order and event.data.object.refunded == true
       order.stripe_event = :cancelled
-      order.save!
+    elsif order and event.data.object.refunded == false
+      order.part_refund = event.data.object.amount_refunded.to_d / 100
     else
-      raise "invalid uuid from stripe event"
+      raise "refund could not be processed"
     end
+    order.save
   end
 end

@@ -64,7 +64,7 @@
                   <td><%= order.email %> </td>
                   <td><%= order.id.truncate(8) %> </td>
                   <td><%= order.quantity %></td>
-                  <td><%= number_to_currency(order.total) %></td>
+                  <td><%= number_to_currency(order.total - order.part_refund) %></td>
                   <td><span class="label label-info"><%= order.stripe_event %></span></td>
                   <td><%= link_to "view", order_path(order) %></td>
                 </tr>

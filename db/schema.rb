@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131111142336) do
+ActiveRecord::Schema.define(version: 20131111210451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,18 +44,19 @@ ActiveRecord::Schema.define(version: 20131111142336) do
   end
 
   create_table "orders", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
-    t.string   "name",                                        null: false
-    t.string   "email",                                       null: false
-    t.decimal  "total",                                       null: false
-    t.decimal  "ticket_price",                                null: false
-    t.string   "stripe_customer_token",                       null: false
-    t.integer  "event_id",                                    null: false
+    t.string   "name",                                          null: false
+    t.string   "email",                                         null: false
+    t.decimal  "total",                                         null: false
+    t.decimal  "ticket_price",                                  null: false
+    t.string   "stripe_customer_token",                         null: false
+    t.integer  "event_id",                                      null: false
     t.integer  "quantity",                        default: 1
     t.integer  "stripe_event",          limit: 8, default: 0
     t.string   "stripe_charge_id"
     t.string   "last4"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "part_refund",                     default: 0.0, null: false
   end
 
   add_index "orders", ["event_id"], name: "index_orders_on_event_id", using: :btree
