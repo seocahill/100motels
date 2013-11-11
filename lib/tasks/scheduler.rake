@@ -1,6 +1,6 @@
 namespace :clean do
   task :guests => :environment do
-    guests = User.where(guest: true).where("updated_at < ?", 1.hour.ago)
+    guests = User.where(guest: true).where("updated_at < ?", 1.week.ago)
     guest_events = guests.each {|g| g.events.destroy_all}
     guests.destroy_all
   end
