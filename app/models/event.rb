@@ -7,7 +7,7 @@ class Event < ActiveRecord::Base
       :less_than_or_equal_to => 50.0,
       :message => "leave blank for free events or between 5 and 30 dollars for paid events."
   has_many :orders
-  has_one :event_user
+  has_one :event_user, dependent: :destroy
   has_one :user, through: :event_user
 
   include PgSearch
