@@ -38,7 +38,7 @@
     </div>
     <div class="col-lg-3 col-lg-offset-1">
       <% unless current_user.guest %>
-        <% if current_user.api_key %>
+        <% if current_user.api_key and current_user.stripe_uid %>
           <button type="button" class="btn btn-block btn-success"><span>Connected to Stripe <i class="icon-ok"></i></span></button>
         <% else %>
           <a href="/auth/stripe_connect" class="btn btn-block btn-default"><span>Connect with Stripe <i class="icon-credit-card"></i></span></a>
