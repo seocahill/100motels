@@ -29,6 +29,12 @@ class Event < ActiveRecord::Base
     end
   end
 
+  def forbid_visible
+    if self.user.guest?
+      errors.add(:base "sign up to publish events") if self.forbid_visible_changed?
+    end
+  end
+
   auto_html_for :about do
     html_escape
     redcarpet(:filter_html => true)

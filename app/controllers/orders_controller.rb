@@ -29,6 +29,6 @@ private
   end
 
   def check_ownership
-    redirect_to root_path unless params[:id] == session[:current_order_id] or @order.event.user == current_user
+    redirect_to root_path unless params[:id] == session[:current_order_id] or Order.find(params[:id]).event.user == current_user
   end
 end

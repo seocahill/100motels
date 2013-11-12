@@ -1,5 +1,7 @@
 class EventsController < ApplicationController
-  before_filter :find_event, only: [:show, :update]
+  before_action :find_event, only: [:show]
+  before_action :authorized?, only: [:update]
+
 
   def index
     @events = Event.text_search(params[:query]).page(params[:page]).per_page(9).where("visible = true").includes(:user).where("state = 1").decorate
@@ -10,6 +12,7 @@ class EventsController < ApplicationController
   end
 
   def update
+    @event = Event.find(params[:id])
     respond_to do |format|
       if @event.update_attributes(event_params)
         format.html { redirect_to(@event, :notice => 'event was successfully updated.') }
@@ -29,9 +32,13 @@ private
 
   def find_event
     @event = Event.find(params[:id]).decorate
-    rescue ActiveRecord::RecordNotFound
-    flash[:alert] = "The event you were looking for" +
-    " could not be found"
+    if @event.visible or authorized?
+      @event
+    else
+      nil
+    end
+  rescue ActiveRecord::RecordNotFound
+    flash[:alert] = "The event you were looking for could not be found"
     redirect_to events_path
   end
 end
