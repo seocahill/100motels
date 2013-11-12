@@ -14,9 +14,9 @@ class ApplicationController < ActionController::Base
 
     def authorized?
       if current_user
-        @event.current_user.present?
+        @event.user == current_user
       else
-        redirect_to root_url, error: "Not Authorized"
+        redirect_to root_url, alert: "Not Authorized"
       end
     end
 end
