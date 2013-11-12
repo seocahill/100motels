@@ -1,17 +1,75 @@
 <div class="container">
-	<div class="row well">
-		<div class="">
-			<div class="span12">
-				<header>
-					<h2>Thanks <%= @order.email %>!... <br><small>Your order totaling <%= number_to_currency(@order.total) %> was successful.</small></h2>
-				</header>
-				<p class="lead">An email has been sent to <%= @order.email %> with your order receipt and details. </p>
-				<p class="lead">If you have any questions regarding your order, contact us and quote your unique order reference -</p><br>
-				<p><span class="well">order uuid: <%= @order.id %></span></p>
-			</div>
-			<div class="span12 pagination-centered">
-				<%= link_to "Back", event_path(@order.event), class: "btn btn-primary btn-large" %>
-			</div>
-		</div>
+	<div class="row">
+    <div class="well col-lg-8 col-lg-offset-2">
+      <div class="row">
+        <div class="col-xs-6 col-sm-6 col-md-6">
+          <address>
+            <strong>A 100 Motels Event</strong>
+            <br>
+            Presented by: <%= @order.event.user.name %>
+            <br>
+            Ordered by: <%= @order.name %> (<%= @order.email %>)
+
+          </address>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 text-right">
+        	<p>
+        		<em>Date: <%= time_tag(@order.updated_at) %></em>
+        	</p>
+          <p>
+            <em>Order#: <%= @order.id %></em>
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="text-center">
+            <h1>Order Receipt</h1>
+        </div>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Event</th>
+              <th class="text-center">Ticket#</th>
+              <th class="text-center">Price</th>
+            </tr>
+          </thead>
+          <tbody>
+	        <% @order.tickets.each do |ticket| %>
+            <tr>
+              <td class=""><em><%= @order.event.name %> in <%= @order.event.location %> at <%= time_tag(@order.event.date) %></em></h4></td>
+              <td class="" style="text-align: center"><%= ticket.number %></td>
+              <td class="text-center"><%= number_to_currency(@order.ticket_price) %></td>
+            </tr>
+          <% end %>
+            <tr>
+              <td>   </td>
+              <td class="text-right">
+              <p>
+                <strong>Subtotal: </strong>
+              </p>
+              <p>
+                <strong>Fees (inc. tax): </strong>
+              </p>
+              <p><em>Refunded: </em></p></td>
+              <td class="text-center">
+              <p>
+                <strong><%= number_to_currency(@order.quantity * @order.ticket_price) %></strong>
+              </p>
+              <p>
+                <strong><%= number_to_currency(@order.total - (@order.quantity * @order.ticket_price)) %></strong>
+              </p>
+              <p><em><%= number_to_currency(@order.part_refund) %></em></p>
+              </td>
+            </tr>
+            <tr>
+              <td>   </td>
+              <td class="text-right"><h4><strong>Total: </strong></h4></td>
+              <td class="text-center text-danger"><h4><strong><%= number_to_currency(@order.total) %></strong></h4></td>
+            </tr>
+          </tbody>
+        </table>
+        <%= link_to "Done", event_path(@order.event), class: "btn btn-primary btn-lg btn-block" %>
+      </div>
+    </div>
 	</div>
 </div>

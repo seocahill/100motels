@@ -6,7 +6,8 @@ class Event < ActiveRecord::Base
       :greater_than_or_equal_to => 5.0,
       :less_than_or_equal_to => 50.0,
       :message => "leave blank for free events or between 5 and 30 dollars for paid events."
-  validate :forbid_visible
+  validate :forbid_visible, on: :update
+  validate :forbid_date_change, on: :update
   has_many :orders
   has_one :event_user, dependent: :destroy
   has_one :user, through: :event_user
@@ -26,7 +27,13 @@ class Event < ActiveRecord::Base
 
   def forbid_date_change
     if self.orders.present?
-      errors.add(:base, "can't change the date of an active event!") if self.date_changed?
+      errors.add(:base, "can't change the date of an event with existing orders, send a deferral message instead.") if self.date_changed?
+    end
+  end
+
+  def forbid_location_change
+    if self.orders.present?
+      errors.add(:base, "can't change the location of an event with existing orders, create a new event or cancel the orders.") if self.location_changed?
     end
   end
 
