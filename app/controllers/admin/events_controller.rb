@@ -1,6 +1,9 @@
 class Admin::EventsController < ApplicationController
   before_action :signed_in?
-  before_action :authorized?, only: [:show, :edit, :update, :destroy]
+  before_action only: [:show, :edit, :update, :destroy] do
+    authorized?(params[:id])
+  end
+
   def new
     @event = Event.new
   end

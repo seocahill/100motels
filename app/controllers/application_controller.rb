@@ -12,10 +12,8 @@ class ApplicationController < ActionController::Base
       redirect_to login_url, alert: "Please Sign in." if current_user.nil? || current_user.state_suspended?
     end
 
-    def authorized?
-      if current_user
-        @event.user == current_user
-      else
+    def authorized?(event_id)
+      unless Event.find(event_id).user == current_user
         redirect_to root_url, alert: "Not Authorized"
       end
     end

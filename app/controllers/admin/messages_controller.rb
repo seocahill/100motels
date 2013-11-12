@@ -1,5 +1,7 @@
 class Admin::MessagesController < ApplicationController
-  before_action :authorized?
+  before_action do
+    authorized?(params[:event_id])
+  end
 
   def new
     @message = Message.new

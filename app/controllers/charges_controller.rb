@@ -1,5 +1,7 @@
 class ChargesController < ApplicationController
-  before_action :authorized?, only: :create
+  before_action only: :create do
+    authorized?(params[:event_id])
+  end
   skip_before_action :verify_authenticity_token, only: :receive
 
   require 'json'

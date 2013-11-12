@@ -1,6 +1,5 @@
 class EventsController < ApplicationController
   before_action :find_event, only: [:show]
-  before_action :authorized?, only: [:update]
 
 
   def index
@@ -32,7 +31,7 @@ private
 
   def find_event
     @event = Event.find(params[:id]).decorate
-    if @event.visible or authorized?
+    if @event.visible or authorized?(params[:id])
       @event
     else
       nil
