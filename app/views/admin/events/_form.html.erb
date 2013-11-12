@@ -41,7 +41,10 @@
 
   <div class="form-group">
   <div class="col-lg-offset-2 col-lg-6">
-    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+    <div class=''>
+      <button type="submit" class="btn btn-primary ">Create New Event</button>
+      <%= link_to "Cancel", user_path(current_user), class: "btn btn-default" %>
+    </div>
   </div>
   </div>
   <% end %>
