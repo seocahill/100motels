@@ -1,4 +1,5 @@
 class Admin::TicketsController < ApplicationController
+  before_action :authorized?
 
   def index
     @event = Event.find(params[:event_id])

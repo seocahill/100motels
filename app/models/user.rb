@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  enum_accessor :state, [ :unconfirmed, :normal, :suspended, :god, :beta ]
+  enum_accessor :state, [ :unconfirmed, :normal, :suspended, :superadmin]
   has_many :event_users, dependent: :destroy
   has_many :events, through: :event_users
   before_create :generate_token

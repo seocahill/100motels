@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :signed_in? only: [:show, :update]
 
   def show
     @user = User.new

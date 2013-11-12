@@ -1,4 +1,5 @@
 class OmniauthCallbacksController < ApplicationController
+  before_action :signed_in?
 
   def all
     current_user.connect(request)

@@ -4,7 +4,7 @@ class Order < ActiveRecord::Base
   belongs_to :event
   has_many :tickets, dependent: :destroy
 
-  validates :email, presence: :true
+  validates :email, :stripeToken, presence: :true
   validates_format_of :email, :with => /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
   validates :quantity, numericality: :true
 

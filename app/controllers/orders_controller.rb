@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_filter :check_ownership, except: [:new, :create, :cancel]
+  before_action :check_ownership, only: :show
 
   def show
     @order = Order.find(params[:id])

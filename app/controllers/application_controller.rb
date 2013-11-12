@@ -7,4 +7,16 @@ class ApplicationController < ActionController::Base
       @current_user ||= User.find_by_auth_token(cookies[:auth_token]) if cookies[:auth_token]
     end
     helper_method :current_user
+
+    def signed_in?
+      redirect_to login_url, alert: "Please Sign in." if current_user.nil? || current_user.state_suspended?
+    end
+
+    def authorized?
+      if current_user
+        @event.current_user.present?
+      else
+        redirect_to root_url, error: "Not Authorized"
+      end
+    end
 end

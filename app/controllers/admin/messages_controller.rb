@@ -1,4 +1,5 @@
 class Admin::MessagesController < ApplicationController
+  before_action :authorized?
 
   def new
     @message = Message.new

@@ -1,5 +1,6 @@
 class Admin::EventsController < ApplicationController
-
+  before_action :signed_in?
+  before_action :authorized? only: [:show, :edit, :update, :destroy]
   def new
     @event = Event.new
   end
@@ -47,27 +48,16 @@ class Admin::EventsController < ApplicationController
   end
 
   def destroy
-    event = Event.find(params[:id])
-    if event.orders.empty?
-      event.state = :destroyed
+    @event = Event.find(params[:id])
+    if @event.orders.empty?
+      @event.state = :destroyed
     else
-      CancelEventOrders.new(event.orders).cancel_orders
+      CancelEventOrders.new(@event.orders).cancel_orders
     end
-    event.save!
+    @event.save!
     redirect_to [:admin, event], notice: "Your Event has been Cancelled"
   end
 
-  def defer_or_cancel
-    event = Event.find(params[:id])
-    if params[:cancel].present?
-      CancelEventOrders.new(event, params).cancel_orders
-      flash[:notice] = "Your Event has been Cancelled"
-    else
-      event.defer_event(params)
-      flash[:notice] = "Your Event will be Deferred"
-    end
-    redirect_to [:admin, :event]
-  end
 
   private
 
