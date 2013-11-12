@@ -6,6 +6,7 @@ class Event < ActiveRecord::Base
       :greater_than_or_equal_to => 5.0,
       :less_than_or_equal_to => 50.0,
       :message => "leave blank for free events or between 5 and 30 dollars for paid events."
+  validate :forbid_visible
   has_many :orders
   has_one :event_user, dependent: :destroy
   has_one :user, through: :event_user
@@ -30,8 +31,8 @@ class Event < ActiveRecord::Base
   end
 
   def forbid_visible
-    if self.user.guest?
-      errors.add(:base "sign up to publish events") if self.forbid_visible_changed?
+    if self.user.state_unconfirmed?
+      errors.add(:base, "sign up to publish events") if self.visible_changed?
     end
   end
 
