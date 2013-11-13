@@ -13,13 +13,11 @@ gem 'jquery-ui-sass-rails'
 gem 'puma'
 
 group :development, :test do
-  gem 'minitest-rails'
-  gem 'minitest-rails-capybara'
+  gem "minitest", "~> 4.7"
   gem 'capybara'
   gem 'factory_girl_rails'
-  gem "shoulda-matchers"
+  gem "shoulda"
   gem 'faker'
-  gem 'database_cleaner'
   gem 'foreman'
   gem 'letter_opener_web'
   gem 'turn'
