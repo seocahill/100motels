@@ -13,22 +13,22 @@ gem 'jquery-ui-sass-rails'
 gem 'puma'
 
 group :development, :test do
-	gem 'rspec-rails'
+  gem 'minitest-rails'
+  gem 'minitest-rails-capybara'
   gem 'capybara'
   gem 'factory_girl_rails'
   gem "shoulda-matchers"
   gem 'faker'
   gem 'database_cleaner'
-  gem 'launchy'
-  gem 'poltergeist'
   gem 'foreman'
   gem 'letter_opener_web'
+  gem 'turn'
 end
 
 gem 'bootstrap-sass', git: 'git://github.com/thomas-mcdonald/bootstrap-sass', branch: '3'
 gem "font-awesome-rails"
 gem 'bcrypt-ruby'
-gem 'best_in_place', git: 'git://github.com/straydogstudio/best_in_place.git' #, branch: 'rails-4'
+gem 'best_in_place', git: 'git://github.com/straydogstudio/best_in_place.git'
 gem 'stripe'
 gem 'omniauth-stripe-connect'
 gem 'bootstrap-will_paginate'

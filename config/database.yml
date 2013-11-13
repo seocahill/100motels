@@ -16,14 +16,6 @@ test:
   username: postgres
   password:
 
-staging:
-  adapter: postgresql
-  encoding: unicode
-  database: one_hundred_motels_development
-  pool: 5
-  username:
-  password:
-
 production:
   adapter: postgresql
   encoding: unicode
