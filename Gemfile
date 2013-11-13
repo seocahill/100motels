@@ -13,8 +13,8 @@ gem 'jquery-ui-sass-rails'
 gem 'puma'
 
 group :development, :test do
-  gem "minitest", "~> 4.7"
-  gem 'capybara'
+  gem "minitest-rails"
+  gem 'minitest-rails-capybara'
   gem 'factory_girl_rails'
   gem "shoulda"
   gem 'faker'
