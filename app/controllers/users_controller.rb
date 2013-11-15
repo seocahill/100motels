@@ -12,10 +12,14 @@ class UsersController < ApplicationController
   def create
     @user = params[:user] ? User.new(user_params) : User.new_guest
     if @user.save
-      current_user.move_to(@user) if current_user && current_user.guest?
+      if current_user && current_user.guest?
+        current_user.move_to(@user)
+      else
+        @user.guest_user_event
+      end
       cookies[:auth_token] = @user.auth_token
       flash[:notice] = @user.guest? ? 'Welcome Guest!' : "Thanks for signing up! We've sent you an email to confirm your password"
-      redirect_to event_path(@user.events.first) || @user
+      redirect_to @user
     else
       render action: "new"
     end

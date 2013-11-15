@@ -13,8 +13,9 @@ module OneHundredMotels
     config.assets.enabled = true
     config.assets.version = '1.0'
     config.assets.initialize_on_precompile = false
-    # config.generators do
-    # end
+    config.generators do |g|
+      g.test_framework :mini_test, fixture: false
+    end
     config.filepicker_rails.api_key = ENV["FILEPICKER_API_KEY"]
   end
 end

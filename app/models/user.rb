@@ -3,9 +3,10 @@ class User < ActiveRecord::Base
   has_many :event_users, dependent: :destroy
   has_many :events, through: :event_users
   before_create :generate_token
-  after_create :guest_user_event
   validates_presence_of :name, :email, unless: :guest?
+  validates_presence_of :auth_token, on: :create
   validates_uniqueness_of :email, allow_blank: true
+  validates_uniqueness_of :auth_token, on: :create
   has_secure_password validations: false
 
   def generate_token(column=:auth_token)
@@ -16,34 +17,6 @@ class User < ActiveRecord::Base
 
   def self.new_guest
     new { |u| u.guest = true }
-  end
-
-  def send_password_reset
-    self.generate_token(:password_reset_token)
-    self.password_reset_sent_at = Time.zone.now
-    save!
-    UserMailer.delay.password_reset(self.id)
-  end
-
-  def send_admin_invitation(inviter_id, event_id)
-    generate_token(:password_reset_token)
-    self.password_reset_sent_at = Time.zone.now
-    save!
-    UserMailer.delay.event_admin_invite(self.id, inviter_id, event_id)
-  end
-
-  def confirm!
-    self.generate_token(:confirmation_token)
-    self.confirmation_sent_at = Time.zone.now
-    save!
-    UserMailer.delay.email_confirmation(self.id)
-  end
-
-  def connect(request)
-    auth = request.env["omniauth.auth"]
-    self.stripe_uid = auth.uid
-    self.api_key = auth.credentials["token"]
-    save!
   end
 
   def guest_user_event
@@ -66,5 +39,26 @@ class User < ActiveRecord::Base
   def move_to(user)
     self.event_users.update_all(user_id: user.id)
     user.confirm!
+  end
+
+  def confirm!
+    self.generate_token(:confirmation_token)
+    self.confirmation_sent_at = Time.zone.now
+    save!
+    UserMailer.delay.email_confirmation(self.id)
+  end
+
+  def connect(auth)
+    self.stripe_uid = auth.uid
+    self.api_key = auth.credentials["token"]
+    save!
+  end
+
+
+  def send_password_reset
+    self.generate_token(:password_reset_token)
+    self.password_reset_sent_at = Time.zone.now
+    save!
+    UserMailer.delay.password_reset(self.id)
   end
 end
