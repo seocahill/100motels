@@ -13,12 +13,9 @@ OmniAuth.config.add_mock(:stripe_connect,
  {'uid' => '12345', 'credentials' => {'token' => 'secret_access'}})
 class ActiveSupport::TestCase
   def self.prepare
-    # Add code that needs to be executed before test suite start
   end
   # prepare
-
   def setup
-    # Add code that need to be executed before each test
   end
 
   def teardown

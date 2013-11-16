@@ -5,9 +5,10 @@ class Event < ActiveRecord::Base
   validates_numericality_of :ticket_price, :allow_nil => true,
       :greater_than_or_equal_to => 5.0,
       :less_than_or_equal_to => 50.0,
-      :message => "leave blank for free events or between 5 and 30 dollars for paid events."
+      :message => "leave blank for free events or between 5 and 50 dollars for paid events."
   validate :forbid_visible, on: :update
   validate :forbid_date_change, on: :update
+  validate :forbid_location_change, on: :update
   has_many :orders
   has_one :event_user, dependent: :destroy
   has_one :user, through: :event_user
