@@ -21,6 +21,8 @@ group :development, :test do
   gem 'foreman'
   gem 'letter_opener_web'
   gem 'turn'
+  gem 'vcr'
+  gem 'fakeweb'
 end
 
 gem 'bootstrap-sass', git: 'git://github.com/thomas-mcdonald/bootstrap-sass', branch: '3'

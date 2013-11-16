@@ -1,0 +1,15 @@
+customer_with_good_card:
+  name: "jim think"
+  email: "jim@think.com"
+  total: 52.33
+  ticket_price: 10.0
+  stripe_customer_token: "cus_2uZqybEghSRtJx"
+  event_id: 1
+  quantity: 5
+  stripe_event: 0
+  stripe_charge_id: nil
+  last4: "4242"
+  part_refund: 0.0
+
+# customer_with_bad_card:
+

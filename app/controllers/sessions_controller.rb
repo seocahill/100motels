@@ -4,14 +4,9 @@ class SessionsController < ApplicationController
   end
 
   def create
-    auth = Authentication.new(params)
-    if auth.authenticated?
-      if params[:signin][:remember_me]
-        cookies.permanent[:auth_token] = auth.user.auth_token
-      else
-        cookies[:auth_token] = auth.user.auth_token
-      end
-      session[:current_order_id] = nil
+    user = User.find_by(email: params[:signin][:email])
+    if user
+      params[:signin][:remember_me] ? cookies.permanent[:auth_token] = user.auth_token : cookies[:auth_token] = user.auth_token
       redirect_to root_path, notice: "Logged in!"
     else
       flash.now.alert = "Email or password is invalid."

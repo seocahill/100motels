@@ -6,9 +6,7 @@ class CustomerOrder
   end
 
   def process_order
-    if @order.valid?
-      add_customer_details_to_order
-    end
+    add_customer_details_to_order if @order.valid?
     @order.save
   end
 
@@ -24,7 +22,7 @@ class CustomerOrder
           total: total_inc_fees
         )
     else
-      raise error
+      raise "Error updating order with stripe customer details"
     end
   end
 

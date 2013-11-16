@@ -1,0 +1,11 @@
+example_show:
+  name: "Example Show"
+  date: "2014-02-08"
+  ticket_price: 10.0
+  visible: true
+  about: "#Read this first!\n---\nbut first do something cool \n..."
+  about_html: "<h1>Read this first!</h1>\n\n<hr>\n\n<p>but first do so..."
+  image: "https://www.filepicker.io/api/file/tbfyvFfQMmpsC3Vc..."
+  location: "Dublin, Ireland"
+  state: 1
+  target: 100
