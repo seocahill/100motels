@@ -55,13 +55,14 @@ class OrderTest < ActiveSupport::TestCase
   end
 
   test "self.text_search ticket relation number" do
-    orders = FactoryGirl.create_pair(:order)
-    ticket = orders.first.tickets.first
+    order = FactoryGirl.create(:order)
+    FactoryGirl.create(:order)
+    ticket = order.tickets.first
     search = Order.text_search(ticket.number)
     assert_equal search.count, 1
   end
 
-  test "pendng scope" do
+  test "state scopes" do
     orders = FactoryGirl.create_pair(:order)
     orders.first.update_attributes(stripe_event: :cancelled)
     assert_equal Order.pending.count, 1, "Pending scope error"

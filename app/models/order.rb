@@ -8,7 +8,7 @@ class Order < ActiveRecord::Base
   validates_format_of :email, :with => /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
   validates :quantity, numericality: :true
 
-  before_create :add_tickets_to_order
+  after_create :add_tickets_to_order
 
   scope :pending, -> { where('stripe_event < 1') }
   scope :not_cancelled, -> { where('stripe_event < 3') }
@@ -27,7 +27,7 @@ class Order < ActiveRecord::Base
   end
 
   def add_tickets_to_order
-    quantity.times { self.tickets.build }
+    quantity.times { self.tickets.create }
   end
 end
 

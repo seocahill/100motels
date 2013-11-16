@@ -33,10 +33,10 @@ FactoryGirl.define do
     ticket_price { event.ticket_price }
     total { (quantity * ticket_price) }
     stripe_customer_token { Faker::Lorem.characters(32) }
-    before :create, &:add_tickets_to_order
+    after :create, &:add_tickets_to_order
   end
 
   factory :ticket do
-    before(:create) { generate_ticket_number }
+    before :create, &:generate_ticket_number
   end
 end
