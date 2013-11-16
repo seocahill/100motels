@@ -18,7 +18,7 @@ FactoryGirl.define do
   factory :event do
     user
     name  { Faker::Lorem.characters(49) }
-    location "Dublin, Ireland"
+    location { Faker::Address.city }
     date { 3.months.from_now }
     about { Faker::Lorem.paragraph(3) }
     target 100
@@ -33,5 +33,10 @@ FactoryGirl.define do
     ticket_price { event.ticket_price }
     total { (quantity * ticket_price) }
     stripe_customer_token { Faker::Lorem.characters(32) }
+    before :create, &:add_tickets_to_order
+  end
+
+  factory :ticket do
+    before(:create) { generate_ticket_number }
   end
 end
