@@ -15,7 +15,7 @@ OmniAuth.config.add_mock(:stripe_connect,
  {'uid' => '12345', 'credentials' => {'token' => 'secret_access'}})
 
 class ActiveSupport::TestCase
-  fixtures :all
+  # fixtures :all
   def self.prepare
   end
   # prepare #run before all tests

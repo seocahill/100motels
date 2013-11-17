@@ -39,7 +39,13 @@ class CustomerOrder
   end
 
   def total_inc_fees
-    (@order.quantity * (@order.event.ticket_price / 0.961) + 0.30).round(2)
+    # TODO: case usd, str, eur, cad, aud etc
+    handling_fee = 0.04
+    stripe_pro_rata_fee = 0.029
+    stripe_standing_charge = 0.3
+    net_total = @order.quantity * (@order.event.ticket_price)
+    gross_total = (net_total + stripe_standing_charge) / (1 - handling_fee - stripe_pro_rata_fee)
+    gross_total.round(2)
   end
 
 end

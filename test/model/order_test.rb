@@ -3,7 +3,6 @@ require 'test_helper'
 class OrderTest < ActiveSupport::TestCase
   should belong_to(:event)
   should have_many(:tickets)
-  should validate_presence_of(:name)
   should validate_presence_of(:email)
   should_not allow_value("blah").for(:email)
   should allow_value("a@b.co.uk").for(:email)

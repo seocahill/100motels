@@ -23,6 +23,7 @@ group :development, :test do
   gem 'turn'
   gem 'vcr'
   gem 'fakeweb'
+  gem 'stripe-ruby-mock', '>= 1.8.7.0'
 end
 
 gem 'bootstrap-sass', git: 'git://github.com/thomas-mcdonald/bootstrap-sass', branch: '3'

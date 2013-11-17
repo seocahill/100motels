@@ -1,78 +1,40 @@
 require 'test_helper'
+require 'stripe_mock'
 
 class CustomerOrderTest < ActiveSupport::TestCase
 
   def setup
-    order = FactoryGirl.create(:order)
-    token = {
-      id: "tok_2vGX2kh9bIEJlA",
-      livemode: false,
-      created: 1384196760,
-      used: false,
-      object: "token",
-      type: "card",
-      card: {
-        id: "card_2vGXe6nNXnln8p",
-        object: "card",
-        last4: "4242",
-        type: "Visa",
-        exp_month: 12,
-        exp_year: 2014,
-        fingerprint: "RB85KOQliRhIugae",
-        customer: null,
-        country: "US",
-        name: "John Smith"
-      }
-    }
-    customer = {
-      object: "customer",
-      created: 1384196762,
-      id: "cus_2vGXmABiU6nUvB",
-      livemode: false,
-      description: null,
-      email: "john@smith.com",
-      delinquent: false,
-      metadata: {},
-      subscription: null,
-      discount: null,
-      account_balance: 0,
-      cards: {
-        object: "list",
-        count: 1,
-        url: "/v1/customers/cus_2vGXmABiU6nUvB/cards",
-        data:
-        [
-          {
-            id: "card_2vGXe6nNXnln8p",
-            object: "card",
-            last4: "4242",
-            type: "Visa",
-            exp_month: 12,
-            exp_year: 2014,
-            fingerprint: "RB85KOQliRhIugae",
-            customer: "cus_2vGXmABiU6nUvB",
-            country: "US",
-            name: "John Smith",
-            address_line1: null,
-            address_line2: null,
-            address_city: null,
-            address_state: null,
-            address_zip: null,
-            address_country: null,
-            cvc_check: "pass",
-            address_line1_check: null,
-            address_zip_check: null
-          }
-        ]
-      },
-      default_card: "card_2vGXe6nNXnln8p"
-    }
-    customer_order = CustomerOrder.new(order, token)
+    StripeMock.start
+    @order_in_progress = FactoryGirl.build(:order, :in_progress)
+    @order = FactoryGirl.build(:order, ticket_price: 10.0, quantity: 1)
+    @token = StripeMock.generate_card_token(last4: "9191", exp_year: 2015, name: "Seo Cahill")
   end
 
+  def teardown
+    StripeMock.stop
+  end
 
+  test "total_inc_fees returns expected result" do
+    new_customer = CustomerOrder.new(@order, @token)
+    assert_equal new_customer.total_inc_fees, 11.06
+  end
 
+  test "create_customer" do
+    new_customer = CustomerOrder.new(@order, @token).create_customer
+    assert_equal new_customer.email, @order.email
+  end
 
+  test "add_customer_details_to_order" do
+    new_customer = CustomerOrder.new(@order_in_progress, @token)
+    new_customer.add_customer_details_to_order
+    assert @order_in_progress.stripe_customer_token.present?, "customer id not set"
+    assert_equal @order_in_progress.name, "Seo Cahill", "name not set"
+    assert_equal @order_in_progress.last4, "9191", "last4 not set"
+    assert_equal @order_in_progress.ticket_price, 10.0, "ticket price not set"
+    assert @order_in_progress.total > 0.0 , "total price not set"
+  end
 
-
+  test "process_order" do
+    assert_equal CustomerOrder.new(@order_in_progress, @token).process_order, true
+  end
 end

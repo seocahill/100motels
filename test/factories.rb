@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :user do
-    name { Faker::Name.name}
+    name { Faker::Name.first_name}
     email { "#{name}@example.com" }
     password "secret"
     guest false
@@ -27,13 +27,21 @@ FactoryGirl.define do
 
   factory :order do
     event
-    name { Faker::Name.name }
+    name { Faker::Name.first_name }
     email { "#{name}@example.com" }
     quantity { rand(5) }
     ticket_price { event.ticket_price }
     total { (quantity * ticket_price) }
     stripe_customer_token { Faker::Lorem.characters(32) }
     after :create, &:add_tickets_to_order
+    trait :in_progress do
+      name nil
+      email { Faker::Internet.email }
+      stripe_customer_token nil
+      last4 nil
+      ticket_price nil
+      total nil
+    end
   end
 
   factory :ticket do
