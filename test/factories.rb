@@ -6,6 +6,9 @@ FactoryGirl.define do
     guest false
     state "normal"
     after :build, &:generate_token
+    trait :stripe_connect do
+      api_key "sk_test_kQGNcavkvqWP144unEJ0wnbM"
+    end
 
     factory :guest do
       name nil
@@ -23,6 +26,9 @@ FactoryGirl.define do
     about { Faker::Lorem.paragraph(3) }
     target 100
     ticket_price 10.0
+    trait :live_event do
+      association :user, factory: [:user, :stripe_connect]
+    end
   end
 
   factory :order do
@@ -46,5 +52,12 @@ FactoryGirl.define do
 
   factory :ticket do
     before :create, &:generate_ticket_number
+  end
+
+  factory :message do
+    message "Here's an update about your event"
+    trait :defer do
+      date Date.parse("31 December 2014")
+    end
   end
 end
