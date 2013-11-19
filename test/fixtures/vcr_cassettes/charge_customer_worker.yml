@@ -1,0 +1,177 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/tokens
+    body:
+      encoding: US-ASCII
+      string: customer=cus_2uZqybEghSRtJx
+    headers:
+      Accept:
+      - '*/*; q=0.5, application/xml'
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Stripe/v1 RubyBindings/1.8.8
+      Authorization:
+      - Bearer sk_test_kQGNcavkvqWP144unEJ0wnbM
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"1.8.8","lang":"ruby","lang_version":"2.0.0 p195 (2013-05-14)","platform":"x86_64-darwin12.3.0","publisher":"stripe","uname":"Darwin
+        Seosamhs-MacBook-Air.local 12.5.0 Darwin Kernel Version 12.5.0: Sun Sep 29
+        13:33:47 PDT 2013; root:xnu-2050.48.12~1/RELEASE_X86_64 x86_64"}'
+      Content-Length:
+      - '27'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 19 Nov 2013 13:35:51 GMT
+      Content-Type:
+      - application/json;charset=utf-8
+      Content-Length:
+      - '558'
+      Connection:
+      - keep-alive
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": "tok_2yB1BmQq8IZMuD",
+          "livemode": false,
+          "created": 1384868151,
+          "used": false,
+          "object": "token",
+          "type": "card",
+          "card": {
+            "id": "card_2yB1tbG62SGuHL",
+            "object": "card",
+            "last4": "4242",
+            "type": "Visa",
+            "exp_month": 12,
+            "exp_year": 2015,
+            "fingerprint": "gfPwW83tOZgyfMRO",
+            "customer": null,
+            "country": "US",
+            "name": "jim think",
+            "address_line1": null,
+            "address_line2": null,
+            "address_city": null,
+            "address_state": null,
+            "address_zip": null,
+            "address_country": null
+          }
+        }
+    http_version:
+  recorded_at: Tue, 19 Nov 2013 13:35:50 GMT
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/charges
+    body:
+      encoding: US-ASCII
+      string: amount=5233&currency=usd&card=tok_2yB1BmQq8IZMuD&description=da5ab4b4-ef67-4e06-bc8c-bb2a6d5e0277&application_fee=100
+    headers:
+      Accept:
+      - '*/*; q=0.5, application/xml'
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Stripe/v1 RubyBindings/1.8.8
+      Authorization:
+      - Bearer sk_test_kQGNcavkvqWP144unEJ0wnbM
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"1.8.8","lang":"ruby","lang_version":"2.0.0 p195 (2013-05-14)","platform":"x86_64-darwin12.3.0","publisher":"stripe","uname":"Darwin
+        Seosamhs-MacBook-Air.local 12.5.0 Darwin Kernel Version 12.5.0: Sun Sep 29
+        13:33:47 PDT 2013; root:xnu-2050.48.12~1/RELEASE_X86_64 x86_64"}'
+      Content-Length:
+      - '117'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 19 Nov 2013 13:35:55 GMT
+      Content-Type:
+      - application/json;charset=utf-8
+      Content-Length:
+      - '978'
+      Connection:
+      - keep-alive
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": "ch_2yB1hNwlZpxX5X",
+          "object": "charge",
+          "created": 1384868154,
+          "livemode": false,
+          "paid": true,
+          "amount": 5233,
+          "currency": "usd",
+          "refunded": false,
+          "card": {
+            "id": "card_2yB1tbG62SGuHL",
+            "object": "card",
+            "last4": "4242",
+            "type": "Visa",
+            "exp_month": 12,
+            "exp_year": 2015,
+            "fingerprint": "gfPwW83tOZgyfMRO",
+            "customer": null,
+            "country": "US",
+            "name": "jim think",
+            "address_line1": null,
+            "address_line2": null,
+            "address_city": null,
+            "address_state": null,
+            "address_zip": null,
+            "address_country": null,
+            "cvc_check": null,
+            "address_line1_check": null,
+            "address_zip_check": null
+          },
+          "captured": true,
+          "refunds": [],
+          "balance_transaction": "txn_2yB1SpnEtHqBA1",
+          "failure_message": null,
+          "failure_code": null,
+          "amount_refunded": 0,
+          "customer": null,
+          "invoice": null,
+          "description": "da5ab4b4-ef67-4e06-bc8c-bb2a6d5e0277",
+          "dispute": null,
+          "metadata": {}
+        }
+    http_version:
+  recorded_at: Tue, 19 Nov 2013 13:35:54 GMT
+recorded_with: VCR 2.5.0

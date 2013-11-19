@@ -8,6 +8,7 @@ FactoryGirl.define do
     after :build, &:generate_token
     trait :stripe_connect do
       api_key "sk_test_kQGNcavkvqWP144unEJ0wnbM"
+      stripe_uid "acct_1phxjZEuOipGrP93mEuq"
     end
 
     factory :guest do
@@ -35,10 +36,10 @@ FactoryGirl.define do
     event
     name { Faker::Name.first_name }
     email { "#{name}@example.com" }
-    quantity { rand(5) }
-    ticket_price { event.ticket_price }
-    total { (quantity * ticket_price) }
-    stripe_customer_token { Faker::Lorem.characters(32) }
+    quantity 5
+    ticket_price 10.0
+    total 52.33
+    stripe_customer_token "cus_2uZqybEghSRtJx"
     after :create, &:add_tickets_to_order
     trait :in_progress do
       name nil
