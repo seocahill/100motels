@@ -41,6 +41,14 @@ FactoryGirl.define do
     total 52.33
     stripe_customer_token "cus_2uZqybEghSRtJx"
     after :create, &:add_tickets_to_order
+    trait :charged do
+      id "b43cbd8506d741f0a2e4c416911ab73e"
+      stripe_charge_id "ch_2yLMIbE3EBiMSo"
+      stripe_event :charged
+    end
+    trait :declined do
+      stripe_customer_token "cus_2uox3BpZoFOnyN"
+    end
     trait :in_progress do
       name nil
       email { Faker::Internet.email }

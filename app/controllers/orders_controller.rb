@@ -8,11 +8,12 @@ class OrdersController < ApplicationController
   def create
     event = Event.find(order_params[:event_id])
     @order = event.orders.build(order_params)
-    if CustomerOrder.new(@order, params[:stripeToken]).process_order
+    processed_order = CustomerOrder.new(@order, params[:stripeToken]).process_order if @order.valid?
+    if processed_order == true
       session[:current_order_id] = @order.id.to_s
       redirect_to @order, notice: "Thanks! Please check your email."
     else
-      redirect_to :back, flash: { error: "Did you fill in the email field?" }
+      redirect_to :back, flash: { error: processed_order || "must provide email address"}
     end
   end
 

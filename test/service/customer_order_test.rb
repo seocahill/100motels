@@ -34,7 +34,8 @@ class CustomerOrderTest < ActiveSupport::TestCase
     assert @order_in_progress.total > 0.0 , "total price not set"
   end
 
-  test "process_order" do
+  test "process_order success" do
     assert_equal CustomerOrder.new(@order_in_progress, @token).process_order, true
   end
+
 end
