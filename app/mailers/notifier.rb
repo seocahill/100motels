@@ -2,7 +2,7 @@ class Notifier < ActionMailer::Base
   default from: "seo@100motels.com"
 
   def event_cancelled(order_ids, message)
-    @orders = Order.find(order_ids)
+    @orders = Order.where(id: order_ids)
     @message = message
     @event = @orders.first.event
     mail to: @orders.pluck(:email), subject: "Your event has been cancelled"
