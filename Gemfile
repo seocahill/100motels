@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-# ruby "2.0.0"
+# ruby "2.0.1"
 
 gem 'rails', '~>4.0.0'
 gem 'pg'
@@ -11,22 +11,22 @@ gem 'uglifier', '>= 1.3.0'
 gem "jquery-rails"
 gem 'jquery-ui-sass-rails'
 gem 'puma'
-
 group :development, :test do
   gem 'minitest-rails'
   gem 'minitest-rails-capybara'
+  gem 'foreman'
+  gem 'jazz_hands'
+  gem 'letter_opener_web'
+end
+group :test do
   gem "factory_girl_rails", "~> 4.0"
   gem "shoulda"
   gem 'faker'
-  gem 'foreman'
-  gem 'letter_opener_web'
   gem 'turn'
   gem 'vcr'
   gem 'webmock'
   gem 'stripe-ruby-mock', '>= 1.8.7.0'
-  gem 'jazz_hands'
 end
-
 gem 'bootstrap-sass', git: 'git://github.com/thomas-mcdonald/bootstrap-sass', branch: '3'
 gem "font-awesome-rails"
 gem 'bcrypt-ruby'

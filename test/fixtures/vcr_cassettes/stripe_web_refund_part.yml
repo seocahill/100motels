@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.stripe.com/v1/events/evt_2yUtOiQrkdoudf
+    uri: https://api.stripe.com/v1/events/evt_2yVZPXzHMYbTMD
     body:
       encoding: US-ASCII
       string: ''
@@ -29,11 +29,11 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Wed, 20 Nov 2013 10:27:34 GMT
+      - Wed, 20 Nov 2013 10:54:48 GMT
       Content-Type:
       - application/json;charset=utf-8
       Content-Length:
-      - '1675'
+      - '1650'
       Connection:
       - keep-alive
       Access-Control-Max-Age:
@@ -50,31 +50,31 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "evt_2yUtOiQrkdoudf",
-          "created": 1384942067,
+          "id": "evt_2yVZPXzHMYbTMD",
+          "created": 1384944596,
           "livemode": false,
           "type": "charge.refunded",
           "data": {
             "object": {
-              "id": "ch_2yUsCgo0TLrXbr",
+              "id": "ch_2yVYeRQRef4lQ0",
               "object": "charge",
-              "created": 1384941999,
+              "created": 1384944523,
               "livemode": false,
               "paid": true,
-              "amount": 2180,
+              "amount": 4329,
               "currency": "usd",
-              "refunded": true,
+              "refunded": false,
               "card": {
-                "id": "card_2yUsxxrs2rvobv",
+                "id": "card_2yVYPdTFEr4A3C",
                 "object": "card",
                 "last4": "4242",
                 "type": "Visa",
                 "exp_month": 12,
-                "exp_year": 2014,
+                "exp_year": 2015,
                 "fingerprint": "gfPwW83tOZgyfMRO",
                 "customer": null,
                 "country": "US",
-                "name": "Event Test",
+                "name": "John Part",
                 "address_line1": null,
                 "address_line2": null,
                 "address_city": null,
@@ -88,33 +88,32 @@ http_interactions:
               "captured": true,
               "refunds": [
                 {
-                  "amount": 2180,
+                  "amount": 1000,
                   "currency": "usd",
-                  "created": 1384942066,
+                  "created": 1384944595,
                   "object": "refund",
-                  "balance_transaction": "txn_2yUtouwVL84cDV"
+                  "balance_transaction": "txn_2yVZXQZeSHK61x"
                 }
               ],
-              "balance_transaction": "txn_2yUs2MyT2fSa8Q",
+              "balance_transaction": "txn_2yVYFXzOWS220e",
               "failure_message": null,
               "failure_code": null,
-              "amount_refunded": 2180,
+              "amount_refunded": 1000,
               "customer": null,
               "invoice": null,
-              "description": "d056fcf1-fa58-4cef-bb77-bbbe366b9f57",
+              "description": "ed14eade-5c77-419d-acf7-79878f95ba7f",
               "dispute": null,
               "metadata": {}
             },
             "previous_attributes": {
-              "refunded": false,
               "refunds": [],
               "amount_refunded": 0
             }
           },
           "object": "event",
           "pending_webhooks": 0,
-          "request": "iar_2yUt3XEwu1gu9R"
+          "request": "iar_2yVZhV2hgb8WWv"
         }
     http_version: 
-  recorded_at: Wed, 20 Nov 2013 10:27:33 GMT
+  recorded_at: Wed, 20 Nov 2013 10:54:46 GMT
 recorded_with: VCR 2.5.0
