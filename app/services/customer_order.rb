@@ -7,11 +7,11 @@ class CustomerOrder
   end
 
   def process_order
-    add_customer_details_to_order || @error
+    customer = create_customer
+    @error || add_customer_details_to_order(customer)
   end
 
-  def add_customer_details_to_order
-    customer = create_customer
+  def add_customer_details_to_order(customer)
     card = customer.cards.data
     @order.update_attributes(
         stripe_customer_token: customer.id,

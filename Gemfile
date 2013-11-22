@@ -14,6 +14,7 @@ gem 'puma'
 group :development, :test do
   gem 'minitest-rails'
   gem 'minitest-rails-capybara'
+  gem 'poltergeist'
   gem 'foreman'
   gem 'jazz_hands'
   gem 'letter_opener_web'
