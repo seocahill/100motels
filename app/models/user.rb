@@ -4,9 +4,7 @@ class User < ActiveRecord::Base
   has_many :events, through: :event_users
   before_create :generate_token
   validates_presence_of :name, :email, unless: :guest?
-  validates_presence_of :auth_token, on: :create
   validates_uniqueness_of :email, allow_blank: true
-  validates_uniqueness_of :auth_token, on: :create
   has_secure_password validations: false
 
   def generate_token(column=:auth_token)

@@ -29,6 +29,7 @@ FactoryGirl.define do
     ticket_price 10.0
     trait :live_event do
       association :user, factory: [:user, :stripe_connect]
+      visible true
     end
   end
 

@@ -19,14 +19,9 @@ VCR.configure do |c|
   c.hook_into :webmock
 end
 
-class ActiveSupport::TestCase
-  # fixtures :all
-  def self.prepare
-  end
-  # prepare #run before all tests
-  def setup
-  end
+Turn.config.format = :dot
 
+class ActiveSupport::TestCase
   def teardown
     Sidekiq::Worker.clear_all
   end
@@ -51,4 +46,23 @@ class ActiveRecord::Base
   end
 end
 ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection
+
+module SharedBehaviour
+  def sign_in(user)
+    visit sign_in_path
+    fill_in "Email", with: user.email
+    fill_in "Password", with: user.password
+    click_button "Sign In"
+  end
+
+  def signed_in
+    event = FactoryGirl.create(:event)
+    sign_in(event.user)
+  end
+
+  def event_admin
+    live_event = FactoryGirl.create(:event, :live_event)
+    sign_in(live_event.user)
+  end
+end
 
