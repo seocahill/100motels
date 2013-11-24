@@ -62,4 +62,12 @@ class PagesIndexTest < Capybara::Rails::TestCase
     assert page.has_content?('Read this first!')
   end
 
+  test "signed in root path" do
+    sign_in(@user)
+    assert_equal current_path, root_path
+    assert page.has_css?('.alert', text: "Logged in!")
+    assert page.has_content?('Settings')
+    click_link "100 Motels"
+    assert page.has_content?("Events Summary")
+  end
 end
