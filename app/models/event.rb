@@ -9,9 +9,8 @@ class Event < ActiveRecord::Base
   validate :forbid_visible, on: :update
   validate :forbid_date_change, on: :update
   validate :forbid_location_change, on: :update
+  belongs_to :user
   has_many :orders
-  has_one :event_user, dependent: :destroy
-  has_one :user, through: :event_user
 
   include PgSearch
   pg_search_scope :search,

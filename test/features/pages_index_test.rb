@@ -70,4 +70,10 @@ class PagesIndexTest < Capybara::Rails::TestCase
     click_link "100 Motels"
     assert page.has_content?("Events Summary")
   end
+
+  test "signed in admin link" do
+    sign_in(@user)
+    click_link "Admin"
+    assert_equal user_path(@user), current_path, "wrong path"
+  end
 end

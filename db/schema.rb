@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131111210451) do
+ActiveRecord::Schema.define(version: 20131125210808) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,7 +41,10 @@ ActiveRecord::Schema.define(version: 20131111210451) do
     t.string   "location"
     t.integer  "state",                                default: 0,     null: false
     t.integer  "target",                               default: 100,   null: false
+    t.integer  "user_id"
   end
+
+  add_index "events", ["user_id"], name: "index_events_on_user_id", using: :btree
 
   create_table "orders", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string   "name",                                          null: false
