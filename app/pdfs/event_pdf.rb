@@ -1,14 +1,12 @@
 class EventPdf < Prawn::Document
 
-  def initialize(event, orders, view)
+  def initialize(event, orders)
     super(top_margin: 70)
     @event = event
-    @view = view
     @orders = orders
     event_number
     items
     line_item_rows
-
   end
 
   def event_number
@@ -29,7 +27,7 @@ class EventPdf < Prawn::Document
 
   def line_item_rows
     [[ "Name", "Email", "Quantity", "Card", "Status", "Net", "Gross"]] +
-    @orders.all.map do |order|
+    @orders.map do |order|
       [order.name, order.email, order.quantity, order.last4, order.stripe_event.to_s, order.quantity * order.ticket_price, order.total]
     end
   end

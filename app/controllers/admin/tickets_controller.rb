@@ -10,7 +10,7 @@ class Admin::TicketsController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        pdf = TicketsPdf.new(@event, @tickets, view_context)
+        pdf = TicketsPdf.new(@event, @tickets)
         send_data pdf.render, filename: "#{@event.name}_tickets_#{@event.date}.pdf",
                               type: "application/pdf",
                               disposition: "inline"

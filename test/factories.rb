@@ -27,6 +27,7 @@ FactoryGirl.define do
     about { Faker::Lorem.paragraph(3) }
     target 100
     ticket_price 10.0
+    visible false
     trait :live_event do
       association :user, factory: [:user, :stripe_connect]
       visible true
@@ -60,6 +61,7 @@ FactoryGirl.define do
   end
 
   factory :ticket do
+    order
     before :create, &:generate_ticket_number
   end
 

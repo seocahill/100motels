@@ -26,7 +26,7 @@ class Admin::EventsController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        pdf = EventPdf.new(@event, @orders, view_context)
+        pdf = EventPdf.new(@event, @orders)
         send_data pdf.render, filename: "#{@event.name}_#{@event.date}.pdf",
                               type: "application/pdf",
                               disposition: "inline"

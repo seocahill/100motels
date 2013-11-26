@@ -1,7 +1,7 @@
 require "test_helper"
 include SharedBehaviour
 
-class UserShowTest < Capybara::Rails::TestCase
+class NewEventTest < Capybara::Rails::TestCase
 
   before do
     @user = FactoryGirl.create(:user)
@@ -9,12 +9,7 @@ class UserShowTest < Capybara::Rails::TestCase
     click_link "New Event"
   end
 
-  test "sanity" do
-    assert_equal current_path, new_admin_event_path
-    assert
-  end
-
-  test "succesful Event creation" do
+  test "successful Event creation" do
     fill_in "Name", with: "New Thing"
     fill_in "Location", with: "Ballina, Ireland"
     fill_in "Date", with: "31-12-2014"
