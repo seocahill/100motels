@@ -19,6 +19,7 @@ group :development, :test do
   gem 'jazz_hands'
   gem 'letter_opener_web'
   gem 'dotenv-rails'
+  gem 'teaspoon'
 end
 group :test do
   gem "factory_girl_rails", "~> 4.0"
@@ -40,7 +41,6 @@ gem 'prawn'
 gem "auto_html", git: 'git://github.com/seocahill/auto_html.git'
 gem 'filepicker-rails'
 gem 'enum_accessor'
-# gem 'draper'
 gem 'sidekiq'
 gem 'sidekiq-failures'
 gem 'sinatra', require: false

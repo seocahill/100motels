@@ -21,7 +21,6 @@
 //= require jquery.ui.draggable
 //= require pages
 //= require events
-//= require users
 
 
 

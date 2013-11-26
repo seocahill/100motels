@@ -19,7 +19,7 @@ VCR.configure do |c|
   c.hook_into :webmock
 end
 
-Turn.config.format = :progress
+Turn.config.format = :dots
 
 class ActiveSupport::TestCase
   def teardown

@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
     def current_user
       user = User.find_by_auth_token(cookies[:auth_token]) if cookies[:auth_token]
-      @current_user ||= user unless user.state_suspended?
+      @current_user ||= user #unless user.state_suspended?
     end
     helper_method :current_user
 
