@@ -1,26 +1,34 @@
-class EventDecorator < ApplicationDecorator
-  delegate_all
+class EventsPresenter
   include AutoHtml
+
+  def initialize(event, view)
+    @event = event
+    @view = view
+  end
+
+  def method_missing(*args, &block)
+    @view.send(*args, &block)
+  end
 
   def filepicker
     if event_owner?
-      form_for model do |f|
+      form_for @event do |f|
         f.filepicker_field(:image, onchange: "this.form.submit();", button_text: "Change Image", button_class: "btn", services: "COMPUTER, IMAGE_SEARCH, WEBCAM, INSTAGRAM, URL, FLICKR, FACEBOOK")
       end
     end
   end
 
   def image
-    if model.image.present?
-      model.image
+    if @event.image.present?
+      @event.image
     else
       "https://s3-us-west-2.amazonaws.com/onehundredmotels/247915_156305404435251_2616225_n.jpg"
     end
   end
 
   def index_image
-    if model.image.present?
-      filepicker_image_tag model.image, w: 380, h: 200, fit: 'crop'
+    if @event.image.present?
+      filepicker_image_tag @event.image, w: 380, h: 200, fit: 'crop'
     else
       image_tag "https://s3-us-west-2.amazonaws.com/onehundredmotels/247915_156305404435251_2616225_n.jpg", size: "380x200"
     end
@@ -32,19 +40,19 @@ class EventDecorator < ApplicationDecorator
 
 
   def formatted_date
-    if model.orders.nil?
-      best_in_place_if event_owner?, model, :date, display_with: :time_tag
+    if @event.orders.nil?
+      best_in_place_if event_owner?, @event, :date, display_with: :time_tag
     else
-      time_tag(model.date)
+      time_tag(@event.date)
     end
   end
 
   def sales
-    sales = model.orders.sum(:quantity)
+    sales = @event.orders.sum(:quantity)
   end
 
   def price
-    best_in_place_if event_owner?, model, :ticket_price, classes: "price", display_with: :number_to_currency, nil: "free event"
+    best_in_place_if event_owner?, @event, :ticket_price, classes: "price", display_with: :number_to_currency, nil: "free event"
   end
 
   def about_section
@@ -62,7 +70,7 @@ class EventDecorator < ApplicationDecorator
       -122.395828&sspn=0.011412,0.019913&t=h&radius=0.65&hq=irish+times&z=16
     END
     placeholder = auto_html(text){ redcarpet; youtube; vimeo; google_map; link(:target => 'blank') }
-    best_in_place_if event_owner?, model, :about, type: :textarea, nil: placeholder, classes: "about", display_as: :about_html, activator: ".edit-about", html_attrs: {"rows" => 12, "cols" => 140, "spellcheck" => "true"}
+    best_in_place_if event_owner?, @event, :about, type: :textarea, nil: placeholder, classes: "about", display_as: :about_html, activator: ".edit-about", html_attrs: {"rows" => 12, "cols" => 140, "spellcheck" => "true"}
   end
 
 
@@ -73,25 +81,25 @@ class EventDecorator < ApplicationDecorator
   end
 
   def tickets_sold
-    model.orders.sum(:quantity)
+    @event.orders.sum(:quantity)
   end
 
   def tickets_left
-    left = model.target - tickets_sold
+    left = @event.target - tickets_sold
     left > 0 ? left : "sold out"
   end
 
   def per_cent_sold
-    percent = tickets_sold * model.target / 100
+    percent = tickets_sold * @event.target / 100
     percent < 100 ? percent : 100
   end
 
   def left_to_go
-     model.date > DateTime.now ? distance_of_time_in_words(Time.now, model.date, include_seconds = false) : "No time"
+     @event.date > DateTime.now ? distance_of_time_in_words(Time.now, @event.date, include_seconds = false) : "No time"
   end
 
   def is_visible
-    if model.visible?
+    if @event.visible?
       content_tag(:span, "visible", class: "label label-success")
     else
       content_tag(:span, "hidden", class: "label label-default")
@@ -99,16 +107,16 @@ class EventDecorator < ApplicationDecorator
   end
 
   def earnings
-    number_to_currency(model.orders.sum { |order| order.quantity * order.ticket_price})
+    number_to_currency(@event.orders.sum { |order| order.quantity * order.ticket_price})
   end
 
   def on_sale?
-    # d = model.date
+    # d = @event.date
     # d >= Time.now
     true
   end
 
   def event_owner?
-    current_user == model.user if current_user.present?
+    current_user == @event.user if current_user.present?
   end
 end

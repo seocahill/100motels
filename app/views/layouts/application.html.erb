@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title> <%= yield(:title) %></title>
+    <title> <%= yield(:title) || "100 Motels" %></title>
     <%= stylesheet_link_tag    "application", :media => "all" %>
     <%= filepicker_js_include_tag %>
     <%= javascript_include_tag "application" %>

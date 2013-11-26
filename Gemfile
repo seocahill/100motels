@@ -40,7 +40,7 @@ gem 'prawn'
 gem "auto_html", git: 'git://github.com/seocahill/auto_html.git'
 gem 'filepicker-rails'
 gem 'enum_accessor'
-gem 'draper'
+# gem 'draper'
 gem 'sidekiq'
 gem 'sidekiq-failures'
 gem 'sinatra', require: false

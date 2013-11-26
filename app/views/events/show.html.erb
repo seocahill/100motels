@@ -1,3 +1,6 @@
+<% content_for :title do %>
+  <%= @event.name + " in " + @event.location + ", " + @event.date.strftime("%d/%m/%Y") %>
+<% end %>
 <% content_for :head do %>
   <%= tag :meta, property: "og:site_name", content: "100 Motels" %>
   <%= tag :meta, property: "og:title", content: @event.name %>
@@ -6,20 +9,19 @@
   <%= tag :meta, name: "twitter:card", content: "summary_large_image" %>
   <%= tag :meta, name: "twitter:domain", content: "100motels.com" %>
   <%= tag :meta, name: "twitter:site", content: "@100Motels" %>
-  <%= tag :meta, name: "twitter:title", content: @event.name %>
-  <%= tag :meta, name: "twitter:description", content: @event.about %>
+  <%= tag :meta, name: "twitter:title", content: "100 Motels presents..." %>
+  <%= tag :meta, name: "twitter:description", content: @event.name + " in " + @event.location + ", " + @event.date.strftime("%d/%m/%Y") %>
   <%= tag :meta, name: "twitter:image", content: @event.image %>
 <% end %>
-<% content_tag :header, title(@event) %>
-<section id="event-banner" data-url='<%= @event.image %>'>
+<section id="event-banner" data-url='<%= @event_presenter.image %>'>
 	<div class="row">
 		<div class="col-lg-12 event-header">
 			<div class="container">
-				<div class="pull-right"><%= @event.filepicker %></div>
+				<div class="pull-right"><%= @event_presenter.filepicker %></div>
 				<h2>
 					<%= @event.user.name %> presents<br>
 					<%= @event.name %><br>
-					<%= @event.formatted_date %> | <%= @event.location %>
+					<%= @event_presenter.formatted_date %> | <%= @event.location %>
 				</h2>
 			</div>
 		</div>
@@ -27,11 +29,11 @@
 </section>
 <section id="event-information">
 	<div class="progress">
-	  <div class="progress-bar progress-bar-success sold" role="progressbar" data-funded="<%= @event.per_cent_sold %>">
-		  <span><%= @event.tickets_sold %> sold</span>
+	  <div class="progress-bar progress-bar-success sold" role="progressbar" data-funded="<%= @event_presenter.per_cent_sold %>">
+		  <span><%= @event_presenter.tickets_sold %> sold</span>
 	  </div>
 	  <div class="progress-bar unsold">
-	    <span class=""><%= @event.tickets_left %> left</span>
+	    <span class=""><%= @event_presenter.tickets_left %> left</span>
 	  </div>
 	</div>
 	<div class="container">
@@ -53,7 +55,7 @@
 			<div class="col-lg-4">
         <%= render 'orders/form' %>
 			</div>
-			<div class="col-lg-2"><div class="price" data-price='<%= @event.ticket_price %>'><%= @event.order_total %></div=></div>
+			<div class="col-lg-2"><div class="price" data-price='<%= @event.ticket_price %>'><%= @event_presenter.order_total %></div=></div>
 		</div>
 	</div>
 </section>
@@ -62,8 +64,8 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-10 col-lg-offset-1">
-				<%= @event.edit_button %>
-				<div class="event-media-html"><%= @event.about_section %></div>
+				<%= @event_presenter.edit_button %>
+				<div class="event-media-html"><%= @event_presenter.about_section %></div>
 			</div>
 		</div>
 	</div>

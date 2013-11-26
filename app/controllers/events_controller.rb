@@ -3,11 +3,12 @@ class EventsController < ApplicationController
 
 
   def index
-    @events = Event.text_search(params[:query]).page(params[:page]).per_page(9).where("visible = true").includes(:user).where("state = 1").decorate
+    @events = Event.text_search(params[:query]).page(params[:page]).per_page(9).where("visible = true").includes(:user).where("state = 1")
   end
 
   def show
     @order = Order.new
+    @event_presenter = EventsPresenter.new(@event, view_context)
   end
 
   def update
@@ -30,7 +31,7 @@ private
   end
 
   def find_event
-    @event = Event.find(params[:id]).decorate
+    @event = Event.find(params[:id])
     if @event.visible or authorized?(params[:id])
       @event
     else
