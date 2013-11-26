@@ -4,11 +4,12 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.text_search(params[:query]).page(params[:page]).per_page(9).where("visible = true").includes(:user).where("state = 1")
+    @view = view_context
   end
 
   def show
     @order = Order.new
-    @event_presenter = EventsPresenter.new(@event, view_context)
+    @event_presenter = EventPresenter.new(@event, view_context)
   end
 
   def update
@@ -32,11 +33,7 @@ private
 
   def find_event
     @event = Event.find(params[:id])
-    if @event.visible or authorized?(params[:id])
-      @event
-    else
-      nil
-    end
+    (@event.visible || @event.user == current_user) ? @event : nil
   rescue ActiveRecord::RecordNotFound
     flash[:alert] = "The event you were looking for could not be found"
     redirect_to events_path

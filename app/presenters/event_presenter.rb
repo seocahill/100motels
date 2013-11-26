@@ -1,4 +1,4 @@
-class EventsPresenter
+class EventPresenter
   include AutoHtml
 
   def initialize(event, view)

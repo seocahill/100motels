@@ -3,6 +3,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.new
+    @events = current_user.events
+    @view = view_context
   end
 
   def new
@@ -34,7 +36,7 @@ class UsersController < ApplicationController
   end
 
   private
-    def user_params
-      params.require(:user).permit(:name, :email, :password)
-    end
+  def user_params
+    params.require(:user).permit(:name, :email, :password)
+  end
 end

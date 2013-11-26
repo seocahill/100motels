@@ -17,7 +17,7 @@
   <% @events.each do |event| %>
     <div class="col-md-4 portfolio-item">
       <%= link_to event_path(event) do %>
-        <%= event.index_image %>
+        <%= event.present(@view).index_image %>
         <h3><%= event.name %> <small><%= event.date.strftime('%d/%m') %> in <%= event.location %>.</small></h3>
       <% end %>
         <p></p>

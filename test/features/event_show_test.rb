@@ -5,7 +5,7 @@ include SharedBehaviour
 class EventShowTest < Capybara::Rails::TestCase
 
   before do
-    @event = FactoryGirl.create(:event, :live_event, date: "08-02-2014").decorate
+    @event = FactoryGirl.create(:event, :live_event, date: "08-02-2014")
     visit event_path(@event)
   end
 

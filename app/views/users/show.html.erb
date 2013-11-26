@@ -69,13 +69,13 @@
               </tr>
             </thead>
             <tbody>
-            <% current_user.events.decorate.each do |event| %>
+            <% @events.each do |event| %>
               <tr class="">
                 <td><%= link_to "#{event.name} in #{event.location}", event_path(event) %></td>
-                <td><%= event.is_visible %></td>
-                <td><span class="badge"><%= event.earnings %></span></td>
-                <td><span class="badge"><%= event.tickets_sold %>/<%= event.target %></span></td>
-                <td><%= event.left_to_go %> to go</td>
+                <td><%= event.present(@view).is_visible %></td>
+                <td><span class="badge"><%= event.present(@view).earnings %></span></td>
+                <td><span class="badge"><%= event.present(@view).tickets_sold %>/<%= event.target %></span></td>
+                <td><%= event.present(@view).left_to_go %> to go</td>
                 <td><%= link_to "admin", admin_event_path(event), class: "" %></td>
                 <td><%= link_to "edit", edit_admin_event_path(event) %></td>
               </tr>

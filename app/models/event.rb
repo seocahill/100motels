@@ -59,5 +59,9 @@ class Event < ActiveRecord::Base
     self.orders.each { |order| OrderMailer.event_deferred(order, params).deliver}
     save!
   end
+
+  def present(view)
+    EventPresenter.new(self, view)
+  end
 end
 
