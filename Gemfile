@@ -19,7 +19,6 @@ group :development, :test do
   gem 'jazz_hands'
   gem 'letter_opener_web'
   gem 'dotenv-rails'
-  gem 'teaspoon'
 end
 group :test do
   gem "factory_girl_rails", "~> 4.0"

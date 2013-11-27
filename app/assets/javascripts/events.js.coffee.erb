@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 # Order Total method
-orderTotal = () ->
+@orderTotal = () ->
   quantity = $('#order_quantity').val()
   price = $('.price').data('price')
   net_price = quantity * price
