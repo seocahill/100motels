@@ -15,6 +15,15 @@ GIT
       rinku (~> 1.5.0)
 
 GIT
+  remote: git://github.com/seocahill/minitest-rails.git
+  revision: 57d39b416345cd9d642ff8ebe64868182edcdc87
+  specs:
+    minitest-rails (0.9.2.20131122075817)
+      minitest (~> 4.7)
+      minitest-test (~> 1.0)
+      railties (>= 3.0)
+
+GIT
   remote: git://github.com/straydogstudio/best_in_place.git
   revision: 05210ab22797235a4ca3f9dac9e81e7b95abafb1
   specs:
@@ -192,14 +201,13 @@ GEM
       rake
     minitest-metadata (0.4.0)
       minitest (~> 4.7)
-    minitest-rails (0.9.2)
-      minitest (~> 4.7)
-      rails (>= 3.0)
     minitest-rails-capybara (0.10.0)
       capybara (~> 2.0)
       minitest-capybara (~> 0.4)
       minitest-metadata (~> 0.4)
       minitest-rails (~> 0.9.1)
+    minitest-test (1.0.0)
+      minitest (~> 4.0)
     multi_json (1.8.2)
     multipart-post (1.2.0)
     nokogiri (1.6.0)
@@ -388,7 +396,7 @@ DEPENDENCIES
   jquery-ui-sass-rails
   json
   letter_opener_web
-  minitest-rails
+  minitest-rails!
   minitest-rails-capybara
   omniauth-stripe-connect
   pg

@@ -12,7 +12,7 @@ gem "jquery-rails"
 gem 'jquery-ui-sass-rails'
 gem 'puma'
 group :development, :test do
-  gem 'minitest-rails'
+  gem 'minitest-rails', git: 'git://github.com/seocahill/minitest-rails.git'
   gem 'minitest-rails-capybara'
   gem 'poltergeist'
   gem 'foreman'

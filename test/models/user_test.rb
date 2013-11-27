@@ -1,12 +1,10 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  should have_many(:event_users).dependent(:destroy)
-  should have_many(:events).through(:event_users)
+  should have_many(:events)
   should validate_presence_of(:name)
   should validate_presence_of(:email)
   should validate_uniqueness_of(:email)
-  should validate_uniqueness_of(:auth_token)
   should have_secure_password
 
   test "User Factory should be valid" do

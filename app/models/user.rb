@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
   end
 
   def move_to(user)
-    self.event_users.update_all(user_id: user.id)
+    self.events.update_all(user_id: user.id)
     user.confirm!
   end
 

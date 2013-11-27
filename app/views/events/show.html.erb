@@ -21,7 +21,7 @@
 				<h2>
 					<%= @event.user.name %> presents<br>
 					<%= @event.name %><br>
-					<%= @event_presenter.formatted_date %> | <%= @event.location %>
+					<%= time_tag(@event.date) %> | <%= @event.location %>
 				</h2>
 			</div>
 		</div>
@@ -55,7 +55,9 @@
 			<div class="col-lg-4">
         <%= render 'orders/form' %>
 			</div>
-			<div class="col-lg-2"><div class="price" data-price='<%= @event.ticket_price %>'><%= @event_presenter.order_total %></div=></div>
+			<div class="col-lg-2"><div class="price" data-price='<%= @event.ticket_price %>'><%= number_to_currency raw(
+        '<span class="order-total"></span>'
+        ) %></div=></div>
 		</div>
 	</div>
 </section>

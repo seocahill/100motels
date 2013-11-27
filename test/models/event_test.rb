@@ -1,8 +1,7 @@
 require 'test_helper'
 
 class EventTest < ActiveSupport::TestCase
-  should have_one(:event_user)
-  should have_one(:user).through(:event_user)
+  should belong_to(:user)
   should have_many(:orders)
   should ensure_length_of(:name).is_at_most(50)
   should validate_presence_of(:name)

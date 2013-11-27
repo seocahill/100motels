@@ -26,7 +26,8 @@ class CustomerOrderTest < ActiveSupport::TestCase
 
   test "add_customer_details_to_order" do
     new_customer = CustomerOrder.new(@order_in_progress, @token)
-    new_customer.add_customer_details_to_order
+    customer = new_customer.create_customer
+    new_customer.add_customer_details_to_order(customer)
     assert @order_in_progress.stripe_customer_token.present?, "customer id not set"
     assert_equal @order_in_progress.name, "Seo Cahill", "name not set"
     assert_equal @order_in_progress.last4, "9191", "last4 not set"
