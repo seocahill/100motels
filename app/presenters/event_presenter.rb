@@ -68,7 +68,7 @@ class EventPresenter
   end
 
   def earnings
-    number_to_currency(@event.orders.sum { |order| order.quantity * order.ticket_price})
+    number_to_currency(@event.orders.to_a.sum { |order| order.quantity * order.ticket_price})
   end
 
   def on_sale?

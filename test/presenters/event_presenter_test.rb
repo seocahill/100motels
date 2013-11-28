@@ -10,13 +10,13 @@ class EventPresenterTest < ActionView::TestCase
 
   test "stub event_owner?" do
     @presenter.stub(:event_owner?, true) do
-      assert @presenter.event_owner?
+      assert @presenter.event_owner?, "stub sanity ok"
     end
   end
 
  test "filepicker presenter" do
     @presenter.stub(:event_owner?, true) do
-      assert_match @presenter.filepicker, '<form accept-charset="UTF-8" action="/events/6" class="edit_event" id="edit_event_6" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="_method" type="hidden" value="patch" /></div><input data-fp-apikey="Aw7pyep7aSfmtPLfI_3jYz" data-fp-button-class="btn" data-fp-button-text="Change Image" data-fp-services="COMPUTER, IMAGE_SEARCH, WEBCAM, INSTAGRAM, URL, FLICKR, FACEBOOK" id="event_image" name="event[image]" onchange="this.form.submit();" type="filepicker" /></form>'
+      assert @presenter.filepicker =~ /Change Image/i, "filepicker button not generated"
     end
   end
 
@@ -43,14 +43,13 @@ class EventPresenterTest < ActionView::TestCase
   end
 
   test "about_section editable if current_user" do
-    @presenter.stub(:current_user, true) do
-      assert_equal @presenter.about_section, best_in_place(@event, :about)
+    @presenter.stub(:event_owner?, true) do
+      assert_match @presenter.about_section[0..32], "<span class='best_in_place about'"
     end
   end
 
   test "ticket sold" do
-    FactoryGirl.create_pair(:order, event: @event, quantity: 3)
-    assert_equal @presenter.tickets_sold, 6, "wrong sale figure"
+    assert_equal @presenter.tickets_sold, 4, "wrong sale figure"
   end
 
   test "ticket left should be 50" do
@@ -78,7 +77,11 @@ class EventPresenterTest < ActionView::TestCase
   end
 
   test "left_to_go left" do
-    skip
+    assert_equal @presenter.left_to_go, "3 months", "wrong time returned"
+  end
+
+  test "no time left" do
+    assert_equal EventPresenter.new(FactoryGirl.build(:event, date: "31-12-2008"), view).left_to_go, "No time", "should return no time"
   end
 
   test "visible" do
@@ -86,15 +89,15 @@ class EventPresenterTest < ActionView::TestCase
   end
 
   test "earnings" do
-    assert_equal @presenter.earnings, "$20.00"
+    assert_equal @presenter.earnings, "$40.00"
   end
 
   test "on sale?" do
-    assert_equal @event.on_sale?, true
+    assert_equal @presenter.on_sale?, true
   end
 
   test "not on sale" do
-    skip
+    assert_equal EventPresenter.new(FactoryGirl.build(:event, date: "31-12-2008"), view).on_sale?, false, "should return false"
   end
 
  end
