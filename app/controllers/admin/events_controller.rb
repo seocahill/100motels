@@ -46,7 +46,6 @@ class Admin::EventsController < ApplicationController
       flash[:notice] = "Event has been updated"
       redirect_to [:admin, @event]
     else
-      flash[:alert] = "Event has not been updated"
       render action: "edit"
     end
   end

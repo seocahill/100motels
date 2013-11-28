@@ -4,16 +4,18 @@ include SharedBehaviour
 class EditEventTest < Capybara::Rails::TestCase
 
   before do
-    @event = FactoryGirl.create(:event, :live_event, visible: false)
+    user = FactoryGirl.create(:user, state: :unconfirmed)
+    @event = FactoryGirl.create(:event, visible: false, user: user)
     sign_in(@event.user)
     page.find('tbody>tr:last-child').click_link("edit")
   end
 
   test "change Event Target" do
-    fill_in "Target", with: 1001
+    fill_in "Target", with: 105
     click_button "Submit"
     assert page.has_css?('.alert', text: "Event has been updated"), "event wasn't updated"
-    assert_equal @event.target, 1001, "target not updated"
+    @event.reload
+    assert_equal @event.target, 105, "target not updated"
   end
 
   test "change event date should fail if orders" do
@@ -27,7 +29,7 @@ class EditEventTest < Capybara::Rails::TestCase
     FactoryGirl.create(:order, event: @event)
     fill_in "Location", with: "New England"
     click_button "Submit"
-    assert page.has_css?('.alert', text: "can't change the location of an event with existing orders, send a deferral message instead."), "didn't show validation errors."
+    assert page.has_css?('.alert', text: "can't change the location of an event with existing orders, create a new event or cancel the orders."), "didn't show validation errors."
   end
 
   test "change event date should fail if user unconfirmed" do
