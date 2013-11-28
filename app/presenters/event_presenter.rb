@@ -56,7 +56,7 @@ class EventPresenter
   end
 
   def left_to_go
-     @event.date > DateTime.now ? distance_of_time_in_words(Time.now, @event.date, include_seconds = false) : "No time"
+     @event.date > DateTime.now ? distance_of_time_in_words(Time.now, @event.date) : "No time"
   end
 
   def is_visible

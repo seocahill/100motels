@@ -30,7 +30,6 @@ class EventPdfTest < ActiveSupport::TestCase
     assert page.to_s.include?("#{@event.date.strftime("%b %d %Y")} in #{@event.location}"), "header not printing"
     assert page.to_s.include?(@tickets.first.order.name), "should have order name"
     assert page.to_s.include?(@tickets.first.order.email), "should have order email"
-    # assert_equal @orders.first.tickets.first.number, "should have ticket number"
     assert page.to_s.include?(@tickets.first.number), "should have ticket number"
   end
 end

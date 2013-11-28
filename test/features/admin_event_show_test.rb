@@ -27,24 +27,25 @@ class AdminEventShowTest < Capybara::Rails::TestCase
     assert page.has_content?("Send Notification")
   end
 
-  test "Charge Customers" do
-    click_link "Charge Customers"
+  test "charge customers" do
+    click_button "Charge Customers"
     assert page.has_css?('.alert', text: "Cool! We're charging your customers, we'll notify you when we're done")
   end
 
-  test "Ticket Checking" do
+  test "ticket checking" do
     click_link "Ticket Checking"
-    assert_equal current_path, admin_event_tickets_path
+    assert_equal current_path, admin_event_tickets_path(@event)
   end
 
   test "Search returns correct results" do
     fill_in "query", with: Order.first.name
+    click_on "Search"
     assert page.has_content?(Order.first.email)
     refute page.has_content?(Order.last.name)
   end
 
-  test "Admin can view order page for each order" do
+  test "admin can view order page for each order" do
     page.find('tbody>tr:last-child').click_link("view")
-    assert_equal current_path, orders_path(Order.last)
+    assert page.has_content?("Order Receipt")
   end
 end
