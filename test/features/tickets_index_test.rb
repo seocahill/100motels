@@ -1,7 +1,7 @@
 require "test_helper"
 include SharedBehaviour
 
-class TicketTest < Capybara::Rails::TestCase
+class TicketsIndexTest < Capybara::Rails::TestCase
 
   before do
     @event = FactoryGirl.create(:event, :live_event, visible: false)
@@ -27,7 +27,6 @@ class TicketTest < Capybara::Rails::TestCase
   test "number checked admit holder" do
     fill_in "number", with: @event.tickets.last.number
     click_on "Check"
-    save_and_open_page
     assert page.has_css?(".alert", text: "Admit ticket-holder")
   end
 end
