@@ -19,18 +19,16 @@ class Admin::TicketsController < ApplicationController
   end
 
   def check
-    @event = Event.find(params[:event_id])
-    @ticket = @event.tickets.find_by(number: params["number"])
-    if @ticket
-      if @ticket.admitted?
-        flash[:warning] = "already admitted at #{@ticket.admitted.strftime('%b %e, %l:%M %p')}"
-      else
-        @ticket.admitted = Time.now
-        @ticket.save!
-        flash[:notice] = "Admit ticket-holder"
-      end
-    else
+    event = Event.find(params[:event_id])
+    @ticket = event.tickets.find_by(number: params["number"])
+    case
+    when @ticket.nil?
       flash[:notice] = "Ticket not found"
+    when @ticket.admitted
+      flash[:warning] = "already admitted at #{@ticket.admitted.strftime('%b %e, %l:%M %p')}"
+    when !@ticket.admitted
+        @ticket.update_attributes(admitted: Time.now)
+        flash[:notice] = "Admit ticket-holder"
     end
     redirect_to admin_event_tickets_path(ticket: @ticket || "")
   end

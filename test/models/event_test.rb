@@ -3,6 +3,7 @@ require 'test_helper'
 class EventTest < ActiveSupport::TestCase
   should belong_to(:user)
   should have_many(:orders)
+  should have_many(:tickets).through(:orders)
   should ensure_length_of(:name).is_at_most(50)
   should validate_presence_of(:name)
   should validate_presence_of(:date)
@@ -112,7 +113,12 @@ class EventTest < ActiveSupport::TestCase
   end
 
   test "auto_html soundcloud" do
-    skip 'need to user VCR or fakeweb to fake response, see gem test for details'
+    skip "need to look into gem"
+    event = FactoryGirl.build(:event)
+    VCR.use_cassette('soundcloud_embed') do
+      event.about = 'www.soundcloud.com/creteboom/sets/them-bones-need-oxygen'
+    end
+    assert_equal event.about, '<iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/104831507"></iframe>'
   end
 
   test "auto_html resposive google map" do
@@ -125,13 +131,4 @@ class EventTest < ActiveSupport::TestCase
     assert_equal "<p><a href=\"http://vukajlija.com\" target=\"_blank\" rel=\"nofollow\">http://vukajlija.com</a></p>\n", event.about_html
   end
 
-  test "defer_events sends notification email" do
-    skip "need to set up form hash"
-    params = {}
-    order = FactoryGirl.create(:order)
-    assert_equal 0, Sidekiq::Extensions::DelayedMailer.jobs.size
-    order.event.defer_event(params)
-    assert_equal 1, Sidekiq::Extensions::DelayedMailer.jobs.size, "Emails not sent"
-    assert_equal event.date, Date.parse("27th October 2014"), "Date wasn't updated"
-  end
 end

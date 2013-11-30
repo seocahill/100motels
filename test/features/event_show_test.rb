@@ -8,14 +8,6 @@ class EventShowTest < Capybara::Rails::TestCase
     @event = FactoryGirl.create(:event, :live_event, date: "08-02-2014", id: 4)
   end
 
-  test "poltergeist working" do
-    skip
-    Capybara.current_driver = Capybara.javascript_driver
-    visit event_path(@event)
-    page.save_screenshot('screenshot.png')
-    assert_equal current_path, event_path(@event)
-  end
-
   test "visible event by normal admin is visible" do
     visit event_path(@event)
     assert page.has_content?(@event.name), "event name not visible"
@@ -66,26 +58,32 @@ class EventShowTest < Capybara::Rails::TestCase
     select "2", from: "order[quantity]"
     assert page.find(".order-total").has_content?("21.11"), "order total incorrect"
     click_button "Purchase"
-    sleep(5)
-    fill_in "Card number", with: "4242424242424242"
-    fill_in "Expires", with: "12/15"
-    fill_in "Name on card", with: "Seo Cahill"
-    fill_in "Card Code", with: "123"
-    click_button "Checkout $21.11"
-    assert page.has_css?('.alert', text: "Thanks! Please check your email.")
-    assert_equal order_path(Order.last), current_path
+    within_frame(page.find('.stripe_checkout_app')[:name]) do
+      fill_in "Card number", with: "4242424242424242"
+      fill_in "Expires", with: "12/15"
+      fill_in "Name on card", with: "Seo Cahill"
+      fill_in "Card code", with: "123"
+      click_button "Checkout $21.11"
+    end
+    # page.save_screenshot('screenshot.png')
+    sleep 3
+    assert page.has_css?('.alert', text: "Thanks! Please check your email."), "no success message"
+    assert_equal order_path(Order.last), current_path, "didn't redirect to order page"
   end
 
   test "order without email" do
     Capybara.current_driver = Capybara.javascript_driver
     visit event_path(@event)
     click_button "Purchase"
-    fill_in "Card number:", with: "4242424242424242"
-    fill_in "Expires:", with: "12/15"
-    fill_in "Name on card:", with: "Seo Cahill"
-    fill_in "Card Code:", with: "123"
-    click_button "Checkout $10.71"
-    assert page.has_css?('.alert', text: "must provide email address.")
+    within_frame(page.find('.stripe_checkout_app')[:name]) do
+      fill_in "Card number", with: "4242424242424242"
+      fill_in "Expires", with: "12/15"
+      fill_in "Name on card", with: "Seo Cahill"
+      fill_in "Card code", with: "123"
+      click_button "Checkout $10.71"
+    end
+    sleep 3
+    assert page.has_css?('.alert', text: "must provide email address"), "no error message"
   end
 
   test "order with invalid credit card details" do
@@ -95,12 +93,15 @@ class EventShowTest < Capybara::Rails::TestCase
     select "2", from: "order[quantity]"
     assert page.find(".order-total").has_content?("21.11"), "order total incorrect"
     click_button "Purchase"
-    fill_in "Card number:", with: "4000000000000101"
-    fill_in "Expires:", with: "12/15"
-    fill_in "Name on card:", with: "Seo Cahill"
-    fill_in "Card Code:", with: "123"
-    click_button "Checkout $21.11"
-    assert page.has_css?('.alert', text: "The card's security code is invalid.")
+    within_frame(page.find('.stripe_checkout_app')[:name]) do
+      fill_in "Card number", with: "4000000000000101"
+      fill_in "Expires", with: "12/15"
+      fill_in "Name on card", with: "Seo Cahill"
+      fill_in "Card code", with: "123"
+      click_button "Checkout $21.11"
+    end
+    sleep 3
+    assert page.has_css?('.alert', text: "Your card's security code is incorrect.")
   end
 
   test "order pages can be reviewed by event admin only" do

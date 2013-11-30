@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: git://github.com/seocahill/auto_html.git
-  revision: b21b9772d23ca5a0802ad2f4318ea80bb7f35d9f
+  revision: cb5c9733ad349dee5c76ba277f5e6f108a429472
   specs:
     auto_html (1.6.0)
       redcarpet
@@ -181,7 +181,7 @@ GEM
     json (1.8.1)
     jwt (0.1.8)
       multi_json (>= 1.5)
-    launchy (2.4.1)
+    launchy (2.4.2)
       addressable (~> 2.3)
     letter_opener (1.1.2)
       launchy (~> 2.2)
@@ -339,7 +339,7 @@ GEM
     stripe (1.8.8)
       multi_json (>= 1.0.4, < 2)
       rest-client (~> 1.4)
-    stripe-ruby-mock (1.8.7.0)
+    stripe-ruby-mock (1.8.7.1)
       dante (>= 0.1.5)
       jimson-temp
       stripe (>= 1.8.4)

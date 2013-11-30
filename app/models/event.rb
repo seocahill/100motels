@@ -13,6 +13,8 @@ class Event < ActiveRecord::Base
   has_many :orders
   has_many :tickets, through: :orders
 
+  scope :public_events, -> { where(visible: true).includes(:user).where("users.state = 1").references(:user) }
+
   include PgSearch
   pg_search_scope :search,
     against: [:name, :location, :about],
@@ -55,14 +57,12 @@ class Event < ActiveRecord::Base
     link :target => "_blank", :rel => "nofollow"
   end
 
-  def defer_event(params)
-    self.date = params[:alter_event][:date]
-    self.orders.each { |order| OrderMailer.event_deferred(order, params).deliver}
-    save!
-  end
-
   def present(view)
     EventPresenter.new(self, view)
+  end
+
+  def public?
+    self.visible? and !self.user.state_suspended?
   end
 end
 
