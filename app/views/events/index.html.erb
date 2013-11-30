@@ -18,7 +18,7 @@
     <div class="col-md-4 portfolio-item">
       <%= link_to event_path(event) do %>
         <%= event.present(@view).index_image %>
-        <h3><%= event.name %> <small><%= event.date.strftime('%d/%m') %> in <%= event.location %>.</small></h3>
+        <h3><%= truncate(event.name, length: 15) %> <small><%= event.date.strftime('%d/%m') %> in <%= event.location %>.</small></h3>
       <% end %>
         <p></p>
     </div>

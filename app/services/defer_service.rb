@@ -7,7 +7,6 @@ class DeferService
   def process_deferral
     OrderMailer.delay.event_deferred(@event.id, @message)
     @event.date = @message.date
-    @event.save!
+    @event.save(validate: false)
   end
-
 end

@@ -12,23 +12,23 @@ class UserShowTest < Capybara::Rails::TestCase
   test "update name" do
     fill_in "Name", with: "Joebob"
     click_button "Update Account"
-    assert page.has_css?('.alert', text: "You must enter your password to confirm changes.")
+    assert page.has_css?('.alert', text: "You must enter your password to confirm changes"), "no password alert"
     fill_in "Current password", with: @user.password
     click_button "Update Account"
-    assert page.has_css?('.alert', text: "Settings updated")
+    assert page.has_css?('.alert', text: "Settings updated"), "settings not updated"
   end
 
   test "update email" do
     fill_in "Email", with: "unconfirmed@example.confirm"
     fill_in "Current password", with: @user.password
     click_button "Update Account"
-    assert page.has_css?('.alert', text: "We've sent you an email to confirm your password")
+    assert page.has_css?('.alert', text: "Settings updated")
   end
 
-  test "connect to stripe" do
+  test "connect to stripe success" do
     click_link "Connect with Stripe"
-    assert page.has_css?('a.btn btn-success', text: "Connected to Stripe")
-    assert page.has_css?('.alert', text: "Connected to Stripe successfully")
+    assert page.has_css?('button', text: "Connected to Stripe"), "no button"
+    assert page.has_css?('.alert', text: "Connected to Stripe successfully"), "alert didnt fire"
   end
 
   test "reset password" do

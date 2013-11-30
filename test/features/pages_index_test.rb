@@ -51,8 +51,8 @@ class PagesIndexTest < Capybara::Rails::TestCase
     fill_in "query", with: Event.first.name
     click_button "Go"
     assert_equal events_path, current_path, "wrong path"
-    refute page.has_content?(Event.last.name), "search results returning wrong event"
-    assert page.has_content?(Event.first.name), "search results missing query"
+    refute page.has_content?(Event.last.location), "search results returning wrong event"
+    assert page.has_content?(Event.first.location), "search results missing query"
   end
 
   test "Try it free" do

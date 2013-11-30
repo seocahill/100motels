@@ -5,6 +5,8 @@ class EventPresenter
     @view = view
   end
 
+  delegate :name, :date, :location, :user, to: :@event
+
   def method_missing(*args, &block)
     @view.send(*args, &block)
   end

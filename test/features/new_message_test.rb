@@ -7,26 +7,42 @@ class NewMessageTest < Capybara::Rails::TestCase
     @event = FactoryGirl.create(:event, :live_event, visible: false)
     @orders = FactoryGirl.create_list(:order, 3, event: @event)
     sign_in(@event.user)
+    visit admin_event_path(@event)
     click_link "Notify Customers"
   end
 
   test "ordinary message" do
-    skip
+    fill_in "Message to customers", with: "My Message"
+    click_on "Message"
+    assert page.has_css?(".alert", text: "Message Sent to Customers"), "message not sent"
   end
 
   test "defer message" do
-    skip
+    fill_in "Message to customers", with: "My Message"
+    fill_in "New date if rescheduling", with: "31-12-2015"
+    click_on "Defer"
+    assert page.has_css?(".alert", text: "Event has been deferred"), "message not sent"
   end
 
   test "cancel message" do
-    skip
+    fill_in "Message to customers", with: "My Message"
+    click_on "Cancel"
+    assert page.has_css?(".alert", text: "Event has been cancelled"), "message not sent"
   end
 
   test "invalid message no body" do
-    skip
+    click_on "Message"
+    assert page.has_css?(".alert", text: "Message can't be blank"), "message not sent"
   end
 
-  test "invalid message no date" do
-    skip
+  test "invalid cancel no body" do
+    click_on "Cancel"
+    assert page.has_css?(".alert", text: "Message can't be blank"), "message not sent"
+  end
+
+  test "invalid deferral no date" do
+    fill_in "Message to customers", with: "My Message"
+    click_on "Defer"
+    assert page.has_css?(".alert", text: "Date can't be blank"), "message not sent"
   end
 end

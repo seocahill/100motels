@@ -14,7 +14,6 @@ class Admin::EventsController < ApplicationController
       flash[:notice] = 'Event was successfully created.'
       redirect_to(@event)
     else
-      flash[:error] = "Event couldn't be created."
       render action: "new"
     end
   end

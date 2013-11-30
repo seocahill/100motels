@@ -11,6 +11,7 @@ class Event < ActiveRecord::Base
   validate :forbid_location_change, on: :update
   belongs_to :user
   has_many :orders
+  has_many :tickets, through: :orders
 
   include PgSearch
   pg_search_scope :search,

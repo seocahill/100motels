@@ -13,14 +13,14 @@ gem 'jquery-ui-sass-rails'
 gem 'puma'
 group :development, :test do
   gem 'minitest-rails', git: 'git://github.com/seocahill/minitest-rails.git'
-  gem 'minitest-rails-capybara'
-  gem 'poltergeist'
   gem 'foreman'
   gem 'jazz_hands'
   gem 'letter_opener_web'
-  gem 'dotenv-rails'
 end
 group :test do
+  gem 'minitest-rails-capybara'
+  gem 'poltergeist'
+  gem 'dotenv-rails'
   gem "factory_girl_rails", "~> 4.0"
   gem "shoulda"
   gem 'faker'

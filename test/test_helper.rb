@@ -30,10 +30,15 @@ end
 class ActionDispatch::IntegrationTest
   require "minitest/rails/capybara"
   require 'capybara/poltergeist'
+
+  Capybara.register_driver :poltergeist do |app|
+    Capybara::Poltergeist::Driver.new(app, {js_errors: false})
+  end
+
   Capybara.javascript_driver = :poltergeist
 
   def teardown
-    Capybara.current_driver = nil
+    Capybara.current_driver = Capybara.default_driver
     Capybara.reset_sessions!
   end
 end

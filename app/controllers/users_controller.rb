@@ -2,8 +2,7 @@ class UsersController < ApplicationController
   before_action :signed_in?, only: [:show, :update]
 
   def show
-    @user = User.new
-    @events = current_user.events
+    @user = current_user
     @view = view_context
   end
 
@@ -25,10 +24,8 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.authenticate(params[:confirm_password])
-      if @user.update_attributes(user_params)
-        redirect_to @user, notice: "Settings updated"
-      end
+    if @user.authenticate(params[:confirm_password]) and @user.update_attributes(user_params)
+      redirect_to(@user, notice: "Settings updated")
     else
       flash[:error] = "You must enter your password to confirm changes"
       render :show

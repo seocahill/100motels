@@ -1,9 +1,8 @@
 class EventsController < ApplicationController
   before_action :find_event, only: [:show]
 
-
   def index
-    @events = current_user.events.text_search(params[:query]).page(params[:page]).per_page(9)
+    @events = Event.where(visible: true).text_search(params[:query]).page(params[:page]).per_page(9).includes(:user) #.where("user.state = 1").references(:user)
     @view = view_context
   end
 
@@ -33,7 +32,7 @@ private
 
   def find_event
     @event = Event.find(params[:id])
-    (@event.visible || @event.user == current_user) ? @event : nil
+    raise ActiveRecord::RecordNotFound unless @event.visible? or @event.user == current_user
   rescue ActiveRecord::RecordNotFound
     flash[:alert] = "The event you were looking for could not be found"
     redirect_to events_path
