@@ -72,10 +72,10 @@
             <% current_user.events.each do |event| %>
               <tr class="">
                 <td><%= link_to "#{event.name} in #{event.location}", event_path(event) %></td>
-                <td><%#= event.present(@view).is_visible %></td>
-                <td><span class="badge"><%#= event.present(@view).earnings %></span></td>
-                <td><span class="badge"><%#= event.present(@view).tickets_sold %>/<%= event.target %></span></td>
-                <td><%#= event.present(@view).left_to_go %> to go</td>
+                <td><%= @presenter.is_visible(event) %></td>
+                <td><span class="badge"><%= @presenter.earnings(event) %></span></td>
+                <td><span class="badge"><%= @presenter.tickets_sold(event) %>/<%= event.target %></span></td>
+                <td><%= @presenter.left_to_go(event) %> to go</td>
                 <td><%= link_to "admin", admin_event_path(event), class: "" %></td>
                 <td><%= link_to "edit", edit_admin_event_path(event) %></td>
               </tr>

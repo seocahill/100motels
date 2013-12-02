@@ -13,17 +13,28 @@
 
 # Best in place stuff
 $ ->
-  $('.about').on 'ajax:success', () ->
+  $('.best_in_place_about').on 'ajax:success', () ->
     $.get window.location.pathname, (data) ->
+      $('.edit-about').text "Edit"
+      $('#cancel-button').removeClass("hideme")
       $('.about').html $(data).find(".about").html()
 
 $ ->
-  $('.edit-about').click ->
+  $('.edit-about').click () ->
     $(this).text () ->
       if $(this).is('.active') then "Edit" else "Save"
+    $('#cancel-button').toggleClass("hideme")
+
+$ ->
+  $('#cancel-button').on 'mousedown', () ->
+    $('.edit-about').removeClass('active').text("Edit")
+    $(this).addClass("hideme")
+
 $ ->
   $(document).keyup (e) ->
-    if e.keyCode is 27 and $('.edit-about').is('.active') then $('.edit-about').removeClass('active').text("Edit")
+    if e.keyCode is 27 and $('.edit-about').is('.active')
+      $('.edit-about').removeClass('active').text("Edit")
+      $('#cancel-button').addClass("hideme")
 
 $ ->
   $('.best_in_place').best_in_place()

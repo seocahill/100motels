@@ -2,14 +2,13 @@ class EventsController < ApplicationController
   before_action :find_event, only: [:show]
 
   def index
-    # @events = Event.public_events.text_search(params[:query]).page(params[:page]).per_page(9)
     @events = Event.where(visible: true).text_search(params[:query]).page(params[:page]).per_page(9)
     @view = view_context
   end
 
   def show
     @order = Order.new
-    @event_presenter = EventPresenter.new(@event, view_context)
+    @presenter = EventPresenter.new(view_context)
   end
 
   def update

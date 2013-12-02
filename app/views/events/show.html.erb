@@ -13,11 +13,11 @@
   <%= tag :meta, name: "twitter:description", content: @event.name + " in " + @event.location + ", " + @event.date.strftime("%d/%m/%Y") %>
   <%= tag :meta, name: "twitter:image", content: @event.image %>
 <% end %>
-<section id="event-banner" data-url='<%= @event_presenter.image %>'>
+<section id="event-banner" data-url='<%= @presenter.image(@event) %>'>
 	<div class="row">
 		<div class="col-lg-12 event-header">
 			<div class="container">
-				<div class="pull-right"><%= @event_presenter.filepicker %></div>
+				<div class="pull-right"><%= @presenter.filepicker(@event) %></div>
 				<h2>
 					<%= @event.user.name %> presents<br>
 					<%= @event.name %><br>
@@ -29,11 +29,11 @@
 </section>
 <section id="event-information">
 	<div class="progress">
-	  <div class="progress-bar progress-bar-success sold" role="progressbar" data-funded="<%= @event_presenter.per_cent_sold %>">
-		  <span><%= @event_presenter.tickets_sold %> sold</span>
+	  <div class="progress-bar progress-bar-success sold" role="progressbar" data-funded="<%= @presenter.per_cent_sold(@event) %>">
+		  <span><%= @presenter.tickets_sold(@event) %> sold</span>
 	  </div>
 	  <div class="progress-bar unsold">
-	    <span class=""><%= @event_presenter.tickets_left %> left</span>
+	    <span class=""><%= @presenter.tickets_left(@event) %> left</span>
 	  </div>
 	</div>
 	<div class="container">
@@ -66,8 +66,8 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-10 col-lg-offset-1">
-				<%= @event_presenter.edit_button %>
-				<div class="event-media-html"><%= @event_presenter.about_section %></div>
+				<%= @presenter.edit_button(@event) %><button id="cancel-button" class="btn hideme">Cancel</button>
+				<div class="event-media-html"><%= @presenter.about_section(@event) %></div>
 			</div>
 		</div>
 	</div>

@@ -20,7 +20,7 @@ class Admin::EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    @event_presenter = EventPresenter.new(@event, view_context)
+    @presenter = EventPresenter.new(view_context)
     @events = current_user.events
     @orders = @event.orders.text_search(params[:query]).page(params[:page]).per_page(15)
     respond_to do |format|

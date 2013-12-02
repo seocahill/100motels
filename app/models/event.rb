@@ -13,8 +13,6 @@ class Event < ActiveRecord::Base
   has_many :orders
   has_many :tickets, through: :orders
 
-  scope :public_events, -> { where(visible: true).includes(:user).where("users.state = 1").references(:user) }
-
   include PgSearch
   pg_search_scope :search,
     against: [:name, :location, :about],

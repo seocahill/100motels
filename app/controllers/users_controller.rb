@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
-    @view = view_context
+    @presenter = EventPresenter.new(view_context)
   end
 
   def new

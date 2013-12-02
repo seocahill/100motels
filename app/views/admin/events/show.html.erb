@@ -15,12 +15,12 @@
     <div class="col-lg-3">
       <div class="list-group">
         <li href="#" class="list-group-item">
-          <h4 class="list-group-item-heading">Time Left <span class="badge pull-right"><%= @event_presenter.left_to_go %></span></h4>
+          <h4 class="list-group-item-heading">Time Left <span class="badge pull-right"><%= @presenter.left_to_go(@event) %></span></h4>
           <p class="list-group-item-text">Send a group email to your customers optionally rescheduling or cancelling the event.</p><br>
           <%= link_to "Notify Customers", new_admin_event_message_path(@event), class: "btn btn-info btn-block" %>
         </li>
         <li href="#" class="list-group-item">
-          <h4 class="list-group-item-heading">Sales Orders <span class="badge pull-right"><%= @event_presenter.earnings %></h4>
+          <h4 class="list-group-item-heading">Sales Orders <span class="badge pull-right"><%= @presenter.earnings(@event) %></h4>
           <p class="list-group-item-text">Charge all unpaid sales orders.</p><br>
           <%= button_to "Charge Customers", charges_path(event_id: @event.id), class: "btn btn-success btn-block", method: :create %>
         </li>
