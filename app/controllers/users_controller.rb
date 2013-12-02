@@ -28,7 +28,7 @@ class UsersController < ApplicationController
       redirect_to(@user, notice: "Settings updated")
     else
       flash[:error] = "You must enter your password to confirm changes"
-      render :show
+      redirect_to(@user)
     end
   end
 

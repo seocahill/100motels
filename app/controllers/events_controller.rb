@@ -3,7 +3,7 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.where(visible: true).text_search(params[:query]).page(params[:page]).per_page(9)
-    @view = view_context
+    @presenter = EventPresenter.new(view_context)
   end
 
   def show

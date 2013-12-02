@@ -55,10 +55,6 @@ class Event < ActiveRecord::Base
     link :target => "_blank", :rel => "nofollow"
   end
 
-  def present(view)
-    EventPresenter.new(self, view)
-  end
-
   def public?
     self.visible? and !self.user.state_suspended?
   end

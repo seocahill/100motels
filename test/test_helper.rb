@@ -36,6 +36,7 @@ class ActionDispatch::IntegrationTest
   end
 
   Capybara.javascript_driver = :poltergeist
+  # Capybara.default_wait_time = 30
 
   def teardown
     Capybara.current_driver = Capybara.default_driver
