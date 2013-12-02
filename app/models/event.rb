@@ -18,7 +18,7 @@ class Event < ActiveRecord::Base
   include PgSearch
   pg_search_scope :search,
     against: [:name, :location, :about],
-    using: {tsearch: {dictionary: "english"}}
+    using: {tsearch: {dictionary: "english"}} #,associated_against: {user: [:state]}
 
   def self.text_search(query)
     if query.present?
@@ -48,12 +48,12 @@ class Event < ActiveRecord::Base
 
   auto_html_for :about do
     html_escape
-    redcarpet(:filter_html => true)
-    image
     youtube(:width => 400, :height => 250)
     vimeo(:width => 400, :height => 250)
     soundcloud(:maxwidth => 400, :maxheight => 250)
     google_map(:width => 400, :height => 250)
+    image
+    redcarpet(:filter_html => true)
     link :target => "_blank", :rel => "nofollow"
   end
 
