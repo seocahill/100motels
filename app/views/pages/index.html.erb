@@ -1,44 +1,64 @@
-<div class="landing-top">
-  <div class="logo-nav">
-    <% unless current_user %>
-      <h2>100 Motels | <small><%= link_to "sign-in", login_path %> &middot; <%= link_to "events", events_path %> </small></h2>
-    <% end %>
-  </div>
-  <div class="headline small-container text-center container">
-    <h2>
+<section class="header">
+  <nav class="logo-nav">
+    <h2>100 Motels |<small><%= link_to "sign-in", login_path %> • <%= link_to "events", events_path %> </small></h2>
+  </nav>
+  <div class="vert-text">
+    <h1>
       <span class="black-background">Tour the world without a record label.</span>
-    </h2> <br>
+    </h1>
+  </div>
+</section>
+<section id="about" class="intro">
+  <div class="container">
     <div class="row">
-      <div class="col-lg-3 col-lg-offset-1"><%= link_to "Try it free", users_path, method: :post, class: 'btn btn-lg btn-success', id: 'try-it-button' %></div>
-      <div class="col-lg-6 search"><%= render 'search' %></div>
-    </div>
-    <div class="row">
-      <div class="col-lg-6 col-lg-offset-6 learn-more">
-        <a href="#info-section"> learn more <i class="icon-chevron-sign-down"></i></a>
+      <div class="col-md-6 col-md-offset-3 text-center">
+        <h2>100 Motels?</h2>
+        <p class="lead">Hi there and welcome! My band's music is free and we'll never have a record label backing us. I made 100 Motels so we could try out possible tour dates without worrying about nobody showing up or losing loads of money. </p>
+        <%= link_to "Try it Free", users_path, method: :post, class: "btn btn-success btn-lg" %>
       </div>
-  </div>
-</div>
-<div class="landing-bottom small-container container" id="info-section">
-  <div class="row">
-    <div class="col-lg-6 col-lg-offset-6">
-      <h3>What is it?</h3>
-      <p class="lead">A Funding & Ticketing platform for organizing viable tour dates. No time-limits, no cancellation fees, no risk.</p>
     </div>
   </div>
-  <div class="row">
-    <div class="col-lg-6 col-lg-offset-6">
-      <h3 class="">Who is it for?</h3>
-      <p class="lead">Anyone who is concerned about reaching a cash or attendance target before commiting to a live event.</p>
+</section>
+<section id="services" class="services">
+  <div class="">
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4 text-center">
+        <!-- <h2>What you need to do...</h2> -->
+        <!-- <hr> -->
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 col-md-offset-2 text-center">
+        <div class="service-item">
+          <i class="service-icon fa fa-credit-card"></i>
+          <h4>Sign up and connect with Stripe</h4>
+          <p>You need to do this to receive money. Stripe also provide us with the means to verify your identity.</p>
+        </div>
+      </div>
+      <div class="col-md-2 text-center">
+        <div class="service-item">
+          <i class="service-icon fa fa-pencil"></i>
+          <h4>Create a Page for your Tour</h4>
+          <p>Just embed a poster or add soundclouds, videos, maps and text in markdown. Add as many dates as you want.</p>
+        </div>
+      </div>
+      <div class="col-md-2 text-center">
+        <div class="service-item">
+          <i class="service-icon fa fa-money"></i>
+          <h4>Set your Price</h4><br>
+          <p>You keep the full ticket price. Charges are added at purchase time, 4% for 100 Motels + Stripe's card processing fees.</p>
+        </div>
+      </div>
+      <div class="col-md-2 text-center">
+        <div class="service-item">
+          <i class="service-icon fa fa-question"></i>
+          <h4>Charge, Defer or Cancel.</h4><br>
+          <p>Happy? Get your money! Kinda happy? Reschedule keeping your existing customers. Need to Cancel? No fees, full refunds.</p>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-lg-6 col-lg-offset-6">
-      <h3 class="">Why?</h3>
-      <p class="lead">Because no one enjoys empty venues. <br>
-      Because independent music isn't being toured. <br>
-      Because artists should never pay to play. </p>
-     </div>
-  </div>
-  </div>
-</div>
-
+</section>
+<footer>
+  <span>© 100 Motels 2013 | legal | privacy | info | contact</span>
+</footer>

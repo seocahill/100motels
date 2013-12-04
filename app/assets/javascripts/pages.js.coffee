@@ -3,8 +3,8 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 # Splash image
-$ ->
-  $('.splash-image').backstretch("https://s3-us-west-2.amazonaws.com/onehundredmotels/motels_landing_splash.jpg")
+# $ ->
+#   $('.splash-image').backstretch("https://s3-us-west-2.amazonaws.com/onehundredmotels/motels_landing_splash.jpg")
 
 # Learn More Scroll
 $ ->

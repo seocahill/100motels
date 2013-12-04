@@ -15,9 +15,9 @@
 $ ->
   $('.best_in_place_about').on 'ajax:success', () ->
     $.get window.location.pathname, (data) ->
-      $('.edit-about').text "Edit"
-      $('#cancel-button').removeClass("hideme")
       $('.about').html $(data).find(".about").html()
+      # $('.edit-about').text "Edit"
+      # $('#cancel-button').removeClass("hideme")
 
 $ ->
   $('.edit-about').click () ->

@@ -20,7 +20,8 @@ class User < ActiveRecord::Base
     if self.guest?
       about_text = <<-END
         #Read this first!\n\n---\n\n
-        ###You can edit this page by clicking on any element that is marked with an  icon. All your changes should be saved automatically.\n\n
+        ###You can edit the main body of the page by clicking the edit button.\n\n
+        ###You can edit the date, location, target and price via the Admin link in the menu.\n\n
         ####This page uses redcarpet markdown for formating, you can also embed media objects and images.\n\n
         ####Don't forget to mention the lineup for the night:\n1. [Crete Boom](http://creteboom.com/).\n
         2. [Another Band](http://example.com/).\n\n> fuckin A\n\n####Here's some Crete Boom vids, first youtube:\n\n
