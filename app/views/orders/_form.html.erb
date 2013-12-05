@@ -1,7 +1,9 @@
 <%= form_for @order, method: :post, html: { class: 'form-inline', role: "form"} do |f| %>
   <div class="form-group">
-    <label class="sr-only" for="exampleInputEmail2">Email address</label>
-    <%= f.email_field :email, class: 'form-control', placeholder: "Enter email" %>
+    <label>
+      <div class="price" data-price='<%= @event.ticket_price %>'><%= number_to_currency raw('<span class="order-total"></span>') %>
+        </div>
+    </label>
   </div>
   <div class="form-group">
     <select class="form-control" id="order_quantity" name="order[quantity]">

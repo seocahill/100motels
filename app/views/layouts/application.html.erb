@@ -5,8 +5,8 @@
     <%= stylesheet_link_tag    "application", :media => "all" %>
     <%= filepicker_js_include_tag %>
     <%= javascript_include_tag "application" %>
-    <!-- // <script src="https://checkout.stripe.com/v2/checkout.js"></script> -->
     <script src="https://checkout.stripe.com/checkout.js"></script>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-513ba15373992907"></script>
     <%= csrf_meta_tags %>
     <%= yield :head %>
     <!--if [lt IE 9]>
@@ -15,62 +15,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body>
+    <a id="menu-toggle" href="#" class="btn btn-default btn-lg toggle"><i class="fa fa-bars"></i></a>
+    <div id="sidebar-wrapper">
+      <ul class="sidebar-nav">
+        <a id="menu-close" href="#" class="btn btn-default btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
+        <li class="sidebar-brand"><%= link_to "100 Motels", root_path %></li>
+        <li><%= link_to "Home", root_path %></li>
+        <li><%= link_to "Events", events_path %></li>
+        <li><%= link_to "Sign In", login_path %></li>
+      </ul>
+    </div>
     <div class="wrapper">
-      <nav class="navbar navbar-default" role="navigation">
-        <div class="container">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="">
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <%= link_to "100 Motels", root_path, class: "brand navbar-brand" %>
-          </div>
-          <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-              <li><%= link_to "Events", events_path %></li>
-              <li><a id="Intercom" href="mailto:fc8518d2134e8c1f1d72067b7e19a67d63f6bbed@incoming.intercom.io">Support</a></li>
-              <% if current_user %>
-              <% end %>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-              <% unless current_user %>
-                <li><%= link_to "Sign up", signup_path %></li>
-                <li><%= link_to "Sign in", login_path %></li>
-              <% end %>
-              <% if current_user %>
-                <li><%= link_to(current_user.guest? ? "Save your account" : "Admin", user_path(current_user)) %></li>
-                <li><%= link_to "Sign out", logout_path %></li>
-              <% end %>
-            </ul>
-          </div>
-        </div>
-      </nav>
-      <div>
-        <div class="container flash-messages">
+      <div class="container flash-messages">
         <% flash.each do |key, value| %>
           <div class="alert alert-<%= key == :notice ? "success" : "danger" %>">
             <a class="close" data-dismiss="alert">&#215;</a>
             <%= content_tag :div, value, :id => "flash_#{key}" if value.is_a?(String) %>
           </div> <!-- /flash -->
         <% end %>
-        </div>
-        <%= yield %>
-      </div> <!-- /content container -->
-      <div class="push"></div>
-    </div> <!-- /wrap -->
-    <hr>
-    <footer>
-      <div class="container">
-        <ul class="list-inline">
-          <li>© 100 Motels Ltd 2013</li>
-          <li><%= link_to "Terms of Service", info_path %></li>
-          <li><%= link_to "Legal and Privacy", info_path %></li>
-          <li><%= link_to "Info and Help", info_path %></li>
-          <li><%= link_to "Sign Up", signup_path %></li>
-          <li><a href="http://blog.100motels.com">Blog</a></li>
-        </ul>
       </div>
+      <%= yield %>
+    </div> <!-- /content container -->
+    <div class="push"></div>
+    </div> <!-- /wrap -->
+    <footer>
+      <span>© 100 Motels 2013 | legal | privacy | info | contact</span>
     </footer>
   </body>
 </html>

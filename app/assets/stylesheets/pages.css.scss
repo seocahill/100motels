@@ -74,22 +74,6 @@ a.next-chapter {
 .next-chapter h3 {
   font-weight: 300;
 }
-.next-chapter .caret {
-  position: relative;
-  display: block;
-  margin: 0 auto;
-  width: 50px;
-  height: 50px;
-  content: ">";
-  -webkit-transform: rotate(90deg);
-  -moz-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
-  -o-transform: rotate(90deg);
-  transform: rotate(90deg);
-  font-size: 80px;
-  font-weight: 100;
-  line-height: 0.36;
-}
 
 
 /* Intro */
@@ -127,7 +111,7 @@ i.service-icon {
 
 footer {
   background: #32373A;
-  padding: 50px 0;
+  padding: 40px 0;
   color: #ffffff;
   font-size: 1.25em;
   a {

@@ -14,51 +14,40 @@
   <%= tag :meta, name: "twitter:image", content: @event.image %>
 <% end %>
 <section id="event-banner" data-url='<%= @presenter.image(@event) %>'>
-	<div class="row">
-		<div class="col-lg-12 event-header">
-			<div class="container">
-				<div class="pull-right"><%= @presenter.filepicker(@event) %></div>
-				<h2>
-					<%= @event.user.name %> presents<br>
-					<%= @event.name %><br>
-					<%= time_tag(@event.date) %> | <%= @event.location %>
-				</h2>
-			</div>
-		</div>
+	<div class="pull-right"><%= @presenter.filepicker(@event) %></div>
+  <div class="vert-text event-header">
+		<h1>
+			<%= @event.name %>
+		</h1>
 	</div>
 </section>
 <section id="event-information">
-	<div class="progress">
-	  <div class="progress-bar progress-bar-success sold" role="progressbar" data-funded="<%= @presenter.per_cent_sold(@event) %>">
-		  <span><%= @presenter.tickets_sold(@event) %> sold</span>
-	  </div>
-	  <div class="progress-bar unsold">
-	    <span class=""><%= @presenter.tickets_left(@event) %> left</span>
-	  </div>
-	</div>
-	<div class="container">
+	<div class="">
 		<div class="row">
-			<div class="col-lg-6">
+      <div class="col-lg-3">
+        <div class="progress">
+          <div class="progress-bar progress-bar-success sold" role="progressbar" data-funded="<%= @presenter.per_cent_sold(@event) %>">
+            <span><%= @presenter.tickets_sold(@event) %> sold</span>
+          </div>
+        </div>
+      </div>
+			<div class="col-lg-6 text-center">
 				<div class="visible-desktop">
 					<div class="addthis_toolbox">
 						<div class="custom_images">
 							<ul class="list-inline">
-								<li><a href="http://www.facebook.com/sharer.php?u=<%= event_url(@event) %>"class="" target="_blank"><i class="icon-facebook"></i></a></li>
-		              <li><a href="https://twitter.com/share?text=<%= @event.name %>&url=<%= event_url(@event) %>&via=100Motels" class="" target="_blank"><i class="icon-twitter"></i></a></li>
-		              <li><a href="https://plus.google.com/share?url=<%= event_url(@event) %>" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="" target="_blank"><i class="icon-google-plus"></i></a></li>
-								<li><a class="addthis_button_more"><i class="icon-share"></i></a></li>
-							</ul>
+                <li><a href=""><i class="fa fa-map-marker"></i> Rudy's Dublin</a></li>
+                <li><i class="fa fa-calendar"></i> Wed, Nov 15 @ 8pm</li>
+								<li><a class="addthis_button_more"><i class="fa fa-share"></i></a></li>
+              </ul>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-4">
+      <div class="col-lg-3">
         <%= render 'orders/form' %>
-			</div>
-			<div class="col-lg-2"><div class="price" data-price='<%= @event.ticket_price %>'><%= number_to_currency raw(
-        '<span class="order-total"></span>'
-        ) %></div=></div>
-		</div>
+    	</div>
+    </div>
 	</div>
 </section>
 <hr>
@@ -72,18 +61,3 @@
 		</div>
 	</div>
 </section>
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-513ba15373992907">
-	var addthis_share = {
-     url_transforms : {
-          shorten: {
-               twitter: 'bitly'
-          }
-     },
-     shorteners : {
-          bitly : {}
-     }
-	}
-	var addthis_config = {
-     data_track_clickback: false
-	}
-</script>

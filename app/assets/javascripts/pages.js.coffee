@@ -8,7 +8,7 @@
 
 # Learn More Scroll
 $ ->
-  $("a[href^=\"#\"]").on "click", (e) ->
+  $(".next-chapter").on "click", (e) ->
     e.preventDefault()
     target = @hash
     $target = $(target)
@@ -16,3 +16,13 @@ $ ->
       scrollTop: $target.offset().top
     , 900, "swing", ->
       window.location.hash = target
+
+# menu animation
+$ ->
+  $("#menu-close").click (e) ->
+    e.preventDefault()
+    $("#sidebar-wrapper").toggleClass("active")
+
+  $("#menu-toggle").click (e) ->
+    e.preventDefault()
+    $("#sidebar-wrapper").toggleClass("active")

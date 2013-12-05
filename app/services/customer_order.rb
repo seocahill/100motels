@@ -1,8 +1,9 @@
 class CustomerOrder
 
-  def initialize(order, token)
+  def initialize(order, params)
     @order = order
-    @token = token
+    @token = params[:stripeToken]
+    @email = params[:stripeEmail]
     @error = nil
   end
 
@@ -25,7 +26,7 @@ class CustomerOrder
   def create_customer
     Stripe.api_key = ENV['STRIPE_API_KEY']
       customer = Stripe::Customer.create(
-          email: @order.email,
+          email: @email,
           card: @token
       )
       customer
