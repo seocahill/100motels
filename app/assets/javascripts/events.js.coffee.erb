@@ -47,7 +47,10 @@ $ ->
 
 # backSretch
 $ ->
-  $("#event-banner").backstretch($("#event-banner").data('url'))
+  if $("#event-banner").data('url')
+    $("#event-banner").backstretch($("#event-banner").data('url'))
+  else
+    $("#event-banner").hide();
 
 # Progress bar
 $ ->

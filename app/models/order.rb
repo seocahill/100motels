@@ -12,7 +12,7 @@ class Order < ActiveRecord::Base
   scope :not_cancelled, -> { where('stripe_event < 3') }
 
   include PgSearch
-  pg_search_scope :search, against: [:name, :email, :id],
+  pg_search_scope :search, against: [:name, :email, :id, :stripe_event],
   using: {tsearch: {dictionary: "english"}},
   associated_against: {event: [:name, :location], tickets: :number }
 

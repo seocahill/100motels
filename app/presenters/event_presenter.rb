@@ -21,7 +21,7 @@ class EventPresenter
     if event.image.present?
       event.image
     else
-      "https://s3-us-west-2.amazonaws.com/onehundredmotels/247915_156305404435251_2616225_n.jpg"
+      nil
     end
   end
 
@@ -53,6 +53,10 @@ class EventPresenter
   def per_cent_sold(event)
     percent = tickets_sold(event) * event.target / 100
     percent < 100 ? percent : 100
+  end
+
+  def per_cent_left(event)
+    100 - per_cent_sold(event)
   end
 
   def left_to_go(event)

@@ -12,26 +12,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-lg-3">
-      <div class="list-group">
-        <li href="#" class="list-group-item">
-          <h4 class="list-group-item-heading">Time Left <span class="badge pull-right"><%= @presenter.left_to_go(@event) %></span></h4>
-          <p class="list-group-item-text">Send a group email to your customers optionally rescheduling or cancelling the event.</p><br>
-          <%= link_to "Notify Customers", new_admin_event_message_path(@event), class: "btn btn-info btn-block" %>
-        </li>
-        <li href="#" class="list-group-item">
-          <h4 class="list-group-item-heading">Sales Orders <span class="badge pull-right"><%= @presenter.earnings(@event) %></h4>
-          <p class="list-group-item-text">Charge all unpaid sales orders.</p><br>
-          <%= button_to "Charge Customers", charges_path(event_id: @event.id), class: "btn btn-success btn-block", method: :create %>
-        </li>
-        <li href="#" class="list-group-item">
-          <h4 class="list-group-item-heading">Tickets</h4>
-          <p class="list-group-item-text">Search, Print and Check tickets for this event.</p><br>
-          <%= link_to "Ticket Checking", admin_event_tickets_path(@event), class: "btn btn-primary btn-block" %>
-        </li>
-      </div>
-    </div>
-    <div class="col-lg-9">
+    <div class="col-lg-12">
       <div class="panel panel-default">
         <div class="panel-body">
           <form>
