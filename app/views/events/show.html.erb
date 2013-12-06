@@ -13,8 +13,8 @@
   <%= tag :meta, name: "twitter:description", content: @event.name + " in " + @event.location + ", " + @event.date.strftime("%d/%m/%Y") %>
   <%= tag :meta, name: "twitter:image", content: @event.image %>
 <% end %>
+<div id="filepick"><%= @presenter.filepicker(@event) %></div>
 <section id="event-banner" data-url='<%= @presenter.image(@event) %>'>
-	<div class="pull-right"><%= @presenter.filepicker(@event) %></div>
   <div class="vert-text event-header">
 		<h1>
 			<%= @event.name %>
@@ -25,7 +25,8 @@
 	<div class="">
 		<div class="row">
       <div class="col-lg-3">
-        <div class="progress"><i class="fa fa-ticket"></i>
+        <div class="progress">
+        <!-- <i class="fa fa-ticket"></i> -->
           <div class="progress-bar progress-bar-success sold" role="progressbar" data-funded="<%= @presenter.per_cent_sold(@event) %>">
             <span><%= @presenter.tickets_sold(@event) %> sold</span>
           </div>

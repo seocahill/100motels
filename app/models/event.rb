@@ -51,7 +51,7 @@ class Event < ActiveRecord::Base
     soundcloud(:maxwidth => 400, :maxheight => 250)
     google_map(:width => 400, :height => 250)
     image
-    redcarpet(:filter_html => true)
+    redcarpet(:filter_html => true) #escape_html
     link :target => "_blank", :rel => "nofollow"
   end
 

@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   enum_accessor :state, [ :unconfirmed, :normal, :suspended, :superadmin]
   has_many :events
+  has_many :orders, through: :events
   before_create :generate_token
   validates_presence_of :name, :email, unless: :guest?
   validates_uniqueness_of :email, allow_blank: true

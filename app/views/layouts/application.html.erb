@@ -7,6 +7,7 @@
     <%= javascript_include_tag "application" %>
     <script src="https://checkout.stripe.com/checkout.js"></script>
     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-513ba15373992907"></script>
+    <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
     <%= csrf_meta_tags %>
     <%= yield :head %>
     <!--if [lt IE 9]>
@@ -20,9 +21,21 @@
       <ul class="sidebar-nav">
         <a id="menu-close" href="#" class="btn btn-default btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
         <li class="sidebar-brand"><%= link_to "100 Motels", root_path %></li>
-        <li><%= link_to "Home", root_path %></li>
-        <li><%= link_to "Events", events_path %></li>
-        <li><%= link_to "Sign In", login_path %></li>
+        <li><%= link_to("Your Account", user_path(current_user)) if current_user
+         %></li>
+        <li><%= link_to "Events", events_path unless current_user %></li>
+        <li><%= link_to "Events", admin_events_path if current_user %></li>
+        <li><%= link_to("New Event", new_admin_event_path) if current_user %></li>
+        <li><%= link_to("Edit Event", edit_admin_event_path(@event)) if @event and current_user %></li>
+        <li><%= link_to("Orders", admin_event_path(@event)) if @event and current_user %></li>
+        <li><%= link_to("Ticket Check", admin_event_tickets_path(@event)) if @event and current_user %></li>
+        <li><%= link_to("Message", new_admin_event_message_path(@event)) if @event and current_user %></li>
+        <li><%= link_to("Extend Event", new_admin_event_message_path(@event)) if @event and current_user %></li>
+        <li><%= link_to("Charge", new_admin_event_message_path(@event)) if @event and current_user %></li>
+        <li><%= link_to("Cancel", new_admin_event_message_path(@event)) if @event and current_user %></li>
+        <li class="divider"></li>
+        <li><%= link_to("Sign In", login_path) unless current_user %></li>
+        <li><%= link_to("Sign Out", logout_path) if current_user %></li>
       </ul>
     </div>
     <div class="wrapper">

@@ -4,19 +4,11 @@ class Admin::EventsController < ApplicationController
     authorized?(params[:id])
   end
 
-  def new
-    @event = Event.new
+  def index
+    @events = current_user.events.all
+    @presenter = EventPresenter.new(view_context)
   end
 
-  def create
-    @event = current_user.events.new(event_params)
-    if @event.save
-      flash[:notice] = 'Event was successfully created.'
-      redirect_to(@event)
-    else
-      render action: "new"
-    end
-  end
 
   def show
     @event = Event.find(params[:id])
@@ -31,6 +23,20 @@ class Admin::EventsController < ApplicationController
                               type: "application/pdf",
                               disposition: "inline"
       end
+    end
+  end
+
+  def new
+    @event = Event.new
+  end
+
+  def create
+    @event = current_user.events.new(event_params)
+    if @event.save
+      flash[:notice] = 'Event was successfully created.'
+      redirect_to(@event)
+    else
+      render action: "new"
     end
   end
 

@@ -1,5 +1,5 @@
 <%= form_for @order, method: :post, html: { class: 'form-inline', role: "form"} do |f| %>
-  <div class="form-group">
+  <div class="form-group subtotal">
     <label>
       <div class="price" data-price='<%= @event.ticket_price %>'><%= number_to_currency raw('<span class="order-total"></span>') %>
         </div>

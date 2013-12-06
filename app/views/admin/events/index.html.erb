@@ -1,0 +1,53 @@
+<div class="" id="dash">
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="row">
+        <article id="orange" class="col-lg-4">
+          <h1>Cash</h1>
+          <p id="cash-dash"><%= number_to_currency(current_user.orders.sum(:total)) %></p>
+          <p id="target-dash"><%= (current_user.orders.sum(:quantity) / current_user.events.sum(:target)) * 100 %> % of target</p>
+        </article>
+        <article id="purple" class="col-lg-8">
+          <h1>Top Selling Shows</h1>
+          <%= column_chart @events.map{|event|
+              {:name => event.name, :data => event.orders.sum(:quantity)}
+          }, library: {backgroundColor: "#9c4274"} %>
+      </div>
+      <div class="row">
+        <article id="cyan" class="col-lg-8">
+          <h1>Orders</h1>
+          <%= line_chart Order.group_by_day(:created_at).count, height: "300px", library: {backgroundColor: "rgb(71, 187, 179)"} %>
+        </article>
+        <article id="gold" class="col-lg-4">
+          <h1>Activity</h1>
+          <table>
+            <tbody>
+            <% current_user.orders.order(created_at: :desc).limit(5).each do |order| %>
+              <tr>
+                <td>order# <%= link_to truncate(order.id, length: 10), order_path(order)%></td>
+                <td><span class="badge pull-right"><%= distance_of_time_in_words(Time.now, order.created_at) %> ago</span> </td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </article>
+      </div>
+    </div>
+    <div id="aqua" class="col-lg-4">
+      <h1>Upcoming Shows</h1>
+      <div class="container">
+        <table>
+          <tbody>
+          <% @events.each do |event| %>
+            <tr class="">
+              <td><%= link_to event.name, event_path(event), class: "" %></td>
+              <td><span class="badge pull-right"><%= @presenter.left_to_go(event) %> left</span> </td>
+              <td><%= @presenter.per_cent_sold(event) %>% sold</td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
