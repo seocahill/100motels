@@ -34,7 +34,7 @@ class EventPresenter
   end
 
   def edit_button(event)
-    button_tag "Edit", type: "button", class: "btn btn-default edit-about", data: { toggle: "button" } if event_owner?(event)
+    button_tag "Edit", type: "button", class: "btn btn-default btn-lg edit-about", data: { toggle: "button" } if event_owner?(event)
   end
 
   def about_section(event)

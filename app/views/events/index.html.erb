@@ -1,6 +1,6 @@
-<div class="container">
-	<div class="row">
-		<div class="col-lg-12">
+<nav class="search-bar">
+  <div class="row">
+    <div class="col-lg-9">
       <form>
         <div class="input-group search">
           <input type="search" name="query" results=5 class="form-control input-lg" value="<%= params[:query] %>">
@@ -11,16 +11,20 @@
       </form>
     </div>
   </div>
-	<hr>
-	<div class="row">
-  <% @events.each do |event| %>
-    <div class="col-md-4 portfolio-item">
-      <%= link_to event_path(event) do %>
-        <%= @presenter.index_image(event) %>
-        <h3><%= truncate(event.name, length: 15) %> <small><%= event.date.strftime('%d/%m') %> in <%= event.location %>.</small></h3>
-      <% end %>
-        <p></p>
+</nav>
+<section id="search-results">
+  <div class="row">
+    <% @events.each do |event| %>
+    <div class="col-lg-3">
+      <div class="box">
+        <%= link_to event_path(event) do %>
+          <%= @presenter.index_image(event) %>
+          <span class="caption simple-caption">
+            <p><%= truncate(event.name, length: 15) %> <%= event.date.strftime('%d/%m') %> in <%= event.location %>.</p>
+          </span>
+        <% end %>
+      </div>
     </div>
-  <% end %>
+    <% end %>
   </div>
-</div>
+</section>

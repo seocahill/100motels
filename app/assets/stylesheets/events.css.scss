@@ -1,5 +1,72 @@
 // events index
-// scoped to events controller
+.search-bar {
+  background: #fff url('concrete_wall_2.png');
+  padding: 20px;
+}
+
+#search-results {
+  background: image-url("motels_landing_splash.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 800px;
+}
+
+#search-results .box {
+  // border: 5px solid #fff;
+  // cursor: pointer;
+  // height: 182px;
+  // float: left;
+  // margin: 5px;
+  // position: relative;
+  overflow: hidden;
+  // width: 200px;
+  // -webkit-box-shadow: 1px 1px 1px 1px #ccc;
+  // -moz-box-shadow: 1px 1px 1px 1px #ccc;
+  // box-shadow: 1px 1px 1px 1px #ccc;
+}
+
+#search-results .box img {
+    position: absolute;
+    left: 0;
+    -webkit-transition: all 300ms ease-out;
+    -moz-transition: all 300ms ease-out;
+    -o-transition: all 300ms ease-out;
+    -ms-transition: all 300ms ease-out;
+    transition: all 300ms ease-out;
+}
+
+#search-results .box .caption {
+    background-color: rgba(0,0,0,0.8);
+    position: absolute;
+    color: #fff;
+    z-index: 100;
+    -webkit-transition: all 300ms ease-out;
+    -moz-transition: all 300ms ease-out;
+    -o-transition: all 300ms ease-out;
+    -ms-transition: all 300ms ease-out;
+    transition: all 300ms ease-out;
+    left: 0;
+}
+
+#search-results .box .full-caption {
+    width: 100%;
+    height: 100%;
+    top: -400px;
+    text-align: left;
+    padding: 15px;
+}
+
+.box:hover .full-caption {
+  -moz-transform: translateY(100%);
+  -o-transform: translateY(100%);
+  -webkit-transform: translateY(100%);
+  transform: translateY(100%);
+}
+
+
+// event show
 #event-banner {
   display: table;
   min-height: 100%;
@@ -79,12 +146,12 @@
 }
 
 #event-information  {
-  background: #fff url('gplaypattern.png');
+  background: #fff url('concrete_wall_2.png');
   padding-top: 40px;
   padding-bottom: 30px;
   padding-left: 40px;
   padding-right: 40px;
-  border-bottom: 1px #F8E7E7 solid;
+  border-bottom: 1px #D5CBCB solid;
   .progress  {
     height: 28px;
     font-size: 20px;
@@ -107,7 +174,7 @@
 
 #event-media {
   padding: 40px 0;
-  background: #D1CCCC url('gplaypattern.png');
+  background: #fff url('concrete_wall_2.png');
 }
 
 // admin events
