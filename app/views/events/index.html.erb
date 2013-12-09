@@ -12,19 +12,19 @@
     </div>
   </div>
 </nav>
-<section id="search-results">
+<section id="search-results" class="">
   <div class="row">
     <% @events.each do |event| %>
-    <div class="col-lg-3">
-      <div class="box">
+      <figure class="col-lg-4 img-responsive">
         <%= link_to event_path(event) do %>
           <%= @presenter.index_image(event) %>
-          <span class="caption simple-caption">
-            <p><%= truncate(event.name, length: 15) %> <%= event.date.strftime('%d/%m') %> in <%= event.location %>.</p>
-          </span>
+          <figcaption>
+            <%= truncate(event.name, length: 15) %> <%= event.date.strftime('%d/%m') %> in <%= event.location %>.
+          </figcaption>
         <% end %>
-      </div>
-    </div>
+      </figure>
     <% end %>
+    <%= will_paginate @events, renderer: BootstrapPagination::Rails %>
   </div>
 </section>
+
