@@ -16,4 +16,14 @@
     display: none;
   }
 }
-
+.event-order-wrapper {
+  background-color: $brown;
+  height: 800px;
+  .event-order-table  {
+    padding-top: 60px;
+  }
+  .well {
+    background: url('concrete_wall_2.png');
+    height: 600px;
+  }
+}
