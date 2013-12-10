@@ -10,7 +10,7 @@
             <% end %>
           </div>
         <% end %>
-      <h3 class="page-header">Notify your Customers</h3>
+      <h3 class="page-header">Notify Customers of <%= @event.name %> in <%= @event.location %> on <%= time_tag(@event.date) %></h3>
 
       <%= form_for [:admin, @event, @message], html: {class: "form-horizontal"} do |f| %>
       <div class="form-group">
@@ -33,7 +33,7 @@
           <%= f.submit "Reschedule", name: "message[option]", class: "btn btn-lg btn-warning btn-block" %>
         </div>
         <div class="col-lg-2">
-          <%= f.submit "Cancel", name: "message[option]", class: "btn btn-lg btn-danger btn-block" %>
+          <%= f.submit "Cancel Event", name: "message[option]", class: "btn btn-lg btn-danger btn-block" %>
         </div>
       </div>
       <% end %>

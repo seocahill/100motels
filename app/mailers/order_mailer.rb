@@ -8,4 +8,9 @@ class OrderMailer < ActionMailer::Base
     @event = Event.find(event_id)
     mail bcc: @event.orders.pending.pluck(:email), subject: "100 Motels - Event Deferred"
   end
+
+  def order_created(order_id)
+    @order = Order.find(order_id)
+    mail to: @order.email, subject: "Your 100 Motels Order"
+  end
 end
