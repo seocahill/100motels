@@ -104,22 +104,22 @@ class EventTest < ActiveSupport::TestCase
 
   test "auto_html responsive youtube iframe" do
     event = FactoryGirl.build(:event, about: 'http://www.youtube.com/watch?v=BwNrmYRiX_o')
-    assert_equal '<div class="flex-embed"><iframe width="400" height="250" src="//www.youtube.com/embed/BwNrmYRiX_o" frameborder="0" allowfullscreen></iframe></div>'+"\n", event.about_html
+    assert_equal '<div class="flex-embed"><iframe width="420" height="315" src="//www.youtube.com/embed/BwNrmYRiX_o" frameborder="0" allowfullscreen></iframe></div>'+"\n", event.about_html
   end
 
   test "auto_html responsive vimeo iframe" do
     event = FactoryGirl.build(:event, about: 'http://www.vimeo.com/3300155')
-    assert_equal '<div class="flex-embed"><iframe src="//player.vimeo.com/video/3300155?title=0&byline=0&portrait=0" width="400" height="250" frameborder="0"></iframe></div>'+"\n", event.about_html
+    assert_equal '<div class="flex-embed"><iframe src="//player.vimeo.com/video/3300155?title=0&byline=0&portrait=0" width="440" height="248" frameborder="0"></iframe></div>'+"\n", event.about_html
   end
 
   test "auto_html soundcloud" do
     event = FactoryGirl.build(:event, about: 'https://soundcloud.com/creteboom/sets/them-bones-need-oxygen')
-    assert_equal event.about_html, '<iframe width="400" height="250" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Fplaylists%2F745034&show_artwork=true&maxwidth=400&maxheight=250"></iframe>'+"\n"
+    assert_equal event.about_html, '<iframe width="100%" height="450" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Fplaylists%2F745034&show_artwork=true"></iframe>'+"\n"
   end
 
   test "auto_html resposive google map" do
     event = FactoryGirl.build(:event, about: 'http://maps.google.co.kr/maps?q=%ED%8C%8C%ED%8A%B8%EB%84%88%EC%8A%A4%ED%83%80%EC%9B%8C+1%EC%B0%A8&hl=ko&ie=UTF8&ll=37.472942,126.884762&spn=0.00774,0.010053&sll=37.473027,126.88451&sspn=0.003887,0.005026&vpsrc=6&gl=kr&hq=%ED%8C%8C%ED%8A%B8%EB%84%88%EC%8A%A4%ED%83%80%EC%9B%8C+1%EC%B0%A8&t=m&z=17&iwloc=A')
-    assert_equal '<div class="flex-embed"><iframe width="400" height="250" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="//maps.google.co.kr/maps?f=q&amp;source=s_q&amp;q=%ED%8C%8C%ED%8A%B8%EB%84%88%EC%8A%A4%ED%83%80%EC%9B%8C+1%EC%B0%A8&amp;hl=ko&amp;ie=UTF8&amp;ll=37.472942,126.884762&amp;spn=0.00774,0.010053&amp;sll=37.473027,126.88451&amp;sspn=0.003887,0.005026&amp;vpsrc=6&amp;gl=kr&amp;hq=%ED%8C%8C%ED%8A%B8%EB%84%88%EC%8A%A4%ED%83%80%EC%9B%8C+1%EC%B0%A8&amp;t=m&amp;z=17&amp;iwloc=A&amp;output=embed"></iframe><br /><small><a href="//maps.google.co.kr/maps?f=q&amp;source=embed&amp;q=%ED%8C%8C%ED%8A%B8%EB%84%88%EC%8A%A4%ED%83%80%EC%9B%8C+1%EC%B0%A8&amp;hl=ko&amp;ie=UTF8&amp;ll=37.472942,126.884762&amp;spn=0.00774,0.010053&amp;sll=37.473027,126.88451&amp;sspn=0.003887,0.005026&amp;vpsrc=6&amp;gl=kr&amp;hq=%ED%8C%8C%ED%8A%B8%EB%84%88%EC%8A%A4%ED%83%80%EC%9B%8C+1%EC%B0%A8&amp;t=m&amp;z=17&amp;iwloc=A" style="color:#000;text-align:left">View Larger Map</a></small></div>'+"\n", event.about_html
+    assert_equal '<div class="flex-embed"><iframe width="420" height="315" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="//maps.google.co.kr/maps?f=q&amp;source=s_q&amp;q=%ED%8C%8C%ED%8A%B8%EB%84%88%EC%8A%A4%ED%83%80%EC%9B%8C+1%EC%B0%A8&amp;hl=ko&amp;ie=UTF8&amp;ll=37.472942,126.884762&amp;spn=0.00774,0.010053&amp;sll=37.473027,126.88451&amp;sspn=0.003887,0.005026&amp;vpsrc=6&amp;gl=kr&amp;hq=%ED%8C%8C%ED%8A%B8%EB%84%88%EC%8A%A4%ED%83%80%EC%9B%8C+1%EC%B0%A8&amp;t=m&amp;z=17&amp;iwloc=A&amp;output=embed"></iframe><br /><small><a href="//maps.google.co.kr/maps?f=q&amp;source=embed&amp;q=%ED%8C%8C%ED%8A%B8%EB%84%88%EC%8A%A4%ED%83%80%EC%9B%8C+1%EC%B0%A8&amp;hl=ko&amp;ie=UTF8&amp;ll=37.472942,126.884762&amp;spn=0.00774,0.010053&amp;sll=37.473027,126.88451&amp;sspn=0.003887,0.005026&amp;vpsrc=6&amp;gl=kr&amp;hq=%ED%8C%8C%ED%8A%B8%EB%84%88%EC%8A%A4%ED%83%80%EC%9B%8C+1%EC%B0%A8&amp;t=m&amp;z=17&amp;iwloc=A" style="color:#000;text-align:left">View Larger Map</a></small></div>'+"\n", event.about_html
   end
 
   test "auto_html link transform" do
