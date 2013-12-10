@@ -2,10 +2,11 @@
   <div class="event-order-table">
     <div class="container well">
       <div class="row">
-        <div class="col-lg-12">
-          <div class="">
-            <h3 class="page-header"><%= @event.name %> in <%= @event.location %> on <%= time_tag(@event.date) %>.</h3>
-          </div>
+        <div class="col-lg-9">
+          <h3 class="page-header"><%= @event.name %> in <%= @event.location %> on <%= time_tag(@event.date) %>.</h3>
+        </div>
+        <div class="col-lg-3">
+          <%= link_to "Charge Orders", charges_path, method: :post, class: "btn btn-lg btn-success btn-block", event_id: @event.id %>
         </div>
       </div>
       <div class="row">

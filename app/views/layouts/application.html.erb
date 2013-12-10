@@ -26,10 +26,10 @@
         <li><%= link_to "Events", events_path unless current_user %></li>
         <li><%= link_to "Dashboard", admin_events_path if current_user %></li>
         <li><%= link_to("New Event", new_admin_event_path) if current_user %></li>
-        <li><%= link_to("Edit Event", edit_admin_event_path(@event)) if @event and current_user %></li>
-        <li><%= link_to("Event Orders", admin_event_path(@event)) if @event and current_user %></li>
-        <li><%= link_to("Ticket Check", admin_event_tickets_path(@event)) if @event and current_user %></li>
-        <li><%= link_to("Notify, Reschedule or Cancel", new_admin_event_message_path(@event)) if @event and current_user %></li>
+        <li><%= link_to("Edit Event", edit_admin_event_path(@event)) if @event.try(:id) and current_user %></li>
+        <li><%= link_to("Event Orders", admin_event_path(@event)) if @event.try(:id) and current_user %></li>
+        <li><%= link_to("Ticket Check", admin_event_tickets_path(@event)) if @event.try(:id) and current_user %></li>
+        <li><%= link_to("Notify, Reschedule or Cancel", new_admin_event_message_path(@event)) if @event.try(:id) and current_user %></li>
         <li class="divider"></li>
         <li><%= link_to("Sign In", login_path) unless current_user %></li>
         <li><%= link_to("Sign Out", logout_path) if current_user %></li>

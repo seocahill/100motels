@@ -2,6 +2,10 @@
 $brown: rgba(90, 86, 86, 1);
 
 // customize brand color test
+
+.page-header {
+  border-bottom: 1px solid #D3D1D1;
+}
 .navbar {
   .brand  {
     font-family: 'Lobster', cursive;
