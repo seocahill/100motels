@@ -61,19 +61,21 @@ $ ->
   $('.unsold').css("width", "#{widthUnsold}%")
 
 $ ->
-  $("#checkout").click ->
-    token = (response) ->
+  handler = StripeCheckout.configure(
+    key: "<%= ENV['STRIPE_PUBLIC_KEY'] %>"
+    image: "<%= image_path('motels_m.png') %>"
+    token: (response) ->
       tokenInput = $("<input type=hidden name=stripeToken />").val(response.id)
       emailInput = $("<input type=hidden name=stripeEmail />").val(response.email)
       $("form").append(tokenInput).append(emailInput).submit()
-    StripeCheckout.open
-      key: "<%= ENV['STRIPE_PUBLIC_KEY'] %>"
+  )
+
+  $("#checkout").click (e) ->
+    handler.open
       address: false
       amount: Number($('.order-total').text()) * 100
       currency: "USD"
       name: "100 Motels"
-      image: "<%= image_path('motels_m.png') %>"
       description: "Your Tickets"
       panelLabel: "Checkout"
-      token: token
-    return false
+    e.preventDefault()

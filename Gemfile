@@ -29,7 +29,7 @@ group :test do
   gem 'webmock'
   gem 'stripe-ruby-mock', '>= 1.8.7.0'
 end
-gem 'bootstrap-sass', git: 'git://github.com/thomas-mcdonald/bootstrap-sass', branch: '3'
+gem 'bootstrap-sass'
 gem "font-awesome-rails"
 gem 'bcrypt-ruby'
 gem 'best_in_place', git: 'git://github.com/straydogstudio/best_in_place.git'

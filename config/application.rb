@@ -17,5 +17,6 @@ module OneHundredMotels
       g.test_framework :mini_test, fixture: false
     end
     config.filepicker_rails.api_key = ENV["FILEPICKER_API_KEY"]
+    config.i18n.enforce_available_locales = false
   end
 end
