@@ -12,27 +12,7 @@ gem "jquery-rails"
 gem 'jquery-ui-sass-rails'
 gem 'puma'
 group :development, :test do
-<<<<<<< HEAD
-  gem 'rails-erd'
-	gem 'rspec-rails'
-  gem 'better_errors'
-  gem 'binding_of_caller'
-  gem 'meta_request', '0.2.1'
-  gem 'sextant'
-  gem 'rb-fsevent'
-  gem 'capybara'
-  gem 'factory_girl_rails'
-  gem "shoulda-matchers"
-  gem 'faker'
-  gem 'database_cleaner'
-  gem 'launchy'
-  gem 'poltergeist'
-  gem 'listen', '0.4.7'
-  gem 'guard-rspec'
-  gem 'thin'
-=======
   gem 'minitest-rails', git: 'git://github.com/seocahill/minitest-rails.git'
->>>>>>> develop
   gem 'foreman'
   gem 'jazz_hands'
   gem 'letter_opener_web'
@@ -65,15 +45,9 @@ gem 'sidekiq-failures'
 gem 'sinatra', require: false
 gem 'slim'
 gem 'pg_search'
-gem 'active_attr'
-<<<<<<< HEAD
-gem 'intercom-rails', '~> 0.2.14'
-gem 'turnout'
 gem 'newrelic_rpm'
-=======
 gem 'intercom-rails'
 gem 'turnout'
 gem 'will_paginate-bootstrap', git: 'git://github.com/nickpad/will_paginate-bootstrap', branch: 'v1.0'
 gem 'chartkick'
 gem 'groupdate'
->>>>>>> develop
