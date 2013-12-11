@@ -6,7 +6,7 @@
           <article id="orange" class="col-lg-4">
             <h1>Cash</h1>
             <p id="cash-dash"><%= number_to_currency(current_user.orders.sum(:total)) %></p>
-            <p id="target-dash"><%= (current_user.orders.sum(:quantity) / current_user.events.sum(:target)) * 100 %> % of target</p>
+            <p id="target-dash"><%= @presenter.overall_target %> % of target</p>
           </article>
           <article id="purple" class="col-lg-8">
             <h1>Top Selling Shows</h1>

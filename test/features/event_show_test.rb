@@ -1,7 +1,6 @@
 require "test_helper"
 include SharedBehaviour
 
-
 class EventShowTest < Capybara::Rails::TestCase
 
   before do
@@ -10,10 +9,8 @@ class EventShowTest < Capybara::Rails::TestCase
 
   test "visible event by normal admin is visible" do
     visit event_path(@event)
-    assert page.has_content?(@event.name), "event name not visible"
     assert page.has_content?(@event.location), "event location not visible"
-    assert page.has_content?(@event.user.name), "owner name not visible"
-    assert page.has_content?("February 08, 2014"), "event date not visible"
+    assert page.has_content?("Saturday, Feb 8"), "event date not visible"
     assert page.has_content?(@event.about), "about html not visible"
   end
 
@@ -28,7 +25,6 @@ class EventShowTest < Capybara::Rails::TestCase
     hidden_event = FactoryGirl.create(:event, visible: false)
     sign_in(hidden_event.user)
     visit event_path(hidden_event)
-    assert page.has_content?(hidden_event.name)
     assert page.has_css?('button', text: 'Edit')
   end
 
@@ -39,7 +35,8 @@ class EventShowTest < Capybara::Rails::TestCase
   end
 
   test "signed-in admin can not edit an event they do not own" do
-    sign_in(FactoryGirl.create(:user))
+    other_event = FactoryGirl.create(:event)
+    sign_in(other_event.user)
     visit event_path(@event)
     refute page.has_css?('button', text: 'Edit')
   end
@@ -54,53 +51,20 @@ class EventShowTest < Capybara::Rails::TestCase
   test "placing an order successfully" do
     Capybara.current_driver = Capybara.javascript_driver
     visit event_path(@event)
-    fill_in "order[email]", with: "seo@example.com"
     select "2", from: "order[quantity]"
     assert page.find(".order-total").has_content?("21.11"), "order total incorrect"
     click_button "Purchase"
     within_frame(page.find('.stripe_checkout_app')[:name]) do
-      fill_in "Card number", with: "4242424242424242"
-      fill_in "Expires", with: "12/15"
-      fill_in "Name on card", with: "Seo Cahill"
-      fill_in "Card code", with: "123"
+      fill_in "email", with: "ocathais@example.com"
+      fill_in "card_number", with: "4242424242424242"
+      fill_in "cc-exp", with: "12/15"
+      fill_in "cc-csc", with: "123"
       click_button "Checkout $21.11"
     end
+    page.save_screenshot('screengrab.png')
     sleep 5
     assert page.has_css?('.alert', text: "Thanks! Please check your email."), "no success message"
     assert_equal order_path(Order.last), current_path, "didn't redirect to order page"
-  end
-
-  test "order without email" do
-    Capybara.current_driver = Capybara.javascript_driver
-    visit event_path(@event)
-    click_button "Purchase"
-    within_frame(page.find('.stripe_checkout_app')[:name]) do
-      fill_in "Card number", with: "4242424242424242"
-      fill_in "Expires", with: "12/15"
-      fill_in "Name on card", with: "Seo Cahill"
-      fill_in "Card code", with: "123"
-      click_button "Checkout $10.71"
-    end
-    sleep 5
-    assert page.has_css?('.alert', text: "must provide email address"), "no error message"
-  end
-
-  test "order with invalid credit card details" do
-    Capybara.current_driver = Capybara.javascript_driver
-    visit event_path(@event)
-    fill_in "order[email]", with: "seo@example.com"
-    select "2", from: "order[quantity]"
-    assert page.find(".order-total").has_content?("21.11"), "order total incorrect"
-    click_button "Purchase"
-    within_frame(page.find('.stripe_checkout_app')[:name]) do
-      fill_in "Card number", with: "4000000000000101"
-      fill_in "Expires", with: "12/15"
-      fill_in "Name on card", with: "Seo Cahill"
-      fill_in "Card code", with: "123"
-      click_button "Checkout $21.11"
-    end
-    sleep 5
-    assert page.has_css?('.alert', text: "Your card's security code is incorrect.")
   end
 
   test "order pages can be reviewed by event admin only" do
@@ -113,7 +77,7 @@ class EventShowTest < Capybara::Rails::TestCase
     Capybara.current_driver = Capybara.javascript_driver
     sign_in(@event.user)
     visit event_path(@event)
-    click_on "Edit"
+    click_button "Edit"
     find(:css, "textarea").set("New Text")
     click_on "Save"
     within ".event-media-html" do
@@ -132,7 +96,6 @@ class EventShowTest < Capybara::Rails::TestCase
   end
 
   test "escape key edit toggle" do
-    skip "for now"
     Capybara.current_driver = Capybara.javascript_driver
     sign_in(@event.user)
     visit event_path(@event)

@@ -13,10 +13,10 @@ class Admin::MessagesController < ApplicationController
     @message = Message.new(message_params)
     if @message.valid?
       case @message.option
-      when "Defer"
+      when "Reschedule"
         DeferService.new(@event, @message).process_deferral
         redirect_to [:admin, @event], notice: "Event has been deferred"
-      when "Cancel"
+      when "Cancel Event"
         CancelService.new(@event, @message).cancel_orders
         redirect_to [:admin, @event], notice: "Event has been cancelled"
       when "Message"

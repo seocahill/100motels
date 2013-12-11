@@ -5,7 +5,7 @@ class Admin::EventsController < ApplicationController
   end
 
   def index
-    @events = current_user.events.all
+    @events = current_user.events.to_a
     @presenter = EventPresenter.new(view_context)
   end
 

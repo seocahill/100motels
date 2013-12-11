@@ -15,14 +15,6 @@ class EventsIndexTest < Capybara::Rails::TestCase
     assert page.has_content?(Event.first.location), "other event not visible"
   end
 
-  test "reset shows all" do
-    fill_in "query", with: "keine results"
-    click_button "Search"
-    refute page.has_content?(Event.last.location), "shouldn't have results"
-    click_button "Reset"
-    assert page.has_content?(Event.last.location), "reset should show event"
-  end
-
   test "successful query" do
     fill_in "query", with: Event.first.location
     click_button "Search"

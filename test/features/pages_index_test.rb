@@ -13,31 +13,21 @@ class PagesIndexTest < Capybara::Rails::TestCase
     refute_content page, "Atlantic Records"
   end
 
-  test "sign up from landing page" do
-    click_link "Sign Up"
-    fill_in "Name", with: "Seo"
-    fill_in "Email", with: "seo@example.com"
-    fill_in "Password", with: "foobar"
-    click_button "Sign Up"
-    assert page.has_css?('.alert', text: "Thanks for signing up! We've sent you an email to confirm your password")
-    assert_equal user_path(User.last), current_path
-  end
-
   test "sign in from landing page" do
     click_link "sign-in"
-    fill_in "Email", with: @user.email
-    fill_in "Password", with: @user.password
-    click_button "Sign In"
+    fill_in "signin[email]", with: @user.email
+    fill_in "signin[password]", with: @user.password
+    click_button "Sign in"
     assert page.has_css?('.alert', text: "Logged in!")
   end
 
   test "click info links" do
-    click_link "Info and Help"
+    click_link "info"
     assert_equal info_path, current_path
   end
 
   test "click on terms and conditions" do
-    click_link "Terms of Service"
+    click_link "legal"
     assert_equal info_path, current_path
   end
 
@@ -46,17 +36,8 @@ class PagesIndexTest < Capybara::Rails::TestCase
     assert_equal events_path, current_path
   end
 
-  test "search for events" do
-    FactoryGirl.create_pair(:event, user: @user, visible: true)
-    fill_in "query", with: Event.first.name
-    click_button "Go"
-    assert_equal events_path, current_path, "wrong path"
-    refute page.has_content?(Event.last.location), "search results returning wrong event"
-    assert page.has_content?(Event.first.location), "search results missing query"
-  end
-
-  test "Try it free" do
-    click_link "Try it free"
+  test "Try it Free" do
+    click_link "Try it Free"
     assert_equal current_path, event_path(Event.last)
     assert page.has_css?('.alert', text: "Welcome Guest!")
     assert page.has_content?('Read this first!')
@@ -66,14 +47,9 @@ class PagesIndexTest < Capybara::Rails::TestCase
     sign_in(@user)
     assert_equal current_path, root_path
     assert page.has_css?('.alert', text: "Logged in!")
-    assert page.has_content?('Settings')
+    assert page.has_content?('Activity')
     click_link "100 Motels"
-    assert page.has_content?("Events Summary")
+    assert page.has_content?("Orders")
   end
 
-  test "signed in admin link" do
-    sign_in(@user)
-    click_link "Admin"
-    assert_equal user_path(@user), current_path, "wrong path"
-  end
 end

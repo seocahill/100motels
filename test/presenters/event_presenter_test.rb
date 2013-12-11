@@ -100,4 +100,12 @@ class EventPresenterTest < ActionView::TestCase
     assert_equal EventPresenter.new(view).on_sale?(FactoryGirl.build(:event, date: "31-12-2008")), false, "should return false"
   end
 
+  test "overall target" do
+    skip 'how to mock'
+    view.expect(:current_user, @event.user) do
+      FactoryGirl.create(:order, event: @event, quantity: 5)
+      assert_equal EventPresenter.new(view).overall_target, 20, "not correct %"
+    end
+  end
+
  end

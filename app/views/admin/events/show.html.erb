@@ -6,7 +6,7 @@
           <h3 class="page-header"><%= link_to "#{@event.name} in #{@event.location} on #{@event.date.strftime('%A, %b %d')}.", event_path(@event) %></h3>
         </div>
         <div class="col-lg-3">
-          <%= link_to "Charge Orders", charges_path, method: :post, class: "btn btn-lg btn-success btn-block", event_id: @event.id %>
+          <%= link_to "Charge Orders", charges_path(event_id: @event.id), method: :post, class: "btn btn-lg btn-success btn-block" %>
         </div>
       </div>
       <div class="row">

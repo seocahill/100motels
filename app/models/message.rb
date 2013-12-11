@@ -8,5 +8,5 @@ class Message
 end
 
 def deferring?
-  option == "Defer"
+  option == "Reschedule"
 end

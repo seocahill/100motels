@@ -8,8 +8,13 @@ class ChargesController < ApplicationController
 
   def create
     @event = Event.find(params[:event_id])
-    ChargeCustomer.new(@event).process
-    redirect_to [:admin, @event], notice: "Cool! We're charging your customers, we'll notify you when we're done"
+    if @event.user.api_key and @event.user.stripe_uid
+      ChargeCustomer.new(@event).process
+      redirect_to [:admin, @event], notice: "Cool! We're charging your customers, we'll notify you when we're done"
+    else
+      flash[:error] = "You need to connect to Stripe to make Charges"
+      redirect_to [:admin, @event]
+    end
   end
 
   def receive

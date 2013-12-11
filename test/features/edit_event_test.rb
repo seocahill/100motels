@@ -7,7 +7,8 @@ class EditEventTest < Capybara::Rails::TestCase
     user = FactoryGirl.create(:user, state: :unconfirmed)
     @event = FactoryGirl.create(:event, visible: false, user: user)
     sign_in(@event.user)
-    page.find('tbody>tr:last-child').click_link("edit")
+    visit event_path(@event)
+    click_link "Edit Event"
   end
 
   test "change Event Target" do
