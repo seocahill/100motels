@@ -16,12 +16,12 @@ class EventPresenterTest < ActionView::TestCase
 
  test "filepicker presenter" do
     @presenter.stub(:event_owner?, true) do
-      assert @presenter.filepicker(@event) =~ /Change Image/i, "filepicker button not generated"
+      assert_match @presenter.filepicker(@event), '<form accept-charset="UTF-8" action="/events/6" class="edit_event" id="edit_event_6" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="_method" type="hidden" value="patch" /></div><input data-fp-apikey="Aw7pyep7aSfmtPLfI_3jYz" data-fp-button-class="btn btn-default btn-lg" data-fp-button-text="&lt;i class=&quot;fa fa-picture-o&quot;&gt;&lt;/i&gt;" data-fp-services="COMPUTER, IMAGE_SEARCH, WEBCAM, INSTAGRAM, URL, FLICKR, FACEBOOK" id="event_image" name="event[image]" onchange="this.form.submit();" type="filepicker" value="https://www.myimage.com/something.jpg" /></form>', "filepicker button not generated"
     end
   end
 
   test "image presenter no image" do
-    assert_match EventPresenter.new(view).image(FactoryGirl.build(:event, image: nil)), "https://s3-us-west-2.amazonaws.com/onehundredmotels/247915_156305404435251_2616225_n.jpg"
+    assert_nil EventPresenter.new(view).image(FactoryGirl.build(:event, image: nil))
   end
 
   test "image presenter has image" do
@@ -29,16 +29,16 @@ class EventPresenterTest < ActionView::TestCase
   end
 
   test "index_image presenter no image" do
-    assert_match EventPresenter.new(view).index_image(FactoryGirl.build(:event)), '<img alt="247915 156305404435251 2616225 n" height="200" src="https://s3-us-west-2.amazonaws.com/onehundredmotels/247915_156305404435251_2616225_n.jpg" width="380" />'
+    assert_match EventPresenter.new(view).index_image(FactoryGirl.build(:event)), '<img alt="247915 156305404435251 2616225 n" class="img-responsive" height="300" src="https://s3-us-west-2.amazonaws.com/onehundredmotels/247915_156305404435251_2616225_n.jpg" width="480" />'
   end
 
   test "index_image presenter has image" do
-    assert_match @presenter.index_image(@event), '<img alt="Convert?fit=crop&amp;h=200&amp;w=380" src="https://www.myimage.com/something.jpg/convert?fit=crop&amp;h=200&amp;w=380" />'
+    assert_match @presenter.index_image(@event), '<img alt="Something" class="img-responsive" height="300" src="https://www.myimage.com/something.jpg" width="480" />'
   end
 
   test "edit button if current_user" do
     @presenter.stub(:event_owner?, true) do
-      assert_match @presenter.edit_button(@event), button_tag("Edit", type: "button", class: "btn btn-default edit-about", data: { toggle: "button" })
+      assert_match @presenter.edit_button(@event), button_tag("Edit", type: "button", class: "btn btn-default btn-lg edit-about", data: { toggle: "button" })
     end
   end
 

@@ -1,9 +1,9 @@
 class CustomerOrder
 
-  def initialize(order, params)
+  def initialize(order, token, email)
     @order = order
-    @token = params[:stripeToken]
-    @email = params[:stripeEmail]
+    @token = token
+    @email = email
     @error = nil
   end
 
@@ -19,7 +19,8 @@ class CustomerOrder
         name: card[0].name,
         last4: card[0].last4,
         ticket_price: @order.event.ticket_price,
-        total: total_inc_fees
+        total: total_inc_fees,
+        email: @email
       )
   end
 
