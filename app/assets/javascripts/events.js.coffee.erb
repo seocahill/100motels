@@ -62,9 +62,10 @@ $ ->
 
 $ ->
   $("#checkout").click ->
-    token = (res) ->
-      $input = $("<input type=hidden name=stripeToken />").val(res.id)
-      $("form").append($input).submit()
+    token = (response) ->
+      tokenInput = $("<input type=hidden name=stripeToken />").val(response.id)
+      emailInput = $("<input type=hidden name=stripeEmail />").val(response.email)
+      $("form").append(tokenInput).append(emailInput).submit()
     StripeCheckout.open
       key: "<%= ENV['STRIPE_PUBLIC_KEY'] %>"
       address: false

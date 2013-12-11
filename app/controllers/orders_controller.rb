@@ -10,7 +10,7 @@ class OrdersController < ApplicationController
     @order = event.orders.build(order_params)
     processed_order = CustomerOrder.new(@order, params[:stripeToken], params[:stripeEmail]).process_order if @order.valid?
     if processed_order == true
-      OrderMailer.order_created(@order.id).delay
+      OrderMailer.delay.order_created(@order.id)
       session[:current_order_id] = @order.id.to_s
       redirect_to @order, notice: "Thanks! Please check your email."
     else
