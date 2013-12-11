@@ -1,22 +1,12 @@
 class Message
-  include ActiveAttr::Model
+  include ActiveModel::Model
 
-  attribute :subject
-  attribute :email
-  attribute :content
-  attribute :organizer_email
-  attribute :event_id
+  attr_accessor :date, :message, :option
 
-  validates :subject, presence: true
-  validates :email, presence: true
-  validates :content, presence: true, length: { maximum: 300 }
+  validates :message, presence: true
+  validates :date, presence: true, if: :deferring?
+end
 
-  def send_messages
-    if event_id
-      event = Event.find(self.event_id)
-      event.orders.each { |order| Notifier.group_message(self, order).deliver }
-    else
-      Notifier.delay.private_message(self)
-    end
-  end
+def deferring?
+  option == "Reschedule"
 end

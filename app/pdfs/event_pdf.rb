@@ -1,19 +1,18 @@
 class EventPdf < Prawn::Document
 
-  def initialize(event, orders, view)
+  def initialize(event, orders)
     super(top_margin: 70)
     @event = event
-    @view = view
     @orders = orders
     event_number
-    # organizer
     items
-
+    line_item_rows
   end
 
   def event_number
-    text "#{@event.title}, #{@event.venue}, #{@event.date.strftime("%b %d %Y")}. ", size: 30, style: :bold
-    text "Total Attending: #{@orders.to_a.sum { |order| order.quantity}}"
+    text "#{@event.name}", size: 30, style: :bold
+    text "#{@event.date.strftime("%b %d %Y")} in #{@event.location}", size: 20, style: :bold
+    text "Total Orders: #{@orders.count}"
   end
 
   def items
@@ -27,13 +26,9 @@ class EventPdf < Prawn::Document
   end
 
   def line_item_rows
-    [["Name", "Email", "Admit", "Status"]] +
-    @orders.all.map do |item|
-      [item.name, item.email, item.quantity, item.stripe_event.to_s]
+    [[ "Name", "Email", "Quantity", "Card", "Status", "Net", "Gross"]] +
+    @orders.map do |order|
+      [order.name, order.email, order.quantity, order.last4, order.stripe_event.to_s, order.quantity * order.ticket_price, order.total]
     end
-  end
-
-  def price(num)
-    @view.number_to_currency(num)
   end
 end

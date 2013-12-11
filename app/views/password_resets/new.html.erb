@@ -1,10 +1,20 @@
 <div class="container">
-  <h1>Reset Password</h1>
-  <%= form_tag password_resets_path, method: :post do %>
-    <div class="field">
-      <%= label_tag :email %>
-      <%= text_field_tag :email, params[:email] %>
+  <div class="row">
+    <div class="col-lg-6 col-lg-offset-2">
+      <h3 class="page-header">Reset Password</h3>
+      <%= form_tag password_resets_path, method: :post, class: 'form-horizontal well' do %>
+        <div class="form-group">
+          <%= label_tag :email, nil, class: 'col-lg-2 control-label' %>
+          <div class="col-lg-10">
+            <%= email_field_tag :email, params[:email], class: 'form-control' %>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-lg-10 col-lg-offset-2">
+            <%= submit_tag "Reset Password", class: "btn btn-default" %>
+          </div>
+        </div>
+      <% end %>
     </div>
-    <div class="actions"><%= submit_tag "Reset Password" %></div>
-  <% end %>
+  </div>
 </div>

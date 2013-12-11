@@ -1,14 +1,12 @@
-Hi <%= @order.email %>
+Hello!
 
-Your Event has been deferred until <%= @new_date %>
+<%= @event.name %> in <%= @event.location %> has been deferred until <%= time_tag(@date)%>
 
-The Organizer of the Event gave the following reason:
+The <%= @event.user.name %> gave the following reason:
 
 <%= @message %>
 
 If you wish, you can cancel your order now by visiting this link:
-
-<%= cancel_order_url(@order.uuid) %>
 
 Thanks!
 

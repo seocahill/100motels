@@ -1,42 +1,30 @@
-<div class="container">
-	<div class="row-fluid">
-		<div class="span6 search"><%= render 'search' %></div>
-		<div class="span2 pull-right">
-			<div class="btn-group" id="time-filter">
-        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#" >
-          <span class="selected-action">Filter by Date</span>
-          <span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu">
-					<li class="selected"><%= link_to "Anytime ", events_path(query: params[:query]) %></li>
-					<li><%= link_to "Today", events_path(query: params[:query], tonight: "true") %></li>
-					<li><%= link_to "This Week", events_path(query: params[:query], week_end: "true") %></li>
-					<li><%= link_to "This Month", events_path(query: params[:query], month_end: "true") %></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-	<hr>
-	<div class="row-fluid">
-		<div class="span12">
-				<ul class="thumbnails pagination-centered">
-					<% @events.each do |event| %>
-						<li class="span3">
-							<a class="thumbnail" href='<%= event_path(event) %>'>
-								<% if event.image.present?  %>
-	                <%= filepicker_image_tag event.image, w: 200, h: 200, fit: 'crop' %>
-                <% else %>
-	                <%= image_tag "ranelag.gif", height: "200", width: "200" %>
-                <% end %>
-                <div class="event-index-artists">
-									<h3><%= truncate(event.title) %><br><small><%= truncate(event.artist) %></small></h3>
-									<h6><%= truncate(event.location.city, length: 15) %> - <%= event.date.strftime('%d/%m/%Y') %></h6>
-								</div>
-							</a>
-						</li>
-					<% end %>
-				</ul>
-				<%= will_paginate @events %>
-		</div>
-	</div>
-</div>
+<nav class="search-bar">
+  <div class="row">
+    <div class="col-lg-9">
+      <form>
+        <div class="input-group search">
+          <input type="search" name="query" results=5 class="form-control input-lg" value="<%= params[:query] %>">
+          <div class="input-group-btn">
+            <button type="submit" class="btn btn-default btn-lg" action='<%= events_path(query: params[:query]) %>'>Search</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</nav>
+<section id="search-results" class="">
+  <div class="row">
+    <% @events.each do |event| %>
+      <figure class="col-lg-4 img-responsive">
+        <%= link_to event_path(event) do %>
+          <%= @presenter.index_image(event) %>
+          <figcaption>
+            <%= truncate(event.name, length: 15) %> <%= event.date.strftime('%d/%m') %> in <%= event.location %>.
+          </figcaption>
+        <% end %>
+      </figure>
+    <% end %>
+    <%= will_paginate @events, renderer: BootstrapPagination::Rails %>
+  </div>
+</section>
+

@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title> <%= yield(:title) %></title>
+    <title> <%= yield(:title) || "100 Motels" %></title>
     <%= stylesheet_link_tag    "application", :media => "all" %>
-    <%= javascript_include_tag "application" %>
     <%= filepicker_js_include_tag %>
+    <%= javascript_include_tag "application" %>
+    <script src="https://checkout.stripe.com/checkout.js"></script>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-513ba15373992907"></script>
+    <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
     <%= csrf_meta_tags %>
     <%= yield :head %>
     <!--if [lt IE 9]>
@@ -12,63 +15,41 @@
     <![endif-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
-  <body id="<%= params[:controller].parameterize %>_controller" class="not-landing">
+  <body>
+    <a id="menu-toggle" href="#" class="btn btn-default btn-lg toggle"><i class="fa fa-bars"></i></a>
+    <div id="sidebar-wrapper">
+      <ul class="sidebar-nav">
+        <a id="menu-close" href="#" class="btn btn-default btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
+        <li class="sidebar-brand"><%= link_to "100 Motels", root_path %></li>
+        <li><%= link_to("Your Account", user_path(current_user)) if current_user
+         %></li>
+        <li><%= link_to "Events", events_path unless current_user %></li>
+        <li><%= link_to "Dashboard", admin_events_path if current_user %></li>
+        <li><%= link_to("New Event", new_admin_event_path) if current_user %></li>
+        <li><%= link_to("Edit Event", edit_admin_event_path(@event)) if @event.try(:id) and current_user %></li>
+        <li><%= link_to("Event Orders", admin_event_path(@event)) if @event.try(:id) and current_user %></li>
+        <li><%= link_to("Ticket Check", admin_event_tickets_path(@event)) if @event.try(:id) and current_user %></li>
+        <li><%= link_to("Notify, Reschedule or Cancel", new_admin_event_message_path(@event)) if @event.try(:id) and current_user %></li>
+        <li class="divider"></li>
+        <li><%= link_to("Sign In", login_path) unless current_user %></li>
+        <li><%= link_to("Sign Out", logout_path) if current_user %></li>
+      </ul>
+    </div>
     <div class="wrapper">
-      <div class="navbar">
-        <div class="navbar-inner">
-          <div class="container">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </a>
-            <%= link_to "100 Motels", root_path, class: "brand" %>
-            <div class="nav-collapse collapse">
-              <ul class="nav">
-                <li><%= link_to "Events", events_path %></li>
-                <li><%= link_to "Info", info_path %></li>
-                <li><a id="Intercom" href="mailto:fc8518d2134e8c1f1d72067b7e19a67d63f6bbed@incoming.intercom.io">Support</a></li>
-                <% if current_user %>
-                  <li class=""><a href="http://www.hipchat.com/g0s1iGFVm" target="_blank">Live Chat</a></li>
-                <% end %>
-              </ul>
-              <ul class="nav pull-right">
-                <% unless current_user %>
-                  <li><%= link_to "Sign up", signup_path %></li>
-                  <li><%= link_to "Sign in", login_path %></li>
-                <% end %>
-                <!-- <li class="divider-vertical"></li> -->
-                <% if current_user %>
-                  <%= render "current_user_menu" %>
-                <% end %>
-              </ul>
-            </div><!-- /.nav-collapse -->
-          </div> <!-- container -->
-        </div><!-- /navbar-inner -->
-      </div>  <!-- /navbar -->
-      <div class="container" id="main">
+      <div class="container flash-messages">
         <% flash.each do |key, value| %>
-          <div class="alert alert-<%= key == :notice ? "success" : "error" %>">
+          <div class="alert alert-<%= key == :notice ? "success" : "danger" %>">
             <a class="close" data-dismiss="alert">&#215;</a>
             <%= content_tag :div, value, :id => "flash_#{key}" if value.is_a?(String) %>
           </div> <!-- /flash -->
         <% end %>
-        <%= yield %>
-      </div> <!-- /content container -->
-      <div class="push"></div>
+      </div>
+      <%= yield %>
+    </div> <!-- /content container -->
+    <div class="push"></div>
     </div> <!-- /wrap -->
     <footer>
-      <div class="container">
-        <ul class="inline">
-          <li>© 100 Motels Ltd 2013</li>
-          <li><%= link_to "Terms of Service", info_path %></li>
-          <li><%= link_to "Legal and Privacy", info_path %></li>
-          <li><%= link_to "Info and Help", info_path %></li>
-          <li><%= link_to "Sign Up", signup_path unless current_user %></li>
-          <li><a href="http://blog.100motels.com">Blog</a></li>
-        </ul>
-      </div>
+      <span>© 100 Motels 2013 | <%= link_to "legal", info_path %> | <%= link_to "privacy", info_path %> | <%= link_to "info", info_path %> | <a href="//www.seocahill.com">blog</a></span>
     </footer>
-    <script type="text/javascript" src="https://s3-sa-east-1.amazonaws.com/modernweb/scripts/ModernWeb.min.js"></script>
   </body>
 </html>

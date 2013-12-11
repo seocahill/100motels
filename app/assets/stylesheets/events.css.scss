@@ -1,103 +1,91 @@
 // events index
-// scoped to events controller
-#events_controller {
-  .well {
-     background-color: rgba(255, 255, 255, 0.4);
-  }
-  .event-map,
-  .thumbnails li {
-    @include media-between($small-min, $small-max) {
-      width: 49%;
-      float: left;
-    }
-  }
+.search-bar {
+  background: #fff url('concrete_wall_2.png');
+  padding: 20px;
+}
 
-  .search {
-    input[type="text"] {
+#search-results {
+  // background: image-url("motels_landing_splash.jpg") no-repeat center center fixed;
+  // -webkit-background-size: cover;
+  // -moz-background-size: cover;
+  // -o-background-size: cover;
+  // background-size: cover;
+  background: #5A5656;
+  min-height: 800px;
+  padding: 15px;
+}
 
-      @include media-between($small-min, $small-max) {
-        min-width: 400px;
-      }
-      @include media-between($handheld-min, $handheld-max) {
-        min-width: 250px;
-      }
-      @include media-above($medium-min) {
-        min-width: 500px;
-      }
-    }
-      // min-width: 200px;
+#signin-page {
+  background: image-url("motels_landing_splash.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 800px;
+  // background: #5A5656;
+}
+
+#search-results figure {
+  // margin: 0;
+  // padding: 0;
+  // position: relative;
+  // overflow: hidden;
+}
+
+#search-results figure figcaption {
+  background: rgba(0,0,0,0.3);
+  color: #fff;
+  font-size: 18px;
+  text-align: center;
+  a:active {
+    text-decoration: none;
   }
+  // padding: .3rem;
+  // position: absolute;
+  transition: .6s;
+}
+
+#search-results figure:hover figcaption {
+  transform: translateY(-2rem);
+}
+
+// event show
+#event-banner {
+  display: table;
+  min-height: 100%;
+  height: 500px;
+  width: 100%;
+  position: relative;
+  box-sizing: border-box;
+}
+
+
+.event-map,
+.thumbnails li {
+  @include media-between($small-min, $small-max) {
+    width: 49%;
+    float: left;
+  }
+}
 
   // validation notices for best in place
-  .purr {
-    position: fixed;
-    top: 30px;
-    right: 100px;
-    width: auto;
-    padding: 20px;
-    @extend .alert;
-    @extend .alert-error;
-    &:first-letter { text-transform: uppercase };
-  }
-
-  .link-button-show {
-    text-decoration: none;
-    border: none;
-    background-color: transparent;
-    display: block;
-    padding: 3px 20px;
-    clear: both;
-    font-weight: normal;
-    line-height: 20px;
-    color: #333333;
-    white-space: nowrap;
-
-    &:hover,
-    &:focus {
-      color: #ffffff;
-      background-color: #0081c2;
-      background-image: -moz-linear-gradient(top, #0088cc, #0077b3);
-      background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0077b3));
-      background-image: -webkit-linear-gradient(top, #0088cc, #0077b3);
-      background-image: -o-linear-gradient(top, #0088cc, #0077b3);
-      background-image: linear-gradient(to bottom, #0088cc, #0077b3);
-      background-repeat: repeat-x;
-      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0077b3', GradientType=0);
-    }
-  }
-
+.purr {
+  position: fixed;
+  top: 30px;
+  right: 100px;
+  width: auto;
+  padding: 20px;
+  @extend .alert;
+  @extend .alert-error;
+  &:first-letter { text-transform: uppercase };
 }
-
-.link-button {
-    text-decoration: none;
-    text-align: left;
-    border: none;
-    background-color: transparent;
-    font-weight: normal;
-    padding: 8px 12px;
-    line-height: 20px;
-    color: #08C;
-    border: 1px solid #DDD;
-
-    &:hover,
-    &:focus {
-      z-index: 2;
-      border-color: #ddd;
-      background-color: #eeeeee;
-    }
-  }
-
 
 //event show
-#inlay {
-  hr {
-    @include media-above($medium-min) {
-        display: none;
-      }
-  }
+.search {position: relative;}
+.clear-search {
+  left: 75%;
 }
-
-.flex-video {
+.flex-embed {
   position: relative;
   padding-top: 25px;
   padding-bottom: 67.5%;
@@ -106,94 +94,151 @@
   overflow: hidden;
 }
 
-.flex-video.widescreen { padding-bottom: 57.25%; }
-.flex-video.vimeo { padding-top: 0; }
+.flex-embed.widescreen { padding-bottom: 57.25%; }
+.flex-embed.vimeo { padding-top: 0; }
 
-.flex-video iframe,
-.flex-video object,
-.flex-video embed {
+.flex-embed iframe,
+.flex-embed object,
+.flex-embed embed {
   position: absolute;
-  top: 0;
-  left: 0;
+  // top: 0;
+  // left: 0;
   width: 100%;
   height: 100%;
 }
 @media only screen and (max-device-width: 800px), only screen and (device-width: 1024px) and (device-height: 600px), only screen and (width: 1280px) and (orientation: landscape), only screen and (device-width: 800px), only screen and (max-width: 767px) {
-  .flex-video { padding-top: 0; }
-}
-
-.event-poster {
-  border-radius: 5px;
-  padding-bottom: 15px;
-}
-
-.event-ticket-orders  {
-}
-
-// organizer/event/show
-.number-stats ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.number-stats ul li:first-child {
-  border-left: none;
-}
-.number-stats ul li {
-  text-align: center;
-  width: 43px;
-  padding: 0 12px;
-  border-left: 1px solid #5E5E5E;
-  list-style: none;
-  display: inline-block;
-}
-
-
-.event-header  {
-  background-image: url(image_path('tex2res5.png'));
+  .flex-embed { padding-top: 0; }
 }
 
 .event-header {
-  h1, h2, h3, small, a, dt, dd {
+  h1, h2 {
     color: white;
     text-shadow: 3px 4px 5px #000;
-  }
-  .dropdown-menu a {text-shadow: none;}
-  padding: 20px;
-}
-
-.venue-info {
-  padding-left: 10px;
-  padding-top: 10px;
-}
-
-small {
-  .popover-content, .popover-title {
-   color: $grayDark;
-   text-shadow: none;
+    font-size: 60px;
   }
 }
 
-.event-funding {
-  text-align: center;
-  h4 {
-    padding: 20px 0;
-  }
-  .progress {
-    max-width: 75%;
-    margin: 0 auto;
-  }
-}
-
-.admin-bar {
-    .label, i {
-      font-size: 14px;
-  }
+.subtotal {
+  padding-right: 10px;
 }
 
 .addthis_toolbox {
   &:hover {
     text-decoration: none;
   }
+}
+
+#event-information  {
+  background: #fff url('concrete_wall_2.png');
+  padding-top: 40px;
+  padding-bottom: 30px;
+  padding-left: 40px;
+  padding-right: 40px;
+  border-bottom: 1px #D5CBCB solid;
+  .progress  {
+    height: 28px;
+    font-size: 20px;
+  }
+  .progress-bar {
+  }
+}
+
+.price, i {
+  font-size: 24px;
+}
+
+.portfolio-item {
+  margin-bottom: 25px;
+}
+
+.hideme {
+  display: none;
+}
+
+#event-media {
+  padding: 40px 0;
+  background: #fff url('concrete_wall_2.png');
+}
+
+// admin events
+#orange, #purple, #cyan, #aqua, #gold {
+  vertical-align: middle;
+  box-sizing: border-box;
+  min-height: 400px;
+  border: 5px solid #32373A;
+  vertical-align: middle;
+}
+
+#aqua {
+  min-height: 800px;
+  background: rgb(18, 176, 197);
+  // padding: 20px;
+}
+
+#cyan {
+  // width: 40%;
+  background: rgb(71, 187, 179);
+}
+#purple {
+  // width: 40%;
+  background: #9c4274;
+}
+
+#orange {
+  // width: 60%;
+  background: rgb(236, 102, 60);
+}
+
+#gold {
+  // width: 60%;
+  background: #ff9618;
+}
+
+#dash {
+  a  {
+    text-decoration: none;
+    color: white;
+    opacity: 0.8;
+    font-size: 24px;
+  }
+  background: #32373A;
+  margin: 20px 40px;
+  color: white;
+  h1 {
+    font-size: 40px;
+    opacity: 0.8;
+    margin-bottom: 20px;
+  }
+  tbody {
+    width: 100%;
+  }
+  td {padding-right: 20px;}
+}
+
+#cash-dash {
+  padding: 40px;
+  font-size: 56px;
+}
+
+#target-dash {
+  padding: 40px;
+  text: center;
+}
+
+.black-wrapper {
+  margin: 0;
+  padding: 0;
+  background: #32373A;
+}
+
+.event-form {
+  padding-top: 60px;
+  .well {
+    background: url('concrete_wall_2.png')
+  }
+}
+
+.event-form-wrapper {
+  background-color: $brown;
+  height: 800px;
 }

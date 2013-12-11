@@ -1,24 +1,20 @@
 class EventsController < ApplicationController
-  before_filter :find_event, only: [:show, :update]
-
-  has_scope :tonight , type: :boolean
-  has_scope :week_end , type: :boolean
-  has_scope :month_end , type: :boolean
+  before_action :find_event, only: [:show]
 
   def index
-    @events = apply_scopes(Event.published.text_search(params[:query]).page(params[:page]).per_page(9))
+    @events = Event.where(visible: true).text_search(params[:query]).page(params[:page]).per_page(6)
+    @presenter = EventPresenter.new(view_context)
   end
 
   def show
     @order = Order.new
-    @message = Message.new
-    @organizer = UserDecorator.decorate(User.includes(:event_users).where("event_users.event_id = ? AND event_users.state > 1", @event.id).first
-)
+    @presenter = EventPresenter.new(view_context)
   end
 
   def update
+    @event = Event.find(params[:id])
     respond_to do |format|
-      if @event.update_attributes(params[:event])
+      if @event.update_attributes(event_params)
         format.html { redirect_to(@event, :notice => 'event was successfully updated.') }
         format.json { respond_with_bip(@event) }
       else
@@ -30,11 +26,15 @@ class EventsController < ApplicationController
 
 private
 
+  def event_params
+    params.require(:event).permit(:image, :date, :location, :name, :ticket_price, :about)
+  end
+
   def find_event
-    @event = Event.active.find(params[:id]).decorate
-    rescue ActiveRecord::RecordNotFound
-    flash[:alert] = "The event you were looking for" +
-    " could not be found"
+    @event = Event.find(params[:id])
+    raise ActiveRecord::RecordNotFound unless @event.public? or @event.user == current_user
+  rescue ActiveRecord::RecordNotFound
+    flash[:alert] = "The event you were looking for could not be found"
     redirect_to events_path
   end
 end

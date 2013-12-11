@@ -1,27 +1,18 @@
 class Notifier < ActionMailer::Base
   default from: "seo@100motels.com"
 
-  def event_cancelled(order_id, message)
-    @order = Order.find(order_id)
+  def event_cancelled(order_ids, message)
+    @orders = Order.where(id: order_ids)
     @message = message
-    mail to: @order.email, subject: "Your event has been cancelled"
+    @event = @orders.first.event
+    mail to: @orders.pluck(:email), subject: "Your event has been cancelled"
   end
 
-  def private_message(message)
+  def group_message(event_id, message)
     @message = message
-    mail to: message.organizer_email, subject: message.subject, from: message.email
+    @event = Event.find(event_id)
+    @orders = @event.orders.not_cancelled
+    mail to: @orders.pluck(:email), subject: "A message about your Event"
   end
 
-  def group_message(message, order)
-    @message = message
-    @order = order
-    mail to: order.email, subject: message.subject, from: message.email
-  end
-
-  def job_completed(orders)
-    @orders = orders
-    event = @orders.first.event
-    organizer = User.includes(:event_users).where("event_users.event_id = ? AND event_users.state = 3", event.id).first
-    mail to: organizer.profile.email, subject: "your job has been completed"
-  end
 end

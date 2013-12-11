@@ -13,19 +13,13 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
-//= require jquery-ui
 //= require best_in_place.purr
-//= require rails.validations
-//= require rails.validations.simple_form
+//= require best_in_place
 //= require jquery.slimscroll.js
 //= require jquery.backstretch.js
-//= require jquery.cookie.js
+//= require jquery.ui.draggable
 //= require pages
 //= require events
-//= require users
-//= require organizer/events
-//= require organizer/tickets
-//= require best_in_place
 
 
 

@@ -1,12 +1,18 @@
 source 'https://rubygems.org'
 
-# ruby "1.9.3"
+# ruby "2.0.1"
 
-gem 'rails'
+gem 'rails', '~>4.0.0'
 gem 'pg'
 gem 'json'
-
+gem 'sass-rails',   '~> 4.0.0'
+gem 'coffee-rails', '~> 4.0.0'
+gem 'uglifier', '>= 1.3.0'
+gem "jquery-rails"
+gem 'jquery-ui-sass-rails'
+gem 'puma'
 group :development, :test do
+<<<<<<< HEAD
   gem 'rails-erd'
 	gem 'rspec-rails'
   gem 'better_errors'
@@ -24,46 +30,50 @@ group :development, :test do
   gem 'listen', '0.4.7'
   gem 'guard-rspec'
   gem 'thin'
+=======
+  gem 'minitest-rails', git: 'git://github.com/seocahill/minitest-rails.git'
+>>>>>>> develop
   gem 'foreman'
+  gem 'jazz_hands'
   gem 'letter_opener_web'
-  gem 'quiet_assets'
-  gem "nyan-cat-formatter"
 end
-
-group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'uglifier', '>= 1.0.3'
-  gem 'bootstrap-sass'
-  gem "font-awesome-rails"
-  gem "jquery-rails", "2.3.0"
+group :test do
+  gem 'minitest-rails-capybara'
+  gem 'poltergeist'
+  gem 'dotenv-rails'
+  gem "factory_girl_rails", "~> 4.0"
+  gem "shoulda"
+  gem 'faker'
+  gem 'turn'
+  gem 'vcr'
+  gem 'webmock'
+  gem 'stripe-ruby-mock', '>= 1.8.7.0'
 end
-
+gem 'bootstrap-sass'
+gem "font-awesome-rails"
 gem 'bcrypt-ruby'
-gem 'best_in_place'
-gem 'simple_form'
+gem 'best_in_place', git: 'git://github.com/straydogstudio/best_in_place.git'
 gem 'stripe'
-gem 'doorkeeper'
-gem 'rabl'
 gem 'omniauth-stripe-connect'
-gem 'attr_encrypted'
 gem 'bootstrap-will_paginate'
 gem 'prawn'
-gem "auto_html"
+gem "auto_html", git: 'git://github.com/seocahill/auto_html.git'
 gem 'filepicker-rails'
-gem 'client_side_validations'
-gem 'client_side_validations-simple_form'
-gem 'geocoder'
 gem 'enum_accessor'
-gem 'google-qr'
-gem 'has_scope'
-gem 'draper'
 gem 'sidekiq'
 gem 'sidekiq-failures'
 gem 'sinatra', require: false
 gem 'slim'
-gem 'pg_search', "0.5.7"
+gem 'pg_search'
 gem 'active_attr'
+<<<<<<< HEAD
 gem 'intercom-rails', '~> 0.2.14'
 gem 'turnout'
 gem 'newrelic_rpm'
+=======
+gem 'intercom-rails'
+gem 'turnout'
+gem 'will_paginate-bootstrap', git: 'git://github.com/nickpad/will_paginate-bootstrap', branch: 'v1.0'
+gem 'chartkick'
+gem 'groupdate'
+>>>>>>> develop

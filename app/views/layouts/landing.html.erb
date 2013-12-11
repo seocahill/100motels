@@ -2,39 +2,17 @@
 <html>
   <head>
     <title>
-    	<% if content_for?(:title) %>
-    		<%= yield(:title) %>
-    	<% else %>
-    		100 Motels
-    	<% end %>
+    	100 Motels - Tour the world without a record label.
     </title>
     <%= stylesheet_link_tag    "application", :media => "all" %>
     <%= javascript_include_tag "application" %>
-    <%= filepicker_js_include_tag %>
     <%= csrf_meta_tags %>
     <!--if [lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
-  <body id="<%= params[:controller].parameterize %>_controller" class="splash-image">
-    <div class="wrapper">
-      <div class=>
-        <%= yield %>
-      </div>
-      <div class="push"><!--//--></div>
-    </div>
-    <footer>
-      <div class="container landing">
-        <ul class="inline">
-          <li><%= link_to "© 100 Motels Ltd 2013", info_path %></li>
-          <li><%= link_to "Terms of Service", info_path %></li>
-          <li><%= link_to "Legal and Privacy", info_path %></li>
-          <li><%= link_to "Info and Help", info_path %></li>
-          <li><%= link_to "Sign Up", signup_path %></li>
-          <li><a href="http://blog.100motels.com">Blog</a></li>
-        </ul>
-      </div>
-    </footer>
+  <body>
+    <%= yield %>
   </body>
 </html>

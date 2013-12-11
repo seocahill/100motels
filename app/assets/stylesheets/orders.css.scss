@@ -1,0 +1,29 @@
+#customer-order {
+  background: #5A5656;
+  .container {
+    padding-top: 40px;
+    .well {
+      background: url('concrete_wall_2.png')
+    }
+    img {
+      margin: 0;
+    }
+  }
+}
+
+@media print {
+  .btn, .event-image, footer, #sidebar-wrapper {
+    display: none;
+  }
+}
+.event-order-wrapper {
+  background-color: $brown;
+  height: 800px;
+  .event-order-table  {
+    padding-top: 60px;
+  }
+  .well {
+    background: url('concrete_wall_2.png');
+    height: 600px;
+  }
+}

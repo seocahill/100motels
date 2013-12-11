@@ -1,0 +1,134 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.stripe.com/v1/events/evt_2yViwB35FP7CXF
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - '*/*; q=0.5, application/xml'
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Stripe/v1 RubyBindings/1.8.8
+      Authorization:
+      - Bearer sk_test_kQGNcavkvqWP144unEJ0wnbM
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"1.8.8","lang":"ruby","lang_version":"2.0.0 p195 (2013-05-14)","platform":"x86_64-darwin12.3.0","publisher":"stripe","uname":"Darwin
+        Seosamhs-MacBook-Air.local 12.5.0 Darwin Kernel Version 12.5.0: Sun Sep 29
+        13:33:47 PDT 2013; root:xnu-2050.48.12~1/RELEASE_X86_64 x86_64"}'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 20 Nov 2013 10:59:50 GMT
+      Content-Type:
+      - application/json;charset=utf-8
+      Content-Length:
+      - '2045'
+      Connection:
+      - keep-alive
+      Access-Control-Max-Age:
+      - '300'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Cache-Control:
+      - no-cache, no-store
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": "evt_2yViwB35FP7CXF",
+          "created": 1384945124,
+          "livemode": false,
+          "type": "charge.refunded",
+          "data": {
+            "object": {
+              "id": "ch_2yVYeRQRef4lQ0",
+              "object": "charge",
+              "created": 1384944523,
+              "livemode": false,
+              "paid": true,
+              "amount": 4329,
+              "currency": "usd",
+              "refunded": false,
+              "card": {
+                "id": "card_2yVYPdTFEr4A3C",
+                "object": "card",
+                "last4": "4242",
+                "type": "Visa",
+                "exp_month": 12,
+                "exp_year": 2015,
+                "fingerprint": "gfPwW83tOZgyfMRO",
+                "customer": null,
+                "country": "US",
+                "name": "John Part",
+                "address_line1": null,
+                "address_line2": null,
+                "address_city": null,
+                "address_state": null,
+                "address_zip": null,
+                "address_country": null,
+                "cvc_check": "pass",
+                "address_line1_check": null,
+                "address_zip_check": null
+              },
+              "captured": true,
+              "refunds": [
+                {
+                  "amount": 1000,
+                  "currency": "usd",
+                  "created": 1384944595,
+                  "object": "refund",
+                  "balance_transaction": "txn_2yVZXQZeSHK61x"
+                },
+                {
+                  "amount": 1000,
+                  "currency": "usd",
+                  "created": 1384945123,
+                  "object": "refund",
+                  "balance_transaction": "txn_2yVikBK9hJYS0Q"
+                }
+              ],
+              "balance_transaction": "txn_2yVYFXzOWS220e",
+              "failure_message": null,
+              "failure_code": null,
+              "amount_refunded": 2000,
+              "customer": null,
+              "invoice": null,
+              "description": "ed14eade-5c77-419d-acf7-79878f95ba7f",
+              "dispute": null,
+              "metadata": {}
+            },
+            "previous_attributes": {
+              "refunds": [
+                {
+                  "amount": 1000,
+                  "currency": "usd",
+                  "created": 1384944595,
+                  "object": "refund",
+                  "balance_transaction": "txn_2yVZXQZeSHK61x"
+                }
+              ],
+              "amount_refunded": 1000
+            }
+          },
+          "object": "event",
+          "pending_webhooks": 0,
+          "request": "iar_2yVigNF65zjyf2"
+        }
+    http_version: 
+  recorded_at: Wed, 20 Nov 2013 10:59:48 GMT
+recorded_with: VCR 2.5.0

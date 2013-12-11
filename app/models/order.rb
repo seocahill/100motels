@@ -1,59 +1,31 @@
 class Order < ActiveRecord::Base
-  attr_accessible :email, :name, :quantity, :event_id, :user_id, :last4, :stripe_customer_token, :price
-  enum_accessor :stripe_event, [ :pending, :paid, :tickets_sent, :failed, :refunded, :cancelled, ]
+  enum_accessor :stripe_event, [:pending, :failed, :charged, :cancelled]
 
-  has_many :tickets, dependent: :destroy
   belongs_to :event
-  belongs_to :user
+  has_many :tickets, dependent: :destroy
 
-  validates :email, presence: :true
-  validates_format_of :email, :with => /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
   validates :quantity, numericality: :true
 
-  before_create :generate_uuid
-  after_commit :mail_order_notifiers, on: :create
+  after_create :add_tickets_to_order
 
-  scope :funding, where("stripe_event < ?", 3)
-  scope :pending, where("stripe_event = ?", 0)
-  scope :paid, where("stripe_event = ?", 1)
-  scope :tickets_sent, where("stripe_event = ?", 2)
-  scope :failed, where("stripe_event = ?", 3)
-  scope :refunded, where("stripe_event = ?", 4)
-  scope :cancelled, where("stripe_event = ?", 5)
+  scope :pending, -> { where('stripe_event < 1') }
+  scope :not_cancelled, -> { where('stripe_event < 3') }
 
   include PgSearch
-  pg_search_scope :search, against: [:name, :email, :uuid],
-    using: {tsearch: {dictionary: "english"}},
-    associated_against: {event: [:artist, :venue], tickets: :number }
+  pg_search_scope :search, against: [:name, :email, :id, :stripe_event],
+  using: {tsearch: {dictionary: "english"}},
+  associated_against: {event: [:name, :location], tickets: :number }
 
   def self.text_search(query)
     if query.present?
       search(query)
     else
-      scoped
+      all
     end
   end
 
-  def generate_uuid
-    begin
-      self.uuid = SecureRandom.hex
-    end while self.class.exists?(uuid: uuid)
-  end
-
-  def mail_order_notifiers
-    OrderMailer.delay.order_created(self.id)
-    OrderMailer.delay.notify_admin_order_created(self.id)
-  end
-
-  def total_price
-    price.nil? ? 0.0 : (quantity * price)
-  end
-
-  def cancel_order
-    if stripe_event_pending?
-      self.stripe_event = :cancelled
-      OrderMailer.delay.order_cancelled(self.id)
-      save!
-    end
+  def add_tickets_to_order
+    quantity.times { self.tickets.create }
   end
 end
+

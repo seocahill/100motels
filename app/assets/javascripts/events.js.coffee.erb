@@ -3,102 +3,79 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 # Order Total method
-orderTotal = (quantity, price) ->
+@orderTotal = () ->
   quantity = $('#order_quantity').val()
-  price = $('.price').data('original-content')
+  price = $('.price').data('price')
   net_price = quantity * price
   gross = (net_price / .961) + 0.30
   order_price = if price > 0 then gross else 0.0
   $('.order-total').html(order_price.toFixed(2))
-  $('.stripe-button').attr('data-amount', gross.toFixed(2) * 100)
+
+# Best in place stuff
+$ ->
+  $('.best_in_place_about').on 'ajax:success', () ->
+    $.get window.location.pathname, (data) ->
+      $('.about').html $(data).find(".about").html()
+      # $('.edit-about').text "Edit"
+      # $('#cancel-button').removeClass("hideme")
 
 $ ->
-  $('.best_in_place').bind "ajax:success", (event, data) ->
-   $.ajax $(this).data(window.location.pathname),
-    type: 'GET'
-    dataType: 'html'
-    error: (jqXHR, textStatus, errorThrown) ->
-        console.log "AJAX Error: #{textStatus}"
-    success: (data, textStatus, jqXHR) =>
-      target = $(this).data('attribute')
-      content = $(data).find(".#{target}").html()
-      $(".#{target}").html content
-      if target is 'address' then $(".location-city").html $(data).find(".location-city").html()
-      orderTotal()
-      $('#order_quantity').on "change", orderTotal
+  $('.edit-about').click () ->
+    $(this).text () ->
+      if $(this).is('.active') then "Edit" else "Save"
+    $('#cancel-button').toggleClass("hideme")
+
+$ ->
+  $('#cancel-button').on 'mousedown', () ->
+    $('.edit-about').removeClass('active').text("Edit")
+    $(this).addClass("hideme")
+
+$ ->
+  $(document).keyup (e) ->
+    if e.keyCode is 27 and $('.edit-about').is('.active')
+      $('.edit-about').removeClass('active').text("Edit")
+      $('#cancel-button').addClass("hideme")
 
 $ ->
   $('.best_in_place').best_in_place()
+
 # Sum Order
 $ ->
   orderTotal()
-  $('#order_quantity').on "change", orderTotal
-
-# Filter form for index page
-$ ->
-  $('#event_city').change ->
-    $(this).closest('form').trigger('submit')
-
-# Jquery Ui Datepicker
-$ ->
-  $("input.datepicker").datepicker()
-
-  $.datepicker.setDefaults
-    dateFormat: 'MM dd, yy'
-
-#  slimScroll for about piece in event show
-$ ->
-  $(".about-event").slimScroll height: '250px'
+  $('#order_quantity').change ->
+    orderTotal()
 
 # backSretch
 $ ->
-  if $("#event-information").length
-    $(".event-header").backstretch($(".event-poster").data('url'))
-
-# Disable stripe-button if email field is blank
-$ ->
-  if $("#order_email").val() is ""
-    $(".stripe-button-el").attr "disabled", true
-    $('.warning-pop').popover()
-      # trigger: 'hover'
-  $("#order_email").keyup ->
-    unless $("#customer-email").val() is ""
-      $(".stripe-button-el").attr "disabled", false
-      $(".warning-pop").popover('disable').popover("hide");
-    else
-      $(".stripe-button-el").attr "disabled", true
-
-# Charges popover
-$ ->
-  $('.charge-info').popover
-      trigger: 'hover'
-
-$ ->
-  $('.defer-date').popover
-      trigger: 'hover'
+  if $("#event-banner").data('url')
+    $("#event-banner").backstretch($("#event-banner").data('url'))
+  else
+    $("#event-banner").hide();
 
 # Progress bar
 $ ->
-  width = $('.bar').data('funded')
-  $('.bar').css("width", "#{width}%")
+  widthSold = $('.progress-bar').data('funded')
+  widthUnsold = 100 - $('.progress-bar').data('funded')
 
-# Equal height for payment and info boxes
+  $('.sold').css("width", "#{widthSold}%")
+  $('.unsold').css("width", "#{widthUnsold}%")
+
 $ ->
-  boxes = $(".well")
-  maxHeight = Math.max.apply(Math, boxes.map(->
-    $(this).height()
-  ).get())
-  boxes.height maxHeight
+  handler = StripeCheckout.configure(
+    key: "<%= ENV['STRIPE_PUBLIC_KEY'] %>"
+    image: "<%= image_path('motels_m.png') %>"
+    token: (response) ->
+      tokenInput = $("<input type=hidden name=stripeToken />").val(response.id)
+      emailInput = $("<input type=hidden name=stripeEmail />").val(response.email)
+      $("form").append(tokenInput).append(emailInput).submit()
+  )
 
-
-(($) ->
-  $.fn.uniformHeight = ->
-    maxHeight = 0
-    max = Math.max
-    @each(->
-      maxHeight = max(maxHeight, $(this).height())
-    ).height maxHeight
-) jQuery
-
-$(window).load ->
-  $("ul.thumbnails").find("a.thumbnail").uniformHeight()
+  $("#checkout").click (e) ->
+    handler.open
+      address: false
+      amount: Number($('.order-total').text()) * 100
+      currency: "USD"
+      name: "100 Motels"
+      description: "Your Tickets"
+      panelLabel: "Checkout"
+    e.preventDefault()

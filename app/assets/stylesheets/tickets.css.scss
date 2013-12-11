@@ -1,19 +1,12 @@
-// bozoffice view
-.very-narrow {
-  max-width: 300px;
-  min-height: 500px;
-  margin: 20px auto;
-  text-align: center;
+.event-tickets-wrapper {
+  background: $brown;
+  height: 800px;
 }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    /* display: none; <- Crashes Chrome on hover */
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-.large-badge {
-  font-size: 20px;
-  line-height: 24px;
+.event-tickets-table {
+  .container {
+    background: url('concrete_wall_2.png');
+    height: 600px;
+  }
+  padding-top: 60px;
 }

@@ -1,5 +1,0 @@
-<tr>
-  <td><%= @event_user.user.profile.email %></td>
-  <td><i class="icon-edit"> </i><%= best_in_place @event_user, :state, :type => :select, :collection => [[:reader, 'read'], [:editor, 'edit'], [:event_admin, 'admin'], [:organizer, 'organizer']], path: organizer_event_event_user_path(@event, @event_user) %></td>
-  <td><%= link_to raw('<i class="icon-remove"> </i>remove'), organizer_event_event_user_path(@event, @event_user), method: :delete, data: {confirm: "Are you sure?"}, remote: true %></td>
-</tr>

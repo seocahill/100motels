@@ -1,13 +1,17 @@
-Hi <%= @order.email %>,
+Hello!
 
-Unfortunately your event has been cancelled.
+<%= @event.name %> in <%= @event.location %> has been cancelled!
 
-The Event Organizer add the following message:
+The <%= @event.user.name %> gave the following reason:
 
-<%= @message %>
+<%= @message.message %>
 
-You will receive a full refund if charges have been made and a cancellation notice for any orders you made for this event.
+You're order has been cancelled.
 
-Sincere apologies.
+If you were previously charged for a ticket, the charge will be refunded in full.
+
+Thanks you for supporting this event.
+
+Next time!
 
 100 Motels.

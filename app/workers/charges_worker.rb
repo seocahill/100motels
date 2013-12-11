@@ -1,55 +1,46 @@
 class ChargesWorker
   include Sidekiq::Worker
 
-  def perform(order_id)
-    order = Order.find(order_id)
-    process_charge(order) if [:pending, :failed].include? order.stripe_event
+  def perform(order_id, api_key)
+    @order = Order.find(order_id)
+    @api_key = api_key
+    process_charge
+    @order.save!
+    @order
   end
 
-  def process_charge(order)
-    charge = charge_customer(order)
+  def process_charge
+    charge = charge_customer
     if charge.present?
-      order.stripe_charge_id = charge[:id]
-      if charge[:paid] == true
-        order.stripe_event = :paid
-        if order.quantity.times {order.tickets.create(event_id: order.event_id)}
-          order.stripe_event = :tickets_sent
-        end
-      else
-        order.stripe_event = :failed
-      end
+      @order.stripe_charge_id = charge[:id]
+      @order.stripe_event = charge[:paid] == true ? :charged : :failed
     else
-    order.stripe_event = :failed
+      @order.stripe_event = :failed
     end
-    order.save!
   end
 
-  def charge_customer(order)
-    event = Event.find(order.event_id)
-    organizer = User.includes(:event_users).where("event_users.event_id = ? AND event_users.state = 3", event.id).first
-    total = (order.total * 100).to_i
-    fee = (order.quantity * event.ticket_price).to_i
-    token = create_charge_token(order, organizer)
-    charge = Stripe::Charge.create(
-      {
-        amount: total,
+  def charge_customer
+    token = create_charge_token
+    charge = Stripe::Charge.create({
+        amount: (@order.total * 100).to_i,
         currency: "usd",
         card: token["id"],
-        description: "Tickets for #{event.artist} in #{event.venue}, #{event.date.strftime('%A, %b %d')}",
-        application_fee: fee
-      }, organizer.api_key
+        description: @order.id,
+        application_fee: 100
+      }, @api_key
     )
   rescue Stripe::CardError => e
     Rails.logger.error "Stripe error while creating customer: #{e.message}"
     return nil
   end
 
-  def create_charge_token(order, organizer)
+  def create_charge_token
     token = Stripe::Token.create(
-      { customer: order.stripe_customer_token },
-      organizer.api_key
+      { customer: @order.stripe_customer_token },
+      @api_key
     )
   rescue Stripe::InvalidRequestError => e
     Rails.logger.error "Stripe error while creating token: #{e.message}"
+    return nil
   end
 end

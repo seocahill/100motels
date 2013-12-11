@@ -1,17 +1,80 @@
-<div class="container">
-	<div class="row well">
-		<div class="">
-			<div class="span12">
-				<header>
-					<h2>Thanks <%= @order.email %>!... <br><small>Your order totaling <%= number_to_currency(@order.total) %> was successful.</small></h2>
-				</header>
-				<p class="lead">An email has been sent to <%= @order.email %> with your order receipt and details. </p>
-				<p class="lead">If you have any questions regarding your order, contact us and quote your unique order reference -</p><br>
-				<p><span class="well">order uuid: <%= @order.uuid %></span></p>
-			</div>
-			<div class="span12 pagination-centered">
-				<%= link_to "Back", event_path(@order.event), class: "btn btn-primary btn-large" %>
-			</div>
-		</div>
-	</div>
+<div id="customer-order" >
+  <div class="container">
+  	<div class="row">
+      <div class="well col-lg-8 col-lg-offset-2">
+        <div class="event-image row">
+          <div class="col-lg-12">
+            <%= image_tag (@order.event.image || "https://s3-us-west-2.amazonaws.com/onehundredmotels/247915_156305404435251_2616225_n.jpg"), size: "800x300", class: 'img-responsive' %>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-xs-6 col-sm-6 col-md-6">
+            <address>
+             <p> <strong>100 Motels</strong></p>
+              <p>Event Organizer: <%= @order.event.user.name %></p>
+            </address>
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-6 text-right">
+          	<p>
+              Ordered by: <%= @order.name %> (<%= @order.email %>)
+            </p>
+            <p>
+              <em>at: <%= time_tag(@order.updated_at) %></em>
+            </p>
+          </div>
+        </div>
+        <div class="receipt row">
+          <div class="text-center">
+              <h1>Order Receipt <br><small><em><%= @order.id %></em></small></h1>
+          </div>
+          <br>
+          <table class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th>Event</th>
+                <th class="text-center">Ticket#</th>
+                <th class="text-center">Price</th>
+              </tr>
+            </thead>
+            <tbody>
+  	        <% @order.tickets.each do |ticket| %>
+              <tr>
+                <td class=""><em><%= @order.event.name %> in <%= @order.event.location %> at <%= time_tag(@order.event.date) %></em></h4></td>
+                <td class="" style="text-align: center"><%= ticket.number %></td>
+                <td class="text-center"><%= number_to_currency(@order.ticket_price) %></td>
+              </tr>
+            <% end %>
+              <tr>
+                <td>   </td>
+                <td class="text-right">
+                <p>
+                  <strong>Subtotal: </strong>
+                </p>
+                <p>
+                  <strong>Fees (inc. tax): </strong>
+                </p>
+                <p><em>Refunded: </em></p></td>
+                <td class="text-center">
+                <p>
+                  <strong><%= number_to_currency(@order.quantity * @order.ticket_price) %></strong>
+                </p>
+                <p>
+                  <strong><%= number_to_currency(@order.total - (@order.quantity * @order.ticket_price)) %></strong>
+                </p>
+                <p><em><%= number_to_currency(@order.part_refund) %></em></p>
+                </td>
+              </tr>
+              <tr>
+                <td>   </td>
+                <td class="text-right"><h4><strong>Total: </strong></h4></td>
+                <td class="text-center text-danger"><h4><strong><%= number_to_currency(@order.total) %></strong></h4></td>
+              </tr>
+            </tbody>
+          </table>
+          <a href="#" class="btn btn-success btn-lg btn-block" onclick="window.print();return false;">Print</a>
+        </div>
+      </div>
+  	</div>
+  </div>
 </div>
