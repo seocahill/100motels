@@ -76,8 +76,8 @@ class EventShowTest < Capybara::Rails::TestCase
   test "as admin click edit for inline editing and save" do
     Capybara.current_driver = Capybara.javascript_driver
     sign_in(@event.user)
-    visit event_path(@event)
-    click_button "Edit"
+    click_on @event.name[0..6] + "..."
+    click_on "Edit"
     find(:css, "textarea").set("New Text")
     click_on "Save"
     within ".event-media-html" do
@@ -85,23 +85,16 @@ class EventShowTest < Capybara::Rails::TestCase
     end
   end
 
-  test "edit button toggle" do
+  test "cancel button" do
     Capybara.current_driver = Capybara.javascript_driver
     sign_in(@event.user)
-    visit event_path(@event)
+    click_on @event.name[0..6] + "..."
     click_on "Edit"
-    assert page.has_css?('.edit-about', text: "Save"), "expected Save"
-    click_on "Save"
-    assert page.has_css?('.edit-about', text: "Edit"), "expected Edit"
+    find(:css, "textarea").set("New Text")
+    click_on "Cancel"
+    within ".event-media-html" do
+      refute page.has_content?("New Text"), "should not change"
+    end
   end
 
-  test "escape key edit toggle" do
-    Capybara.current_driver = Capybara.javascript_driver
-    sign_in(@event.user)
-    visit event_path(@event)
-    click_on "Edit"
-    assert page.has_css?('.edit-about', text: "Save"), "expected Save"
-    native.send_key(:Escape)
-    assert page.has_css?('.edit-about', text: "Edit"), "expected Edit"
-  end
 end

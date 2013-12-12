@@ -1,7 +1,7 @@
 class Event < ActiveRecord::Base
   enum_accessor :state, [ :guest, :in_progress, :finished]
   validates :name, length: {maximum: 50}
-  validates :name, :date, presence: :true
+  validates :name, :date, :time, presence: :true
   validates_numericality_of :ticket_price, :allow_nil => true,
       :greater_than_or_equal_to => 5.0,
       :less_than_or_equal_to => 50.0,

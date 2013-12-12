@@ -7,6 +7,7 @@ class EventTest < ActiveSupport::TestCase
   should ensure_length_of(:name).is_at_most(50)
   should validate_presence_of(:name)
   should validate_presence_of(:date)
+  should validate_presence_of(:time)
   should validate_numericality_of(:ticket_price)
   .with_message(/leave blank for free events or between 5 and 50 dollars for paid events./)
 

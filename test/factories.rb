@@ -23,8 +23,8 @@ FactoryGirl.define do
     user
     name  { Faker::Lorem.characters(49) }
     location { Faker::Address.city }
-    date_field { 3.months.from_now }
-    time_field { Time.now }
+    date { 3.months.from_now }
+    time { Time.now }
     about { Faker::Lorem.paragraph(3) }
     target 100
     ticket_price 10.0
@@ -69,7 +69,7 @@ FactoryGirl.define do
   factory :message do
     message "Here's an update about your event"
     trait :defer do
-      date DateTime.parse("31 December 2014")
+      date Date.parse("31 December 2014")
     end
   end
 end
