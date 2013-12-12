@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :signed_in?, only: [:show, :update]
 
   def show
-    @user = current_user
+    @user = User.new
     @presenter = EventPresenter.new(view_context)
   end
 
