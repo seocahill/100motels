@@ -30,3 +30,4 @@ bundler_stubs/
 /*.box
 /*.dev
 /*.stg
+/*.ssl_cert
