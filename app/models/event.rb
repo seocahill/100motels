@@ -13,6 +13,8 @@ class Event < ActiveRecord::Base
   has_many :orders
   has_many :tickets, through: :orders
 
+  before_save :convert_to_datetime
+
   include PgSearch
   pg_search_scope :search,
     against: [:name, :location, :about],
@@ -42,6 +44,26 @@ class Event < ActiveRecord::Base
     if self.user.state_unconfirmed?
       errors.add(:base, "sign up to publish events") if self.visible_changed?
     end
+  end
+
+  def date_field
+    date.strftime("%d/%m/%Y") if date.present?
+  end
+
+  def time_field
+    date.strftime("%I:%M%p") if date.present?
+  end
+
+  def date_field=(date)
+    @date_field = Date.parse(date).strftime("%Y-%m-%d")
+  end
+
+  def time_field=(time)
+    @time_field = Time.parse(time).strftime("%H:%M:%S")
+  end
+
+  def convert_to_datetime
+    self.date = DateTime.parse("#{@date_field} #{@time_field}")
   end
 
   auto_html_for :about do

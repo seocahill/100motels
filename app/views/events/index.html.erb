@@ -15,14 +15,16 @@
 <section id="search-results" class="">
   <div class="row">
     <% @events.each do |event| %>
-      <figure class="col-lg-4 img-responsive">
-        <%= link_to event_path(event) do %>
-          <%= @presenter.index_image(event) %>
-          <figcaption>
-            <%= truncate(event.name, length: 15) %> <%= event.date.strftime('%d/%m') %> in <%= event.location %>.
-          </figcaption>
-        <% end %>
-      </figure>
+      <div  class="col-lg-4">
+        <figure>
+          <%= link_to event_path(event) do %>
+            <%= @presenter.index_image(event) %>
+            <figcaption>
+              <%= truncate(event.name, length: 15) %> <%= event.date.strftime('%d/%m') %> in <%= event.location %>.
+            </figcaption>
+          <% end %>
+        </figure>
+      </div>
     <% end %>
     <%= will_paginate @events, renderer: BootstrapPagination::Rails %>
   </div>

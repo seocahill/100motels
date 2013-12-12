@@ -26,10 +26,8 @@
 }
 
 #search-results figure {
-  // margin: 0;
-  // padding: 0;
-  // position: relative;
-  // overflow: hidden;
+  margin-bottom: 10px;
+  max-width: 100%;
 }
 
 #search-results figure figcaption {
@@ -37,17 +35,12 @@
   color: #fff;
   font-size: 18px;
   text-align: center;
+  // width: 480px;
   a:active {
     text-decoration: none;
   }
-  // padding: .3rem;
-  // position: absolute;
-  transition: .6s;
 }
 
-#search-results figure:hover figcaption {
-  transform: translateY(-2rem);
-}
 
 // event show
 #event-banner {
@@ -201,6 +194,17 @@
     opacity: 0.8;
     font-size: 24px;
   }
+  ul.pagination > li > a {
+    font-size: 14px;
+    color: #757EA2;
+  }
+  ul.pagination > li > span {
+    color: #757EA2;
+  }
+  ul.pagination > li.active > span {
+    color: #fff;
+  }
+
   background: #32373A;
   margin: 20px 40px;
   color: white;

@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
       about_text = "#Read this first!\n-----\n\n###This page uses redcarpet markdown!\n\n####Markdown is a special shorthand for quickly formatting text. Click the edit button to see what it looks like.\n\n####[Here's](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) a link to a full cheat-sheet for reference.\n\n###Responsive images\n
       \nhttp://jasobrecht.com/wp-content/uploads/2011/03/Grateful-Dead-patch.jpg\n\n###Embed video (also responsive), first youtube\n\nhttp://www.youtube.com/watch?v=AQ_6sGiglm4\n\n###Here's a vimeo\n
       \nhttp://vimeo.com/57855999\n\n###Maps work too\n\nhttps://maps.google.com/maps?q=irish+times&hl=en&ll=37.79483,-122.395914&spn=0.011411,0.019913&sll=37.793694,-122.395828&sspn=0.011412,0.019913&t=h&radius=0.65&hq=irish+times&z=16\n\n###And soundclouds...\n\nhttps://soundcloud.com/creteboom/encomium15\n"
-      self.events.create(name: "Example Show", date: 3.months.from_now, ticket_price: 10, location: "Dublin, Ireland", about: about_text)
+      self.events.create(name: "Guest User", date: 3.months.from_now, ticket_price: 10, location: "TBC Dublin, Ireland", about: about_text)
     end
   end
 

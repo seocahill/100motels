@@ -41,13 +41,14 @@
             <tbody>
             <% @events.each do |event| %>
               <tr class="">
-                <td><%= link_to event.name, event_path(event), class: "" %></td>
+                <td><%= link_to truncate(event.name, length: 10), event_path(event), class: "" %></td>
                 <td><span class="badge pull-right"><%= @presenter.left_to_go(event) %> left</span> </td>
-                <td><%= @presenter.per_cent_sold(event) %>% sold</td>
+                <td><%= link_to "#{@presenter.per_cent_sold(event)}% sold", admin_event_path(event) %></td>
               </tr>
             <% end %>
             </tbody>
           </table>
+          <%= will_paginate @events, renderer: BootstrapPagination::Rails %>
         </div>
       </div>
     </div>

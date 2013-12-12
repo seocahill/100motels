@@ -5,7 +5,7 @@ class Admin::EventsController < ApplicationController
   end
 
   def index
-    @events = current_user.events.to_a
+    @events = current_user.events.page(params[:page]).per_page(20)
     @presenter = EventPresenter.new(view_context)
   end
 
@@ -27,7 +27,7 @@ class Admin::EventsController < ApplicationController
   end
 
   def new
-    @event = Event.new
+    @event = current_user.events.last.dup
   end
 
   def create
@@ -70,6 +70,6 @@ class Admin::EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:name, :location, :date, :ticket_price, :visible, :target)
+    params.require(:event).permit(:name, :location, :date, :ticket_price, :visible, :target, :about, :image, :date_field, :time_field)
   end
 end
