@@ -32,7 +32,7 @@ end
 gem 'bootstrap-sass'
 gem "font-awesome-rails"
 gem 'bcrypt-ruby'
-gem 'best_in_place', git: 'git://github.com/straydogstudio/best_in_place.git'
+gem 'best_in_place', git: 'git://github.com/seocahill/best_in_place.git'
 gem 'stripe'
 gem 'omniauth-stripe-connect'
 gem 'bootstrap-will_paginate'

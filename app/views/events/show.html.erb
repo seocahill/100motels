@@ -18,7 +18,7 @@
 	<div class="">
 		<div class="row">
       <div class="col-lg-3">
-        <div class="progress  text-center">
+        <div class="progress text-center">
           <div class="progress-bar progress-bar-success sold" role="progressbar" data-funded="<%= @presenter.per_cent_sold(@event) %>">
           </div>
             <span><%= @presenter.per_cent_sold(@event) %>% complete</span>
@@ -49,7 +49,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-10 col-lg-offset-1">
-				<%= @presenter.edit_button(@event) %><button id="cancel-button" class="btn hideme">Cancel</button>
+				<%= @presenter.edit_button(@event) %>
 				<div class="event-media-html"><%= @presenter.about_section(@event) %></div>
 			</div>
 		</div>

@@ -34,11 +34,11 @@ class EventPresenter
   end
 
   def edit_button(event)
-    button_tag "Edit", type: "button", class: "btn btn-default btn-lg edit-about", data: { toggle: "button" } if event_owner?(event)
+    button_tag "Edit", type: "button", class: "btn btn-default btn-lg", id: "edit-about" if event_owner?(event)
   end
 
   def about_section(event)
-    best_in_place_if event_owner?(event), event, :about, type: :textarea, nil: "###Start Here", classes: "about", display_as: :about_html, activator: ".edit-about",html_attrs: {"rows" => 12, "cols" => 140, "spellcheck" => "true"}
+    best_in_place_if event_owner?(event), event, :about, type: :textarea, ok_button: "Save", ok_button_class: "btn btn-lg btn-primary save-edit", cancel_button: "Cancel", cancel_button_class: "btn btn-default btn-lg cancel-edit", classes: "about", display_as: :about_html, activator: "#edit-about", html_attrs: {"rows" => 12, "cols" => 140, "spellcheck" => "true"}
   end
 
   def tickets_sold(event)
