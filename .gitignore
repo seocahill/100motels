@@ -25,6 +25,7 @@ bundler_stubs/
 
 # Ignore dev env variables
 /.env
+/.prod-env
 /.vagrant
 /*.box
 /*.dev
