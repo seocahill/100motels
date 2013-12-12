@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131125210808) do
+ActiveRecord::Schema.define(version: 20131212194611) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,8 @@ ActiveRecord::Schema.define(version: 20131125210808) do
     t.integer  "state",                                default: 0,     null: false
     t.integer  "target",                               default: 100,   null: false
     t.integer  "user_id"
+    t.string   "currency",                             default: "USD"
+    t.time     "time"
   end
 
   add_index "events", ["user_id"], name: "index_events_on_user_id", using: :btree
