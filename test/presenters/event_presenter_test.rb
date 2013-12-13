@@ -29,16 +29,16 @@ class EventPresenterTest < ActionView::TestCase
   end
 
   test "index_image presenter no image" do
-    assert_match EventPresenter.new(view).index_image(FactoryGirl.build(:event)), '<img alt="247915 156305404435251 2616225 n" class="img-responsive" height="300" src="https://s3-us-west-2.amazonaws.com/onehundredmotels/247915_156305404435251_2616225_n.jpg" width="480" />'
+    assert_match EventPresenter.new(view).index_image(FactoryGirl.build(:event)), '<img alt="247915 156305404435251 2616225 n" height="300" src="https://s3-us-west-2.amazonaws.com/onehundredmotels/247915_156305404435251_2616225_n.jpg" width="450" />'
   end
 
   test "index_image presenter has image" do
-    assert_match @presenter.index_image(@event), '<img alt="Something" class="img-responsive" height="300" src="https://www.myimage.com/something.jpg" width="480" />'
+    assert_match @presenter.index_image(@event), '<img alt="Something" height="300" src="https://www.myimage.com/something.jpg" width="450" />'
   end
 
   test "edit button if current_user" do
     @presenter.stub(:event_owner?, true) do
-      assert_match @presenter.edit_button(@event), button_tag("Edit", type: "button", class: "btn btn-default btn-lg edit-about", data: { toggle: "button" })
+      assert_match @presenter.edit_button(@event), button_tag("Edit", type: "button", class: "btn btn-default btn-lg", id: "edit-about")
     end
   end
 

@@ -27,7 +27,7 @@ class Admin::EventsController < ApplicationController
   end
 
   def new
-    @event = current_user.events.last.dup
+    @event = current_user.events.present? ? current_user.events.last.dup : Event.new
   end
 
   def create

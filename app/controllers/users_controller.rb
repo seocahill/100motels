@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :signed_in?, only: [:show, :update]
 
   def show
-    @user = User.new
+    @user = current_user
     @presenter = EventPresenter.new(view_context)
   end
 
@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
   def create
     @user = params[:user] ? User.new(user_params) : User.new_guest
-    if @user.save!
+    if @user.save
       current_user ? current_user.move_to(@user) : @user.guest_user_event
       cookies[:auth_token] = @user.auth_token
       flash[:notice] = @user.guest? ? 'Welcome Guest!' : "Thanks for signing up! We've sent you an email to confirm your password"

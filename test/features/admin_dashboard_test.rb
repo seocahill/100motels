@@ -21,6 +21,9 @@ class AdminDashboardTest < Capybara::Rails::TestCase
   end
 
   test "admin can view order page for each order" do
-    skip "it works"
+    within "#gold" do
+      click_link @orders.first.id[0..6] + "..."
+      assert_equal order_path(@orders.first), current_path, "cant access order"
+    end
   end
 end
