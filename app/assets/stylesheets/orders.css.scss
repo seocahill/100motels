@@ -3,7 +3,7 @@
   .container {
     padding-top: 40px;
     .well {
-      background: url('concrete_wall_2.png')
+      background: image-url('concrete_wall_2.png')
     }
     img {
       margin: 0;
@@ -23,7 +23,7 @@
     padding-top: 60px;
   }
   .well {
-    background: url('concrete_wall_2.png');
+    background: image-url('concrete_wall_2.png');
     height: 600px;
   }
 }
