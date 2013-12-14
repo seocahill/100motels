@@ -25,6 +25,8 @@ production:
   encoding: unicode
   database: one_hundred_motels_production
   pool: 5
-  username:
+  username: postgres
   password:
+  host: localhost
+  port: 5432
 
