@@ -28,14 +28,14 @@ class User < ActiveRecord::Base
 
   def move_to(user)
     self.events.update_all(user_id: user.id)
-    user.confirm!
+    confirm(user)
   end
 
-  def confirm!
-    self.generate_token(:confirmation_token)
-    self.confirmation_sent_at = Time.zone.now
-    save!
-    UserMailer.delay.email_confirmation(self.id)
+  def confirm(user)
+    user.generate_token(:confirmation_token)
+    user.confirmation_sent_at = Time.zone.now
+    user.save
+    UserMailer.delay.email_confirmation(user.id)
   end
 
   def connect(auth)
