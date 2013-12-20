@@ -80,7 +80,9 @@ class EventPresenter
   end
 
   def event_owner?(event)
-    current_user == event.user if current_user.present?
+    if current_user.present?
+      current_user == event.user or current_user.state_superadmin?
+    end
   end
 
   def overall_target

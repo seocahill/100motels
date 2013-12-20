@@ -108,4 +108,14 @@ class EventPresenterTest < ActionView::TestCase
     end
   end
 
+  test "user doesnt own event but is superadmin" do
+    def view.current_user; FactoryGirl.create(:user, state: :superadmin); end
+    assert EventPresenter.new(view).event_owner?(@event), "should be true for admin"
+  end
+
+  test "user doesnt own event" do
+    def view.current_user; FactoryGirl.create(:user); end
+    refute EventPresenter.new(view).event_owner?(@event), "should not be true for ordinary user"
+  end
+
  end
