@@ -1,6 +1,7 @@
 <section class="header">
   <nav class="logo-nav">
-    <h2>100 Motels |<small><%= link_to "sign-in", login_path %> • <%= link_to "events", events_path %> </small></h2>
+    <h1 class="hidden-xs">100 Motels |<small><%= link_to "sign-in", login_path %> • <%= link_to "events", events_path %> </small></h1>
+    <h1 class="visible-xs">100 Motels</h1>
   </nav>
   <div class="vert-text">
     <h1>
@@ -15,10 +16,22 @@
         <h2>100 Motels</h2>
         <p class="lead">Touring without a label backing you up is tough. I found myself not playing shows because of money worries and uncertainty over the likely attendances. I built 100 motels to ease those worries, I hope it can help you too! </p>
         <%= link_to "Try it Free", users_path, method: :post, class: "btn btn-success btn-lg" %>
+        <div class="login-or visible-xs">
+          <hr class="hr-or">
+          <span class="span-or">or</span>
+        </div>
+        <div class="row visible-xs">
+          <div class="col-xs-6 col-sm-6 col-md-6">
+            <%= link_to "Sign-in", login_path, class: "btn btn-lg btn-default btn-block" %>
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-6">
+            <%= link_to "Events", events_path, class: "btn btn-lg btn-default btn-block" %>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <a class="next-chapter" href="#services">find out more <i class="fa fa-chevron-down"></i></a>
+  <a class="next-chapter hidden-xs" href="#services">find out more <i class="fa fa-chevron-down"></i></a>
 </section>
 <section id="services" class="services">
   <div class="">
@@ -34,7 +47,7 @@
         <div class="service-item">
           <i class="service-icon fa fa-pencil"></i>
           <h4>Create a Page for your Tour</h4>
-          <p>Just embed a poster or add soundclouds, videos, maps and text in markdown. Create as many dates as you want.</p>
+          <p>Embed a poster or add soundclouds, videos, maps and text in markdown. Create as many dates as you want.</p>
         </div>
       </div>
       <div class="col-md-2 text-center">

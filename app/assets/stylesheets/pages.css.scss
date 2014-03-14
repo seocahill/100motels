@@ -8,16 +8,20 @@ body {
 .logo-nav {
   margin-left: 20px;
   small {color: white;}
-  h2, a, {
+  h1, a, {
     padding: 10px;
     font-family: 'Lobster', cursive;
     color: white;
-    font-weight: 400;
-    margin-bottom: 20px;
-    font-size: 22px;
+    @include media-above($handheld-max) {
+      font-weight: 400;
+      margin-bottom: 20px;
+      font-size: 22px;
+    }
   }
-  h2 {
-    font-size: 38px;
+  h1 {
+    @include media-above($handheld-max) {
+      font-size: 38px;
+    }
   }
 }
 
@@ -31,8 +35,9 @@ body {
   font-family: 'Cabin', cursive;
   padding: 0;
   margin: 0;
-  font-size: 3.5em;
-  // font-weight: 700;
+  @include media-above($handheld-max) {
+    font-size: 3.5em;
+  }
   color: white;
   opacity: 0.8;
 }
@@ -41,7 +46,9 @@ body {
   letter-spacing: -1px;
   background: rgb(0, 0, 0); /* fallback color */
   background: rgba(0, 0, 0, 0.7);
-  padding: 10px;
+  @include media-above($handheld-max) {
+    padding: 10px;
+  }
 }
 
 .header {
@@ -75,21 +82,62 @@ a.next-chapter {
   font-weight: 300;
 }
 
+// hr or
+.login-or {
+    position: relative;
+    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .span-or {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: -2px;
+    margin-left: -25px;
+    background-color: #fff;
+    width: 50px;
+    text-align: center;
+  }
+  .hr-or {
+    background-color: #cdcdcd;
+    height: 1px;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+  }
 
-/* Intro */
+// Intro
 
 .intro {
+  font-size: 2.5em;
   padding: 50px 0;
   h2 {font-family: 'Cabin', cursive;}
-  font-size: 2.5em;
+  p {
+    text-align: justify;
+    padding: 0 10px;
+    @include media-above($handheld-max) {
+      text-align: center;
+      padding: inherit;
+    }
+  }
 }
 
-/* Services */
+// Services
 
 .services {
   background: #32373A;
   padding: 50px 0;
   color: #ffffff;
+  p {
+    text-align: justify;
+    margin: 0 30px 30px 30px;
+    @include media-above($handheld-max) {
+      text-align: center;
+      margin: inherit;
+    }
+  }
 
 }
 
@@ -113,7 +161,9 @@ footer {
   background: #32373A;
   padding: 40px 0;
   color: #ffffff;
-  font-size: 1.25em;
+  @include media-above($handheld-max) {
+    font-size: 1.25em;
+  }
   a {
     color: #fff;
   }

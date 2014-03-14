@@ -1,0 +1,26 @@
+// colors
+$brown: rgba(90, 86, 86, 1);
+$black: #32373A;
+
+/* Responsive dimensions */
+$handheld-min: 320px;
+$handheld-max: 479px;
+$small-min: $handheld-max + 1;
+$small-max: 767px;
+$medium-min: $small-max + 1;
+$medium-max: 979px;
+$large-min: $medium-max + 1;
+$ipad-landscape: 1025px;
+$large-max: 1199px;
+$xlarge: 1200;
+
+/*Responsive query mixins */
+@mixin media-above($min) {
+  @media (min-width: $min) { @content; }
+}
+@mixin media-below($max) {
+  @media (max-width: $max) { @content; }
+}
+@mixin media-between($min, $max) {
+  @media (min-width: $min) and (max-width: $max) { @content; }
+}

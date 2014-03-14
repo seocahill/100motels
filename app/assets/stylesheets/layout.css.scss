@@ -1,9 +1,33 @@
-// colors
-$brown: rgba(90, 86, 86, 1);
-$black: #32373A;
+// Fonts
+@import url(https://fonts.googleapis.com/css?family=Cabin|Lobster);
+
+// Sticky Footer
+html, body  {
+  height: 100%;
+  // background: #32373A;
+}
+
+.wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -60px;
+  background: #32373A;
+}
+
+.push {
+  height: 60px;
+}
+
+footer {
+  // padding: 20px;
+  text-align: center;
+  .landing {
+    color: white;
+  }
+}
 
 // customize brand color test
-
 .page-header {
   border-bottom: 1px solid #D3D1D1;
 }
@@ -105,82 +129,10 @@ $black: #32373A;
   margin: 5px 5px 0 0;
 }
 
-// Fonts
-@import url(https://fonts.googleapis.com/css?family=Cabin|Lobster);
-
-
-/* Responsive dimensions */
-$handheld-min: 320px;
-$handheld-max: 479px;
-$small-min: $handheld-max + 1;
-$small-max: 767px;
-$medium-min: $small-max + 1;
-$medium-max: 979px;
-$large-min: $medium-max + 1;
-$ipad-landscape: 1025px;
-$large-max: 1199px;
-$xlarge: 1200;
-
-/*Responsive query mixins */
-@mixin media-above($min) {
-  @media (min-width: $min) { @content; }
-}
-@mixin media-below($max) {
-  @media (max-width: $max) { @content; }
-}
-@mixin media-between($min, $max) {
-  @media (min-width: $min) and (max-width: $max) { @content; }
-}
-
-// Sticky Footer
-html, body  {
-  height: 100%;
-  // background: #32373A;
-}
-
-.wrapper {
-  min-height: 100%;
-  height: auto !important;
-  height: 100%;
-  margin: 0 auto -60px;
-  background: #32373A;
-}
-
-.push {
-  height: 60px;
-}
-
-footer {
-  // padding: 20px;
-  text-align: center;
-  .landing {
-    color: white;
-  }
-}
-
 // input prepend fix
 .input-prepend, .input-append {
     white-space: nowrap;
     -webkit-padding-end: 27px;
-}
-
-// purr error messages
-.purr {
-    position: fixed;
-    top: 30px;
-    right: 100px;
-    width: auto;
-    padding: 20px;
-    @extend .alert;
-    @extend .alert-error;
-    &:first-letter { text-transform: uppercase };
-  }
-
-.block-button-group {
-  width: 100%;
-  .btn  {
-    width: 33%
-  }
 }
 
 // Sign in
