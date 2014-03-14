@@ -5,11 +5,6 @@
 }
 
 #search-results {
-  // background: image-url("motels_landing_splash.jpg") no-repeat center center fixed;
-  // -webkit-background-size: cover;
-  // -moz-background-size: cover;
-  // -o-background-size: cover;
-  // background-size: cover;
   background: #5A5656;
   min-height: 800px;
   padding: 15px;
@@ -22,7 +17,6 @@
   -o-background-size: cover;
   background-size: cover;
   height: 800px;
-  // background: #5A5656;
 }
 
 #search-results figure {
@@ -35,7 +29,7 @@
   color: #fff;
   font-size: 18px;
   text-align: center;
-  // width: 480px;
+  width: 100%;
   a:active {
     text-decoration: none;
   }
@@ -115,6 +109,14 @@
   padding-right: 10px;
 }
 
+.stripe-form {
+  .btn {
+    @include media-below($small-max) {
+      width: 100%;
+    }
+  }
+}
+
 .addthis_toolbox {
   &:hover {
     text-decoration: none;
@@ -138,6 +140,9 @@
 
 .price, i {
   font-size: 24px;
+  @include media-below($handheld-max) {
+    margin-top: 10px;
+  }
 }
 
 .portfolio-item {

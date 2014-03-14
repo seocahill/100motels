@@ -17,16 +17,24 @@
 <section id="event-information">
 	<div class="">
 		<div class="row">
-      <div class="col-lg-3">
+      <div class="col-lg-3 col-xs-12">
         <div class="progress text-center">
           <div class="progress-bar progress-bar-success sold" role="progressbar" data-funded="<%= @presenter.per_cent_sold(@event) %>">
           </div>
             <span><%= @presenter.per_cent_sold(@event) %>% complete</span>
         </div>
       </div>
-			<div class="col-lg-6 text-center">
-				<div class="visible-desktop">
-					<div class="addthis_toolbox">
+			<div class="col-lg-6 col-xs-12">
+				<div class="">
+          <ul class="list-group hidden-lg">
+            <li class="list-group-item">
+              <i class="fa fa-map-marker"></i> <%= @event.location %>
+            </li>
+            <li class="list-group-item">
+              <i class="fa fa-calendar"></i> <%= @event.date.strftime('%A, %b %e @ %l:%M %p') %>
+            </li>
+          </ul>
+					<div class="addthis_toolbox visible-lg text-center">
 						<div class="custom_images">
 							<ul class="list-inline">
                 <li><i class="fa fa-map-marker"></i> <%= @event.location %></li>
@@ -37,7 +45,7 @@
 					</div>
 				</div>
 			</div>
-      <div class="col-lg-3">
+      <div class="stripe-form col-lg-3 col-xs-12">
         <%= render 'orders/form' %>
     	</div>
     </div>

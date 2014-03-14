@@ -1,6 +1,6 @@
 <%= form_for @order, method: :post, html: { class: 'form-inline', role: "form"} do |f| %>
   <div class="form-group subtotal">
-    <label>
+    <label class="hidden-xs">
       <div class="price" data-price='<%= @event.ticket_price %>'><%= number_to_currency raw('<span class="order-total"></span>') %>
         </div>
     </label>
@@ -19,4 +19,7 @@
   </div>
   <%= f.hidden_field :event_id, value: @event.id %>
   <%= f.submit "Purchase", class: 'btn btn-primary', id: "checkout" %>
+  <div class="price text-center visible-xs" data-price='<%= @event.ticket_price %>'>
+    <%= number_to_currency raw('<span class="order-total"></span>') %>
+  </div>
 <% end %>

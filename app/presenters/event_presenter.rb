@@ -27,9 +27,9 @@ class EventPresenter
 
   def index_image(event)
     if event.image.present?
-      image_tag event.image, size: "450x300"
+      image_tag event.image, class: "img-responsive"
     else
-      image_tag "https://s3-us-west-2.amazonaws.com/onehundredmotels/247915_156305404435251_2616225_n.jpg", size: "450x300"
+      image_tag "https://s3-us-west-2.amazonaws.com/onehundredmotels/247915_156305404435251_2616225_n.jpg", class: "img-responsive"
     end
   end
 

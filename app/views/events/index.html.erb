@@ -15,7 +15,7 @@
 <section id="search-results" class="">
   <div class="row">
     <% @events.each do |event| %>
-      <div  class="col-lg-4">
+      <div  class="col-lg-4 col-sm-6">
         <figure>
           <%= link_to event_path(event) do %>
             <%= @presenter.index_image(event) %>
