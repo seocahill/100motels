@@ -117,7 +117,7 @@ a.next-chapter {
   p {
     text-align: justify;
     padding: 0 10px;
-    @include media-above($handheld-max) {
+    @include media-above($medium-max) {
       text-align: center;
       padding: inherit;
     }
@@ -133,7 +133,7 @@ a.next-chapter {
   p {
     text-align: justify;
     margin: 0 30px 30px 30px;
-    @include media-above($handheld-max) {
+    @include media-above($medium-max) {
       text-align: center;
       margin: inherit;
     }

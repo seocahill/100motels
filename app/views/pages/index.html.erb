@@ -1,7 +1,7 @@
 <section class="header">
   <nav class="logo-nav">
-    <h1 class="hidden-xs">100 Motels |<small><%= link_to "sign-in", login_path %> • <%= link_to "events", events_path %> </small></h1>
-    <h1 class="visible-xs">100 Motels</h1>
+    <h1 class="visible-lg">100 Motels |<small><%= link_to "sign-in", login_path %> • <%= link_to "events", events_path %> </small></h1>
+    <h1 class="hidden-lg">100 Motels</h1>
   </nav>
   <div class="vert-text">
     <h1>
@@ -16,11 +16,11 @@
         <h2>100 Motels</h2>
         <p class="lead">Touring without a label backing you up is tough. I found myself not playing shows because of money worries and uncertainty over the likely attendances. I built 100 motels to ease those worries, I hope it can help you too! </p>
         <%= link_to "Try it Free", users_path, method: :post, class: "btn btn-success btn-lg" %>
-        <div class="login-or visible-xs">
+        <div class="login-or hidden-lg">
           <hr class="hr-or">
           <span class="span-or">or</span>
         </div>
-        <div class="row visible-xs">
+        <div class="row hidden-lg">
           <div class="col-xs-6 col-sm-6 col-md-6">
             <%= link_to "Sign-in", login_path, class: "btn btn-lg btn-default btn-block" %>
           </div>
@@ -36,28 +36,28 @@
 <section id="services" class="services">
   <div class="">
     <div class="row">
-      <div class="col-md-2 col-md-offset-2 text-center">
+      <div class="col-md-2 col-md-offset-2 col-sm-6 text-center">
         <div class="service-item">
           <i class="service-icon fa fa-credit-card"></i>
           <h4>Sign up and connect with Stripe</h4>
           <p>Stripe is like paypal except better! We use it to collect money, to pay out to your account and also to verify your identity.</p>
         </div>
       </div>
-      <div class="col-md-2 text-center">
+      <div class="col-md-2 col-sm-6 text-center">
         <div class="service-item">
           <i class="service-icon fa fa-pencil"></i>
           <h4>Create a Page for your Tour</h4>
           <p>Embed a poster or add soundclouds, videos, maps and text in markdown. Create as many dates as you want.</p>
         </div>
       </div>
-      <div class="col-md-2 text-center">
+      <div class="col-md-2 col-sm-6 text-center">
         <div class="service-item">
           <i class="service-icon fa fa-money"></i>
           <h4>Set your Price</h4><br>
           <p>You keep the full ticket price. Charges are added at purchase time, 4% for 100 Motels + Stripe's card processing fees.</p>
         </div>
       </div>
-      <div class="col-md-2 text-center">
+      <div class="col-md-2 col-sm-6 text-center">
         <div class="service-item">
           <i class="service-icon fa fa-question"></i>
           <h4>Charge, Defer or Cancel.</h4><br>

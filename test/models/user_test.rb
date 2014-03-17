@@ -41,20 +41,20 @@ class UserTest < ActiveSupport::TestCase
 
   test "confirm! generates token" do
     user = FactoryGirl.create(:user)
-    user.confirm!
+    user.confirm(user)
     refute_empty user.confirmation_token, "Token not generated"
   end
 
-  test "confirm! sets confirmation_sent_at" do
+  test "confirm(user) sets confirmation_sent_at" do
     user = FactoryGirl.create(:user)
-    user.confirm!
+    user.confirm(user)
     refute_equal user.confirmation_sent_at, nil, "Confirmation time not set"
   end
 
-  test "confirm! queues confirm email" do
+  test "confirm(user) queues confirm email" do
     user = FactoryGirl.create(:user)
     assert_equal 0, Sidekiq::Extensions::DelayedMailer.jobs.size
-    user.confirm!
+    user.confirm(user)
     assert_equal 1, Sidekiq::Extensions::DelayedMailer.jobs.size
   end
 
