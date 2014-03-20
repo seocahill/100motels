@@ -1,14 +1,17 @@
-<nav class="navbar navbar-default navbar-static-top" role="navigation">
-  <div class="container-fluid">
-    <form class="navbar-form navbar-left" role="search">
-      <div class="form-group">
-        <input type="text" class="form-control" placeholder="Search">
+<div class="row">
+  <div class="col-sm-12">
+    <form>
+      <div class="input-group">
+        <input type="search" name="query" class="form-control input-lg" value="<%= params[:query] %>">
+        <div class="input-group-btn">
+          <button type="submit" class="btn btn-default btn-lg" action='<%= admin_event_path(@event, query: params[:query]) %>'>Search</button>
+          <%= link_to "PDF", admin_event_path(@event, format: 'pdf'),  class: "btn btn-default btn-lg" %>
+          <%= link_to "Charge Orders", charges_path(event_id: @event.id), method: :post, class: "btn btn-lg btn-success" %>
+        </div>
       </div>
     </form>
-    <button type="button" class="btn btn-info navbar-btn">PDF</button>
-    <button type="button" class="btn btn-success navbar-btn">Charge All</button>
   </div>
-</nav>
+</div>
 <div class="row">
   <div class="col-sm-12">
     <div class="table-responsive">
@@ -42,3 +45,4 @@
     <%= will_paginate @orders, renderer: BootstrapPagination::Rails %>
   </div>
 </div>
+

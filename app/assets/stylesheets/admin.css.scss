@@ -1,0 +1,85 @@
+#dash-body {
+  padding-top: 50px;
+  background: rgba(0,0,0,0.3);
+  color: #fff;
+  height: 100%;
+}
+#dashboard {
+  background: image-url('concrete_wall_2.png');
+  margin-top: 40px;
+  min-height: 90%;
+  .button-menu{
+    padding-left: 0;
+  }
+}
+// @media screen and (max-width: 767px) {
+.row-offcanvas {
+  position: relative;
+  -webkit-transition: all .25s ease-out;
+     -moz-transition: all .25s ease-out;
+          transition: all .25s ease-out;
+}
+
+.row-offcanvas-right {
+  right: 0;
+}
+
+.row-offcanvas-left {
+  left: 0;
+}
+
+.row-offcanvas-right
+.sidebar-offcanvas {
+  right: -25%; /* 6 columns */
+}
+
+.row-offcanvas-left
+.sidebar-offcanvas {
+  left: -25%; /* 6 columns */
+}
+
+.row-offcanvas-right.active {
+  right: 25%; /* 6 columns */
+}
+
+.row-offcanvas-left.active {
+  left: 25%; /* 6 columns */
+}
+
+.sidebar-offcanvas {
+  position: absolute;
+  top: 0;
+  width: 25%; /* 6 columns */
+}
+
+.btn-group-vertical > .btn:first-child:not(:last-child) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.btn-admin{
+  @extend .btn-lg;
+  margin: 0;
+  border-radius: 0;
+  border-top-right-radius: 0;
+  padding: 30px;
+  width: 100%;
+  height: 100%;
+}
+
+#admin-display {
+  height: 100%;
+  min-height: 100%;
+}
+
+#admin-tabs {
+  padding: 20px;
+}
+.table {
+  background: rgba(0,0,0,0.3);
+  width: 100%;
+  tbody {
+    color: black;
+  }
+}

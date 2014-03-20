@@ -38,21 +38,27 @@ $ ->
   $('.unsold').css("width", "#{widthUnsold}%")
 
 $ ->
-  handler = StripeCheckout.configure(
-    key: "<%= ENV['STRIPE_PUBLIC_KEY'] %>"
-    image: "<%= image_path('motels_m.png') %>"
-    token: (response) ->
-      tokenInput = $("<input type=hidden name=stripeToken />").val(response.id)
-      emailInput = $("<input type=hidden name=stripeEmail />").val(response.email)
-      $("form").append(tokenInput).append(emailInput).submit()
-  )
+  if StripeCheckout?
+    handler = StripeCheckout.configure(
+      key: "<%= ENV['STRIPE_PUBLIC_KEY'] %>"
+      image: "<%= image_path('motels_m.png') %>"
+      token: (response) ->
+        tokenInput = $("<input type=hidden name=stripeToken />").val(response.id)
+        emailInput = $("<input type=hidden name=stripeEmail />").val(response.email)
+        $("form").append(tokenInput).append(emailInput).submit()
+    )
 
-  $("#checkout").click (e) ->
-    handler.open
-      address: false
-      amount: Number($('.order-total').text()) * 100
-      currency: "USD"
-      name: "100 Motels"
-      description: "Your Tickets"
-      panelLabel: "Checkout"
-    e.preventDefault()
+    $("#checkout").click (e) ->
+      handler.open
+        address: false
+        amount: Number($('.order-total').text()) * 100
+        currency: "USD"
+        name: "100 Motels"
+        description: "Your Tickets"
+        panelLabel: "Checkout"
+      e.preventDefault()
+
+# admin menu toggle
+$ ->
+  $('[data-toggle=offcanvas]').click () ->
+    $('.row-offcanvas').toggleClass('active')

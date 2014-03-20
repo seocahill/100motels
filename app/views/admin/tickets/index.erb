@@ -1,51 +1,40 @@
-<div class="event-tickets-wrapper">
-  <div class='event-tickets-table'>
-    <div class="container well">
-      <div class="row">
-        <div class="col-lg-12">
-          <h3 class="page-header"><%= @event.name %> in <%= @event.location %> at <%= time_tag(@event.date) %></h3>
+<div class="row">
+  <div class="col-lg-12">
+  <%= form_tag check_admin_event_tickets_path, method: :get, class: "" do %>
+      <div class="input-group">
+        <%= search_field_tag :number, nil, class: "form-control input-lg", placeholder: @ticket.try(:number) %>
+        <%= hidden_field_tag :event_id, @event.id %>
+        <div class="input-group-btn">
+          <%= submit_tag "Check", class: "btn btn-default btn-lg" %>
+          <%= link_to "PDF", admin_event_tickets_path(@event, format: 'pdf'),  class: "btn btn-default btn-lg" %>
         </div>
       </div>
-      <div class="row">
-        <div class="col-lg-12">
-        <%= form_tag check_admin_event_tickets_path, method: :get, class: "" do %>
-            <div class="input-group">
-              <%= search_field_tag :number, nil, class: "form-control input-lg", placeholder: @ticket.try(:number) %>
-              <%= hidden_field_tag :event_id, @event.id %>
-              <div class="input-group-btn">
-                <%= submit_tag "Check", class: "btn btn-default btn-lg" %>
-                <%= link_to "PDF", admin_event_tickets_path(@event, format: 'pdf'),  class: "btn btn-default btn-lg" %>
-              </div>
-            </div>
-          <% end %>
-          <br>
-          <table class="table table-striped table-bordered" id="admin-customers">
-            <thead>
-              <tr>
-                <th>Ticket</th>
-                <th>Checked?</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>CC</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @tickets.each do |ticket| %>
-              <tr>
-                <td><%= ticket.number %></td>
-                <td><span class="label label-<%=ticket.admitted? ? 'success' : 'info' %>"><%= ticket.admitted ? ticket.admitted.strftime("%b %e, %l:%M %p") : "no" %></span></td>
-                <td><%= ticket.order.name %> </td>
-                <td><%= ticket.order.email %> </td>
-                <td><%= ticket.order.last4 %> </td>
-                <td><%= link_to "view", order_path(ticket.order) %></td>
-              </tr>
-              <% end %>
-            </tbody>
-          </table>
-          <%= will_paginate @tickets, renderer: BootstrapPagination::Rails %>
-        </div>
-      </div>
-    </div>
+    <% end %>
+    <br>
+    <table class="table table-bordered" id="admin-customers">
+      <thead>
+        <tr>
+          <th>Ticket</th>
+          <th>Checked?</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>CC</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @tickets.each do |ticket| %>
+        <tr>
+          <td><%= ticket.number %></td>
+          <td><span class="label label-<%=ticket.admitted? ? 'success' : 'info' %>"><%= ticket.admitted ? ticket.admitted.strftime("%b %e, %l:%M %p") : "no" %></span></td>
+          <td><%= ticket.order.name %> </td>
+          <td><%= ticket.order.email %> </td>
+          <td><%= ticket.order.last4 %> </td>
+          <td><%= link_to "view", order_path(ticket.order) %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= will_paginate @tickets, renderer: BootstrapPagination::Rails %>
   </div>
 </div>

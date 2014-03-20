@@ -1,10 +1,11 @@
-class Admin::EventsController < ApplicationController
+class Admin::EventsController < Admin::BaseController
   before_action :signed_in?
   before_action only: [:show, :edit, :update, :destroy] do
     authorized?(params[:id])
   end
 
   def index
+    @event = current_user.events.first
     @events = current_user.events.page(params[:page]).per_page(20)
     @presenter = EventPresenter.new(view_context)
   end
