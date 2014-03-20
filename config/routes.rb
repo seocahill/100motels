@@ -18,7 +18,7 @@ OneHundredMotels::Application.routes.draw do
   resources :users
   resources :sessions
   resources :password_resets
-  resources :events, only: [:index, :update, :show]
+  resources :events, only: [:update, :show]
   resources :email_confirmations, only: [:create] do
     member { get :confirm }
   end
