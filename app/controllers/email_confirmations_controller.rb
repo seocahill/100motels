@@ -8,7 +8,7 @@ class EmailConfirmationsController < ApplicationController
   def confirm
     @user = User.find_by(confirmation_token: params[:id])
     if @user.confirmation_sent_at < 2.hours.ago
-      redirect_to events_path, :alert => "Email confirmation has expired, we've sent you a new one."
+      redirect_to root_path, :alert => "Email confirmation has expired, we've sent you a new one."
       @user.confirm!
     else
       @user.state = :normal

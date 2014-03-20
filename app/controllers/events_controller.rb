@@ -35,6 +35,6 @@ private
     raise ActiveRecord::RecordNotFound unless @event.public? or @event.user == current_user
   rescue ActiveRecord::RecordNotFound
     flash[:alert] = "The event you were looking for could not be found"
-    redirect_to events_path
+    redirect_to root_path
   end
 end

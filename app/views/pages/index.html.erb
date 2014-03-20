@@ -1,6 +1,6 @@
 <section class="header">
   <nav class="logo-nav">
-    <h1 class="visible-lg">100 Motels |<small><%= link_to "sign-in", login_path %> • <%= link_to "events", events_path %> </small></h1>
+    <h1 class="visible-lg">100 Motels |<small><%= link_to "sign-in", login_path %></small></h1>
     <h1 class="hidden-lg">100 Motels</h1>
   </nav>
   <div class="vert-text">
@@ -15,7 +15,7 @@
       <div class="col-md-6 col-md-offset-3 text-center">
         <h2>100 Motels</h2>
         <p class="lead">Touring without a label backing you up is tough. I found myself not playing shows because of money worries and uncertainty over the likely attendances. I built 100 motels to ease those worries, I hope it can help you too! </p>
-        <%= link_to "Try it Free", users_path, method: :post, class: "btn btn-success btn-lg" %>
+        <div class="visible-lg"><%= link_to "Try it Free", users_path, method: :post, class: "btn btn-success btn-lg" %></div>
         <div class="login-or hidden-lg">
           <hr class="hr-or">
           <span class="span-or">or</span>
@@ -25,7 +25,7 @@
             <%= link_to "Sign-in", login_path, class: "btn btn-lg btn-default btn-block" %>
           </div>
           <div class="col-xs-6 col-sm-6 col-md-6">
-            <%= link_to "Events", events_path, class: "btn btn-lg btn-default btn-block" %>
+            <%= link_to "Try it Free", users_path, method: :post, class: "btn btn-success btn-lg btn-block" %>
           </div>
         </div>
       </div>
