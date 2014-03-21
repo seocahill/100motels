@@ -27,6 +27,8 @@
         <div class="navbar-collapse collapse" style="height: 1px;">
           <ul class="nav navbar-nav">
             <li><%= link_to "Dashboard", admin_events_path %></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.email %><b class="caret"></b></a>
               <ul class="dropdown-menu">
@@ -43,24 +45,18 @@
       <div class="row row-offcanvas row-offcanvas-left">
         <div class="col-xs-6 sidebar-offcanvas" id="sidebar" role="navigation">
           <div class="list-group">
-            <li class="list-group-item">
-              <form role="form">
-                <input type="search" class="form-control" id="" placeholder="Search events">
-              </form>
-            </li>
+           <!-- search here -->
             <% current_user.events.each do |e| %>
               <%= link_to e.name, admin_event_path(e), class: "list-group-item" %>
             <% end %>
           </div>
         </div>
         <div class="col-sm-12" id="admin-display">
-          <p class="pull-left">
-            <button type="button" class="btn btn-primary btn-sm" data-toggle="offcanvas">Change event</button>
-          </p>
           <div id="dashboard" class="container">
             <div class="row">
               <div class="col-sm-2 button-menu">
                 <div class="btn-group-vertical">
+                  <button type="button" class="btn btn-info btn-admin" data-toggle="offcanvas">Change event</button>
                   <%= link_to "Orders", admin_event_path(@event), class: "btn btn-admin btn-info" %>
                   <%= link_to "Tickets", admin_event_tickets_path(@event), class: "btn btn-admin btn-info" %>
                   <%= link_to "Messages", new_admin_event_message_path(@event), class: "btn btn-admin btn-info" %>

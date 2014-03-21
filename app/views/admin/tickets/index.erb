@@ -1,40 +1,34 @@
-<div class="row">
-  <div class="col-lg-12">
-  <%= form_tag check_admin_event_tickets_path, method: :get, class: "" do %>
-      <div class="input-group">
-        <%= search_field_tag :number, nil, class: "form-control input-lg", placeholder: @ticket.try(:number) %>
-        <%= hidden_field_tag :event_id, @event.id %>
-        <div class="input-group-btn">
-          <%= submit_tag "Check", class: "btn btn-default btn-lg" %>
-          <%= link_to "PDF", admin_event_tickets_path(@event, format: 'pdf'),  class: "btn btn-default btn-lg" %>
-        </div>
-      </div>
-    <% end %>
-    <br>
-    <table class="table table-bordered" id="admin-customers">
-      <thead>
-        <tr>
-          <th>Ticket</th>
-          <th>Checked?</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>CC</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @tickets.each do |ticket| %>
-        <tr>
-          <td><%= ticket.number %></td>
-          <td><span class="label label-<%=ticket.admitted? ? 'success' : 'info' %>"><%= ticket.admitted ? ticket.admitted.strftime("%b %e, %l:%M %p") : "no" %></span></td>
-          <td><%= ticket.order.name %> </td>
-          <td><%= ticket.order.email %> </td>
-          <td><%= ticket.order.last4 %> </td>
-          <td><%= link_to "view", order_path(ticket.order) %></td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
-    <%= will_paginate @tickets, renderer: BootstrapPagination::Rails %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="text-right">
+      <%= link_to (fa_icon "download", text: "Tickets PDF"), admin_event_tickets_path(@event, format: 'pdf'),  class: "btn btn-default btn-lg" %>
+    </div>
+  </div>
+  <div class="panel-body">
+    <form>
+      <input type="search" name="query" class="form-control input-lg" value="<%= params[:query] %>" placeholder="Search Orders">
+    </form>
+  </div>
+  <div class="keypad">
+    <div class="row">
+      <div class="col-xs-3"><a href="" class="btn btn-lg btn-keypad btn-default">1</a></div>
+      <div class="col-xs-3"><a href="" class="btn btn-lg btn-keypad btn-default">2</a></div>
+      <div class="col-xs-3"><a href="" class="btn btn-lg btn-keypad btn-default">3</a></div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3"><a href="" class="btn btn-lg btn-keypad btn-default">4</a></div>
+      <div class="col-xs-3"><a href="" class="btn btn-lg btn-keypad btn-default">5</a></div>
+      <div class="col-xs-3"><a href="" class="btn btn-lg btn-keypad btn-default">6</a></div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3"><a href="" class="btn btn-lg btn-keypad btn-default">7</a></div>
+      <div class="col-xs-3"><a href="" class="btn btn-lg btn-keypad btn-default">8</a></div>
+      <div class="col-xs-3"><a href="" class="btn btn-lg btn-keypad btn-default">9</a></div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3"><a href="" class="btn btn-lg btn-keypad btn-default">0</a></div>
+      <div class="col-xs-3"><a href="" class="btn btn-lg btn-keypad btn-success"><i class="fa  fa-check-circle fa-1x"></i></a></div>
+      <div class="col-xs-3"><a href="" class="btn btn-lg btn-keypad btn-warning"><i class="fa fa-eraser"></i></a></div>
+    </div>
   </div>
 </div>
