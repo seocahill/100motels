@@ -6,29 +6,37 @@
   </div>
   <div class="panel-body">
     <form>
-      <input type="search" name="query" class="form-control input-lg" value="<%= params[:query] %>" placeholder="Search Orders">
+      <div class="form-group col-xs-9">
+        <input type="search" name="query" class="form-control input-lg" value="<%= params[:query] %>" placeholder="Enter Ticket Number">
+      </div>
     </form>
   </div>
-  <div class="keypad">
+  <div class="panel-body">
     <div class="row">
-      <div class="col-xs-3"><a href="" class="btn btn-lg btn-keypad btn-default">1</a></div>
-      <div class="col-xs-3"><a href="" class="btn btn-lg btn-keypad btn-default">2</a></div>
-      <div class="col-xs-3"><a href="" class="btn btn-lg btn-keypad btn-default">3</a></div>
-    </div>
-    <div class="row">
-      <div class="col-xs-3"><a href="" class="btn btn-lg btn-keypad btn-default">4</a></div>
-      <div class="col-xs-3"><a href="" class="btn btn-lg btn-keypad btn-default">5</a></div>
-      <div class="col-xs-3"><a href="" class="btn btn-lg btn-keypad btn-default">6</a></div>
-    </div>
-    <div class="row">
-      <div class="col-xs-3"><a href="" class="btn btn-lg btn-keypad btn-default">7</a></div>
-      <div class="col-xs-3"><a href="" class="btn btn-lg btn-keypad btn-default">8</a></div>
-      <div class="col-xs-3"><a href="" class="btn btn-lg btn-keypad btn-default">9</a></div>
-    </div>
-    <div class="row">
-      <div class="col-xs-3"><a href="" class="btn btn-lg btn-keypad btn-default">0</a></div>
-      <div class="col-xs-3"><a href="" class="btn btn-lg btn-keypad btn-success"><i class="fa  fa-check-circle fa-1x"></i></a></div>
-      <div class="col-xs-3"><a href="" class="btn btn-lg btn-keypad btn-warning"><i class="fa fa-eraser"></i></a></div>
+      <div class="col-xs-9">
+        <div class="keypad">
+          <div class="row">
+            <div class="col-xs-4"><a href="" class="btn btn-lg btn-keypad btn-default">1</a></div>
+            <div class="col-xs-4"><a href="" class="btn btn-lg btn-keypad btn-default">2</a></div>
+            <div class="col-xs-4"><a href="" class="btn btn-lg btn-keypad btn-default">3</a></div>
+          </div>
+          <div class="row">
+            <div class="col-xs-4"><a href="" class="btn btn-lg btn-keypad btn-default">4</a></div>
+            <div class="col-xs-4"><a href="" class="btn btn-lg btn-keypad btn-default">5</a></div>
+            <div class="col-xs-4"><a href="" class="btn btn-lg btn-keypad btn-default">6</a></div>
+          </div>
+          <div class="row">
+            <div class="col-xs-4"><a href="" class="btn btn-lg btn-keypad btn-default">7</a></div>
+            <div class="col-xs-4"><a href="" class="btn btn-lg btn-keypad btn-default">8</a></div>
+            <div class="col-xs-4"><a href="" class="btn btn-lg btn-keypad btn-default">9</a></div>
+          </div>
+          <div class="row">
+            <div class="col-xs-4"><a href="" class="btn btn-lg btn-keypad btn-default">0</a></div>
+            <div class="col-xs-4"><a href="" class="btn btn-lg btn-keypad btn-success"><i class="fa  fa-check-circle fa-1x"></i></a></div>
+            <div class="col-xs-4"><a href="" class="btn btn-lg btn-keypad btn-primary"><i class="fa fa-eraser"></i></a></div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
