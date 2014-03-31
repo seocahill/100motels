@@ -27,6 +27,7 @@ bundler_stubs/
 /.env
 /.prod-env
 /.vagrant
+/.cloud66
 /*.box
 /*.dev
 /*.pro
