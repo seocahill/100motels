@@ -35,14 +35,7 @@
           <% end %>
         </div>
         <div class="col-lg-3 col-lg-offset-1">
-          <% unless current_user.guest %>
-            <% if current_user.api_key and current_user.stripe_uid %>
-              <button type="button" class="btn btn-block btn-success"><span>Connected to Stripe <i class="fa fa-check"></i></span></button>
-            <% else %>
-              <a href="/auth/stripe_connect" class="btn btn-block btn-default"><span>Connect with Stripe <i class="icon-credit-card"></i></span></a>
-            <% end %><br>
-            <%= link_to "Reset Password", password_resets_path(email: current_user.email), method: :post, class: "btn btn-block btn-info" %><br>
-          <% end %>
+          <%= link_to "Reset Password", password_resets_path(email: current_user.email), method: :post, class: "btn btn-block btn-info" %><br>
         </div>
       </div>
     </div>

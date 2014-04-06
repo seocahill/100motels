@@ -62,3 +62,9 @@ $ ->
 $ ->
   $('[data-toggle=offcanvas]').click () ->
     $('.row-offcanvas').toggleClass('active')
+
+
+$ ->
+  $('.btn-keypad').click (e) ->
+    e.preventDefault();
+    console.log(this.text());

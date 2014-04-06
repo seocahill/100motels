@@ -26,7 +26,7 @@
         </div>
         <div class="navbar-collapse collapse" style="height: 1px;">
           <ul class="nav navbar-nav">
-            <li><%= link_to "Dashboard", admin_events_path %></li>
+            <!-- <li><%#= link_to "Dashboard", admin_events_path %></li> -->
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
@@ -61,7 +61,7 @@
                   <%= link_to "Tickets", admin_event_tickets_path(@event), class: "btn btn-admin btn-info" %>
                   <%= link_to "Messages", new_admin_event_message_path(@event), class: "btn btn-admin btn-info" %>
                   <%= link_to "Edit", edit_admin_event_path(@event), class: "btn btn-admin btn-info" %>
-                  <%= link_to "Settings", admin_event_path(@event), class: "btn btn-admin btn-info" %>
+                  <%= link_to "Payments", admin_event_user_path(@event, current_user), class: "btn btn-admin btn-info" %>
                 </div>
               </div>
               <div class="col-sm-10" id="admin-tabs">

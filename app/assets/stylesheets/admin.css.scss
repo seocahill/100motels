@@ -9,7 +9,6 @@
   }
 }
 #dashboard {
-  margin-top: 40px;
   height: 100%;
   width: 100%;
   padding-right: 5%;
@@ -24,6 +23,7 @@
   -webkit-transition: all .25s ease-out;
      -moz-transition: all .25s ease-out;
           transition: all .25s ease-out;
+  padding-bottom: 40px;
 }
 
 .row-offcanvas-right {
@@ -31,6 +31,7 @@
 }
 
 .row-offcanvas-left {
+  margin-top: 20px;
   left: 0;
 }
 
@@ -86,10 +87,10 @@
 }
 
 #admin-tabs {
-  padding: 20px;
+  // padding: 20px;
   height: 100%;
   .panel {
-    height: 90%;
+    height: 100%;
   }
   .table {
     color: black;
@@ -98,7 +99,7 @@
 
 .keypad {
   color: grey;
-  padding: 10px;
+  // padding: 10px;
 }
 
 .btn-keypad {
@@ -113,4 +114,8 @@
   padding: 30px;
   width: 100%;
   height: 100%;
+}
+
+#admin-event-edit {
+  color: black;
 }

@@ -28,6 +28,7 @@ OneHundredMotels::Application.routes.draw do
       resources :tickets do
         collection { get :check }
       end
+      resources :users, only: [:show]
     end
   end
   resources :orders do
