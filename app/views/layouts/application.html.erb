@@ -8,7 +8,7 @@
     <script src="https://checkout.stripe.com/checkout.js"></script>
     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-513ba15373992907"></script>
     <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
-    <%= csrf_meta_tags %>
+    <%= csrf_meta_tags unless response.cache_control[:public] %>
     <%= yield :head %>
     <!--if [lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -23,6 +23,7 @@
         <li class="sidebar-brand"><%= link_to "100 Motels", root_path %></li>
         <% if current_user and current_user.guest? %>
           <li><%= link_to("Save your Account", new_user_path)%></li>
+          <li><%= link_to "Event Admin", admin_event_path(current_user.events.first) %></li>
         <% end %>
         <% if current_user and !current_user.guest? %>
           <li><%= link_to("Your Account", user_path(current_user))%></li>
@@ -34,13 +35,15 @@
       </ul>
     </div>
     <div class="wrapper">
-      <div class="container flash-messages">
+      <div class="container-fluid flash-messages">
+      <% unless response.cache_control[:public] %>
         <% flash.each do |key, value| %>
           <div class="alert alert-<%= key == :notice ? "success" : "danger" %>">
             <a class="close" data-dismiss="alert">&#215;</a>
             <%= content_tag :div, value, :id => "flash_#{key}" if value.is_a?(String) %>
           </div> <!-- /flash -->
         <% end %>
+      <% end %>
       </div>
       <%= yield %>
     </div> <!-- /content container -->

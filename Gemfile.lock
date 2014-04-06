@@ -98,7 +98,6 @@ GEM
     coolline (0.4.2)
     crack (0.4.1)
       safe_yaml (~> 0.9.0)
-    dalli (2.7.0)
     dante (0.2.0)
     debug_inspector (0.0.2)
     debugger (1.6.3)
@@ -291,8 +290,24 @@ GEM
     rake (10.1.0)
     redcarpet (3.0.0)
     redis (3.0.6)
+    redis-actionpack (4.0.0)
+      actionpack (~> 4)
+      redis-rack (~> 1.5.0)
+      redis-store (~> 1.1.0)
+    redis-activesupport (4.0.0)
+      activesupport (~> 4)
+      redis-store (~> 1.1.0)
     redis-namespace (1.4.1)
       redis (~> 3.0.4)
+    redis-rack (1.5.0)
+      rack (~> 1.5)
+      redis-store (~> 1.1.0)
+    redis-rails (4.0.0)
+      redis-actionpack (~> 4)
+      redis-activesupport (~> 4)
+      redis-store (~> 1.1.0)
+    redis-store (1.1.4)
+      redis (>= 2.2)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     rinku (1.5.1)
@@ -382,7 +397,6 @@ DEPENDENCIES
   bootstrap-will_paginate
   chartkick
   coffee-rails (~> 4.0.0)
-  dalli
   dotenv-rails
   enum_accessor
   factory_girl_rails (~> 4.0)
@@ -407,6 +421,7 @@ DEPENDENCIES
   prawn
   puma
   rails (~> 4.0.0)
+  redis-rails
   sass-rails (~> 4.0.0)
   shoulda
   sidekiq

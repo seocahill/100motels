@@ -26,7 +26,7 @@ OneHundredMotels::Application.routes.draw do
     resources :events do
       resources :messages
       resources :tickets do
-        collection { get :check }
+        collection { post :check }
       end
       resources :users, only: [:show]
     end

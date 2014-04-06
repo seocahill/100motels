@@ -1,65 +1,67 @@
-<% content_for :title do %>
-  <%= @event.name + " in " + @event.location + ", " + @event.date.strftime("%d/%m/%Y") %>
-<% end %>
-<% content_for :head do %>
-  <%= tag :meta, property: "og:site_name", content: "100 Motels" %>
-  <%= tag :meta, property: "og:title", content: @event.name %>
-  <%= tag :meta, property: "og:url", content: event_url(@event) %>
-  <%= tag :meta, property: "og:image", content: @event.image %>
-  <%= tag :meta, name: "twitter:card", content: "summary_large_image" %>
-  <%= tag :meta, name: "twitter:domain", content: "100motels.com" %>
-  <%= tag :meta, name: "twitter:site", content: "@100Motels" %>
-  <%= tag :meta, name: "twitter:title", content: "100 Motels presents..." %>
-  <%= tag :meta, name: "twitter:description", content: @event.name + " in " + @event.location + ", " + @event.date.strftime("%d/%m/%Y") %>
-  <%= tag :meta, name: "twitter:image", content: @event.image %>
-<% end %>
-<div id="filepick"><%= @presenter.filepicker(@event) %></div>
-<section id="event-information">
-	<div class="">
-		<div class="row">
-      <div class="col-lg-3 col-xs-12">
-        <div class="progress text-center">
-          <div class="progress-bar progress-bar-success sold" role="progressbar" data-funded="<%= @presenter.per_cent_sold(@event) %>">
+<% cache @event do %>
+  <% content_for :title do %>
+    <%= @event.name + " in " + @event.location + ", " + @event.date.strftime("%d/%m/%Y") %>
+  <% end %>
+  <% content_for :head do %>
+    <%= tag :meta, property: "og:site_name", content: "100 Motels" %>
+    <%= tag :meta, property: "og:title", content: @event.name %>
+    <%= tag :meta, property: "og:url", content: event_url(@event) %>
+    <%= tag :meta, property: "og:image", content: @event.image %>
+    <%= tag :meta, name: "twitter:card", content: "summary_large_image" %>
+    <%= tag :meta, name: "twitter:domain", content: "100motels.com" %>
+    <%= tag :meta, name: "twitter:site", content: "@100Motels" %>
+    <%= tag :meta, name: "twitter:title", content: "100 Motels presents..." %>
+    <%= tag :meta, name: "twitter:description", content: @event.name + " in " + @event.location + ", " + @event.date.strftime("%d/%m/%Y") %>
+    <%= tag :meta, name: "twitter:image", content: @event.image %>
+  <% end %>
+  <div id="filepick"><%= @presenter.filepicker(@event) %></div>
+  <section id="event-information">
+  	<div class="">
+  		<div class="row">
+        <div class="col-lg-3 col-xs-12">
+          <div class="progress text-center">
+            <div class="progress-bar progress-bar-success sold" role="progressbar" data-funded="<%= @presenter.per_cent_sold(@event) %>">
+            </div>
+              <span><%= @presenter.per_cent_sold(@event) %>% complete</span>
           </div>
-            <span><%= @presenter.per_cent_sold(@event) %>% complete</span>
         </div>
+  			<div class="col-lg-6 col-xs-12">
+  				<div class="">
+            <ul class="list-group hidden-lg">
+              <li class="list-group-item">
+                <i class="fa fa-map-marker"></i> <%= @event.location %>
+              </li>
+              <li class="list-group-item">
+                <i class="fa fa-calendar"></i> <%= @event.date.strftime('%A, %b %e @ %l:%M %p') %>
+              </li>
+            </ul>
+  					<div class="addthis_toolbox visible-lg text-center">
+  						<div class="custom_images">
+  							<ul class="list-inline">
+                  <li><i class="fa fa-map-marker"></i> <%= @event.location %></li>
+                  <li><i class="fa fa-calendar"></i> <%= @event.date.strftime('%A, %b %e @ %l:%M %p') %></li>
+  								<li><a class="addthis_button_more"><i class="fa fa-share"></i></a></li>
+                </ul>
+  						</div>
+  					</div>
+  				</div>
+  			</div>
+        <div class="stripe-form col-lg-3 col-xs-12">
+          <%= render 'orders/form' %>
+      	</div>
       </div>
-			<div class="col-lg-6 col-xs-12">
-				<div class="">
-          <ul class="list-group hidden-lg">
-            <li class="list-group-item">
-              <i class="fa fa-map-marker"></i> <%= @event.location %>
-            </li>
-            <li class="list-group-item">
-              <i class="fa fa-calendar"></i> <%= @event.date.strftime('%A, %b %e @ %l:%M %p') %>
-            </li>
-          </ul>
-					<div class="addthis_toolbox visible-lg text-center">
-						<div class="custom_images">
-							<ul class="list-inline">
-                <li><i class="fa fa-map-marker"></i> <%= @event.location %></li>
-                <li><i class="fa fa-calendar"></i> <%= @event.date.strftime('%A, %b %e @ %l:%M %p') %></li>
-								<li><a class="addthis_button_more"><i class="fa fa-share"></i></a></li>
-              </ul>
-						</div>
-					</div>
-				</div>
-			</div>
-      <div class="stripe-form col-lg-3 col-xs-12">
-        <%= render 'orders/form' %>
-    	</div>
-    </div>
-	</div>
-</section>
-<section id="event-banner" data-url='<%= @presenter.image(@event) %>'>
-</section>
-<section id="event-media" class="event">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-10 col-lg-offset-1">
-				<%= @presenter.edit_button(@event) %>
-				<div class="event-media-html"><%= @presenter.about_section(@event) %></div>
-			</div>
-		</div>
-	</div>
-</section>
+  	</div>
+  </section>
+  <section id="event-banner" data-url='<%= @presenter.image(@event) %>'>
+  </section>
+  <section id="event-media" class="event">
+  	<div class="container">
+  		<div class="row">
+  			<div class="col-lg-10 col-lg-offset-1">
+  				<%= @presenter.edit_button(@event) %>
+  				<div class="event-media-html"><%= @presenter.about_section(@event) %></div>
+  			</div>
+  		</div>
+  	</div>
+  </section>
+<% end %>

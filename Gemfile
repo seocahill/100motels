@@ -11,7 +11,8 @@ gem 'uglifier', '>= 1.3.0'
 gem "jquery-rails"
 gem 'jquery-ui-sass-rails'
 gem 'puma'
-gem 'dalli'
+# gem 'dalli'
+gem 'redis-rails'
 group :development, :test do
   gem 'minitest-rails', git: 'git://github.com/seocahill/minitest-rails.git'
   gem 'foreman'

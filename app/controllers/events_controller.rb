@@ -4,6 +4,7 @@ class EventsController < ApplicationController
   def index
     @events = Event.where(visible: true).text_search(params[:query]).page(params[:page]).per_page(6)
     @presenter = EventPresenter.new(view_context)
+    fresh_when last_modified: @events.maximum(:updated_at)
   end
 
   def show
