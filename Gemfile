@@ -12,6 +12,7 @@ gem "jquery-rails"
 gem 'jquery-ui-sass-rails'
 gem 'puma'
 # gem 'dalli'
+gem 'rack-mini-profiler'
 gem 'redis-rails'
 group :development, :test do
   gem 'minitest-rails', git: 'git://github.com/seocahill/minitest-rails.git'

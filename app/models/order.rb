@@ -1,7 +1,7 @@
 class Order < ActiveRecord::Base
   enum_accessor :stripe_event, [:pending, :failed, :charged, :cancelled]
 
-  belongs_to :event
+  belongs_to :event, touch: true
   has_many :tickets, dependent: :destroy
 
   validates :quantity, numericality: :true

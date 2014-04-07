@@ -41,6 +41,7 @@ class User < ActiveRecord::Base
   def connect(auth)
     self.stripe_uid = auth.uid
     self.api_key = auth.credentials["token"]
+    self.stripe_data = auth
     save!
   end
 

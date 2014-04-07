@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131212194611) do
+ActiveRecord::Schema.define(version: 20140406223920) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(version: 20131212194611) do
     t.datetime "updated_at"
     t.boolean  "guest"
     t.string   "stripe_uid"
+    t.json     "stripe_data"
   end
 
   add_index "users", ["auth_token"], name: "index_users_on_auth_token", using: :btree
