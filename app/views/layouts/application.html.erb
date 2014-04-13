@@ -35,16 +35,7 @@
       </ul>
     </div>
     <div class="wrapper">
-      <div class="container-fluid flash-messages">
-      <% unless response.cache_control[:public] %>
-        <% flash.each do |key, value| %>
-          <div class="alert alert-<%= key == :notice ? "success" : "danger" %>">
-            <a class="close" data-dismiss="alert">&#215;</a>
-            <%= content_tag :div, value, :id => "flash_#{key}" if value.is_a?(String) %>
-          </div> <!-- /flash -->
-        <% end %>
-      <% end %>
-      </div>
+      <%= render 'layouts/flash' %>
       <%= yield %>
     </div> <!-- /content container -->
     <div class="push"></div>

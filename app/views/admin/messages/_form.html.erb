@@ -1,4 +1,4 @@
-<%= form_for [:admin, @event, @message], html: {class: "form-horizontal"} do |f| %>
+<%= form_for [:admin, @event, @message], html: {class: "form"} do |f| %>
 <div class="panel panel-default">
   <div class="panel-heading">
     <div class="text-right">
@@ -18,14 +18,14 @@
           </div>
         <% end %>
           <div class="form-group">
-            <%= f.label :date, "New date if rescheduling", class: "col-lg-3 control-label" %>
-            <div class="col-lg-6">
+            <%= f.label :date, "New date if rescheduling", class: "control-label" %>
+            <div class="">
               <%= f.date_field :date, class: "form-control input-lg", placeholder: ""%>
             </div>
           </div>
           <div class="form-group">
-            <%= f.label :message, "Message to customers", class: "col-lg-3 control-label" %>
-            <div class="col-lg-6">
+            <%= f.label :message, "Optional message to customers", class: "control-label" %>
+            <div class="">
               <%= f.text_area :message, class: "form-control", placeholder: "", rows: "15" %>
             </div>
           </div>
