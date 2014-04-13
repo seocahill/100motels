@@ -8,7 +8,7 @@
     <script src="https://checkout.stripe.com/checkout.js"></script>
     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-513ba15373992907"></script>
     <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
-    <%= csrf_meta_tags %>
+    <%= csrf_meta_tags unless response.cache_control[:public] %>
     <%= yield :head %>
     <!--if [lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -23,32 +23,19 @@
         <li class="sidebar-brand"><%= link_to "100 Motels", root_path %></li>
         <% if current_user and current_user.guest? %>
           <li><%= link_to("Save your Account", new_user_path)%></li>
+          <li><%= link_to "Event Admin", admin_event_path(current_user.events.first) %></li>
         <% end %>
         <% if current_user and !current_user.guest? %>
           <li><%= link_to("Your Account", user_path(current_user))%></li>
-          <li><%= link_to "Dashboard", admin_events_path %></li>
+          <li><%= link_to "Event Admin", admin_event_path(current_user.events.first) %></li>
           <li><%= link_to("New Event", new_admin_event_path) %></li>
         <% end %>
-        <% if current_user and !current_user.guest? and @event.try(:id) %>
-          <li><%= link_to("Edit Event", edit_admin_event_path(@event)) %></li>
-          <li><%= link_to("Event Orders", admin_event_path(@event)) %></li>
-          <li><%= link_to("Ticket Check", admin_event_tickets_path(@event)) %></li>
-          <li><%= link_to("Notify, Reschedule or Cancel", new_admin_event_message_path(@event)) %></li>
-        <% end %>
         <li class="divider"></li>
-        <li><%= link_to("Sign In", login_path) unless current_user %></li>
         <li><%= link_to("Sign Out", logout_path) if current_user %></li>
       </ul>
     </div>
     <div class="wrapper">
-      <div class="container flash-messages">
-        <% flash.each do |key, value| %>
-          <div class="alert alert-<%= key == :notice ? "success" : "danger" %>">
-            <a class="close" data-dismiss="alert">&#215;</a>
-            <%= content_tag :div, value, :id => "flash_#{key}" if value.is_a?(String) %>
-          </div> <!-- /flash -->
-        <% end %>
-      </div>
+      <%= render 'layouts/flash' %>
       <%= yield %>
     </div> <!-- /content container -->
     <div class="push"></div>

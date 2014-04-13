@@ -1,7 +1,14 @@
-<div class="message-form-wrapper">
-  <div class="message-form">
+<%= form_for [:admin, @event, @message], html: {class: "form"} do |f| %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="text-right">
+      <%= f.submit "Reschedule", name: "message[option]", class: "btn btn-lg btn-warning btn-lg" %>
+      <%= f.submit "Cancel Event", name: "message[option]", class: "btn btn-lg btn-danger btn-lg" %>
+    </div>
+  </div>
+  <div class="panel-body">
     <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 well">
+      <div class="col-xs-12">
         <% if @message.errors.any? %>
           <div class="alert alert-danger" >
             <a class="close" data-dismiss="alert">&#215;</a>
@@ -10,33 +17,20 @@
             <% end %>
           </div>
         <% end %>
-      <h3 class="page-header">Notify Customers of <%= @event.name %> in <%= @event.location %> on <%= time_tag(@event.date) %></h3>
-
-      <%= form_for [:admin, @event, @message], html: {class: "form-horizontal"} do |f| %>
-      <div class="form-group">
-      <%= f.label :date, "New date if rescheduling", class: "col-lg-3 control-label" %>
-        <div class="col-lg-6">
-          <%= f.date_field :date, class: "form-control input-lg", placeholder: ""%>
-        </div>
-      </div>
-      <div class="form-group">
-      <%= f.label :message, "Message to customers", class: "col-lg-3 control-label" %>
-        <div class="col-lg-6">
-          <%= f.text_area :message, class: "form-control", placeholder: "", rows: "10" %>
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="col-lg-offset-3 col-lg-2">
-          <%= f.submit "Message", name: "message[option]", class: "btn btn-lg btn-info btn-block" %>
-        </div>
-        <div class="col-lg-2">
-          <%= f.submit "Reschedule", name: "message[option]", class: "btn btn-lg btn-warning btn-block" %>
-        </div>
-        <div class="col-lg-2">
-          <%= f.submit "Cancel Event", name: "message[option]", class: "btn btn-lg btn-danger btn-block" %>
-        </div>
-      </div>
-      <% end %>
+          <div class="form-group">
+            <%= f.label :date, "New date if rescheduling", class: "control-label" %>
+            <div class="">
+              <%= f.date_field :date, class: "form-control input-lg", placeholder: ""%>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.label :message, "Optional message to customers", class: "control-label" %>
+            <div class="">
+              <%= f.text_area :message, class: "form-control", placeholder: "", rows: "15" %>
+            </div>
+          </div>
       </div>
     </div>
+  </div>
 </div>
+<% end %>

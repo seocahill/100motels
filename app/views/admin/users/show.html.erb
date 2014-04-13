@@ -1,0 +1,18 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="">Payment Settings</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-lg-3 col-lg-offset-1">
+        <% unless current_user.guest %>
+          <% if current_user.api_key and current_user.stripe_uid %>
+            <button type="button" class="btn btn-block btn-success"><span>Connected to Stripe <i class="fa fa-check"></i></span></button>
+          <% else %>
+            <a href="/auth/stripe_connect" class="btn btn-block btn-default"><span>Connect with Stripe <i class="icon-credit-card"></i></span></a>
+          <% end %><br>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

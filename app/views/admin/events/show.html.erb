@@ -1,61 +1,40 @@
-<div class="event-order-wrapper">
-  <div class="event-order-table">
-    <div class="container well">
-      <div class="row">
-        <div class="col-lg-9">
-          <h3 class="page-header"><%= link_to "#{@event.name} in #{@event.location} on #{@event.date.strftime('%A, %b %d')}.", event_path(@event) %></h3>
-        </div>
-        <div class="col-lg-3">
-          <%= link_to "Charge Orders", charges_path(event_id: @event.id), method: :post, class: "btn btn-lg btn-success btn-block" %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="panel panel-default">
-            <div class="panel-body">
-              <form>
-                <div class="input-group">
-                  <input type="search" name="query" class="form-control input-lg" value="<%= params[:query] %>">
-                  <div class="input-group-btn">
-                    <button type="submit" class="btn btn-default btn-lg" action='<%= admin_event_path(@event, query: params[:query]) %>'>Search</button>
-                    <%= link_to "PDF", admin_event_path(@event, format: 'pdf'),  class: "btn btn-default btn-lg" %>
-                  </div>
-                </div>
-              </form>
-              <br>
-              <div class="table-responsive">
-                <table class="table table-striped table-bordered" id="admin-customers">
-                  <thead>
-                    <tr>
-                      <th>Name</th>
-                      <th>Email</th>
-                      <th>UUID</th>
-                      <th>Quantity</th>
-                      <th>Order Total</th>
-                      <th></th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <% @orders.each do |order| %>
-                    <tr>
-                      <td><%= order.name %> </td>
-                      <td><%= order.email %> </td>
-                      <td><%= order.id.truncate(8) %> </td>
-                      <td><%= order.quantity %></td>
-                      <td><%= number_to_currency(order.total - order.part_refund) %></td>
-                      <td><span class="label label-info"><%= order.stripe_event %></span></td>
-                      <td><%= link_to "view", order_path(order) %></td>
-                    </tr>
-                    <% end %>
-                  </tbody>
-                </table>
-              </div>
-              <%= will_paginate @orders, renderer: BootstrapPagination::Rails %>
-            </div>
-          </div>
-        </div>
-      </div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="text-right">
+      <%= link_to (fa_icon "download", text: "PDF"), admin_event_path(@event, format: 'pdf'),  class: "btn btn-default btn-lg" %>
+      <%= link_to "Charge Orders", charges_path(event_id: @event.id), method: :post, class: "btn btn-lg btn-success" %>
     </div>
   </div>
+  <div class="panel-body">
+    <form>
+      <input type="search" name="query" class="form-control input-lg" value="<%= params[:query] %>" placeholder="Search Orders">
+    </form>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered" id="admin-customers">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>UUID</th>
+          <th>Quantity</th>
+          <th>Order Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @orders.each do |order| %>
+        <tr>
+          <td><%= order.name %> </td>
+          <td><%= order.email %> </td>
+          <td><%= order.id.truncate(8) %> </td>
+          <td><%= order.quantity %></td>
+          <td><%= number_to_currency(order.total - order.part_refund) %></td>
+          <td><span class="label label-info"><%= order.stripe_event %></span></td>
+          <td><%= link_to "view", order_path(order) %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <%= will_paginate @orders, renderer: BootstrapPagination::Rails %>
 </div>

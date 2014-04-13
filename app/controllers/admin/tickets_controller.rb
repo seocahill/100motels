@@ -1,4 +1,4 @@
-class Admin::TicketsController < ApplicationController
+class Admin::TicketsController < Admin::BaseController
   before_action do
     authorized?(params[:event_id])
   end
