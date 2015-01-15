@@ -63,7 +63,7 @@
   width: auto;
   padding: 20px;
   @extend .alert;
-  @extend .alert-error;
+  // @extend .alert-error;
   &:first-letter { text-transform: uppercase };
 }
 

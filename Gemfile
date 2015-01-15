@@ -1,23 +1,22 @@
 source 'https://rubygems.org'
 
-# ruby "2.0.1"
+# ruby "2.2.0"
 
-gem 'rails', '~>4.0.0'
+gem 'rails'
 gem 'pg'
 gem 'json'
-gem 'sass-rails',   '~> 4.0.0'
-gem 'coffee-rails', '~> 4.0.0'
-gem 'uglifier', '>= 1.3.0'
+gem 'sass-rails'
+gem 'coffee-rails'
+gem 'uglifier'
 gem "jquery-rails"
 gem 'jquery-ui-sass-rails'
 gem 'puma'
-# gem 'dalli'
 gem 'rack-mini-profiler'
 gem 'redis-rails'
 group :development, :test do
-  gem 'minitest-rails', git: 'git://github.com/seocahill/minitest-rails.git'
+  gem 'minitest-rails'
   gem 'foreman'
-  gem 'jazz_hands'
+  # gem 'jazz_hands'
   gem 'letter_opener_web'
 end
 group :test do
@@ -35,12 +34,12 @@ end
 gem 'bootstrap-sass'
 gem "font-awesome-rails"
 gem 'bcrypt-ruby'
-gem 'best_in_place', git: 'git://github.com/seocahill/best_in_place.git'
+gem 'best_in_place'
 gem 'stripe'
 gem 'omniauth-stripe-connect'
 gem 'bootstrap-will_paginate'
 gem 'prawn'
-gem "auto_html", git: 'git://github.com/seocahill/auto_html.git'
+gem "auto_html"
 gem 'filepicker-rails'
 gem 'enum_accessor'
 gem 'sidekiq'
@@ -51,6 +50,4 @@ gem 'pg_search'
 gem 'newrelic_rpm'
 gem 'intercom-rails'
 gem 'turnout'
-gem 'will_paginate-bootstrap', git: 'git://github.com/nickpad/will_paginate-bootstrap', branch: 'v1.0'
-gem 'chartkick'
-gem 'groupdate'
+gem 'will_paginate-bootstrap'

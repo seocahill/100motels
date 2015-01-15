@@ -5,8 +5,6 @@ development:
   encoding: unicode
   database: one_hundred_motels_development
   pool: 5
-  username: postgres
-  password:
   host: localhost
   port: 5432
 
@@ -15,8 +13,6 @@ test:
   encoding: unicode
   database: one_hundred_motels_test
   pool: 5
-  username: postgres
-  password:
   host: localhost
   port: 5432
 
