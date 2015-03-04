@@ -2,23 +2,18 @@ var TicketTable = React.createClass({
     render: function() {
         console.log(this.props);
         var rows = [];
-        var lastCategory = null;
-        this.props.products.forEach(function(product) {
-            if (product.name.indexOf(this.props.filterText) === -1 || (!product.stocked && this.props.inStockOnly)) {
-                return;
-            }
-            if (product.category !== lastCategory) {
-                rows.push(<TicketCategoryRow category={product.category} key={product.category} />);
-            }
-            rows.push(<TicketRow product={product} key={product.name} />);
-            lastCategory = product.category;
+        this.props.tickets.forEach(function(ticket) {
+          if (ticket.number.indexOf(this.props.filterText) === -1 || (!ticket.admitted && this.props.isAdmitted)) {
+              return;
+          }
+          rows.push(<TicketRow ticket={ticket} key={ticket.number} />);
         }.bind(this));
         return (
             <table className="table table-bordered">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Price</th>
+                        <th>Number</th>
+                        <th>Order id</th>
                     </tr>
                 </thead>
                 <tbody>{rows}</tbody>

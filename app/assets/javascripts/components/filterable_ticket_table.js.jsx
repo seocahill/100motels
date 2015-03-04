@@ -2,14 +2,14 @@ var FilterableTicketTable = React.createClass({
     getInitialState: function() {
         return {
             filterText: '',
-            inStockOnly: false
+            isAdmitted: false
         };
     },
 
-    handleUserInput: function(filterText, inStockOnly) {
+    handleUserInput: function(filterText, isAdmitted) {
         this.setState({
             filterText: filterText,
-            inStockOnly: inStockOnly
+            isAdmitted: isAdmitted
         });
     },
 
@@ -18,13 +18,13 @@ var FilterableTicketTable = React.createClass({
             <div>
                 <SearchBar
                     filterText={this.state.filterText}
-                    inStockOnly={this.state.inStockOnly}
+                    isAdmitted={this.state.isAdmitted}
                     onUserInput={this.handleUserInput}
                 />
                 <TicketTable
-                    products={this.props.products}
+                    tickets={this.props.tickets}
                     filterText={this.state.filterText}
-                    inStockOnly={this.state.inStockOnly}
+                    isAdmitted={this.state.isAdmitted}
                 />
             </div>
         );

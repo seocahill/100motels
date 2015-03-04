@@ -1,14 +1,14 @@
 var TicketRow = React.createClass({
     render: function() {
-        var name = this.props.product.stocked ?
-            this.props.product.name :
+        var number = this.props.ticket.admitted ?
+            this.props.ticket.number :
             <span style={{color: 'red'}}>
-                {this.props.product.name}
+                {this.props.ticket.number}
             </span>;
         return (
             <tr>
-                <td>{name}</td>
-                <td>{this.props.product.price}</td>
+                <td>{number}</td>
+                <td>{this.props.ticket.order_id}</td>
             </tr>
         );
     }

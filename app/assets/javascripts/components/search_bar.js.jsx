@@ -2,7 +2,7 @@ var SearchBar = React.createClass({
     handleChange: function() {
         this.props.onUserInput(
             this.refs.filterTextInput.getDOMNode().value,
-            this.refs.inStockOnlyInput.getDOMNode().checked
+            this.refs.isAdmittedInput.getDOMNode().checked
         );
     },
     render: function() {
@@ -17,10 +17,10 @@ var SearchBar = React.createClass({
                 <div className="checkbox">
                 <label>
                     <input type="checkbox"
-                    value={this.props.inStockOnly}
-                    ref="inStockOnlyInput"
+                    value={this.props.isAdmitted}
+                    ref="isAdmittedInput"
                     onChange={this.handleChange}/>
-                    Only show products in stock
+                    Only show admitted tickets
                 </label>
                 </div>
             </form>

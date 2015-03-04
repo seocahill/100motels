@@ -1,5 +1,5 @@
-var TicketCategoryRow = React.createClass({
-    render: function() {
-        return (<tr><th colSpan="2">{this.props.category}</th></tr>);
-    }
-});
+// var TicketCategoryRow = React.createClass({
+//     render: function() {
+//         return (<tr><th colSpan="2">{this.props.category}</th></tr>);
+//     }
+// });
