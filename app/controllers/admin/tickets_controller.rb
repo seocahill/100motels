@@ -9,6 +9,7 @@ class Admin::TicketsController < Admin::BaseController
     @tickets = @event.tickets.order("number ASC").page(params[:page]).per_page(15)
     respond_to do |format|
       format.html
+      format.json
       format.pdf do
         pdf = TicketsPdf.new(@event, @tickets)
         send_data pdf.render, filename: "#{@event.name}_tickets_#{@event.date}.pdf",

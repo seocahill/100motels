@@ -7,7 +7,7 @@
   <div class="panel-body">
      <%= form_tag check_admin_event_tickets_path, method: :post, class: "" do %>
       <div class="form-group col-xs-9 keypad-display">
-        <%= text_field_tag "number", nil, tag: "number", class: "form-control input-lg input-keypad", placeholder: "Enter Ticket Number #{@tickets.count}" %>
+        <%= text_field_tag "number", nil, tag: "number", class: "form-control input-lg input-keypad", placeholder: "Enter Ticket Number #{json_for @tickets}" %>
       </div>
     <% end %>
   </div>

@@ -14,6 +14,7 @@ gem 'puma'
 gem 'rack-mini-profiler'
 gem 'redis-rails'
 gem 'react-rails', '~> 1.0.0.pre', github: 'reactjs/react-rails'
+gem 'active_model_serializers', '~> 0.8.0'
 group :development, :test do
   gem 'minitest-rails'
   gem 'foreman'
