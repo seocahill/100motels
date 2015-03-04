@@ -26,7 +26,7 @@ group :test do
   gem "factory_girl_rails", "~> 4.0"
   gem "shoulda"
   gem 'faker'
-  gem 'turn'
+  # gem 'turn'
   gem 'vcr'
   gem 'webmock'
   gem 'stripe-ruby-mock', '>= 1.8.7.0'

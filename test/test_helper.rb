@@ -3,7 +3,7 @@ require File.expand_path("../../config/environment", __FILE__)
 require "rails/test_help"
 require "minitest/rails"
 require "minitest/mock"
-require 'turn/autorun'
+# require 'turn/autorun'
 require 'sidekiq/testing'
 require 'vcr'
 
@@ -19,7 +19,7 @@ VCR.configure do |c|
   c.hook_into :webmock
 end
 
-Turn.config.format = :dots
+# Turn.config.format = :dots
 
 class ActiveSupport::TestCase
   def teardown
