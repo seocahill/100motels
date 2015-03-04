@@ -13,7 +13,7 @@ gem 'jquery-ui-sass-rails'
 gem 'puma'
 gem 'rack-mini-profiler'
 gem 'redis-rails'
-gem 'react-rails'
+gem 'react-rails', '~> 1.0.0.pre', github: 'reactjs/react-rails'
 group :development, :test do
   gem 'minitest-rails'
   gem 'foreman'

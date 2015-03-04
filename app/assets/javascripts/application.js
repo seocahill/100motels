@@ -12,6 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require react
+//= require react_ujs
 //= require bootstrap
 //= require best_in_place.purr
 //= require best_in_place
@@ -20,6 +22,3 @@
 //= require jquery.ui.draggable
 //= require pages
 //= require events
-
-
-
