@@ -13,8 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require react
-//= require components
 //= require react_ujs
+//= require components
 //= require bootstrap
 //= require best_in_place.purr
 //= require best_in_place

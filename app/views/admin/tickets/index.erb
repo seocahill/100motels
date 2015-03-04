@@ -4,11 +4,8 @@
       <%= link_to (fa_icon "download", text: "Tickets PDF"), admin_event_tickets_path(@event, format: 'pdf'),  class: "btn btn-default btn-lg" %>
     </div>
   </div>
-  <div class="panel-body">
-     <%= form_tag check_admin_event_tickets_path, method: :post, class: "" do %>
-      <div class="form-group col-xs-9 keypad-display">
-        <%= text_field_tag "number", nil, tag: "number", class: "form-control input-lg input-keypad", placeholder: "Enter Ticket Number #{json_for @tickets}" %>
-      </div>
-    <% end %>
+  <div class="panel-body" id="tickets-component">
+    <%= react_component('FilterableTicketTable', {products: [{category: 'Sporting Goods', price: '$49.99', stocked: true, name: 'Football'},
+    {category: 'Sporting Goods', price: '$9.99', stocked: true, name: 'Baseball'}]}, {prerender: false}) %>
   </div>
 </div>
