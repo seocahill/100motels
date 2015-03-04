@@ -6,7 +6,9 @@ require "minitest/mock"
 # require 'turn/autorun'
 require 'sidekiq/testing'
 require 'vcr'
+require "minitest/reporters"
 
+Minitest::Reporters.use!
 Rails.logger.level = 4
 Sidekiq::Testing.fake!
 OmniAuth.config.test_mode = true

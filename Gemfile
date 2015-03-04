@@ -13,6 +13,7 @@ gem 'jquery-ui-sass-rails'
 gem 'puma'
 gem 'rack-mini-profiler'
 gem 'redis-rails'
+gem 'react-rails'
 group :development, :test do
   gem 'minitest-rails'
   gem 'foreman'
@@ -20,6 +21,7 @@ group :development, :test do
   gem 'letter_opener_web'
 end
 group :test do
+  gem "minitest-reporters"
   gem 'minitest-rails-capybara'
   gem 'poltergeist'
   gem 'dotenv-rails'

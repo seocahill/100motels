@@ -18,5 +18,6 @@ module OneHundredMotels
     end
     config.filepicker_rails.api_key = ENV["FILEPICKER_API_KEY"]
     config.i18n.enforce_available_locales = false
+    config.active_support.test_order = :sorted
   end
 end

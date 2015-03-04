@@ -28,7 +28,7 @@ OneHundredMotels::Application.configure do
   config.assets.compress = false
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
-  config.serve_static_assets = false
+  config.serve_static_files = false
 
   # Expands the lines which load the assets
   config.assets.debug = true

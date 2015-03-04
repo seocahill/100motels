@@ -7,34 +7,8 @@
   <div class="panel-body">
      <%= form_tag check_admin_event_tickets_path, method: :post, class: "" do %>
       <div class="form-group col-xs-9 keypad-display">
-        <%= text_field_tag "number", nil, tag: "number", class: "form-control input-lg input-keypad", placeholder: "Enter Ticket Number" %>
+        <%= text_field_tag "number", nil, tag: "number", class: "form-control input-lg input-keypad", placeholder: "Enter Ticket Number #{@tickets.count}" %>
       </div>
     <% end %>
-    <div class="row">
-      <div class="col-xs-9">
-        <div class="keypad">
-          <div class="row">
-            <div class="col-xs-4"><a href="" class="btn btn-lg btn-keypad btn-num btn-default">1</a></div>
-            <div class="col-xs-4"><a href="" class="btn btn-lg btn-keypad btn-num btn-default">2</a></div>
-            <div class="col-xs-4"><a href="" class="btn btn-lg btn-keypad btn-num btn-default">3</a></div>
-          </div>
-          <div class="row">
-            <div class="col-xs-4"><a href="" class="btn btn-lg btn-keypad btn-num btn-default">4</a></div>
-            <div class="col-xs-4"><a href="" class="btn btn-lg btn-keypad btn-num btn-default">5</a></div>
-            <div class="col-xs-4"><a href="" class="btn btn-lg btn-keypad btn-num btn-default">6</a></div>
-          </div>
-          <div class="row">
-            <div class="col-xs-4"><a href="" class="btn btn-lg btn-keypad btn-num btn-default">7</a></div>
-            <div class="col-xs-4"><a href="" class="btn btn-lg btn-keypad btn-num btn-default">8</a></div>
-            <div class="col-xs-4"><a href="" class="btn btn-lg btn-keypad btn-num btn-default">9</a></div>
-          </div>
-          <div class="row">
-            <div class="col-xs-4"><a href="" class="btn btn-lg btn-keypad btn-num btn-default">0</a></div>
-            <div class="col-xs-4"><a href="" class="btn btn-lg btn-keypad btn-success btn-submit"><i class="fa  fa-check-circle fa-1x"></i></a></div>
-            <div class="col-xs-4"><a href="" class="btn btn-lg btn-keypad btn-primary btn-clear"><i class="fa fa-eraser"></i></a></div>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
