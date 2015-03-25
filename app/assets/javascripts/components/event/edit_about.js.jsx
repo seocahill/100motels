@@ -7,8 +7,7 @@ var EditAbout = React.createClass({
       type: 'PUT',
       data: {"event": {"about": this.state.value}},
       success: function(data) {
-        this.setState({value: data});
-        this.props.onSuccessfulEdit();
+        this.props.onSuccessfulEdit({html: data.event.about_html});
       }.bind(this),
       error: function(xhr, status, err) {
         console.error(this.props.url, status, err.toString());
