@@ -16,8 +16,6 @@
 //= require react_ujs
 //= require components
 //= require bootstrap
-//= require best_in_place.purr
-//= require best_in_place
 //= require jquery.slimscroll.js
 //= require jquery.backstretch.js
 //= require jquery.ui.draggable

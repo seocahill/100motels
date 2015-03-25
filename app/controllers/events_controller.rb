@@ -17,10 +17,10 @@ class EventsController < ApplicationController
     respond_to do |format|
       if @event.update_attributes(event_params)
         format.html { redirect_to(@event, :notice => 'event was successfully updated.') }
-        format.json { respond_with_bip(@event) }
+        format.json { render json: @event, status: :created, location: @event }
       else
         format.html { render :action => "edit" }
-        format.json { respond_with_bip(@event) }
+        format.json { render json: @event.errors, status: :unprocessable_entity }
       end
     end
   end
