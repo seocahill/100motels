@@ -11,13 +11,13 @@ class NewEventTest < Capybara::Rails::TestCase
   end
 
   test "successful event creation" do
-    fill_in "Name", with: "New Thing"
-    fill_in "Location", with: "Ballina, Ireland"
-    fill_in "Date", with: "31-12-2014"
-    fill_in "Time", with: Time.now
-    fill_in "Target", with: 100
-    fill_in "Ticket price", with: 10.0
-    check "Visible"
+    fill_in "event[name]", with: "New Thing"
+    fill_in "event[location]", with: "Ballina, Ireland"
+    fill_in "event[date]", with: "31-12-2014"
+    fill_in "event[time]", with: Time.now
+    fill_in "event[target]", with: 100
+    fill_in "event[ticket_price]", with: 10.0
+    check "event[visible]"
     click_button "Submit"
     assert_equal current_path, event_path(Event.last), "incorrect path"
     assert page.has_css?('.alert', text: "Event was successfully created"), "event wasn't created"

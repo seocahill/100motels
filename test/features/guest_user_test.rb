@@ -5,7 +5,7 @@ class GuestUserTest < Capybara::Rails::TestCase
 
   before do
     visit root_path
-    click_link "Try it Free"
+    first(:link, "Try it Free").click
   end
 
   test "Save Account" do

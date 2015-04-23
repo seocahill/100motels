@@ -27,6 +27,7 @@ class UserShowTest < Capybara::Rails::TestCase
   end
 
   test "connect to stripe success" do
+    visit admin_event_user_path(Event.last, @user)
     click_link "Connect with Stripe"
     assert page.has_css?('.alert', text: "Connected to Stripe successfully"), "alert didnt fire"
   end

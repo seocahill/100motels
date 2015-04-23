@@ -1,6 +1,27 @@
 require 'sidekiq'
 require 'sidekiq/web'
 
+# redis_domain = ENV['BLOG_REDIS_1_PORT_6379_TCP_ADDR']
+# redis_port   = ENV['BLOG_REDIS_1_PORT_6379_TCP_PORT']
+
+# if redis_domain && redis_port
+#   redis_url = "redis://#{redis_domain}:#{redis_port}"
+
+#   Sidekiq.configure_server do |config|
+#     config.redis = {
+#       namespace: "sidekiq",
+#       url: redis_url
+#     }
+#   end
+
+#   Sidekiq.configure_client do |config|
+#     config.redis = {
+#       namespace: "sidekiq",
+#       url: redis_url
+#     }
+#   end
+# end
+
 Sidekiq.configure_client do |config|
   config.redis = { :size => 1 }
 end
@@ -18,6 +39,14 @@ unless Rails.env.development?
     [user, password] == ["sidekiqadmin", ENV["SIDEKIQ_PASSWORD"]]
   end
 end
+
+# Sidekiq.configure_server do |config|
+#   config.redis = { url: 'redis://redis.example.com:7372/12' }
+# end
+
+# Sidekiq.configure_client do |config|
+#   config.redis = { url: 'redis://redis.example.com:7372/12' }
+# end
 
 
 

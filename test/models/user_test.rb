@@ -17,10 +17,6 @@ class UserTest < ActiveSupport::TestCase
     assert user.valid?, "guest factory not valid"
   end
 
-  test "enum_accessor" do
-    assert User::STATES == {"unconfirmed"=>0, "normal"=>1, "suspended"=>2, "superadmin"=>3}
-  end
-
   test "self.new_guest" do
     user = User.new_guest
     assert user.guest?

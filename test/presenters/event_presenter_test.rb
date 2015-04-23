@@ -28,26 +28,6 @@ class EventPresenterTest < ActionView::TestCase
     assert_match @presenter.image(@event), "https://www.myimage.com/something.jpg"
   end
 
-  # test "index_image presenter no image" do
-  #   assert_match EventPresenter.new(view).index_image(FactoryGirl.build(:event)), '<img alt="247915 156305404435251 2616225 n" height="300" src="https://s3-us-west-2.amazonaws.com/onehundredmotels/247915_156305404435251_2616225_n.jpg" width="450" />'
-  # end
-
-  # test "index_image presenter has image" do
-  #   assert_match @presenter.index_image(@event), '<img alt="Something" height="300" src="https://www.myimage.com/something.jpg" width="450" />'
-  # end
-
-  test "edit button if current_user" do
-    @presenter.stub(:event_owner?, true) do
-      assert_match @presenter.edit_button(@event), button_tag("Edit", type: "button", class: "btn btn-default btn-lg", id: "edit-about")
-    end
-  end
-
-  test "about_section editable if current_user" do
-    @presenter.stub(:event_owner?, true) do
-      assert_match @presenter.about_section(@event)[0..32], "<span class='best_in_place about'"
-    end
-  end
-
   test "ticket sold" do
     assert_equal @presenter.tickets_sold(@event), 4, "wrong sale figure"
   end

@@ -7,12 +7,11 @@ class EditEventTest < Capybara::Rails::TestCase
     user = FactoryGirl.create(:user, state: :unconfirmed)
     @event = FactoryGirl.create(:event, visible: false, user: user)
     sign_in(@event.user)
-    visit event_path(@event)
-    click_link "Edit Event"
+    visit edit_admin_event_path(@event)
   end
 
   test "change Event Target" do
-    fill_in "Target", with: 105
+    fill_in "event[target]", with: 105
     click_button "Submit"
     assert page.has_css?('.alert', text: "Event has been updated"), "event wasn't updated"
     @event.reload
@@ -21,20 +20,20 @@ class EditEventTest < Capybara::Rails::TestCase
 
   test "change event date should fail if orders" do
     FactoryGirl.create(:order, event: @event)
-    fill_in "Date", with: "12-05-2525"
+    fill_in "event[date]", with: "12-05-2525"
     click_button "Submit"
     assert page.has_css?('.alert', text: "can't change the date of an event with existing orders, send a deferral message instead."), "didn't show validation errors."
   end
 
   test "change event location should fail if orders" do
     FactoryGirl.create(:order, event: @event)
-    fill_in "Location", with: "New England"
+    fill_in "event[location]", with: "New England"
     click_button "Submit"
     assert page.has_css?('.alert', text: "can't change the location of an event with existing orders, create a new event or cancel the orders."), "didn't show validation errors."
   end
 
   test "change event date should fail if user unconfirmed" do
-    check "Visible"
+    check "event[visible]"
     click_button "Submit"
     assert page.has_css?('.alert', text: "sign up to publish events"), "didn't show validation errors."
   end

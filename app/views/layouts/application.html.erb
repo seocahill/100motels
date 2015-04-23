@@ -7,7 +7,6 @@
     <%= javascript_include_tag "application" %>
     <script src="https://checkout.stripe.com/checkout.js"></script>
     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-513ba15373992907"></script>
-    <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
     <%= csrf_meta_tags unless response.cache_control[:public] %>
     <%= yield :head %>
     <!--if [lt IE 9]>
