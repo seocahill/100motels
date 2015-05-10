@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by(email: params[:signin][:email])
-    if user and !user.state_suspended?
+    if user and !user.suspended?
       params[:signin][:remember_me] ? cookies.permanent[:auth_token] = user.auth_token : cookies[:auth_token] = user.auth_token
       redirect_to root_path, notice: "Logged in!"
     else

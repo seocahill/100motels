@@ -1,6 +1,5 @@
 OneHundredMotels::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
-
   config.cache_classes = true
 
   # Configure static asset server for tests with Cache-Control for performance
@@ -31,4 +30,7 @@ OneHundredMotels::Application.configure do
 
   # Mailer config for test env
   config.action_mailer.default_url_options = { :host => 'www.example.com' }
+
+  #test order
+  config.active_support.test_order = :sorted
 end

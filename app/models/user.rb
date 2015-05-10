@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  enum_accessor :state, [ :unconfirmed, :normal, :suspended, :superadmin]
+  enum state: [ :unconfirmed, :normal, :suspended, :superadmin]
   has_many :events
   has_many :orders, through: :events
   before_create :generate_token

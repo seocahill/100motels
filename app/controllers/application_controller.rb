@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
     helper_method :current_user
 
     def signed_in?
-      redirect_to login_url, alert: "Please Sign in." if current_user.nil? || current_user.state_suspended?
+      redirect_to login_url, alert: "Please Sign in." if current_user.nil? || current_user.suspended?
     end
 
     def authorized?(event_id)

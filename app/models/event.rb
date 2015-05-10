@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-  enum_accessor :state, [ :guest, :in_progress, :finished]
+  enum state: [ :guest, :in_progress, :finished]
   validates :name, length: {maximum: 50}
   validates :name, :date, :time, presence: :true
   validates_numericality_of :ticket_price, :allow_nil => true,
@@ -39,7 +39,7 @@ class Event < ActiveRecord::Base
   end
 
   def forbid_visible
-    if self.user.state_unconfirmed?
+    if self.user.unconfirmed?
       errors.add(:base, "sign up to publish events") if self.visible_changed?
     end
   end
@@ -56,7 +56,7 @@ class Event < ActiveRecord::Base
   end
 
   def public?
-    self.visible? and !self.user.state_suspended?
+    self.visible? and !self.user.suspended?
   end
 end
 

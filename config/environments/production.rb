@@ -29,7 +29,7 @@ OneHundredMotels::Application.configure do
   config.assets.expire_after 2.weeks
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = true
+  config.force_ssl = false
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation can not be found)
@@ -40,6 +40,9 @@ OneHundredMotels::Application.configure do
 
   # Set the mailer to localhost
   config.action_mailer.default_url_options = { :host => 'www.100motels.com', :protocol => 'https' }
+
+  #log level
+  config.log_level = :info
 
   config.action_mailer.delivery_method = :smtp
 

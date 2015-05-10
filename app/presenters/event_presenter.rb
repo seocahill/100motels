@@ -81,7 +81,7 @@ class EventPresenter
 
   def event_owner?(event)
     if current_user.present?
-      current_user == event.user or current_user.state_superadmin?
+      current_user == event.user or current_user.superadmin?
     end
   end
 

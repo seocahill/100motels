@@ -1,5 +1,5 @@
 class Order < ActiveRecord::Base
-  enum_accessor :stripe_event, [:pending, :failed, :charged, :cancelled]
+  enum stripe_event: [:pending, :failed, :charged, :cancelled]
 
   belongs_to :event, touch: true
   has_many :tickets, dependent: :destroy
