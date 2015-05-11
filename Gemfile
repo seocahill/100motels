@@ -44,6 +44,7 @@ gem 'will_paginate-bootstrap'
 gem 'stripe'
 gem 'omniauth-stripe-connect'
 gem 'prawn'
+gem 'prawn-table', '~> 0.1.0'
 gem "auto_html"
 gem 'filepicker-rails'
 gem 'sidekiq'

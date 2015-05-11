@@ -4,15 +4,25 @@
   </div>
   <div class="panel-body">
     <div class="row">
-      <div class="col-lg-3 col-lg-offset-1">
+      <div class="col-lg-6 col-lg-offset-3 text-center">
         <% unless current_user.guest %>
           <% if current_user.api_key and current_user.stripe_uid %>
-            <button type="button" class="btn btn-block btn-success"><span>Connected to Stripe <i class="fa fa-check"></i></span></button>
+            <button type="button" class="btn btn-lg btn-success"><span>Connected to Stripe <i class="fa fa-check"></i></span></button>
           <% else %>
-            <a href="/auth/stripe_connect" class="btn btn-block btn-default"><span>Connect with Stripe <i class="icon-credit-card"></i></span></a>
+            <div class="well" style="color:black;">
+              <h4>This demo is using test api keys, choose "skip this form when redirected to Stripe"</h4>
+            </div>
+            <a href="/auth/stripe_connect" class="btn btn-lg btn-primary"><span>Connect with Stripe <i class="fa fa-credit-card"></i></span></a>
           <% end %><br>
         <% end %>
       </div>
+      <% if current_user.guest %>
+      <div class="col-lg-10 col-lg-offset-1 text-center">
+        <div class="alert alert-info">
+          <h4>You need to <%= link_to("save your account", new_user_path)%> first!</h4>
+        </div>
+      </div>
+      <% end %>
     </div>
   </div>
 </div>

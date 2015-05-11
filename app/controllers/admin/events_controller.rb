@@ -6,8 +6,7 @@ class Admin::EventsController < Admin::BaseController
 
   def index
     @event = current_user.events.first
-    @events = current_user.events.page(params[:page]).per_page(20)
-    @presenter = EventPresenter.new(view_context)
+    redirect_to admin_event_path(@event)
   end
 
 

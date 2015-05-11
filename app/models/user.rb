@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
     if self.guest?
       image = "https://www.filepicker.io/api/file/2vRXfjobR2WO6Ck1zKkI"
       about_text = "# Welcome to your event!\n\n---\n\nhttps://soundcloud.com/seo-cahill/sets/temp\n\n---\n\n### About the band\n\nRobert Hunter and Alan Trist, who carefully shepherd the Grateful Dead’s publishing company, Ice Nine, have been quite picky through the years about which film and TV projects they will allow the Dead’s music to appear in. \n\nYou just know that there must be an avalanche of requests to use “Truckin’” and “Uncle John’s Band” and other tunes, but by being so selective, they have helped maintain the integrity of their song catalog. It’s not just a question of “selling out,” because I don’t think anyone begrudges songwriters an opportunity to make money from their labors. \n\nBut it is understanding how a song is going to be used and deciding if that context is appropriate for the song in question. For years, Pete Townshend has sold Who songs to seemingly any company that will put up some cash, and in the process he’s cheapened many of his classics in my eyes. \n\nThe Buffalo Springfield song “For What’s It’s Worth” (“Stop, children what’s that sound…”) seems to be in every film and TV show set in the 1960s no matter what the quality, and as a result Stephen Stills’ great tune has become a boring film music cliché.\n\n\n[More great music here](http://www.markitdown.net/)\n\n---\n\nhttps://www.youtube.com/watch?v=F0sipEKhIhc\n\n---\n\n### Venue: The Liffey Beat club.\n\nRed light in the skylight. Ring to enter.\n\n---\n\nhttps://maps.google.com/maps?q=irish+times&hl=en&ll=37.79483,-122.395914&spn=0.011411,0.019913&sll=37.793694,-122.395828&sspn=0.011412,0.019913&t=h&radius=0.65&hq=irish+times&z=16\n\n---\n"
-      self.events.create(name: "Guest User", date: 3.months.from_now, ticket_price: 10, location: "TBC Dublin, Ireland", about: about_text, time: Time.now, image: image)
+      self.events.create(name: "Unsaved Event", date: 3.months.from_now, ticket_price: 10, location: "TBC Dublin, Ireland", about: about_text, time: Time.now, image: image)
     end
   end
 
@@ -33,6 +33,7 @@ class User < ActiveRecord::Base
   def confirm(user)
     user.generate_token(:confirmation_token)
     user.confirmation_sent_at = Time.zone.now
+    user.state = "normal"
     user.save
     UserMailer.delay.email_confirmation(user.id)
   end
@@ -43,7 +44,6 @@ class User < ActiveRecord::Base
     self.stripe_data = auth
     save!
   end
-
 
   def send_password_reset
     self.generate_token(:password_reset_token)

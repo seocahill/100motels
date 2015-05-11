@@ -25,6 +25,9 @@
           <%= link_to(@event.name, event_path(@event), class: "navbar-brand") if @event.try(:id) %>
         </div>
         <div class="navbar-collapse collapse" style="height: 1px;">
+          <ul class="nav navbar-nav navbar-left">
+            <p class="navbar-text"><%= @event.visible ? "visible to everyone" : "private to you" %></p>
+          </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.email || "guest user" %><b class="caret"></b></a>
