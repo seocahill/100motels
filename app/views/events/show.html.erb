@@ -14,7 +14,6 @@
     <%= tag :meta, name: "twitter:description", content: @event.name + " in " + @event.location + ", " + @event.date.strftime("%d/%m/%Y") %>
     <%= tag :meta, name: "twitter:image", content: @event.image %>
   <% end %>
-  <div id="filepick"><%= @presenter.filepicker(@event) %></div>
   <section id="event-information">
   	<div class="">
   		<div class="row">
@@ -57,7 +56,10 @@
   <section id="event-media" class="event">
   	<div class="container">
   		<div class="row">
-  			<div class="col-lg-10 col-lg-offset-1">
+        <div class="col-lg-2">
+          <div><%= @presenter.filepicker(@event) %></div>
+        </div>
+  			<div class="col-lg-10">
   				<div class="event-media-html">
            <%= react_component('AboutBox', json_for(@event), {prerender: false}) %>
           </div>

@@ -1,10 +1,7 @@
-<div class="container flash-messages">
 <% unless response.cache_control[:public] %>
   <% flash.each do |key, value| %>
-    <div class="alert alert-<%= key == :notice ? "success" : "danger" %>">
-      <a class="close" data-dismiss="alert">&#215;</a>
-      <%= content_tag :div, value, :id => "flash_#{key}" if value.is_a?(String) %>
-    </div> <!-- /flash -->
+    <div class="alert alert-<%= key == "notice" ? "success" : "danger" %> text-center" style="margin: 0;padding: 20px;">
+      <h4><%= value %> <a class="close" style="float:center;" data-dismiss="alert">&#215;</a></h4>
+    </div>
   <% end %>
 <% end %>
-</div>

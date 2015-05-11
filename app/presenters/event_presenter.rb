@@ -12,7 +12,7 @@ class EventPresenter
     if event_owner?(event)
       icon = content_tag(:i, '', class: "fa fa-picture-0")
       form_for event do |f|
-        f.filepicker_field(:image, onchange: "this.form.submit();", button_text: '<i class="fa fa-picture-o"></i>', button_class: "btn btn-default btn-lg", services: "COMPUTER, IMAGE_SEARCH, WEBCAM, INSTAGRAM, URL, FLICKR, FACEBOOK")
+        f.filepicker_field(:image, onchange: "this.form.submit();", button_text: '<i class="fa fa-picture-o fa-2x"></i> ', button_class: "btn btn-default btn-lg", services: "COMPUTER, IMAGE_SEARCH, INSTAGRAM, URL, FLICKR")
       end
     end
   end

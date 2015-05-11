@@ -46,10 +46,10 @@ class Event < ActiveRecord::Base
 
   auto_html_for :about do
     html_escape
-    youtube
+    youtube(width: "100%", height: 400)
     vimeo
-    soundcloud
-    google_map
+    soundcloud(:width => '100%', :height => 166, :auto_play => false, :theme_color => '00FF00', :color => '915f33', :show_comments => false, :show_artwork => true)
+    google_map(width: '100%', height: 400)
     image
     redcarpet(:filter_html => true) #escape_html
     link :target => "_blank", :rel => "nofollow"
