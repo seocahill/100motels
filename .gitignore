@@ -33,3 +33,4 @@ bundler_stubs/
 /*.pro
 /*.stg
 /*.ssl_cert
+/screengrab.png
