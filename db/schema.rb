@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20140406223920) do
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
 
-  create_table "event_users", force: true do |t|
+  create_table "event_users", force: :cascade do |t|
     t.integer  "event_id"
     t.integer  "user_id"
     t.integer  "state",      default: 0
@@ -28,67 +28,67 @@ ActiveRecord::Schema.define(version: 20140406223920) do
   add_index "event_users", ["event_id"], name: "index_event_users_on_event_id", using: :btree
   add_index "event_users", ["user_id"], name: "index_event_users_on_user_id", using: :btree
 
-  create_table "events", force: true do |t|
-    t.string   "name"
+  create_table "events", force: :cascade do |t|
+    t.string   "name",         limit: 255
     t.date     "date"
-    t.decimal  "ticket_price", precision: 8, scale: 2
-    t.boolean  "visible",                              default: false
+    t.decimal  "ticket_price",             precision: 8, scale: 2
+    t.boolean  "visible",                                          default: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "about"
     t.text     "about_html"
-    t.string   "image"
-    t.string   "location"
-    t.integer  "state",                                default: 0,     null: false
-    t.integer  "target",                               default: 100,   null: false
+    t.string   "image",        limit: 255
+    t.string   "location",     limit: 255
+    t.integer  "state",                                            default: 0,     null: false
+    t.integer  "target",                                           default: 100,   null: false
     t.integer  "user_id"
-    t.string   "currency",                             default: "USD"
+    t.string   "currency",     limit: 255,                         default: "USD"
     t.time     "time"
   end
 
   add_index "events", ["user_id"], name: "index_events_on_user_id", using: :btree
 
-  create_table "orders", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
-    t.string   "name",                                          null: false
-    t.string   "email",                                         null: false
-    t.decimal  "total",                                         null: false
-    t.decimal  "ticket_price",                                  null: false
-    t.string   "stripe_customer_token",                         null: false
-    t.integer  "event_id",                                      null: false
-    t.integer  "quantity",                        default: 1
-    t.integer  "stripe_event",          limit: 8, default: 0
-    t.string   "stripe_charge_id"
-    t.string   "last4"
+  create_table "orders", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.string   "name",                  limit: 255,               null: false
+    t.string   "email",                 limit: 255,               null: false
+    t.decimal  "total",                                           null: false
+    t.decimal  "ticket_price",                                    null: false
+    t.string   "stripe_customer_token", limit: 255,               null: false
+    t.integer  "event_id",                                        null: false
+    t.integer  "quantity",                          default: 1
+    t.integer  "stripe_event",          limit: 8,   default: 0
+    t.string   "stripe_charge_id",      limit: 255
+    t.string   "last4",                 limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "part_refund",                     default: 0.0, null: false
+    t.decimal  "part_refund",                       default: 0.0, null: false
   end
 
   add_index "orders", ["event_id"], name: "index_orders_on_event_id", using: :btree
 
-  create_table "tickets", force: true do |t|
-    t.string   "number"
+  create_table "tickets", force: :cascade do |t|
+    t.string   "number",     limit: 255
     t.datetime "admitted"
-    t.uuid     "order_id",   null: false
+    t.uuid     "order_id",               null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "users", force: true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "auth_token"
-    t.string   "password_digest"
-    t.string   "password_reset_token"
+  create_table "users", force: :cascade do |t|
+    t.string   "name",                   limit: 255
+    t.string   "email",                  limit: 255
+    t.string   "auth_token",             limit: 255
+    t.string   "password_digest",        limit: 255
+    t.string   "password_reset_token",   limit: 255
     t.datetime "password_reset_sent_at"
-    t.string   "confirmation_token"
+    t.string   "confirmation_token",     limit: 255
     t.datetime "confirmation_sent_at"
-    t.string   "api_key"
-    t.integer  "state",                  default: 0
+    t.string   "api_key",                limit: 255
+    t.integer  "state",                              default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "guest"
-    t.string   "stripe_uid"
+    t.string   "stripe_uid",             limit: 255
     t.json     "stripe_data"
   end
 
