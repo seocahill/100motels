@@ -20,7 +20,7 @@ class OrdersController < ApplicationController
 
   def cancel
     order = Order.find(params[:id])
-    if order.stripe_event_charged?
+    if order.stripe_event == "charged"
       redirect_to event_path(order.event), notice: "Orders can't be cancelled after they've been charged. Please contact the event organizer or support to obtain a refund."
     else
       order.stripe_event = :cancelled

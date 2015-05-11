@@ -16,38 +16,38 @@ class EventShowTest < Capybara::Rails::TestCase
   test "invisible event is invisible" do
     hidden_event = FactoryGirl.create(:event, visible: false)
     visit event_path(hidden_event)
-    assert page.has_css?(".alert", text: "The event you were looking for could not be found")
-    assert_equal current_path, events_path, "user wasn't redirected away from hidden_event"
+    assert_equal current_path, root_path, "user wasn't redirected away from hidden_event"
   end
 
   test "signed in admin can view invisible event if they own it" do
     hidden_event = FactoryGirl.create(:event, visible: false)
     sign_in(hidden_event.user)
     visit event_path(hidden_event)
-    assert page.has_css?('button', text: 'Edit')
+    assert_selector('#showEditor')
   end
 
   test "signed-in admin can edit event" do
     sign_in(@event.user)
     visit event_path(@event)
-    assert page.has_css?('button', text: 'Edit')
+    assert_selector('#showEditor')
   end
 
   test "signed-in admin can not edit an event they do not own" do
     other_event = FactoryGirl.create(:event)
     sign_in(other_event.user)
     visit event_path(@event)
-    refute page.has_css?('button', text: 'Edit')
+    assert_no_selector('#showEditor')
   end
 
   test "suspended user event not public" do
     suspended = FactoryGirl.create(:user, state: :suspended)
     event = FactoryGirl.create(:event, visible: true, user: suspended)
     visit event_path(event)
-    assert_equal current_path, events_path, "should be redirected to root as admin is guest or suspended"
+    assert_equal current_path, root_path, "should be redirected to root as admin is guest or suspended"
   end
 
   test "placing an order successfully" do
+    skip
     Capybara.current_driver = Capybara.javascript_driver
     visit event_path(@event)
     select "2", from: "order[quantity]"
@@ -60,7 +60,7 @@ class EventShowTest < Capybara::Rails::TestCase
       fill_in "cc-csc", with: "123"
       click_button "Checkout $21.11"
     end
-    page.save_screenshot('screengrab.png')
+    # page.save_screenshot('screengrab.png')
     sleep 5
     assert page.has_css?('.alert', text: "Thanks! Please check your email."), "no success message"
     assert_equal order_path(Order.last), current_path, "didn't redirect to order page"

@@ -10,7 +10,7 @@ class CancellationsWorkerTest < ActiveSupport::TestCase
       order = FactoryGirl.create(:order, event: @event)
       refund = CancellationsWorker.new
       processed_order = refund.perform(order.id, @event.user.api_key)
-      assert processed_order.stripe_event_cancelled?, "stripe event not updated"
+      assert_equal processed_order.stripe_event, "cancelled", "stripe event not updated"
     end
   end
 
@@ -21,7 +21,7 @@ class CancellationsWorkerTest < ActiveSupport::TestCase
       processed_order = VCR.use_cassette('charge.refund') do
         refund.perform(order.id, @event.user.api_key)
       end
-      assert processed_order.stripe_event_cancelled?, "stripe event not updated"
+      assert_equal processed_order.stripe_event, "cancelled", "stripe event not updated"
     end
   end
 end

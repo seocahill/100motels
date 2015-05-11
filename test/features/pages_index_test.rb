@@ -4,7 +4,8 @@ include SharedBehaviour
 class PagesIndexTest < Capybara::Rails::TestCase
 
   before do
-    @user = FactoryGirl.create(:user)
+    @event= FactoryGirl.create(:event)
+    @user = @event.user
     visit root_path
   end
 
@@ -45,7 +46,7 @@ class PagesIndexTest < Capybara::Rails::TestCase
 
   test "signed in root path" do
     sign_in(@user)
-    assert_equal current_path, root_path
+    assert_equal current_path, admin_event_path(@event)
     assert page.has_css?('.alert', text: "Logged in!")
   end
 

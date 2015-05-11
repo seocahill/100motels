@@ -8,7 +8,7 @@ class CancellationsWorker
   end
 
   def cancel_order(order, key)
-    if order.stripe_event_charged?
+    if order.stripe_event == "charged"
       refund_order(order, key)
     else
       order.stripe_event = :cancelled

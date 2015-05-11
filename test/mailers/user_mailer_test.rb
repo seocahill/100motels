@@ -22,6 +22,6 @@ class UserMailerTest < ActionMailer::TestCase
     assert_equal ['noreply@100motels.com'], email.from
     assert_equal [@user.email], email.to
     assert_equal "Please confirm your email address", email.subject
-    assert_match "http://www.example.com/email_confirmations/oDdkewSXoUMCRAwHcPmgGA/confirm", email.body.to_s
+    assert_match /oDdkewSXoUMCRAwHcPmgGA/, email.body.to_s
   end
 end

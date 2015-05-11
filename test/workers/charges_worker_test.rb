@@ -12,7 +12,7 @@ class ChargesWorkerTest < ActiveSupport::TestCase
       processed_order = VCR.use_cassette('charge_customer_worker') do
         charge.perform(order.id, @event.user.api_key)
       end
-      assert processed_order.stripe_event_charged?, "stripe event not updated"
+      assert_equal processed_order.stripe_event, "charged", "stripe event not updated"
       assert_equal processed_order.stripe_charge_id, "ch_2yB1hNwlZpxX5X", "charge_id not set"
     end
   end
@@ -24,7 +24,7 @@ class ChargesWorkerTest < ActiveSupport::TestCase
       processed_order = VCR.use_cassette('charge_card_declined') do
         charge.perform(order.id, @event.user.api_key)
       end
-      assert processed_order.stripe_event_failed?, "stripe event not updated"
+      assert_equal processed_order.stripe_event, "failed", "stripe event not updated"
       assert_equal processed_order.stripe_charge_id, nil
     end
   end

@@ -14,7 +14,7 @@ class RefundWorkerTest < ActiveSupport::TestCase
       processed_order = VCR.use_cassette('stripe_web.refund_full') do
         refund.perform(event_id, @user_id)
       end
-      assert processed_order.stripe_event_cancelled?, "stripe event not updated"
+      assert_equal processed_order.stripe_event, "cancelled", "stripe event not updated"
     end
   end
 
