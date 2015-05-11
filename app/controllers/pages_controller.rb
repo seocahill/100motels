@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  layout 'landing', only: [:index]
+  layout 'landing', only: [:index, :info]
 
   def info
     expires_in 5.minutes, public: true
