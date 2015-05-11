@@ -11,10 +11,11 @@
   order_price = if price > 0 then gross else 0.0
   $('.order-total').html(order_price.toFixed(2))
 
-# Best in place stuff
+# React in-place edit component toggle edit
 
-#$ ->
- # $('.best_in_place').best_in_place()
+$ ->
+  $('#showEditor').click ->
+    window.about_box.toggleEditState()
 
 # Sum Order
 $ ->

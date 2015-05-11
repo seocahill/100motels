@@ -34,7 +34,8 @@ class EventPresenter
   end
 
   def edit_button(event)
-    button_tag "Edit", type: "button", class: "btn btn-default btn-lg", id: "edit-about" if event_owner?(event)
+    icon = content_tag(:i, '', class: "fa fa-edit fa-2x")
+    content_tag(:a, icon, class: "btn btn-default btn-lg", id: "showEditor") if event_owner?(event)
   end
 
   def about_section(event)

@@ -24,10 +24,10 @@ var EditAbout = React.createClass({
     var value = this.state.value;
     return (
         <form className="form aboutForm" onSubmit={this.handleSubmit}>
+          <input type="submit" value="Save" className="btn btn btn-primary btn-lg" />
           <div className="form-group">
             <textarea value={value} className="form-control" rows="10" onChange={this.handleChange}/>
           </div>
-          <input type="submit" value="Save" className="btn btn-default" />
         </form>
       );
     }
