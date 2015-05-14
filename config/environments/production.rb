@@ -56,4 +56,6 @@ OneHundredMotels::Application.configure do
     :enable_starttls_auto => true
   }
 
+  #react js
+  config.react.variant = :production
 end
