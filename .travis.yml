@@ -10,6 +10,8 @@ before_install:
 before_script:
 - cp config/database.yml.travis config/database.yml
 - psql -c 'create database travis_ci_test;' -U postgres
+- echo -e "Host heroku.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+- echo -e "Host 100motels.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 script:
 - bundle exec rake db:migrate RAILS_ENV=test
 - bundle exec rake test
