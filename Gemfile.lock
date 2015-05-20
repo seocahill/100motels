@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/seocahill/auto_html.git
+  revision: 98e63549fd2fad063fae3cfe025746b16b5b1524
+  specs:
+    auto_html (1.6.0)
+      redcarpet
+      rinku (~> 1.5.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -41,9 +49,6 @@ GEM
     addressable (2.3.6)
     ansi (1.5.0)
     arel (6.0.0)
-    auto_html (1.6.4)
-      redcarpet (~> 3.1)
-      rinku (~> 1.5.0)
     awesome_print (1.6.1)
     bcrypt (3.1.9)
     bcrypt-ruby (3.1.5)
@@ -284,7 +289,7 @@ GEM
       rails (>= 3.1)
       react-source (~> 0.13)
     react-source (0.13.3)
-    redcarpet (3.2.2)
+    redcarpet (3.2.3)
     redis (3.2.0)
     redis-actionpack (4.0.0)
       actionpack (~> 4)
@@ -393,7 +398,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers (~> 0.8.0)
-  auto_html
+  auto_html!
   bcrypt-ruby
   bootstrap-sass
   coffee-rails

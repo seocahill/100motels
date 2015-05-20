@@ -45,11 +45,13 @@ gem 'stripe'
 gem 'omniauth-stripe-connect'
 gem 'prawn'
 gem 'prawn-table', '~> 0.1.0'
-gem "auto_html"
+gem "auto_html", git: 'https://github.com/seocahill/auto_html.git'
 gem 'filepicker-rails'
 gem 'sidekiq'
 gem 'sidekiq-failures'
 gem 'sinatra', require: false
 gem 'slim'
 gem 'rails_12factor', group: :production
+gem 'coveralls', require: false
+
 

@@ -3,11 +3,12 @@ require File.expand_path("../../config/environment", __FILE__)
 require "rails/test_help"
 require "minitest/rails"
 require "minitest/mock"
-# require 'turn/autorun'
 require 'sidekiq/testing'
 require 'vcr'
 require "minitest/reporters"
+require 'coveralls'
 
+Coveralls.wear!
 Minitest::Reporters.use!
 Rails.logger.level = 4
 Sidekiq::Testing.fake!
@@ -20,8 +21,6 @@ VCR.configure do |c|
   c.cassette_library_dir = Rails.root.join("test", "fixtures", "vcr_cassettes" )
   c.hook_into :webmock
 end
-
-# Turn.config.format = :dots
 
 class ActiveSupport::TestCase
   def teardown
@@ -38,7 +37,6 @@ class ActionDispatch::IntegrationTest
   end
 
   Capybara.javascript_driver = :poltergeist
-  # Capybara.default_wait_time = 30
 
   def teardown
     Capybara.current_driver = Capybara.default_driver
@@ -53,6 +51,7 @@ class ActiveRecord::Base
     @@shared_connection || retrieve_connection
   end
 end
+
 ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection
 
 module SharedBehaviour
