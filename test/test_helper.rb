@@ -6,9 +6,7 @@ require "minitest/mock"
 require 'sidekiq/testing'
 require 'vcr'
 require "minitest/reporters"
-require 'coveralls'
 
-Coveralls.wear!
 Minitest::Reporters.use!
 Rails.logger.level = 4
 Sidekiq::Testing.fake!

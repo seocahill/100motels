@@ -1,15 +1,21 @@
 language: ruby
 cache: bundler
 rvm:
-  - "2.2.0"
+- 2.2.0
 addons:
-  postgresql: "9.3"
-
+  postgresql: '9.3'
+before_install:
+- openssl aes-256-cbc -K $encrypted_ed71510513a1_key -iv $encrypted_ed71510513a1_iv
+  -in id_travis_rsa.pem.enc -out id_travis_rsa.pem -d
 before_script:
-  - cp config/database.yml.travis config/database.yml
-  - psql -c 'create database travis_ci_test;' -U postgres
-
+- cp config/database.yml.travis config/database.yml
+- psql -c 'create database travis_ci_test;' -U postgres
 script:
-  - bundle exec rake db:migrate RAILS_ENV=test
-  - bundle exec rake test
+- bundle exec rake db:migrate RAILS_ENV=test
+- bundle exec rake test
+after_success:
+- chmod 600 .travis/id_travis_rsa.pem
+- ssh-add .travis/id_travis_rsa.pem
+- git remote add deploy dokku@100motels.com:100motels.com
+- git push deploy
 
