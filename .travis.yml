@@ -17,6 +17,6 @@ script:
 - bundle exec rake test
 after_success:
 - chmod 600 id_rda
-- ssh-add id_rsa
+- mv id_rsa ~/.ssh/id_rsa
 - git remote add deploy dokku@100motels.com:100motels.com
 - git push deploy
