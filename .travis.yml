@@ -16,7 +16,7 @@ script:
 - bundle exec rake db:migrate RAILS_ENV=test
 - bundle exec rake test
 after_success:
-- chmod 600 .travis/id_rda
+- chmod 600 .travis/id_rsa
 - ssh-add .travis/id_rsa
 - git remote add deploy dokku@100motels.com:100motels.com
 - git push deploy
