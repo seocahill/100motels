@@ -7,8 +7,6 @@ addons:
 before_install:
 - openssl aes-256-cbc -K $encrypted_ed71510513a1_key -iv $encrypted_ed71510513a1_iv
   -in id_rsa.enc -out id_rsa -d
-- openssl aes-256-cbc -K $encrypted_ed71510513a1_key -iv $encrypted_ed71510513a1_iv
-  -in id_travis_rsa.pem.enc -out id_travis_rsa.pem -d
 before_script:
 - cp config/database.yml.travis config/database.yml
 - psql -c 'create database travis_ci_test;' -U postgres
@@ -18,7 +16,7 @@ script:
 - bundle exec rake db:migrate RAILS_ENV=test
 - bundle exec rake test
 after_success:
-- chmod 600 .travis/id_travis_rsa.pem
-- ssh-add .travis/id_travis_rsa.pem
+- chmod 600 .travis/id_rda
+- ssh-add .travis/id_rsa
 - git remote add deploy dokku@100motels.com:100motels.com
 - git push deploy
