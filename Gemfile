@@ -52,5 +52,6 @@ gem 'sidekiq-failures'
 gem 'sinatra', require: false
 gem 'slim'
 gem 'rails_12factor', group: :production
+gem 'le', group: :production
 
 
