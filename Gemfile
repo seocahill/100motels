@@ -37,6 +37,7 @@ group :test do
   gem 'vcr'
   gem 'webmock'
   gem 'stripe-ruby-mock', '>= 1.8.7.0'
+  gem "codeclimate-test-reporter", require: nil
 end
 gem 'bootstrap-sass'
 gem "font-awesome-rails"
