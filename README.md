@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/seocahill/100motels.svg?branch=master)](https://travis-ci.org/seocahill/100motels)
+[![Code Climate](https://codeclimate.com/github/seocahill/100motels/badges/gpa.svg)](https://codeclimate.com/github/seocahill/100motels)
+[![Test Coverage](https://codeclimate.com/github/seocahill/100motels/badges/coverage.svg)](https://codeclimate.com/github/seocahill/100motels/coverage)
+
 # 100 Motels
 
 Tour the World, no record label.
