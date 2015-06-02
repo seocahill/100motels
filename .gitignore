@@ -34,3 +34,4 @@ bundler_stubs/
 /*.stg
 /*.ssl_cert
 /screengrab.png
+coverage/*

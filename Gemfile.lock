@@ -443,6 +443,7 @@ DEPENDENCIES
   shoulda
   sidekiq
   sidekiq-failures
+  simplecov
   sinatra
   slim
   stripe

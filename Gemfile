@@ -38,6 +38,7 @@ group :test do
   gem 'webmock'
   gem 'stripe-ruby-mock', '>= 1.8.7.0'
   gem "codeclimate-test-reporter", require: nil
+  gem 'simplecov', require: false
 end
 gem 'bootstrap-sass'
 gem "font-awesome-rails"
