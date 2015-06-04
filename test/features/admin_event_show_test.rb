@@ -25,10 +25,6 @@ class AdminEventShowTest < Capybara::Rails::TestCase
     assert page.has_css?('.alert', text: "You need to connect to Stripe to make Charges")
   end
 
-  test "Search returns correct results" do
-    skip
-  end
-
   test "admin can view order page for each order" do
     page.find('tbody>tr:last-child').click_link("view")
     assert page.has_content?("Order Receipt")

@@ -2,7 +2,9 @@ require "codeclimate-test-reporter"
 CodeClimate::TestReporter.start
 require 'simplecov'
 SimpleCov.start 'rails'
+
 ENV["RAILS_ENV"] = "test"
+
 require File.expand_path("../../config/environment", __FILE__)
 require "rails/test_help"
 require "minitest/rails"
@@ -13,7 +15,9 @@ require "minitest/reporters"
 
 Minitest::Reporters.use!
 Rails.logger.level = 4
+
 Sidekiq::Testing.fake!
+
 OmniAuth.config.test_mode = true
 OmniAuth.config.add_mock(:stripe_connect,
  {'uid' => '12345', 'credentials' => {'token' => 'secret_access'}})
@@ -35,7 +39,7 @@ class ActionDispatch::IntegrationTest
   require 'capybara/poltergeist'
 
   Capybara.register_driver :poltergeist do |app|
-    Capybara::Poltergeist::Driver.new(app, {js_errors: false})
+    Capybara::Poltergeist::Driver.new(app, {window_size: [1280, 800], js_errors: true})
   end
 
   Capybara.javascript_driver = :poltergeist
@@ -72,6 +76,16 @@ module SharedBehaviour
   def event_admin
     live_event = FactoryGirl.create(:event, :live_event)
     sign_in(live_event.user)
+  end
+
+  def wait_for_ajax
+    Timeout.timeout(Capybara.default_wait_time) do
+      loop until finished_all_ajax_requests?
+    end
+  end
+
+  def finished_all_ajax_requests?
+    page.evaluate_script('jQuery.active').zero?
   end
 end
 
