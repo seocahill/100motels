@@ -9,6 +9,7 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
+    Ascii85 (1.0.2)
     actionmailer (4.2.0)
       actionpack (= 4.2.0)
       actionview (= 4.2.0)
@@ -47,6 +48,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.3.6)
+    afm (0.2.2)
     ansi (1.5.0)
     arel (6.0.0)
     awesome_print (1.6.1)
@@ -119,6 +121,7 @@ GEM
     grit (2.0.0)
       diff-lcs (>= 1.1.2)
       mime-types (>= 1.15)
+    hashery (2.1.1)
     hashie (3.3.2)
     hike (1.2.3)
     hirb (0.7.3)
@@ -212,6 +215,12 @@ GEM
       omniauth (~> 1.0)
       omniauth-oauth2 (~> 1.2.0)
     pdf-core (0.4.0)
+    pdf-reader (1.3.3)
+      Ascii85 (~> 1.0.0)
+      afm (~> 0.2.0)
+      hashery (~> 2.0)
+      ruby-rc4
+      ttfunk
     pg (0.18.1)
     pg_search (0.7.8)
       activerecord (>= 3.1)
@@ -318,6 +327,7 @@ GEM
       netrc (~> 0.7)
     rinku (1.5.1)
     ruby-progressbar (1.7.1)
+    ruby-rc4 (0.1.5)
     safe_yaml (1.0.4)
     sass (3.4.9)
     sass-rails (5.0.1)
@@ -428,6 +438,7 @@ DEPENDENCIES
   minitest-rails-capybara
   minitest-reporters
   omniauth-stripe-connect
+  pdf-reader
   pg
   pg_search
   poltergeist

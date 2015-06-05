@@ -50,20 +50,17 @@ class EventShowTest < Capybara::Rails::TestCase
     Capybara.current_driver = Capybara.javascript_driver
     visit event_path(@event)
     select "2", from: "order[quantity]"
-    page.save_screenshot('screengrab.png')
     assert first(".order-total").has_content?("21.11"), "order total incorrect"
-    # click_button "Purchase"
-    # within_frame(page.find('.stripe_checkout_app')[:name]) do
-    #   fill_in "email", with: "ocathais@example.com"
-    #   fill_in "card_number", with: "4242424242424242"
-    #   fill_in "cc-exp", with: "12/15"
-    #   fill_in "cc-csc", with: "123"
-    #   click_button "Checkout $21.11"
-    # end
-    # # page.save_screenshot('screengrab.png')
-    # sleep 5
-    # assert page.has_css?('.alert', text: "Thanks! Please check your email."), "no success message"
-    # assert_equal order_path(Order.last), current_path, "didn't redirect to order page"
+    click_button "Purchase"
+    within_frame(page.find('.stripe_checkout_app')[:name]) do
+      fill_in "email", with: "ocathais@example.com"
+      fill_in "card_number", with: "4242424242424242"
+      fill_in "cc-exp", with: "12/15"
+      fill_in "cc-csc", with: "123"
+      click_button "Checkout"
+    end
+    sleep 7
+    assert page.has_css?('.alert', text: "Thanks! Please check your email."), "no success message"
   end
 
   test "order pages can be reviewed by event admin only" do
@@ -73,27 +70,14 @@ class EventShowTest < Capybara::Rails::TestCase
   end
 
   test "as admin click edit for inline editing and save" do
-    skip
     Capybara.current_driver = Capybara.javascript_driver
     sign_in(@event.user)
-    click_on "Edit"
+    visit event_path(@event)
+    find(:css, "#showEditor").click
     find(:css, "textarea").set("New Text")
     click_on "Save"
-    within ".event-media-html" do
+    within ".about-box" do
       assert page.has_content?("New Text")
-    end
-  end
-
-  test "cancel button" do
-    skip
-    Capybara.current_driver = Capybara.javascript_driver
-    sign_in(@event.user)
-    click_on @event.name[0..6] + "..."
-    click_on "Edit"
-    find(:css, "textarea").set("New Text")
-    click_on "Cancel"
-    within ".event-media-html" do
-      refute page.has_content?("New Text"), "should not change"
     end
   end
 

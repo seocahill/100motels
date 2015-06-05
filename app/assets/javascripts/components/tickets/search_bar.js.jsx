@@ -10,7 +10,7 @@ var SearchBar = React.createClass({
             <form onSubmit={this.handleSubmit}>
                 <input className="form-control"
                  value={this.props.filterText}
-                 type="search"
+                 type="search" name="ticket-search"
                  placeholder="Search..."
                  ref="filterTextInput"
                  onChange={this.handleChange} />

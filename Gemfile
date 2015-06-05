@@ -25,6 +25,7 @@ group :development, :test do
   gem 'jazz_fingers'
   gem 'letter_opener_web'
   gem 'rack-mini-profiler'
+  gem "pdf-reader"
 end
 group :test do
   gem "minitest-reporters"

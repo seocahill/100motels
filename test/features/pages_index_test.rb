@@ -32,12 +32,6 @@ class PagesIndexTest < Capybara::Rails::TestCase
     assert_equal info_path, current_path
   end
 
-  test "go to all events" do
-    skip
-    click_link "events"
-    assert_equal events_path, current_path
-  end
-
   test "Try it Free" do
     first(:link, "Try it Free").click
     assert_equal current_path, event_path(Event.last)

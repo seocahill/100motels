@@ -85,12 +85,4 @@ class EventPresenter
       current_user == event.user or current_user.superadmin?
     end
   end
-
-  def overall_target
-    if current_user.events.present?
-      current_user.orders.sum(:quantity) / current_user.events.sum(:target) * 100
-    else
-      0
-    end
-  end
 end
