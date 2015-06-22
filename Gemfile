@@ -37,14 +37,14 @@ group :test do
   gem 'faker'
   gem 'vcr'
   gem 'webmock'
-  gem 'stripe-ruby-mock', '>= 1.8.7.0'
+  gem 'stripe-ruby-mock', '~> 2.0.1'
   gem "codeclimate-test-reporter", require: nil
   gem 'simplecov', require: false
 end
 gem 'bootstrap-sass'
 gem "font-awesome-rails"
 gem 'will_paginate-bootstrap'
-gem 'stripe'
+gem 'stripe', '~> 1.17.3'
 gem 'omniauth-stripe-connect'
 gem 'prawn'
 gem 'prawn-table', '~> 0.1.0'

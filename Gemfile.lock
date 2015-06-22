@@ -374,14 +374,14 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
-    stripe (1.20.1)
+    stripe (1.17.3)
       json (~> 1.8.1)
       mime-types (>= 1.25, < 3.0)
       rest-client (~> 1.4)
-    stripe-ruby-mock (2.1.1)
+    stripe-ruby-mock (2.0.1)
       dante (>= 0.2.0)
       jimson-temp
-      stripe (= 1.20.1)
+      stripe (>= 1.15.0)
     temple (0.7.6)
     thor (0.19.1)
     thread_safe (0.3.5)
@@ -462,8 +462,8 @@ DEPENDENCIES
   simplecov
   sinatra
   slim
-  stripe
-  stripe-ruby-mock (>= 1.8.7.0)
+  stripe (~> 1.17.3)
+  stripe-ruby-mock (~> 2.0.1)
   uglifier
   vcr
   web-console (~> 2.0)
