@@ -5,18 +5,18 @@ services:
     ports:
       - '6379:6379'
     volumes:
-     - motels-redis:/var/lib/redis/data
+     - redis:/var/lib/redis/data
   db:
-    image: postgres:9.4
+    image: postgres:alpine
     ports:
         - '5432:5432'
     volumes:
-      - motels-postgres:/var/lib/postgresql/data
+      - postgres:/var/lib/postgresql/data
   web:
-    image: seocahill/ruby-rails:2.2.0
+    build: .
     command: bundle exec rails s -p 3000 -b '0.0.0.0'
     volumes:
-      - .:/myapp
+      - .:/app
     ports:
       - "3000:3000"
     depends_on:
@@ -25,6 +25,6 @@ services:
     env_file:
       - .rails.env
 volumes:
-  motels-redis:
-  motels-postgres:
+  redis:
+  postgres:
 
