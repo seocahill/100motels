@@ -47,20 +47,22 @@ class EventShowTest < Capybara::Rails::TestCase
   end
 
   test "placing an order successfully" do
-    skip
+    # skip
+    # Capybara.javascript_driver = :poltergeist_debug
     Capybara.current_driver = Capybara.javascript_driver
     visit event_path(@event)
     select "2", from: "order[quantity]"
     assert first(".order-total").has_content?("21.11"), "order total incorrect"
     click_button "Purchase"
-    within_frame(page.find('.stripe_checkout_app')[:name]) do
+    page.within_frame(page.find('.stripe_checkout_app')[:name]) do
       fill_in "email", with: "ocathais@example.com"
       fill_in "card_number", with: "4242424242424242"
-      fill_in "cc-exp", with: "12/15"
+      fill_in "cc-exp", with: "12/#{Time.now.year + 1}"
       fill_in "cc-csc", with: "123"
       click_button "Checkout"
     end
     sleep 7
+    save_screenshot('/tmp/screengrab.png')
     assert page.has_css?('.alert', text: "Thanks! Please check your email."), "no success message"
   end
 

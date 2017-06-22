@@ -42,6 +42,10 @@ class ActionDispatch::IntegrationTest
     Capybara::Poltergeist::Driver.new(app, {window_size: [1280, 800], js_errors: true})
   end
 
+  Capybara.register_driver :poltergeist_debug do |app|
+    Capybara::Poltergeist::Driver.new(app, :inspector => true)
+  end
+
   Capybara.javascript_driver = :poltergeist
 
   def teardown

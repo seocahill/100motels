@@ -31,7 +31,6 @@ group :test do
   gem "minitest-reporters"
   gem 'minitest-rails-capybara'
   gem 'poltergeist'
-  gem 'dotenv-rails'
   gem "factory_girl_rails", "~> 4.0"
   gem "shoulda"
   gem 'faker'

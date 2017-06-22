@@ -99,10 +99,6 @@ GEM
     docile (1.1.5)
     domain_name (0.5.24)
       unf (>= 0.0.5, < 1.0.0)
-    dotenv (2.0.2)
-    dotenv-rails (2.0.2)
-      dotenv (= 2.0.2)
-      railties (~> 4.0)
     erubis (2.7.0)
     execjs (2.5.2)
     factory_girl (4.5.0)
@@ -422,7 +418,6 @@ DEPENDENCIES
   bootstrap-sass
   codeclimate-test-reporter
   coffee-rails
-  dotenv-rails
   factory_girl_rails (~> 4.0)
   faker
   filepicker-rails

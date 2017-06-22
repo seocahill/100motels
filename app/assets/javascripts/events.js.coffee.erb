@@ -40,8 +40,9 @@ $ ->
 
 $ ->
   if StripeCheckout?
+    stripe_pk = "<%= ENV['STRIPE_PUBLIC_KEY'] %>"
     handler = StripeCheckout.configure(
-      key: "<%= ENV['STRIPE_PUBLIC_KEY'] %>"
+      key: stripe_pk
       image: "<%= image_path('motels_m.png') %>"
       token: (response) ->
         tokenInput = $("<input type=hidden name=stripeToken />").val(response.id)
@@ -51,7 +52,7 @@ $ ->
 
     $("#checkout").click (e) ->
       handler.open
-        address: false
+        billingAddress: false
         amount: Number($('.order-total').text()) * 100
         currency: "USD"
         name: "100 Motels"

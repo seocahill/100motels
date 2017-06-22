@@ -13,7 +13,7 @@ class CustomerOrder
   end
 
   def add_customer_details_to_order(customer)
-    card = customer.cards.data
+    card = customer.sources.data
     @order.update_attributes(
         stripe_customer_token: customer.id,
         name: card[0].name,
