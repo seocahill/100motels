@@ -28,7 +28,7 @@ class CustomerOrder
     Stripe.api_key = ENV['STRIPE_API_KEY']
       customer = Stripe::Customer.create(
           email: @email,
-          card: @token
+          source: @token
       )
       customer
   rescue Stripe::CardError => e
