@@ -11,7 +11,6 @@ RUN apt-get install build-essential chrpath libssl-dev libxft-dev -y \
       && apt-get install libfontconfig1 libfontconfig1-dev -y
 
 RUN set -xeu \
- \
   && PHANTOM_VERSION="phantomjs-2.1.1" \
   && ARCH=$(uname -m) \
   && PHANTOM_JS="$PHANTOM_VERSION-linux-$ARCH" \
