@@ -9,7 +9,7 @@ class OrderMailerTest < ActionMailer::TestCase
   end
 
   test "event_deferred" do
-    email = OrderMailer.event_deferred(@event.id, @message).deliver
+    email = OrderMailer.event_deferred(@event.id, @message).deliver_now
     assert !ActionMailer::Base.deliveries.empty?
     assert_equal ['seo@100motels.com'], email.from
     assert_equal Order.pluck(:email) | email.bcc, Order.pluck(:email)

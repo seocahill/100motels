@@ -4,7 +4,7 @@ class UserTest < ActiveSupport::TestCase
   should have_many(:events)
   should validate_presence_of(:name)
   should validate_presence_of(:email)
-  should validate_uniqueness_of(:email)
+  should validate_uniqueness_of(:email).allow_nil
   should have_secure_password
 
   test "User Factory should be valid" do
@@ -48,6 +48,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "confirm(user) queues confirm email" do
+    Sidekiq::Extensions.enable_delay!
     user = FactoryGirl.create(:user)
     assert_equal 0, Sidekiq::Extensions::DelayedMailer.jobs.size
     user.confirm(user)

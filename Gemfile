@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-ruby "2.2.0"
+ruby "2.2.7"
 
-gem 'rails'
+gem 'rails', '~> 4.2.2'
 gem 'bcrypt-ruby'
 gem 'pg'
 gem 'pg_search'

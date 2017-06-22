@@ -10,7 +10,7 @@ class NotifierTest < ActionMailer::TestCase
   end
 
   test "event_cancelled" do
-    email = Notifier.event_cancelled(@order_ids, @message).deliver
+    email = Notifier.event_cancelled(@order_ids, @message).deliver_now
     assert !ActionMailer::Base.deliveries.empty?
     assert_equal ['seo@100motels.com'], email.from
     assert_equal Order.pluck(:email) | email.to, Order.pluck(:email)
@@ -19,7 +19,7 @@ class NotifierTest < ActionMailer::TestCase
   end
 
   test "group_message" do
-    email = Notifier.group_message(@event.id, @message).deliver
+    email = Notifier.group_message(@event.id, @message).deliver_now
     assert !ActionMailer::Base.deliveries.empty?
     assert_equal ['seo@100motels.com'], email.from
     assert_equal Order.pluck(:email) || email.to, Order.pluck(:email)

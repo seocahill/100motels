@@ -12,7 +12,7 @@ class NewMessageTest < Capybara::Rails::TestCase
 
   test "defer message" do
     fill_in "Optional message to customers", with: "My Message"
-    fill_in "New date if rescheduling", with: "31-12-2015"
+    fill_in "New date if rescheduling", with: Date.today + 30.days
     click_on "Reschedule"
     assert page.has_css?(".alert", text: "Event has been deferred"), "message not sent"
   end

@@ -1,6 +1,6 @@
 Hello!
 
-<%= @event.name %> in <%= @event.location %> has been deferred until <%= time_tag(@date)%>
+<%= @event.name %> in <%= @event.location %> has been deferred until <%= time_tag(@date.to_date)%>
 
 The <%= @event.user.name %> gave the following reason:
 

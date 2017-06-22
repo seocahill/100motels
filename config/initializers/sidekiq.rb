@@ -22,6 +22,9 @@ require 'sidekiq/web'
 #   end
 # end
 
+Sidekiq::Extensions.enable_delay!
+
+
 Sidekiq.configure_client do |config|
   config.redis = { :size => 1 }
 end
