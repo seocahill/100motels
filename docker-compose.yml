@@ -24,8 +24,14 @@ services:
     depends_on:
       - db
       - redis
+      - selenium
     env_file:
       - .rails.env
+
+  selenium:
+    image: selenium/standalone-firefox
+    ports:
+      - '4444:4444'
 volumes:
   redis:
   postgres:

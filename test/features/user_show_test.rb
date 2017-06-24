@@ -1,7 +1,7 @@
 require "test_helper"
 include SharedBehaviour
 
-class UserShowTest < Capybara::Rails::TestCase
+class UserShowTest < ActionDispatch::IntegrationTest
 
   before do
     @user = FactoryGirl.create(:user)

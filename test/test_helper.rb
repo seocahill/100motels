@@ -1,5 +1,3 @@
-# require "codeclimate-test-reporter"
-# CodeClimate::TestReporter.start
 require 'simplecov'
 SimpleCov.start 'rails'
 
@@ -34,23 +32,36 @@ class ActiveSupport::TestCase
   end
 end
 
+require 'capybara/rails'
+require 'capybara/minitest'
+
 class ActionDispatch::IntegrationTest
-  require "minitest/rails/capybara"
-  require 'capybara/poltergeist'
-
-  Capybara.register_driver :poltergeist do |app|
-    Capybara::Poltergeist::Driver.new(app, {window_size: [1280, 800], js_errors: true})
+  # Make the Capybara DSL available in all integration tests
+  include Capybara::DSL
+  # Make `assert_*` methods behave like Minitest assertions
+  include Capybara::Minitest::Assertions
+  
+  Capybara.register_driver "selenium_standalone_firefox".to_sym do |app|
+    Capybara::Selenium::Driver.new(
+      app, browser: :remote, url: "http://selenium:4444/wd/hub", desired_capabilities: :firefox
+    )
   end
+  Capybara.javascript_driver = :selenium_standalone_firefox
 
-  Capybara.register_driver :poltergeist_debug do |app|
-    Capybara::Poltergeist::Driver.new(app, :inspector => true)
-  end
-
-  Capybara.javascript_driver = :poltergeist
-
+  # Reset sessions and driver between tests
+  # Use super wherever this method is redefined in your individual test classes
   def teardown
-    Capybara.current_driver = Capybara.default_driver
     Capybara.reset_sessions!
+    Capybara.app_host = nil
+    Capybara.use_default_driver
+  end
+
+  def use_js_driver
+    container_address = `hostname`.strip
+    Capybara.server_port = "3000"
+    Capybara.server_host = container_address
+    Capybara.app_host = "http://#{container_address}:3000"
+    Capybara.current_driver = Capybara.javascript_driver
   end
 end
 

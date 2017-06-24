@@ -1,7 +1,7 @@
 require "test_helper"
 include SharedBehaviour
 
-class GuestUserTest < Capybara::Rails::TestCase
+class GuestUserTest < ActionDispatch::IntegrationTest
 
   before do
     visit root_path

@@ -1,7 +1,7 @@
 require "test_helper"
 include SharedBehaviour
 
-class EventShowTest < Capybara::Rails::TestCase
+class EventShowTest < ActionDispatch::IntegrationTest
 
   before do
     @event = FactoryGirl.create(:event, :live_event, date: "08-02-2014", id: 4)
@@ -47,10 +47,9 @@ class EventShowTest < Capybara::Rails::TestCase
   end
 
   test "placing an order successfully" do
-    # skip
-    # Capybara.javascript_driver = :poltergeist_debug
-    Capybara.current_driver = Capybara.javascript_driver
+    skip
     visit event_path(@event)
+
     select "2", from: "order[quantity]"
     assert first(".order-total").has_content?("21.11"), "order total incorrect"
     click_button "Purchase"
@@ -61,8 +60,6 @@ class EventShowTest < Capybara::Rails::TestCase
       fill_in "cc-csc", with: "123"
       click_button "Checkout"
     end
-    sleep 7
-    save_screenshot('/tmp/screengrab.png')
     assert page.has_css?('.alert', text: "Thanks! Please check your email."), "no success message"
   end
 
@@ -73,7 +70,7 @@ class EventShowTest < Capybara::Rails::TestCase
   end
 
   test "as admin click edit for inline editing and save" do
-    Capybara.current_driver = Capybara.javascript_driver
+    use_js_driver
     sign_in(@event.user)
     visit event_path(@event)
     find(:css, "#showEditor").click

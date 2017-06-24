@@ -1,7 +1,7 @@
 require "test_helper"
 include SharedBehaviour
 
-class EventsIndexTest < Capybara::Rails::TestCase
+class EventsIndexTest < ActionDispatch::IntegrationTest
 
   before do
     FactoryGirl.create_pair(:event, :live_event)

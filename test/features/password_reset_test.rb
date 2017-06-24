@@ -1,7 +1,7 @@
 require "test_helper"
 include SharedBehaviour
 
-class PasswordResetTest < Capybara::Rails::TestCase
+class PasswordResetTest < ActionDispatch::IntegrationTest
 
   before do
     @user = FactoryGirl.create(:user, password_reset_token: "resetme", password_reset_sent_at: Time.now)

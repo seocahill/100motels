@@ -29,8 +29,8 @@ group :development, :test do
 end
 group :test do
   gem "minitest-reporters"
-  gem 'minitest-rails-capybara'
-  gem 'poltergeist'
+  gem 'capybara'
+  gem 'selenium-webdriver'
   gem "factory_girl_rails", "~> 4.0"
   gem "shoulda"
   gem 'faker'

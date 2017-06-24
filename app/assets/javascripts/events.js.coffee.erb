@@ -42,7 +42,7 @@ $ ->
   if StripeCheckout?
     stripe_pk = "<%= ENV['STRIPE_PUBLIC_KEY'] %>"
     handler = StripeCheckout.configure(
-      key: "pk_test_Nlmz9WQmTyKd039nuH3sJQdA"
+      key: stripe_pk
       image: "<%= image_path('motels_m.png') %>"
       token: (response) ->
         tokenInput = $("<input type=hidden name=stripeToken />").val(response.id)

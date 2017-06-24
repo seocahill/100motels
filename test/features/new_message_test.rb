@@ -1,7 +1,7 @@
 require "test_helper"
 include SharedBehaviour
 
-class NewMessageTest < Capybara::Rails::TestCase
+class NewMessageTest < ActionDispatch::IntegrationTest
 
   before do
     @event = FactoryGirl.create(:event, :live_event, visible: false)

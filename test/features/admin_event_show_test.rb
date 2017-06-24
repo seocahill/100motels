@@ -1,7 +1,7 @@
 require "test_helper"
 include SharedBehaviour
 
-class AdminEventShowTest < Capybara::Rails::TestCase
+class AdminEventShowTest < ActionDispatch::IntegrationTest
 
   before do
     @event = FactoryGirl.create(:event, :live_event, visible: false)

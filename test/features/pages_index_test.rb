@@ -1,7 +1,7 @@
 require "test_helper"
 include SharedBehaviour
 
-class PagesIndexTest < Capybara::Rails::TestCase
+class PagesIndexTest < ActionDispatch::IntegrationTest
 
   before do
     @event= FactoryGirl.create(:event)
