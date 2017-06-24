@@ -47,19 +47,22 @@ class EventShowTest < ActionDispatch::IntegrationTest
   end
 
   test "placing an order successfully" do
-    skip
+    use_js_driver
     visit event_path(@event)
 
     select "2", from: "order[quantity]"
     assert first(".order-total").has_content?("21.11"), "order total incorrect"
     click_button "Purchase"
-    page.within_frame(page.find('.stripe_checkout_app')[:name]) do
-      fill_in "email", with: "ocathais@example.com"
-      fill_in "card_number", with: "4242424242424242"
-      fill_in "cc-exp", with: "12/#{Time.now.year + 1}"
-      fill_in "cc-csc", with: "123"
+    sleep(2)
+    stripe_iframe = all('iframe[name=stripe_checkout_app]').last
+    within_frame(stripe_iframe) do
+      fill_in "Email", with: "ocathais@example.com"
+      fill_in "Card number", with: "4242424242424242"
+      fill_in "Expiry", with: "12/#{Time.now.year + 1}"
+      fill_in "CVC", with: "123"
       click_button "Checkout"
     end
+    sleep(5)
     assert page.has_css?('.alert', text: "Thanks! Please check your email."), "no success message"
   end
 
