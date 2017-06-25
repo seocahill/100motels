@@ -1,23 +1,19 @@
 language: ruby
 cache: bundler
 rvm:
-- 2.2.0
+  - 2.2.7
 addons:
-  postgresql: '9.3'
+  postgresql: '9.6'
   code_climate:
     repo_token: 7c36f361698781d36b23e8157a68609ca06d4c231658791c6c1d9f4a7e9541dd
 before_script:
 - cp config/database.yml.travis config/database.yml
 - psql -c 'create database travis_ci_test;' -U postgres
 script:
-- bundle exec rake db:migrate RAILS_ENV=test
+- bundle exec rake db:schema:load RAILS_ENV=test
 - bundle exec rake test
 after_success:
 - chmod 600 id_travis
 - mv id_travis ~/.ssh/id_rsa
-- git remote add deploy dokku@100motels.com:100motels.com
-- git push deploy
 before_install:
-- echo -e "Host 100motels.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
-- openssl aes-256-cbc -K $encrypted_ed71510513a1_key -iv $encrypted_ed71510513a1_iv
-  -in id_travis_rsa.enc -out id_travis -d
+- openssl aes-256-cbc -K $encrypted_ed71510513a1_key -iv $encrypted_ed71510513a1_iv -in id_travis_rsa.enc -out id_travis -d
