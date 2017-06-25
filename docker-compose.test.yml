@@ -14,7 +14,6 @@ services:
       - db
       - redis
       - selenium
-
   selenium:
     image: selenium/standalone-firefox-debug
 
