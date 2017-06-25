@@ -23,12 +23,14 @@ class EventShowTest < ActionDispatch::IntegrationTest
     hidden_event = FactoryGirl.create(:event, visible: false)
     sign_in(hidden_event.user)
     visit event_path(hidden_event)
+    sleep(1)
     assert_selector('#showEditor')
   end
 
   test "signed-in admin can edit event" do
     sign_in(@event.user)
     visit event_path(@event)
+    sleep(1)
     assert_selector('#showEditor')
   end
 
@@ -36,6 +38,7 @@ class EventShowTest < ActionDispatch::IntegrationTest
     other_event = FactoryGirl.create(:event)
     sign_in(other_event.user)
     visit event_path(@event)
+    sleep(1)
     assert_no_selector('#showEditor')
   end
 
@@ -54,6 +57,8 @@ class EventShowTest < ActionDispatch::IntegrationTest
     assert first(".order-total").has_content?("21.11"), "order total incorrect"
     click_button "Purchase"
     sleep(2)
+    assert_equal current_path, event_path(@event), "should be on event page"
+    print page.html
     stripe_iframe = all('iframe[name=stripe_checkout_app]').last
     within_frame(stripe_iframe) do
       fill_in "Email", with: "ocathais@example.com"
@@ -62,7 +67,7 @@ class EventShowTest < ActionDispatch::IntegrationTest
       fill_in "CVC", with: "123"
       click_button "Checkout"
     end
-    sleep(5)
+    sleep(7)
     assert page.has_css?('.alert', text: "Thanks! Please check your email."), "no success message"
   end
 
@@ -76,6 +81,8 @@ class EventShowTest < ActionDispatch::IntegrationTest
     use_js_driver
     sign_in(@event.user)
     visit event_path(@event)
+    sleep(2)
+    assert_equal current_path, event_path(@event), "should be on event page"
     find(:css, "#showEditor").click
     find(:css, "textarea").set("New Text")
     click_on "Save"
@@ -83,5 +90,4 @@ class EventShowTest < ActionDispatch::IntegrationTest
       assert page.has_content?("New Text")
     end
   end
-
 end

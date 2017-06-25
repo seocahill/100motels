@@ -21,6 +21,11 @@ services:
     ports:
       - '3000:3000'
       - '9664:9664'
+    environment:
+      - FILEPICKER_API_KEY=${FILEPICKER_API_KEY}
+      - STRIPE_PUBLIC_KEY=${STRIPE_PUBLIC_KEY}
+      - STRIPE_API_KEY=${STRIPE_API_KEY}
+      - STRIPE_PLATFORM_CLIENT_ID=${STRIPE_PLATFORM_CLIENT_ID}
     depends_on:
       - db
       - redis
