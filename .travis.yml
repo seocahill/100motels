@@ -14,9 +14,9 @@ before_install:
   - mv id_travis ~/.ssh/id_rsa
 
 install:
-  - docker-compose build
+  - docker-compose -f test/docker-compose.yml build
 
 script:
-  - docker-compose run web bin/rake db:create db:schema:load RAILS_ENV=test
-  - docker-compose run web bin/rake test
+  - docker-compose -f test/docker-compose.yml run web bin/rake db:create db:schema:load RAILS_ENV=test
+  - docker-compose -f test/docker-compose.yml run web bin/rake test
 
