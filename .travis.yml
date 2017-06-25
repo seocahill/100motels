@@ -16,7 +16,10 @@ before_install:
 install:
   - docker-compose -f docker-compose.test.yml build
 
+before_script:
+  - docker-compose -f docker-compose.test.yml run web bin/rake db:create RAILS_ENV=test
+  - docker-compose -f docker-compose.test.yml run web bin/rake db:schema:load RAILS_ENV=test
+
 script:
-  - docker-compose -f docker-compose.test.yml run web bin/rake db:create db:schema:load RAILS_ENV=test
   - docker-compose -f docker-compose.test.yml run web bin/rake test
 

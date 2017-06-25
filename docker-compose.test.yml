@@ -4,16 +4,18 @@ services:
     image: redis:alpine
   db:
     image: postgres:alpine
+    volumes: 
+      - postgres:/var/lib/postgresql/data
   web:
     build: .
     command: bundle exec rails s -p 3000 -b '0.0.0.0'
     volumes:
       - .:/app
-      - ./tmp:/tmp
     depends_on:
       - db
       - redis
       - selenium
   selenium:
     image: selenium/standalone-firefox-debug
-
+volumes:
+  postgres:
