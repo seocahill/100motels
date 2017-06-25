@@ -9,9 +9,9 @@ addons:
     repo_token: 7c36f361698781d36b23e8157a68609ca06d4c231658791c6c1d9f4a7e9541dd
 
 before_install:
+  - openssl aes-256-cbc -K $encrypted_ed71510513a1_key -iv $encrypted_ed71510513a1_iv -in id_travis_rsa.enc -out id_travis -d
   - chmod 600 id_travis
   - mv id_travis ~/.ssh/id_rsa
-  - openssl aes-256-cbc -K $encrypted_ed71510513a1_key -iv $encrypted_ed71510513a1_iv -in id_travis_rsa.enc -out id_travis -d
 
 before_script:
   - docker-compose build
