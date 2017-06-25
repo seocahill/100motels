@@ -13,7 +13,7 @@ services:
       - .:/app
     environment:
       - FILEPICKER_API_KEY=${FILEPICKER_API_KEY}
-      - STRIPE_PUBLIC_KE=${STRIPE_PUBLIC_KE}
+      - STRIPE_PUBLIC_KEY=${STRIPE_PUBLIC_KEY}
       - STRIPE_API_KEY=${STRIPE_API_KEY}
       - STRIPE_PLATFORM_CLIENT_ID=${STRIPE_PLATFORM_CLIENT_ID}
     depends_on:
