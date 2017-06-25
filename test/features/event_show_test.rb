@@ -58,7 +58,6 @@ class EventShowTest < ActionDispatch::IntegrationTest
     click_button "Purchase"
     sleep(2)
     assert_equal current_path, event_path(@event), "should be on event page"
-    print page.html
     stripe_iframe = all('iframe[name=stripe_checkout_app]').last
     within_frame(stripe_iframe) do
       fill_in "Email", with: "ocathais@example.com"
