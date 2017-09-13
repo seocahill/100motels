@@ -4,9 +4,23 @@
 
 # 100 Motels
 
-Tour the World, no record label.
+100 Motels was a crowdfunding platform for musicians to fund their tours that closed in 2012.
 
-100 Motels is a platform for musicians to fund their tours.
+The site itself operated as a marketplace allowing users to operate crowdfunding compaigns for their gigs utilysing Stripe's connect API.
+
+This source code here is a version of the original source now offered as a fullstack code sample for my current portfolio as all of my production rails apps are API only.
+
+You can run this locally using 
+```
+  docker-compose up -d
+``` 
+although be warned that you may need stripe and filepicker api keys (see the .env file).
+
+You can run the tests suite locally using 
+
+```
+  docker-compose -f docker-compose.test.yml run web bin/rake test
+```
 
 ![100 Motels demo](motels.gif)
 
